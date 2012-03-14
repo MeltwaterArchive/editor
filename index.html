@@ -16,12 +16,25 @@
 <body>
 
 <div id="wrap">
-	
-	<h1>JCSDL Proof of Concept</h1>
-	<p>A creation of a single filter and the output of this filter.</p>
 
 	<h2>JCSDL Input:</h2>
-	<textarea id="filter-jcsdl"></textarea>
+	<textarea id="filter-jcsdl">// JCSDL_MASTER #[hash]#
+// JCSDL_START #[hash]# blog.content,contains,24-33
+blog.content contains "starcraft"
+// JCSDL_END
+OR
+// JCSDL_START #[hash]# board.content,contains_any,29-53
+board.content contains_any "starcraft, warcraft, sc2"
+// JCSDL_END
+OR
+// JCSDL_START #[hash]# twitter.text,contains_any,28-52
+twitter.text contains_any "starcraft, warcraft, sc2"
+// JCSDL_END
+OR
+// JCSDL_START #[hash]# twitter.mentions,contains,28-36
+twitter.mentions contains "mbCARMAC"
+// JCSDL_END
+// JCSDL_MASTER_END</textarea>
 	<input type="button" id="filter-jcsdl-input" value="Convert to GUI" />
 
 	<div id="jcsdl-editor"></div>
