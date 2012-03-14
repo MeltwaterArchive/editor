@@ -86,6 +86,22 @@ var JCSDLConfig = {
 					}
 				}
 			}
+		},
+
+		// blog
+		blog : {
+			name : 'Blog',
+			fields : {
+				content : {name: 'Content', type: 'string', input: 'text', operators: ['contains', 'substr', 'contains_any']}
+			}
+		},
+
+		// board
+		board : {
+			name : 'Discussion Board',
+			fields : {
+				content : {name: 'Content', type: 'string', input: 'text', operators: ['contains', 'substr', 'contains_any']}
+			}
 		}
 	},
 
