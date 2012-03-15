@@ -8,7 +8,8 @@ var JCSDLGui = function($container, config) {
 	var jcsdl = new JCSDL();
 
 	this.config = $.extend(true, {
-		animationSpeed : 200
+		animationSpeed : 200,
+		outputTo : $()
 	}, config);
 
 	this.$editor = $();
@@ -210,7 +211,7 @@ var JCSDLGui = function($container, config) {
 		var theCode = jcsdl.getCSDL();
 		jcsdl.clearFilters();
 
-		$('#filter-csdl').val(theCode);
+		$(config.outputTo).val(theCode);
 	};
 
 	/* ##########################
