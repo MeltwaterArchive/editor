@@ -135,7 +135,7 @@ var JCSDL = function(gui) {
 		// actual CSDL
 		var csdl = filter.target + '.' + field + ' ' + operatorCode + ' ';
 		var valueStart = (fieldInfo.type == 'string') ? csdl.length + 1 : csdl.length;
-		var valueLength = value.length;
+		var valueLength = (fieldInfo.type == 'string') ? value.length - 2 : value.length;
 		 
 		csdl = csdl + value;
 
