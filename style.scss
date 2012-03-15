@@ -24,8 +24,38 @@ p {text-align: center; line-height: 1.5em; color: #444;}
  */
 #jcsdl-gui {
 	width: 700px; margin: 50px auto;
-	background: #ddd;
+	background: #fefefe;
 	overflow: hidden; position: relative;
+}
+
+$borderColor : #ddd;
+
+/* the actual editor */
+.jcsdl-editor {
+
+	.filter {
+		overflow: hidden; position: relative; margin: 10px 0;
+		padding: 5px;
+		border: 1px solid $borderColor;
+
+		.filter-description {
+			overflow: hidden;
+
+			.info {
+				float: left; margin: 0 10px;
+
+				&.j-target {font-weight: bold;}
+				&.j-operator {font-weight: bold;}
+			}			
+		}
+
+		.options {
+			position: absolute; top: 5px; right: 5px;
+
+			a {margin: 0 5px;}
+		}
+	}
+
 }
 
 /*

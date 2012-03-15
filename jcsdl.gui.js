@@ -23,17 +23,47 @@ var JCSDLGui = function($container, config) {
 	// all templates are defined elsewhere
 	this.templates = JCSDLGuiTemplates;
 
+	/*
+	 * INITIALIZE THE EDITOR
+	 */
+	/**
+	 * Initializes (or reinitializes) the JCSDL GUI Editor.
+	 */
+	this.init = function() {
+		// reset everything in case this is a reinitialization
+		self.$currentFilterView = $();
+		self.filterSteps = [];
+		self.currentFilterTarget = null;
+		self.currentFilterFieldsPath = [];
+
+		// and insert the editor into the container
+		self.$editor = self.getTemplate('editor');
+		self.$container.html(self.$editor);
+	};
+
 	/**
 	 * Loads the given JCSDL string and builds the whole editor based on it.
 	 * @param  {String} code JCSDL string.
 	 */
 	this.loadJCSDL = function(code) {
-		var filter = jcsdl.parseJCSDL(code);
-		if (filter === false) {
+		this.init(); // just in case we're loading JCSDL for a 2nd time
+
+		var filters = jcsdl.parseJCSDL(code);
+		if (filters === false) {
 			self.showError('Invalid JCSDL input!', code);
 			return;
 		}
 
+		// target the filters list
+		var $filtersList = self.$editor.find('.filters-list');
+
+		// add each filter to the list
+		$.each(filters, function(i, filter) {
+			var $filterRow = createFilterRow(filter);
+			$filterRow.appendTo($filtersList);
+		});
+
+		/*
 		// select target
 		self.$currentFilterView.find('select[name="target"]').val(filter.target);
 		self.didSelectTarget(filter.target);
@@ -49,11 +79,8 @@ var JCSDLGui = function($container, config) {
 		self.$currentFilterView.find('#operator-' + filter.operator).click();
 		
 		// fill in the value
-		self.$currentFilterView.find('#filter-value-input-field input').val(filter.value);		
-	};
-
-	this.initStreamEditor = function() {
-		self.$editor = self.getTemplate('editor');
+		self.$currentFilterView.find('#filter-value-input-field input').val(filter.value);
+		*/
 	};
 
 	/**
@@ -228,6 +255,25 @@ var JCSDLGui = function($container, config) {
 	};
 
 	/**
+	 * Creates a filter row element for the specified filter.
+	 * @param  {Object} filter Filter object.
+	 * @return {jQuery}
+	 */
+	var createFilterRow = function(filter) {
+		var $filterRow = self.getTemplate('filter');
+
+		$filterRow.find('.j-target').html(filter.target);
+		$filterRow.find('.j-field').html(filter.fieldPath.join('.'));
+		$filterRow.find('.j-operator').html(filter.operator);
+		$filterRow.find('.j-value').html(filter.value);
+
+		// also attach the filter data to the row
+		$filterRow.data('filter', filter);
+
+		return $filterRow;
+	};
+
+	/**
 	 * Creates a select option for the given target with the specified name.
 	 * @param  {String} name   Unique name of the target, matching one from JCSDLConfig.
 	 * @param  {Object} target Definition of the target from JCSDLConfig.
@@ -361,5 +407,8 @@ var JCSDLGui = function($container, config) {
 		}
 		
 		return $();
-	}
+	};
+
+	// automatically call the initialization after everything has been defined
+	this.init();
 };

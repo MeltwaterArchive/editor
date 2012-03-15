@@ -44,9 +44,32 @@ p {
 #jcsdl-gui {
   width: 700px;
   margin: 50px auto;
-  background: #ddd;
+  background: #fefefe;
   overflow: hidden;
   position: relative; }
+
+/* the actual editor */
+.jcsdl-editor .filter {
+  overflow: hidden;
+  position: relative;
+  margin: 10px 0;
+  padding: 5px;
+  border: 1px solid #dddddd; }
+  .jcsdl-editor .filter .filter-description {
+    overflow: hidden; }
+    .jcsdl-editor .filter .filter-description .info {
+      float: left;
+      margin: 0 10px; }
+      .jcsdl-editor .filter .filter-description .info.j-target {
+        font-weight: bold; }
+      .jcsdl-editor .filter .filter-description .info.j-operator {
+        font-weight: bold; }
+  .jcsdl-editor .filter .options {
+    position: absolute;
+    top: 5px;
+    right: 5px; }
+    .jcsdl-editor .filter .options a {
+      margin: 0 5px; }
 
 /*
 #filter {

@@ -9,40 +9,54 @@ var JCSDL = function(gui) {
 	 * Loading JCSDL
 	 * ########################## */
 	/**
-	 * Parses the given JCSDL code into something usable by the GUI.
-	 * @param  {String} code JCSDL code.
-	 * @return {Object}
+	 * Parses the given JCSDL code into an array of filter objects that are usable by the GUI.
+	 * @param  {String} code Full JCSDL code (with master lines and logic)
+	 * @return {Array} Array of filter objects.
 	 */
 	this.parseJCSDL = function(code) {
-		error('jcsdl', code);
 		var lines = code.split("\n");
 		var masterLine = lines.shift();
+		var endLine = lines.pop();
 
+		// verify the inputed JCSDL
 		if (!verifyJCSDL(masterLine, lines)) {
 			error('The given JCSDL did not verify!', code);
 			return false;
 		}
 
-		// for now we're only dealing with a single filter
-		var jcsdlDescription = lines.shift();
-		var csdl = lines.shift();
-		var jcsdlEnd = lines.shift();
+		var filters = [];
 
-		jcsdlDescription = jcsdlDescription.split(' ');
-		var jcsdlHash = jcsdlDescription[2];
-		var jcsdlCode = jcsdlDescription[3];
+		// go over all the lines in iterations of 3 in order to read all the filters (one filter takes 3 lines)
+		while(lines.length > 0) {
+			var jcsdlDescription = lines.shift();
+			var csdl = lines.shift();
+			var jcsdlEnd = lines.shift();
 
-		if (!verifyJCSDLFilter(jcsdlHash, csdl)) {
-			error('The given JCSDL Filter code did not verify!', code);
-			return false;
+			// also, after the filter there's also a logic line (or nothing if it's the last one)
+			lines.shift(); // not doing anything with it here
+
+			jcsdlDescription = jcsdlDescription.split(' ');
+			var jcsdlHash = jcsdlDescription[2];
+			var jcsdlCode = jcsdlDescription[3];
+
+			if (!verifyJCSDLFilter(jcsdlHash, csdl)) {
+				error('The given JCSDL Filter code did not verify!', csdl, code);
+				return false;
+			}
+
+			// parse the JCSDL filter code to a filter object
+			var filter = self.filterFromJCSDL(jcsdlCode, csdl);
+
+			// add the filter object to the list of filters
+			filters.push(filter);
 		}
 
-		return self.filterFromJCSDL(jcsdlCode, csdl);
+		return filters;
 	};
 
 	/**
 	 * Creates a filter object from the given JCSDL code and based on CSDL code.
-	 * @param  {String} jcsdlCode JCSDL Code or rather JCSDL comment.
+	 * @param  {String} jcsdlCode JCSDL Code / part of the JCSDL comment.
 	 * @param  {String} csdl      The CSDL code related to this filter.
 	 * @return {Object}
 	 */

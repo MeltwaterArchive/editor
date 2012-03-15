@@ -1,13 +1,26 @@
 var JCSDLGuiTemplates = {
 	// editor
 	editor : $([
-		'<div id="editor">',
+		'<div class="jcsdl-editor">',
+			'<h3>Filters:</h3>',
+			'<div class="filters-list">',
+			'</div>',
 		'</div>'
 	].join('')),
 
-	// filter container
+	// filter row
 	filter : $([
-		'<div id="filter">',
+		'<div class="filter">',
+			'<div class="filter-description">',
+				'<div class="j-target info"></div>',
+				'<div class="j-field info"></div>',
+				'<div class="j-operator info"></div>',
+				'<div class="j-value info"></div>',
+			'</div>',
+			'<div class="options">',
+				'<a href="#" class="j-edit">Edit</a>',
+				'<a href="#" class="j-delete">Delete</a>',
+			'</div>',
 		'</div>'
 	].join('')),
 
