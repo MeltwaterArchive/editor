@@ -1,5 +1,11 @@
 var JCSDLGuiTemplates = {
-	// editor container
+	// editor
+	editor : $([
+		'<div id="editor">',
+		'</div>'
+	].join('')),
+
+	// filter container
 	filter : $([
 		'<div id="filter">',
 		'</div>'

@@ -11,7 +11,8 @@ var JCSDLGui = function($container, config) {
 		animationSpeed : 200
 	}, config);
 
-	this.$currentFilterView = null;
+	this.$editor = $();
+	this.$currentFilterView = $();
 	this.filterSteps = [];
 
 	// current choice data
@@ -20,6 +21,39 @@ var JCSDLGui = function($container, config) {
 
 	// all templates are defined elsewhere
 	this.templates = JCSDLGuiTemplates;
+
+	/**
+	 * Loads the given JCSDL string and builds the whole editor based on it.
+	 * @param  {String} code JCSDL string.
+	 */
+	this.loadJCSDL = function(code) {
+		var filter = jcsdl.parseJCSDL(code);
+		if (filter === false) {
+			alert('Invalid JCSDL input!');
+			return;
+		}
+
+		// select target
+		self.$currentFilterView.find('select[name="target"]').val(filter.target);
+		self.didSelectTarget(filter.target);
+
+		// select all fields and subfields
+		$.each(filter.fieldPath, function(i, field) {
+			var $fieldView = self.$currentFilterView.find('.filter-target-field:last');
+			$fieldView.find('select[name="field[]"]').val(field);
+			self.didSelectField(field, $fieldView);
+		});
+
+		// select operator
+		self.$currentFilterView.find('#operator-' + filter.operator).click();
+		
+		// fill in the value
+		self.$currentFilterView.find('#filter-value-input-field input').val(filter.value);		
+	};
+
+	this.initStreamEditor = function() {
+		self.$editor = self.getTemplate('editor');
+	};
 
 	/**
 	 * Initializes the filter editor.
@@ -53,37 +87,8 @@ var JCSDLGui = function($container, config) {
 		self.$container.html(self.$currentFilterView);
 	};
 
-	/**
-	 * Loads the given JCSDL string and builds the whole editor based on it.
-	 * @param  {String} code JCSDL string.
-	 */
-	this.loadJCSDL = function(code) {
-		var filter = jcsdl.parseJCSDL(code);
-		if (filter === false) {
-			alert('Invalid JCSDL input!');
-			return;
-		}
-
-		// select target
-		self.$currentFilterView.find('select[name="target"]').val(filter.target);
-		self.didSelectTarget(filter.target);
-
-		// select all fields and subfields
-		$.each(filter.fieldPath, function(i, field) {
-			var $fieldView = self.$currentFilterView.find('.filter-target-field:last');
-			$fieldView.find('select[name="field[]"]').val(field);
-			self.didSelectField(field, $fieldView);
-		});
-
-		// select operator
-		self.$currentFilterView.find('#operator-' + filter.operator).click();
-		
-		// fill in the value
-		self.$currentFilterView.find('#filter-value-input-field input').val(filter.value);		
-	};
-
 	/* ##########################
-	 * EDITOR BUILDING
+	 * FILTER EDITOR BUILDING
 	 * ########################## */
 	/**
 	 * Adds a filter step with proper numbering/position.
