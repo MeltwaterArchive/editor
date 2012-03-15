@@ -17,7 +17,7 @@ var JCSDL = function() {
 		var masterLine = lines.shift();
 
 		if (!verifyJCSDL(masterLine, lines)) {
-			console.log('The given JCSDL did not verify!', code);
+			error('The given JCSDL did not verify!', code);
 			return false;
 		}
 
@@ -31,7 +31,7 @@ var JCSDL = function() {
 		var jcsdlCode = jcsdlDescription[3];
 
 		if (!verifyJCSDLFilter(jcsdlHash, csdl)) {
-			console.log('The given JCSDL Filter code did not verify!', code);
+			error('The given JCSDL Filter code did not verify!', code);
 			return false;
 		}
 
@@ -56,7 +56,7 @@ var JCSDL = function() {
 		var operator = jcsdlCode.shift();
 
 		var range = jcsdlCode.shift().split('-');
-		var value = csdl.substring(range[0], range[1]);
+		var value = csdl.substr(range[0], range[1]);
 		value = valueFromCSDL(fieldInfo, value);
 
 		var filter = {
@@ -110,13 +110,13 @@ var JCSDL = function() {
 
 		// actual CSDL
 		var csdl = filter.target + '.' + field + ' ' + operatorCode + ' ';
-		var valueStart = csdl.length;
-		var valueEnd = valueStart + value.length;
+		var valueStart = (fieldInfo.type == 'string') ? csdl.length + 1 : csdl.length;
+		var valueLength = value.length;
 		 
 		csdl = csdl + value;
 
 		// create JCSDL syntax as well
-		var jcsdlSyntax = filter.target + '.' + field +',' + filter.operator + ',' + valueStart + '-' + valueEnd;
+		var jcsdlSyntax = filter.target + '.' + field +',' + filter.operator + ',' + valueStart + '-' + valueLength;
 
 		var hash = '[hash]';
 		
@@ -171,7 +171,7 @@ var JCSDL = function() {
 		
 		if (fieldInfo.type == 'int') {
 			if (isNaN(value)) {
-				console.log('This field value is suppose to be a Number, String given.', value, fieldInfo);
+				error('This field value is suppose to be a Number, String given.', value, fieldInfo);
 				return false;
 			}
 			parsedValue = value;
@@ -193,9 +193,18 @@ var JCSDL = function() {
 		if (fieldInfo.type == 'int') {
 			return value;
 		} else {
-			// strip quotes, ie. 1st and last chars // dirty
-			return value.substring(1, value.length - 1);
+			return value;
 		}
+	};
+
+	/**
+	 * Shows an error.
+	 * @param  {String} message Error message to be displayed.
+	 * @param  {String} code    Code that caused the error.
+	 */
+	var error = function(message, code) {
+		alert(message + "\n\n##################\n\n" + code + "\n\n#####\n\n See console for more info.");
+		console.log(arguments);
 	};
 
 	/* ##########################
@@ -244,7 +253,7 @@ var JCSDL = function() {
 		// starting field is naturally the current target
 		var field = JCSDLConfig.targets[target];
 		if (typeof(field) == 'undefined') {
-			console.log('Such target does not exist!', target);
+			error('Such target does not exist!', target);
 			return false;
 		}
 
@@ -256,13 +265,13 @@ var JCSDL = function() {
 					field = field.fields[fieldName];
 				} else {
 					field = false;
-					console.log('Invalid path to a field!', target, fieldPath);
+					error('Invalid path to a field!', target, fieldPath);
 					return false; // break the $.each
 				}
 
 			} else {
 				field = false;
-				console.log('Invalid path to a field!', target, fieldPath);
+				error('Invalid path to a field!', target, fieldPath);
 				return false; // break the $.each
 			}
 		});
