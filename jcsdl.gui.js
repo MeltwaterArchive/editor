@@ -5,7 +5,7 @@ var JCSDLGui = function($container, config) {
 	if (this.$container.length == 0) return false; // break if no such element in DOM
 
 	/** @var {JCSDL} The actual JCSDL "parser". */
-	var jcsdl = new JCSDL();
+	var jcsdl = new JCSDL(this);
 
 	this.config = $.extend(true, {
 		animationSpeed : 200,
@@ -30,7 +30,7 @@ var JCSDLGui = function($container, config) {
 	this.loadJCSDL = function(code) {
 		var filter = jcsdl.parseJCSDL(code);
 		if (filter === false) {
-			alert('Invalid JCSDL input!');
+			self.showError('Invalid JCSDL input!', code);
 			return;
 		}
 
@@ -196,14 +196,14 @@ var JCSDLGui = function($container, config) {
 		// first check if the operator is selected
 		var $selectedOperator = $valueView.find('[name="operator"]:checked');
 		if ($selectedOperator.length == 0) {
-			alert('You need to select an operator!');
+			self.showError('You need to select an operator!');
 			return;
 		}
 
 		// then check if there is a value specified
 		var value = $valueView.find('#filter-value-input-field input').val();
 		if (value.length == 0) {
-			alert('You need to specify a value!');
+			self.showError('You need to specify a value!');
 			return;
 		}
 		
@@ -217,6 +217,16 @@ var JCSDLGui = function($container, config) {
 	/* ##########################
 	 * HELPERS
 	 * ########################## */
+	/**
+	 * Shows an error.
+	 * @param  {String} message Error message to be displayed.
+	 * @param  {String} code    Code that caused the error.
+	 */
+	this.showError = function(message, code) {
+		alert(message + "\n\n##################\n\n" + code + "\n\n#####\n\n See console for more info.");
+		console.log(message, arguments);
+	};
+
 	/**
 	 * Creates a select option for the given target with the specified name.
 	 * @param  {String} name   Unique name of the target, matching one from JCSDLConfig.

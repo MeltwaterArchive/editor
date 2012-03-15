@@ -1,5 +1,6 @@
-var JCSDL = function() {
+var JCSDL = function(gui) {
 	var self = this;
+	var gui = gui;
 
 	var filters = [];
 	var logic = 'AND';
@@ -13,6 +14,7 @@ var JCSDL = function() {
 	 * @return {Object}
 	 */
 	this.parseJCSDL = function(code) {
+		error('jcsdl', code);
 		var lines = code.split("\n");
 		var masterLine = lines.shift();
 
@@ -203,8 +205,7 @@ var JCSDL = function() {
 	 * @param  {String} code    Code that caused the error.
 	 */
 	var error = function(message, code) {
-		alert(message + "\n\n##################\n\n" + code + "\n\n#####\n\n See console for more info.");
-		console.log(arguments);
+		gui.showError.apply(this, arguments);
 	};
 
 	/* ##########################
