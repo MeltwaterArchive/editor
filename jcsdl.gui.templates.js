@@ -5,6 +5,7 @@ var JCSDLGuiTemplates = {
 			'<h3>Filters:</h3>',
 			'<div class="filters-list">',
 			'</div>',
+			'<input type="button" class="jcsdl-editor-save" value="Convert to JCSDL" />',
 		'</div>'
 	].join('')),
 

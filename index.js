@@ -1,7 +1,9 @@
 $(function() {
 	
 	var theEditor = new JCSDLGui('#jcsdl-gui', {
-		outputTo : '#jcsdl-output'
+		onSave : function(code) {
+			$('#jcsdl-output').val(code);
+		}
 	});
 
 	$('#jcsdl-input-button').click(function(ev) {

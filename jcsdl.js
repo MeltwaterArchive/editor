@@ -2,7 +2,6 @@ var JCSDL = function(gui) {
 	var self = this;
 	var gui = gui;
 
-	var filters = [];
 	var logic = 'AND';
 
 	/* ##########################
@@ -89,10 +88,17 @@ var JCSDL = function(gui) {
 	 * ########################## */
 	/**
 	 * Returns CSDL ready code from the previously added filters from the GUI.
+	 * @param  {Array}  filters Array of filters to be parsed.
 	 * @return {String}
 	 */
-	this.getCSDL = function() {
+	this.getCSDLFromFilters = function(filters, logic) {
+		// make sure the logic is valid
+		var logic = (logic) ? logic : 'AND';
+		logic = (logic == 'AND' || logic == 'OR') ? logic : 'AND';
+
 		var output = '';
+
+		// go over each filter and parse it
 		$.each(filters, function(i, filter) {
 			var parsedFilter = self.filterToCSDL(filter);
 			if (!parsedFilter) return true; // continue
@@ -100,8 +106,8 @@ var JCSDL = function(gui) {
 			output = output + parsedFilter + "\n";
 		});
 
-		// add master comment
-		output = '// JCSDL_MASTER #[hash]#' + "\n" + output;
+		// add master comments to the final output
+		output = '// JCSDL_MASTER #[hash]#' + "\n" + output + "\n//JCSDL_MASTER_END";
 
 		return output;
 	};
@@ -219,7 +225,7 @@ var JCSDL = function(gui) {
 	 * @param  {String} code    Code that caused the error.
 	 */
 	var error = function(message, code) {
-		gui.showError.apply(this, arguments);
+		gui.showError.apply(gui, arguments);
 	};
 
 	/* ##########################

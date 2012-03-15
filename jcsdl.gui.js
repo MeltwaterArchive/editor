@@ -9,16 +9,23 @@ var JCSDLGui = function($container, config) {
 
 	this.config = $.extend(true, {
 		animationSpeed : 200,
-		outputTo : $()
+		onSave : function(code) {console.log(code);}
 	}, config);
 
 	this.$editor = $();
+
+	this.filters = [];
+
+
+
+	/*
 	this.$currentFilterView = $();
 	this.filterSteps = [];
 
 	// current choice data
 	this.currentFilterTarget = null;
 	this.currentFilterFieldsPath = [];
+	*/
 
 	// all templates are defined elsewhere
 	this.templates = JCSDLGuiTemplates;
@@ -31,14 +38,20 @@ var JCSDLGui = function($container, config) {
 	 */
 	this.init = function() {
 		// reset everything in case this is a reinitialization
-		self.$currentFilterView = $();
-		self.filterSteps = [];
-		self.currentFilterTarget = null;
-		self.currentFilterFieldsPath = [];
+		self.filters = [];
+
+		//self.$currentFilterView = $();
+		//self.filterSteps = [];
+		//self.currentFilterTarget = null;
+		//self.currentFilterFieldsPath = [];
 
 		// and insert the editor into the container
 		self.$editor = self.getTemplate('editor');
 		self.$container.html(self.$editor);
+
+		self.$editor.find('.jcsdl-editor-save').bind('click.jcsdl', function(ev) {
+			self.returnJCSDL();
+		});
 	};
 
 	/**
@@ -54,11 +67,13 @@ var JCSDLGui = function($container, config) {
 			return;
 		}
 
+		self.filters = filters;
+
 		// target the filters list
 		var $filtersList = self.$editor.find('.filters-list');
 
 		// add each filter to the list
-		$.each(filters, function(i, filter) {
+		$.each(self.filters, function(i, filter) {
 			var $filterRow = createFilterRow(filter);
 			$filterRow.appendTo($filtersList);
 		});
@@ -81,6 +96,15 @@ var JCSDLGui = function($container, config) {
 		// fill in the value
 		self.$currentFilterView.find('#filter-value-input-field input').val(filter.value);
 		*/
+	};
+
+	/**
+	 * Returns the JCSDL
+	 * @return {[type]}
+	 */
+	this.returnJCSDL = function() {
+		var code = jcsdl.getCSDLFromFilters(self.filters, 'OR');
+		self.config.onSave.apply(self, [code]);
 	};
 
 	/**
