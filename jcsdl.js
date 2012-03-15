@@ -96,18 +96,20 @@ var JCSDL = function(gui) {
 		var logic = (logic) ? logic : 'AND';
 		logic = (logic == 'AND' || logic == 'OR') ? logic : 'AND';
 
-		var output = '';
+		var filterCodes = [];
 
 		// go over each filter and parse it
 		$.each(filters, function(i, filter) {
 			var parsedFilter = self.filterToCSDL(filter);
 			if (!parsedFilter) return true; // continue
 
-			output = output + parsedFilter + "\n";
+			filterCodes.push(parsedFilter);
 		});
 
+		var output = filterCodes.join("\n" + logic + "\n");
+
 		// add master comments to the final output
-		output = '// JCSDL_MASTER #[hash]#' + "\n" + output + "\n//JCSDL_MASTER_END";
+		output = '// JCSDL_MASTER #[hash]#' + "\n" + output + "\n// JCSDL_MASTER_END";
 
 		return output;
 	};
