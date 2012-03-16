@@ -49,6 +49,12 @@ p {
   position: relative; }
 
 /* the actual editor */
+.jcsdl-editor ul.filters-logic {
+  list-style-type: none;
+  overflow: hidden; }
+  .jcsdl-editor ul.filters-logic li {
+    float: left;
+    margin-right: 10px; }
 .jcsdl-editor .filter {
   overflow: hidden;
   position: relative;

@@ -14,6 +14,7 @@ var JCSDLGui = function($container, config) {
 
 	this.$editor = $();
 
+	this.logic = 'AND';
 	this.filters = [];
 
 
@@ -38,6 +39,7 @@ var JCSDLGui = function($container, config) {
 	 */
 	this.init = function() {
 		// reset everything in case this is a reinitialization
+		self.logic = 'AND';
 		self.filters = [];
 
 		//self.$currentFilterView = $();
@@ -48,6 +50,10 @@ var JCSDLGui = function($container, config) {
 		// and insert the editor into the container
 		self.$editor = self.getTemplate('editor');
 		self.$container.html(self.$editor);
+
+		self.$editor.find('.filters-logic input[name="logic"]').change(function(ev) {
+			self.logic = $(this).val();
+		});
 
 		self.$editor.find('.jcsdl-editor-save').bind('click.jcsdl', function(ev) {
 			self.returnJCSDL();
@@ -61,14 +67,19 @@ var JCSDLGui = function($container, config) {
 	this.loadJCSDL = function(code) {
 		this.init(); // just in case we're loading JCSDL for a 2nd time
 
-		var filters = jcsdl.parseJCSDL(code);
-		if (filters === false) {
+		var parsed = jcsdl.parseJCSDL(code);
+		if (parsed === false) {
 			self.showError('Invalid JCSDL input!', code);
 			return;
 		}
 
-		self.filters = filters;
+		self.logic = (parsed.logic == 'AND') ? 'AND' : 'OR';
+		self.filters = parsed.filters;
 
+		// mark the logic
+		self.$editor.find('.filters-logic input[name="logic"][value="' + self.logic + '"]').click();
+		
+		// display the filters
 		// target the filters list
 		var $filtersList = self.$editor.find('.filters-list');
 
@@ -103,7 +114,7 @@ var JCSDLGui = function($container, config) {
 	 * @return {[type]}
 	 */
 	this.returnJCSDL = function() {
-		var code = jcsdl.getCSDLFromFilters(self.filters, 'OR');
+		var code = jcsdl.getCSDLFromFilters(self.filters, self.logic);
 		self.config.onSave.apply(self, [code]);
 	};
 

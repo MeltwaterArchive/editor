@@ -23,6 +23,10 @@ var JCSDL = function(gui) {
 			return false;
 		}
 
+		// get the logic
+		var logic = masterLine.split(' ')[3];
+
+		// get the filters from the code
 		var filters = [];
 
 		// go over all the lines in iterations of 3 in order to read all the filters (one filter takes 3 lines)
@@ -50,7 +54,10 @@ var JCSDL = function(gui) {
 			filters.push(filter);
 		}
 
-		return filters;
+		return {
+			filters : filters,
+			logic : logic
+		};
 	};
 
 	/**
@@ -109,7 +116,7 @@ var JCSDL = function(gui) {
 		var output = filterCodes.join("\n" + logic + "\n");
 
 		// add master comments to the final output
-		output = '// JCSDL_MASTER #[hash]#' + "\n" + output + "\n// JCSDL_MASTER_END";
+		output = '// JCSDL_MASTER #[hash]# ' + logic + "\n" + output + "\n// JCSDL_MASTER_END";
 
 		return output;
 	};

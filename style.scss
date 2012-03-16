@@ -33,6 +33,13 @@ $borderColor : #ddd;
 /* the actual editor */
 .jcsdl-editor {
 
+	ul.filters-logic {
+		list-style-type: none;
+		overflow: hidden;
+
+		li {float: left; margin-right: 10px;}
+	}
+
 	.filter {
 		overflow: hidden; position: relative; margin: 10px 0;
 		padding: 5px;

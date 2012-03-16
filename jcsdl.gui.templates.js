@@ -3,6 +3,10 @@ var JCSDLGuiTemplates = {
 	editor : $([
 		'<div class="jcsdl-editor">',
 			'<h3>Filters:</h3>',
+			'<ul class="filters-logic">',
+				'<li><input type="radio" name="logic" value="AND" checked="checked" /> ALL of the following:</li>',
+				'<li><input type="radio" name="logic" value="OR" /> ANY of the following:</li>',
+			'</ul>',
 			'<div class="filters-list">',
 			'</div>',
 			'<input type="button" class="jcsdl-editor-save" value="Convert to JCSDL" />',
