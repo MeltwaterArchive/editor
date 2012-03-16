@@ -1,4 +1,7 @@
 var JCSDLGuiTemplates = {
+	// container of the whole thing
+	container : $('<div class="jcsdl-container" />'),
+
 	// editor
 	editor : $([
 		'<div class="jcsdl-editor">',

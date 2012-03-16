@@ -1,8 +1,10 @@
-var JCSDLGui = function($container, config) {
+var JCSDLGui = function(el, config) {
 	var self = this;
 
-	this.$container = $($container); // ensure jQuery object
-	if (this.$container.length == 0) return false; // break if no such element in DOM
+	var $el = $(el); // ensure that the container element is a jQuery object
+	if ($el.length == 0) return false; // break if no such element in DOM
+
+	self.$container = $();
 
 	/** @var {JCSDL} The actual JCSDL "parser". */
 	var jcsdl = new JCSDL(this);
@@ -51,7 +53,10 @@ var JCSDLGui = function($container, config) {
 		// and insert the editor into the container
 		self.$editor = self.getTemplate('editor');
 		self.$editorFiltersList = self.$editor.find('.filters-list');
+
+		self.$container = self.getTemplate('container');
 		self.$container.html(self.$editor);
+		$el.html(self.$container);
 
 		/*
 		 * REGISTER LISTENERS

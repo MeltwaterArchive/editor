@@ -49,32 +49,32 @@ p {
   position: relative; }
 
 /* the actual editor */
-.jcsdl-editor ul.filters-logic {
+.jcsdl-container ul.filters-logic {
   list-style-type: none;
   overflow: hidden; }
-  .jcsdl-editor ul.filters-logic li {
+  .jcsdl-container ul.filters-logic li {
     float: left;
     margin-right: 10px; }
-.jcsdl-editor .filter {
+.jcsdl-container .filter {
   overflow: hidden;
   position: relative;
   margin: 10px 0;
   padding: 5px;
   border: 1px solid #dddddd; }
-  .jcsdl-editor .filter .filter-description {
+  .jcsdl-container .filter .filter-description {
     overflow: hidden; }
-    .jcsdl-editor .filter .filter-description .info {
+    .jcsdl-container .filter .filter-description .info {
       float: left;
       margin: 0 10px; }
-      .jcsdl-editor .filter .filter-description .info.j-target {
+      .jcsdl-container .filter .filter-description .info.j-target {
         font-weight: bold; }
-      .jcsdl-editor .filter .filter-description .info.j-operator {
+      .jcsdl-container .filter .filter-description .info.j-operator {
         font-weight: bold; }
-  .jcsdl-editor .filter .options {
+  .jcsdl-container .filter .options {
     position: absolute;
     top: 5px;
     right: 5px; }
-    .jcsdl-editor .filter .options a {
+    .jcsdl-container .filter .options a {
       margin: 0 5px; }
 
 /*
