@@ -49,62 +49,59 @@ p {
   position: relative; }
 
 /* the actual editor */
-.jcsdl-container ul.filters-logic {
-  list-style-type: none;
-  overflow: hidden; }
-  .jcsdl-container ul.filters-logic li {
-    float: left;
-    margin-right: 10px; }
-.jcsdl-container .filter {
-  overflow: hidden;
-  position: relative;
-  margin: 10px 0;
-  padding: 5px;
-  border: 1px solid #dddddd; }
-  .jcsdl-container .filter .filter-description {
+.jcsdl-container {
+  /* single filter editor */ }
+  .jcsdl-container ul.filters-logic {
+    list-style-type: none;
     overflow: hidden; }
-    .jcsdl-container .filter .filter-description .info {
+    .jcsdl-container ul.filters-logic li {
       float: left;
-      margin: 0 10px; }
-      .jcsdl-container .filter .filter-description .info.j-target {
-        font-weight: bold; }
-      .jcsdl-container .filter .filter-description .info.j-operator {
-        font-weight: bold; }
-  .jcsdl-container .filter .options {
-    position: absolute;
-    top: 5px;
-    right: 5px; }
-    .jcsdl-container .filter .options a {
-      margin: 0 5px; }
-
-/*
-#filter {
-	border: 1px solid #ccc;
-	border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;
-}
-
-#jcsdl-editor .filter-step {
-	overflow: hidden;
-	text-align: center;
-	margin: 10px;
-	padding: 10px;
-}
-
-#jcsdl-editor .filter-step.filter-step-name-field {border-top: 1px solid #ccc;}
-#jcsdl-editor .filter-step.filter-step-name-value {border-top: 1px solid #ccc;}
-
-#jcsdl-editor #filter-value-input {}
-#jcsdl-editor #filter-value-input-operators {overflow: hidden;}
-#jcsdl-editor #filter-value-input-operators .operator-select {float: left; margin: 5px 20px;}
-#jcsdl-editor #filter-value-input-operators .operator-select input {margin-right: 8px;}
-#jcsdl-editor #filter-value-input-field {margin-top: 20px;}
-#jcsdl-editor #filter-value-input-field .input-text input {
-	border: 1px solid #ccc;
-	font-size: 1.3em;
-	line-height: 1.5em;
-	padding: 5px 10px;
-	width: 600px;
-	margin: 0 auto;
-	border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;
-}
-*/
+      margin-right: 10px; }
+  .jcsdl-container .filter {
+    overflow: hidden;
+    position: relative;
+    margin: 10px 0;
+    padding: 5px;
+    border: 1px solid #dddddd; }
+    .jcsdl-container .filter .filter-description {
+      overflow: hidden; }
+      .jcsdl-container .filter .filter-description .info {
+        float: left;
+        margin: 0 10px; }
+        .jcsdl-container .filter .filter-description .info.j-target {
+          font-weight: bold; }
+        .jcsdl-container .filter .filter-description .info.j-operator {
+          font-weight: bold; }
+    .jcsdl-container .filter .options {
+      position: absolute;
+      top: 5px;
+      right: 5px; }
+      .jcsdl-container .filter .options a {
+        margin: 0 5px; }
+  .jcsdl-container .filter-editor {
+    border: 1px solid #dddddd; }
+    .jcsdl-container .filter-editor .filter-step {
+      margin: 5px;
+      padding: 5px;
+      overflow: hidden;
+      text-align: center; }
+      .jcsdl-container .filter-editor .filter-step.filter-step-name-field {
+        border-top: 1px solid #dddddd; }
+      .jcsdl-container .filter-editor .filter-step.filter-step-name-value {
+        border-top: 1px solid #dddddd; }
+    .jcsdl-container .filter-editor .filter-value-input-operators {
+      overflow: hidden; }
+      .jcsdl-container .filter-editor .filter-value-input-operators .operator-select {
+        float: left;
+        margin: 5px 20px; }
+        .jcsdl-container .filter-editor .filter-value-input-operators .operator-select input {
+          margin-right: 8px; }
+    .jcsdl-container .filter-editor .filter-value-input-field {
+      margin-top: 20px; }
+      .jcsdl-container .filter-editor .filter-value-input-field .input-text input {
+        margin: 0 auto;
+        padding: 5px 10px;
+        width: 600px;
+        font-size: 1.3em;
+        line-height: 1.5em;
+        border: 1px solid #dddddd; }
