@@ -12,21 +12,20 @@ var JCSDLGui = function($container, config) {
 		onSave : function(code) {console.log(code);}
 	}, config);
 
-	this.$editor = $();
-
+	// data
 	this.logic = 'AND';
 	this.filters = [];
 
-
-
-	/*
-	this.$currentFilterView = $();
 	this.filterSteps = [];
 
 	// current choice data
 	this.currentFilterTarget = null;
 	this.currentFilterFieldsPath = [];
-	*/
+
+	// DOM elements
+	this.$editor = $();
+	this.$editorFiltersList = $();
+	this.$currentFilterView = $();
 
 	// all templates are defined elsewhere
 	this.templates = JCSDLGuiTemplates;
@@ -49,12 +48,24 @@ var JCSDLGui = function($container, config) {
 
 		// and insert the editor into the container
 		self.$editor = self.getTemplate('editor');
+		self.$editorFiltersList = self.$editor.find('.filters-list');
 		self.$container.html(self.$editor);
 
+		/*
+		 * REGISTER LISTENERS
+		 */
+		/**
+		 * Set the logic upon selection.
+		 * @param  {Event} ev
+		 */
 		self.$editor.find('.filters-logic input[name="logic"]').change(function(ev) {
 			self.logic = $(this).val();
 		});
 
+		/**
+		 * Handle output / returning of the resulting JCSDL upon clicking save.
+		 * @param  {Event} ev Click Event.
+		 */
 		self.$editor.find('.jcsdl-editor-save').bind('click.jcsdl', function(ev) {
 			self.returnJCSDL();
 		});
@@ -80,13 +91,10 @@ var JCSDLGui = function($container, config) {
 		self.$editor.find('.filters-logic input[name="logic"][value="' + self.logic + '"]').click();
 		
 		// display the filters
-		// target the filters list
-		var $filtersList = self.$editor.find('.filters-list');
-
 		// add each filter to the list
 		$.each(self.filters, function(i, filter) {
 			var $filterRow = createFilterRow(filter);
-			$filterRow.appendTo($filtersList);
+			$filterRow.appendTo(self.$editorFiltersList);
 		});
 
 		/*
@@ -282,7 +290,7 @@ var JCSDLGui = function($container, config) {
 	 */
 	this.deleteFilter = function(index) {
 		// remove from the DOM
-		self.$editor.find('.filters-list .filter').eq(index).remove();
+		self.$editorFiltersList.find('.filter').eq(index).remove();
 
 		// remove from the filters list
 		self.filters.splice(index, 1);
@@ -471,7 +479,7 @@ var JCSDLGui = function($container, config) {
 	 * @return {Number}
 	 */
 	this.getFilterIndexByElement = function($filterRow) {
-		return self.$editor.find('.filters-list .filter').index($filterRow);
+		return self.$editorFiltersList.find('.filter').index($filterRow);
 	};
 
 	// automatically call the initialization after everything has been defined
