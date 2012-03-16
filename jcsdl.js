@@ -8,9 +8,9 @@ var JCSDL = function(gui) {
 	 * Loading JCSDL
 	 * ########################## */
 	/**
-	 * Parses the given JCSDL code into an array of filter objects that are usable by the GUI.
+	 * Parses the given JCSDL code into and returns an object with the parsed filters and their logic.
 	 * @param  {String} code Full JCSDL code (with master lines and logic)
-	 * @return {Array} Array of filter objects.
+	 * @return {Object} Object that contains 'filters' Array and 'logic' String.
 	 */
 	this.parseJCSDL = function(code) {
 		var lines = code.split("\n");
