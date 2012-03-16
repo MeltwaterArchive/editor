@@ -276,6 +276,18 @@ var JCSDLGui = function($container, config) {
 		$(config.outputTo).val(theCode);
 	};
 
+	/**
+	 * Removes the filter at the given index.
+	 * @param  {Number} index
+	 */
+	this.deleteFilter = function(index) {
+		// remove from the DOM
+		self.$editor.find('.filters-list .filter').eq(index).remove();
+
+		// remove from the filters list
+		self.filters.splice(index, 1);
+	};
+
 	/* ##########################
 	 * HELPERS
 	 * ########################## */
@@ -304,6 +316,15 @@ var JCSDLGui = function($container, config) {
 
 		// also attach the filter data to the row
 		$filterRow.data('filter', filter);
+
+		// bind the delete event
+		$filterRow.find('.j-delete').click(function(ev) {
+			ev.preventDefault();
+			ev.target.blur();
+
+			var index = self.getFilterIndexByElement($filterRow);
+			self.deleteFilter(index);
+		});
 
 		return $filterRow;
 	};
@@ -442,6 +463,15 @@ var JCSDLGui = function($container, config) {
 		}
 		
 		return $();
+	};
+
+	/**
+	 * Returns the filter index of the filter to which the given DOM representation belongs.
+	 * @param  {jQuery} $filterRow
+	 * @return {Number}
+	 */
+	this.getFilterIndexByElement = function($filterRow) {
+		return self.$editor.find('.filters-list .filter').index($filterRow);
 	};
 
 	// automatically call the initialization after everything has been defined
