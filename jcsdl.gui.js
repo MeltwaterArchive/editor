@@ -19,7 +19,7 @@ var JCSDLGui = function(el, config) {
 	this.filters = [];
 
 	// current choice data
-	this.currentFilter = null;
+	this.currentFilterIndex = null;
 	this.currentFilterSteps = [];
 	this.currentFilterTarget = null;
 	this.currentFilterFieldsPath = [];
@@ -43,7 +43,7 @@ var JCSDLGui = function(el, config) {
 		self.logic = 'AND';
 		self.filters = [];
 
-		self.currentFilter = null;
+		self.currentFilterIndex = null;
 		self.currentFilterSteps = [];
 		self.currentFilterTarget = null;
 		self.currentFilterFieldsPath = [];
@@ -114,25 +114,6 @@ var JCSDLGui = function(el, config) {
 			var $filterRow = createFilterRow(filter);
 			$filterRow.appendTo(self.$editorFiltersList);
 		});
-
-		/*
-		// select target
-		self.$currentFilterView.find('select[name="target"]').val(filter.target);
-		self.didSelectTarget(filter.target);
-
-		// select all fields and subfields
-		$.each(filter.fieldPath, function(i, field) {
-			var $fieldView = self.$currentFilterView.find('.filter-target-field:last');
-			$fieldView.find('select[name="field[]"]').val(field);
-			self.didSelectField(field, $fieldView);
-		});
-
-		// select operator
-		self.$currentFilterView.find('#operator-' + filter.operator).click();
-		
-		// fill in the value
-		self.$currentFilterView.find('#filter-value-input-field input').val(filter.value);
-		*/
 	};
 
 	/**
@@ -162,8 +143,30 @@ var JCSDLGui = function(el, config) {
 	/**
 	 * Shows the filter editor.
 	 */
-	this.showFilterEditor = function() {
+	this.showFilterEditor = function(filter, filterIndex) {
 		self.initFilterEditor();
+
+		// if specified filter then load it into the editor
+		if (typeof(filter) !== 'undefined' && filter) {
+			self.currentFilterIndex = filterIndex;
+
+			// select target
+			self.$currentFilterView.find('select[name="target"]').val(filter.target);
+			self.didSelectTarget(filter.target);
+
+			// select all fields and subfields
+			$.each(filter.fieldPath, function(i, field) {
+				var $fieldView = self.$currentFilterView.find('.filter-target-field:last');
+				$fieldView.find('select[name="field[]"]').val(field);
+				self.didSelectField(field, $fieldView);
+			});
+
+			// select operator
+			self.$currentFilterView.find('input[value="' + filter.operator + '"]').click();
+			
+			// fill in the value
+			self.$currentFilterView.find('.filter-value-input-field input').val(filter.value);
+		}
 
 		// hide the main editor view
 		self.$editor.hide();
@@ -237,7 +240,7 @@ var JCSDLGui = function(el, config) {
 	 */
 	this.hideFilterEditor = function() {
 		// clear all the values
-		self.currentFilter = null;
+		self.currentFilterIndex = null;
 		self.currentFilterSteps = [];
 		self.currentFilterTarget = null;
 		self.currentFilterFieldsPath = [];
@@ -370,8 +373,10 @@ var JCSDLGui = function(el, config) {
 
 		// and now finally either add it to the end of the filters list
 		// or replace if we were editing another filter
-		if (self.currentFilter) {
+		if (self.currentFilterIndex !== null) {
 			// we were editing, so let's replace it
+			self.$editorFiltersList.find('.filter').eq(self.currentFilterIndex).replaceWith($filterRow);
+			self.filters[self.currentFilterIndex] = filter;
 			
 		} else {
 			// we were adding a filter, so simply add it to the list
@@ -411,7 +416,25 @@ var JCSDLGui = function(el, config) {
 		// also attach the filter data to the row
 		$filterRow.data('filter', filter);
 
-		// bind the delete event
+		/*
+		 * REGISTER SOME LISTENERS
+		 */
+		/**
+		 * Shows the filter editor for the clicked filter.
+		 * @param  {Event} ev Click Event.
+		 */
+		$filterRow.find('.j-edit').click(function(ev) {
+			ev.preventDefault();
+			ev.target.blur();
+
+			var index = self.getFilterIndexByElement($filterRow);
+			self.showFilterEditor(filter, index);
+		});
+
+		/**
+		 * Delete the filter when clicked on delete option.
+		 * @param  {Event} ev Click Event.
+		 */
 		$filterRow.find('.j-delete').click(function(ev) {
 			ev.preventDefault();
 			ev.target.blur();
