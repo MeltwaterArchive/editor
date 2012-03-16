@@ -4,8 +4,8 @@ var JCSDLGuiTemplates = {
 		'<div class="jcsdl-editor">',
 			'<h3>Filters:</h3>',
 			'<ul class="filters-logic">',
-				'<li><input type="radio" name="logic" value="AND" checked="checked" /> ALL of the following:</li>',
-				'<li><input type="radio" name="logic" value="OR" /> ANY of the following:</li>',
+				'<li><label><input type="radio" name="logic" value="AND" checked="checked" /> ALL of the following:</label></li>',
+				'<li><label><input type="radio" name="logic" value="OR" /> ANY of the following:</label></li>',
 			'</ul>',
 			'<div class="filters-list">',
 			'</div>',
@@ -30,12 +30,25 @@ var JCSDLGuiTemplates = {
 		'</div>'
 	].join('')),
 
+	/* ##########################
+	 * SINGLE FILTER EDITOR
+	 * ########################## */
+	// filter editor container
+	filterEditor : $([
+		'<div class="filter-editor">',
+			'<div class="steps">',
+			'</div>',
+			'<input type="button" class="filter-save" value="Save Filter" />',
+			'<input type="button" class="filter-cancel" value="Cancel" />',
+		'</div>'
+	].join('')),
+
 	// step container, all steps should be wrapped with this so it's easy to remove them when necessary
 	step : $('<div class="filter-step" />'),
 
 	// target select
 	target : $([
-		'<div id="filter-target">',
+		'<div class="filter-target">',
 			'<h2>Choose Stream Source:</h2>',
 			'<select name="target">',
 				'<option disabled="true" selected="selected">Select Data Source...</option>',
@@ -60,9 +73,9 @@ var JCSDLGuiTemplates = {
 
 	// value input container
 	valueInput : $([
-		'<div id="filter-value-input">',
-			'<div id="filter-value-input-operators"></div>',
-			'<div id="filter-value-input-field"></div>',
+		'<div class="filter-value-input">',
+			'<div class="filter-value-input-operators"></div>',
+			'<div class="filter-value-input-field"></div>',
 		'</div>'
 	].join('')),
 
@@ -76,11 +89,8 @@ var JCSDLGuiTemplates = {
 	// operator select
 	operatorSelect : $([
 		'<div class="operator-select">',
-			'<input type="radio" name="operator" />',
-			'<label />',
+			'<label><input type="radio" name="operator" /></label>',
 		'</div>'
-	].join('')),
+	].join(''))
 
-	// submit button
-	submit : $('<input type="button" value="Convert to CSDL" />')
 };

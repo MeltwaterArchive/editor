@@ -9,16 +9,16 @@ var JCSDLGui = function($container, config) {
 
 	this.config = $.extend(true, {
 		animationSpeed : 200,
-		onSave : function(code) {console.log(code);}
+		onSave : function(code) {}
 	}, config);
 
 	// data
 	this.logic = 'AND';
 	this.filters = [];
 
-	this.filterSteps = [];
-
 	// current choice data
+	this.currentFilter = null;
+	this.currentFilterSteps = [];
 	this.currentFilterTarget = null;
 	this.currentFilterFieldsPath = [];
 
@@ -41,10 +41,12 @@ var JCSDLGui = function($container, config) {
 		self.logic = 'AND';
 		self.filters = [];
 
-		//self.$currentFilterView = $();
-		//self.filterSteps = [];
-		//self.currentFilterTarget = null;
-		//self.currentFilterFieldsPath = [];
+		self.currentFilter = null;
+		self.currentFilterSteps = [];
+		self.currentFilterTarget = null;
+		self.currentFilterFieldsPath = [];
+		self.$currentFilterView = $();
+		self.$currentFilterStepsView = $();
 
 		// and insert the editor into the container
 		self.$editor = self.getTemplate('editor');
@@ -60,6 +62,17 @@ var JCSDLGui = function($container, config) {
 		 */
 		self.$editor.find('.filters-logic input[name="logic"]').change(function(ev) {
 			self.logic = $(this).val();
+		});
+
+		/**
+		 * Show filter editor to create a new one from scratch upon clicking 'Add filter'.
+		 * @param  {Event} ev Click Event.
+		 */
+		self.$editor.find('.filter-add').click(function(ev) {
+			ev.preventDefault();
+			ev.target.blur();
+
+			self.showFilterEditor();
 		});
 
 		/**
@@ -127,11 +140,42 @@ var JCSDLGui = function($container, config) {
 	};
 
 	/**
-	 * Initializes the filter editor.
+	 * Removes the filter at the given index.
+	 * @param  {Number} index
+	 */
+	this.deleteFilter = function(index) {
+		// remove from the DOM
+		self.$editorFiltersList.find('.filter').eq(index).remove();
+
+		// remove from the filters list
+		self.filters.splice(index, 1);
+	};
+
+	/* ##########################
+	 * SINGLE FILTER EDITOR
+	 * ########################## */
+	/**
+	 * Shows the filter editor.
+	 */
+	this.showFilterEditor = function() {
+		self.initFilterEditor();
+
+		// hide the main editor view
+		self.$editor.hide();
+
+		// append the filter editor to the container and show it
+		self.$currentFilterView.appendTo(self.$container);
+		self.$currentFilterView.show();
+	};
+
+	/**
+	 * Initializes and returns the filter editor.
+	 * @return {jQuery} Filter Editor element.
 	 */
 	this.initFilterEditor = function() {
 		// prepare the filter editor
-		self.$currentFilterView = self.getTemplate('filter');
+		self.$currentFilterView = self.getTemplate('filterEditor');
+		self.$currentFilterStepsView = self.$currentFilterView.find('.steps');
 
 		// by default always prepare the selection of targets first
 		var $targetSelectView = self.getTemplate('target');
@@ -152,10 +196,51 @@ var JCSDLGui = function($container, config) {
 		});
 
 		// append the select view to the filter view
-		this.addFilterStep('target', $targetSelectView);
+		self.addFilterStep('target', $targetSelectView);
 
-		// and finally add the editor to the DOM
-		self.$container.html(self.$currentFilterView);
+		// hide the save button until all steps haven't been gone through
+		self.$currentFilterView.find('.filter-save').hide();
+
+		/*
+		 * REGISTER PROPER LISTENERS
+		 */
+		/**
+		 * Saves the filter that is currently being edited when clicked its save button.
+		 * @param  {Event} ev Click Event.
+		 */
+		self.$currentFilterView.find('.filter-save').click(function(ev) {
+			ev.preventDefault();
+			ev.target.blur();
+
+			self.didSubmitFilter();
+		});
+
+		/**
+		 * Hides the single filter editor and doesn't save the filter when the cancel button is clicked.
+		 * @param  {Event} ev Click Event.
+		 */
+		self.$currentFilterView.find('.filter-cancel').click(function(ev) {
+			ev.preventDefault();
+			ev.target.blur();
+			self.hideFilterEditor();
+		});
+	};
+
+	/**
+	 * Hides the filter editor and shows the main editor view.
+	 * NOTICE: This does not save the filter!
+	 */
+	this.hideFilterEditor = function() {
+		// clear all the values
+		self.currentFilter = null;
+		self.currentFilterSteps = [];
+		self.currentFilterTarget = null;
+		self.currentFilterFieldsPath = [];
+
+		self.$currentFilterView.fadeOut(self.config.animationSpeed, function() {
+			self.$currentFilterView.remove();
+			self.$editor.show();
+		});
 	};
 
 	/* ##########################
@@ -170,7 +255,7 @@ var JCSDLGui = function($container, config) {
 		var $stepView = self.getTemplate('step');
 		$stepView.html($view);
 
-		var stepNumber = self.filterSteps.length;
+		var stepNumber = self.currentFilterSteps.length;
 
 		// attach some data and classes (for easy selectors)
 		$stepView.data('number', stepNumber);
@@ -179,11 +264,11 @@ var JCSDLGui = function($container, config) {
 		$stepView.addClass('filter-step-name-' + stepName);
 
 		// add to the DOM
-		$stepView.appendTo(self.$currentFilterView);
+		$stepView.appendTo(self.$currentFilterStepsView);
 		$stepView.hide().fadeIn(self.config.animationSpeed);
 
 		// add to the steps pool
-		self.filterSteps.push($stepView);
+		self.currentFilterSteps.push($stepView);
 	};
 
 	/**
@@ -192,12 +277,10 @@ var JCSDLGui = function($container, config) {
 	 * @param  {Integer} position
 	 */
 	this.removeFilterStepsAfterPosition = function(position) {
-		var steps = self.filterSteps.splice(position + 1, self.filterSteps.length - position);
+		var steps = self.currentFilterSteps.splice(position + 1, self.currentFilterSteps.length - position);
 		$.each(steps, function(i, $step) {
 			$($step).remove(); // ensure jQuery
 		});
-
-		$('#filter-csdl').val('');
 	};
 
 	/*
@@ -254,46 +337,44 @@ var JCSDLGui = function($container, config) {
 		self.addFilterStep('value', $valueView);
 
 		// also show the submit button
-		var $submitView = self.getTemplate('submit');
-		self.addFilterStep('submit', $submitView);
-
-		$submitView.click(function(ev) {
-			self.didSubmitFilter($valueView);
-		});
+		self.$currentFilterView.find('.filter-save').fadeIn(self.config.animationSpeed);
 	};
 
-	this.didSubmitFilter = function($valueView) {
+	/**
+	 * Handles the saving of a filter from the single filter editor.
+	 */
+	this.didSubmitFilter = function() {
 		// first check if the operator is selected
-		var $selectedOperator = $valueView.find('[name="operator"]:checked');
+		var $selectedOperator = self.$currentFilterView.find('.filter-value-input-operators [name="operator"]:checked');
 		if ($selectedOperator.length == 0) {
 			self.showError('You need to select an operator!');
 			return;
 		}
 
 		// then check if there is a value specified
-		var value = $valueView.find('#filter-value-input-field input').val();
+		var value = self.$currentFilterView.find('.filter-value-input-field input').val();
 		if (value.length == 0) {
 			self.showError('You need to specify a value!');
 			return;
 		}
 		
-		jcsdl.addFilter(self.currentFilterTarget, self.currentFilterFieldsPath, $selectedOperator.val(), value);
-		var theCode = jcsdl.getCSDL();
-		jcsdl.clearFilters();
+		// now that we have all data, let's create a filter object from this
+		var filter = jcsdl.createFilter(self.currentFilterTarget, self.currentFilterFieldsPath, $selectedOperator.val(), value);
+		// also the filter row
+		var $filterRow = createFilterRow(filter);
 
-		$(config.outputTo).val(theCode);
-	};
+		// and now finally either add it to the end of the filters list
+		// or replace if we were editing another filter
+		if (self.currentFilter) {
+			// we were editing, so let's replace it
+			
+		} else {
+			// we were adding a filter, so simply add it to the list
+			$filterRow.appendTo(self.$editorFiltersList);
+			self.filters.push(filter);
+		}
 
-	/**
-	 * Removes the filter at the given index.
-	 * @param  {Number} index
-	 */
-	this.deleteFilter = function(index) {
-		// remove from the DOM
-		self.$editorFiltersList.find('.filter').eq(index).remove();
-
-		// remove from the filters list
-		self.filters.splice(index, 1);
+		self.hideFilterEditor();
 	};
 
 	/* ##########################
@@ -391,6 +472,11 @@ var JCSDLGui = function($container, config) {
 		return $option;
 	};
 
+	/**
+	 * Creates a DOM element for inputting the value for the given field.
+	 * @param  {Object} field Definition of the field from JCSDLConfig.
+	 * @return {jQuery}
+	 */
 	var createValueInputView = function(field) {
 		var $valueView = self.getTemplate('valueInput');
 
@@ -399,12 +485,12 @@ var JCSDLGui = function($container, config) {
 		$inputView.addClass('type-' + field.type);
 
 		// add the input in proper area of the value view
-		$valueView.find('#filter-value-input-field').html($inputView);
+		$valueView.find('.filter-value-input-field').html($inputView);
 
 		// now take care of possible operators
 		$.each(field.operators, function(i, operator) {
 			var $operatorView = createOperatorSelectView(operator);
-			$valueView.find('#filter-value-input-operators').append($operatorView);
+			$valueView.find('.filter-value-input-operators').append($operatorView);
 		});
 
 		return $valueView;
@@ -420,11 +506,8 @@ var JCSDLGui = function($container, config) {
 		if (typeof(operator) == 'undefined') return $(); // return empty jquery object if no such operator defined
 
 		var $operatorView = self.getTemplate('operatorSelect');
-		var operatorId = 'operator-' + operatorName;
 		$operatorView.find('input').val(operatorName);
-		$operatorView.find('input').attr('id', operatorId);
-		$operatorView.find('label').html(operator.description);
-		$operatorView.find('label').attr('for', operatorId);
+		$operatorView.find('label').append(operator.description);
 
 		return $operatorView;
 	};

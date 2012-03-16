@@ -2,8 +2,6 @@ var JCSDL = function(gui) {
 	var self = this;
 	var gui = gui;
 
-	var logic = 'AND';
-
 	/* ##########################
 	 * Loading JCSDL
 	 * ########################## */
@@ -81,12 +79,7 @@ var JCSDL = function(gui) {
 		var value = csdl.substr(range[0], range[1]);
 		value = valueFromCSDL(fieldInfo, value);
 
-		var filter = {
-			target : target,
-			fieldPath : fieldPath,
-			operator : operator,
-			value : value
-		};
+		var filter = self.createFilter(target, fieldPath, operator, value);
 		return filter;
 	};
 
@@ -241,27 +234,21 @@ var JCSDL = function(gui) {
 	 * SETTERS AND GETTERS, ETC.
 	 * ########################## */
 	/**
-	 * Adds a filter to the filter list.
+	 * Creates a filter object from the given parameters (coming from the GUI filter editor most probably).
+	 * @return {Object} Filter object.
 	 * @param {String} target    CSDL target.
 	 * @param {Array} fieldPath  Array of fields and subfields, path to a field.
 	 * @param {String} operator  Name of the operator.
 	 * @param {String} value     Value.
 	 */
-	this.addFilter = function(target, fieldPath, operator, value) {
+	this.createFilter = function(target, fieldPath, operator, value) {
 		var filter = {
 			target : target,
 			fieldPath : fieldPath,
 			operator : operator,
 			value : value
 		}
-		filters.push(filter);
-	};
-
-	/**
-	 * Clears all previously added filters.
-	 */
-	this.clearFilters = function() {
-		filters = [];
+		return filter;
 	};
 
 	/**
