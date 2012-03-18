@@ -106,10 +106,14 @@ var JCSDL = function(gui) {
 			filterCodes.push(parsedFilter);
 		});
 
+		// create the final output of the JCSDL filters
 		var output = filterCodes.join("\n" + logic + "\n");
 
+		// calculate the hash for security
+		var hash = encodeJCSDL(output, logic);
+
 		// add master comments to the final output
-		output = '// JCSDL_MASTER #[hash]# ' + logic + "\n" + output + "\n// JCSDL_MASTER_END";
+		output = '// JCSDL_MASTER ' + hash + ' ' + logic + "\n" + output + "\n// JCSDL_MASTER_END";
 
 		return output;
 	};
@@ -142,10 +146,10 @@ var JCSDL = function(gui) {
 		// create JCSDL syntax as well
 		var jcsdlSyntax = filter.target + '.' + field +',' + filter.operator + ',' + valueStart + '-' + valueLength;
 
-		var hash = '[hash]';
+		var hash = encodeJCSDLFilter(csdl);
 		
 		// JCSDL wrappers
-		var jcsdl_start = '// JCSDL_START #' + hash + '# ' + jcsdlSyntax;
+		var jcsdl_start = '// JCSDL_START ' + hash + ' ' + jcsdlSyntax;
 		var jcsdl_end = '// JCSDL_END';
 
 		// return the final filter output
@@ -156,23 +160,57 @@ var JCSDL = function(gui) {
 	 * HELPERS
 	 * ########################## */
 	/**
+	 * Encodes the given JCSDL output and its logic to a hash that can later
+	 * be used to verify if the JCSDL wasn't tampered with.
+	 * @param  {String} output JCSDL for all the filters.
+	 * @param  {String} logic  Logic of the JCSDL.
+	 * @return {String}
+	 */
+	var encodeJCSDL = function(output, logic) {
+		var hash = Crypto.MD5(logic + "\n" + output);
+		return hash;
+	};
+
+	/**
 	 * Verifies that the whole JCSDL code wasn't altered in any way, based on hash in the master line.
 	 * @param  {String} masterLine The first line of the JCSDL code.
 	 * @param  {Array}  lines      Array of all the remaining lines.
 	 * @return {Boolean}
 	 */
 	var verifyJCSDL = function(masterLine, lines) {
-		return true;
+		// join all the lines to create a string
+		var input = lines.join("\n");
+
+		// get logic and hash from the master line
+		var masterInfo = masterLine.split(' ');
+		var logic = masterInfo[3];
+		var hash = masterInfo[2];
+
+		// recalculate the original hash and see if it matches
+		var jcsdlHash = encodeJCSDL(input, logic);
+		return (hash == jcsdlHash);
 	};
 
 	/**
-	 * Verifies that a single JCSDL filter code wasn't altered in any way, based on hash in the filter's master line.
+	 * Encodes the given CSDL filter to a hash that can later be used to verify
+	 * if the CSDL wasn't tampered with.
+	 * @param  {String} csdl CSDL filter.
+	 * @return {String}
+	 */
+	var encodeJCSDLFilter = function(csdl) {
+		var hash = Crypto.MD5(csdl);
+		return hash;
+	};
+
+	/**
+	 * Verifies that a single JCSDL filter code wasn't altered in any way, based on hash in the filter's jcsdl line.
 	 * @param  {String} hash Hash from the first line of the JCSDL filter code.
 	 * @param  {String} csdl Actual CSDL code for this filter.
 	 * @return {Boolean}
 	 */
 	var verifyJCSDLFilter = function(hash, csdl) {
-		return true;
+		var csdlHash = encodeJCSDLFilter(csdl);
+		return (hash == csdlHash);
 	};
 
 	/**

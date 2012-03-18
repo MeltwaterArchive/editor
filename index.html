@@ -7,6 +7,7 @@
 	<link rel="stylesheet" type="text/css" href="style.css" />
 
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<script type="text/javascript" src="crypto.md5.min.js"></script>
 	<script type="text/javascript" src="jcsdl.config.js"></script>
 	<script type="text/javascript" src="jcsdl.gui.templates.js"></script>
 	<script type="text/javascript" src="jcsdl.gui.js"></script>
@@ -19,20 +20,20 @@
 <div id="wrap">
 
 	<h2>JCSDL Input:</h2>
-	<textarea id="jcsdl-input">// JCSDL_MASTER #[hash]# OR
-// JCSDL_START #[hash]# blog.content,contains,23-9
+	<textarea id="jcsdl-input">// JCSDL_MASTER 29b7f7be9faf53bcb4364e9d3c3f4aaf OR
+// JCSDL_START febd81dab8ffdafe21dac6a876ee793c blog.content,contains,23-9
 blog.content contains "starcraft"
 // JCSDL_END
 OR
-// JCSDL_START #[hash]# board.content,contains_any,28-24
+// JCSDL_START 183fce30fc48f4c88aa882ba69e58b3c board.content,contains_any,28-24
 board.content contains_any "starcraft, warcraft, sc2"
 // JCSDL_END
 OR
-// JCSDL_START #[hash]# twitter.text,contains_any,27-24
+// JCSDL_START 95b676f756d0639435063752d7297112 twitter.text,contains_any,27-24
 twitter.text contains_any "starcraft, warcraft, sc2"
 // JCSDL_END
 OR
-// JCSDL_START #[hash]# twitter.mentions,contains,27-8
+// JCSDL_START 252e1cbe499ee699004c8596b505140b twitter.mentions,contains,27-8
 twitter.mentions contains "mbCARMAC"
 // JCSDL_END
 // JCSDL_MASTER_END</textarea>
