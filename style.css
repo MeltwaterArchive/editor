@@ -98,10 +98,17 @@ p {
           margin-right: 8px; }
     .jcsdl-container .filter-editor .filter-value-input-field {
       margin-top: 20px; }
-      .jcsdl-container .filter-editor .filter-value-input-field .input-text input {
+      .jcsdl-container .filter-editor .filter-value-input-field .input-text input, .jcsdl-container .filter-editor .filter-value-input-field .input-number input {
         margin: 0 auto;
         padding: 5px 10px;
         width: 600px;
         font-size: 1.3em;
         line-height: 1.5em;
         border: 1px solid #dddddd; }
+      .jcsdl-container .filter-editor .filter-value-input-field .input-number input {
+        width: 100px; }
+      .jcsdl-container .filter-editor .filter-value-input-field .input-select {
+        overflow: hidden; }
+        .jcsdl-container .filter-editor .filter-value-input-field .input-select .input-select-option {
+          float: left;
+          margin: 0 5px; }

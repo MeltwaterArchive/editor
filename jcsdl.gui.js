@@ -617,6 +617,44 @@ var JCSDLGui = function(el, config) {
 			getValue : function(fieldInfo) {
 				return this.find('input[type=text]').val();
 			}
+		},
+
+		/*
+		 * SELECT FIELD
+		 */
+		select : {
+			init : function(fieldInfo) {
+				var $view = self.getTemplate('valueInput_select');
+
+				// also include all options
+				if (typeof(fieldInfo.options) !== 'undefined') {
+					$.each(fieldInfo.options, function(name, label) {
+						var $optionView = self.getTemplate('valueInput_select_option');
+						$optionView.find('input').val(name);
+						$optionView.find('label span').html(label);
+						$optionView.appendTo($view);
+					});
+				}
+
+				return $view;
+			},
+
+			setValue : function(fieldInfo, value) {
+				var values = value.split(',');
+				var $view = this;
+				$.each(values, function(i, name) {
+					$view.find('input[value="' + name + '"]').attr('checked', true);
+				});
+			},
+
+			getValue : function(fieldInfo) {
+				var values = [];
+				this.find('input:checked').each(function(i, option) {
+					values.push($(option).val());
+				});
+
+				return values.join(',');
+			}
 		}
 
 	};

@@ -89,11 +89,18 @@ $borderColor : #ddd;
 		.filter-value-input-field {
 			margin-top: 20px;
 
-			.input-text input {
+			.input-text input, .input-number input {
 				margin: 0 auto;
 				padding: 5px 10px; width: 600px;
 				font-size: 1.3em; line-height: 1.5em;
 				border: 1px solid $borderColor;
+			}
+			.input-number input {width: 100px;}
+
+			.input-select {
+				overflow: hidden;
+
+				.input-select-option {float: left; margin: 0 5px;}
 			}
 		}
 	}

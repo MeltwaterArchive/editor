@@ -6,7 +6,7 @@ var JCSDLConfig = {
 			name : 'Interaction',
 			fields : {
 				content : {name: 'Content', type: 'string', input: 'text', operators: ['contains', 'substr', 'contains_any']},
-				type : {name: 'Type', type: 'string', input: 'text', operators: ['otherThan', 'equals', 'in']},
+				type : {name: 'Type', type: 'string', input: 'select', operators: ['in'], options : {twitter : 'Twitter', myspace : 'MySpace', facebook : 'Facebook', digg : 'Digg', '2ch' : '2ch', amazon : 'Amazon', youtube : 'YouTube', dailymotion : 'DailyMotion'}},
 				title : {name: 'Title', type: 'string', input: 'text', operators: ['equals', 'contains', 'substr', 'contains_any']},
 				author : {
 					name: 'Author',

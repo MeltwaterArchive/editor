@@ -104,6 +104,22 @@ var JCSDLGuiTemplates = {
 		'<div class="input-number">',
 			'<input type="text" placeholder="Type your desired value" />',
 		'</div>'
+	].join('')),
+
+	// select input
+	valueInput_select : $([
+		'<div class="input-select">',
+		'</div>'
+	].join('')),
+
+	// select input option
+	valueInput_select_option : $([
+		'<div class="input-select-option">',
+			'<label>',
+				'<input type="checkbox" name="selectvalue[]" />',
+				'<span />',
+			'</label>',
+		'</div>'
 	].join(''))
 
 };
