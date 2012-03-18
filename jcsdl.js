@@ -91,7 +91,7 @@ var JCSDL = function(gui) {
 	 * @param  {Array}  filters Array of filters to be parsed.
 	 * @return {String}
 	 */
-	this.getCSDLFromFilters = function(filters, logic) {
+	this.getJCSDLForFilters = function(filters, logic) {
 		// make sure the logic is valid
 		var logic = (logic) ? logic : 'AND';
 		logic = (logic == 'AND' || logic == 'OR') ? logic : 'AND';
@@ -319,14 +319,14 @@ var JCSDL = function(gui) {
 				if (typeof(field.fields[fieldName]) !== 'undefined') {
 					field = field.fields[fieldName];
 				} else {
+					error('Invalid path to a field a!', target, fieldPath, field);
 					field = false;
-					error('Invalid path to a field!', target, fieldPath);
 					return false; // break the $.each
 				}
 
 			} else {
+				error('Invalid path to a field b!', target, fieldPath, field);
 				field = false;
-				error('Invalid path to a field!', target, fieldPath);
 				return false; // break the $.each
 			}
 		});

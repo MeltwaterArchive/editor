@@ -121,24 +121,12 @@ var JCSDLGui = function(el, config) {
 	 * @return {[type]}
 	 */
 	this.returnJCSDL = function() {
-		var code = jcsdl.getCSDLFromFilters(self.filters, self.logic);
+		var code = jcsdl.getJCSDLForFilters(self.filters, self.logic);
 		self.config.onSave.apply(self, [code]);
 	};
 
-	/**
-	 * Removes the filter at the given index.
-	 * @param  {Number} index
-	 */
-	this.deleteFilter = function(index) {
-		// remove from the DOM
-		self.$editorFiltersList.find('.filter').eq(index).remove();
-
-		// remove from the filters list
-		self.filters.splice(index, 1);
-	};
-
 	/* ##########################
-	 * SINGLE FILTER EDITOR
+	 * FILTER MANAGEMENT (ADDING, EDITOR and DELETING)
 	 * ########################## */
 	/**
 	 * Shows the filter editor.
@@ -164,14 +152,9 @@ var JCSDLGui = function(el, config) {
 			// select operator
 			self.$currentFilterView.find('input[value="' + filter.operator + '"]').click();
 			
-			// fill in the value
+			// fill in the value (using the proper delegate)
 			var $valueInputView = self.$currentFilterView.find('.filter-value-input-field');
-			var inputType = $valueInputView.data('inputType');
-			if (typeof(fieldTypes[inputType]) == 'undefined') {
-				self.showError('No such input type defined!', inputType);
-				return;
-			}
-			fieldTypes[inputType].setValue.apply($valueInputView, [filter.value]);
+			setValueForField($valueInputView, filter.value);
 		}
 
 		// hide the main editor view
@@ -192,24 +175,7 @@ var JCSDLGui = function(el, config) {
 		self.$currentFilterStepsView = self.$currentFilterView.find('.steps');
 
 		// by default always prepare the selection of targets first
-		var $targetSelectView = self.getTemplate('target');
-		var $targetSelect = $targetSelectView.find('select');
-
-		// create a select option for every possible target
-		$.each(JCSDLConfig.targets, function(name, target) {
-			// delegate creation of the option to a function
-			var $targetView = createOptionForTarget(name, target);
-
-			// append the option to the select
-			$targetView.appendTo($targetSelect);
-		});
-
-		// register listener for change event
-		$targetSelect.change(function(ev) {
-			self.didSelectTarget($(this).val());
-		});
-
-		// append the select view to the filter view
+		var $targetSelectView = createTargetSelectView();
 		self.addFilterStep('target', $targetSelectView);
 
 		// hide the save button until all steps haven't been gone through
@@ -257,8 +223,20 @@ var JCSDLGui = function(el, config) {
 		});
 	};
 
+	/**
+	 * Removes the filter at the given index.
+	 * @param  {Number} index
+	 */
+	this.deleteFilter = function(index) {
+		// remove from the DOM
+		self.$editorFiltersList.find('.filter').eq(index).remove();
+
+		// remove from the filters list
+		self.filters.splice(index, 1);
+	};
+
 	/* ##########################
-	 * FILTER EDITOR BUILDING
+	 * FILTER EDITOR STEPS
 	 * ########################## */
 	/**
 	 * Adds a filter step with proper numbering/position.
@@ -297,9 +275,6 @@ var JCSDLGui = function(el, config) {
 		});
 	};
 
-	/*
-	 * EVENT HANDLERS
-	 */
 	/**
 	 * When a target is selected, the user needs to select a field.
 	 * @param  {String} targetName Name of the selected target.
@@ -367,7 +342,7 @@ var JCSDLGui = function(el, config) {
 
 		// then check if there is a value specified
 		var $valueView = self.$currentFilterView.find('.filter-value-input-field');
-		var value = self.readValueFromField($valueView);
+		var value = readValueFromField($valueView);
 		if (value.length == 0) {
 			self.showError('You need to specify a value!');
 			return;
@@ -392,17 +367,6 @@ var JCSDLGui = function(el, config) {
 		}
 
 		self.hideFilterEditor();
-	};
-
-	/**
-	 * Reads the value from the given value view (delegates it to proper function that will handle the specific view).
-	 * @param  {jQuery} $view Value input view.
-	 * @return {String}
-	 */
-	this.readValueFromField = function($view) {
-		var inputType = $view.data('inputType');
-		if (typeof(fieldTypes[inputType]) == 'undefined') return '';
-		return fieldTypes[inputType].getValue.apply($view);
 	};
 
 	/* ##########################
@@ -465,6 +429,31 @@ var JCSDLGui = function(el, config) {
 	};
 
 	/**
+	 * Creates the target select view for single filter editor.
+	 * @return {jQuery}
+	 */
+	var createTargetSelectView = function() {
+		var $targetSelectView = self.getTemplate('target');
+		var $targetSelect = $targetSelectView.find('select');
+
+		// create a select option for every possible target
+		$.each(JCSDLConfig.targets, function(name, target) {
+			// delegate creation of the option to a function
+			var $targetView = createOptionForTarget(name, target);
+
+			// append the option to the select
+			$targetView.appendTo($targetSelect);
+		});
+
+		// register listener for change event
+		$targetSelect.change(function(ev) {
+			self.didSelectTarget($(this).val());
+		});
+
+		return $targetSelectView;
+	};
+
+	/**
 	 * Creates a select option for the given target with the specified name.
 	 * @param  {String} name   Unique name of the target, matching one from JCSDLConfig.
 	 * @param  {Object} target Definition of the target from JCSDLConfig.
@@ -519,30 +508,6 @@ var JCSDLGui = function(el, config) {
 	};
 
 	/**
-	 * Creates a DOM element for inputting the value for the given field.
-	 * @param  {Object} field Definition of the field from JCSDLConfig.
-	 * @return {jQuery}
-	 */
-	var createValueInputView = function(field) {
-		var $valueView = self.getTemplate('valueInput');
-
-		// create the actual input based on the field definition
-		if (typeof(fieldTypes[field.input]) == 'undefined') return $valueView;
-
-		// create the input view by this input type's handler and add it to the value view ontainer
-		var $inputView = fieldTypes[field.input].init();
-		$valueView.find('.filter-value-input-field').data('inputType', field.input).html($inputView);;
-		
-		// now take care of possible operators
-		$.each(field.operators, function(i, operator) {
-			var $operatorView = createOperatorSelectView(operator);
-			$valueView.find('.filter-value-input-operators').append($operatorView);
-		});
-
-		return $valueView;
-	};
-
-	/**
 	 * Creates a single operator select view for the specified operator.
 	 * @param  {String} operatorName Name of the operator.
 	 * @return {jQuery}
@@ -559,31 +524,52 @@ var JCSDLGui = function(el, config) {
 	};
 
 	/**
-	 * Returns definition of the field found under the current root path and specified field name.
-	 * @param  {String} newFieldName
-	 * @return mixed Either Object or bool false if no such field was found.
+	 * Creates a DOM element for inputting the value for the given field.
+	 * @param  {Object} field Definition of the field from JCSDLConfig.
+	 * @return {jQuery}
 	 */
-	var getFieldInfoAtCurrentPath = function(newFieldName) {
-		// starting field is naturally the current target
-		var field = JCSDLConfig.targets[self.currentFilterTarget];
+	var createValueInputView = function(field) {
+		var $valueView = self.getTemplate('valueInput');
 
-		// get to the end of the path
-		$.each(self.currentFilterFieldsPath, function(i, fieldName) {
-			if (typeof(field.fields) !== 'undefined') {
-				// get the next field definition in line
-				field = field.fields[fieldName];
+		// create the actual input based on the field definition
+		if (typeof(fieldTypes[field.input]) == 'undefined') return $valueView;
 
-			} else {
-				field = false;
-				return false; // break the $.each
-			}
+		// create the input view by this input type's handler and add it to the value view ontainer
+		var $inputView = fieldTypes[field.input].init();
+		$valueView.find('.filter-value-input-field').data('inputType', field.input).html($inputView);;
+
+		// now take care of possible operators
+		$.each(field.operators, function(i, operator) {
+			var $operatorView = createOperatorSelectView(operator);
+			$valueView.find('.filter-value-input-operators').append($operatorView);
 		});
 
-		if (typeof(field.fields) !== 'undefined') {
-			field = (typeof(field.fields[newFieldName]) !== 'undefined') ? field.fields[newFieldName] : false;
-		}
+		return $valueView;
+	};
 
-		return field;
+	/**
+	 * Sets the value for the given vale view (delegates it to proper function that will handle the specific view).
+	 * @param {jQuery} $view Value input view.
+	 * @param {String} value String representation of the value to be set.
+	 * @return {Boolean}
+	 */
+	var setValueForField = function($view, value) {
+		var inputType = $view.data('inputType');
+		if (typeof(fieldTypes[inputType]) == 'undefined') return false;
+
+		fieldTypes[inputType].setValue.apply($view, [value]);
+		return true;
+	};
+
+	/**
+	 * Reads the value from the given value view (delegates it to proper function that will handle the specific view).
+	 * @param  {jQuery} $view Value input view.
+	 * @return {String}
+	 */
+	var readValueFromField = function($view) {
+		var inputType = $view.data('inputType');
+		if (typeof(fieldTypes[inputType]) == 'undefined') return '';
+		return fieldTypes[inputType].getValue.apply($view);
 	};
 
 	/* ##########################
@@ -618,6 +604,23 @@ var JCSDLGui = function(el, config) {
 	/* ##########################
 	 * SETTERS AND GETTERS
 	 * ########################## */
+	/**
+	 * Returns definition of the field found under the current root path and specified field name.
+	 * @param  {String} newFieldName
+	 * @return mixed Either Object or bool false if no such field was found.
+	 */
+	var getFieldInfoAtCurrentPath = function(newFieldName) {
+		var fieldsPath = self.currentFilterFieldsPath.slice(0); // copy the array instead of referencing it
+
+		// if specified a following field then include it in the path
+		if (typeof(newFieldName) == 'string') {
+			fieldsPath.push(newFieldName);
+		}
+
+		// and delegate this task to JCSDL object.
+		return jcsdl.getFieldInfo(self.currentFilterTarget, fieldsPath);
+	};
+
 	/**
 	 * Returns a template (jQuery object) of the given name.
 	 * @param  {String} name Name of the template to fetch.
