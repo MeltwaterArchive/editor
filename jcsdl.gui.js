@@ -541,10 +541,17 @@ var JCSDLGui = function(el, config) {
 		$valueView.find('.filter-value-input-field').data('inputType', field.input).html($inputView);;
 
 		// now take care of possible operators
+		var $operatorsListView = $valueView.find('.filter-value-input-operators');
 		$.each(field.operators, function(i, operator) {
 			var $operatorView = createOperatorSelectView(operator);
-			$valueView.find('.filter-value-input-operators').append($operatorView);
+			$operatorsListView.append($operatorView);
 		});
+
+		// if there's only one possible operator then automatically select it and hide it
+		if (field.operators.length == 1) {
+			$operatorsListView.find('.operator-select:first input').click();
+			$operatorsListView.hide();
+		}
 
 		return $valueView;
 	};
