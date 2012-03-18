@@ -138,6 +138,8 @@ var JCSDLGui = function(el, config) {
 		if (typeof(filter) !== 'undefined' && filter) {
 			self.currentFilterIndex = filterIndex;
 
+			var fieldInfo = jcsdl.getFieldInfo(filter.target, filter.fieldPath);
+
 			// select target
 			self.$currentFilterView.find('select[name="target"]').val(filter.target);
 			self.didSelectTarget(filter.target);
@@ -154,7 +156,7 @@ var JCSDLGui = function(el, config) {
 			
 			// fill in the value (using the proper delegate)
 			var $valueInputView = self.$currentFilterView.find('.filter-value-input-field');
-			setValueForField($valueInputView, filter.value);
+			setValueForField($valueInputView, fieldInfo, filter.value);
 		}
 
 		// hide the main editor view
@@ -342,7 +344,7 @@ var JCSDLGui = function(el, config) {
 
 		// then check if there is a value specified
 		var $valueView = self.$currentFilterView.find('.filter-value-input-field');
-		var value = readValueFromField($valueView);
+		var value = getValueFromField($valueView, getFieldInfoAtCurrentPath());
 		if (value.length == 0) {
 			self.showError('You need to specify a value!');
 			return;
@@ -535,7 +537,7 @@ var JCSDLGui = function(el, config) {
 		if (typeof(fieldTypes[field.input]) == 'undefined') return $valueView;
 
 		// create the input view by this input type's handler and add it to the value view ontainer
-		var $inputView = fieldTypes[field.input].init();
+		var $inputView = fieldTypes[field.input].init.apply($(), [field]);
 		$valueView.find('.filter-value-input-field').data('inputType', field.input).html($inputView);;
 
 		// now take care of possible operators
@@ -553,11 +555,11 @@ var JCSDLGui = function(el, config) {
 	 * @param {String} value String representation of the value to be set.
 	 * @return {Boolean}
 	 */
-	var setValueForField = function($view, value) {
+	var setValueForField = function($view, fieldInfo, value) {
 		var inputType = $view.data('inputType');
 		if (typeof(fieldTypes[inputType]) == 'undefined') return false;
 
-		fieldTypes[inputType].setValue.apply($view, [value]);
+		fieldTypes[inputType].setValue.apply($view, [fieldInfo, value]);
 		return true;
 	};
 
@@ -566,10 +568,10 @@ var JCSDLGui = function(el, config) {
 	 * @param  {jQuery} $view Value input view.
 	 * @return {String}
 	 */
-	var readValueFromField = function($view) {
+	var getValueFromField = function($view, fieldInfo) {
 		var inputType = $view.data('inputType');
 		if (typeof(fieldTypes[inputType]) == 'undefined') return '';
-		return fieldTypes[inputType].getValue.apply($view);
+		return fieldTypes[inputType].getValue.apply($view, [fieldInfo]);
 	};
 
 	/* ##########################
@@ -585,16 +587,34 @@ var JCSDLGui = function(el, config) {
 		 * TEXT FIELD
 		 */
 		text : {
-			init : function() {
+			init : function(fieldInfo) {
 				var $view = self.getTemplate('valueInput_text');
 				return $view;
 			},
 
-			setValue : function(value) {
+			setValue : function(fieldInfo, value) {
 				this.find('input[type=text]').val(value);
 			},
 
-			getValue : function() {
+			getValue : function(fieldInfo) {
+				return this.find('input[type=text]').val();
+			}
+		},
+
+		/*
+		 * NUMBER FIELD
+		 */
+		number : {
+			init : function(fieldInfo) {
+				var $view = self.getTemplate('valueInput_number');
+				return $view;
+			},
+
+			setValue : function(fieldInfo, value) {
+				this.find('input[type=text]').val(value);
+			},
+
+			getValue : function(fieldInfo) {
 				return this.find('input[type=text]').val();
 			}
 		}

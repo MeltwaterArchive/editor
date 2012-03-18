@@ -97,6 +97,13 @@ var JCSDLGuiTemplates = {
 		'<div class="input-text">',
 			'<input type="text" placeholder="Type your desired value" />',
 		'</div>'
+	].join('')),
+
+	// number input
+	valueInput_number : $([
+		'<div class="input-number">',
+			'<input type="text" placeholder="Type your desired value" />',
+		'</div>'
 	].join(''))
 
 };
