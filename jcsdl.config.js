@@ -139,11 +139,6 @@ var JCSDLConfig = {
 			description : 'Lower than',
 			code : '<='
 		}
-	},
-
-	// some additional definition of the possible input types
-	inputs : {
-		text : {}
 	}
 
 };

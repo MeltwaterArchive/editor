@@ -165,7 +165,13 @@ var JCSDLGui = function(el, config) {
 			self.$currentFilterView.find('input[value="' + filter.operator + '"]').click();
 			
 			// fill in the value
-			self.$currentFilterView.find('.filter-value-input-field input').val(filter.value);
+			var $valueInputView = self.$currentFilterView.find('.filter-value-input-field');
+			var inputType = $valueInputView.data('inputType');
+			if (typeof(fieldTypes[inputType]) == 'undefined') {
+				self.showError('No such input type defined!', inputType);
+				return;
+			}
+			fieldTypes[inputType].setValue.apply($valueInputView, [filter.value]);
 		}
 
 		// hide the main editor view
@@ -360,7 +366,8 @@ var JCSDLGui = function(el, config) {
 		}
 
 		// then check if there is a value specified
-		var value = self.$currentFilterView.find('.filter-value-input-field input').val();
+		var $valueView = self.$currentFilterView.find('.filter-value-input-field');
+		var value = self.readValueFromField($valueView);
 		if (value.length == 0) {
 			self.showError('You need to specify a value!');
 			return;
@@ -385,6 +392,17 @@ var JCSDLGui = function(el, config) {
 		}
 
 		self.hideFilterEditor();
+	};
+
+	/**
+	 * Reads the value from the given value view (delegates it to proper function that will handle the specific view).
+	 * @param  {jQuery} $view Value input view.
+	 * @return {String}
+	 */
+	this.readValueFromField = function($view) {
+		var inputType = $view.data('inputType');
+		if (typeof(fieldTypes[inputType]) == 'undefined') return '';
+		return fieldTypes[inputType].getValue.apply($view);
 	};
 
 	/* ##########################
@@ -509,12 +527,12 @@ var JCSDLGui = function(el, config) {
 		var $valueView = self.getTemplate('valueInput');
 
 		// create the actual input based on the field definition
-		var $inputView = self.getTemplate('valueInput_' + field.input);
-		$inputView.addClass('type-' + field.type);
+		if (typeof(fieldTypes[field.input]) == 'undefined') return $valueView;
 
-		// add the input in proper area of the value view
-		$valueView.find('.filter-value-input-field').html($inputView);
-
+		// create the input view by this input type's handler and add it to the value view ontainer
+		var $inputView = fieldTypes[field.input].init();
+		$valueView.find('.filter-value-input-field').data('inputType', field.input).html($inputView);;
+		
 		// now take care of possible operators
 		$.each(field.operators, function(i, operator) {
 			var $operatorView = createOperatorSelectView(operator);
@@ -566,6 +584,35 @@ var JCSDLGui = function(el, config) {
 		}
 
 		return field;
+	};
+
+	/* ##########################
+	 * VARIOUS FIELD TYPES HANDLERS
+	 * ########################## */
+	/**
+	 * This object is a collection of all possible input field types and their handlers for creating, setting and reading values.
+	 * @type {Object}
+	 */
+	var fieldTypes = {
+
+		/*
+		 * TEXT FIELD
+		 */
+		text : {
+			init : function() {
+				var $view = self.getTemplate('valueInput_text');
+				return $view;
+			},
+
+			setValue : function(value) {
+				this.find('input[type=text]').val(value);
+			},
+
+			getValue : function() {
+				return this.find('input[type=text]').val();
+			}
+		}
+
 	};
 
 	/* ##########################

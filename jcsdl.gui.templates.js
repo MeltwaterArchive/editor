@@ -82,17 +82,20 @@ var JCSDLGuiTemplates = {
 		'</div>'
 	].join('')),
 
-	// text input
-	valueInput_text : $([
-		'<div class="input-text">',
-			'<input type="text" placeholder="Type your desired value" />',
-		'</div>'
-	].join('')),
-
 	// operator select
 	operatorSelect : $([
 		'<div class="operator-select">',
 			'<label><input type="radio" name="operator" /></label>',
+		'</div>'
+	].join('')),
+
+	/* ##########################
+	 * VALUE INPUT FIELDS
+	 * ########################## */
+	// text input
+	valueInput_text : $([
+		'<div class="input-text">',
+			'<input type="text" placeholder="Type your desired value" />',
 		'</div>'
 	].join(''))
 
