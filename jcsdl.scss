@@ -1,37 +1,9 @@
-body {
-	background: #fff;
-	font-size: 13px; line-height: 1.5em; color: #222;
-	font-family: "Helvetica Neue", Helvetica, sans-serif; 
-	text-align: center;
-}
-
-/* general stuff */
-#wrap {width: 700px; margin: 20px auto;}
-h1 {text-align: center;}
-h2 {margin: 0; margin-bottom: 10px; text-align: center;}
-p {text-align: center; line-height: 1.5em; color: #444;}
-
-#jcsdl-input, #jcsdl-output {
-	display: block; width: 600px; height: 150px; padding: 10px; margin: 10px auto;
-	font-size: 1.1em; line-height: 1.5em;
-	border: 1px solid #aaa;
-	border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;
-}
-
-/*
- * JCSDL GUI STYLING
- * the part below is important
- */
-#jcsdl-gui {
-	width: 700px; margin: 50px auto;
-	background: #fefefe;
-	overflow: hidden; position: relative;
-}
-
 $borderColor : #ddd;
 
 /* the actual editor */
 .jcsdl-container {
+	overflow: hidden; position: relative;
+	background: #fefefe;
 
 	ul.filters-logic {
 		list-style-type: none;
