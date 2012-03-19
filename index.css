@@ -6,7 +6,8 @@ body {
   font-family: "Helvetica Neue", Helvetica, sans-serif; }
 
 #content {
-  padding: 10px; }
+  padding: 10px;
+  background: #fff; }
 
 h1, h2, h3, h4 {
   line-height: 1.5em;
@@ -44,7 +45,8 @@ textarea {
 #disclaimer {
   position: absolute;
   top: 80px;
-  left: 20px; }
+  left: 20px;
+  z-index: -1; }
   #disclaimer h1, #disclaimer h2 {
     font-size: 1em;
     margin: 0;

@@ -9,7 +9,7 @@ body {
 	font-family: "Helvetica Neue", Helvetica, sans-serif;
 }
 
-#content {padding: 10px;}
+#content {padding: 10px; background: #fff;}
 
 h1, h2, h3, h4 {line-height: 1.5em; font-weight: bold;}
 h1 {font-size: 1.5em;}
@@ -30,7 +30,7 @@ textarea {
 }
 
 #disclaimer {
-	position: absolute; top: 80px; left: 20px;
+	position: absolute; top: 80px; left: 20px; z-index: -1;
 
 	h1, h2 {font-size: 1em; margin: 0; color: $black;}
 	h2 {font-weight: normal;}
