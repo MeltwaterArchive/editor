@@ -49,7 +49,7 @@ $(function() {
 
 			// hide the editor and show the list
 			$('#streams-list').show();
-			$('#jcsdl-edit').hide();
+			$('#jcsdl-edit-wrap').hide();
 		}
 	});
 
@@ -66,7 +66,7 @@ $(function() {
 
 		// hide the list and show the editor
 		$('#streams-list').hide();
-		$('#jcsdl-edit').show();
+		$('#jcsdl-edit-wrap').show();
 	});
 
 	$('#streams-list .source').click(function(ev) {
@@ -75,6 +75,15 @@ $(function() {
 
 		var code = $(this).closest('li').find('.jcsdl-source').val();
 		$('#jcsdl-edit-output').val(code);
+	});
+
+	$('#jcsdl-edit-wrap .cancel').click(function(ev) {
+		ev.preventDefault();
+		ev.target.blur();
+
+		// hide the editor and show the list
+		$('#streams-list').show();
+		$('#jcsdl-edit-wrap').hide();
 	});
 
 });

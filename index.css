@@ -127,8 +127,11 @@ textarea {
       #streams-list li .options a {
         margin: 0 10px; }
 
-#streams-list, #jcsdl-edit {
+#streams-list, #jcsdl-edit-wrap {
   margin-bottom: 75px; }
+
+#jcsdl-edit-wrap {
+  text-align: center; }
 
 #jcsdl-edit-output {
   width: 660px; }
