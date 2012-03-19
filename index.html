@@ -51,12 +51,86 @@
 
 			<ul id="streams-list">
 				<li>
+					<h4>Presidential Candidates</h4>
+					<div class="options">
+						<a href="#" class="edit">Edit</a>
+						<a href="#" class="source">View JCSDL Source</a>
+					</div>
+<textarea class="jcsdl-source" style="display: none;">// JCSDL_MASTER 5d0407b2b875fa7fa7ec84a6d0cbed78 AND
+// JCSDL_START 0980a5f2ef935c4ed153bf975879eac0 twitter.text,contains_any,27-52
+twitter.text contains_any "obama, santorum, gingrich, romney, ronpaul, ron paul"
+// JCSDL_END
+AND
+// JCSDL_START f7c18a6fedd90c6b4d77acc14a3a8e5c interaction.type,in,21-29
+interaction.type in "twitter,facebook,digg,youtube"
+// JCSDL_END
+// JCSDL_MASTER_END</textarea>
+				</li>
+				<li>
+					<h4>Apple-related tweets sent from iPhone</h4>
+					<div class="options">
+						<a href="#" class="edit">Edit</a>
+						<a href="#" class="source">View JCSDL Source</a>
+					</div>
+<textarea class="jcsdl-source" style="display: none;">
+// JCSDL_MASTER f3b45428fe3b25c06e6e4a2d3c35bc3c OR
+// JCSDL_START a87e2f5d2989daaff87bca95b82540d5 twitter.text,contains_any,27-19
+twitter.text contains_any "apple, ipad, iphone"
+// JCSDL_END
+OR
+// JCSDL_START 18245c419113e3e7fb383a7a4537e6f1 twitter.mentions,contains_any,31-6
+twitter.mentions contains_any "@apple"
+// JCSDL_END
+OR
+// JCSDL_START d50204795b3bba1d23b5609318b77b90 twitter.source,equals,19-18
+twitter.source == "Twitter for iPhone"
+// JCSDL_END
+// JCSDL_MASTER_END</textarea>
+				</li>
+				<li>
+					<h4>Apple-related tweets sent from iPhone (malformed)</h4>
+					<div class="options">
+						<a href="#" class="edit">Edit</a>
+						<a href="#" class="source">View JCSDL Source</a>
+					</div>
+<textarea class="jcsdl-source" style="display: none;">
+// JCSDL_MASTER f3b45428fe3b25c06e6e4a2d3c35bc3c OR
+// JCSDL_START a87e2f5d2989daaff87bca95b82540d5 twitter.text,contains_any,27-19
+twitter.text contains_any "apple, ipad, iphone"
+// JCSDL_END
+OR
+// JCSDL_START 18245c419113e3e7fb383a7a4537e6f1 twitter.mentions,contains_any,31-6
+twitter.mentions contains_any "@apple"
+// JCSDL_END
+OR
+// JCSDL_START d50204795b3bba1d23b5609318b77b90 twitter.source,equals,19-18
+twitter.source contains_any "Twitter for iPhone, Twitter for iPad"
+// JCSDL_END
+// JCSDL_MASTER_END</textarea>
+				</li>
+				<li>
+					<h4>Diablo 3 in Social Media</h4>
+					<div class="options">
+						<a href="#" class="edit">Edit</a>
+						<a href="#" class="source">View JCSDL Source</a>
+					</div>
+<textarea class="jcsdl-source" style="display: none;">// JCSDL_MASTER efc5cb4adaa438584f6840ae31023be9 AND
+// JCSDL_START f48c69649427beeb1314489b3a44054e interaction.type,in,21-24
+interaction.type in "twitter,facebook,youtube"
+// JCSDL_END
+AND
+// JCSDL_START 06d48ffc560be6e25e04d7b5f8e3c771 interaction.content,contains_any,34-16
+interaction.content contains_any "diablo, blizzard"
+// JCSDL_END
+// JCSDL_MASTER_END</textarea>
+				</li>
+				<li>
 					<h4>Starcraft &amp; Warcraft</h4>
 					<div class="options">
 						<a href="#" class="edit">Edit</a>
 						<a href="#" class="source">View JCSDL Source</a>
 					</div>
-<textarea class="jcsdl-source" style="display: none;">// JCSDL_MASTER 29b7f7be9faf53bcb4364e9d3c3f4aaf OR
+<textarea class="jcsdl-source" style="display: none;">// JCSDL_MASTER c8e41ad0831f2a7ad21f40205cd74b31 OR
 // JCSDL_START febd81dab8ffdafe21dac6a876ee793c blog.content,contains,23-9
 blog.content contains "starcraft"
 // JCSDL_END
@@ -67,10 +141,6 @@ board.content contains_any "starcraft, warcraft, sc2"
 OR
 // JCSDL_START 95b676f756d0639435063752d7297112 twitter.text,contains_any,27-24
 twitter.text contains_any "starcraft, warcraft, sc2"
-// JCSDL_END
-OR
-// JCSDL_START 252e1cbe499ee699004c8596b505140b twitter.mentions,contains,27-8
-twitter.mentions contains "mbCARMAC"
 // JCSDL_END
 // JCSDL_MASTER_END</textarea>
 				</li>
