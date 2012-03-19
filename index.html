@@ -25,8 +25,30 @@
 		<li><a href="#" data-tab="edit">Edit Streams</a></li>
 	</ul>
 
-	<h2>JCSDL Input:</h2>
-	<textarea id="jcsdl-input">// JCSDL_MASTER 29b7f7be9faf53bcb4364e9d3c3f4aaf OR
+	<div id="content">
+		<div id="tab-create" class="tab-content">
+			<p>Create a new stream from scratch. After saving, its JCSDL output will be visible in the textarea at the bottom of this page and it will be added to the <i>Edit Streams</i> tab as well (note that it will not be stored permanently and will disappear upon page refresh).</p>
+			<p>Note: for every instantiated JCSDL Editor you can define a custom 'onSave' function that will be called every time a user clicks the 'Save' button. It takes a single argument which is the JCSDL output.</p>
+
+			<input type="text" name="title" id="stream-title" placeholder="Enter the title of this stream..." />
+			<div id="jcsdl-create"></div>
+
+			<h3>JCSDL Output:</h3>
+			<textarea id="jcsdl-create-output" disabled="true"></textarea>
+		</div>
+
+		<div id="tab-edit" class="tab-content" style="display: none;">
+			<p>Below is a list of pre-defined example streams. They all have been created using the JCSDL Editor. You can view their source by clicking "View JCSDL Source" link and it will appear in the textarea at the bottom of this page. You can also edit the streams and upon saving their JCSDL source will be updated and displayed in the textarea at the bottom. Also, any streams you create in the <i>Create Stream</i> tab will be visible here.</p>
+			<p>Note that any changes will not be stored permanently and will disappear upon page refresh).</p>
+
+			<ul id="streams-list">
+				<li>
+					<h4>Starcraft &amp; Warcraft</h4>
+					<div class="options">
+						<a href="#" class="edit">Edit</a>
+						<a href="#" class="source">View JCSDL Source</a>
+					</div>
+<textarea class="jcsdl-source" style="display: none;">// JCSDL_MASTER 29b7f7be9faf53bcb4364e9d3c3f4aaf OR
 // JCSDL_START febd81dab8ffdafe21dac6a876ee793c blog.content,contains,23-9
 blog.content contains "starcraft"
 // JCSDL_END
@@ -43,13 +65,22 @@ OR
 twitter.mentions contains "mbCARMAC"
 // JCSDL_END
 // JCSDL_MASTER_END</textarea>
-	<input type="button" id="jcsdl-input-button" value="Convert to GUI" />
+				</li>
+			</ul>
 
-	<div id="jcsdl-gui"></div>
+			<div id="jcsdl-edit" style="display: none;"></div>
 
-	<h2>CSDL Output:</h2>
-	<textarea id="jcsdl-output" disabled="true"></textarea>
+			<h3>JCSDL Output:</h3>
+			<textarea id="jcsdl-edit-output" disabled="true"></textarea>
+		</div>
+	</div>
 
+</div>
+
+<div id="disclaimer">
+	<h1>JCSDL Editor</h1>
+	<h2>Build page</h2>
+	<p>By <strong>NEVER<s>BLAND</s></strong></p>
 </div>
 
 </body>

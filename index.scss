@@ -1,22 +1,93 @@
+$themeColor : orange;
+$black : #222;
+$lightGrey : #fafafa;
+$borderColor : #aaa;
+
 body {
-	background: #fff;
-	font-size: 13px; line-height: 1.5em; color: #222;
+	background: #fff url('datasift.png') no-repeat;
+	font-size: 13px; line-height: 1.5em; color: $black;
 	font-family: "Helvetica Neue", Helvetica, sans-serif;
 }
 
-/* general stuff */
-#wrap {width: 700px; margin: 20px auto;}
-h1 {text-align: center;}
-h2 {margin: 0; margin-bottom: 10px; text-align: center;}
-p {text-align: center; line-height: 1.5em; color: #444;}
+#content {padding: 10px;}
 
-#jcsdl-input, #jcsdl-output {
-	display: block; width: 600px; height: 150px; padding: 10px; margin: 10px auto;
-	font-size: 1.1em; line-height: 1.5em;
-	border: 1px solid #aaa;
-	border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;
+h1, h2, h3, h4 {line-height: 1.5em; font-weight: bold;}
+h1 {font-size: 1.5em;}
+h2 {font-size: 1.35em;}
+h3 {font-size: 1.25em;}
+h4 {font-size: 1.1em;}
+p {text-align: justify; line-height: 1.5em; color: #666;}
+
+input[type="text"] {
+	display: block; padding: 3px 5px;
+	border: 1px solid $borderColor;
 }
 
-#jcsdl-gui {
-	width: 700px; margin: 50px auto;
+textarea {
+	display: block; height: 150px; padding: 10px;
+	line-height: 1.5em;
+	border: 1px solid $borderColor;
 }
+
+#disclaimer {
+	position: absolute; top: 80px; left: 20px;
+
+	h1, h2 {font-size: 1em; margin: 0; color: $black;}
+	h2 {font-weight: normal;}
+	p {font-size: 1em; margin: 0; color: $black;}
+}
+
+#wrap {
+	width: 700px;
+	margin: 20px auto;
+}
+
+#tabs {
+	margin: 0; padding: 0; padding-left: 20px;
+	display: block; height: 41px;
+	list-style-type: none; list-style-position: outside;
+	border-bottom: 1px solid $themeColor;
+
+	li {
+		display: block; float: left;
+		margin: 0 15px;
+		border: 1px solid $themeColor; border-bottom: 0;
+		background: #fff;
+
+		a {
+			display: block; padding: 0 15px;
+			line-height: 40px;
+			font-size: 18px; font-weight: bold; color: $black;
+			text-decoration: none;
+			background: #fff;
+
+			&:hover {background: $lightGrey;}
+			&.active {position: relative; top: 1px; color: $themeColor;}
+		}
+	}
+}
+
+/* create tab */
+#stream-title {font-size: 1.5em; width: 668px;}
+#jcsdl-create {margin-bottom: 75px;}
+#jcsdl-create-output {width: 660px;}
+
+/* edit tab */
+#streams-list {
+	margin: 0; padding: 0;
+	list-style-type: none; list-style-position: outside;
+
+	li {
+		display: block; position: relative;
+		border-bottom: 1px solid $borderColor;
+		line-height: 2.5em;
+
+		h4 {font-size: 1em; margin: 0; line-height: 2.5em; margin-left: 20px;padding: 0;}
+		.options {position: absolute; top: 0; right: 20px;
+			a {margin: 0 10px;}
+		}
+	}
+}
+
+#streams-list, #jcsdl-edit {margin-bottom: 75px;}
+#jcsdl-edit-output {width: 660px;}

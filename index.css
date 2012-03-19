@@ -1,41 +1,134 @@
 body {
-  background: #fff;
+  background: white url("datasift.png") no-repeat;
   font-size: 13px;
   line-height: 1.5em;
-  color: #222;
+  color: #222222;
   font-family: "Helvetica Neue", Helvetica, sans-serif; }
 
-/* general stuff */
+#content {
+  padding: 10px; }
+
+h1, h2, h3, h4 {
+  line-height: 1.5em;
+  font-weight: bold; }
+
+h1 {
+  font-size: 1.5em; }
+
+h2 {
+  font-size: 1.35em; }
+
+h3 {
+  font-size: 1.25em; }
+
+h4 {
+  font-size: 1.1em; }
+
+p {
+  text-align: justify;
+  line-height: 1.5em;
+  color: #666; }
+
+input[type="text"] {
+  display: block;
+  padding: 3px 5px;
+  border: 1px solid #aaaaaa; }
+
+textarea {
+  display: block;
+  height: 150px;
+  padding: 10px;
+  line-height: 1.5em;
+  border: 1px solid #aaaaaa; }
+
+#disclaimer {
+  position: absolute;
+  top: 80px;
+  left: 20px; }
+  #disclaimer h1, #disclaimer h2 {
+    font-size: 1em;
+    margin: 0;
+    color: #222222; }
+  #disclaimer h2 {
+    font-weight: normal; }
+  #disclaimer p {
+    font-size: 1em;
+    margin: 0;
+    color: #222222; }
+
 #wrap {
   width: 700px;
   margin: 20px auto; }
 
-h1 {
-  text-align: center; }
-
-h2 {
+#tabs {
   margin: 0;
-  margin-bottom: 10px;
-  text-align: center; }
-
-p {
-  text-align: center;
-  line-height: 1.5em;
-  color: #444; }
-
-#jcsdl-input, #jcsdl-output {
+  padding: 0;
+  padding-left: 20px;
   display: block;
-  width: 600px;
-  height: 150px;
-  padding: 10px;
-  margin: 10px auto;
-  font-size: 1.1em;
-  line-height: 1.5em;
-  border: 1px solid #aaa;
-  border-radius: 5px;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px; }
+  height: 41px;
+  list-style-type: none;
+  list-style-position: outside;
+  border-bottom: 1px solid orange; }
+  #tabs li {
+    display: block;
+    float: left;
+    margin: 0 15px;
+    border: 1px solid orange;
+    border-bottom: 0;
+    background: #fff; }
+    #tabs li a {
+      display: block;
+      padding: 0 15px;
+      line-height: 40px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #222222;
+      text-decoration: none;
+      background: #fff; }
+      #tabs li a:hover {
+        background: #fafafa; }
+      #tabs li a.active {
+        position: relative;
+        top: 1px;
+        color: orange; }
 
-#jcsdl-gui {
-  width: 700px;
-  margin: 50px auto; }
+/* create tab */
+#stream-title {
+  font-size: 1.5em;
+  width: 668px; }
+
+#jcsdl-create {
+  margin-bottom: 75px; }
+
+#jcsdl-create-output {
+  width: 660px; }
+
+/* edit tab */
+#streams-list {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  list-style-position: outside; }
+  #streams-list li {
+    display: block;
+    position: relative;
+    border-bottom: 1px solid #aaaaaa;
+    line-height: 2.5em; }
+    #streams-list li h4 {
+      font-size: 1em;
+      margin: 0;
+      line-height: 2.5em;
+      margin-left: 20px;
+      padding: 0; }
+    #streams-list li .options {
+      position: absolute;
+      top: 0;
+      right: 20px; }
+      #streams-list li .options a {
+        margin: 0 10px; }
+
+#streams-list, #jcsdl-edit {
+  margin-bottom: 75px; }
+
+#jcsdl-edit-output {
+  width: 660px; }
