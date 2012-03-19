@@ -32,6 +32,10 @@ $(function() {
 			$streamTemplate.find('.jcsdl-source').val(code);
 			$streamTemplate.find('.options .live').remove(); // impossible to see it live
 			$streamTemplate.appendTo($('#streams-list'));
+
+			// reset the editor
+			$('#stream-title').val('');
+			this.init();
 		}
 	});
 	
@@ -54,7 +58,7 @@ $(function() {
 		}
 	});
 
-	$('#streams-list .edit').click(function(ev) {
+	$('#streams-list').on('click', '.edit', function(ev) {
 		ev.preventDefault();
 		ev.target.blur();
 
@@ -70,7 +74,7 @@ $(function() {
 		$('#jcsdl-edit-wrap').show();
 	});
 
-	$('#streams-list .source').click(function(ev) {
+	$('#streams-list').on('click', '.source', function(ev) {
 		ev.preventDefault();
 		ev.target.blur();
 
