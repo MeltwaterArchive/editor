@@ -29,12 +29,13 @@
 	<ul id="tabs">
 		<li><a href="#" class="active" data-tab="create">Create Stream</a></li>
 		<li><a href="#" data-tab="edit">Edit Streams</a></li>
+		<li><a href="#" data-tab="technical">Technical</a></li>
 	</ul>
 
 	<div id="content">
+		<!-- CREATE STREAMS TAB -->
 		<div id="tab-create" class="tab-content">
 			<p>Create a new stream from scratch. After saving, its JCSDL output will be visible in the textarea at the bottom of this page and it will be added to the <i>Edit Streams</i> tab as well (note that it will not be stored permanently and will disappear upon page refresh).</p>
-			<p>Note: for every instantiated JCSDL Editor you can define a custom 'onSave' function that will be called every time a user clicks the 'Save' button. It takes a single argument which is the JCSDL output.</p>
 
 			<input type="text" name="title" id="stream-title" placeholder="Enter the title of this stream..." />
 			<div id="jcsdl-create"></div>
@@ -43,6 +44,7 @@
 			<textarea id="jcsdl-create-output" disabled="true"></textarea>
 		</div>
 
+		<!-- EDIT STREAMS TAB -->
 		<div id="tab-edit" class="tab-content" style="display: none;">
 			<p>Below is a list of pre-defined example streams. They all have been created using the JCSDL Editor. You can view their source by clicking "View JCSDL Source" link and it will appear in the textarea at the bottom of this page. You can also edit the streams and upon saving their JCSDL source will be updated and displayed in the textarea at the bottom. Also, any streams you create in the <i>Create Stream</i> tab will be visible here.</p>
 			<p>Note that any changes will not be stored permanently and will disappear upon page refresh).</p>
@@ -81,6 +83,61 @@ twitter.mentions contains "mbCARMAC"
 
 			<h3>JCSDL Output:</h3>
 			<textarea id="jcsdl-edit-output" disabled="true"></textarea>
+		</div>
+
+		<!-- TECHNICAL TAB with some docs and comments -->
+		<div id="tab-technical" class="tab-content" style="display: none;">
+			<p>This JCSDL Editor is written fully in JavaScript and requires <b>jQuery</b> library.</p>
+			<p>At the moment, because of being in development, it is divided into several classes and files for easier management. However, on final delivery of the production-ready package, all <b>the JavaScript files will be minified and joined into a single file</b>. The only additional files will be graphic elements and CSS.</p>
+
+			<a href="#initialization">Initialization</a><br />
+			<a href="#handling-output">Handling the output</a><br />
+			<a href="#loading-jcsdl">Loading JCSDL code</a><br />
+			<a href="#work-in-progress">Work in Progress</a><br />
+
+			<h4 id="initialization">Initialization</h4>
+			<p>To initialize the JCSDL Editor you need a single container element, e.g.:</p>
+			<pre>&lt;div id="jcsdl"&gt;&lt;/div&gt;</pre>
+			<p>Then, in JavaScript you need to instantiate the single JCSDLGui class and specify the container element in which the editor should be built as the first argument of the constructor.</p>
+			<pre>var editor = new JCSDLGui('#jcsdl');</pre>
+			<p>To specify this element you can target it with a standard <a href="http://api.jquery.com/category/selectors/" target="_blank">jQuery selector</a> or pass a jQuery object:</p>
+			<pre>var element = $(document.body).find('#jcsdl');
+var editor = new JCSDLGui(element);</pre>
+
+			<h4 id="handling-output">Handling the output</h4>
+			<p>For every instantiated JCSDL Editor you can define a custom 'onSave' function that will be called every time a user clicks the 'Save' button. It takes a single argument which is the JCSDL output.</p>
+			<pre>var editor = new JCSDLGui('#jcsdl', {
+	onSave : function(code) {
+		// perform custom saving of the output code
+		// for example sending it in AJAX
+		alert(code);
+	}
+});</pre>
+			<h4 id="loading-jcsdl">Loading JCSDL code</h4>
+			<p>Once the JCSDL Editor has been initialized you can load already prepared JCSDL code into it. It will automatically build the whole GUI and allow for editing of specific filters.</p>
+			<pre>editor.loadJCSDL([(String) code]);</pre>
+			<p>The only argument of this method is the JCSDL code as a String.</p>
+			<p>The full example code may look like this:</p>
+			<pre>var editor = new JCSDLGui('#jcsdl', {
+	onSave : function(code) {
+		// output the resulting JCSDL code into a textarea
+		$('textarea[name="jcsdl-output"]').val(code);
+	}
+});
+
+// read the JCSDL upon clicking the "Load JCSDL" button
+$('#load-jcsdl').click(function(ev) {
+	ev.preventDefault();
+
+	// read it from the input textarea
+	var code = $('textarea[name="jcsdl-input"]').val();
+
+	// load it into the editor
+	editor.loadJCSDL(code);
+});</pre>
+
+			<h4 id="work-in-progress">Work in Progress</h4>
+			<p>TBD</p>
 		</div>
 	</div>
 

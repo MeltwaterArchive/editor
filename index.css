@@ -42,6 +42,14 @@ textarea {
   line-height: 1.5em;
   border: 1px solid #aaaaaa; }
 
+pre {
+  margin: 10px 20px; }
+
+a {
+  color: orange;
+  text-decoration: none;
+  font-weight: bold; }
+
 #disclaimer {
   position: absolute;
   top: 80px;
@@ -137,3 +145,5 @@ textarea {
 
 #jcsdl-edit-output {
   width: 660px; }
+
+/* technical tab */

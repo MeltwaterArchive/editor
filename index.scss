@@ -29,6 +29,10 @@ textarea {
 	border: 1px solid $borderColor;
 }
 
+pre {margin: 10px 20px;}
+
+a {color: $themeColor; text-decoration: none; font-weight: bold;}
+
 #disclaimer {
 	position: absolute; top: 80px; left: 20px; z-index: -1;
 
@@ -92,3 +96,5 @@ textarea {
 #streams-list, #jcsdl-edit-wrap {margin-bottom: 75px;}
 #jcsdl-edit-wrap {text-align: center;}
 #jcsdl-edit-output {width: 660px;}
+
+/* technical tab */
