@@ -186,11 +186,13 @@ var editor = new JCSDLGui(element);</pre>
 		alert(code);
 	}
 });</pre>
+			<p><i>this</i> keyword in the <i>onSave</i> function references the JCSDLGui instance.</p>
+
 			<h4 id="loading-jcsdl">Loading JCSDL code</h4>
 			<p>Once the JCSDL Editor has been initialized you can load already prepared JCSDL code into it. It will automatically build the whole GUI and allow for editing of specific filters.</p>
-			<pre>editor.loadJCSDL([(String) code]);</pre>
+			<pre>editor.loadJCSDL((String) code);</pre>
 			<p>The only argument of this method is the JCSDL code as a String.</p>
-			<p>The full example code may look like this:</p>
+			<p>A full example code may look like this:</p>
 			<pre>var editor = new JCSDLGui('#jcsdl', {
 	onSave : function(code) {
 		// output the resulting JCSDL code into a textarea
