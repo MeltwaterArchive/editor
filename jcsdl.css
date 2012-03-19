@@ -3,6 +3,7 @@
   overflow: hidden;
   position: relative;
   background: #fefefe;
+  text-align: center;
   /* single filter editor */ }
   .jcsdl-container ul.filters-logic {
     list-style-type: none;
