@@ -30,6 +30,7 @@ $(function() {
 			var $streamTemplate = $('#streams-list li:first').clone();
 			$streamTemplate.find('h4').html(title);
 			$streamTemplate.find('.jcsdl-source').val(code);
+			$streamTemplate.find('.options .live').remove(); // impossible to see it live
 			$streamTemplate.appendTo($('#streams-list'));
 		}
 	});
