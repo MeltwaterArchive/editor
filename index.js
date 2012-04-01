@@ -92,6 +92,18 @@ $(function() {
 	});
 
 	/*
+	 * DIFFERENT PAGE SIZES
+	 */
+	$('#disclaimer select').change(function(ev) {
+		var newWidth = $(this).val();
+		$('#wrap').width(newWidth).removeClass('width-1200 width-1000 width-800 width-600 width-480 width-320').addClass('width-' + newWidth);
+
+		// reinitialize both editors
+		createEditor.init();
+		editEditor.init();
+	});
+
+	/*
 	 * STYLING SHORTCUT
 	 */
 	//$('#jcsdl-create .filter-add').click();

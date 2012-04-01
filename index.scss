@@ -34,7 +34,7 @@ pre {margin: 10px 20px;}
 a {color: $themeColor; text-decoration: none; font-weight: bold;}
 
 #disclaimer {
-	position: absolute; top: 80px; left: 20px; z-index: -1;
+	position: absolute; top: 80px; left: 20px; z-index: 2;
 
 	h1, h2 {font-size: 1em; margin: 0; color: $black;}
 	h2 {font-weight: normal;}
@@ -98,3 +98,29 @@ a {color: $themeColor; text-decoration: none; font-weight: bold;}
 #jcsdl-edit-output {width: 90%; margin: 0 auto;}
 
 /* technical tab */
+
+/* "responsive" design */
+#wrap {
+	&.width-480, &.width-320 {
+		#tabs {
+			padding-left: 0;
+			li {
+				margin: 0 2px;
+				a {padding: 0 5px; font-size: 13px;}
+			}
+		}
+
+		#streams-list {
+			li {
+				padding: 5px 0;
+				h4 {line-height: 1em; margin-left: 0;}
+				.options {
+					position: relative; top: 0; right: 0;
+					display: block; clear: both;
+					text-align: right;
+					a {margin: 0 2px;}
+				}
+			}
+		}
+	}
+}
