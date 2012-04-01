@@ -51,28 +51,31 @@ var JCSDLGuiTemplates = {
 
 	// target select
 	target : $([
-		'<div class="filter-target">',
-			'<h2>Choose Stream Source:</h2>',
-			'<select name="target">',
-				'<option disabled="true" selected="selected">Select Data Source...</option>',
-			'</select>',
+		'<div class="filter-target-wrap">',
+			'<a href="#" class="carousel-scroll left"></a>',
+			'<a href="#" class="carousel-scroll right"></a>',
+			'<div class="carousel-wrap">',
+				'<div class="filter-target carousel" />',
+			'</div>',
 		'</div>'
 	].join('')),
 
 	// target select option
-	targetOption : $('<option />'),
+	targetOption : $('<a href="#" class="icon target carousel-item"></a>'),
 
 	// field select
 	field : $([
-		'<div class="filter-target-field">',
-			'<select name="field[]">',
-				'<option disabled="true" selected="selected">Select Field...</option>',
-			'</select>',
+		'<div class="filter-target-field-wrap">',
+			'<a href="#" class="carousel-scroll left"></a>',
+			'<a href="#" class="carousel-scroll right"></a>',
+			'<div class="carousel-wrap">',
+				'<div class="filter-target-field carousel" />',
+			'</div>',
 		'</div>'
 	].join('')),
 
 	// field select option
-	fieldOption : $('<option />'),
+	fieldOption : $('<a href="#" class="icon field carousel-item"></a>'),
 
 	// value input container
 	valueInput : $([

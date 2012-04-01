@@ -38,14 +38,34 @@ $borderColor : #ddd;
 
 	/* single filter editor */
 	.filter-editor {
-		border: 1px solid $borderColor;
+		.filter-target-wrap {
+			height: 140px; padding-top: 30px;
+
+			.carousel-scroll {margin-top: 40px;}
+		}
+		&.has-fields .filter-target-wrap {
+			background: transparent url('img/select.png') no-repeat center 8px;
+		}
+
+		.filter-target-field-wrap {
+			padding-top: 5px; padding-bottom: 40px;
+			background: transparent url('img/select.png') no-repeat center -165px;
+
+			.carousel-scroll {margin-top: 25px;}
+		}
 
 		.filter-step {
-			margin: 5px; padding: 5px;
 			overflow: hidden; text-align: center;
+			background: transparent url('img/step_background.png') no-repeat bottom center;
 
-			&.filter-step-name-field {border-top: 1px solid $borderColor;}
-			&.filter-step-name-value {border-top: 1px solid $borderColor;}
+			&.filter-step-field.last .filter-target-field-wrap {
+				margin-bottom: 10px;
+				background-position: center -255px;
+			}
+
+			&.filter-step-value {
+				padding-bottom: 30px;
+			}
 		}
 
 
@@ -63,8 +83,8 @@ $borderColor : #ddd;
 			margin-top: 20px;
 
 			.input-text input, .input-number input {
-				margin: 0 auto;
-				padding: 5px 10px; width: 600px;
+				display: block; margin: 0 auto;
+				padding: 5px 10px; width: 90%;
 				font-size: 1.3em; line-height: 1.5em;
 				border: 1px solid $borderColor;
 			}
@@ -76,6 +96,35 @@ $borderColor : #ddd;
 				.input-select-option {float: left; margin: 0 5px;}
 			}
 		}
+	}
+
+	/* building blocks */
+	.icon {
+		display: block; width: 80px; height: 80px;
+		float: left; margin: 0; margin-right: 20px;
+		overflow: hidden;
+		text-align: center; line-height: 80px;
+
+		&.target {width: 110px; height: 110px; line-height: 110px; margin-right: 35px;}
+
+		&:hover {background: #f5f5f5;}
+		&.selected {background: #f5f5f5;}
+	}
+
+	.carousel-wrap {
+		overflow: hidden; position: relative;
+		margin: 0 auto;
+	}
+
+	.carousel-scroll {
+		display: block; width: 30px; height: 30px; margin-right: 5px;
+		float: left;
+		line-height: 30px; text-align: center;
+		background: transparent url('img/scroll.png') no-repeat top left;
+
+		&.right {float: right; margin-right: 0; margin-left: 5px; background-position: bottom left;}
+		&:hover {opacity: 0.9;}
+		&.inactive {opacity: 0.5;}
 	}
 
 }

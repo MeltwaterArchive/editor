@@ -132,6 +132,18 @@ var JCSDLGui = function(el, config) {
 	 * Shows the filter editor.
 	 */
 	this.showFilterEditor = function(filter, filterIndex) {
+		self.$editor.hide();
+
+		// prepare the filter editor
+		self.$currentFilterView = self.getTemplate('filterEditor');
+		self.$currentFilterStepsView = self.$currentFilterView.find('.steps');
+
+		// append the filter editor to the container and show it
+		self.$currentFilterView.appendTo(self.$container);
+		self.$currentFilterView.show();
+
+		// now that it's visible configure it
+		// (it needs to be visible before configuration so various element's have dimensions higher than 0)
 		self.initFilterEditor();
 
 		// if specified filter then load it into the editor
@@ -140,15 +152,12 @@ var JCSDLGui = function(el, config) {
 
 			var fieldInfo = jcsdl.getFieldInfo(filter.target, filter.fieldPath);
 
-			// select target
-			self.$currentFilterView.find('select[name="target"]').val(filter.target);
-			self.didSelectTarget(filter.target);
+			self.$currentFilterView.find('.filter-target .target-' + filter.target).click();
 
 			// select all fields and subfields
 			$.each(filter.fieldPath, function(i, field) {
 				var $fieldView = self.$currentFilterView.find('.filter-target-field:last');
-				$fieldView.find('select[name="field[]"]').val(field);
-				self.didSelectField(field, $fieldView);
+				$fieldView.find('.field-' + field).click();
 			});
 
 			// select operator
@@ -158,24 +167,13 @@ var JCSDLGui = function(el, config) {
 			var $valueInputView = self.$currentFilterView.find('.filter-value-input-field');
 			setValueForField($valueInputView, fieldInfo, filter.value);
 		}
-
-		// hide the main editor view
-		self.$editor.hide();
-
-		// append the filter editor to the container and show it
-		self.$currentFilterView.appendTo(self.$container);
-		self.$currentFilterView.show();
 	};
 
 	/**
 	 * Initializes and returns the filter editor.
 	 * @return {jQuery} Filter Editor element.
 	 */
-	this.initFilterEditor = function() {
-		// prepare the filter editor
-		self.$currentFilterView = self.getTemplate('filterEditor');
-		self.$currentFilterStepsView = self.$currentFilterView.find('.steps');
-
+	this.initFilterEditor = function(filter, filterIndex) {
 		// by default always prepare the selection of targets first
 		var $targetSelectView = createTargetSelectView();
 		self.addFilterStep('target', $targetSelectView);
@@ -193,7 +191,6 @@ var JCSDLGui = function(el, config) {
 		self.$currentFilterView.find('.filter-save').click(function(ev) {
 			ev.preventDefault();
 			ev.target.blur();
-
 			self.didSubmitFilter();
 		});
 
@@ -255,11 +252,32 @@ var JCSDLGui = function(el, config) {
 		$stepView.data('number', stepNumber);
 		$stepView.addClass('filter-step-number-' + stepNumber);
 		$stepView.data('name', stepName);
-		$stepView.addClass('filter-step-name-' + stepName);
+		$stepView.addClass('filter-step-' + stepName);
 
 		// add to the DOM
 		$stepView.appendTo(self.$currentFilterStepsView);
-		$stepView.hide().fadeIn(self.config.animationSpeed);
+
+		// if target or field select then initiate the carousel on it
+		if (stepName == 'target') {
+			buildCarousel($stepView, function() {
+				self.didSelectTarget($(this).data('name'));
+			});
+		}
+		if (stepName == 'field') {
+			// mark that the editor now has fields selection
+			self.$currentFilterView.addClass('has-fields');
+
+			// mark the last field select
+			self.$currentFilterStepsView.find('.filter-step-field').removeClass('last');
+			$stepView.addClass('last');
+
+			buildCarousel($stepView, function() {
+				self.didSelectField($(this).data('name'), $view);
+			});
+		}
+
+		// animate into view nicely
+		$stepView.hide().slideDown(self.config.animationSpeed);
 
 		// add to the steps pool
 		self.currentFilterSteps.push($stepView);
@@ -271,6 +289,12 @@ var JCSDLGui = function(el, config) {
 	 * @param  {Integer} position
 	 */
 	this.removeFilterStepsAfterPosition = function(position) {
+		// update the 'last' class for step fields
+		var $theStep = self.$currentFilterStepsView.find('.filter-step').eq(position);
+		if ($theStep.hasClass('filter-step-field')) {
+			$theStep.addClass('last');
+		}
+
 		var steps = self.currentFilterSteps.splice(position + 1, self.currentFilterSteps.length - position);
 		$.each(steps, function(i, $step) {
 			$($step).remove(); // ensure jQuery
@@ -381,7 +405,7 @@ var JCSDLGui = function(el, config) {
 	 */
 	this.showError = function(message, code) {
 		alert(message + "\n\n##################\n\n" + code + "\n\n#####\n\n See console for more info.");
-		console.log(message, arguments);
+		console.error(message, arguments);
 	};
 
 	/**
@@ -436,7 +460,7 @@ var JCSDLGui = function(el, config) {
 	 */
 	var createTargetSelectView = function() {
 		var $targetSelectView = self.getTemplate('target');
-		var $targetSelect = $targetSelectView.find('select');
+		var $targetSelect = $targetSelectView.find('.filter-target');
 
 		// create a select option for every possible target
 		$.each(JCSDLConfig.targets, function(name, target) {
@@ -445,11 +469,6 @@ var JCSDLGui = function(el, config) {
 
 			// append the option to the select
 			$targetView.appendTo($targetSelect);
-		});
-
-		// register listener for change event
-		$targetSelect.change(function(ev) {
-			self.didSelectTarget($(this).val());
 		});
 
 		return $targetSelectView;
@@ -463,8 +482,10 @@ var JCSDLGui = function(el, config) {
 	 */
 	var createOptionForTarget = function(name, target) {
 		var $option = self.getTemplate('targetOption');
-		$option.val(name);
+		$option.data('name', name);
+		$option.data('target', target);
 		$option.html(target.name);
+		$option.addClass('target-' + name);
 		return $option;
 	};
 
@@ -482,15 +503,10 @@ var JCSDLGui = function(el, config) {
 		$fieldView.addClass('field-select-' + fieldPosition);
 
 		// add all possible selections
-		var $fieldSelect = $fieldView.find('select');
+		var $fieldSelect = $fieldView.find('.filter-target-field');
 		$.each(fields, function(name, field) {
 			var $fieldView = createOptionForField(name, field);
 			$fieldView.appendTo($fieldSelect);
-		});
-
-		// bind event listener on change
-		$fieldSelect.change(function(ev) {
-			self.didSelectField($(this).val(), $fieldView);
 		});
 
 		return $fieldView;
@@ -504,11 +520,131 @@ var JCSDLGui = function(el, config) {
 	 */
 	var createOptionForField = function(name, field) {
 		var $option = self.getTemplate('fieldOption');
-		$option.val(name);
+		$option.data('name', name);
+		$option.data('field', field);
 		$option.html(field.name);
+		$option.addClass('field-' + name);
 		return $option;
 	};
 
+	/*
+	 * FILTER STEP CAROUSEL METHODS
+	 */
+	/**
+	 * Builds a carousel for target and field selection steps. Takes care of all internal functionality.
+	 * @param  {jQuery} $step          Selection step element.
+	 * @param  {Function} selectCallback Function to be called when an option is selected.
+	 * @param  {Number} selectedIndex[optional] Index of the item that is selected on load. If not set this will be the middle item.
+	 */
+	var buildCarousel = function($step, selectCallback, expand) {
+		// get various elements that are used by the carousel
+		var $carousel = $step.find('.carousel');
+		var $carouselWrap = $carousel.closest('.carousel-wrap');
+		var $carouselItems = $carousel.find('.carousel-item');
+		var $exampleItem = $carouselItems.eq(0);
+		var $scrollLeft = $carouselWrap.siblings('.carousel-scroll.left');
+		var $scrollRight = $carouselWrap.siblings('.carousel-scroll.right');
+
+		// style the wrap so nothing goes over the borders
+		$carouselWrap.css({
+			width : $carouselWrap.closest('.filter-step').width() - $scrollLeft.outerWidth(true) - $scrollRight.outerWidth(true),
+			height : $exampleItem.height()
+		});
+
+		// prepare carousel item data
+		var $selected = $carouselItems.filter('.selected');
+		var selectedIndex = ($selected.length == 1) ? $selected.prevAll().length : Math.floor($carouselItems.length / 2);
+
+		// that will be bound to the $carousel item for later use
+		var carouselData = {
+			// how many items in the carousel
+			itemCount : $carouselItems.length,
+			// what's the default item width
+			itemWidth : $exampleItem.outerWidth(true),
+			// scroll left and right buttons
+			$scrollLeft : $scrollLeft,
+			$scrollRight : $scrollRight,
+			// what's the left margin to the center of the view
+			margin : ($carouselWrap.width() - $exampleItem.outerWidth(true) + parseInt($exampleItem.css('marginRight'))) / 2,
+			// item at what index is currently selected (middle one)
+			selectedIndex : selectedIndex
+		};
+
+		// define some carousel specific functions
+		var calculateCurrentPosition = function() {
+			return -1 * carouselData.itemWidth * carouselData.selectedIndex + carouselData.margin;
+		};
+
+		var changePosition = function(speed, dontExpand) {
+			$carousel.animate({
+				left : calculateCurrentPosition()
+			}, speed);
+
+			var $selectedItem = getSelectedItem();
+			$carouselItems.removeClass('selected');
+			$selectedItem.addClass('selected');
+
+			// because position is changing, we may activate both buttons
+			toggleScrollButtons();
+
+			// and finally call the selectCallback method if any
+			if (!dontExpand && typeof(selectCallback) == 'function') {
+				selectCallback.apply($selectedItem);
+			}
+		};
+
+		var toggleScrollButtons = function() {
+			$scrollLeft.removeClass('inactive');
+			$scrollRight.removeClass('inactive');
+
+			// deactivate scroll buttons if reached start/end
+			if (carouselData.selectedIndex == 0) $scrollLeft.addClass('inactive');
+			if (carouselData.selectedIndex + 1 == carouselData.itemCount) $scrollRight.addClass('inactive');
+		};
+
+		var getSelectedItem = function() {
+			return $carouselItems.eq(carouselData.selectedIndex);
+		};
+
+		// prepare the carousel's css
+		$carousel.css({
+			position : 'relative',
+			left : calculateCurrentPosition(),
+			width : carouselData.itemWidth * carouselData.itemCount,
+			height : $exampleItem.height()
+		});
+
+		changePosition(0, !expand);
+
+		// activate the scroll left and right buttons
+		$carouselWrap.siblings('.carousel-scroll').click(function(ev) {
+			ev.preventDefault();
+			ev.target.blur();
+
+			var $scroll = $(this);
+			if ($scroll.hasClass('inactive')) return;
+
+			var changeIndex = $scroll.is($scrollLeft) ? -1 : 1;
+			carouselData.selectedIndex = carouselData.selectedIndex + changeIndex;
+			changePosition(config.animationSpeed);
+		});
+
+		// clicking on an item also makes it selected
+		$carouselItems.click(function(ev) {
+			ev.preventDefault();
+			ev.target.blur();
+
+			carouselData.selectedIndex = $(this).prevAll().length;
+			changePosition(config.animationSpeed);
+		});
+
+		// bind the carousel data to the carousel element
+		$carousel.data('carousel', carouselData);
+	};
+
+	/*
+	 * FILTER VALUE INPUTS
+	 */
 	/**
 	 * Creates a single operator select view for the specified operator.
 	 * @param  {String} operatorName Name of the operator.

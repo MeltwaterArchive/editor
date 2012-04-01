@@ -91,4 +91,9 @@ $(function() {
 		$('#jcsdl-edit-wrap').hide();
 	});
 
+	/*
+	 * STYLING SHORTCUT
+	 */
+	$('#jcsdl-create .filter-add').click();
+
 });

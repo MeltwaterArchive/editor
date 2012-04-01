@@ -67,7 +67,7 @@ a {
     color: #222222; }
 
 #wrap {
-  width: 700px;
+  width: 800px;
   margin: 20px auto; }
 
 #tabs {
@@ -105,13 +105,15 @@ a {
 /* create tab */
 #stream-title {
   font-size: 1.5em;
-  width: 668px; }
+  width: 90%;
+  margin: 0 auto; }
 
 #jcsdl-create {
   margin-bottom: 75px; }
 
 #jcsdl-create-output {
-  width: 660px; }
+  width: 90%;
+  margin: 0 auto; }
 
 /* edit tab */
 #streams-list {
@@ -144,6 +146,7 @@ a {
   text-align: center; }
 
 #jcsdl-edit-output {
-  width: 660px; }
+  width: 90%;
+  margin: 0 auto; }
 
 /* technical tab */
