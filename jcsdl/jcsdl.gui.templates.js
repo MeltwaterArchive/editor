@@ -42,7 +42,7 @@ var JCSDLGuiTemplates = {
 			'<div class="steps">',
 			'</div>',
 			'<input type="button" class="filter-save" value="Save Filter" />',
-			'<input type="button" class="filter-cancel" value="Cancel" />',
+			'<input type="button" class="filter-cancel" value="Cancel Filter" />',
 		'</div>'
 	].join('')),
 
