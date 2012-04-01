@@ -1,5 +1,23 @@
 $(function() {
 
+	// apply window size class
+	var windowWidth = 800;
+	if (document.body.clientWidth < 480) {
+		windowWidth = 320;
+	} else if (document.body.clientWidth < 600) {
+		windowWidth = 480;
+	} else if (document.body.clientWidth < 800) {
+		windowWidth = 600;
+	} else if (document.body.clientWidth < 1000) {
+		windowWidth = 800;
+	} else if (document.body.clientWidth < 1200) {
+		windowWidth = 1000;
+	} else {
+		windowWidth = 1200;
+	}
+	$('#wrap').width(windowWidth).addClass('width-' + windowWidth);
+	$('#disclaimer select[name="width"] option[value=' + windowWidth + ']').attr('selected', 'selected');
+
 	// tabs
 	$('#tabs li a').click(function(ev) {
 		ev.preventDefault();
