@@ -15,8 +15,21 @@ $(function() {
 	} else {
 		windowWidth = 1200;
 	}
-	$('#wrap').width(windowWidth).addClass('width-' + windowWidth);
+	$(document.body).addClass('width-' + windowWidth);
 	$('#disclaimer select[name="width"] option[value=' + windowWidth + ']').attr('selected', 'selected');
+
+	var disclaimerWidth = $('#disclaimer').outerWidth(true);
+	if (windowWidth <= 480 || (document.body.clientWidth - $('#wrap').outerWidth()) / 2 < disclaimerWidth) {
+		$(document.body).addClass('resized');
+	}
+
+	$(window).resize(function(ev) {
+		if (document.body.clientWidth <= 480 || (document.body.clientWidth - $('#wrap').outerWidth()) / 2 < disclaimerWidth) {
+			$(document.body).addClass('resized');
+		} else {
+			$(document.body).removeClass('resized');
+		}
+	});
 
 	// tabs
 	$('#tabs li a').click(function(ev) {
@@ -114,7 +127,7 @@ $(function() {
 	 */
 	$('#disclaimer select').change(function(ev) {
 		var newWidth = $(this).val();
-		$('#wrap').width(newWidth).removeClass('width-1200 width-1000 width-800 width-600 width-480 width-320').addClass('width-' + newWidth);
+		$(document.body).removeClass('width-1200 width-1000 width-800 width-600 width-480 width-320').addClass('width-' + newWidth);
 
 		// reinitialize both editors
 		createEditor.init();

@@ -151,24 +151,50 @@ a {
 
 /* technical tab */
 /* "responsive" design */
-#wrap.width-480 #tabs, #wrap.width-320 #tabs {
+body.width-1200 #wrap {
+  width: 1200px; }
+body.width-1000 #wrap {
+  width: 1000px; }
+body.width-800 #wrap {
+  width: 800px; }
+body.width-600 #wrap {
+  width: 600px; }
+body.width-480 #wrap {
+  width: 480px; }
+body.width-320 #wrap {
+  width: 320px; }
+body.width-480 #tabs, body.width-320 #tabs {
   padding-left: 0; }
-  #wrap.width-480 #tabs li, #wrap.width-320 #tabs li {
+  body.width-480 #tabs li, body.width-320 #tabs li {
     margin: 0 2px; }
-    #wrap.width-480 #tabs li a, #wrap.width-320 #tabs li a {
+    body.width-480 #tabs li a, body.width-320 #tabs li a {
       padding: 0 5px;
       font-size: 13px; }
-#wrap.width-480 #streams-list li, #wrap.width-320 #streams-list li {
+body.width-480 #streams-list li, body.width-320 #streams-list li {
   padding: 5px 0; }
-  #wrap.width-480 #streams-list li h4, #wrap.width-320 #streams-list li h4 {
+  body.width-480 #streams-list li h4, body.width-320 #streams-list li h4 {
     line-height: 1em;
     margin-left: 0; }
-  #wrap.width-480 #streams-list li .options, #wrap.width-320 #streams-list li .options {
+  body.width-480 #streams-list li .options, body.width-320 #streams-list li .options {
     position: relative;
     top: 0;
     right: 0;
     display: block;
     clear: both;
     text-align: right; }
-    #wrap.width-480 #streams-list li .options a, #wrap.width-320 #streams-list li .options a {
+    body.width-480 #streams-list li .options a, body.width-320 #streams-list li .options a {
       margin: 0 2px; }
+body.resized {
+  padding-top: 80px;
+  background-position: top center; }
+  body.resized #disclaimer {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 320px;
+    overflow: hidden;
+    margin: 0 auto; }
+    body.resized #disclaimer select {
+      position: absolute;
+      top: 0;
+      right: 0; }

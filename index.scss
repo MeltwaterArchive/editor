@@ -100,7 +100,14 @@ a {color: $themeColor; text-decoration: none; font-weight: bold;}
 /* technical tab */
 
 /* "responsive" design */
-#wrap {
+body {
+	&.width-1200 #wrap {width: 1200px;}
+	&.width-1000 #wrap {width: 1000px;}
+	&.width-800 #wrap {width: 800px;}
+	&.width-600 #wrap {width: 600px;}
+	&.width-480 #wrap {width: 480px;}
+	&.width-320 #wrap {width: 320px;}
+
 	&.width-480, &.width-320 {
 		#tabs {
 			padding-left: 0;
@@ -121,6 +128,19 @@ a {color: $themeColor; text-decoration: none; font-weight: bold;}
 					a {margin: 0 2px;}
 				}
 			}
+		}
+	}
+
+	&.resized {
+		padding-top: 80px;
+		background-position: top center;
+
+		#disclaimer {
+			position: relative; top: 0; left: 0;
+			width: 320px; overflow: hidden;
+			margin: 0 auto;
+
+			select {position: absolute; top: 0; right: 0;}
 		}
 	}
 }
