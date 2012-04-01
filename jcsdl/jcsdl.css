@@ -23,9 +23,9 @@
       .jcsdl-container .filter .filter-description .info {
         float: left;
         margin: 0 10px; }
-        .jcsdl-container .filter .filter-description .info.j-target {
+        .jcsdl-container .filter .filter-description .info.target {
           font-weight: bold; }
-        .jcsdl-container .filter .filter-description .info.j-operator {
+        .jcsdl-container .filter .filter-description .info.operator {
           font-weight: bold; }
     .jcsdl-container .filter .options {
       position: absolute;

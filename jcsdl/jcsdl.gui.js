@@ -416,10 +416,10 @@ var JCSDLGui = function(el, config) {
 	var createFilterRow = function(filter) {
 		var $filterRow = self.getTemplate('filter');
 
-		$filterRow.find('.j-target').html(filter.target);
-		$filterRow.find('.j-field').html(filter.fieldPath.join('.'));
-		$filterRow.find('.j-operator').html(filter.operator);
-		$filterRow.find('.j-value').html(filter.value);
+		$filterRow.find('.target').html(filter.target);
+		$filterRow.find('.field').html(filter.fieldPath.join('.'));
+		$filterRow.find('.operator').html(filter.operator);
+		$filterRow.find('.value').html(filter.value);
 
 		// also attach the filter data to the row
 		$filterRow.data('filter', filter);
@@ -431,7 +431,7 @@ var JCSDLGui = function(el, config) {
 		 * Shows the filter editor for the clicked filter.
 		 * @param  {Event} ev Click Event.
 		 */
-		$filterRow.find('.j-edit').click(function(ev) {
+		$filterRow.find('.edit').click(function(ev) {
 			ev.preventDefault();
 			ev.target.blur();
 
@@ -443,7 +443,7 @@ var JCSDLGui = function(el, config) {
 		 * Delete the filter when clicked on delete option.
 		 * @param  {Event} ev Click Event.
 		 */
-		$filterRow.find('.j-delete').click(function(ev) {
+		$filterRow.find('.delete').click(function(ev) {
 			ev.preventDefault();
 			ev.target.blur();
 
@@ -534,7 +534,7 @@ var JCSDLGui = function(el, config) {
 	 * Builds a carousel for target and field selection steps. Takes care of all internal functionality.
 	 * @param  {jQuery} $step          Selection step element.
 	 * @param  {Function} selectCallback Function to be called when an option is selected.
-	 * @param  {Number} selectedIndex[optional] Index of the item that is selected on load. If not set this will be the middle item.
+	 * @param  {Boolean} expand[optional] Should the carousel automatically expand to the next level on selected item.
 	 */
 	var buildCarousel = function($step, selectCallback, expand) {
 		// get various elements that are used by the carousel
@@ -575,6 +575,7 @@ var JCSDLGui = function(el, config) {
 			return -1 * carouselData.itemWidth * carouselData.selectedIndex + carouselData.margin;
 		};
 
+		// animate the carousel to its proper position
 		var changePosition = function(speed, dontExpand) {
 			$carousel.animate({
 				left : calculateCurrentPosition()
@@ -593,6 +594,7 @@ var JCSDLGui = function(el, config) {
 			}
 		};
 
+		// activate/deactive the scroll buttons based on carousel position
 		var toggleScrollButtons = function() {
 			$scrollLeft.removeClass('inactive');
 			$scrollRight.removeClass('inactive');
@@ -602,6 +604,7 @@ var JCSDLGui = function(el, config) {
 			if (carouselData.selectedIndex + 1 == carouselData.itemCount) $scrollRight.addClass('inactive');
 		};
 
+		// get the currently selected item
 		var getSelectedItem = function() {
 			return $carouselItems.eq(carouselData.selectedIndex);
 		};

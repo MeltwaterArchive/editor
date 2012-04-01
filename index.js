@@ -94,6 +94,6 @@ $(function() {
 	/*
 	 * STYLING SHORTCUT
 	 */
-	$('#jcsdl-create .filter-add').click();
+	//$('#jcsdl-create .filter-add').click();
 
 });
