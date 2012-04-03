@@ -1,34 +1,37 @@
+var winSizes = [320, 480, 600, 800, 1000, 1200];
+var getWindowSize = function() {
+	var winWidth = $(window).width();
+	var windowSize = 320;
+	$.each(winSizes, function(i, size) {
+		if (winWidth >= size) {
+			windowSize = size;
+		}
+	});
+	return windowSize;
+}
+
+var setWindowSize = function(size) {
+	size = ($.inArray(size, winSizes)) ? size : getWindowSize();
+
+	var $bd = $(document.body);
+	$.each(winSizes, function(i, winSize) {
+		$bd.removeClass('width-' + winSize);
+	});
+
+	$bd.addClass('width-' + size);
+}
+
+var adjustWindowSize = function() {
+	var size = getWindowSize();
+	setWindowSize(size);
+}
+
+
 $(function() {
 
-	// apply window size class
-	var windowWidth = 800;
-	if (document.body.clientWidth < 480) {
-		windowWidth = 320;
-	} else if (document.body.clientWidth < 600) {
-		windowWidth = 480;
-	} else if (document.body.clientWidth < 800) {
-		windowWidth = 600;
-	} else if (document.body.clientWidth < 1000) {
-		windowWidth = 800;
-	} else if (document.body.clientWidth < 1200) {
-		windowWidth = 1000;
-	} else {
-		windowWidth = 1200;
-	}
-	$(document.body).addClass('width-' + windowWidth);
-	$('#disclaimer select[name="width"] option[value=' + windowWidth + ']').attr('selected', 'selected');
-
-	var disclaimerWidth = $('#disclaimer').outerWidth(true);
-	if (windowWidth <= 480 || (document.body.clientWidth - $('#wrap').outerWidth()) / 2 < disclaimerWidth) {
-		$(document.body).addClass('resized');
-	}
-
+	adjustWindowSize();
 	$(window).resize(function(ev) {
-		if (document.body.clientWidth <= 480 || (document.body.clientWidth - $('#wrap').outerWidth()) / 2 < disclaimerWidth) {
-			$(document.body).addClass('resized');
-		} else {
-			$(document.body).removeClass('resized');
-		}
+		adjustWindowSize();
 	});
 
 	// tabs
@@ -120,18 +123,6 @@ $(function() {
 		// hide the editor and show the list
 		$('#streams-list').show();
 		$('#jcsdl-edit-wrap').hide();
-	});
-
-	/*
-	 * DIFFERENT PAGE SIZES
-	 */
-	$('#disclaimer select').change(function(ev) {
-		var newWidth = $(this).val();
-		$(document.body).removeClass('width-1200 width-1000 width-800 width-600 width-480 width-320').addClass('width-' + newWidth);
-
-		// reinitialize both editors
-		createEditor.init();
-		editEditor.init();
 	});
 
 	/*

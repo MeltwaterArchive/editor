@@ -4,9 +4,10 @@ $lightGrey : #fafafa;
 $borderColor : #aaa;
 
 body {
-	background: #fff url('datasift.png') no-repeat;
+	background: #fff url('datasift.png') no-repeat top left;
 	font-size: 13px; line-height: 1.5em; color: $black;
 	font-family: "Helvetica Neue", Helvetica, sans-serif;
+	padding: 10px; padding-left: 200px;
 }
 
 #content {padding: 10px; background: #fff;}
@@ -38,13 +39,10 @@ a {color: $themeColor; text-decoration: none; font-weight: bold;}
 
 	h1, h2 {font-size: 1em; margin: 0; color: $black;}
 	h2 {font-weight: normal;}
-	p {font-size: 1em; margin: 0; color: $black;}
+	span {font-size: 1em; margin: 0; color: $black;}
 }
 
-#wrap {
-	width: 800px;
-	margin: 20px auto;
-}
+#wrap {}
 
 #tabs {
 	margin: 0; padding: 0; padding-left: 20px;
@@ -99,21 +97,13 @@ a {color: $themeColor; text-decoration: none; font-weight: bold;}
 
 /* technical tab */
 
-/* "responsive" design */
+/* responsive design */
 body {
-	&.width-1200 #wrap {width: 1200px;}
-	&.width-1000 #wrap {width: 1000px;}
-	&.width-800 #wrap {width: 800px;}
-	&.width-600 #wrap {width: 600px;}
-	&.width-480 #wrap {width: 480px;}
-	&.width-320 #wrap {width: 320px;}
 
-	&.width-480, &.width-320 {
-		#tabs {
-			padding-left: 0;
-			li {
-				margin: 0 2px;
-				a {padding: 0 5px; font-size: 13px;}
+	&.width-600, &.width-480, &.width-320 {
+		#tabs {padding-left: 5px;
+			li {margin: 0 5px;
+				a {font-size: 13px;}
 			}
 		}
 
@@ -131,16 +121,23 @@ body {
 		}
 	}
 
-	&.resized {
-		padding-top: 80px;
-		background-position: top center;
+	&.width-480, &.width-320 {
+		padding: 10px; padding-top: 7px;
+
+		#tabs {
+			padding-left: 0;
+			li {
+				margin: 0 2px;
+				a {padding: 0 5px; font-size: 13px;}
+			}
+		}
 
 		#disclaimer {
-			position: relative; top: 0; left: 0;
-			width: 320px; overflow: hidden;
-			margin: 0 auto;
+			position: relative; top: 0; left: 0; overflow: hidden;
+			margin-bottom: 5px;
+			text-align: right;
 
-			select {position: absolute; top: 0; right: 0;}
+			h1, h2 {line-height: 1.2em;}
 		}
 	}
 }

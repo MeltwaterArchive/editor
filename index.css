@@ -1,9 +1,11 @@
 body {
-  background: white url("datasift.png") no-repeat;
+  background: white url("datasift.png") no-repeat top left;
   font-size: 13px;
   line-height: 1.5em;
   color: #222222;
-  font-family: "Helvetica Neue", Helvetica, sans-serif; }
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  padding: 10px;
+  padding-left: 200px; }
 
 #content {
   padding: 10px;
@@ -61,14 +63,10 @@ a {
     color: #222222; }
   #disclaimer h2 {
     font-weight: normal; }
-  #disclaimer p {
+  #disclaimer span {
     font-size: 1em;
     margin: 0;
     color: #222222; }
-
-#wrap {
-  width: 800px;
-  margin: 20px auto; }
 
 #tabs {
   margin: 0;
@@ -150,51 +148,43 @@ a {
   margin: 0 auto; }
 
 /* technical tab */
-/* "responsive" design */
-body.width-1200 #wrap {
-  width: 1200px; }
-body.width-1000 #wrap {
-  width: 1000px; }
-body.width-800 #wrap {
-  width: 800px; }
-body.width-600 #wrap {
-  width: 600px; }
-body.width-480 #wrap {
-  width: 480px; }
-body.width-320 #wrap {
-  width: 320px; }
-body.width-480 #tabs, body.width-320 #tabs {
-  padding-left: 0; }
-  body.width-480 #tabs li, body.width-320 #tabs li {
-    margin: 0 2px; }
-    body.width-480 #tabs li a, body.width-320 #tabs li a {
-      padding: 0 5px;
+/* responsive design */
+body.width-600 #tabs, body.width-480 #tabs, body.width-320 #tabs {
+  padding-left: 5px; }
+  body.width-600 #tabs li, body.width-480 #tabs li, body.width-320 #tabs li {
+    margin: 0 5px; }
+    body.width-600 #tabs li a, body.width-480 #tabs li a, body.width-320 #tabs li a {
       font-size: 13px; }
-body.width-480 #streams-list li, body.width-320 #streams-list li {
+body.width-600 #streams-list li, body.width-480 #streams-list li, body.width-320 #streams-list li {
   padding: 5px 0; }
-  body.width-480 #streams-list li h4, body.width-320 #streams-list li h4 {
+  body.width-600 #streams-list li h4, body.width-480 #streams-list li h4, body.width-320 #streams-list li h4 {
     line-height: 1em;
     margin-left: 0; }
-  body.width-480 #streams-list li .options, body.width-320 #streams-list li .options {
+  body.width-600 #streams-list li .options, body.width-480 #streams-list li .options, body.width-320 #streams-list li .options {
     position: relative;
     top: 0;
     right: 0;
     display: block;
     clear: both;
     text-align: right; }
-    body.width-480 #streams-list li .options a, body.width-320 #streams-list li .options a {
+    body.width-600 #streams-list li .options a, body.width-480 #streams-list li .options a, body.width-320 #streams-list li .options a {
       margin: 0 2px; }
-body.resized {
-  padding-top: 80px;
-  background-position: top center; }
-  body.resized #disclaimer {
+body.width-480, body.width-320 {
+  padding: 10px;
+  padding-top: 7px; }
+  body.width-480 #tabs, body.width-320 #tabs {
+    padding-left: 0; }
+    body.width-480 #tabs li, body.width-320 #tabs li {
+      margin: 0 2px; }
+      body.width-480 #tabs li a, body.width-320 #tabs li a {
+        padding: 0 5px;
+        font-size: 13px; }
+  body.width-480 #disclaimer, body.width-320 #disclaimer {
     position: relative;
     top: 0;
     left: 0;
-    width: 320px;
     overflow: hidden;
-    margin: 0 auto; }
-    body.resized #disclaimer select {
-      position: absolute;
-      top: 0;
-      right: 0; }
+    margin-bottom: 5px;
+    text-align: right; }
+    body.width-480 #disclaimer h1, body.width-480 #disclaimer h2, body.width-320 #disclaimer h1, body.width-320 #disclaimer h2 {
+      line-height: 1.2em; }
