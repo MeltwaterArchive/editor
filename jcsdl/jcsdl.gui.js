@@ -537,112 +537,10 @@ var JCSDLGui = function(el, config) {
 	 * @param  {Boolean} expand[optional] Should the carousel automatically expand to the next level on selected item.
 	 */
 	var buildCarousel = function($step, selectCallback, expand) {
-		// get various elements that are used by the carousel
-		var $carousel = $step.find('.carousel');
-		var $carouselWrap = $carousel.closest('.carousel-wrap');
-		var $carouselItems = $carousel.find('.carousel-item');
-		var $exampleItem = $carouselItems.eq(0);
-		var $scrollLeft = $carouselWrap.siblings('.carousel-scroll.left');
-		var $scrollRight = $carouselWrap.siblings('.carousel-scroll.right');
-
-		// style the wrap so nothing goes over the borders
-		$carouselWrap.css({
-			width : $carouselWrap.closest('.filter-step').width() - $scrollLeft.outerWidth(true) - $scrollRight.outerWidth(true),
-			height : $exampleItem.height()
+		$step.jcsdlCarousel({
+			onSelect : selectCallback,
+			expand : expand
 		});
-
-		// prepare carousel item data
-		var $selected = $carouselItems.filter('.selected');
-		var selectedIndex = ($selected.length == 1) ? $selected.prevAll().length : Math.floor($carouselItems.length / 2);
-
-		// that will be bound to the $carousel item for later use
-		var carouselData = {
-			// how many items in the carousel
-			itemCount : $carouselItems.length,
-			// what's the default item width
-			itemWidth : $exampleItem.outerWidth(true),
-			// scroll left and right buttons
-			$scrollLeft : $scrollLeft,
-			$scrollRight : $scrollRight,
-			// what's the left margin to the center of the view
-			margin : ($carouselWrap.width() - $exampleItem.outerWidth(true) + parseInt($exampleItem.css('marginRight'))) / 2,
-			// item at what index is currently selected (middle one)
-			selectedIndex : selectedIndex
-		};
-
-		// define some carousel specific functions
-		var calculateCurrentPosition = function() {
-			return -1 * carouselData.itemWidth * carouselData.selectedIndex + carouselData.margin;
-		};
-
-		// animate the carousel to its proper position
-		var changePosition = function(speed, dontExpand) {
-			$carousel.animate({
-				left : calculateCurrentPosition()
-			}, speed);
-
-			var $selectedItem = getSelectedItem();
-			$carouselItems.removeClass('selected');
-			$selectedItem.addClass('selected');
-
-			// because position is changing, we may activate both buttons
-			toggleScrollButtons();
-
-			// and finally call the selectCallback method if any
-			if (!dontExpand && typeof(selectCallback) == 'function') {
-				selectCallback.apply($selectedItem);
-			}
-		};
-
-		// activate/deactive the scroll buttons based on carousel position
-		var toggleScrollButtons = function() {
-			$scrollLeft.removeClass('inactive');
-			$scrollRight.removeClass('inactive');
-
-			// deactivate scroll buttons if reached start/end
-			if (carouselData.selectedIndex == 0) $scrollLeft.addClass('inactive');
-			if (carouselData.selectedIndex + 1 == carouselData.itemCount) $scrollRight.addClass('inactive');
-		};
-
-		// get the currently selected item
-		var getSelectedItem = function() {
-			return $carouselItems.eq(carouselData.selectedIndex);
-		};
-
-		// prepare the carousel's css
-		$carousel.css({
-			position : 'relative',
-			left : calculateCurrentPosition(),
-			width : carouselData.itemWidth * carouselData.itemCount,
-			height : $exampleItem.height()
-		});
-
-		changePosition(0, !expand);
-
-		// activate the scroll left and right buttons
-		$carouselWrap.siblings('.carousel-scroll').click(function(ev) {
-			ev.preventDefault();
-			ev.target.blur();
-
-			var $scroll = $(this);
-			if ($scroll.hasClass('inactive')) return;
-
-			var changeIndex = $scroll.is($scrollLeft) ? -1 : 1;
-			carouselData.selectedIndex = carouselData.selectedIndex + changeIndex;
-			changePosition(config.animationSpeed);
-		});
-
-		// clicking on an item also makes it selected
-		$carouselItems.click(function(ev) {
-			ev.preventDefault();
-			ev.target.blur();
-
-			carouselData.selectedIndex = $(this).prevAll().length;
-			changePosition(config.animationSpeed);
-		});
-
-		// bind the carousel data to the carousel element
-		$carousel.data('carousel', carouselData);
 	};
 
 	/*
@@ -850,3 +748,161 @@ var JCSDLGui = function(el, config) {
 	// automatically call the initialization after everything has been defined
 	this.init();
 };
+
+/**
+ * JCSDL Filter carousel as a separate jQuery plugin for easy use.
+ */
+(function($) {
+
+	function JCSDLCarousel($el, options) {
+		var self = this;
+
+		this.onSelect = options.onSelect;
+
+		// link to various elements that are used by the carousel
+		this.$carousel = $el.find('.carousel');
+		this.$carouselWrap = this.$carousel.closest('.carousel-wrap');
+		
+		this.$carouselItems = this.$carousel.find('.carousel-item');
+		this.$exampleItem = this.$carouselItems.eq(0);
+
+		this.$scrollLeft = this.$carouselWrap.siblings('.carousel-scroll.left');
+		this.$scrollRight = this.$carouselWrap.siblings('.carousel-scroll.right');
+
+		// some other carousel data
+		this.itemsCount = this.$carouselItems.length;
+		this.itemWidth = this.$exampleItem.outerWidth(true);
+		this.itemMargin = parseInt(this.$exampleItem.css('marginRight'));
+		this.margin = this.calculateCenterMargin();
+		
+		// select the item that is suppose to be selected (middle if there isn't any)
+		var $selected = this.$carouselItems.filter('.selected');
+		this.selectedIndex = ($selected.length == 1) ? $selected.prevAll().length : Math.floor(this.itemsCount / 2);
+
+		// style the wrap so nothing goes over the borders
+		this.$carouselWrap.css({
+			maxWidth : this.calculateWrapWidth(),
+			height : this.$exampleItem.height()
+		});
+
+		// prepare the carousel's css
+		this.$carousel.css({
+			position : 'relative',
+			left : this.calculateCurrentPosition(),
+			width : this.itemWidth * this.itemsCount,
+			height : this.$exampleItem.height()
+		});
+
+		this.changePosition(0, !options.expand);
+
+		/*
+		 * REGISTER LISTENERS
+		 */
+		// activate the scroll left and right buttons
+		this.$carouselWrap.siblings('.carousel-scroll').click(function(ev) {
+			ev.preventDefault();
+			ev.target.blur();
+
+			var $scroll = $(this);
+			if ($scroll.hasClass('inactive')) return;
+
+			var changeIndex = $scroll.is(self.$scrollLeft) ? -1 : 1;
+			self.selectedIndex = self.selectedIndex + changeIndex;
+			self.changePosition(options.speed);
+		});
+
+		// clicking on an item also makes it selected
+		this.$carouselItems.click(function(ev) {
+			ev.preventDefault();
+			ev.target.blur();
+
+			self.selectedIndex = $(this).prevAll().length;
+			self.changePosition(options.speed);
+		});
+
+		// adjust the carousel's width when window resizing
+		var resizeTimeout = null;
+		$(window).resize(function(ev) {
+			clearTimeout(resizeTimeout);
+			resizeTimeout = setTimeout(function() {
+				var wrapWidth = self.calculateWrapWidth();
+				self.$carouselWrap.css({
+					//width : wrapWidth,
+					maxWidth : wrapWidth
+				});
+				self.calculateCenterMargin();
+				self.changePosition(0, true);
+			}, 30);
+		});
+	}
+
+	// carousel's prototype methods and vars
+	JCSDLCarousel.prototype = {
+		// calculates the current width of the wrap
+		calculateWrapWidth : function() {
+			return this.$carouselWrap.closest('.filter-step').width() - this.$scrollLeft.outerWidth(true) - this.$scrollRight.outerWidth(true);
+		},
+		// calculate margin that needs to be removed from the position so it's centered
+		calculateCenterMargin : function() {
+			this.margin = (this.$carouselWrap.width() - this.itemWidth + this.itemMargin) / 2;
+			return this.margin;	
+		},
+		// calculate the carousel's relative position
+		calculateCurrentPosition : function() {
+			return -1 * this.itemWidth * this.selectedIndex + this.margin;
+		},
+		// activate/deactive the scroll buttons based on carousel position
+		toggleScrollButtons : function() {
+			this.$scrollLeft.removeClass('inactive');
+			this.$scrollRight.removeClass('inactive');
+
+			// deactivate scroll buttons if reached start/end
+			if (this.selectedIndex == 0) this.$scrollLeft.addClass('inactive');
+			if (this.selectedIndex + 1 == this.itemsCount) this.$scrollRight.addClass('inactive');
+		},
+		// get the currently selected item
+		getSelectedItem : function() {
+			return this.$carouselItems.eq(this.selectedIndex);
+		},
+
+		// animate the carousel to its proper position
+		changePosition : function(speed, dontExpand) {
+			this.$carousel.animate({
+				left : this.calculateCurrentPosition()
+			}, speed);
+
+			var $selectedItem = this.getSelectedItem();
+			this.$carouselItems.removeClass('selected');
+			$selectedItem.addClass('selected');
+
+			// because position is changing, we may activate both buttons
+			this.toggleScrollButtons();
+
+			// and finally call the selectCallback method if any
+			if (!dontExpand && typeof(this.onSelect) == 'function') {
+				this.onSelect.apply($selectedItem);
+			}
+		}
+	};
+
+	// the proper plugin
+	$.fn.jcsdlCarousel = function(options) {
+		options = $.extend({}, {
+			onSelect : function() {},
+			expand : false,
+			speed : 200
+		}, options);
+
+		function getJCSDLCarousel($el) {
+			var carousel = $el.data('jcsdlCarousel');
+			if (!carousel) {
+				carousel = new JCSDLCarousel($el, options);
+				$el.data('jcsdlCarousel', carousel);
+			}
+			return carousel;
+		}
+
+		this.each(function() {getJCSDLCarousel($(this));});
+		return this;
+	};
+})(window.jQuery);

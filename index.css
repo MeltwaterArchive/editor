@@ -4,8 +4,7 @@ body {
   line-height: 1.5em;
   color: #222222;
   font-family: "Helvetica Neue", Helvetica, sans-serif;
-  padding: 10px;
-  padding-left: 200px; }
+  padding: 10px 200px; }
 
 #content {
   padding: 10px;
@@ -149,26 +148,28 @@ a {
 
 /* technical tab */
 /* responsive design */
-body.width-600 #tabs, body.width-480 #tabs, body.width-320 #tabs {
-  padding-left: 5px; }
-  body.width-600 #tabs li, body.width-480 #tabs li, body.width-320 #tabs li {
-    margin: 0 5px; }
-    body.width-600 #tabs li a, body.width-480 #tabs li a, body.width-320 #tabs li a {
-      font-size: 13px; }
-body.width-600 #streams-list li, body.width-480 #streams-list li, body.width-320 #streams-list li {
-  padding: 5px 0; }
-  body.width-600 #streams-list li h4, body.width-480 #streams-list li h4, body.width-320 #streams-list li h4 {
-    line-height: 1em;
-    margin-left: 0; }
-  body.width-600 #streams-list li .options, body.width-480 #streams-list li .options, body.width-320 #streams-list li .options {
-    position: relative;
-    top: 0;
-    right: 0;
-    display: block;
-    clear: both;
-    text-align: right; }
-    body.width-600 #streams-list li .options a, body.width-480 #streams-list li .options a, body.width-320 #streams-list li .options a {
-      margin: 0 2px; }
+body.width-600, body.width-480, body.width-320 {
+  padding-right: 10px; }
+  body.width-600 #tabs, body.width-480 #tabs, body.width-320 #tabs {
+    padding-left: 5px; }
+    body.width-600 #tabs li, body.width-480 #tabs li, body.width-320 #tabs li {
+      margin: 0 5px; }
+      body.width-600 #tabs li a, body.width-480 #tabs li a, body.width-320 #tabs li a {
+        font-size: 13px; }
+  body.width-600 #streams-list li, body.width-480 #streams-list li, body.width-320 #streams-list li {
+    padding: 5px 0; }
+    body.width-600 #streams-list li h4, body.width-480 #streams-list li h4, body.width-320 #streams-list li h4 {
+      line-height: 1em;
+      margin-left: 0; }
+    body.width-600 #streams-list li .options, body.width-480 #streams-list li .options, body.width-320 #streams-list li .options {
+      position: relative;
+      top: 0;
+      right: 0;
+      display: block;
+      clear: both;
+      text-align: right; }
+      body.width-600 #streams-list li .options a, body.width-480 #streams-list li .options a, body.width-320 #streams-list li .options a {
+        margin: 0 2px; }
 body.width-480, body.width-320 {
   padding: 10px;
   padding-top: 7px; }
