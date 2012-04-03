@@ -70,6 +70,15 @@ var JCSDLGui = function(el, config) {
 		});
 
 		/**
+		 * Switch between expanded and compact view mode of filters list.
+		 * @param  {Event} ev
+		 */
+		self.$editor.find('.view-mode input[name="viewmode"]').change(function(ev) {
+			self.$editorFiltersList.removeClass('expanded compact');
+			self.$editorFiltersList.addClass($(this).val());
+		});
+
+		/**
 		 * Show filter editor to create a new one from scratch upon clicking 'Add filter'.
 		 * @param  {Event} ev Click Event.
 		 */
@@ -416,10 +425,30 @@ var JCSDLGui = function(el, config) {
 	var createFilterRow = function(filter) {
 		var $filterRow = self.getTemplate('filter');
 
-		$filterRow.find('.target').html(filter.target);
-		$filterRow.find('.field').html(filter.fieldPath.join('.'));
-		$filterRow.find('.operator').html(filter.operator);
-		$filterRow.find('.value').html(filter.value);
+		// fill with data
+		// target
+		var $target = self.getTemplate('filterTarget');
+		$target.addClass('target-' + filter.target).html(jcsdl.getTargetInfo(filter.target).name);
+		$filterRow.find('.target').html($target);
+
+		// fields (separate icon for each field in path)
+		var currentPath = [];
+		$.each(filter.fieldPath, function(i, field) {
+			var $field = self.getTemplate('filterField');
+			currentPath.push(field);
+			$field.addClass('field-' + field).html(jcsdl.getFieldInfo(filter.target, currentPath).name);
+			$filterRow.find('.field').append($field);
+		});
+
+		// operator
+		var $operator = self.getTemplate('filterOperator');
+		$operator.addClass('operator-' + filter.operator).html(jcsdl.getOperatorCode(filter.operator).escapeHtml());
+		$filterRow.find('.operator').html($operator);
+
+		// value
+		var $value = self.getTemplate('filterValue');
+		$value.html(filter.value.escapeHtml());
+		$filterRow.find('.value').html($value);
 
 		// also attach the filter data to the row
 		$filterRow.data('filter', filter);
@@ -906,3 +935,11 @@ var JCSDLGui = function(el, config) {
 		return this;
 	};
 })(window.jQuery);
+
+String.prototype.escapeHtml = function() {
+	var str = this.valueOf();
+	str = str.replace('&', '&amp;');
+	str = str.replace('<', '&lt;');
+	str = str.replace('>', '&gt;');
+	return str;
+};

@@ -4,12 +4,43 @@
   position: relative;
   background: #fefefe;
   text-align: center;
-  /* single filter editor */
-  /* building blocks */ }
+  /* building blocks */
+  /* filter row */
+  /* single filter editor */ }
+  .jcsdl-container .icon {
+    display: block;
+    width: 80px;
+    height: 80px;
+    float: left;
+    margin: 0;
+    margin-right: 20px;
+    overflow: hidden;
+    text-align: center;
+    line-height: 80px;
+    color: black; }
+    .jcsdl-container .icon.target {
+      width: 110px;
+      height: 110px;
+      line-height: 110px;
+      margin-right: 35px; }
+    .jcsdl-container .icon:hover {
+      background: #f5f5f5; }
+    .jcsdl-container .icon.selected {
+      background: #f5f5f5; }
+  .jcsdl-container .filter-options {
+    overflow: hidden; }
   .jcsdl-container ul.filters-logic {
+    float: left;
     list-style-type: none;
     overflow: hidden; }
     .jcsdl-container ul.filters-logic li {
+      float: left;
+      margin-right: 10px; }
+  .jcsdl-container ul.view-mode {
+    float: right;
+    list-style-type: none;
+    overflow: hidden; }
+    .jcsdl-container ul.view-mode li {
       float: left;
       margin-right: 10px; }
   .jcsdl-container .filter {
@@ -33,6 +64,42 @@
       right: 5px; }
       .jcsdl-container .filter .options a {
         margin: 0 5px; }
+  .jcsdl-container .filters-list.expanded .filter .filter-target {
+    margin: 0; }
+  .jcsdl-container .filters-list.expanded .filter .filter-field {
+    margin: 15px 10px; }
+  .jcsdl-container .filters-list.expanded .filter .filter-operator {
+    line-height: 110px; }
+    .jcsdl-container .filters-list.expanded .filter .filter-operator.operator-contains {
+      display: none; }
+    .jcsdl-container .filters-list.expanded .filter .filter-operator.operator-substr {
+      display: none; }
+    .jcsdl-container .filters-list.expanded .filter .filter-operator.operator-contains_any {
+      display: none; }
+    .jcsdl-container .filters-list.expanded .filter .filter-operator.operator-in {
+      display: none; }
+  .jcsdl-container .filters-list.expanded .filter .filter-value {
+    font-size: 16px;
+    color: #666;
+    line-height: 110px; }
+  .jcsdl-container .filters-list.compact .filter .filter-target, .jcsdl-container .filters-list.compact .filter .filter-field, .jcsdl-container .filters-list.compact .filter .filter-operator, .jcsdl-container .filters-list.compact .filter .filter-value {
+    margin: 0;
+    background: none;
+    width: auto;
+    height: auto;
+    display: inline;
+    line-height: 1em;
+    float: none; }
+  .jcsdl-container .filters-list.compact .filter .filter-operator {
+    font-weight: bold; }
+    .jcsdl-container .filters-list.compact .filter .filter-operator.operator-contains {
+      display: none; }
+    .jcsdl-container .filters-list.compact .filter .filter-operator.operator-substr {
+      display: none; }
+    .jcsdl-container .filters-list.compact .filter .filter-operator.operator-contains_any {
+      display: none; }
+    .jcsdl-container .filters-list.compact .filter .filter-operator.operator-in {
+      display: none; }
   .jcsdl-container .filter-editor .filter-target-wrap {
     height: 140px;
     padding-top: 30px; }
@@ -79,31 +146,11 @@
       .jcsdl-container .filter-editor .filter-value-input-field .input-select .input-select-option {
         float: left;
         margin: 0 5px; }
-  .jcsdl-container .icon {
-    display: block;
-    width: 80px;
-    height: 80px;
-    float: left;
-    margin: 0;
-    margin-right: 20px;
-    overflow: hidden;
-    text-align: center;
-    line-height: 80px;
-    color: black; }
-    .jcsdl-container .icon.target {
-      width: 110px;
-      height: 110px;
-      line-height: 110px;
-      margin-right: 35px; }
-    .jcsdl-container .icon:hover {
-      background: #f5f5f5; }
-    .jcsdl-container .icon.selected {
-      background: #f5f5f5; }
-  .jcsdl-container .carousel-wrap {
+  .jcsdl-container .filter-editor .carousel-wrap {
     overflow: hidden;
     position: relative;
     margin: 0 auto; }
-  .jcsdl-container .carousel-scroll {
+  .jcsdl-container .filter-editor .carousel-scroll {
     display: block;
     width: 30px;
     height: 30px;
@@ -112,12 +159,12 @@
     line-height: 30px;
     text-align: center;
     background: transparent url("img/scroll.png") no-repeat top left; }
-    .jcsdl-container .carousel-scroll.right {
+    .jcsdl-container .filter-editor .carousel-scroll.right {
       float: right;
       margin-right: 0;
       margin-left: 5px;
       background-position: bottom left; }
-    .jcsdl-container .carousel-scroll:hover {
+    .jcsdl-container .filter-editor .carousel-scroll:hover {
       opacity: 0.9; }
-    .jcsdl-container .carousel-scroll.inactive {
+    .jcsdl-container .filter-editor .carousel-scroll.inactive {
       opacity: 0.5; }

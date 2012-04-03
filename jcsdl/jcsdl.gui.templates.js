@@ -6,11 +6,18 @@ var JCSDLGuiTemplates = {
 	editor : $([
 		'<div class="jcsdl-editor">',
 			'<h3>Filters:</h3>',
-			'<ul class="filters-logic">',
-				'<li><label><input type="radio" name="logic" value="AND" checked="checked" /> ALL of the following:</label></li>',
-				'<li><label><input type="radio" name="logic" value="OR" /> ANY of the following:</label></li>',
-			'</ul>',
-			'<div class="filters-list">',
+			'<div class="filter-options">',
+				'<ul class="filters-logic">',
+					'<li><label><input type="radio" name="logic" value="AND" checked /> ALL of the following:</label></li>',
+					'<li><label><input type="radio" name="logic" value="OR" /> ANY of the following:</label></li>',
+				'</ul>',
+				'<ul class="view-mode">',
+					'<li>View as</li>',
+					'<li><label><input type="radio" name="viewmode" value="expanded" checked /> Expanded</label></li>',
+					'<li><label><input type="radio" name="viewmode" value="compact" /> Compact</label></li>',
+				'</ul>',
+			'</div>',
+			'<div class="filters-list expanded">',
 			'</div>',
 			'<input type="button" class="filter-add" value="Add Filter" />',
 			'<input type="button" class="jcsdl-editor-save" value="Save" />',
@@ -32,6 +39,11 @@ var JCSDLGuiTemplates = {
 			'</div>',
 		'</div>'
 	].join('')),
+
+	filterTarget : $('<div class="filter-target icon target" />'),
+	filterField : $('<div class="filter-field icon field" />'),
+	filterOperator : $('<div class="filter-operator" />'),
+	filterValue : $('<div class="filter-value" />'),
 
 	/* ##########################
 	 * SINGLE FILTER EDITOR

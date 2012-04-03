@@ -299,6 +299,19 @@ var JCSDL = function(gui) {
 	};
 
 	/**
+	 * Returns definition of the specific given target or (bool) false it it doesn't exist.
+	 * @param  {String} target CSDL target.
+	 * @return {Object}
+	 */
+	this.getTargetInfo = function(target) {
+		if (typeof(JCSDLConfig.targets[target]) !== 'undefined') {
+			return JCSDLConfig.targets[target];
+		}
+		error('Such target does not exist!', target);
+		return false;
+	};
+
+	/**
 	 * Returns definition of the specific given field or (bool) false if it doesn't exist.
 	 * @param  {String} target    CSDL target.
 	 * @param  {Array} fieldPath  Array of field names, path to the specific field.
