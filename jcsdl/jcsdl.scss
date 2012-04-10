@@ -1,12 +1,146 @@
-$borderColor : #ddd;
+$color : #376491;
+$colorLight : #939393;
+$borderColor : #dcdcdc;
+$borderColorInput : #c8d7de;
+$elementsSprite : 'img/elements.png';
+
+@mixin rounded($radius: 5px) {
+	-webkit-border-radius: $radius;
+	-khtml-border-radius: $radius;
+	-moz-border-radius: $radius;
+	-ms-border-radius: $radius;
+	-o-border-radius: $radius;
+	border-radius: $radius;
+	-moz-background-clip: padding;
+	-webkit-background-clip: padding-box;
+	background-clip: padding-box; 
+}
+
+@mixin opacity($opacity: 0.5) {
+	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=$opacity * 10)";
+	filter: alpha(opacity=$opacity * 10);
+	-moz-opacity: $opacity;
+	-khtml-opacity: $opacity;
+	opacity: $opacity;
+}
 
 /* the actual editor */
 .jcsdl-container {
 	overflow: hidden; position: relative;
-	background: #fefefe;
-	text-align: center;
+	font-size: 13px; font-family: "Helvetica Neue", "Helvetica", sans-serif; color: $colorLight;
 
 	/* building blocks */
+	a {color: $color;
+		&:hover {color: lighten($color, 5%);}
+	}
+
+	.jcsdl-label {font-size: 1em; color: $colorLight; font-weight: normal;}
+	.jcsdl-bordered {padding: 8px; border: 1px solid $borderColorInput; @include rounded(3px);}
+
+	.jcsdl-button {
+		float: left; margin-right: 8px;
+		overflow: hidden; text-indent: -9999px;
+		display: block; height: 34px; width: 140px;
+		background: url($elementsSprite) no-repeat 0 -55px;
+
+		&.jcsdl-editor-save {}
+		&.jcsdl-editor-cancel {width: 56px; background-position: 0 -89px;}
+
+		&:hover {@include opacity(0.9);}
+	}
+
+	.jcsdl-header {
+		overflow: hidden;
+		padding: 15px;
+		border-bottom: 1px dotted $borderColor;
+
+		h3 {
+			float: left; margin: 0;
+			line-height: 1em;
+			font-size: 1.8em; color: $color; font-weight: normal;
+		}
+	}
+
+	.jcsdl-footer {
+		overflow: hidden;
+		padding: 15px;
+		border-top: 1px dotted $borderColor;
+
+		.jcsdl-actions {float: left; overflow: hidden;}
+	}
+
+	/*
+	 * MAIN VIEW
+	 */
+	.jcsdl-mainview {
+		.jcsdl-header, .jcsdl-header h3 {line-height: 38px;}
+	}
+
+	/* main view actions (add new filter, add existing stream) */
+	.jcsdl-mainview-actions {
+		overflow: hidden;
+		float: right; margin-top: 2px;
+	}
+
+	.jcsdl-mainview-action {
+		float: left; margin-right: 8px;
+		display: block; overflow: hidden;
+		line-height: 14px;
+		color: $color;
+
+		.jcsdl-picto {
+			float: left; margin-right: 8px;
+			display: block; width: 14px; height: 14px;
+			background: url($elementsSprite) no-repeat -140px -68px;
+		}
+
+		&.jcsdl-add-filter {margin-right: 0;}
+	}
+
+	/* main view mode (expanded / collapsed) */
+	.jcsdl-mainview-mode {
+		overflow: hidden;
+		float: right; margin-left: 15px;
+		padding-left: 15px;
+		border-left: 1px dotted $borderColor;
+	}
+
+	.jcsdl-mainview-mode-options {
+		overflow: hidden;
+		float: right; margin-left: 8px; margin-top: 2px;
+		height: 14px;
+	}
+
+	.jcsdl-mainview-mode-option {
+		float: left; margin-right: 8px;
+		display: block; width: 13px; height: 13px;
+		background: url($elementsSprite) no-repeat -140px -55px;
+		@include opacity(0.3);
+
+		&.jcsdl-expanded {background-position: -140px -55px;}
+		&.jcsdl-collapsed {background-position: -156px -55px; margin-right: 0;}
+
+		&:hover {@include opacity(0.5);}
+		&.active {@include opacity(1);}
+	}
+
+	/* filters logic (AND/OR) */
+	.jcsdl-filters-logic {
+		margin: 15px;
+		text-align: left;
+	}
+
+	.jcsdl-filters-logic-option {
+		margin-right: 8px;
+		cursor: pointer;
+
+		input {margin-right: 5px;}
+
+		&.jcsdl-or {margin-right: 0;}
+	}
+
+	/* building blocks */
+	/*
 	.icon {
 		display: block; width: 80px; height: 80px;
 		float: left; margin: 0; margin-right: 20px;
@@ -19,27 +153,10 @@ $borderColor : #ddd;
 		&:hover {background: #f5f5f5;}
 		&.selected {background: #f5f5f5;}
 	}
-
-
-	.filter-options {overflow: hidden;}
-
-	ul.filters-logic {
-		float: left;
-		list-style-type: none;
-		overflow: hidden;
-
-		li {float: left; margin-right: 10px;}
-	}
-
-	ul.view-mode {
-		float: right;
-		list-style-type: none;
-		overflow: hidden;
-
-		li {float: left; margin-right: 10px;}
-	}
+	*/
 
 	/* filter row */
+	/*
 	.filter {
 		overflow: hidden; position: relative; margin: 10px 0;
 		padding: 5px;
@@ -96,8 +213,10 @@ $borderColor : #ddd;
 			}
 		}
 	}
+	*/
 
 	/* single filter editor */
+	/*
 	.filter-editor {
 		.filter-target-wrap {
 			height: 140px; padding-top: 30px;
@@ -175,5 +294,6 @@ $borderColor : #ddd;
 		}
 
 	}
+	*/
 
 }

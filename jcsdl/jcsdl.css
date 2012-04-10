@@ -2,169 +2,296 @@
 .jcsdl-container {
   overflow: hidden;
   position: relative;
-  background: #fefefe;
-  text-align: center;
+  font-size: 13px;
+  font-family: "Helvetica Neue", "Helvetica", sans-serif;
+  color: #939393;
   /* building blocks */
+  /*
+   * MAIN VIEW
+   */
+  /* main view actions (add new filter, add existing stream) */
+  /* main view mode (expanded / collapsed) */
+  /* filters logic (AND/OR) */
+  /* building blocks */
+  	/*
+  	.icon {
+  		display: block; width: 80px; height: 80px;
+  		float: left; margin: 0; margin-right: 20px;
+  		overflow: hidden;
+  		text-align: center; line-height: 80px;
+  		color: black;
+  
+  		&.target {width: 110px; height: 110px; line-height: 110px; margin-right: 35px;}
+  
+  		&:hover {background: #f5f5f5;}
+  		&.selected {background: #f5f5f5;}
+  	}
+  	*/
   /* filter row */
-  /* single filter editor */ }
-  .jcsdl-container .icon {
+  	/*
+  	.filter {
+  		overflow: hidden; position: relative; margin: 10px 0;
+  		padding: 5px;
+  		border: 1px solid $borderColor;
+  
+  		.filter-description {
+  			overflow: hidden;
+  
+  			.info {
+  				float: left; margin: 0 10px;
+  
+  				&.target {font-weight: bold;}
+  				&.operator {font-weight: bold;}
+  			}			
+  		}
+  
+  		.options {
+  			position: absolute; top: 5px; right: 5px;
+  
+  			a {margin: 0 5px;}
+  		}
+  	}
+  
+  	.filters-list {
+  		&.expanded {
+  			.filter {
+  				.filter-target {margin: 0;}
+  				.filter-field {margin: 15px 10px;}
+  				.filter-operator {
+  					line-height: 110px;
+  
+  					&.operator-contains {display: none;}
+  					&.operator-substr {display: none;}
+  					&.operator-contains_any {display: none;}
+  					&.operator-in {display: none;}
+  				}
+  				.filter-value {
+  					font-size: 16px; color: #666;
+  					line-height: 110px;
+  				}
+  			}
+  		}
+  		&.compact {
+  			.filter {
+  				.filter-target, .filter-field, .filter-operator, .filter-value {margin: 0; background: none; width: auto; height: auto; display: inline; line-height: 1em; float: none;}
+  				.filter-operator {
+  					font-weight: bold;
+  
+  					&.operator-contains {display: none;}
+  					&.operator-substr {display: none;}
+  					&.operator-contains_any {display: none;}
+  					&.operator-in {display: none;}
+  				}
+  			}
+  		}
+  	}
+  	*/
+  /* single filter editor */
+  	/*
+  	.filter-editor {
+  		.filter-target-wrap {
+  			height: 140px; padding-top: 30px;
+  
+  			.carousel-scroll {margin-top: 40px;}
+  		}
+  		&.has-fields .filter-target-wrap {
+  			background: transparent url('img/select.png') no-repeat center 8px;
+  		}
+  
+  		.filter-target-field-wrap {
+  			padding-top: 5px; padding-bottom: 40px;
+  			background: transparent url('img/select.png') no-repeat center -165px;
+  
+  			.carousel-scroll {margin-top: 25px;}
+  		}
+  
+  		.filter-step {
+  			overflow: hidden; text-align: center;
+  			background: transparent url('img/step_background.png') no-repeat bottom center;
+  
+  			&.filter-step-field.last .filter-target-field-wrap {
+  				margin-bottom: 10px;
+  				background-position: center -255px;
+  			}
+  
+  			&.filter-step-value {
+  				padding-bottom: 30px;
+  			}
+  		}
+  
+  
+  		.filter-value-input-operators {
+  			overflow: hidden;
+  
+  			.operator-select {
+  				float: left; margin: 5px 20px;
+  
+  				input {margin-right: 8px;}
+  			}
+  		}
+  
+  		.filter-value-input-field {
+  			margin-top: 20px;
+  
+  			.input-text input, .input-number input {
+  				display: block; margin: 0 auto;
+  				padding: 5px 10px; width: 90%;
+  				font-size: 1.3em; line-height: 1.5em;
+  				border: 1px solid $borderColor;
+  			}
+  			.input-number input {width: 100px;}
+  
+  			.input-select {
+  				overflow: hidden;
+  
+  				.input-select-option {float: left; margin: 0 5px;}
+  			}
+  		}
+  
+  		.carousel-wrap {
+  			overflow: hidden; position: relative;
+  			margin: 0 auto;
+  		}
+  
+  		.carousel-scroll {
+  			display: block; width: 30px; height: 30px; margin-right: 5px;
+  			float: left;
+  			line-height: 30px; text-align: center;
+  			background: transparent url('img/scroll.png') no-repeat top left;
+  
+  			&.right {float: right; margin-right: 0; margin-left: 5px; background-position: bottom left;}
+  			&:hover {opacity: 0.9;}
+  			&.inactive {opacity: 0.5;}
+  		}
+  
+  	}
+  	*/ }
+  .jcsdl-container a {
+    color: #376491; }
+    .jcsdl-container a:hover {
+      color: #3e71a3; }
+  .jcsdl-container .jcsdl-label {
+    font-size: 1em;
+    color: #939393;
+    font-weight: normal; }
+  .jcsdl-container .jcsdl-bordered {
+    padding: 8px;
+    border: 1px solid #c8d7de;
+    -webkit-border-radius: 3px;
+    -khtml-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 3px;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box; }
+  .jcsdl-container .jcsdl-button {
+    float: left;
+    margin-right: 8px;
+    overflow: hidden;
+    text-indent: -9999px;
     display: block;
-    width: 80px;
-    height: 80px;
-    float: left;
-    margin: 0;
-    margin-right: 20px;
-    overflow: hidden;
-    text-align: center;
-    line-height: 80px;
-    color: black; }
-    .jcsdl-container .icon.target {
-      width: 110px;
-      height: 110px;
-      line-height: 110px;
-      margin-right: 35px; }
-    .jcsdl-container .icon:hover {
-      background: #f5f5f5; }
-    .jcsdl-container .icon.selected {
-      background: #f5f5f5; }
-  .jcsdl-container .filter-options {
-    overflow: hidden; }
-  .jcsdl-container ul.filters-logic {
-    float: left;
-    list-style-type: none;
-    overflow: hidden; }
-    .jcsdl-container ul.filters-logic li {
-      float: left;
-      margin-right: 10px; }
-  .jcsdl-container ul.view-mode {
-    float: right;
-    list-style-type: none;
-    overflow: hidden; }
-    .jcsdl-container ul.view-mode li {
-      float: left;
-      margin-right: 10px; }
-  .jcsdl-container .filter {
-    overflow: hidden;
-    position: relative;
-    margin: 10px 0;
-    padding: 5px;
-    border: 1px solid #dddddd; }
-    .jcsdl-container .filter .filter-description {
-      overflow: hidden; }
-      .jcsdl-container .filter .filter-description .info {
-        float: left;
-        margin: 0 10px; }
-        .jcsdl-container .filter .filter-description .info.target {
-          font-weight: bold; }
-        .jcsdl-container .filter .filter-description .info.operator {
-          font-weight: bold; }
-    .jcsdl-container .filter .options {
-      position: absolute;
-      top: 5px;
-      right: 5px; }
-      .jcsdl-container .filter .options a {
-        margin: 0 5px; }
-  .jcsdl-container .filters-list.expanded .filter .filter-target {
-    margin: 0; }
-  .jcsdl-container .filters-list.expanded .filter .filter-field {
-    margin: 15px 10px; }
-  .jcsdl-container .filters-list.expanded .filter .filter-operator {
-    line-height: 110px; }
-    .jcsdl-container .filters-list.expanded .filter .filter-operator.operator-contains {
-      display: none; }
-    .jcsdl-container .filters-list.expanded .filter .filter-operator.operator-substr {
-      display: none; }
-    .jcsdl-container .filters-list.expanded .filter .filter-operator.operator-contains_any {
-      display: none; }
-    .jcsdl-container .filters-list.expanded .filter .filter-operator.operator-in {
-      display: none; }
-  .jcsdl-container .filters-list.expanded .filter .filter-value {
-    font-size: 16px;
-    color: #666;
-    line-height: 110px; }
-  .jcsdl-container .filters-list.compact .filter .filter-target, .jcsdl-container .filters-list.compact .filter .filter-field, .jcsdl-container .filters-list.compact .filter .filter-operator, .jcsdl-container .filters-list.compact .filter .filter-value {
-    margin: 0;
-    background: none;
-    width: auto;
-    height: auto;
-    display: inline;
-    line-height: 1em;
-    float: none; }
-  .jcsdl-container .filters-list.compact .filter .filter-operator {
-    font-weight: bold; }
-    .jcsdl-container .filters-list.compact .filter .filter-operator.operator-contains {
-      display: none; }
-    .jcsdl-container .filters-list.compact .filter .filter-operator.operator-substr {
-      display: none; }
-    .jcsdl-container .filters-list.compact .filter .filter-operator.operator-contains_any {
-      display: none; }
-    .jcsdl-container .filters-list.compact .filter .filter-operator.operator-in {
-      display: none; }
-  .jcsdl-container .filter-editor .filter-target-wrap {
-    height: 140px;
-    padding-top: 30px; }
-    .jcsdl-container .filter-editor .filter-target-wrap .carousel-scroll {
-      margin-top: 40px; }
-  .jcsdl-container .filter-editor.has-fields .filter-target-wrap {
-    background: transparent url("img/select.png") no-repeat center 8px; }
-  .jcsdl-container .filter-editor .filter-target-field-wrap {
-    padding-top: 5px;
-    padding-bottom: 40px;
-    background: transparent url("img/select.png") no-repeat center -165px; }
-    .jcsdl-container .filter-editor .filter-target-field-wrap .carousel-scroll {
-      margin-top: 25px; }
-  .jcsdl-container .filter-editor .filter-step {
-    overflow: hidden;
-    text-align: center;
-    background: transparent url("img/step_background.png") no-repeat bottom center; }
-    .jcsdl-container .filter-editor .filter-step.filter-step-field.last .filter-target-field-wrap {
-      margin-bottom: 10px;
-      background-position: center -255px; }
-    .jcsdl-container .filter-editor .filter-step.filter-step-value {
-      padding-bottom: 30px; }
-  .jcsdl-container .filter-editor .filter-value-input-operators {
-    overflow: hidden; }
-    .jcsdl-container .filter-editor .filter-value-input-operators .operator-select {
-      float: left;
-      margin: 5px 20px; }
-      .jcsdl-container .filter-editor .filter-value-input-operators .operator-select input {
-        margin-right: 8px; }
-  .jcsdl-container .filter-editor .filter-value-input-field {
-    margin-top: 20px; }
-    .jcsdl-container .filter-editor .filter-value-input-field .input-text input, .jcsdl-container .filter-editor .filter-value-input-field .input-number input {
-      display: block;
-      margin: 0 auto;
-      padding: 5px 10px;
-      width: 90%;
-      font-size: 1.3em;
-      line-height: 1.5em;
-      border: 1px solid #dddddd; }
-    .jcsdl-container .filter-editor .filter-value-input-field .input-number input {
-      width: 100px; }
-    .jcsdl-container .filter-editor .filter-value-input-field .input-select {
-      overflow: hidden; }
-      .jcsdl-container .filter-editor .filter-value-input-field .input-select .input-select-option {
-        float: left;
-        margin: 0 5px; }
-  .jcsdl-container .filter-editor .carousel-wrap {
-    overflow: hidden;
-    position: relative;
-    margin: 0 auto; }
-  .jcsdl-container .filter-editor .carousel-scroll {
-    display: block;
-    width: 30px;
-    height: 30px;
-    margin-right: 5px;
-    float: left;
-    line-height: 30px;
-    text-align: center;
-    background: transparent url("img/scroll.png") no-repeat top left; }
-    .jcsdl-container .filter-editor .carousel-scroll.right {
-      float: right;
-      margin-right: 0;
-      margin-left: 5px;
-      background-position: bottom left; }
-    .jcsdl-container .filter-editor .carousel-scroll:hover {
+    height: 34px;
+    width: 140px;
+    background: url("img/elements.png") no-repeat 0 -55px; }
+    .jcsdl-container .jcsdl-button.jcsdl-editor-cancel {
+      width: 56px;
+      background-position: 0 -89px; }
+    .jcsdl-container .jcsdl-button:hover {
+      -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=$opacity * 10)";
+      filter: alpha(opacity=9);
+      -moz-opacity: 0.9;
+      -khtml-opacity: 0.9;
       opacity: 0.9; }
-    .jcsdl-container .filter-editor .carousel-scroll.inactive {
+  .jcsdl-container .jcsdl-header {
+    overflow: hidden;
+    padding: 15px;
+    border-bottom: 1px dotted #dcdcdc; }
+    .jcsdl-container .jcsdl-header h3 {
+      float: left;
+      margin: 0;
+      line-height: 1em;
+      font-size: 1.8em;
+      color: #376491;
+      font-weight: normal; }
+  .jcsdl-container .jcsdl-footer {
+    overflow: hidden;
+    padding: 15px;
+    border-top: 1px dotted #dcdcdc; }
+    .jcsdl-container .jcsdl-footer .jcsdl-actions {
+      float: left;
+      overflow: hidden; }
+  .jcsdl-container .jcsdl-mainview .jcsdl-header, .jcsdl-container .jcsdl-mainview .jcsdl-header h3 {
+    line-height: 38px; }
+  .jcsdl-container .jcsdl-mainview-actions {
+    overflow: hidden;
+    float: right;
+    margin-top: 2px; }
+  .jcsdl-container .jcsdl-mainview-action {
+    float: left;
+    margin-right: 8px;
+    display: block;
+    overflow: hidden;
+    line-height: 14px;
+    color: #376491; }
+    .jcsdl-container .jcsdl-mainview-action .jcsdl-picto {
+      float: left;
+      margin-right: 8px;
+      display: block;
+      width: 14px;
+      height: 14px;
+      background: url("img/elements.png") no-repeat -140px -68px; }
+    .jcsdl-container .jcsdl-mainview-action.jcsdl-add-filter {
+      margin-right: 0; }
+  .jcsdl-container .jcsdl-mainview-mode {
+    overflow: hidden;
+    float: right;
+    margin-left: 15px;
+    padding-left: 15px;
+    border-left: 1px dotted #dcdcdc; }
+  .jcsdl-container .jcsdl-mainview-mode-options {
+    overflow: hidden;
+    float: right;
+    margin-left: 8px;
+    margin-top: 2px;
+    height: 14px; }
+  .jcsdl-container .jcsdl-mainview-mode-option {
+    float: left;
+    margin-right: 8px;
+    display: block;
+    width: 13px;
+    height: 13px;
+    background: url("img/elements.png") no-repeat -140px -55px;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=$opacity * 10)";
+    filter: alpha(opacity=3);
+    -moz-opacity: 0.3;
+    -khtml-opacity: 0.3;
+    opacity: 0.3; }
+    .jcsdl-container .jcsdl-mainview-mode-option.jcsdl-expanded {
+      background-position: -140px -55px; }
+    .jcsdl-container .jcsdl-mainview-mode-option.jcsdl-collapsed {
+      background-position: -156px -55px;
+      margin-right: 0; }
+    .jcsdl-container .jcsdl-mainview-mode-option:hover {
+      -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=$opacity * 10)";
+      filter: alpha(opacity=5);
+      -moz-opacity: 0.5;
+      -khtml-opacity: 0.5;
       opacity: 0.5; }
+    .jcsdl-container .jcsdl-mainview-mode-option.active {
+      -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=$opacity * 10)";
+      filter: alpha(opacity=10);
+      -moz-opacity: 1;
+      -khtml-opacity: 1;
+      opacity: 1; }
+  .jcsdl-container .jcsdl-filters-logic {
+    margin: 15px;
+    text-align: left; }
+  .jcsdl-container .jcsdl-filters-logic-option {
+    margin-right: 8px;
+    cursor: pointer; }
+    .jcsdl-container .jcsdl-filters-logic-option input {
+      margin-right: 5px; }
+    .jcsdl-container .jcsdl-filters-logic-option.jcsdl-or {
+      margin-right: 0; }

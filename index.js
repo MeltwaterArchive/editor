@@ -50,7 +50,7 @@ $(function() {
 	 * CREATE STREAM TAB
 	 */
 	var createEditor = new JCSDLGui('#jcsdl-create', {
-		onSave : function(code) {
+		save : function(code) {
 			$('#jcsdl-create-output').val(code);
 
 			// read the title
@@ -79,7 +79,7 @@ $(function() {
 	var $currentStream = $();
 
 	var editEditor = new JCSDLGui('#jcsdl-edit', {
-		onSave : function(code) {
+		save : function(code) {
 			// display the output
 			$('#jcsdl-edit-output').val(code);
 

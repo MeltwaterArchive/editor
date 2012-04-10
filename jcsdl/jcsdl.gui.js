@@ -11,7 +11,8 @@ var JCSDLGui = function(el, config) {
 
 	this.config = $.extend(true, {
 		animationSpeed : 200,
-		onSave : function(code) {}
+		save : function(code) {},
+		cancel : function() {}
 	}, config);
 
 	// data
@@ -25,8 +26,8 @@ var JCSDLGui = function(el, config) {
 	this.currentFilterFieldsPath = [];
 
 	// DOM elements
-	this.$editor = $();
-	this.$editorFiltersList = $();
+	this.$mainView = $();
+	this.$filtersList = $();
 	this.$currentFilterView = $();
 
 	// all templates are defined elsewhere
@@ -51,11 +52,11 @@ var JCSDLGui = function(el, config) {
 		self.$currentFilterStepsView = $();
 
 		// and insert the editor into the container
-		self.$editor = self.getTemplate('editor');
-		self.$editorFiltersList = self.$editor.find('.filters-list');
+		self.$mainView = self.getTemplate('editor');
+		self.$filtersList = self.$mainView.find('.jcsdl-filters-list');
 
 		self.$container = self.getTemplate('container');
-		self.$container.html(self.$editor);
+		self.$container.html(self.$mainView);
 		$el.html(self.$container);
 
 		/*
@@ -65,24 +66,32 @@ var JCSDLGui = function(el, config) {
 		 * Set the logic upon selection.
 		 * @param  {Event} ev
 		 */
-		self.$editor.find('.filters-logic input[name="logic"]').change(function(ev) {
+		self.$mainView.find('.jcsdl-filters-logic input[name="logic"]').change(function(ev) {
 			self.logic = $(this).val();
 		});
 
 		/**
-		 * Switch between expanded and compact view mode of filters list.
+		 * Switch between expanded and collapsed view mode of filters list.
 		 * @param  {Event} ev
 		 */
-		self.$editor.find('.view-mode input[name="viewmode"]').change(function(ev) {
-			self.$editorFiltersList.removeClass('expanded compact');
-			self.$editorFiltersList.addClass($(this).val());
+		self.$mainView.find('.jcsdl-mainview-mode .jcsdl-mainview-mode-option').click(function(ev) {
+			ev.preventDefault();
+			ev.target.blur();
+
+			var $this = $(this);
+
+			self.$filtersList.removeClass('expanded collapsed');
+			self.$filtersList.addClass($this.data('mode'));
+
+			self.$mainView.find('.jcsdl-mainview-mode .jcsdl-mainview-mode-option').removeClass('active');
+			$this.addClass('active');
 		});
 
 		/**
 		 * Show filter editor to create a new one from scratch upon clicking 'Add filter'.
 		 * @param  {Event} ev Click Event.
 		 */
-		self.$editor.find('.filter-add').click(function(ev) {
+		self.$mainView.find('.jcsdl-add-filter').click(function(ev) {
 			ev.preventDefault();
 			ev.target.blur();
 
@@ -93,7 +102,7 @@ var JCSDLGui = function(el, config) {
 		 * Handle output / returning of the resulting JCSDL upon clicking save.
 		 * @param  {Event} ev Click Event.
 		 */
-		self.$editor.find('.jcsdl-editor-save').bind('click.jcsdl', function(ev) {
+		self.$mainView.find('.jcsdl-editor-save').bind('click.jcsdl', function(ev) {
 			self.returnJCSDL();
 		});
 	};
@@ -115,13 +124,13 @@ var JCSDLGui = function(el, config) {
 		self.filters = parsed.filters;
 
 		// mark the logic
-		self.$editor.find('.filters-logic input[name="logic"][value="' + self.logic + '"]').click();
+		self.$mainView.find('.jcsdl-filters-logic input[name="logic"][value="' + self.logic + '"]').click();
 		
 		// display the filters
 		// add each filter to the list
 		$.each(self.filters, function(i, filter) {
 			var $filterRow = createFilterRow(filter);
-			$filterRow.appendTo(self.$editorFiltersList);
+			$filterRow.appendTo(self.$filtersList);
 		});
 	};
 
@@ -131,7 +140,7 @@ var JCSDLGui = function(el, config) {
 	 */
 	this.returnJCSDL = function() {
 		var code = jcsdl.getJCSDLForFilters(self.filters, self.logic);
-		self.config.onSave.apply(self, [code]);
+		self.config.save.apply(self, [code]);
 	};
 
 	/* ##########################
@@ -141,7 +150,7 @@ var JCSDLGui = function(el, config) {
 	 * Shows the filter editor.
 	 */
 	this.showFilterEditor = function(filter, filterIndex) {
-		self.$editor.hide();
+		self.$mainView.hide();
 
 		// prepare the filter editor
 		self.$currentFilterView = self.getTemplate('filterEditor');
@@ -227,7 +236,7 @@ var JCSDLGui = function(el, config) {
 
 		self.$currentFilterView.fadeOut(self.config.animationSpeed, function() {
 			self.$currentFilterView.remove();
-			self.$editor.show();
+			self.$mainView.show();
 		});
 	};
 
@@ -237,7 +246,7 @@ var JCSDLGui = function(el, config) {
 	 */
 	this.deleteFilter = function(index) {
 		// remove from the DOM
-		self.$editorFiltersList.find('.filter').eq(index).remove();
+		self.$filtersList.find('.filter').eq(index).remove();
 
 		// remove from the filters list
 		self.filters.splice(index, 1);
@@ -392,12 +401,12 @@ var JCSDLGui = function(el, config) {
 		// or replace if we were editing another filter
 		if (self.currentFilterIndex !== null) {
 			// we were editing, so let's replace it
-			self.$editorFiltersList.find('.filter').eq(self.currentFilterIndex).replaceWith($filterRow);
+			self.$filtersList.find('.filter').eq(self.currentFilterIndex).replaceWith($filterRow);
 			self.filters[self.currentFilterIndex] = filter;
 			
 		} else {
 			// we were adding a filter, so simply add it to the list
-			$filterRow.appendTo(self.$editorFiltersList);
+			$filterRow.appendTo(self.$filtersList);
 			self.filters.push(filter);
 		}
 
@@ -771,7 +780,7 @@ var JCSDLGui = function(el, config) {
 	 * @return {Number}
 	 */
 	this.getFilterIndexByElement = function($filterRow) {
-		return self.$editorFiltersList.find('.filter').index($filterRow);
+		return self.$filtersList.find('.filter').index($filterRow);
 	};
 
 	// automatically call the initialization after everything has been defined
