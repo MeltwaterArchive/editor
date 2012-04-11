@@ -464,7 +464,7 @@ var JCSDLGui = function(el, config) {
 		// fill with data
 		// target
 		var $target = self.getTemplate('filterTarget');
-		$target.addClass('target-' + filter.target).html(jcsdl.getTargetInfo(filter.target).name);
+		$target.addClass('selected target-' + filter.target);//.html(jcsdl.getTargetInfo(filter.target).name);
 		$filterRow.find('.target').html($target);
 
 		// fields (separate icon for each field in path)
@@ -472,7 +472,7 @@ var JCSDLGui = function(el, config) {
 		$.each(filter.fieldPath, function(i, field) {
 			var $field = self.getTemplate('filterField');
 			currentPath.push(field);
-			$field.addClass('field-' + field).html(jcsdl.getFieldInfo(filter.target, currentPath).name);
+			$field.addClass('selected field-' + field);//.html(jcsdl.getFieldInfo(filter.target, currentPath).name);
 			$filterRow.find('.field').append($field);
 		});
 
@@ -549,7 +549,7 @@ var JCSDLGui = function(el, config) {
 		var $option = self.getTemplate('targetOption');
 		$option.data('name', name);
 		$option.data('target', target);
-		$option.html(target.name);
+		//$option.html(target.name);
 		$option.addClass('target-' + name);
 		return $option;
 	};
@@ -587,7 +587,7 @@ var JCSDLGui = function(el, config) {
 		var $option = self.getTemplate('fieldOption');
 		$option.data('name', name);
 		$option.data('field', field);
-		$option.html(field.name);
+		//$option.html(field.name);
 		$option.addClass('field-' + name);
 		return $option;
 	};

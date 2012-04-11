@@ -24,6 +24,9 @@
   /* JCSDL Carousel */
   /*
    * FILTER EDITOR INPUT FIELDS
+   */
+  /*
+   * ICONS
    */ }
   .jcsdl-container a {
     color: #376491; }
@@ -381,3 +384,249 @@
     .jcsdl-container .jcsdl-filter-value-input-field .jcsdl-input-select .jcsdl-input-select-option {
       float: left;
       margin: 0 5px; }
+  .jcsdl-container .jcsdl-icon.target {
+    background: url("img/icons-sprite-targets.png") no-repeat 0 0; }
+    .jcsdl-container .jcsdl-icon.target.target-interaction {
+      background-position: 0 0; }
+      .jcsdl-container .jcsdl-icon.target.target-interaction.selected {
+        background-position: 0 -110px; }
+    .jcsdl-container .jcsdl-icon.target.target-facebook {
+      background-position: -110px 0; }
+      .jcsdl-container .jcsdl-icon.target.target-facebook.selected {
+        background-position: -110px -110px; }
+    .jcsdl-container .jcsdl-icon.target.target-twitter {
+      background-position: -220px 0; }
+      .jcsdl-container .jcsdl-icon.target.target-twitter.selected {
+        background-position: -220px -110px; }
+    .jcsdl-container .jcsdl-icon.target.target-digg {
+      background-position: -330px 0; }
+      .jcsdl-container .jcsdl-icon.target.target-digg.selected {
+        background-position: -330px -110px; }
+    .jcsdl-container .jcsdl-icon.target.target-myspace {
+      background-position: -440px 0; }
+      .jcsdl-container .jcsdl-icon.target.target-myspace.selected {
+        background-position: -440px -110px; }
+    .jcsdl-container .jcsdl-icon.target.target-klout {
+      background-position: -550px 0; }
+      .jcsdl-container .jcsdl-icon.target.target-klout.selected {
+        background-position: -550px -110px; }
+  .jcsdl-container .jcsdl-icon.field {
+    background: url("img/icons-sprite-fields.png") no-repeat 0 0; }
+    .jcsdl-container .jcsdl-icon.field.field-geo {
+      background-position: 0 0; }
+      .jcsdl-container .jcsdl-icon.field.field-geo.selected {
+        background-position: 0 0; }
+    .jcsdl-container .jcsdl-icon.field.field-link {
+      background-position: -160px 0; }
+      .jcsdl-container .jcsdl-icon.field.field-link.selected {
+        background-position: -240px 0; }
+    .jcsdl-container .jcsdl-icon.field.field-sample {
+      background-position: -320px 0; }
+      .jcsdl-container .jcsdl-icon.field.field-sample.selected {
+        background-position: -400px 0; }
+    .jcsdl-container .jcsdl-icon.field.field-title {
+      background-position: -480px 0; }
+      .jcsdl-container .jcsdl-icon.field.field-title.selected {
+        background-position: -560px 0; }
+    .jcsdl-container .jcsdl-icon.field.field-content {
+      background-position: -640px 0; }
+      .jcsdl-container .jcsdl-icon.field.field-content.selected {
+        background-position: -720px 0; }
+    .jcsdl-container .jcsdl-icon.field.field-source {
+      background-position: -160px -80px; }
+      .jcsdl-container .jcsdl-icon.field.field-source.selected {
+        background-position: -240px -80px; }
+    .jcsdl-container .jcsdl-icon.field.field-type {
+      background-position: -320px -80px; }
+      .jcsdl-container .jcsdl-icon.field.field-type.selected {
+        background-position: -400px -80; }
+    .jcsdl-container .jcsdl-icon.field.field-avatar {
+      background-position: -480px -80px; }
+      .jcsdl-container .jcsdl-icon.field.field-avatar.selected {
+        background-position: -560px 0; }
+    .jcsdl-container .jcsdl-icon.field.field-author-username {
+      background-position: -160px -160px; }
+      .jcsdl-container .jcsdl-icon.field.field-author-username.selected {
+        background-position: -240px -160px; }
+    .jcsdl-container .jcsdl-icon.field.field-username {
+      background-position: -160px -160px; }
+      .jcsdl-container .jcsdl-icon.field.field-username.selected {
+        background-position: -240px -160px; }
+    .jcsdl-container .jcsdl-icon.field.field-topic {
+      background-position: -320px -320px; }
+      .jcsdl-container .jcsdl-icon.field.field-topic.selected {
+        background-position: -400px -320px; }
+    .jcsdl-container .jcsdl-icon.field.field-language {
+      background-position: -480px -320px; }
+      .jcsdl-container .jcsdl-icon.field.field-language.selected {
+        background-position: -560px -320px; }
+    .jcsdl-container .jcsdl-icon.field.field-amplification {
+      background-position: -480px -400px; }
+      .jcsdl-container .jcsdl-icon.field.field-amplification.selected {
+        background-position: -560px -400px; }
+    .jcsdl-container .jcsdl-icon.field.field-network {
+      background-position: 0px -480px; }
+      .jcsdl-container .jcsdl-icon.field.field-network.selected {
+        background-position: -80px -480px; }
+    .jcsdl-container .jcsdl-icon.field.field-score {
+      background-position: -160px -480px; }
+      .jcsdl-container .jcsdl-icon.field.field-score.selected {
+        background-position: -240px -480px; }
+    .jcsdl-container .jcsdl-icon.field.field-truereach {
+      background-position: -320px -480px; }
+      .jcsdl-container .jcsdl-icon.field.field-truereach.selected {
+        background-position: -400px -480px; }
+    .jcsdl-container .jcsdl-icon.field.field-trends {
+      background-position: -480px -480px; }
+      .jcsdl-container .jcsdl-icon.field.field-trends.selected {
+        background-position: -560px -480px; }
+    .jcsdl-container .jcsdl-icon.field.field-age {
+      background-position: -640px -560px; }
+      .jcsdl-container .jcsdl-icon.field.field-age.selected {
+        background-position: -720px -560px; }
+    .jcsdl-container .jcsdl-icon.field.field-url {
+      background-position: -160px -640px; }
+      .jcsdl-container .jcsdl-icon.field.field-url.selected {
+        background-position: -240px -640px; }
+    .jcsdl-container .jcsdl-icon.field.field-retweet-count {
+      background-position: -320px -640px; }
+      .jcsdl-container .jcsdl-icon.field.field-retweet-count.selected {
+        background-position: -400px -640px; }
+    .jcsdl-container .jcsdl-icon.field.field-gender {
+      background-position: -480px -640px; }
+      .jcsdl-container .jcsdl-icon.field.field-gender.selected {
+        background-position: -560px -640px; }
+    .jcsdl-container .jcsdl-icon.field.field-tweet {
+      background-position: -640px -720px; }
+      .jcsdl-container .jcsdl-icon.field.field-tweet.selected {
+        background-position: -720px -720px; }
+    .jcsdl-container .jcsdl-icon.field.field-place {
+      background-position: -160px -800px; }
+      .jcsdl-container .jcsdl-icon.field.field-place.selected {
+        background-position: -240px -800px; }
+    .jcsdl-container .jcsdl-icon.field.field-retweet {
+      background-position: -320px -800px; }
+      .jcsdl-container .jcsdl-icon.field.field-retweet.selected {
+        background-position: -400px -800px; }
+    .jcsdl-container .jcsdl-icon.field.field-retweeted {
+      background-position: -480px -800px; }
+      .jcsdl-container .jcsdl-icon.field.field-retweeted.selected {
+        background-position: -560px -800px; }
+    .jcsdl-container .jcsdl-icon.field.field-mentions {
+      background-position: -640px -800px; }
+      .jcsdl-container .jcsdl-icon.field.field-mentions.selected {
+        background-position: -720px -800px; }
+    .jcsdl-container .jcsdl-icon.field.field-inreply {
+      background-position: 0 -880px; }
+      .jcsdl-container .jcsdl-icon.field.field-inreply.selected {
+        background-position: -80px -880px; }
+    .jcsdl-container .jcsdl-icon.field.field-count {
+      background-position: -160px -880px; }
+      .jcsdl-container .jcsdl-icon.field.field-count.selected {
+        background-position: -240px -880px; }
+    .jcsdl-container .jcsdl-icon.field.field-ratio {
+      background-position: -320px -880px; }
+      .jcsdl-container .jcsdl-icon.field.field-ratio.selected {
+        background-position: -400px -880px; }
+    .jcsdl-container .jcsdl-icon.field.field-id, .jcsdl-container .jcsdl-icon.field.field-user-id {
+      background-position: -480px -880px; }
+      .jcsdl-container .jcsdl-icon.field.field-id.selected, .jcsdl-container .jcsdl-icon.field.field-user-id.selected {
+        background-position: -560px -880px; }
+    .jcsdl-container .jcsdl-icon.field.field-placeattrs {
+      background-position: -640px -880px; }
+      .jcsdl-container .jcsdl-icon.field.field-placeattrs.selected {
+        background-position: -720px -880px; }
+    .jcsdl-container .jcsdl-icon.field.field-country {
+      background-position: 0 -960px; }
+      .jcsdl-container .jcsdl-icon.field.field-country.selected {
+        background-position: -80px -960px; }
+    .jcsdl-container .jcsdl-icon.field.field-elapsed {
+      background-position: -640px -960px; }
+      .jcsdl-container .jcsdl-icon.field.field-elapsed.selected {
+        background-position: -720px -960px; }
+    .jcsdl-container .jcsdl-icon.field.field-buries {
+      background-position: 0 -1040px; }
+      .jcsdl-container .jcsdl-icon.field.field-buries.selected {
+        background-position: -80px -1040px; }
+    .jcsdl-container .jcsdl-icon.field.field-diggs {
+      background-position: -160px -1040px; }
+      .jcsdl-container .jcsdl-icon.field.field-diggs.selected {
+        background-position: -240px -1040px; }
+    .jcsdl-container .jcsdl-icon.field.field-status {
+      background-position: -320px -1040px; }
+      .jcsdl-container .jcsdl-icon.field.field-status.selected {
+        background-position: -400px -1040px; }
+    .jcsdl-container .jcsdl-icon.field.field-application {
+      background-position: -640px -1120px; }
+      .jcsdl-container .jcsdl-icon.field.field-application.selected {
+        background-position: -720px -1120px; }
+    .jcsdl-container .jcsdl-icon.field.field-message {
+      background-position: 0 0; }
+      .jcsdl-container .jcsdl-icon.field.field-message.selected {
+        background-position: 0 0; }
+    .jcsdl-container .jcsdl-icon.field.field-author {
+      background-position: 0 0; }
+      .jcsdl-container .jcsdl-icon.field.field-author.selected {
+        background-position: 0 0; }
+    .jcsdl-container .jcsdl-icon.field.field-author-id {
+      background-position: 0 0; }
+      .jcsdl-container .jcsdl-icon.field.field-author-id.selected {
+        background-position: 0 0; }
+    .jcsdl-container .jcsdl-icon.field.field-author-name {
+      background-position: 0 0; }
+      .jcsdl-container .jcsdl-icon.field.field-author-name.selected {
+        background-position: 0 0; }
+    .jcsdl-container .jcsdl-icon.field.field-text {
+      background-position: 0 0; }
+      .jcsdl-container .jcsdl-icon.field.field-text.selected {
+        background-position: 0 0; }
+    .jcsdl-container .jcsdl-icon.field.field-mentions {
+      background-position: 0 0; }
+      .jcsdl-container .jcsdl-icon.field.field-mentions.selected {
+        background-position: 0 0; }
+    .jcsdl-container .jcsdl-icon.field.field-domains {
+      background-position: 0 0; }
+      .jcsdl-container .jcsdl-icon.field.field-domains.selected {
+        background-position: 0 0; }
+    .jcsdl-container .jcsdl-icon.field.field-user-id {
+      background-position: 0 0; }
+      .jcsdl-container .jcsdl-icon.field.field-user-id.selected {
+        background-position: 0 0; }
+    .jcsdl-container .jcsdl-icon.field.field-user-name {
+      background-position: 0 0; }
+      .jcsdl-container .jcsdl-icon.field.field-user-name.selected {
+        background-position: 0 0; }
+    .jcsdl-container .jcsdl-icon.field.field-user-description {
+      background-position: 0 0; }
+      .jcsdl-container .jcsdl-icon.field.field-user-description.selected {
+        background-position: 0 0; }
+    .jcsdl-container .jcsdl-icon.field.field-user-followers_count {
+      background-position: 0 0; }
+      .jcsdl-container .jcsdl-icon.field.field-user-followers_count.selected {
+        background-position: 0 0; }
+    .jcsdl-container .jcsdl-icon.field.field-user {
+      background-position: 0 0; }
+      .jcsdl-container .jcsdl-icon.field.field-user.selected {
+        background-position: 0 0; }
+    -location
+    .jcsdl-container .jcsdl-icon.field.field-place {
+      background-position: 0 0; }
+      -location
+      .jcsdl-container .jcsdl-icon.field.field-place.selected {
+        background-position: 0 0; }
+    .jcsdl-container .jcsdl-icon.field.field-place-country_code {
+      background-position: 0 0; }
+      .jcsdl-container .jcsdl-icon.field.field-place-country_code.selected {
+        background-position: 0 0; }
+    .jcsdl-container .jcsdl-icon.field.field-name {
+      background-position: 0 0; }
+      .jcsdl-container .jcsdl-icon.field.field-name.selected {
+        background-position: 0 0; }
+    .jcsdl-container .jcsdl-icon.field.field-likes-names {
+      background-position: 0 0; }
+      .jcsdl-container .jcsdl-icon.field.field-likes-names.selected {
+        background-position: 0 0; }
+    .jcsdl-container .jcsdl-icon.field.field-likes-count {
+      background-position: 0 0; }
+      .jcsdl-container .jcsdl-icon.field.field-likes-count.selected {
+        background-position: 0 0; }
