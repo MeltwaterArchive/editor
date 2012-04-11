@@ -132,6 +132,9 @@ var JCSDLGui = function(el, config) {
 			var $filterRow = createFilterRow(filter);
 			$filterRow.appendTo(self.$filtersList);
 		});
+
+		// make the cancel button visible
+		self.$mainView.find('.jcsdl-editor-cancel').show();
 	};
 
 	/**
@@ -154,7 +157,7 @@ var JCSDLGui = function(el, config) {
 
 		// prepare the filter editor
 		self.$currentFilterView = self.getTemplate('filterEditor');
-		self.$currentFilterStepsView = self.$currentFilterView.find('.steps');
+		self.$currentFilterStepsView = self.$currentFilterView.find('.jcsdl-steps');
 
 		// append the filter editor to the container and show it
 		self.$currentFilterView.appendTo(self.$container);
@@ -170,11 +173,11 @@ var JCSDLGui = function(el, config) {
 
 			var fieldInfo = jcsdl.getFieldInfo(filter.target, filter.fieldPath);
 
-			self.$currentFilterView.find('.filter-target .target-' + filter.target).click();
+			self.$currentFilterView.find('.jcsdl-filter-target .target-' + filter.target).click();
 
 			// select all fields and subfields
 			$.each(filter.fieldPath, function(i, field) {
-				var $fieldView = self.$currentFilterView.find('.filter-target-field:last');
+				var $fieldView = self.$currentFilterView.find('.jcsdl-filter-target-field:last');
 				$fieldView.find('.field-' + field).click();
 			});
 
@@ -182,7 +185,7 @@ var JCSDLGui = function(el, config) {
 			self.$currentFilterView.find('input[value="' + filter.operator + '"]').click();
 			
 			// fill in the value (using the proper delegate)
-			var $valueInputView = self.$currentFilterView.find('.filter-value-input-field');
+			var $valueInputView = self.$currentFilterView.find('.jcsdl-filter-value-input-field');
 			setValueForField($valueInputView, fieldInfo, filter.value);
 		}
 	};
@@ -197,7 +200,7 @@ var JCSDLGui = function(el, config) {
 		self.addFilterStep('target', $targetSelectView);
 
 		// hide the save button until all steps haven't been gone through
-		self.$currentFilterView.find('.filter-save').hide();
+		self.$currentFilterView.find('.jcsdl-filter-save').hide();
 
 		/*
 		 * REGISTER PROPER LISTENERS
@@ -206,7 +209,7 @@ var JCSDLGui = function(el, config) {
 		 * Saves the filter that is currently being edited when clicked its save button.
 		 * @param  {Event} ev Click Event.
 		 */
-		self.$currentFilterView.find('.filter-save').click(function(ev) {
+		self.$currentFilterView.find('.jcsdl-filter-save').click(function(ev) {
 			ev.preventDefault();
 			ev.target.blur();
 			self.didSubmitFilter();
@@ -216,7 +219,7 @@ var JCSDLGui = function(el, config) {
 		 * Hides the single filter editor and doesn't save the filter when the cancel button is clicked.
 		 * @param  {Event} ev Click Event.
 		 */
-		self.$currentFilterView.find('.filter-cancel').click(function(ev) {
+		self.$currentFilterView.find('.jcsdl-filter-cancel').click(function(ev) {
 			ev.preventDefault();
 			ev.target.blur();
 			self.hideFilterEditor();
@@ -246,7 +249,7 @@ var JCSDLGui = function(el, config) {
 	 */
 	this.deleteFilter = function(index) {
 		// remove from the DOM
-		self.$filtersList.find('.filter').eq(index).remove();
+		self.$filtersList.find('.jcsdl-filter').eq(index).remove();
 
 		// remove from the filters list
 		self.filters.splice(index, 1);
@@ -268,9 +271,9 @@ var JCSDLGui = function(el, config) {
 
 		// attach some data and classes (for easy selectors)
 		$stepView.data('number', stepNumber);
-		$stepView.addClass('filter-step-number-' + stepNumber);
+		$stepView.addClass('jcsdl-filter-step-number-' + stepNumber);
 		$stepView.data('name', stepName);
-		$stepView.addClass('filter-step-' + stepName);
+		$stepView.addClass('jcsdl-filter-step-' + stepName);
 
 		// add to the DOM
 		$stepView.appendTo(self.$currentFilterStepsView);
@@ -286,7 +289,7 @@ var JCSDLGui = function(el, config) {
 			self.$currentFilterView.addClass('has-fields');
 
 			// mark the last field select
-			self.$currentFilterStepsView.find('.filter-step-field').removeClass('last');
+			self.$currentFilterStepsView.find('.jcsdl-filter-step-field').removeClass('last');
 			$stepView.addClass('last');
 
 			buildCarousel($stepView, function() {
@@ -308,8 +311,8 @@ var JCSDLGui = function(el, config) {
 	 */
 	this.removeFilterStepsAfterPosition = function(position) {
 		// update the 'last' class for step fields
-		var $theStep = self.$currentFilterStepsView.find('.filter-step').eq(position);
-		if ($theStep.hasClass('filter-step-field')) {
+		var $theStep = self.$currentFilterStepsView.find('.jcsdl-step').eq(position);
+		if ($theStep.hasClass('jcsdl-filter-step-field')) {
 			$theStep.addClass('last');
 		}
 
@@ -353,7 +356,7 @@ var JCSDLGui = function(el, config) {
 		if (field == false) return;
 
 		// from DOM as well
-		self.removeFilterStepsAfterPosition($fieldView.closest('.filter-step').data('number'));
+		self.removeFilterStepsAfterPosition($fieldView.closest('.jcsdl-step').data('number'));
 
 		// now proceed with adding the current one
 		self.currentFilterFieldsPath.push(fieldName);
@@ -370,7 +373,7 @@ var JCSDLGui = function(el, config) {
 		self.addFilterStep('value', $valueView);
 
 		// also show the submit button
-		self.$currentFilterView.find('.filter-save').fadeIn(self.config.animationSpeed);
+		self.$currentFilterView.find('.jcsdl-filter-save').fadeIn(self.config.animationSpeed);
 	};
 
 	/**
@@ -378,14 +381,14 @@ var JCSDLGui = function(el, config) {
 	 */
 	this.didSubmitFilter = function() {
 		// first check if the operator is selected
-		var $selectedOperator = self.$currentFilterView.find('.filter-value-input-operators [name="operator"]:checked');
+		var $selectedOperator = self.$currentFilterView.find('.jcsdl-filter-value-input-operators [name="operator"]:checked');
 		if ($selectedOperator.length == 0) {
 			self.showError('You need to select an operator!');
 			return;
 		}
 
 		// then check if there is a value specified
-		var $valueView = self.$currentFilterView.find('.filter-value-input-field');
+		var $valueView = self.$currentFilterView.find('.jcsdl-filter-value-input-field');
 		var value = getValueFromField($valueView, getFieldInfoAtCurrentPath());
 		if (value.length == 0) {
 			self.showError('You need to specify a value!');
@@ -401,7 +404,7 @@ var JCSDLGui = function(el, config) {
 		// or replace if we were editing another filter
 		if (self.currentFilterIndex !== null) {
 			// we were editing, so let's replace it
-			self.$filtersList.find('.filter').eq(self.currentFilterIndex).replaceWith($filterRow);
+			self.$filtersList.find('.jcsdl-filter').eq(self.currentFilterIndex).replaceWith($filterRow);
 			self.filters[self.currentFilterIndex] = filter;
 			
 		} else {
@@ -498,7 +501,7 @@ var JCSDLGui = function(el, config) {
 	 */
 	var createTargetSelectView = function() {
 		var $targetSelectView = self.getTemplate('target');
-		var $targetSelect = $targetSelectView.find('.filter-target');
+		var $targetSelect = $targetSelectView.find('.jcsdl-filter-target');
 
 		// create a select option for every possible target
 		$.each(JCSDLConfig.targets, function(name, target) {
@@ -541,7 +544,7 @@ var JCSDLGui = function(el, config) {
 		$fieldView.addClass('field-select-' + fieldPosition);
 
 		// add all possible selections
-		var $fieldSelect = $fieldView.find('.filter-target-field');
+		var $fieldSelect = $fieldView.find('.jcsdl-filter-target-field');
 		$.each(fields, function(name, field) {
 			var $fieldView = createOptionForField(name, field);
 			$fieldView.appendTo($fieldSelect);
@@ -576,7 +579,7 @@ var JCSDLGui = function(el, config) {
 	 */
 	var buildCarousel = function($step, selectCallback, expand) {
 		$step.jcsdlCarousel({
-			onSelect : selectCallback,
+			select : selectCallback,
 			expand : expand
 		});
 	};
@@ -613,10 +616,10 @@ var JCSDLGui = function(el, config) {
 
 		// create the input view by this input type's handler and add it to the value view ontainer
 		var $inputView = fieldTypes[field.input].init.apply($(), [field]);
-		$valueView.find('.filter-value-input-field').data('inputType', field.input).html($inputView);;
+		$valueView.find('.jcsdl-filter-value-input-field').data('inputType', field.input).html($inputView);;
 
 		// now take care of possible operators
-		var $operatorsListView = $valueView.find('.filter-value-input-operators');
+		var $operatorsListView = $valueView.find('.jcsdl-filter-value-input-operators');
 		$.each(field.operators, function(i, operator) {
 			var $operatorView = createOperatorSelectView(operator);
 			$operatorsListView.append($operatorView);
@@ -624,7 +627,7 @@ var JCSDLGui = function(el, config) {
 
 		// if there's only one possible operator then automatically select it and hide it
 		if (field.operators.length == 1) {
-			$operatorsListView.find('.operator-select:first input').click();
+			$operatorsListView.find('.jcsdl-operator-select:first input').click();
 			$operatorsListView.hide();
 		}
 
@@ -780,7 +783,7 @@ var JCSDLGui = function(el, config) {
 	 * @return {Number}
 	 */
 	this.getFilterIndexByElement = function($filterRow) {
-		return self.$filtersList.find('.filter').index($filterRow);
+		return self.$filtersList.find('.jcsdl-filter').index($filterRow);
 	};
 
 	// automatically call the initialization after everything has been defined
@@ -795,17 +798,17 @@ var JCSDLGui = function(el, config) {
 	function JCSDLCarousel($el, options) {
 		var self = this;
 
-		this.onSelect = options.onSelect;
+		this.select = options.select;
 
 		// link to various elements that are used by the carousel
-		this.$carousel = $el.find('.carousel');
-		this.$carouselWrap = this.$carousel.closest('.carousel-wrap');
+		this.$carousel = $el.find('.jcsdl-carousel');
+		this.$carouselWrap = this.$carousel.closest('.jcsdl-carousel-wrap');
 		
-		this.$carouselItems = this.$carousel.find('.carousel-item');
+		this.$carouselItems = this.$carousel.find('.jcsdl-carousel-item');
 		this.$exampleItem = this.$carouselItems.eq(0);
 
-		this.$scrollLeft = this.$carouselWrap.siblings('.carousel-scroll.left');
-		this.$scrollRight = this.$carouselWrap.siblings('.carousel-scroll.right');
+		this.$scrollLeft = this.$carouselWrap.siblings('.jcsdl-carousel-scroll.left');
+		this.$scrollRight = this.$carouselWrap.siblings('.jcsdl-carousel-scroll.right');
 
 		// some other carousel data
 		this.itemsCount = this.$carouselItems.length;
@@ -837,7 +840,7 @@ var JCSDLGui = function(el, config) {
 		 * REGISTER LISTENERS
 		 */
 		// activate the scroll left and right buttons
-		this.$carouselWrap.siblings('.carousel-scroll').click(function(ev) {
+		this.$carouselWrap.siblings('.jcsdl-carousel-scroll').click(function(ev) {
 			ev.preventDefault();
 			ev.target.blur();
 
@@ -878,7 +881,7 @@ var JCSDLGui = function(el, config) {
 	JCSDLCarousel.prototype = {
 		// calculates the current width of the wrap
 		calculateWrapWidth : function() {
-			return this.$carouselWrap.closest('.filter-step').width() - this.$scrollLeft.outerWidth(true) - this.$scrollRight.outerWidth(true);
+			return this.$carouselWrap.closest('.jcsdl-step').width() - this.$scrollLeft.outerWidth(true) - this.$scrollRight.outerWidth(true);
 		},
 		// calculate margin that needs to be removed from the position so it's centered
 		calculateCenterMargin : function() {
@@ -917,8 +920,8 @@ var JCSDLGui = function(el, config) {
 			this.toggleScrollButtons();
 
 			// and finally call the selectCallback method if any
-			if (!dontExpand && typeof(this.onSelect) == 'function') {
-				this.onSelect.apply($selectedItem);
+			if (!dontExpand && typeof(this.select) == 'function') {
+				this.select.apply($selectedItem);
 			}
 		}
 	};
@@ -926,7 +929,7 @@ var JCSDLGui = function(el, config) {
 	// the proper plugin
 	$.fn.jcsdlCarousel = function(options) {
 		options = $.extend({}, {
-			onSelect : function() {},
+			select : function() {},
 			expand : false,
 			speed : 200
 		}, options);

@@ -1,9 +1,12 @@
+/* some theming variables */
 $color : #376491;
 $colorLight : #939393;
 $borderColor : #dcdcdc;
 $borderColorInput : #c8d7de;
 $elementsSprite : 'img/elements.png';
+$selectSprite : 'img/select.png';
 
+/* useful mixins */
 @mixin rounded($radius: 5px) {
 	-webkit-border-radius: $radius;
 	-khtml-border-radius: $radius;
@@ -16,6 +19,24 @@ $elementsSprite : 'img/elements.png';
 	background-clip: padding-box; 
 }
 
+@mixin roundedCorner($topLeft: 0, $topRight: 0, $bottomRight: 0, $bottomLeft: 0) {
+	-webkit-border-top-left-radius: $topLeft;
+	-webkit-border-top-right-radius: $topRight;
+	-webkit-border-bottom-right-radius: $bottomRight;
+	-webkit-border-bottom-left-radius: $bottomLeft;
+	-moz-border-radius-topleft: $topLeft;
+	-moz-border-radius-topright: $topRight;
+	-moz-border-radius-bottomright: $bottomRight;
+	-moz-border-radius-bottomleft: $bottomLeft;
+	border-top-left-radius: $topLeft;
+	border-top-right-radius: $topRight;
+	border-bottom-right-radius: $bottomRight;
+	border-bottom-left-radius: $bottomLeft;
+	-moz-background-clip: padding;
+	-webkit-background-clip: padding-box;
+	background-clip: padding-box;
+}
+
 @mixin opacity($opacity: 0.5) {
 	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=$opacity * 10)";
 	filter: alpha(opacity=$opacity * 10);
@@ -24,7 +45,9 @@ $elementsSprite : 'img/elements.png';
 	opacity: $opacity;
 }
 
-/* the actual editor */
+/*
+ * JCSDL EDITOR
+ */
 .jcsdl-container {
 	overflow: hidden; position: relative;
 	font-size: 13px; font-family: "Helvetica Neue", "Helvetica", sans-serif; color: $colorLight;
@@ -37,14 +60,26 @@ $elementsSprite : 'img/elements.png';
 	.jcsdl-label {font-size: 1em; color: $colorLight; font-weight: normal;}
 	.jcsdl-bordered {padding: 8px; border: 1px solid $borderColorInput; @include rounded(3px);}
 
+	.jcsdl-icon {
+		float: left; margin: 0; margin-right: 20px;
+		display: block; width: 80px; height: 80px; line-height: 80px;
+		overflow: hidden;
+		text-align: center; color: black;
+
+		&.target {width: 110px; height: 110px; line-height: 110px; margin-right: 35px;}
+
+		&:hover {background: #f5f5f5;}
+		&.selected {background: #f5f5f5; color: $color;}
+	}
+
 	.jcsdl-button {
 		float: left; margin-right: 8px;
 		overflow: hidden; text-indent: -9999px;
 		display: block; height: 34px; width: 140px;
 		background: url($elementsSprite) no-repeat 0 -55px;
 
-		&.jcsdl-editor-save {}
-		&.jcsdl-editor-cancel {width: 56px; background-position: 0 -89px;}
+		&.jcsdl-editor-save, &.jcsdl-filter-save {}
+		&.jcsdl-editor-cancel, &.jcsdl-filter-cancel {width: 56px; background-position: 0 -89px;}
 
 		&:hover {@include opacity(0.9);}
 	}
@@ -139,161 +174,175 @@ $elementsSprite : 'img/elements.png';
 		&.jcsdl-or {margin-right: 0;}
 	}
 
-	/* building blocks */
-	/*
-	.icon {
-		display: block; width: 80px; height: 80px;
-		float: left; margin: 0; margin-right: 20px;
-		overflow: hidden;
-		text-align: center; line-height: 80px;
-		color: black;
-
-		&.target {width: 110px; height: 110px; line-height: 110px; margin-right: 35px;}
-
-		&:hover {background: #f5f5f5;}
-		&.selected {background: #f5f5f5;}
-	}
-	*/
-
-	/* filter row */
-	/*
-	.filter {
-		overflow: hidden; position: relative; margin: 10px 0;
+	/* filters list */
+	.jcsdl-filter {
+		overflow: hidden; position: relative; margin: 15px;
 		padding: 5px;
 		border: 1px solid $borderColor;
+		@include rounded(3px);
 
-		.filter-description {
-			overflow: hidden;
+		.jcsdl-filter-options {
+			position: absolute; top: 0; right: 0;
+			padding: 6px;
+			background: #f7f7f7;
+			border: 1px solid $borderColor; border-top: 0; border-right: 0;
+			@include roundedCorner(0, 0, 0, 3px);
 
-			.info {
-				float: left; margin: 0 10px;
-
-				&.target {font-weight: bold;}
-				&.operator {font-weight: bold;}
-			}			
-		}
-
-		.options {
-			position: absolute; top: 5px; right: 5px;
-
-			a {margin: 0 5px;}
+			a, span {margin: 0 2px;}
 		}
 	}
 
-	.filters-list {
-		&.expanded {
-			.filter {
-				.filter-target {margin: 0;}
-				.filter-field {margin: 15px 10px;}
-				.filter-operator {
-					line-height: 110px;
+	.jcsdl-filter-description {overflow: hidden;}
 
-					&.operator-contains {display: none;}
-					&.operator-substr {display: none;}
-					&.operator-contains_any {display: none;}
-					&.operator-in {display: none;}
-				}
-				.filter-value {
-					font-size: 16px; color: #666;
-					line-height: 110px;
-				}
+	.jcsdl-filter-info {
+		float: left; margin: 0 10px;
+
+		&.target {font-weight: bold;}
+		&.operator {font-weight: bold;}
+	}
+
+	/* expanded / collapsed filters list */
+	.jcsdl-filters-list {
+		&.expanded .jcsdl-filter {
+
+			.jcsdl-filter-target {margin: 0;}
+			.jcsdl-filter-field {margin: 15px 10px;}
+			.jcsdl-filter-operator {
+				line-height: 110px;
+
+				&.operator-contains {display: none;}
+				&.operator-substr {display: none;}
+				&.operator-contains_any {display: none;}
+				&.operator-in {display: none;}
 			}
+			.jcsdl-filter-info.value {
+				margin-top: 36px;
+				font-size: 1.2em;
+			}
+
 		}
-		&.compact {
-			.filter {
-				.filter-target, .filter-field, .filter-operator, .filter-value {margin: 0; background: none; width: auto; height: auto; display: inline; line-height: 1em; float: none;}
-				.filter-operator {
-					font-weight: bold;
 
-					&.operator-contains {display: none;}
-					&.operator-substr {display: none;}
-					&.operator-contains_any {display: none;}
-					&.operator-in {display: none;}
-				}
+		&.collapsed .jcsdl-filter {
+
+			.jcsdl-filter-target,
+			.jcsdl-filter-field,
+			.jcsdl-filter-operator,
+			.jcsdl-filter-value {
+				float: none; margin: 0;
+				display: inline; width: auto; height: auto;
+				background: none; line-height: 1em;
 			}
+			.jcsdl-filter-operator {
+				font-weight: bold;
+
+				&.operator-contains {display: none;}
+				&.operator-substr {display: none;}
+				&.operator-contains_any {display: none;}
+				&.operator-in {display: none;}
+			}
+
 		}
 	}
-	*/
 
-	/* single filter editor */
 	/*
-	.filter-editor {
-		.filter-target-wrap {
-			height: 140px; padding-top: 30px;
-
-			.carousel-scroll {margin-top: 40px;}
-		}
-		&.has-fields .filter-target-wrap {
-			background: transparent url('img/select.png') no-repeat center 8px;
-		}
-
-		.filter-target-field-wrap {
-			padding-top: 5px; padding-bottom: 40px;
-			background: transparent url('img/select.png') no-repeat center -165px;
-
-			.carousel-scroll {margin-top: 25px;}
-		}
-
-		.filter-step {
+	 * FILTER EDITOR VIEW
+	 */
+	.jcsdl-filter-editor {
+		.jcsdl-step {
 			overflow: hidden; text-align: center;
 			background: transparent url('img/step_background.png') no-repeat bottom center;
 
-			&.filter-step-field.last .filter-target-field-wrap {
+			&.jcsdl-filter-step-field.last .jcsdl-filter-target-field-wrap {
 				margin-bottom: 10px;
 				background-position: center -255px;
 			}
 
-			&.filter-step-value {
+			&.jcsdl-filter-step-value {
 				padding-bottom: 30px;
 			}
 		}
 
 
-		.filter-value-input-operators {
+		.jcsdl-filter-target-wrap {
+			height: 140px; padding-top: 30px;
+
+			.jcsdl-carousel-scroll {margin-top: 40px;}
+		}
+
+		/* add the select indicator when selected a field */
+		&.has-fields .jcsdl-filter-target-wrap {
+			background: transparent url($selectSprite) no-repeat center 8px;
+		}
+
+		.jcsdl-filter-target-field-wrap {
+			padding-top: 5px; padding-bottom: 40px;
+			background: transparent url($selectSprite) no-repeat center -165px;
+
+			.jcsdl-carousel-scroll {margin-top: 25px;}
+		}
+
+		.jcsdl-filter-value-input-operators {
 			overflow: hidden;
 
-			.operator-select {
+			.jcsdl-operator-select {
 				float: left; margin: 5px 20px;
 
 				input {margin-right: 8px;}
 			}
 		}
 
-		.filter-value-input-field {
-			margin-top: 20px;
-
-			.input-text input, .input-number input {
-				display: block; margin: 0 auto;
-				padding: 5px 10px; width: 90%;
-				font-size: 1.3em; line-height: 1.5em;
-				border: 1px solid $borderColor;
-			}
-			.input-number input {width: 100px;}
-
-			.input-select {
-				overflow: hidden;
-
-				.input-select-option {float: left; margin: 0 5px;}
-			}
-		}
-
-		.carousel-wrap {
-			overflow: hidden; position: relative;
-			margin: 0 auto;
-		}
-
-		.carousel-scroll {
-			display: block; width: 30px; height: 30px; margin-right: 5px;
-			float: left;
-			line-height: 30px; text-align: center;
-			background: transparent url('img/scroll.png') no-repeat top left;
-
-			&.right {float: right; margin-right: 0; margin-left: 5px; background-position: bottom left;}
-			&:hover {opacity: 0.9;}
-			&.inactive {opacity: 0.5;}
-		}
-
+		/* filter editor footer */
+		.jcsdl-footer {text-align: center;}
 	}
-	*/
+
+	.jcsdl-filter-save {
+		float: none; margin: 10px auto;
+		width: 181px; height: 55px;
+		background-position: 0 0;
+	}
+
+	.jcsdl-filter-cancel {color: $colorLight; font-weight: normal;}
+
+	/* JCSDL Carousel */
+	.jcsdl-carousel-wrap {
+		overflow: hidden; position: relative;
+		margin: 0 auto;
+	}
+
+	.jcsdl-carousel-scroll {
+		float: left; margin-right: 5px;
+		display: block; width: 30px; height: 30px;
+		line-height: 30px; text-align: center;
+		background: transparent url($elementsSprite) no-repeat -56px -89px;
+
+		&.right {
+			float: right; margin-right: 0; margin-left: 5px; 
+			background-position: -85px -89px;
+		}
+
+		&:hover {@include opacity(0.8);}
+		&.inactive {@include opacity(0.5);}
+	}
+
+	/*
+	 * FILTER EDITOR INPUT FIELDS
+	 */
+	.jcsdl-filter-value-input-field {
+		margin-top: 20px;
+
+		.jcsdl-input-text input, .jcsdl-input-number input {
+			display: block; margin: 0 auto;
+			padding: 5px 10px; width: 90%;
+			font-size: 1.3em; line-height: 1.5em;
+			border: 1px solid $borderColor;
+		}
+		.jcsdl-input-number input {width: 100px;}
+
+		.jcsdl-input-select {
+			overflow: hidden;
+
+			.jcsdl-input-select-option {float: left; margin: 0 5px;}
+		}
+	}
 
 }

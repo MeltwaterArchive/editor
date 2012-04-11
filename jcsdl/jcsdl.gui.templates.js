@@ -40,7 +40,7 @@ var JCSDLGuiTemplates = {
 			'<div class="jcsdl-footer">',
 				'<div class="jcsdl-actions">',
 					'<a href="#" class="jcsdl-button jcsdl-editor-save">Save and Preview</a>',
-					'<a href="#" class="jcsdl-button jcsdl-editor-cancel">Cancel</a>',
+					'<a href="#" class="jcsdl-button jcsdl-editor-cancel" style="display: none;">Cancel</a>',
 				'</div>',
 
 				'<div class="jcsdl-mainview-actions">',
@@ -55,80 +55,83 @@ var JCSDLGuiTemplates = {
 
 	// filter row
 	filter : $([
-		'<div class="filter">',
-			'<div class="filter-description">',
-				'<div class="target info"></div>',
-				'<div class="field info"></div>',
-				'<div class="operator info"></div>',
-				'<div class="value info"></div>',
+		'<div class="jcsdl-filter">',
+			'<div class="jcsdl-filter-description">',
+				'<div class="jcsdl-filter-info target"></div>',
+				'<div class="jcsdl-filter-info field"></div>',
+				'<div class="jcsdl-filter-info operator"></div>',
+				'<div class="jcsdl-filter-info jcsdl-bordered value"></div>',
 			'</div>',
-			'<div class="options">',
+			'<div class="jcsdl-filter-options">',
 				'<a href="#" class="edit">Edit</a>',
+				'<span>/</span>',
 				'<a href="#" class="delete">Delete</a>',
 			'</div>',
 		'</div>'
 	].join('')),
 
-	filterTarget : $('<div class="filter-target icon target" />'),
-	filterField : $('<div class="filter-field icon field" />'),
-	filterOperator : $('<div class="filter-operator" />'),
-	filterValue : $('<div class="filter-value" />'),
+	filterTarget : $('<div class="jcsdl-filter-target jcsdl-icon target" />'),
+	filterField : $('<div class="jcsdl-filter-field jcsdl-icon field" />'),
+	filterOperator : $('<div class="jcsdl-filter-operator" />'),
+	filterValue : $('<div class="jcsdl-filter-value" />'),
 
 	/* ##########################
 	 * SINGLE FILTER EDITOR
 	 * ########################## */
 	// filter editor container
 	filterEditor : $([
-		'<div class="filter-editor">',
-			'<div class="steps">',
+		'<div class="jcsdl-filter-editor">',
+			'<div class="jcsdl-steps">',
 			'</div>',
-			'<input type="button" class="filter-save" value="Save Filter" />',
-			'<input type="button" class="filter-cancel" value="Cancel Filter" />',
+			'<div class="jcsdl-footer">',
+				'<a href="#" class="jcsdl-button jcsdl-filter-save">Save and Preview</a>',
+				'or <a href="#" class="jcsdl-filter-cancel">cancel</a>',
+			'</div>',
 		'</div>'
 	].join('')),
 
 	// step container, all steps should be wrapped with this so it's easy to remove them when necessary
-	step : $('<div class="filter-step" />'),
+	step : $('<div class="jcsdl-step" />'),
 
 	// target select
 	target : $([
-		'<div class="filter-target-wrap">',
-			'<a href="#" class="carousel-scroll left"></a>',
-			'<a href="#" class="carousel-scroll right"></a>',
-			'<div class="carousel-wrap">',
-				'<div class="filter-target carousel" />',
+		'<div class="jcsdl-filter-target-wrap">',
+			'<a href="#" class="jcsdl-carousel-scroll left"></a>',
+			'<a href="#" class="jcsdl-carousel-scroll right"></a>',
+			'<div class="jcsdl-carousel-wrap">',
+				'<div class="jcsdl-filter-target jcsdl-carousel" />',
 			'</div>',
 		'</div>'
 	].join('')),
 
 	// target select option
-	targetOption : $('<a href="#" class="icon target carousel-item"></a>'),
+	targetOption : $('<a href="#" class="jcsdl-icon target jcsdl-carousel-item"></a>'),
 
 	// field select
 	field : $([
-		'<div class="filter-target-field-wrap">',
-			'<a href="#" class="carousel-scroll left"></a>',
-			'<a href="#" class="carousel-scroll right"></a>',
-			'<div class="carousel-wrap">',
-				'<div class="filter-target-field carousel" />',
+		'<div class="jcsdl-filter-target-field-wrap">',
+			'<a href="#" class="jcsdl-carousel-scroll left"></a>',
+			'<a href="#" class="jcsdl-carousel-scroll right"></a>',
+			'<div class="jcsdl-carousel-wrap">',
+				'<div class="jcsdl-filter-target-field jcsdl-carousel" />',
 			'</div>',
 		'</div>'
 	].join('')),
 
 	// field select option
-	fieldOption : $('<a href="#" class="icon field carousel-item"></a>'),
+	fieldOption : $('<a href="#" class="jcsdl-icon field jcsdl-carousel-item"></a>'),
 
 	// value input container
 	valueInput : $([
-		'<div class="filter-value-input">',
-			'<div class="filter-value-input-operators"></div>',
-			'<div class="filter-value-input-field"></div>',
+		'<div class="jcsdl-filter-value-input">',
+			'<div class="jcsdl-filter-value-input-operators"></div>',
+			'<div class="jcsdl-filter-value-input-field"></div>',
 		'</div>'
 	].join('')),
 
 	// operator select
 	operatorSelect : $([
-		'<div class="operator-select">',
+		'<div class="jcsdl-operator-select">',
 			'<label><input type="radio" name="operator" /></label>',
 		'</div>'
 	].join('')),
@@ -138,27 +141,27 @@ var JCSDLGuiTemplates = {
 	 * ########################## */
 	// text input
 	valueInput_text : $([
-		'<div class="input-text">',
+		'<div class="jcsdl-input-text">',
 			'<input type="text" placeholder="Type your desired value" />',
 		'</div>'
 	].join('')),
 
 	// number input
 	valueInput_number : $([
-		'<div class="input-number">',
+		'<div class="jcsdl-input-number">',
 			'<input type="text" placeholder="Type your desired value" />',
 		'</div>'
 	].join('')),
 
 	// select input
 	valueInput_select : $([
-		'<div class="input-select">',
+		'<div class="jcsdl-input-select">',
 		'</div>'
 	].join('')),
 
 	// select input option
 	valueInput_select_option : $([
-		'<div class="input-select-option">',
+		'<div class="jcsdl-input-select-option">',
 			'<label>',
 				'<input type="checkbox" name="selectvalue[]" />',
 				'<span />',
