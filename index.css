@@ -34,14 +34,14 @@ p {
 input[type="text"] {
   display: block;
   padding: 3px 5px;
-  border: 1px solid #aaaaaa; }
+  border: 1px solid #dcdcdc; }
 
 textarea {
   display: block;
   height: 150px;
   padding: 10px;
   line-height: 1.5em;
-  border: 1px solid #aaaaaa; }
+  border: 1px solid #dcdcdc; }
 
 pre {
   margin: 10px 20px; }
@@ -106,7 +106,9 @@ a {
   margin: 0 auto; }
 
 #jcsdl-create {
-  margin-bottom: 75px; }
+  margin-top: 20px;
+  margin-bottom: 75px;
+  border: 1px solid #dcdcdc; }
 
 #jcsdl-create-output {
   width: 90%;
@@ -121,7 +123,7 @@ a {
   #streams-list li {
     display: block;
     position: relative;
-    border-bottom: 1px solid #aaaaaa;
+    border-bottom: 1px solid #dcdcdc;
     line-height: 2.5em; }
     #streams-list li h4 {
       font-size: 1em;
@@ -140,7 +142,8 @@ a {
   margin-bottom: 75px; }
 
 #jcsdl-edit-wrap {
-  text-align: center; }
+  text-align: center;
+  border: 1px solid #dcdcdc; }
 
 #jcsdl-edit-output {
   width: 90%;
@@ -148,27 +151,27 @@ a {
 
 /* technical tab */
 /* responsive design */
-body.width-600, body.width-480, body.width-320 {
+body.width-800, body.width-600, body.width-480, body.width-320 {
   padding-right: 10px; }
-  body.width-600 #tabs, body.width-480 #tabs, body.width-320 #tabs {
+  body.width-800 #tabs, body.width-600 #tabs, body.width-480 #tabs, body.width-320 #tabs {
     padding-left: 5px; }
-    body.width-600 #tabs li, body.width-480 #tabs li, body.width-320 #tabs li {
+    body.width-800 #tabs li, body.width-600 #tabs li, body.width-480 #tabs li, body.width-320 #tabs li {
       margin: 0 5px; }
-      body.width-600 #tabs li a, body.width-480 #tabs li a, body.width-320 #tabs li a {
+      body.width-800 #tabs li a, body.width-600 #tabs li a, body.width-480 #tabs li a, body.width-320 #tabs li a {
         font-size: 13px; }
-  body.width-600 #streams-list li, body.width-480 #streams-list li, body.width-320 #streams-list li {
+  body.width-800 #streams-list li, body.width-600 #streams-list li, body.width-480 #streams-list li, body.width-320 #streams-list li {
     padding: 5px 0; }
-    body.width-600 #streams-list li h4, body.width-480 #streams-list li h4, body.width-320 #streams-list li h4 {
+    body.width-800 #streams-list li h4, body.width-600 #streams-list li h4, body.width-480 #streams-list li h4, body.width-320 #streams-list li h4 {
       line-height: 1em;
       margin-left: 0; }
-    body.width-600 #streams-list li .options, body.width-480 #streams-list li .options, body.width-320 #streams-list li .options {
+    body.width-800 #streams-list li .options, body.width-600 #streams-list li .options, body.width-480 #streams-list li .options, body.width-320 #streams-list li .options {
       position: relative;
       top: 0;
       right: 0;
       display: block;
       clear: both;
       text-align: right; }
-      body.width-600 #streams-list li .options a, body.width-480 #streams-list li .options a, body.width-320 #streams-list li .options a {
+      body.width-800 #streams-list li .options a, body.width-600 #streams-list li .options a, body.width-480 #streams-list li .options a, body.width-320 #streams-list li .options a {
         margin: 0 2px; }
 body.width-480, body.width-320 {
   padding: 10px;

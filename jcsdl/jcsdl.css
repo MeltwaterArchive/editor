@@ -8,7 +8,7 @@
   position: relative;
   font-size: 13px;
   font-family: "Helvetica Neue", "Helvetica", sans-serif;
-  color: #939393;
+  color: #888888;
   /* building blocks */
   /*
    * MAIN VIEW
@@ -31,7 +31,7 @@
       color: #3e71a3; }
   .jcsdl-container .jcsdl-label {
     font-size: 1em;
-    color: #939393;
+    color: #888888;
     font-weight: normal; }
   .jcsdl-container .jcsdl-bordered {
     padding: 8px;
@@ -101,7 +101,8 @@
     border-top: 1px dotted #dcdcdc; }
     .jcsdl-container .jcsdl-footer .jcsdl-actions {
       float: left;
-      overflow: hidden; }
+      overflow: hidden;
+      margin-bottom: 5px; }
   .jcsdl-container .jcsdl-mainview .jcsdl-header, .jcsdl-container .jcsdl-mainview .jcsdl-header h3 {
     line-height: 38px; }
   .jcsdl-container .jcsdl-mainview-actions {
@@ -240,8 +241,11 @@
     .jcsdl-container .jcsdl-filters-list.expanded .jcsdl-filter .jcsdl-filter-operator.operator-in {
       display: none; }
   .jcsdl-container .jcsdl-filters-list.expanded .jcsdl-filter .jcsdl-filter-info.value {
-    margin-top: 36px;
+    margin: 36px 0;
     font-size: 1.2em; }
+  .jcsdl-container .jcsdl-filters-list.collapsed .jcsdl-filter .jcsdl-filter-info.value {
+    border: 0;
+    padding: 0; }
   .jcsdl-container .jcsdl-filters-list.collapsed .jcsdl-filter .jcsdl-filter-target,
   .jcsdl-container .jcsdl-filters-list.collapsed .jcsdl-filter .jcsdl-filter-field,
   .jcsdl-container .jcsdl-filters-list.collapsed .jcsdl-filter .jcsdl-filter-operator,
@@ -263,6 +267,14 @@
       display: none; }
     .jcsdl-container .jcsdl-filters-list.collapsed .jcsdl-filter .jcsdl-filter-operator.operator-in {
       display: none; }
+  .jcsdl-container .jcsdl-filters-list.collapsed .jcsdl-filter .jcsdl-filter-description {
+    float: left; }
+  .jcsdl-container .jcsdl-filters-list.collapsed .jcsdl-filter .jcsdl-filter-options {
+    position: relative;
+    float: right;
+    padding: 0;
+    background: transparent;
+    border: 0; }
   .jcsdl-container .jcsdl-filter-editor {
     /* add the select indicator when selected a field */
     /* filter editor footer */ }
@@ -274,7 +286,8 @@
         margin-bottom: 10px;
         background-position: center -255px; }
       .jcsdl-container .jcsdl-filter-editor .jcsdl-step.jcsdl-filter-step-value {
-        padding-bottom: 30px; }
+        padding-bottom: 30px;
+        background: transparent; }
     .jcsdl-container .jcsdl-filter-editor .jcsdl-filter-target-wrap {
       height: 140px;
       padding-top: 30px; }
@@ -289,10 +302,20 @@
       .jcsdl-container .jcsdl-filter-editor .jcsdl-filter-target-field-wrap .jcsdl-carousel-scroll {
         margin-top: 25px; }
     .jcsdl-container .jcsdl-filter-editor .jcsdl-filter-value-input-operators {
-      overflow: hidden; }
+      overflow: hidden;
+      margin: 10px auto;
+      margin-top: 20px;
+      display: block;
+      width: 75%;
+      text-align: center; }
       .jcsdl-container .jcsdl-filter-editor .jcsdl-filter-value-input-operators .jcsdl-operator-select {
         float: left;
-        margin: 5px 20px; }
+        margin: 5px 0.4em;
+        display: block;
+        width: 29%;
+        min-height: 7em; }
+        .jcsdl-container .jcsdl-filter-editor .jcsdl-filter-value-input-operators .jcsdl-operator-select label {
+          cursor: pointer; }
         .jcsdl-container .jcsdl-filter-editor .jcsdl-filter-value-input-operators .jcsdl-operator-select input {
           margin-right: 8px; }
     .jcsdl-container .jcsdl-filter-editor .jcsdl-footer {
@@ -304,7 +327,7 @@
     height: 55px;
     background-position: 0 0; }
   .jcsdl-container .jcsdl-filter-cancel {
-    color: #939393;
+    color: #888888;
     font-weight: normal; }
   .jcsdl-container .jcsdl-carousel-wrap {
     overflow: hidden;
@@ -312,17 +335,15 @@
     margin: 0 auto; }
   .jcsdl-container .jcsdl-carousel-scroll {
     float: left;
-    margin-right: 5px;
+    margin: 0 5px;
     display: block;
-    width: 30px;
-    height: 30px;
-    line-height: 30px;
+    width: 29px;
+    height: 29px;
+    line-height: 29px;
     text-align: center;
     background: transparent url("img/elements.png") no-repeat -56px -89px; }
     .jcsdl-container .jcsdl-carousel-scroll.right {
       float: right;
-      margin-right: 0;
-      margin-left: 5px;
       background-position: -85px -89px; }
     .jcsdl-container .jcsdl-carousel-scroll:hover {
       -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=$opacity * 10)";
@@ -336,20 +357,27 @@
       -moz-opacity: 0.5;
       -khtml-opacity: 0.5;
       opacity: 0.5; }
-  .jcsdl-container .jcsdl-filter-value-input-field {
-    margin-top: 20px; }
-    .jcsdl-container .jcsdl-filter-value-input-field .jcsdl-input-text input, .jcsdl-container .jcsdl-filter-value-input-field .jcsdl-input-number input {
-      display: block;
-      margin: 0 auto;
-      padding: 5px 10px;
-      width: 90%;
-      font-size: 1.3em;
-      line-height: 1.5em;
-      border: 1px solid #dcdcdc; }
-    .jcsdl-container .jcsdl-filter-value-input-field .jcsdl-input-number input {
-      width: 100px; }
-    .jcsdl-container .jcsdl-filter-value-input-field .jcsdl-input-select {
-      overflow: hidden; }
-      .jcsdl-container .jcsdl-filter-value-input-field .jcsdl-input-select .jcsdl-input-select-option {
-        float: left;
-        margin: 0 5px; }
+  .jcsdl-container .jcsdl-filter-value-input-field .jcsdl-input-text input, .jcsdl-container .jcsdl-filter-value-input-field .jcsdl-input-number input {
+    display: block;
+    margin: 0 auto;
+    padding: 5px 10px;
+    width: 90%;
+    font-size: 1.3em;
+    line-height: 1.5em;
+    border: 1px solid #dcdcdc;
+    -webkit-border-radius: 3px;
+    -khtml-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 3px;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box; }
+  .jcsdl-container .jcsdl-filter-value-input-field .jcsdl-input-number input {
+    width: 100px; }
+  .jcsdl-container .jcsdl-filter-value-input-field .jcsdl-input-select {
+    overflow: hidden; }
+    .jcsdl-container .jcsdl-filter-value-input-field .jcsdl-input-select .jcsdl-input-select-option {
+      float: left;
+      margin: 0 5px; }

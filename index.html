@@ -151,7 +151,6 @@ twitter.source contains_any "Twitter for iPhone, Twitter for iPad"
 
 			<div id="jcsdl-edit-wrap" style="display: none;">
 				<div id="jcsdl-edit"></div>
-				<input type="button" class="cancel" value="Cancel Stream" />
 			</div>
 
 			<h3>JCSDL Output:</h3>
@@ -178,9 +177,9 @@ twitter.source contains_any "Twitter for iPhone, Twitter for iPad"
 var editor = new JCSDLGui(element);</pre>
 
 			<h4 id="handling-output">Handling the output</h4>
-			<p>For every instantiated JCSDL Editor you can define a custom 'onSave' function that will be called every time a user clicks the 'Save' button. It takes a single argument which is the JCSDL output.</p>
+			<p>For every instantiated JCSDL Editor you can define a custom 'save' function that will be called every time a user clicks the 'Save' button. It takes a single argument which is the JCSDL output.</p>
 			<pre>var editor = new JCSDLGui('#jcsdl', {
-	onSave : function(code) {
+	save : function(code) {
 		// perform custom saving of the output code
 		// for example sending it in AJAX
 		alert(code);
@@ -194,7 +193,7 @@ var editor = new JCSDLGui(element);</pre>
 			<p>The only argument of this method is the JCSDL code as a String.</p>
 			<p>A full example code may look like this:</p>
 			<pre>var editor = new JCSDLGui('#jcsdl', {
-	onSave : function(code) {
+	save : function(code) {
 		// output the resulting JCSDL code into a textarea
 		$('textarea[name="jcsdl-output"]').val(code);
 	}

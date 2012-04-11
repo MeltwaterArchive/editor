@@ -1,7 +1,7 @@
 $themeColor : orange;
 $black : #222;
 $lightGrey : #fafafa;
-$borderColor : #aaa;
+$borderColor : #dcdcdc;
 
 body {
 	background: #fff url('datasift.png') no-repeat top left;
@@ -71,7 +71,7 @@ a {color: $themeColor; text-decoration: none; font-weight: bold;}
 
 /* create tab */
 #stream-title {font-size: 1.5em; width: 90%; margin: 0 auto;}
-#jcsdl-create {margin-bottom: 75px;}
+#jcsdl-create {margin-top: 20px; margin-bottom: 75px; border: 1px solid $borderColor;}
 #jcsdl-create-output {width: 90%; margin: 0 auto;}
 
 /* edit tab */
@@ -92,7 +92,7 @@ a {color: $themeColor; text-decoration: none; font-weight: bold;}
 }
 
 #streams-list, #jcsdl-edit-wrap {margin-bottom: 75px;}
-#jcsdl-edit-wrap {text-align: center;}
+#jcsdl-edit-wrap {text-align: center; border: 1px solid $borderColor;}
 #jcsdl-edit-output {width: 90%; margin: 0 auto;}
 
 /* technical tab */
@@ -100,7 +100,7 @@ a {color: $themeColor; text-decoration: none; font-weight: bold;}
 /* responsive design */
 body {
 
-	&.width-600, &.width-480, &.width-320 {
+	&.width-800, &.width-600, &.width-480, &.width-320 {
 		padding-right: 10px;
 		
 		#tabs {padding-left: 5px;

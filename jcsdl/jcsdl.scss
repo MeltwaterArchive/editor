@@ -1,6 +1,6 @@
 /* some theming variables */
 $color : #376491;
-$colorLight : #939393;
+$colorLight : #888;
 $borderColor : #dcdcdc;
 $borderColorInput : #c8d7de;
 $elementsSprite : 'img/elements.png';
@@ -101,7 +101,7 @@ $selectSprite : 'img/select.png';
 		padding: 15px;
 		border-top: 1px dotted $borderColor;
 
-		.jcsdl-actions {float: left; overflow: hidden;}
+		.jcsdl-actions {float: left; overflow: hidden; margin-bottom: 5px;}
 	}
 
 	/*
@@ -216,13 +216,17 @@ $selectSprite : 'img/select.png';
 				&.operator-in {display: none;}
 			}
 			.jcsdl-filter-info.value {
-				margin-top: 36px;
+				margin: 36px 0;
 				font-size: 1.2em;
 			}
 
 		}
 
 		&.collapsed .jcsdl-filter {
+
+			.jcsdl-filter-info.value {
+				border: 0; padding: 0;
+			}
 
 			.jcsdl-filter-target,
 			.jcsdl-filter-field,
@@ -239,6 +243,16 @@ $selectSprite : 'img/select.png';
 				&.operator-substr {display: none;}
 				&.operator-contains_any {display: none;}
 				&.operator-in {display: none;}
+			}
+
+			.jcsdl-filter-description {
+				float: left;
+			}
+
+			.jcsdl-filter-options {
+				position: relative; float: right;
+				padding: 0;
+				background: transparent; border: 0;
 			}
 
 		}
@@ -258,7 +272,7 @@ $selectSprite : 'img/select.png';
 			}
 
 			&.jcsdl-filter-step-value {
-				padding-bottom: 30px;
+				padding-bottom: 30px; background: transparent;
 			}
 		}
 
@@ -282,11 +296,15 @@ $selectSprite : 'img/select.png';
 		}
 
 		.jcsdl-filter-value-input-operators {
-			overflow: hidden;
+			overflow: hidden; margin: 10px auto; margin-top: 20px;
+			display: block; width: 75%;
+			text-align: center;
 
 			.jcsdl-operator-select {
-				float: left; margin: 5px 20px;
+				float: left; margin: 5px 0.4em;
+				display: block; width: 29%; min-height: 7em;
 
+				label {cursor: pointer;}
 				input {margin-right: 8px;}
 			}
 		}
@@ -310,13 +328,13 @@ $selectSprite : 'img/select.png';
 	}
 
 	.jcsdl-carousel-scroll {
-		float: left; margin-right: 5px;
-		display: block; width: 30px; height: 30px;
-		line-height: 30px; text-align: center;
+		float: left; margin: 0 5px;
+		display: block; width: 29px; height: 29px;
+		line-height: 29px; text-align: center;
 		background: transparent url($elementsSprite) no-repeat -56px -89px;
 
 		&.right {
-			float: right; margin-right: 0; margin-left: 5px; 
+			float: right;
 			background-position: -85px -89px;
 		}
 
@@ -328,13 +346,12 @@ $selectSprite : 'img/select.png';
 	 * FILTER EDITOR INPUT FIELDS
 	 */
 	.jcsdl-filter-value-input-field {
-		margin-top: 20px;
-
 		.jcsdl-input-text input, .jcsdl-input-number input {
 			display: block; margin: 0 auto;
 			padding: 5px 10px; width: 90%;
 			font-size: 1.3em; line-height: 1.5em;
 			border: 1px solid $borderColor;
+			@include rounded(3px);
 		}
 		.jcsdl-input-number input {width: 100px;}
 

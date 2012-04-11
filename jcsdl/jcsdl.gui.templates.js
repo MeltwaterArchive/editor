@@ -40,7 +40,7 @@ var JCSDLGuiTemplates = {
 			'<div class="jcsdl-footer">',
 				'<div class="jcsdl-actions">',
 					'<a href="#" class="jcsdl-button jcsdl-editor-save">Save and Preview</a>',
-					'<a href="#" class="jcsdl-button jcsdl-editor-cancel" style="display: none;">Cancel</a>',
+					'<a href="#" class="jcsdl-button jcsdl-editor-cancel">Cancel</a>',
 				'</div>',
 
 				'<div class="jcsdl-mainview-actions">',
@@ -85,7 +85,7 @@ var JCSDLGuiTemplates = {
 			'</div>',
 			'<div class="jcsdl-footer">',
 				'<a href="#" class="jcsdl-button jcsdl-filter-save">Save and Preview</a>',
-				'or <a href="#" class="jcsdl-filter-cancel">cancel</a>',
+				'<span style="display: none;">or</span> <a href="#" class="jcsdl-filter-cancel">cancel</a>',
 			'</div>',
 		'</div>'
 	].join('')),

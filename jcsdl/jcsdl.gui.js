@@ -11,8 +11,11 @@ var JCSDLGui = function(el, config) {
 
 	this.config = $.extend(true, {
 		animationSpeed : 200,
+		displayCancelButton : true,
 		save : function(code) {},
-		cancel : function() {}
+		cancel : function() {
+			self.$container.hide();
+		}
 	}, config);
 
 	// data
@@ -59,6 +62,11 @@ var JCSDLGui = function(el, config) {
 		self.$container.html(self.$mainView);
 		$el.html(self.$container);
 
+		// hide the cancel button if so desired
+		if (!self.config.displayCancelButton) {
+			self.$mainView.find('.jcsdl-editor-cancel').hide();
+		}
+
 		/*
 		 * REGISTER LISTENERS
 		 */
@@ -103,7 +111,21 @@ var JCSDLGui = function(el, config) {
 		 * @param  {Event} ev Click Event.
 		 */
 		self.$mainView.find('.jcsdl-editor-save').bind('click.jcsdl', function(ev) {
+			ev.preventDefault();
+			ev.target.blur();
+
 			self.returnJCSDL();
+		});
+
+		/**
+		 * Handle pressing the cancel button,
+		 * @param  {Event} ev Click Event.
+		 */
+		self.$mainView.find('.jcsdl-editor-cancel').bind('click.jcsdl', function(ev) {
+			ev.preventDefault();
+			ev.target.blur();
+
+			self.config.cancel.apply(self, []);
 		});
 	};
 
@@ -201,6 +223,7 @@ var JCSDLGui = function(el, config) {
 
 		// hide the save button until all steps haven't been gone through
 		self.$currentFilterView.find('.jcsdl-filter-save').hide();
+		self.$currentFilterView.find('.jcsdl-footer span').hide();
 
 		/*
 		 * REGISTER PROPER LISTENERS
@@ -374,6 +397,7 @@ var JCSDLGui = function(el, config) {
 
 		// also show the submit button
 		self.$currentFilterView.find('.jcsdl-filter-save').fadeIn(self.config.animationSpeed);
+		self.$currentFilterView.find('.jcsdl-footer span').show();
 	};
 
 	/**

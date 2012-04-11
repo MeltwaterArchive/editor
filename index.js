@@ -50,6 +50,7 @@ $(function() {
 	 * CREATE STREAM TAB
 	 */
 	var createEditor = new JCSDLGui('#jcsdl-create', {
+		displayCancelButton : false,
 		save : function(code) {
 			$('#jcsdl-create-output').val(code);
 
@@ -89,6 +90,11 @@ $(function() {
 			// hide the editor and show the list
 			$('#streams-list').show();
 			$('#jcsdl-edit-wrap').hide();
+		},
+		cancel : function() {
+			this.$container.fadeOut(this.config.animationSpeed, function() {
+				$('#streams-list').show();
+			});
 		}
 	});
 
@@ -114,15 +120,6 @@ $(function() {
 
 		var code = $(this).closest('li').find('.jcsdl-source').val();
 		$('#jcsdl-edit-output').val(code);
-	});
-
-	$('#jcsdl-edit-wrap .cancel').click(function(ev) {
-		ev.preventDefault();
-		ev.target.blur();
-
-		// hide the editor and show the list
-		$('#streams-list').show();
-		$('#jcsdl-edit-wrap').hide();
 	});
 
 	/*
