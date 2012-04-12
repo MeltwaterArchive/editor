@@ -137,7 +137,7 @@ var JCSDL = function(gui) {
 		if (operatorCode === false) return false;
 
 		// actual CSDL
-		var csdl = filter.target + '.' + field + ' ' + operatorCode + ' ';
+		var csdl = filter.target + '.' + field.replace('-', '.') + ' ' + operatorCode + ' ';
 		var valueStart = (fieldInfo.type == 'string') ? csdl.length + 1 : csdl.length;
 		var valueLength = (fieldInfo.type == 'string') ? value.length - 2 : value.length;
 		 
