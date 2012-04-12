@@ -464,16 +464,22 @@ var JCSDLGui = function(el, config) {
 		// fill with data
 		// target
 		var $target = self.getTemplate('filterTarget');
-		$target.addClass('selected target-' + filter.target);//.html(jcsdl.getTargetInfo(filter.target).name);
+		var targetInfo = jcsdl.getTargetInfo(filter.target);
+		$target.addClass('selected target-' + filter.target).html(targetInfo.name);
 		$filterRow.find('.target').html($target);
 
 		// fields (separate icon for each field in path)
 		var currentPath = [];
 		$.each(filter.fieldPath, function(i, field) {
-			var $field = self.getTemplate('filterField');
 			currentPath.push(field);
-			$field.addClass('selected field-' + field);//.html(jcsdl.getFieldInfo(filter.target, currentPath).name);
-			$filterRow.find('.field').append($field);
+
+			var $field = self.getTemplate('filterField');
+			var fieldInfo = jcsdl.getFieldInfo(filter.target, currentPath);
+
+			$field.addClass('selected icon-' + getIconForField(field, fieldInfo));
+			$field.html(fieldInfo.name);
+
+			$filterRow.find('.jcsdl-filter-info.field').append($field);
 		});
 
 		// operator
@@ -580,15 +586,18 @@ var JCSDLGui = function(el, config) {
 	/**
 	 * Creates a select option for the given field with the specified name.
 	 * @param  {String} name  Unique name of the field in the current target, matching one from JCSDLConfig.
-	 * @param  {Object} field Definition of the field from JCSDLConfig.
+	 * @param  {Object} fieldInfo Definition of the field from JCSDLConfig.
 	 * @return {jQuery}
 	 */
-	var createOptionForField = function(name, field) {
+	var createOptionForField = function(name, fieldInfo) {
 		var $option = self.getTemplate('fieldOption');
+
 		$option.data('name', name);
-		$option.data('field', field);
-		//$option.html(field.name);
+		$option.data('field', fieldInfo);
+		$option.html(fieldInfo.name);
+		$option.addClass('icon-' + getIconForField(name, fieldInfo));
 		$option.addClass('field-' + name);
+
 		return $option;
 	};
 
@@ -789,6 +798,17 @@ var JCSDLGui = function(el, config) {
 	};
 
 	/**
+	 * Given the field name and it's definition decide what the icon for this field is.
+	 * @param  {String} field     Name of the string.
+	 * @param  {Object} fieldInfo Field definition.
+	 * @return {String}
+	 */
+	var getIconForField = function(field, fieldInfo) {
+		var icon = (typeof(fieldInfo.icon) !== 'undefined') ? fieldInfo.icon : field;
+		return icon;
+	}
+
+	/**
 	 * Returns a template (jQuery object) of the given name.
 	 * @param  {String} name Name of the template to fetch.
 	 * @return {jQuery}
@@ -847,7 +867,7 @@ var JCSDLGui = function(el, config) {
 		// style the wrap so nothing goes over the borders
 		this.$carouselWrap.css({
 			maxWidth : this.calculateWrapWidth(),
-			height : this.$exampleItem.height()
+			height : this.$exampleItem.outerHeight(true)
 		});
 
 		// prepare the carousel's css
@@ -855,7 +875,7 @@ var JCSDLGui = function(el, config) {
 			position : 'relative',
 			left : this.calculateCurrentPosition(),
 			width : this.itemWidth * this.itemsCount,
-			height : this.$exampleItem.height()
+			height : this.$exampleItem.outerHeight(true)
 		});
 
 		this.changePosition(0, !options.expand);

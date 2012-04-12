@@ -1,25 +1,35 @@
 var JCSDLConfig = {
 	// list of all possible targets and their fields and their types
 	targets : {
-		// general interaction
-		interaction : {
-			name : 'All',
+
+		// digg
+		digg : {
+			name : 'Digg',
 			fields : {
-				content : {name: 'Content', type: 'string', input: 'text', operators: ['contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-				geo : {name: 'Location', type: 'geo', input: ['geo_box', 'geo_radius', 'geo_polygon', 'geo_text'], operators: ['geo_box', 'geo_radius', 'geo_polygon']},
-				link : {name: 'Link', type: 'string', input: 'text', operators: ['contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-				sample : {name: 'sample', type: 'float', input: 'slider', operators: ['equals', 'different', 'greaterThan', 'lowerThan']},
-				source : {name: 'Source', type: 'string', input: 'text', operaotrs: ['contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-				type : {name: 'Type', type: 'string', input: 'select', operators: ['in'], options : {twitter : 'Twitter', myspace : 'MySpace', facebook : 'Facebook', digg : 'Digg', '2ch' : '2ch', amazon : 'Amazon', youtube : 'YouTube', dailymotion : 'DailyMotion'}},
-				title : {name: 'Title', type: 'string', input: 'text', operators: ['contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-				author : {
-					name: 'Author',
-					fields: {
-						id : {name: 'ID', type: 'int', input: 'text', operators: ['equals', 'different', 'greaterThan', 'lowerThan']},
-						avatar : {name: 'Avatar', type: 'string', input: 'text', operators: ['contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-						link : {name: 'Link', type: 'string', input: 'text', operators: ['contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-						name : {name: 'Name', type: 'string', input: 'text', operators: ['contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-						username : {name: 'User Name', type: 'string', input: 'text', operators: ['contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']}
+				comment : {
+					name : 'Comments',
+					fields : {
+						buries : {name: 'Buries', type: 'int', input: 'number', operators: ['equals', 'different', 'greaterThan', 'lowerThan']},
+						diggs : {name: 'Diggs', type: 'int', input: 'number', operators: ['equals', 'different', 'greaterThan', 'lowerThan']},
+						text : {name: 'Text', icon: 'content', type: 'string', input: 'text', operators: ['contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']}
+					},
+				},
+				'item-comments' : {name: 'Comments Count', icon: 'comments-count', type: 'int', input: 'number', operators: ['equals', 'different', 'greaterThan', 'lowerThan']},
+				'item-description' : {name: 'Description', icon: 'description', type: 'string', input: 'text', operators: ['contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				'item-diggs' : {name: 'Diggs', icon: 'diggs', type: 'int', input: 'number', operators: ['equals', 'different', 'greaterThan', 'lowerThan']},
+				'item-status' : {name: 'Status', icon: 'status', type: 'string', input: 'text', operators: ['contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				'item-title' : {name: 'Title', icon: 'title', type: 'string', input: 'text', operators: ['contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				'item-topic' : {name: 'Topic', icon: 'topic', type: 'string', input: 'text', operators: ['contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				type : {name: 'Type', type: 'string', input: 'text', operators: ['contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				user : {
+					name : 'User',
+					fields : {
+						fullname : {name: 'Full Name', type: 'string', input: 'text', operators: ['contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+						icon : {name: 'Icon', icon: 'avatar', type: 'string', input: 'text', operators: ['contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+						links : {name: 'Links', icon: 'link', type: 'string', input: 'text', operators: ['contains', 'in', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+						name : {name: 'Name', icon: 'username', type: 'string', input: 'text', operators: ['contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+						profileviews : {name: 'Profile Views', type: 'int', input: 'number', operators: ['equals', 'different', 'greaterThan', 'lowerThan']},
+						registered : {name: 'Registered',  type: 'string', input: 'text', operators: ['contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']}
 					}
 				}
 			}
@@ -29,41 +39,89 @@ var JCSDLConfig = {
 		twitter : {
 			name : 'Twitter',
 			fields : {
-				text : {name: 'Tweet', type: 'string', input: 'text', operators: ['contains', 'substr', 'contains_any']},
-				mentions : {name: 'Mentions', type: 'string', input: 'text', operators: ['contains', 'substr', 'contains_any', 'in', 'equals']},
-				domains : {name: 'Domains', type: 'string', input: 'text', operators: ['contains', 'substr', 'equals', 'in', 'different']},
-				source : {name: 'Source', type: 'string', input: 'text', operators: ['equals', 'different', 'contains', 'in', 'substr', 'contains_any']},
+				domains : {name: 'Domains',  type: 'string', input: 'text', operators: ['contains', 'in', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				geo : {name: 'Location', type: 'geo', input: ['geo_box', 'geo_radius', 'geo_polygon', 'geo_text'], operators: ['geo_box', 'geo_radius', 'geo_polygon']},
+				in_reply_to_screen_name : {name: 'In Reply To',  icon: 'inreply', type: 'string', input: 'text', operators: ['contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				links : {name: 'Links', icon: 'link', type: 'string', input: 'text', operators: ['contains', 'in', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				mentions : {name: 'Mentions',  type: 'string', input: 'text', operators: ['contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				source : {name: 'Source',  type: 'string', input: 'text', operators: ['contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				text : {name: 'Tweet', icon: 'tweet', type: 'string', input: 'text', operators: ['contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
 				user : {
 					name: 'Author',
 					fields : {
-						id : {name: 'ID', type: 'string', input: 'text', operators: ['equals', 'different', 'in']},
-						name : {name: 'Name', type: 'string', input: 'text', operators: ['equals', 'different', 'contains', 'substr', 'contains_any']},
-						description : {name: 'Description', type: 'string', input: 'text', operators: ['contains', 'substr', 'contains_any']},
-						followers_count : {name: 'No. of Followers', type: 'int', input: 'text', operators: ['equals', 'different', 'greaterThan', 'lowerThan']},
-						location : {name: 'Location', type: 'string', input: 'text', operators: ['contains', 'substr', 'contains_any', 'equals', 'different']}
+						description : {name: 'Description', icon: 'user-description', type: 'string', input: 'text', operators: ['contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+						followers_count : {name: 'Followers Count', type: 'int', input: 'number', operators: ['equals', 'different', 'greaterThan', 'lowerThan']},
+						follower_ratio : {name: 'Follower Ratio', type: 'float', input: 'number', operators: ['equals', 'different', 'greaterThan', 'lowerThan']},
+						friends_count : {name: 'Friends Count', type: 'int', input: 'number', operators: ['equals', 'different', 'greaterThan', 'lowerThan']},
+						id : {name: 'ID', icon: 'user-id', type: 'int', input: 'number', operators: ['equals', 'different', 'in']},
+						lang : {name: 'Language', icon: 'language', type: 'string', input: 'select', operators: ['different', 'in']},
+						listed_count : {name: 'Listed Count', type: 'int', operators: ['equals', 'different', 'greaterThan', 'lowerThan']},
+						location : {name: 'Location', type: 'string', input: 'text', operators: ['contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+						name : {name: 'Name', icon: 'username', type: 'string', input: 'text', operators: ['contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+						profile_age : {name: 'Age', icon: 'age', type: 'int', input: 'number', operators: ['equals', 'different', 'greaterThan', 'lowerThan']},
+						screen_name : {name: 'Screen Name',  type: 'string', input: 'text', operators: ['contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+						statuses_count : {name: 'Statuses Count', type: 'int', input: 'number', operators: ['equals', 'different', 'greaterThan', 'lowerThan']},
+						time_zone : {name: 'Time Zone',  type: 'string', input: 'text', operators: ['contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+						url : {name: 'URL', icon: 'url', type: 'string', input: 'text', operators: ['contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']}
 					}
 				},
 				place : {
 					name: 'Place',
 					fields : {
-						country_code : {name: 'Country Code', type: 'string', input: 'text', operators: ['equals', 'different', 'in']}
+						attributes : {name: 'Attributes', icon: 'placeattrs', type: 'string', input: 'text', operators: ['contains', 'in', 'equals', 'different', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+						country : {name: 'Country', type: 'string', input: 'text', operators: ['contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+						country_code : {name: 'Country Code', type: 'string', input: 'text', operators: ['contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+						full_name : {name: 'Full Name', icon: 'fullname', type: 'string', input: 'text', operators: ['contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+						name : {name: 'Name', icon: 'placename', type: 'string', input: 'text', operators: ['contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+						place_type : {name: 'Place Type', icon: 'type', type: 'string', input: 'text', operators: ['contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+						url : {name: 'URL', type: 'string', input: 'text', operators: ['contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']}
 					}
 				},
 				retweet : {
 					name: 'Retweet',
 					fields : {
-						count : {name: 'No. of Retweets', type: 'int', input: 'text', operators: ['equals', 'different', '>', '<', 'greaterThan', 'lowerThan']},
-						text : {name: 'Text of Retweet', type: 'string', input: 'text', operators: ['contains', 'substr', 'contains_any']},
-						user : {
-							name: 'Author',
-							fields : {
-								id : {name: 'ID', type: 'int', input: 'text', operators: ['equals', 'different']},
-								name : {name: 'Name', type: 'string', input: 'text', operators: ['equals', 'different', 'contains', 'substr', 'contains_any']},
-								description : {name: 'Description', type: 'string', input: 'text', operators: ['contains', 'substr', 'contains_any']},
-								followers_count : {name: 'No. of Followers', type: 'int', input: 'text', operators: ['equals', 'different', 'greaterThan', 'lowerThan']},
-								location : {name: 'Location', type: 'string', input: 'text', operators: ['contains', 'substr', 'contains_any', 'equals', 'different']}
-							}
-						}
+						count : {name: 'No. of Retweets', type: 'int', input: 'number', operators: ['equals', 'different', 'greaterThan', 'lowerThan']},
+						domains : {name: 'Domains',  type: 'string', input: 'text', operators: ['contains', 'in', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+						elapsed : {name: 'Elapsed', type: 'int', input: 'number', operators: ['equals', 'different', 'greaterThan', 'lowerThan']},
+						links : {name: 'Links', icon: 'link', type: 'string', input: 'text', operators: ['contains', 'in', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+						source : {name: 'Source',  type: 'string', input: 'text', operators: ['contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+						text : {name: 'Tweet', icon: 'tweet', type: 'string', input: 'text', operators: ['contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+						user : null // look at the bottom of the file
+					}
+				},
+				retweeted : {
+					name : 'Retweeted',
+					fields : {
+						id : {name: 'ID', type: 'string', input: 'text', operators: ['contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+						mentions : {name: 'Mentions',  type: 'string', input: 'text', operators: ['contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+						source : {name: 'Source',  type: 'string', input: 'text', operators: ['contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+						place : null, // look at the bottom of the file
+						user : null // look at the bottom of the file
+					}
+				}
+			}
+		},
+
+		// general interaction
+		interaction : {
+			name : 'All',
+			fields : {
+				content : {name: 'Content', type: 'string', input: 'text', operators: ['contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				geo : {name: 'Location', type: 'geo', input: ['geo_box', 'geo_radius', 'geo_polygon', 'geo_text'], operators: ['geo_box', 'geo_radius', 'geo_polygon']},
+				link : {name: 'Link', type: 'string', input: 'text', operators: ['contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				sample : {name: 'sample', type: 'float', input: 'slider', operators: ['equals', 'different', 'greaterThan', 'lowerThan']},
+				source : {name: 'Source', type: 'string', input: 'text', operaotrs: ['contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				type : {name: 'Type', type: 'string', input: 'select', operators: ['in'], options: {twitter : 'Twitter', myspace : 'MySpace', facebook : 'Facebook', digg : 'Digg', '2ch' : '2ch', amazon : 'Amazon', youtube : 'YouTube', dailymotion : 'DailyMotion'}},
+				title : {name: 'Title', type: 'string', input: 'text', operators: ['contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				author : {
+					name: 'Author',
+					icon : 'user',
+					fields: {
+						id : {name: 'ID', icon: 'user-id', type: 'int', input: 'text', operators: ['equals', 'different', 'greaterThan', 'lowerThan']},
+						avatar : {name: 'Avatar', type: 'string', input: 'text', operators: ['contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+						link : {name: 'Link', type: 'string', input: 'text', operators: ['contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+						name : {name: 'Name', icon: 'fullname', type: 'string', input: 'text', operators: ['contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+						username : {name: 'User Name', type: 'string', input: 'text', operators: ['contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']}
 					}
 				}
 			}
@@ -73,42 +131,62 @@ var JCSDLConfig = {
 		facebook : {
 			name : 'Facebook',
 			fields : {
-				message : {name: 'Message', type: 'string', input: 'text', operators: ['contains', 'substr', 'contains_any']},
-				name : {name: 'Name', type: 'string', input: 'text', operators: ['equals', 'contains', 'substr', 'contains_any', 'in']},
-				type : {name: 'Type', type: 'string', input: 'text', operators: ['equals', 'in', 'different']},
-				application : {name: 'Application', type: 'string', input: 'text', operators: ['equals', 'different', 'substr', 'contains', 'contains_any']},
-				author : {
-					name: 'Author',
+				application : {name: 'Application', type: 'string', input: 'text', operators: ['contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				'author-avatar': {name: 'Author Avatar', icon: 'avatar', type: 'string', input: 'text', operators: ['contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				'author-id': {name: 'Author ID', icon: 'user-id', type: 'string', input: 'text', operators: ['contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				'author-link': {name: 'Author Link', icon: 'link', type: 'string', input: 'text', operators: ['contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				'author-name': {name: 'Author Name', icon: 'username', type: 'string', input: 'text', operators: ['contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				caption : {name: 'Caption', type: 'string', input: 'text', operators: ['contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				'likes-count' : {name: 'Likes Count', type: 'int', input: 'number', operators: ['equals', 'different', 'greaterThan', 'lowerThan']},
+				'likes-ids' : {name: 'Likes IDs', type: 'string', input: 'text', operators: ['contains', 'in', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				'likes-names' : {name: 'Likes Names', type: 'string', input: 'text', operators: ['contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				link : {name: 'Link', type: 'string', input: 'text', operators: ['contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				message : {name: 'Message',type: 'string', input: 'text', operators: ['contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				name : {name: 'Name', icon: 'fullname', type: 'string', input: 'text', operators: ['contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				og : {
+					name : 'Open Graph',
+					icon : 'opengraph',
 					fields : {
-						id : {name: 'ID', type: 'int', input: 'text', operators: ['equals', 'different', 'in']},
-						name : {name: 'Name', type: 'string', input: 'text', operators: ['equals', 'in', 'different', 'contains', 'substr', 'contains_any']}	
+						by : {name: 'By', icon: 'og-by', type: 'string', input: 'text', operators: ['contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+						description : {name: 'Description', icon: 'description', type: 'string', input: 'text', operators: ['contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+						//length : {name: 'Length', icon: 'og-length', type: 'string', input: 'text', operators: ['contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+						location : {name: 'Location', icon: 'location', type: 'string', input: 'text', operators: ['contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+						photos : {name: 'Photos', icon: 'photos', type: 'string', input: 'text', operators: ['contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+						title : {name: 'Title', type: 'string', input: 'text', operators: ['contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+						type : {name: 'Type', type: 'string', input: 'text', operators: ['contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']}
 					}
 				},
-				likes : {
-					name: 'Likes',
+				source : {name: 'Source',type: 'string', input: 'text', operators: ['contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				'to-ids' : {name: 'To IDs', type: 'string', input: 'text', operators: ['contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				'to-names' : {name: 'To Names', type: 'string', input: 'text', operators: ['contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				type : {name: 'Type', type: 'string', input: 'text', operators: ['contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']}
+			}
+		},
+
+		// myspace
+		myspace : {
+			name : 'MySpace',
+			fields : {
+				author : {
+					name : 'Author',
+					icon : 'user',
 					fields : {
-						names : {name: 'Names', type: 'string', input: 'text', operators: ['contains', 'substr', 'contains_any', 'in']},
-						count : {name: 'Count', type: 'int', input: 'text', operators: ['different', 'equals', 'greaterThan', 'lowerThan']}
+						avatar : {name: 'Avatar', type: 'string', input: 'text', operators: ['contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+						id : {name: 'ID', icon: 'user-id', type: 'string', input: 'text', operators: ['contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+						link : {name: 'Link', type: 'string', input: 'text', operators: ['contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+						name : {name: 'Name', icon: 'fullname', type: 'string', input: 'text', operators: ['contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+						username : {name: 'User Name', type: 'string', input: 'text', operators: ['contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']}
 					}
-				}
-			}
-		},
-
-		// blog
-		blog : {
-			name : 'Blog',
-			fields : {
-				content : {name: 'Content', type: 'string', input: 'text', operators: ['contains', 'substr', 'contains_any']}
-			}
-		},
-
-		// board
-		board : {
-			name : 'Discussion Board',
-			fields : {
-				content : {name: 'Content', type: 'string', input: 'text', operators: ['contains', 'substr', 'contains_any']}
+				},
+				category : {name: 'Category', type: 'string', input: 'text', operators: ['contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				content : {name: 'Content', type: 'string', input: 'text', operators: ['contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				contenttype : {name: 'Content Type', icon: 'type', type: 'string', input: 'text', operators: ['contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				geo : {name: 'Location', type: 'geo', input: ['geo_box', 'geo_radius', 'geo_polygon', 'geo_text'], operators: ['geo_box', 'geo_radius', 'geo_polygon']},
+				link : {name: 'Link', type: 'string', input: 'text', operators: ['contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				verb : {name: 'Verb', type: 'string', input: 'text', operators: ['contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']}
 			}
 		}
+
 	},
 
 	// some additional definition of the possible operators
@@ -176,3 +254,7 @@ var JCSDLConfig = {
 	}
 
 };
+
+JCSDLConfig.targets.twitter.fields.retweet.fields.user = JCSDLConfig.targets.twitter.fields.user;
+JCSDLConfig.targets.twitter.fields.retweeted.fields.place = JCSDLConfig.targets.twitter.fields.place;
+JCSDLConfig.targets.twitter.fields.retweeted.fields.user = JCSDLConfig.targets.twitter.fields.user;
