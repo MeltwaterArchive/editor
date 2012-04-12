@@ -327,7 +327,7 @@ $selectSprite : 'img/select.png';
 	}
 
 	.jcsdl-carousel-scroll {
-		float: left; margin: 0 5px;
+		float: left; margin: 0 10px;
 		display: block; width: 29px; height: 29px;
 		line-height: 29px; text-align: center;
 		background: transparent url($elementsSprite) no-repeat -56px -89px;
@@ -367,7 +367,7 @@ $selectSprite : 'img/select.png';
 	 * ICONS
 	 */
 	.jcsdl-icon.target {
-		background: url('img/icons-sprite-targets.png') no-repeat 0 0;
+		background: url('img/icons-sprite-targets.png?2') no-repeat 0 0;
 
 		&.target-interaction {background-position: 0 0; &.selected {background-position: 0 -110px;}}
 		&.target-facebook {background-position: -110px 0; &.selected {background-position: -110px -110px;}}
@@ -380,7 +380,7 @@ $selectSprite : 'img/select.png';
 	}
 
 	.jcsdl-icon.field {
-		background: url('img/icons-sprite-fields.png?1') no-repeat 0 0;
+		background: url('img/icons-sprite-fields.png?2') no-repeat 0 0;
 
 		/* empty icons */
 		&.icon-comment,
@@ -418,49 +418,49 @@ $selectSprite : 'img/select.png';
 			&.selected {color: $color;}
 		}
 
-		&.icon-geo {background-position: 0 0; &.selected {background-position: 0 0;}}
-		&.icon-link {background-position: -160px 0; &.selected {background-position: -240px 0;}}
-		&.icon-sample {background-position: -320px 0; &.selected {background-position: -400px 0;}}
-		&.icon-title {background-position: -480px 0; &.selected {background-position: -560px 0;}}
-		&.icon-content {background-position: -640px 0; &.selected {background-position: -720px 0;}}
-		&.icon-source {background-position: -160px -80px; &.selected {background-position: -240px -80px;}}
-		&.icon-type {background-position: -320px -80px; &.selected {background-position: -400px -80;}}
-		&.icon-avatar {background-position: -480px -80px; &.selected {background-position: -560px -80px;}}
+		&.icon-geo			{background-position: 0 0; 				&.selected {background-position: -80px 0;}}
+		&.icon-link 		{background-position: -160px 0; 		&.selected {background-position: -240px 0;}}
+		&.icon-sample 		{background-position: -320px 0; 		&.selected {background-position: -400px 0;}}
+		&.icon-title 		{background-position: -480px 0; 		&.selected {background-position: -560px 0;}}
+		&.icon-content 		{background-position: -640px 0; 		&.selected {background-position: -720px 0;}}
+		&.icon-source 		{background-position: -160px -80px; 	&.selected {background-position: -240px -80px;}}
+		&.icon-type 		{background-position: -320px -80px; 	&.selected {background-position: -400px -80px;}}
+		&.icon-avatar 		{background-position: -480px -80px; 	&.selected {background-position: -560px -80px;}}
 		&.icon-author-username, &.icon-username {background-position: -160px -160px; &.selected {background-position: -240px -160px;}}
-		&.icon-username {background-position: -160px -160px; &.selected {background-position: -240px -160px;}}
-		&.icon-topic {background-position: -320px -320px; &.selected {background-position: -400px -320px;}}
-		&.icon-language {background-position: -480px -320px; &.selected {background-position: -560px -320px;}}
-		&.icon-amplification {background-position: -480px -400px; &.selected {background-position: -560px -400px;}}
-		&.icon-network {background-position: 0px -480px; &.selected {background-position: -80px -480px;}}
-		&.icon-score {background-position: -160px -480px; &.selected {background-position: -240px -480px;}}
-		&.icon-truereach {background-position: -320px -480px; &.selected {background-position: -400px -480px;}}
-		&.icon-trends {background-position: -480px -480px; &.selected {background-position: -560px -480px;}}
-		&.icon-age {background-position: -640px -560px; &.selected {background-position: -720px -560px;}}
-		&.icon-url {background-position: -160px -640px; &.selected {background-position: -240px -640px;}}
-		&.icon-retweet-count {background-position: -320px -640px; &.selected {background-position: -400px -640px;}}
-		&.icon-gender {background-position: -480px -640px; &.selected {background-position: -560px -640px;}}
-		&.icon-tweet {background-position: -640px -720px; &.selected {background-position: -720px -720px;}}
-		&.icon-place {background-position: -160px -800px; &.selected {background-position: -240px -800px;}}
-		&.icon-retweet {background-position: -320px -800px; &.selected {background-position: -400px -800px;}}
-		&.icon-retweeted {background-position: -480px -800px; &.selected {background-position: -560px -800px;}}
-		&.icon-mentions {background-position: -640px -800px; &.selected {background-position: -720px -800px;}}
-		&.icon-inreply {background-position: 0 -880px; &.selected {background-position: -80px -880px;}}
-		&.icon-count {background-position: -160px -880px; &.selected {background-position: -240px -880px;}}
-		&.icon-ratio {background-position: -320px -880px; &.selected {background-position: -400px -880px;}}
-		&.icon-user-id {background-position: -480px -880px; &.selected {background-position: -560px -880px;}}
-		&.icon-placeattrs {background-position: -640px -880px; &.selected {background-position: -720px -880px;}}
-		&.icon-country {background-position: 0 -960px; &.selected {background-position: -80px -960px;}}
-		&.icon-elapsed {background-position: -640px -960px; &.selected {background-position: -720px -960px;}}
-		&.icon-buries {background-position: 0 -1040px; &.selected {background-position: -80px -1040px;}}
-		&.icon-diggs {background-position: -160px -1040px; &.selected {background-position: -240px -1040px;}}
-		&.icon-status {background-position: -320px -1040px; &.selected {background-position: -400px -1040px;}}
-		&.icon-profileviews {background-position: 0 -1120px; &.selected {background-position: -80px -1120px;}}
-		&.icon-verb {background-position: -480px -1120px; &.selected {background-position: -560px -1120px;}}
-		&.icon-application {background-position: -640px -1120px; &.selected {background-position: -720px -1120px;}}
-		&.icon-caption {background-position: 0 -1200px; &.selected {background-position: -80px -1200px;}}
-		&.icon-likes-count {background-position: -160px -1200px; &.selected {background-position: -240px -1200px;}}
-		&.icon-og-by {background-position: -320px -1200px; &.selected {background-position: -400px -1200px;}}
-		&.icon-message {background-position: -640px -1200px; &.selected {background-position: -720px -1200px;}}
+		&.icon-username 	{background-position: -160px -160px; 	&.selected {background-position: -240px -160px;}}
+		&.icon-topic 		{background-position: -320px -320px; 	&.selected {background-position: -400px -320px;}}
+		&.icon-language 	{background-position: -480px -320px; 	&.selected {background-position: -560px -320px;}}
+		&.icon-amplification {background-position: -480px -400px; 	&.selected {background-position: -560px -400px;}}
+		&.icon-network 		{background-position: 0 -480px; 		&.selected {background-position: -80px -480px;}}
+		&.icon-score 		{background-position: -160px -480px; 	&.selected {background-position: -240px -480px;}}
+		&.icon-truereach 	{background-position: -320px -480px; 	&.selected {background-position: -400px -480px;}}
+		&.icon-trends 		{background-position: -480px -480px; 	&.selected {background-position: -560px -480px;}}
+		&.icon-age 			{background-position: -640px -560px; 	&.selected {background-position: -720px -560px;}}
+		&.icon-url 			{background-position: -160px -640px; 	&.selected {background-position: -240px -640px;}}
+		&.icon-retweet-count {background-position: -320px -640px; 	&.selected {background-position: -400px -640px;}}
+		&.icon-gender 		{background-position: -480px -640px; 	&.selected {background-position: -560px -640px;}}
+		&.icon-tweet 		{background-position: -640px -720px; 	&.selected {background-position: -720px -720px;}}
+		&.icon-place 		{background-position: -160px -800px; 	&.selected {background-position: -240px -800px;}}
+		&.icon-retweet 		{background-position: -320px -800px; 	&.selected {background-position: -400px -800px;}}
+		&.icon-retweeted 	{background-position: -480px -800px; 	&.selected {background-position: -560px -800px;}}
+		&.icon-mentions 	{background-position: -640px -800px; 	&.selected {background-position: -720px -800px;}}
+		&.icon-inreply 		{background-position: 0 -880px; 		&.selected {background-position: -80px -880px;}}
+		&.icon-count 		{background-position: -160px -880px; 	&.selected {background-position: -240px -880px;}}
+		&.icon-ratio 		{background-position: -320px -880px; 	&.selected {background-position: -400px -880px;}}
+		&.icon-user-id 		{background-position: -480px -880px; 	&.selected {background-position: -560px -880px;}}
+		&.icon-placeattrs 	{background-position: -640px -880px; 	&.selected {background-position: -720px -880px;}}
+		&.icon-country 		{background-position: 0 -960px; 		&.selected {background-position: -80px -960px;}}
+		&.icon-elapsed 		{background-position: -640px -960px; 	&.selected {background-position: -720px -960px;}}
+		&.icon-buries 		{background-position: 0 -1040px; 		&.selected {background-position: -80px -1040px;}}
+		&.icon-diggs 		{background-position: -160px -1040px; 	&.selected {background-position: -240px -1040px;}}
+		&.icon-status 		{background-position: -320px -1040px; 	&.selected {background-position: -400px -1040px;}}
+		&.icon-profileviews {background-position: 0 -1120px; 		&.selected {background-position: -80px -1120px;}}
+		&.icon-verb 		{background-position: -480px -1120px; 	&.selected {background-position: -560px -1120px;}}
+		&.icon-application 	{background-position: -640px -1120px; 	&.selected {background-position: -720px -1120px;}}
+		&.icon-caption 		{background-position: 0 -1200px; 		&.selected {background-position: -80px -1200px;}}
+		&.icon-likes-count 	{background-position: -160px -1200px; 	&.selected {background-position: -240px -1200px;}}
+		&.icon-og-by 		{background-position: -320px -1200px; 	&.selected {background-position: -400px -1200px;}}
+		&.icon-message 		{background-position: -640px -1200px; 	&.selected {background-position: -720px -1200px;}}
 	}
 
 }

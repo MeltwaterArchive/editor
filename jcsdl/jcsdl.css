@@ -336,7 +336,7 @@
     margin: 0 auto; }
   .jcsdl-container .jcsdl-carousel-scroll {
     float: left;
-    margin: 0 5px;
+    margin: 0 10px;
     display: block;
     width: 29px;
     height: 29px;
@@ -383,7 +383,7 @@
       float: left;
       margin: 0 5px; }
   .jcsdl-container .jcsdl-icon.target {
-    background: url("img/icons-sprite-targets.png") no-repeat 0 0; }
+    background: url("img/icons-sprite-targets.png?2") no-repeat 0 0; }
     .jcsdl-container .jcsdl-icon.target.target-interaction {
       background-position: 0 0; }
       .jcsdl-container .jcsdl-icon.target.target-interaction.selected {
@@ -409,7 +409,7 @@
       .jcsdl-container .jcsdl-icon.target.target-klout.selected {
         background-position: -550px -110px; }
   .jcsdl-container .jcsdl-icon.field {
-    background: url("img/icons-sprite-fields.png?1") no-repeat 0 0;
+    background: url("img/icons-sprite-fields.png?2") no-repeat 0 0;
     /* empty icons */ }
     .jcsdl-container .jcsdl-icon.field.icon-comment, .jcsdl-container .jcsdl-icon.field.icon-comments-count, .jcsdl-container .jcsdl-icon.field.icon-description, .jcsdl-container .jcsdl-icon.field.icon-user, .jcsdl-container .jcsdl-icon.field.icon-fullname, .jcsdl-container .jcsdl-icon.field.icon-registered, .jcsdl-container .jcsdl-icon.field.icon-domains, .jcsdl-container .jcsdl-icon.field.icon-user-description, .jcsdl-container .jcsdl-icon.field.icon-followers_count, .jcsdl-container .jcsdl-icon.field.icon-follower_ratio, .jcsdl-container .jcsdl-icon.field.icon-friends_count, .jcsdl-container .jcsdl-icon.field.icon-listed_count, .jcsdl-container .jcsdl-icon.field.icon-location, .jcsdl-container .jcsdl-icon.field.icon-screen_name, .jcsdl-container .jcsdl-icon.field.icon-statuses_count, .jcsdl-container .jcsdl-icon.field.icon-time_zone, .jcsdl-container .jcsdl-icon.field.icon-country_code, .jcsdl-container .jcsdl-icon.field.icon-placename, .jcsdl-container .jcsdl-icon.field.icon-id, .jcsdl-container .jcsdl-icon.field.icon-likes-ids, .jcsdl-container .jcsdl-icon.field.icon-likes-names, .jcsdl-container .jcsdl-icon.field.icon-opengraph, .jcsdl-container .jcsdl-icon.field.icon-photos, .jcsdl-container .jcsdl-icon.field.icon-to-ids, .jcsdl-container .jcsdl-icon.field.icon-to-names, .jcsdl-container .jcsdl-icon.field.icon-category, .jcsdl-container .jcsdl-icon.field.icon-time_zone {
       padding-top: 30px;
@@ -423,7 +423,7 @@
     .jcsdl-container .jcsdl-icon.field.icon-geo {
       background-position: 0 0; }
       .jcsdl-container .jcsdl-icon.field.icon-geo.selected {
-        background-position: 0 0; }
+        background-position: -80px 0; }
     .jcsdl-container .jcsdl-icon.field.icon-link {
       background-position: -160px 0; }
       .jcsdl-container .jcsdl-icon.field.icon-link.selected {
@@ -447,7 +447,7 @@
     .jcsdl-container .jcsdl-icon.field.icon-type {
       background-position: -320px -80px; }
       .jcsdl-container .jcsdl-icon.field.icon-type.selected {
-        background-position: -400px -80; }
+        background-position: -400px -80px; }
     .jcsdl-container .jcsdl-icon.field.icon-avatar {
       background-position: -480px -80px; }
       .jcsdl-container .jcsdl-icon.field.icon-avatar.selected {
@@ -473,7 +473,7 @@
       .jcsdl-container .jcsdl-icon.field.icon-amplification.selected {
         background-position: -560px -400px; }
     .jcsdl-container .jcsdl-icon.field.icon-network {
-      background-position: 0px -480px; }
+      background-position: 0 -480px; }
       .jcsdl-container .jcsdl-icon.field.icon-network.selected {
         background-position: -80px -480px; }
     .jcsdl-container .jcsdl-icon.field.icon-score {
