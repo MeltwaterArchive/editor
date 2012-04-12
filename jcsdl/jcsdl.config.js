@@ -12,7 +12,7 @@ var JCSDLConfig = {
 						buries : {name: 'Buries', type: 'int', input: 'number', operators: ['equals', 'different', 'greaterThan', 'lowerThan']},
 						diggs : {name: 'Diggs', type: 'int', input: 'number', operators: ['equals', 'different', 'greaterThan', 'lowerThan']},
 						text : {name: 'Text', icon: 'content', type: 'string', input: 'text', operators: ['contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']}
-					},
+					}
 				},
 				'item-comments' : {name: 'Comments Count', icon: 'comments-count', type: 'int', input: 'number', operators: ['equals', 'different', 'greaterThan', 'lowerThan']},
 				'item-description' : {name: 'Description', icon: 'description', type: 'string', input: 'text', operators: ['contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
