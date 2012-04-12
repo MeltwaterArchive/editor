@@ -381,7 +381,7 @@ $selectSprite : 'img/select.png';
 	}
 
 	.jcsdl-icon.field {
-		background: url('img/icons-sprite-fields.png') no-repeat 0 0;
+		background: url('img/icons-sprite-fields.png?1') no-repeat 0 0;
 
 		&.field-geo {background-position: 0 0; &.selected {background-position: 0 0;}}
 		&.field-link {background-position: -160px 0; &.selected {background-position: -240px 0;}}

@@ -411,7 +411,7 @@
       .jcsdl-container .jcsdl-icon.target.target-klout.selected {
         background-position: -550px -110px; }
   .jcsdl-container .jcsdl-icon.field {
-    background: url("img/icons-sprite-fields.png") no-repeat 0 0; }
+    background: url("img/icons-sprite-fields.png?1") no-repeat 0 0; }
     .jcsdl-container .jcsdl-icon.field.field-geo {
       background-position: 0 0; }
       .jcsdl-container .jcsdl-icon.field.field-geo.selected {
