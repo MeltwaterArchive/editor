@@ -367,7 +367,7 @@ $selectSprite : 'img/select.png';
 	 * ICONS
 	 */
 	.jcsdl-icon.target {
-		background: url('img/icons-sprite-targets.png?2') no-repeat 0 0;
+		background: url('img/icons-sprite-targets.png?3') no-repeat 0 0;
 
 		&.target-interaction {background-position: 0 0; &.selected {background-position: 0 -110px;}}
 		&.target-facebook {background-position: -110px 0; &.selected {background-position: -110px -110px;}}
@@ -380,62 +380,50 @@ $selectSprite : 'img/select.png';
 	}
 
 	.jcsdl-icon.field {
-		background: url('img/icons-sprite-fields.png?2') no-repeat 0 0;
-
-		/* empty icons */
-		&.icon-comment,
-		&.icon-comments-count,
-		&.icon-description,
-		&.icon-user,
-		&.icon-fullname,
-		&.icon-registered,
-		&.icon-domains,
-		&.icon-user-description,
-		&.icon-followers_count,
-		&.icon-follower_ratio,
-		&.icon-friends_count,
-		&.icon-listed_count,
-		&.icon-location,
-		&.icon-screen_name,
-		&.icon-statuses_count,
-		&.icon-time_zone,
-		&.icon-country_code,
-		&.icon-placename,
-		&.icon-id,
-		&.icon-likes-ids,
-		&.icon-likes-names,
-		&.icon-opengraph,
-		&.icon-photos,
-		&.icon-to-ids,
-		&.icon-to-names,
-		&.icon-category,
-		&.icon-time_zone {
-			padding-top: 30px; height: 50px;
-			background-position: 200px 200px;
-			text-indent: 0; color: black;
-			text-align: center;
-
-			&.selected {color: $color;}
-		}
+		background: url('img/icons-sprite-fields.png?3') no-repeat 0 0;
 
 		&.icon-geo			{background-position: 0 0; 				&.selected {background-position: -80px 0;}}
 		&.icon-link 		{background-position: -160px 0; 		&.selected {background-position: -240px 0;}}
 		&.icon-sample 		{background-position: -320px 0; 		&.selected {background-position: -400px 0;}}
 		&.icon-title 		{background-position: -480px 0; 		&.selected {background-position: -560px 0;}}
 		&.icon-content 		{background-position: -640px 0; 		&.selected {background-position: -720px 0;}}
+		&.icon-description 	{background-position: 0 -80px; 			&.selected {background-position: -80px -80px;}}
 		&.icon-source 		{background-position: -160px -80px; 	&.selected {background-position: -240px -80px;}}
 		&.icon-type 		{background-position: -320px -80px; 	&.selected {background-position: -400px -80px;}}
 		&.icon-avatar 		{background-position: -480px -80px; 	&.selected {background-position: -560px -80px;}}
+		&.icon-comment 		{background-position: -640px -80px;		&.selected {background-position: -720px -80px;}}
+		&.icon-comments-count {background-position: 0 -160px;		&.selected {background-position: -80px -160px;}}
 		&.icon-author-username, &.icon-username {background-position: -160px -160px; &.selected {background-position: -240px -160px;}}
 		&.icon-username 	{background-position: -160px -160px; 	&.selected {background-position: -240px -160px;}}
+		&.icon-user 		{background-position: -320px -160px;	&.selected {background-position: -400px -160px;}}
+		&.icon-fullname 	{background-position: -480px -160px;	&.selected {background-position: -560px -160px;}}
+		&.icon-registered	{background-position: -640px -160px;	&.selected {background-position: -720px -160px;}}
+		&.icon-user-description {background-position: 0 -240px;		&.selected {background-position: -80px -240px;}}
+		&.icon-followers_count	{background-position: -160px -240px;		&.selected {background-position: -240px -240px;}}
+		&.icon-follower_ratio	{background-position: -320px -240px;		&.selected {background-position: -400px -240px;}}
+		&.icon-friends_count	{background-position: -480px -240px;		&.selected {background-position: -560px -240px;}}
+		&.icon-location 	{background-position: -640px -240px;	&.selected {background-position: -720px -240px;}}
+		&.icon-screen_name	{background-position: 0 -320px;			&.selected {background-position: -80px -320px;}}
+		&.icon-domains 		{background-position: -160px -320px;	&.selected {background-position: -240px -320px;}}
 		&.icon-topic 		{background-position: -320px -320px; 	&.selected {background-position: -400px -320px;}}
 		&.icon-language 	{background-position: -480px -320px; 	&.selected {background-position: -560px -320px;}}
+		&.icon-statuses_count {background-position: -640px -320px;	&.selected {background-position: -720px -320px;}}
+		&.icon-time_zone 	{background-position: 0 -400px;			&.selected {background-position: -80px -400px;}}
+		&.icon-placename 	{background-position: -160px -400px;	&.selected {background-position: -240px -400px;}}
+		&.icon-id 			{background-position: -320px -400px;	&.selected {background-position: -400px -400px;}}
 		&.icon-amplification {background-position: -480px -400px; 	&.selected {background-position: -560px -400px;}}
+		&.icon-listed_count {background-position: -640px -400px;	&.selected {background-position: -720px -400px;}}
 		&.icon-network 		{background-position: 0 -480px; 		&.selected {background-position: -80px -480px;}}
 		&.icon-score 		{background-position: -160px -480px; 	&.selected {background-position: -240px -480px;}}
 		&.icon-truereach 	{background-position: -320px -480px; 	&.selected {background-position: -400px -480px;}}
 		&.icon-trends 		{background-position: -480px -480px; 	&.selected {background-position: -560px -480px;}}
+		&.icon-country_code {background-position: -640px -480px;	&.selected {background-position: -720px -480px;}}
+		&.icon-likes-ids	{background-position: 0 -560px;			&.selected {background-position: -80px -560px;}}
+		&.icon-likes-names	{background-position: -160px -560px;	&.selected {background-position: -240px -560px;}}
+		&.icon-to-ids		{background-position: -320px -560px;	&.selected {background-position: -400px -560px;}}
+		&.icon-to-names		{background-position: -480px -560px;	&.selected {background-position: -560px -560px;}}
 		&.icon-age 			{background-position: -640px -560px; 	&.selected {background-position: -720px -560px;}}
+		&.icon-category		{background-position: 0 -640px;			&.selected {background-position: -80px -640px;}}
 		&.icon-url 			{background-position: -160px -640px; 	&.selected {background-position: -240px -640px;}}
 		&.icon-retweet-count {background-position: -320px -640px; 	&.selected {background-position: -400px -640px;}}
 		&.icon-gender 		{background-position: -480px -640px; 	&.selected {background-position: -560px -640px;}}
@@ -455,11 +443,13 @@ $selectSprite : 'img/select.png';
 		&.icon-diggs 		{background-position: -160px -1040px; 	&.selected {background-position: -240px -1040px;}}
 		&.icon-status 		{background-position: -320px -1040px; 	&.selected {background-position: -400px -1040px;}}
 		&.icon-profileviews {background-position: 0 -1120px; 		&.selected {background-position: -80px -1120px;}}
+		&.icon-photos 		{background-position: -160px -1120px;	&.selected {background-position: -240px -1120px;}}
 		&.icon-verb 		{background-position: -480px -1120px; 	&.selected {background-position: -560px -1120px;}}
 		&.icon-application 	{background-position: -640px -1120px; 	&.selected {background-position: -720px -1120px;}}
 		&.icon-caption 		{background-position: 0 -1200px; 		&.selected {background-position: -80px -1200px;}}
 		&.icon-likes-count 	{background-position: -160px -1200px; 	&.selected {background-position: -240px -1200px;}}
 		&.icon-og-by 		{background-position: -320px -1200px; 	&.selected {background-position: -400px -1200px;}}
+		&.icon-opengraph 	{background-position: -480px -1200px;	&.selected {background-position: -560px -1200px;}}
 		&.icon-message 		{background-position: -640px -1200px; 	&.selected {background-position: -720px -1200px;}}
 	}
 

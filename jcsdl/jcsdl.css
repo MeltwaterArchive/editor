@@ -383,7 +383,7 @@
       float: left;
       margin: 0 5px; }
   .jcsdl-container .jcsdl-icon.target {
-    background: url("img/icons-sprite-targets.png?2") no-repeat 0 0; }
+    background: url("img/icons-sprite-targets.png?3") no-repeat 0 0; }
     .jcsdl-container .jcsdl-icon.target.target-interaction {
       background-position: 0 0; }
       .jcsdl-container .jcsdl-icon.target.target-interaction.selected {
@@ -409,17 +409,7 @@
       .jcsdl-container .jcsdl-icon.target.target-klout.selected {
         background-position: -550px -110px; }
   .jcsdl-container .jcsdl-icon.field {
-    background: url("img/icons-sprite-fields.png?2") no-repeat 0 0;
-    /* empty icons */ }
-    .jcsdl-container .jcsdl-icon.field.icon-comment, .jcsdl-container .jcsdl-icon.field.icon-comments-count, .jcsdl-container .jcsdl-icon.field.icon-description, .jcsdl-container .jcsdl-icon.field.icon-user, .jcsdl-container .jcsdl-icon.field.icon-fullname, .jcsdl-container .jcsdl-icon.field.icon-registered, .jcsdl-container .jcsdl-icon.field.icon-domains, .jcsdl-container .jcsdl-icon.field.icon-user-description, .jcsdl-container .jcsdl-icon.field.icon-followers_count, .jcsdl-container .jcsdl-icon.field.icon-follower_ratio, .jcsdl-container .jcsdl-icon.field.icon-friends_count, .jcsdl-container .jcsdl-icon.field.icon-listed_count, .jcsdl-container .jcsdl-icon.field.icon-location, .jcsdl-container .jcsdl-icon.field.icon-screen_name, .jcsdl-container .jcsdl-icon.field.icon-statuses_count, .jcsdl-container .jcsdl-icon.field.icon-time_zone, .jcsdl-container .jcsdl-icon.field.icon-country_code, .jcsdl-container .jcsdl-icon.field.icon-placename, .jcsdl-container .jcsdl-icon.field.icon-id, .jcsdl-container .jcsdl-icon.field.icon-likes-ids, .jcsdl-container .jcsdl-icon.field.icon-likes-names, .jcsdl-container .jcsdl-icon.field.icon-opengraph, .jcsdl-container .jcsdl-icon.field.icon-photos, .jcsdl-container .jcsdl-icon.field.icon-to-ids, .jcsdl-container .jcsdl-icon.field.icon-to-names, .jcsdl-container .jcsdl-icon.field.icon-category, .jcsdl-container .jcsdl-icon.field.icon-time_zone {
-      padding-top: 30px;
-      height: 50px;
-      background-position: 200px 200px;
-      text-indent: 0;
-      color: black;
-      text-align: center; }
-      .jcsdl-container .jcsdl-icon.field.icon-comment.selected, .jcsdl-container .jcsdl-icon.field.icon-comments-count.selected, .jcsdl-container .jcsdl-icon.field.icon-description.selected, .jcsdl-container .jcsdl-icon.field.icon-user.selected, .jcsdl-container .jcsdl-icon.field.icon-fullname.selected, .jcsdl-container .jcsdl-icon.field.icon-registered.selected, .jcsdl-container .jcsdl-icon.field.icon-domains.selected, .jcsdl-container .jcsdl-icon.field.icon-user-description.selected, .jcsdl-container .jcsdl-icon.field.icon-followers_count.selected, .jcsdl-container .jcsdl-icon.field.icon-follower_ratio.selected, .jcsdl-container .jcsdl-icon.field.icon-friends_count.selected, .jcsdl-container .jcsdl-icon.field.icon-listed_count.selected, .jcsdl-container .jcsdl-icon.field.icon-location.selected, .jcsdl-container .jcsdl-icon.field.icon-screen_name.selected, .jcsdl-container .jcsdl-icon.field.icon-statuses_count.selected, .jcsdl-container .jcsdl-icon.field.icon-time_zone.selected, .jcsdl-container .jcsdl-icon.field.icon-country_code.selected, .jcsdl-container .jcsdl-icon.field.icon-placename.selected, .jcsdl-container .jcsdl-icon.field.icon-id.selected, .jcsdl-container .jcsdl-icon.field.icon-likes-ids.selected, .jcsdl-container .jcsdl-icon.field.icon-likes-names.selected, .jcsdl-container .jcsdl-icon.field.icon-opengraph.selected, .jcsdl-container .jcsdl-icon.field.icon-photos.selected, .jcsdl-container .jcsdl-icon.field.icon-to-ids.selected, .jcsdl-container .jcsdl-icon.field.icon-to-names.selected, .jcsdl-container .jcsdl-icon.field.icon-category.selected, .jcsdl-container .jcsdl-icon.field.icon-time_zone.selected {
-        color: #376491; }
+    background: url("img/icons-sprite-fields.png?3") no-repeat 0 0; }
     .jcsdl-container .jcsdl-icon.field.icon-geo {
       background-position: 0 0; }
       .jcsdl-container .jcsdl-icon.field.icon-geo.selected {
@@ -440,6 +430,10 @@
       background-position: -640px 0; }
       .jcsdl-container .jcsdl-icon.field.icon-content.selected {
         background-position: -720px 0; }
+    .jcsdl-container .jcsdl-icon.field.icon-description {
+      background-position: 0 -80px; }
+      .jcsdl-container .jcsdl-icon.field.icon-description.selected {
+        background-position: -80px -80px; }
     .jcsdl-container .jcsdl-icon.field.icon-source {
       background-position: -160px -80px; }
       .jcsdl-container .jcsdl-icon.field.icon-source.selected {
@@ -452,6 +446,14 @@
       background-position: -480px -80px; }
       .jcsdl-container .jcsdl-icon.field.icon-avatar.selected {
         background-position: -560px -80px; }
+    .jcsdl-container .jcsdl-icon.field.icon-comment {
+      background-position: -640px -80px; }
+      .jcsdl-container .jcsdl-icon.field.icon-comment.selected {
+        background-position: -720px -80px; }
+    .jcsdl-container .jcsdl-icon.field.icon-comments-count {
+      background-position: 0 -160px; }
+      .jcsdl-container .jcsdl-icon.field.icon-comments-count.selected {
+        background-position: -80px -160px; }
     .jcsdl-container .jcsdl-icon.field.icon-author-username, .jcsdl-container .jcsdl-icon.field.icon-username {
       background-position: -160px -160px; }
       .jcsdl-container .jcsdl-icon.field.icon-author-username.selected, .jcsdl-container .jcsdl-icon.field.icon-username.selected {
@@ -460,6 +462,46 @@
       background-position: -160px -160px; }
       .jcsdl-container .jcsdl-icon.field.icon-username.selected {
         background-position: -240px -160px; }
+    .jcsdl-container .jcsdl-icon.field.icon-user {
+      background-position: -320px -160px; }
+      .jcsdl-container .jcsdl-icon.field.icon-user.selected {
+        background-position: -400px -160px; }
+    .jcsdl-container .jcsdl-icon.field.icon-fullname {
+      background-position: -480px -160px; }
+      .jcsdl-container .jcsdl-icon.field.icon-fullname.selected {
+        background-position: -560px -160px; }
+    .jcsdl-container .jcsdl-icon.field.icon-registered {
+      background-position: -640px -160px; }
+      .jcsdl-container .jcsdl-icon.field.icon-registered.selected {
+        background-position: -720px -160px; }
+    .jcsdl-container .jcsdl-icon.field.icon-user-description {
+      background-position: 0 -240px; }
+      .jcsdl-container .jcsdl-icon.field.icon-user-description.selected {
+        background-position: -80px -240px; }
+    .jcsdl-container .jcsdl-icon.field.icon-followers_count {
+      background-position: -160px -240px; }
+      .jcsdl-container .jcsdl-icon.field.icon-followers_count.selected {
+        background-position: -240px -240px; }
+    .jcsdl-container .jcsdl-icon.field.icon-follower_ratio {
+      background-position: -320px -240px; }
+      .jcsdl-container .jcsdl-icon.field.icon-follower_ratio.selected {
+        background-position: -400px -240px; }
+    .jcsdl-container .jcsdl-icon.field.icon-friends_count {
+      background-position: -480px -240px; }
+      .jcsdl-container .jcsdl-icon.field.icon-friends_count.selected {
+        background-position: -560px -240px; }
+    .jcsdl-container .jcsdl-icon.field.icon-location {
+      background-position: -640px -240px; }
+      .jcsdl-container .jcsdl-icon.field.icon-location.selected {
+        background-position: -720px -240px; }
+    .jcsdl-container .jcsdl-icon.field.icon-screen_name {
+      background-position: 0 -320px; }
+      .jcsdl-container .jcsdl-icon.field.icon-screen_name.selected {
+        background-position: -80px -320px; }
+    .jcsdl-container .jcsdl-icon.field.icon-domains {
+      background-position: -160px -320px; }
+      .jcsdl-container .jcsdl-icon.field.icon-domains.selected {
+        background-position: -240px -320px; }
     .jcsdl-container .jcsdl-icon.field.icon-topic {
       background-position: -320px -320px; }
       .jcsdl-container .jcsdl-icon.field.icon-topic.selected {
@@ -468,10 +510,30 @@
       background-position: -480px -320px; }
       .jcsdl-container .jcsdl-icon.field.icon-language.selected {
         background-position: -560px -320px; }
+    .jcsdl-container .jcsdl-icon.field.icon-statuses_count {
+      background-position: -640px -320px; }
+      .jcsdl-container .jcsdl-icon.field.icon-statuses_count.selected {
+        background-position: -720px -320px; }
+    .jcsdl-container .jcsdl-icon.field.icon-time_zone {
+      background-position: 0 -400px; }
+      .jcsdl-container .jcsdl-icon.field.icon-time_zone.selected {
+        background-position: -80px -400px; }
+    .jcsdl-container .jcsdl-icon.field.icon-placename {
+      background-position: -160px -400px; }
+      .jcsdl-container .jcsdl-icon.field.icon-placename.selected {
+        background-position: -240px -400px; }
+    .jcsdl-container .jcsdl-icon.field.icon-id {
+      background-position: -320px -400px; }
+      .jcsdl-container .jcsdl-icon.field.icon-id.selected {
+        background-position: -400px -400px; }
     .jcsdl-container .jcsdl-icon.field.icon-amplification {
       background-position: -480px -400px; }
       .jcsdl-container .jcsdl-icon.field.icon-amplification.selected {
         background-position: -560px -400px; }
+    .jcsdl-container .jcsdl-icon.field.icon-listed_count {
+      background-position: -640px -400px; }
+      .jcsdl-container .jcsdl-icon.field.icon-listed_count.selected {
+        background-position: -720px -400px; }
     .jcsdl-container .jcsdl-icon.field.icon-network {
       background-position: 0 -480px; }
       .jcsdl-container .jcsdl-icon.field.icon-network.selected {
@@ -488,10 +550,34 @@
       background-position: -480px -480px; }
       .jcsdl-container .jcsdl-icon.field.icon-trends.selected {
         background-position: -560px -480px; }
+    .jcsdl-container .jcsdl-icon.field.icon-country_code {
+      background-position: -640px -480px; }
+      .jcsdl-container .jcsdl-icon.field.icon-country_code.selected {
+        background-position: -720px -480px; }
+    .jcsdl-container .jcsdl-icon.field.icon-likes-ids {
+      background-position: 0 -560px; }
+      .jcsdl-container .jcsdl-icon.field.icon-likes-ids.selected {
+        background-position: -80px -560px; }
+    .jcsdl-container .jcsdl-icon.field.icon-likes-names {
+      background-position: -160px -560px; }
+      .jcsdl-container .jcsdl-icon.field.icon-likes-names.selected {
+        background-position: -240px -560px; }
+    .jcsdl-container .jcsdl-icon.field.icon-to-ids {
+      background-position: -320px -560px; }
+      .jcsdl-container .jcsdl-icon.field.icon-to-ids.selected {
+        background-position: -400px -560px; }
+    .jcsdl-container .jcsdl-icon.field.icon-to-names {
+      background-position: -480px -560px; }
+      .jcsdl-container .jcsdl-icon.field.icon-to-names.selected {
+        background-position: -560px -560px; }
     .jcsdl-container .jcsdl-icon.field.icon-age {
       background-position: -640px -560px; }
       .jcsdl-container .jcsdl-icon.field.icon-age.selected {
         background-position: -720px -560px; }
+    .jcsdl-container .jcsdl-icon.field.icon-category {
+      background-position: 0 -640px; }
+      .jcsdl-container .jcsdl-icon.field.icon-category.selected {
+        background-position: -80px -640px; }
     .jcsdl-container .jcsdl-icon.field.icon-url {
       background-position: -160px -640px; }
       .jcsdl-container .jcsdl-icon.field.icon-url.selected {
@@ -568,6 +654,10 @@
       background-position: 0 -1120px; }
       .jcsdl-container .jcsdl-icon.field.icon-profileviews.selected {
         background-position: -80px -1120px; }
+    .jcsdl-container .jcsdl-icon.field.icon-photos {
+      background-position: -160px -1120px; }
+      .jcsdl-container .jcsdl-icon.field.icon-photos.selected {
+        background-position: -240px -1120px; }
     .jcsdl-container .jcsdl-icon.field.icon-verb {
       background-position: -480px -1120px; }
       .jcsdl-container .jcsdl-icon.field.icon-verb.selected {
@@ -588,6 +678,10 @@
       background-position: -320px -1200px; }
       .jcsdl-container .jcsdl-icon.field.icon-og-by.selected {
         background-position: -400px -1200px; }
+    .jcsdl-container .jcsdl-icon.field.icon-opengraph {
+      background-position: -480px -1200px; }
+      .jcsdl-container .jcsdl-icon.field.icon-opengraph.selected {
+        background-position: -560px -1200px; }
     .jcsdl-container .jcsdl-icon.field.icon-message {
       background-position: -640px -1200px; }
       .jcsdl-container .jcsdl-icon.field.icon-message.selected {
