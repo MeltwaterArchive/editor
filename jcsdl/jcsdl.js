@@ -239,11 +239,7 @@ var JCSDL = function(gui) {
 			parsedValue = value;
 
 		} else {
-			console.log('valueToCSDL', value);
-			console.log('CSDL: ', value.escapeCsdl());
 			parsedValue = '"' + value.escapeCsdl() + '"';
-			console.log('parsed value', parsedValue);
-			console.log('###########');
 		}
 
 		return parsedValue;
