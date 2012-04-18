@@ -992,10 +992,25 @@ var JCSDLGui = function(el, config) {
 	};
 })(window.jQuery);
 
-String.prototype.escapeHtml = function() {
-	var str = this.valueOf();
-	str = str.replace('&', '&amp;');
-	str = str.replace('<', '&lt;');
-	str = str.replace('>', '&gt;');
-	return str;
-};
+$.extend(String.prototype, {
+	escapeHtml : function() {
+		str = this.valueOf().replace(/&/g, '&amp;');
+		str = str.replace(/</g, '&lt;');
+		str = str.replace(/>/g, '&gt;');
+		str = str.replace(/"/g, '&quot;');
+		return str;
+	},
+	unescapeHtml : function() {
+		str = this.valueOf().replace(/&amp;/g, '&');
+		str = str.replace(/&lt;/g, '<');
+		str = str.replace(/&gt;/g, '>');
+		str = str.replace(/&quot;/g, '"');
+		return str;
+	},
+	escapeCsdl : function() {
+		return this.valueOf().replace(/"/g, '\"');
+	},
+	unescapeCsdl : function() {
+		return this.valueOf().replace(/\"/g, '"');
+	}
+});
