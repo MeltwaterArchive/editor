@@ -239,7 +239,11 @@ var JCSDL = function(gui) {
 			parsedValue = value;
 
 		} else {
-			parsedValue = '"' + value + '"';
+			console.log('valueToCSDL', value);
+			console.log('CSDL: ', value.escapeCsdl());
+			parsedValue = '"' + value.escapeCsdl() + '"';
+			console.log('parsed value', parsedValue);
+			console.log('###########');
 		}
 
 		return parsedValue;
@@ -255,7 +259,7 @@ var JCSDL = function(gui) {
 		if (fieldInfo.type == 'int') {
 			return value;
 		} else {
-			return value;
+			return value.unescapeCsdl();
 		}
 	};
 

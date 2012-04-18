@@ -1008,9 +1008,9 @@ $.extend(String.prototype, {
 		return str;
 	},
 	escapeCsdl : function() {
-		return this.valueOf().replace(/"/g, '\"');
+		return this.valueOf().replace(/"/g, '\\"');
 	},
 	unescapeCsdl : function() {
-		return this.valueOf().replace(/\"/g, '"');
+		return this.valueOf().replace(/\\"/g, '"');
 	}
 });

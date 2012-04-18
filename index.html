@@ -160,6 +160,30 @@ twitter.source contains_any "Twitter for iPhone, Twitter for iPad"
 // JCSDL_END
 // JCSDL_MASTER_END</textarea>
 				</li>
+				<li>
+					<h4>Escaping HTML</h4>
+					<div class="options">
+						<a href="#" class="edit">Edit</a>
+						<a href="#" class="source">View JCSDL Source</a>
+					</div>
+<textarea class="jcsdl-source" style="display: none;">// JCSDL_MASTER 09df1c86ee6bb288e7207d188a3d5391 AND
+// JCSDL_START 6d2bd9055e18c858dda44daa3edc80af digg.item-description,substr,30-59
+digg.item.description substr "some string <div class=\"color: red;\">unescaped html</div>"
+// JCSDL_END
+// JCSDL_MASTER_END</textarea>
+				</li>
+				<li>
+					<h4>Escaping CSDL</h4>
+					<div class="options">
+						<a href="#" class="edit">Edit</a>
+						<a href="#" class="source">View JCSDL Source</a>
+					</div>
+<textarea class="jcsdl-source" style="display: none;">// JCSDL_MASTER b3d5cfb037c036bc38953f54e072b906 OR
+// JCSDL_START 6957798f82935bf4894abe68ebdc03cb digg.item-description,different,26-53
+digg.item.description != "Escaping \"quotes\" in \"JCSDL\" to \"CSDL\" => tests"
+// JCSDL_END
+// JCSDL_MASTER_END</textarea>
+				</li>
 			</ul>
 
 			<div id="jcsdl-edit-wrap" style="display: none;">
