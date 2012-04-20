@@ -319,6 +319,10 @@ var JCSDLGui = function(el, config) {
 				self.didSelectField($(this).data('name'), $view);
 			});
 		}
+		if (stepName == 'value') {
+			// mark that the editor now has value input visible
+			self.$currentFilterView.addClass('has-value');
+		}
 
 		// animate into view nicely
 		$stepView.hide().slideDown(self.config.animationSpeed);
@@ -333,6 +337,9 @@ var JCSDLGui = function(el, config) {
 	 * @param  {Integer} position
 	 */
 	this.removeFilterStepsAfterPosition = function(position) {
+		// 99% sure that we're removing the value input
+		self.$currentFilterView.removeClass('has-value');
+
 		// update the 'last' class for step fields
 		var $theStep = self.$currentFilterStepsView.find('.jcsdl-step').eq(position);
 		if ($theStep.hasClass('jcsdl-filter-step-field')) {

@@ -277,25 +277,34 @@
     background: transparent;
     border: 0; }
   .jcsdl-container .jcsdl-filter-editor {
-    /* add the select indicator when selected a field */
+    /* stuff happens when a data source has been selected */
+    /* stuff happens when a value input field has been displayed */
     /* filter editor footer */ }
     .jcsdl-container .jcsdl-filter-editor .jcsdl-step {
       overflow: hidden;
-      text-align: center;
-      background: transparent url("img/step_background.png") no-repeat bottom center; }
+      text-align: center; }
       .jcsdl-container .jcsdl-filter-editor .jcsdl-step.jcsdl-filter-step-field.last .jcsdl-filter-target-field-wrap {
         margin-bottom: 10px;
         background-position: center -255px; }
       .jcsdl-container .jcsdl-filter-editor .jcsdl-step.jcsdl-filter-step-value {
         padding-bottom: 30px;
-        background: transparent; }
+        background: transparent;
+        background: none !important; }
     .jcsdl-container .jcsdl-filter-editor .jcsdl-filter-target-wrap {
       height: 140px;
       padding-top: 30px; }
       .jcsdl-container .jcsdl-filter-editor .jcsdl-filter-target-wrap .jcsdl-carousel-scroll {
         margin-top: 40px; }
-    .jcsdl-container .jcsdl-filter-editor.has-fields .jcsdl-filter-target-wrap {
-      background: transparent url("img/select.png") no-repeat center 8px; }
+    .jcsdl-container .jcsdl-filter-editor.has-fields {
+      /* add the selected indicator */ }
+      .jcsdl-container .jcsdl-filter-editor.has-fields .jcsdl-step {
+        background: transparent url("img/step_background.png") no-repeat bottom center; }
+        .jcsdl-container .jcsdl-filter-editor.has-fields .jcsdl-step.last {
+          background: none; }
+      .jcsdl-container .jcsdl-filter-editor.has-fields .jcsdl-filter-target-wrap {
+        background: transparent url("img/select.png") no-repeat center 8px; }
+    .jcsdl-container .jcsdl-filter-editor.has-value .jcsdl-filter-step-field {
+      background: transparent url("img/step_background.png") no-repeat bottom center !important; }
     .jcsdl-container .jcsdl-filter-editor .jcsdl-filter-target-field-wrap {
       padding-top: 5px;
       padding-bottom: 40px;

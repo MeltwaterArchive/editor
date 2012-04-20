@@ -263,7 +263,6 @@ $selectSprite : 'img/select.png';
 	.jcsdl-filter-editor {
 		.jcsdl-step {
 			overflow: hidden; text-align: center;
-			background: transparent url('img/step_background.png') no-repeat bottom center;
 
 			&.jcsdl-filter-step-field.last .jcsdl-filter-target-field-wrap {
 				margin-bottom: 10px;
@@ -272,9 +271,9 @@ $selectSprite : 'img/select.png';
 
 			&.jcsdl-filter-step-value {
 				padding-bottom: 30px; background: transparent;
+				background: none !important;
 			}
 		}
-
 
 		.jcsdl-filter-target-wrap {
 			height: 140px; padding-top: 30px;
@@ -282,9 +281,23 @@ $selectSprite : 'img/select.png';
 			.jcsdl-carousel-scroll {margin-top: 40px;}
 		}
 
-		/* add the select indicator when selected a field */
-		&.has-fields .jcsdl-filter-target-wrap {
-			background: transparent url($selectSprite) no-repeat center 8px;
+		/* stuff happens when a data source has been selected */
+		&.has-fields {
+
+			.jcsdl-step {
+				background: transparent url('img/step_background.png') no-repeat bottom center;
+				&.last {background: none;}
+			}
+
+			/* add the selected indicator */
+			.jcsdl-filter-target-wrap {
+				background: transparent url($selectSprite) no-repeat center 8px;
+			}
+		}
+
+		/* stuff happens when a value input field has been displayed */
+		&.has-value {
+			.jcsdl-filter-step-field {background: transparent url('img/step_background.png') no-repeat bottom center !important;}
 		}
 
 		.jcsdl-filter-target-field-wrap {
