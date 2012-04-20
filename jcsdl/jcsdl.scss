@@ -152,8 +152,8 @@ $selectSprite : 'img/select.png';
 		background: url($elementsSprite) no-repeat -140px -55px;
 		@include opacity(0.3);
 
-		&.jcsdl-expanded {background-position: -140px -55px;}
-		&.jcsdl-collapsed {background-position: -156px -55px; margin-right: 0;}
+		&.jcsdl-expanded {background-position: -156px -55px;}
+		&.jcsdl-collapsed {background-position: -140px -55px; margin-right: 0;}
 
 		&:hover {@include opacity(0.5);}
 		&.active {@include opacity(1);}

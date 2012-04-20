@@ -145,9 +145,9 @@
     -khtml-opacity: 0.3;
     opacity: 0.3; }
     .jcsdl-container .jcsdl-mainview-mode-option.jcsdl-expanded {
-      background-position: -140px -55px; }
+      background-position: -156px -55px; }
     .jcsdl-container .jcsdl-mainview-mode-option.jcsdl-collapsed {
-      background-position: -156px -55px;
+      background-position: -140px -55px;
       margin-right: 0; }
     .jcsdl-container .jcsdl-mainview-mode-option:hover {
       -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=$opacity * 10)";
