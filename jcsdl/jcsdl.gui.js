@@ -285,8 +285,11 @@ var JCSDLGui = function(el, config) {
 	 * Adds a filter step with proper numbering/position.
 	 * @param {String} stepName Name of the step.
 	 * @param {jQuery} $view    View of the step.
+	 * @param {Boolean} slide[optional] Should the displaying of the step be a slide down animate (true) or a fade in (false). Default: true.
 	 */
-	this.addFilterStep = function(stepName, $view) {
+	this.addFilterStep = function(stepName, $view, slide) {
+		var slide = (typeof(slide) == 'undefined') ? true : slide;
+
 		var $stepView = self.getTemplate('step');
 		$stepView.html($view);
 
@@ -325,7 +328,15 @@ var JCSDLGui = function(el, config) {
 		}
 
 		// animate into view nicely
-		$stepView.hide().slideDown(self.config.animationSpeed);
+		if (slide) {
+			$stepView.hide().slideDown(self.config.animationSpeed);
+		} else {
+			if (stepName == 'field') {
+				$stepView.find('.jcsdl-filter-target-field').hide().fadeIn(self.config.animationSpeed);
+			} else {
+				$stepView.hide().fadeIn(self.config.animationSpeed);
+			}
+		}
 
 		// add to the steps pool
 		self.currentFilterSteps.push($stepView);
@@ -335,21 +346,28 @@ var JCSDLGui = function(el, config) {
 	 * Removes all filter steps after the given position.
 	 * Also clears the resulting CSDL if there was any before.
 	 * @param  {Integer} position
+	 * @return {String}  Name of the first step that was removed.
 	 */
 	this.removeFilterStepsAfterPosition = function(position) {
 		// 99% sure that we're removing the value input
 		self.$currentFilterView.removeClass('has-value');
 
-		// update the 'last' class for step fields
+		// update the 'last' class
 		var $theStep = self.$currentFilterStepsView.find('.jcsdl-step').eq(position);
-		if ($theStep.hasClass('jcsdl-filter-step-field')) {
-			$theStep.addClass('last');
-		}
+		$theStep.addClass('last');
 
 		var steps = self.currentFilterSteps.splice(position + 1, self.currentFilterSteps.length - position);
-		$.each(steps, function(i, $step) {
-			$($step).remove(); // ensure jQuery
+		var firstName = '';
+		$.each(steps, function(i, step) {
+			var $step = $(step);
+
+			if (i == 0) {
+				firstName = $step.data('name');
+			}
+			$step.remove(); // ensure jQuery
 		});
+
+		return firstName;
 	};
 
 	/**
@@ -363,13 +381,14 @@ var JCSDLGui = function(el, config) {
 		self.currentFilterFieldsPath = [];
 
 		// remove all steps regarding selection of fields in case another target was selected first
-		self.removeFilterStepsAfterPosition(0); // target is always position 0
+		var firstRemoved = self.removeFilterStepsAfterPosition(0); // target is always position 0
+		var slide = (firstRemoved != 'field');
 
 		// now need to select a field, so build the selection view
 		var target = JCSDLConfig.targets[targetName];
 		var $fieldView = createFieldSelectionView(target.fields);
 
-		self.addFilterStep('field', $fieldView);
+		self.addFilterStep('field', $fieldView, slide);
 	};
 
 	/**
@@ -386,7 +405,7 @@ var JCSDLGui = function(el, config) {
 		if (field == false) return;
 
 		// from DOM as well
-		self.removeFilterStepsAfterPosition($fieldView.closest('.jcsdl-step').data('number'));
+		var firstRemoved = self.removeFilterStepsAfterPosition($fieldView.closest('.jcsdl-step').data('number'));
 
 		// now proceed with adding the current one
 		self.currentFilterFieldsPath.push(fieldName);
@@ -394,13 +413,15 @@ var JCSDLGui = function(el, config) {
 		// if this fields has some more subfields then add them now
 		if (typeof(field.fields) !== 'undefined') {
 			var $fieldView = createFieldSelectionView(field.fields);
-			self.addFilterStep('field', $fieldView);
+			var slide = (firstRemoved != 'field');
+			self.addFilterStep('field', $fieldView, slide);
 			return;
 		}
 
 		// this is a "final" field, so now the user needs to input desired value(s)
 		var $valueView = createValueInputView(field);
-		self.addFilterStep('value', $valueView);
+		var slide = (firstRemoved != 'value');
+		self.addFilterStep('value', $valueView, slide);
 
 		// also show the submit button
 		self.$currentFilterView.find('.jcsdl-filter-save').fadeIn(self.config.animationSpeed);
