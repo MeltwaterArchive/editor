@@ -136,6 +136,13 @@ var JCSDLGuiTemplates = {
 		'</div>'
 	].join('')),
 
+	// case sensitivity toggle
+	caseSensitivity : $([
+		'<div class="jcsdl-operator-cs">',
+			'<label><input type="checkbox" name="cs" value="true" /> Case Sensitive</label>',
+		'</div>'
+	].join('')),
+
 	/* ##########################
 	 * VALUE INPUT FIELDS
 	 * ########################## */

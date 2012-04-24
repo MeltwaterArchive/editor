@@ -107,18 +107,6 @@ twitter.text contains_any "starcraft, warcraft, sc2"
 // JCSDL_MASTER_END</textarea>
 				</li>-->
 				<li>
-					<h4>Shortcut to field test</h4>
-					<div class="options">
-						<a href="#" class="edit">Edit</a>
-						<a href="#" class="source">View JCSDL Source</a>
-					</div>
-<textarea class="jcsdl-source" style="display: none;">// JCSDL_MASTER f862d0fbb6f916a6fa903fe44af5d542 OR
-// JCSDL_START fb576f3138cd536b209909e5d4b214ae facebook.likes-count,equals,24-6
-facebook.likes.count == 234234
-// JCSDL_END
-// JCSDL_MASTER_END</textarea>
-				</li>
-				<li>
 					<h4>Apple-related tweets sent from iPhone</h4>
 					<div class="options">
 						<a href="http://datasift.com/stream/19656/apple-related-tweets-sent-from-iphone#app1-preview" target="_blank" class="live">View Live</a>
@@ -181,6 +169,18 @@ digg.item.description substr "some string <div class=\"color: red;\">unescaped h
 <textarea class="jcsdl-source" style="display: none;">// JCSDL_MASTER b3d5cfb037c036bc38953f54e072b906 OR
 // JCSDL_START 6957798f82935bf4894abe68ebdc03cb digg.item-description,different,26-53
 digg.item.description != "Escaping \"quotes\" in \"JCSDL\" to \"CSDL\" => tests"
+// JCSDL_END
+// JCSDL_MASTER_END</textarea>
+				</li>
+				<li>
+					<h4>Case Sensitivity</h4>
+					<div class="options">
+						<a href="#" class="edit">Edit</a>
+						<a href="#" class="source">View JCSDL Source</a>
+					</div>
+<textarea class="jcsdl-source" style="display: none;">// JCSDL_MASTER d7fd351c7a342498b9428f3ff7a84614 AND
+// JCSDL_START 59e392ca71cbda688475dfea960f2a24 twitter.mentions,substr,28-38,cs
+twitter.mentions cs substr "Lorem \"ipsum\" dolor sit amet, right?"
 // JCSDL_END
 // JCSDL_MASTER_END</textarea>
 				</li>

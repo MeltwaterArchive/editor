@@ -209,6 +209,11 @@ var JCSDLGui = function(el, config) {
 			// fill in the value (using the proper delegate)
 			var $valueInputView = self.$currentFilterView.find('.jcsdl-filter-value-input-field');
 			setValueForField($valueInputView, fieldInfo, filter.value);
+
+			// set case sensitivity (if any)
+			if (filter.cs) {
+				self.$currentFilterView.find('.jcsdl-operator-cs input').attr('checked', true);
+			}
 		}
 	};
 
@@ -455,6 +460,8 @@ var JCSDLGui = function(el, config) {
 	 * Handles the saving of a filter from the single filter editor.
 	 */
 	this.didSubmitFilter = function() {
+		var fieldInfo = getFieldInfoAtCurrentPath();
+
 		// first check if the operator is selected
 		var $selectedOperator = self.$currentFilterView.find('.jcsdl-filter-value-input-operators [name="operator"]:checked');
 		if ($selectedOperator.length == 0) {
@@ -464,14 +471,17 @@ var JCSDLGui = function(el, config) {
 
 		// then check if there is a value specified
 		var $valueView = self.$currentFilterView.find('.jcsdl-filter-value-input-field');
-		var value = getValueFromField($valueView, getFieldInfoAtCurrentPath());
+		var value = getValueFromField($valueView, fieldInfo);
 		if (value.length == 0) {
 			self.showError('You need to specify a value!');
 			return;
 		}
-		
+
 		// now that we have all data, let's create a filter object from this
-		var filter = jcsdl.createFilter(self.currentFilterTarget, self.currentFilterFieldsPath, $selectedOperator.val(), value);
+		var filter = jcsdl.createFilter(self.currentFilterTarget, self.currentFilterFieldsPath, $selectedOperator.val(), value, {
+			cs : (fieldInfo.cs && self.$currentFilterView.find('.jcsdl-operator-cs input:checked').length > 0) ? true : false
+		});
+
 		// also the filter row
 		var $filterRow = createFilterRow(filter);
 
@@ -606,7 +616,6 @@ var JCSDLGui = function(el, config) {
 		var $option = self.getTemplate('targetOption');
 		$option.data('name', name);
 		$option.data('target', target);
-		//$option.html(target.name);
 		$option.addClass('target-' + name);
 		return $option;
 	};
@@ -684,7 +693,13 @@ var JCSDLGui = function(el, config) {
 
 		// create the input view by this input type's handler and add it to the value view ontainer
 		var $inputView = fieldTypes[field.input].init.apply($(), [field]);
-		$valueView.find('.jcsdl-filter-value-input-field').data('inputType', field.input).html($inputView);;
+		$valueView.find('.jcsdl-filter-value-input-field').data('inputType', field.input).html($inputView);
+
+		// add case sensitivity toggle
+		if (field.cs) {
+			var $csView = self.getTemplate('caseSensitivity');
+			$valueView.append($csView);
+		}
 
 		// now take care of possible operators
 		var $operatorsListView = $valueView.find('.jcsdl-filter-value-input-operators');

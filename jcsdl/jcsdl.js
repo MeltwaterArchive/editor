@@ -79,7 +79,19 @@ var JCSDL = function(gui) {
 		var value = csdl.substr(range[0], range[1]);
 		value = valueFromCSDL(fieldInfo, value);
 
-		var filter = self.createFilter(target, fieldPath, operator, value);
+		// parse additional code
+		var additional = {
+			cs : false
+		};
+		$.each(jcsdlCode, function(i, code) {
+			switch(code) {
+				case 'cs':
+					additional.cs = true;
+				break;
+			}
+		});
+
+		var filter = self.createFilter(target, fieldPath, operator, value, additional);
 		return filter;
 	};
 
@@ -136,8 +148,10 @@ var JCSDL = function(gui) {
 		var operatorCode = self.getOperatorCode(filter.operator);
 		if (operatorCode === false) return false;
 
+		var cs = (filter.cs) ? ' cs' : '';
+
 		// actual CSDL
-		var csdl = filter.target + '.' + field.replace('-', '.') + ' ' + operatorCode + ' ';
+		var csdl = filter.target + '.' + field.replace('-', '.') + cs + ' ' + operatorCode + ' ';
 		var valueStart = (fieldInfo.type == 'string') ? csdl.length + 1 : csdl.length;
 		var valueLength = (fieldInfo.type == 'string') ? value.length - 2 : value.length;
 		 
@@ -145,6 +159,9 @@ var JCSDL = function(gui) {
 
 		// create JCSDL syntax as well
 		var jcsdlSyntax = filter.target + '.' + field +',' + filter.operator + ',' + valueStart + '-' + valueLength;
+		if (filter.cs) {
+			jcsdlSyntax = jcsdlSyntax + ',cs';
+		}
 
 		var hash = encodeJCSDLFilter(csdl);
 		
@@ -278,13 +295,16 @@ var JCSDL = function(gui) {
 	 * @param {Array} fieldPath  Array of fields and subfields, path to a field.
 	 * @param {String} operator  Name of the operator.
 	 * @param {String} value     Value.
+	 * @param {Object} additional Object of any additional filter data.
 	 */
-	this.createFilter = function(target, fieldPath, operator, value) {
+	this.createFilter = function(target, fieldPath, operator, value, additional) {
+		additional = additional || {};
 		var filter = {
 			target : target,
 			fieldPath : fieldPath,
 			operator : operator,
-			value : value
+			value : value,
+			cs : additional.cs
 		}
 		return filter;
 	};
