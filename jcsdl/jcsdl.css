@@ -22,6 +22,7 @@
    * FILTER EDITOR VIEW
    */
   /* JCSDL Carousel */
+  /* editor steps */
   /*
    * FILTER EDITOR INPUT FIELDS
    */
@@ -70,7 +71,7 @@
     display: block;
     height: 34px;
     width: 140px;
-    background: url("img/elements.png") no-repeat 0 -55px; }
+    background: url("img/elements.png?5") no-repeat 0 -55px; }
     .jcsdl-container .jcsdl-button.jcsdl-editor-cancel, .jcsdl-container .jcsdl-button.jcsdl-filter-cancel {
       width: 56px;
       background-position: 0 -89px; }
@@ -118,7 +119,7 @@
       display: block;
       width: 14px;
       height: 14px;
-      background: url("img/elements.png") no-repeat -140px -68px; }
+      background: url("img/elements.png?5") no-repeat -140px -68px; }
     .jcsdl-container .jcsdl-mainview-action.jcsdl-add-filter {
       margin-right: 0; }
   .jcsdl-container .jcsdl-mainview-mode {
@@ -139,7 +140,7 @@
     display: block;
     width: 13px;
     height: 13px;
-    background: url("img/elements.png") no-repeat -140px -55px;
+    background: url("img/elements.png?5") no-repeat -140px -55px;
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=$opacity * 10)";
     filter: alpha(opacity=3);
     -moz-opacity: 0.3;
@@ -277,39 +278,67 @@
     padding: 0;
     background: transparent;
     border: 0; }
+  .jcsdl-container .jcsdl-carousel-wrap {
+    overflow: hidden;
+    position: relative;
+    margin: 0 auto; }
+  .jcsdl-container .jcsdl-carousel-scroll {
+    float: left;
+    margin: 0 10px;
+    display: block;
+    width: 29px;
+    height: 29px;
+    line-height: 29px;
+    text-align: center;
+    background: transparent url("img/elements.png?5") no-repeat -56px -89px; }
+    .jcsdl-container .jcsdl-carousel-scroll.right {
+      float: right;
+      background-position: -85px -89px; }
+    .jcsdl-container .jcsdl-carousel-scroll:hover {
+      -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=$opacity * 10)";
+      filter: alpha(opacity=8);
+      -moz-opacity: 0.8;
+      -khtml-opacity: 0.8;
+      opacity: 0.8; }
+    .jcsdl-container .jcsdl-carousel-scroll.inactive {
+      -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=$opacity * 10)";
+      filter: alpha(opacity=5);
+      -moz-opacity: 0.5;
+      -khtml-opacity: 0.5;
+      opacity: 0.5; }
   .jcsdl-container .jcsdl-filter-editor {
-    /* stuff happens when a data source has been selected */
-    /* stuff happens when a value input field has been displayed */
     /* filter editor footer */ }
     .jcsdl-container .jcsdl-filter-editor .jcsdl-step {
       overflow: hidden;
-      text-align: center; }
-      .jcsdl-container .jcsdl-filter-editor .jcsdl-step.jcsdl-filter-step-field.last .jcsdl-filter-target-field-wrap {
-        margin-bottom: 10px;
-        background-position: center -255px; }
+      text-align: center;
+      /* various states of target selection */
+      /* prompt selection */
+      /* only target selected */
+      /* a field has been selected */
+      /* various states of field selection */
+      /* when a step is selected it also has shadow underneath */ }
       .jcsdl-container .jcsdl-filter-editor .jcsdl-step.jcsdl-filter-step-value {
-        padding-bottom: 30px;
-        background: transparent;
-        background: none !important; }
+        padding-bottom: 30px; }
+      .jcsdl-container .jcsdl-filter-editor .jcsdl-step .jcsdl-filter-target-wrap {
+        background: transparent url("img/select.png?12") no-repeat center -378px; }
+      .jcsdl-container .jcsdl-filter-editor .jcsdl-step.selected .jcsdl-filter-target-wrap {
+        background-position: center -553px; }
+      .jcsdl-container .jcsdl-filter-editor .jcsdl-step.selected.field-selected .jcsdl-filter-target-wrap {
+        background-position: center 8px; }
+      .jcsdl-container .jcsdl-filter-editor .jcsdl-step.selected .jcsdl-filter-target-field-wrap {
+        background: transparent url("img/select.png?12") no-repeat center -255px; }
+      .jcsdl-container .jcsdl-filter-editor .jcsdl-step.selected.field-selected .jcsdl-filter-target-field-wrap {
+        background-position: center -165px; }
+      .jcsdl-container .jcsdl-filter-editor .jcsdl-step.selected {
+        background: transparent url("img/step_background.png?5") no-repeat bottom center; }
     .jcsdl-container .jcsdl-filter-editor .jcsdl-filter-target-wrap {
-      height: 140px;
+      height: 145px;
       padding-top: 30px; }
       .jcsdl-container .jcsdl-filter-editor .jcsdl-filter-target-wrap .jcsdl-carousel-scroll {
         margin-top: 40px; }
-    .jcsdl-container .jcsdl-filter-editor.has-fields {
-      /* add the selected indicator */ }
-      .jcsdl-container .jcsdl-filter-editor.has-fields .jcsdl-step {
-        background: transparent url("img/step_background.png") no-repeat bottom center; }
-        .jcsdl-container .jcsdl-filter-editor.has-fields .jcsdl-step.last {
-          background: none; }
-      .jcsdl-container .jcsdl-filter-editor.has-fields .jcsdl-filter-target-wrap {
-        background: transparent url("img/select.png") no-repeat center 8px; }
-    .jcsdl-container .jcsdl-filter-editor.has-value .jcsdl-filter-step-field {
-      background: transparent url("img/step_background.png") no-repeat bottom center !important; }
     .jcsdl-container .jcsdl-filter-editor .jcsdl-filter-target-field-wrap {
       padding-top: 5px;
-      padding-bottom: 40px;
-      background: transparent url("img/select.png") no-repeat center -165px; }
+      padding-bottom: 40px; }
       .jcsdl-container .jcsdl-filter-editor .jcsdl-filter-target-field-wrap .jcsdl-carousel-scroll {
         margin-top: 25px; }
     .jcsdl-container .jcsdl-filter-editor .jcsdl-filter-value-input-operators {
@@ -340,34 +369,6 @@
   .jcsdl-container .jcsdl-filter-cancel {
     color: #888888;
     font-weight: normal; }
-  .jcsdl-container .jcsdl-carousel-wrap {
-    overflow: hidden;
-    position: relative;
-    margin: 0 auto; }
-  .jcsdl-container .jcsdl-carousel-scroll {
-    float: left;
-    margin: 0 10px;
-    display: block;
-    width: 29px;
-    height: 29px;
-    line-height: 29px;
-    text-align: center;
-    background: transparent url("img/elements.png") no-repeat -56px -89px; }
-    .jcsdl-container .jcsdl-carousel-scroll.right {
-      float: right;
-      background-position: -85px -89px; }
-    .jcsdl-container .jcsdl-carousel-scroll:hover {
-      -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=$opacity * 10)";
-      filter: alpha(opacity=8);
-      -moz-opacity: 0.8;
-      -khtml-opacity: 0.8;
-      opacity: 0.8; }
-    .jcsdl-container .jcsdl-carousel-scroll.inactive {
-      -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=$opacity * 10)";
-      filter: alpha(opacity=5);
-      -moz-opacity: 0.5;
-      -khtml-opacity: 0.5;
-      opacity: 0.5; }
   .jcsdl-container .jcsdl-filter-value-input-field .jcsdl-input-text input, .jcsdl-container .jcsdl-filter-value-input-field .jcsdl-input-number input {
     display: block;
     margin: 0 auto;
@@ -393,7 +394,7 @@
       float: left;
       margin: 0 5px; }
   .jcsdl-container .jcsdl-icon.target {
-    background: url("img/icons-sprite-targets.png?3") no-repeat 0 0; }
+    background: url("img/icons-sprite-targets.png?5") no-repeat 0 0; }
     .jcsdl-container .jcsdl-icon.target.target-interaction {
       background-position: 0 0; }
       .jcsdl-container .jcsdl-icon.target.target-interaction.selected {
@@ -419,7 +420,7 @@
       .jcsdl-container .jcsdl-icon.target.target-klout.selected {
         background-position: -550px -110px; }
   .jcsdl-container .jcsdl-icon.field {
-    background: url("img/icons-sprite-fields.png?3") no-repeat 0 0; }
+    background: url("img/icons-sprite-fields.png?5") no-repeat 0 0; }
     .jcsdl-container .jcsdl-icon.field.icon-geo {
       background-position: 0 0; }
       .jcsdl-container .jcsdl-icon.field.icon-geo.selected {

@@ -3,8 +3,11 @@ $color : #376491;
 $colorLight : #888;
 $borderColor : #dcdcdc;
 $borderColorInput : #c8d7de;
-$elementsSprite : 'img/elements.png';
-$selectSprite : 'img/select.png';
+$elementsSprite : 'img/elements.png?5';
+$selectSprite : 'img/select.png?12';
+$stepBackground : 'img/step_background.png?5';
+$targetIconsSprite : 'img/icons-sprite-targets.png?5';
+$fieldIconsSprite : 'img/icons-sprite-fields.png?5';
 
 /* useful mixins */
 @mixin rounded($radius: 5px) {
@@ -260,50 +263,55 @@ $selectSprite : 'img/select.png';
 	/*
 	 * FILTER EDITOR VIEW
 	 */
+	/* JCSDL Carousel */
+	.jcsdl-carousel-wrap {
+		overflow: hidden; position: relative;
+		margin: 0 auto;
+	}
+
+	.jcsdl-carousel-scroll {
+		float: left; margin: 0 10px;
+		display: block; width: 29px; height: 29px;
+		line-height: 29px; text-align: center;
+		background: transparent url($elementsSprite) no-repeat -56px -89px;
+
+		&.right {
+			float: right;
+			background-position: -85px -89px;
+		}
+
+		&:hover {@include opacity(0.8);}
+		&.inactive {@include opacity(0.5);}
+	}
+
+	/* editor steps */
 	.jcsdl-filter-editor {
 		.jcsdl-step {
 			overflow: hidden; text-align: center;
 
-			&.jcsdl-filter-step-field.last .jcsdl-filter-target-field-wrap {
-				margin-bottom: 10px;
-				background-position: center -255px;
-			}
+			&.jcsdl-filter-step-value {padding-bottom: 30px;}
 
-			&.jcsdl-filter-step-value {
-				padding-bottom: 30px; background: transparent;
-				background: none !important;
-			}
+			/* various states of target selection */
+			.jcsdl-filter-target-wrap {background: transparent url($selectSprite) no-repeat center -378px;} /* prompt selection */
+			&.selected .jcsdl-filter-target-wrap {background-position: center -553px;} /* only target selected */
+			&.selected.field-selected .jcsdl-filter-target-wrap {background-position: center 8px;} /* a field has been selected */
+
+			/* various states of field selection */
+			.jcsdl-filter-target-field-wrap {}
+			&.selected .jcsdl-filter-target-field-wrap {background: transparent url($selectSprite) no-repeat center -255px;}
+			&.selected.field-selected .jcsdl-filter-target-field-wrap {background-position: center -165px;}
+
+			/* when a step is selected it also has shadow underneath */
+			&.selected {background: transparent url($stepBackground) no-repeat bottom center;}
 		}
 
 		.jcsdl-filter-target-wrap {
-			height: 140px; padding-top: 30px;
-
+			height: 145px; padding-top: 30px;
 			.jcsdl-carousel-scroll {margin-top: 40px;}
-		}
-
-		/* stuff happens when a data source has been selected */
-		&.has-fields {
-
-			.jcsdl-step {
-				background: transparent url('img/step_background.png') no-repeat bottom center;
-				&.last {background: none;}
-			}
-
-			/* add the selected indicator */
-			.jcsdl-filter-target-wrap {
-				background: transparent url($selectSprite) no-repeat center 8px;
-			}
-		}
-
-		/* stuff happens when a value input field has been displayed */
-		&.has-value {
-			.jcsdl-filter-step-field {background: transparent url('img/step_background.png') no-repeat bottom center !important;}
 		}
 
 		.jcsdl-filter-target-field-wrap {
 			padding-top: 5px; padding-bottom: 40px;
-			background: transparent url($selectSprite) no-repeat center -165px;
-
 			.jcsdl-carousel-scroll {margin-top: 25px;}
 		}
 
@@ -333,27 +341,6 @@ $selectSprite : 'img/select.png';
 
 	.jcsdl-filter-cancel {color: $colorLight; font-weight: normal;}
 
-	/* JCSDL Carousel */
-	.jcsdl-carousel-wrap {
-		overflow: hidden; position: relative;
-		margin: 0 auto;
-	}
-
-	.jcsdl-carousel-scroll {
-		float: left; margin: 0 10px;
-		display: block; width: 29px; height: 29px;
-		line-height: 29px; text-align: center;
-		background: transparent url($elementsSprite) no-repeat -56px -89px;
-
-		&.right {
-			float: right;
-			background-position: -85px -89px;
-		}
-
-		&:hover {@include opacity(0.8);}
-		&.inactive {@include opacity(0.5);}
-	}
-
 	/*
 	 * FILTER EDITOR INPUT FIELDS
 	 */
@@ -380,7 +367,7 @@ $selectSprite : 'img/select.png';
 	 * ICONS
 	 */
 	.jcsdl-icon.target {
-		background: url('img/icons-sprite-targets.png?3') no-repeat 0 0;
+		background: url($targetIconsSprite) no-repeat 0 0;
 
 		&.target-interaction {background-position: 0 0; &.selected {background-position: 0 -110px;}}
 		&.target-facebook {background-position: -110px 0; &.selected {background-position: -110px -110px;}}
@@ -393,7 +380,7 @@ $selectSprite : 'img/select.png';
 	}
 
 	.jcsdl-icon.field {
-		background: url('img/icons-sprite-fields.png?3') no-repeat 0 0;
+		background: url($fieldIconsSprite) no-repeat 0 0;
 
 		&.icon-geo			{background-position: 0 0; 				&.selected {background-position: -80px 0;}}
 		&.icon-link 		{background-position: -160px 0; 		&.selected {background-position: -240px 0;}}

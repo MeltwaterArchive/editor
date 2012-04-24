@@ -306,25 +306,48 @@ var JCSDLGui = function(el, config) {
 
 		// if target or field select then initiate the carousel on it
 		if (stepName == 'target') {
-			buildCarousel($stepView, function() {
-				self.didSelectTarget($(this).data('name'));
+			$stepView.jcsdlCarousel({
+				select : function() {
+					var $item = $(this);
+
+					// mark the current step that it has been selected
+					$stepView.addClass('selected');
+
+					// mark the selected item
+					$stepView.find('.jcsdl-carousel-item.selected').removeClass('selected');
+					$item.addClass('selected');
+
+					// call the callback
+					self.didSelectTarget($item.data('name'));
+				}
 			});
 		}
 		if (stepName == 'field') {
-			// mark that the editor now has fields selection
-			self.$currentFilterView.addClass('has-fields');
+			$stepView.jcsdlCarousel({
+				select : function() {
+					var $item = $(this);
 
-			// mark the last field select
-			self.$currentFilterStepsView.find('.jcsdl-filter-step-field').removeClass('last');
-			$stepView.addClass('last');
+					// mark the target step that at least one field has been selected
+					self.$currentFilterStepsView.find('.jcsdl-filter-step-target').addClass('field-selected');
 
-			buildCarousel($stepView, function() {
-				self.didSelectField($(this).data('name'), $view);
+					// mark the previous step that its' child has now been selected
+					var previousStep = $stepView.data('number') - 1;
+					self.$currentFilterStepsView.find('.jcsdl-filter-step-field.jcsdl-filter-step-number-' + previousStep).addClass('field-selected');
+
+					// mark the current step that it has been selected
+					$stepView.addClass('selected');
+
+					// mark the selected item
+					$stepView.find('.jcsdl-carousel-item.selected').removeClass('selected');
+					$item.addClass('selected');
+
+					// call the callback
+					self.didSelectField($item.data('name'), $view, $stepView);
+				}
 			});
 		}
 		if (stepName == 'value') {
-			// mark that the editor now has value input visible
-			self.$currentFilterView.addClass('has-value');
+
 		}
 
 		// animate into view nicely
@@ -349,12 +372,9 @@ var JCSDLGui = function(el, config) {
 	 * @return {String}  Name of the first step that was removed.
 	 */
 	this.removeFilterStepsAfterPosition = function(position) {
-		// 99% sure that we're removing the value input
-		self.$currentFilterView.removeClass('has-value');
-
-		// update the 'last' class
+		// mark the step that stays that no longer any fields are selected
 		var $theStep = self.$currentFilterStepsView.find('.jcsdl-step').eq(position);
-		$theStep.addClass('last');
+		$theStep.removeClass('field-selected');
 
 		var steps = self.currentFilterSteps.splice(position + 1, self.currentFilterSteps.length - position);
 		var firstName = '';
@@ -395,8 +415,9 @@ var JCSDLGui = function(el, config) {
 	 * When a field is selected then the user either needs to input a value or select a subfield if such exists.
 	 * @param  {String} fieldName  Name of the selected field.
 	 * @param  {jQuery} $fieldView The field selection view that was used.
+	 * @param  {jQuery} $stepView Step view at which the field was selected.
 	 */
-	this.didSelectField = function(fieldName, $fieldView) {
+	this.didSelectField = function(fieldName, $fieldView, $stepView) {
 		// remove any steps that are farther then this one, just in case
 		var fieldPosition = $fieldView.data('position');
 		self.currentFilterFieldsPath.splice(fieldPosition, self.currentFilterFieldsPath.length - fieldPosition);
@@ -627,22 +648,6 @@ var JCSDLGui = function(el, config) {
 		$option.addClass('field-' + name);
 
 		return $option;
-	};
-
-	/*
-	 * FILTER STEP CAROUSEL METHODS
-	 */
-	/**
-	 * Builds a carousel for target and field selection steps. Takes care of all internal functionality.
-	 * @param  {jQuery} $step          Selection step element.
-	 * @param  {Function} selectCallback Function to be called when an option is selected.
-	 * @param  {Boolean} expand[optional] Should the carousel automatically expand to the next level on selected item.
-	 */
-	var buildCarousel = function($step, selectCallback, expand) {
-		$step.jcsdlCarousel({
-			select : selectCallback,
-			expand : expand
-		});
 	};
 
 	/*
@@ -1018,16 +1023,12 @@ var JCSDLGui = function(el, config) {
 				left : this.calculateCurrentPosition()
 			}, speed);
 
-			var $selectedItem = this.getSelectedItem();
-			this.$carouselItems.removeClass('selected');
-			$selectedItem.addClass('selected');
-
 			// because position is changing, we may activate both buttons
 			this.toggleScrollButtons();
 
 			// and finally call the selectCallback method if any
 			if (!dontExpand && typeof(this.select) == 'function') {
-				this.select.apply($selectedItem);
+				this.select.apply(this.getSelectedItem());
 			}
 		}
 	};
