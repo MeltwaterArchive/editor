@@ -540,7 +540,7 @@ var JCSDLGui = function(el, config) {
 
 		// value
 		var $value = self.getTemplate('filterValue');
-		$value.html(filter.value.escapeHtml());
+		$value.html(filter.value.truncate(50).escapeHtml());
 		$filterRow.find('.value').html($value);
 
 		// also attach the filter data to the row
@@ -1043,7 +1043,7 @@ var JCSDLGui = function(el, config) {
 			speed : 200
 		}, options);
 
-		function getJCSDLCarousel($el) {
+		function get($el) {
 			var carousel = $el.data('jcsdlCarousel');
 			if (!carousel) {
 				carousel = new JCSDLCarousel($el, options);
@@ -1052,30 +1052,47 @@ var JCSDLGui = function(el, config) {
 			return carousel;
 		}
 
-		this.each(function() {getJCSDLCarousel($(this));});
+		this.each(function() {get($(this));});
 		return this;
 	};
 })(window.jQuery);
 
 $.extend(String.prototype, {
+	truncate : function(l, a) {
+		l = l || 72;
+		a = a || '...';
+		if (this.length <= l) return this;
+
+		s = this.substr(0, l);
+		s = s.substr(0, s.lastIndexOf(' '));
+
+		return s + a;
+
+		/*$limit = intval($limit);
+		if (strlen($text) <= $limit) return $text;
+		
+		$text = substr($text, 0, strrpos($text, ' ')); // find the last occurrence of a space and crop the string to it
+				
+		$text = rtrim($text, '.!?:;,-'); // remove unwanted punctuation from the end of the string
+		
+		return $text . $add;*/
+	},
 	escapeHtml : function() {
-		str = this.valueOf().replace(/&/g, '&amp;');
-		str = str.replace(/</g, '&lt;');
-		str = str.replace(/>/g, '&gt;');
-		str = str.replace(/"/g, '&quot;');
-		return str;
+		return this.replace(/&/g, '&amp;')
+			.replace(/</g, '&lt;')
+			.replace(/>/g, '&gt;')
+			.replace(/"/g, '&quot;');
 	},
 	unescapeHtml : function() {
-		str = this.valueOf().replace(/&amp;/g, '&');
-		str = str.replace(/&lt;/g, '<');
-		str = str.replace(/&gt;/g, '>');
-		str = str.replace(/&quot;/g, '"');
-		return str;
+		return this.replace(/&amp;/g, '&')
+			.replace(/&lt;/g, '<')
+			.replace(/&gt;/g, '>')
+			.replace(/&quot;/g, '"');
 	},
 	escapeCsdl : function() {
-		return this.valueOf().replace(/"/g, '\\"');
+		return this.replace(/"/g, '\\"');
 	},
 	unescapeCsdl : function() {
-		return this.valueOf().replace(/\\"/g, '"');
+		return this.replace(/\\"/g, '"');
 	}
 });
