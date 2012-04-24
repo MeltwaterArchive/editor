@@ -347,7 +347,9 @@ var JCSDLGui = function(el, config) {
 			});
 		}
 		if (stepName == 'value') {
-
+			// show the submit button
+			self.$currentFilterView.find('.jcsdl-filter-save').fadeIn(self.config.animationSpeed);
+			self.$currentFilterView.find('.jcsdl-footer span').show();
 		}
 
 		// animate into view nicely
@@ -375,6 +377,10 @@ var JCSDLGui = function(el, config) {
 		// mark the step that stays that no longer any fields are selected
 		var $theStep = self.$currentFilterStepsView.find('.jcsdl-step').eq(position);
 		$theStep.removeClass('field-selected');
+
+		// most definetely hide the submit button
+		self.$currentFilterView.find('.jcsdl-filter-save').hide();
+		self.$currentFilterView.find('.jcsdl-footer span').hide();
 
 		var steps = self.currentFilterSteps.splice(position + 1, self.currentFilterSteps.length - position);
 		var firstName = '';
@@ -443,10 +449,6 @@ var JCSDLGui = function(el, config) {
 		var $valueView = createValueInputView(field);
 		var slide = (firstRemoved != 'value');
 		self.addFilterStep('value', $valueView, slide);
-
-		// also show the submit button
-		self.$currentFilterView.find('.jcsdl-filter-save').fadeIn(self.config.animationSpeed);
-		self.$currentFilterView.find('.jcsdl-footer span').show();
 	};
 
 	/**
