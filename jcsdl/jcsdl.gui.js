@@ -1067,15 +1067,6 @@ $.extend(String.prototype, {
 		s = s.substr(0, s.lastIndexOf(' '));
 
 		return s + a;
-
-		/*$limit = intval($limit);
-		if (strlen($text) <= $limit) return $text;
-		
-		$text = substr($text, 0, strrpos($text, ' ')); // find the last occurrence of a space and crop the string to it
-				
-		$text = rtrim($text, '.!?:;,-'); // remove unwanted punctuation from the end of the string
-		
-		return $text . $add;*/
 	},
 	escapeHtml : function() {
 		return this.replace(/&/g, '&amp;')
