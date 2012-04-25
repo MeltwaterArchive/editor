@@ -184,6 +184,22 @@ twitter.mentions cs substr "Lorem \"ipsum\" dolor sit amet, right?"
 // JCSDL_END
 // JCSDL_MASTER_END</textarea>
 				</li>
+				<li>
+					<h4>Exists operator</h4>
+					<div class="options">
+						<a href="#" class="edit">Edit</a>
+						<a href="#" class="source">View JCSDL Source</a>
+					</div>
+<textarea class="jcsdl-source" style="display: none;">// JCSDL_MASTER e5ce19cbb69d76de69fed6e981430ce9 AND
+// JCSDL_START c9ef42349029677cc005702739313c77 twitter.mentions,contains,30-10,cs
+twitter.mentions cs contains "NEVERBLAND"
+// JCSDL_END
+AND
+// JCSDL_START 4bbbbb65997963338af4ea1ffabf95a2 twitter.in_reply_to_screen_name,exists
+twitter.in_reply_to_screen_name exists 
+// JCSDL_END
+// JCSDL_MASTER_END</textarea>
+				</li>
 			</ul>
 
 			<div id="jcsdl-edit-wrap" style="display: none;">

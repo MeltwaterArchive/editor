@@ -75,21 +75,25 @@ var JCSDL = function(gui) {
 
 		var operator = jcsdlCode.shift();
 
-		var range = jcsdlCode.shift().split('-');
-		var value = csdl.substr(range[0], range[1]);
-		value = valueFromCSDL(fieldInfo, value);
-
-		// parse additional code
+		// prepare variables
+		var value = '';
 		var additional = {
 			cs : false
 		};
-		$.each(jcsdlCode, function(i, code) {
-			switch(code) {
-				case 'cs':
-					additional.cs = true;
-				break;
-			}
-		});
+
+		if (operator !== 'exists') {
+			var range = jcsdlCode.shift().split('-');
+			value = valueFromCSDL(fieldInfo, csdl.substr(range[0], range[1]));
+
+			// also parse additional data
+			$.each(jcsdlCode, function(i, code) {
+				switch(code) {
+					case 'cs':
+						additional.cs = true;
+					break;
+				}
+			});
+		}
 
 		var filter = self.createFilter(target, fieldPath, operator, value, additional);
 		return filter;
@@ -150,17 +154,23 @@ var JCSDL = function(gui) {
 
 		var cs = (filter.cs) ? ' cs' : '';
 
-		// actual CSDL
+		// create CSDL and JCSDL syntaxes
 		var csdl = filter.target + '.' + field.replace('-', '.') + cs + ' ' + operatorCode + ' ';
-		var valueStart = (fieldInfo.type == 'string') ? csdl.length + 1 : csdl.length;
-		var valueLength = (fieldInfo.type == 'string') ? value.length - 2 : value.length;
-		 
-		csdl = csdl + value;
+		var jcsdlSyntax = filter.target + '.' + field + ',' + filter.operator;
 
-		// create JCSDL syntax as well
-		var jcsdlSyntax = filter.target + '.' + field +',' + filter.operator + ',' + valueStart + '-' + valueLength;
-		if (filter.cs) {
-			jcsdlSyntax = jcsdlSyntax + ',cs';
+		// for 'exists' operator the value and its range aren't included
+		if (filter.operator !== 'exists') {
+			var valueStart = (fieldInfo.type == 'string') ? csdl.length + 1 : csdl.length;
+			var valueLength = (fieldInfo.type == 'string') ? value.length - 2 : value.length;
+
+			// add the value to CSDL and it's range to JCSDL
+			csdl = csdl + value;
+			jcsdlSyntax += ',' + valueStart + '-' + valueLength;
+
+			// if case sensitivity on, then include it as well
+			if (filter.cs) {
+				jcsdlSyntax += ',cs';
+			}
 		}
 
 		var hash = encodeJCSDLFilter(csdl);

@@ -463,23 +463,26 @@ var JCSDLGui = function(el, config) {
 		var fieldInfo = getFieldInfoAtCurrentPath();
 
 		// first check if the operator is selected
-		var $selectedOperator = self.$currentFilterView.find('.jcsdl-filter-value-input-operators [name="operator"]:checked');
-		if ($selectedOperator.length == 0) {
+		var operator = self.$currentFilterView.find('.jcsdl-filter-value-input-operators [name="operator"]:checked').val();
+		if (typeof(operator) == 'undefined') {
 			self.showError('You need to select an operator!');
 			return;
 		}
 
-		// then check if there is a value specified
-		var $valueView = self.$currentFilterView.find('.jcsdl-filter-value-input-field');
-		var value = getValueFromField($valueView, fieldInfo);
-		if (value.length == 0) {
-			self.showError('You need to specify a value!');
-			return;
+		// then check if there is a value specified (only if operator is something else than 'exists')
+		var value = '';
+		if (operator !== 'exists') {
+			var $valueView = self.$currentFilterView.find('.jcsdl-filter-value-input-field');
+			value = getValueFromField($valueView, fieldInfo);
+			if (value.length == 0) {
+				self.showError('You need to specify a value!');
+				return;
+			}
 		}
 
 		// now that we have all data, let's create a filter object from this
-		var filter = jcsdl.createFilter(self.currentFilterTarget, self.currentFilterFieldsPath, $selectedOperator.val(), value, {
-			cs : (fieldInfo.cs && self.$currentFilterView.find('.jcsdl-operator-cs input:checked').length > 0) ? true : false
+		var filter = jcsdl.createFilter(self.currentFilterTarget, self.currentFilterFieldsPath, operator, value, {
+			cs : ((operator !== 'exists') && fieldInfo.cs && self.$currentFilterView.find('.jcsdl-operator-cs input:checked').length > 0) ? true : false
 		});
 
 		// also the filter row
@@ -548,10 +551,14 @@ var JCSDLGui = function(el, config) {
 		$operator.addClass('operator-' + filter.operator).html(jcsdl.getOperatorCode(filter.operator).escapeHtml());
 		$filterRow.find('.operator').html($operator);
 
-		// value
-		var $value = self.getTemplate('filterValue');
-		$value.html(filter.value.truncate(50).escapeHtml());
-		$filterRow.find('.value').html($value);
+		// value (but not for 'exists' operator)
+		if (filter.operator !== 'exists') {
+			var $value = self.getTemplate('filterValue');
+			$value.html(filter.value.truncate(50).escapeHtml());
+			$filterRow.find('.value').html($value);
+		} else {
+			$filterRow.find('.value').remove();
+		}
 
 		// also attach the filter data to the row
 		$filterRow.data('filter', filter);
@@ -693,12 +700,13 @@ var JCSDLGui = function(el, config) {
 
 		// create the input view by this input type's handler and add it to the value view ontainer
 		var $inputView = fieldTypes[field.input].init.apply($(), [field]);
-		$valueView.find('.jcsdl-filter-value-input-field').data('inputType', field.input).html($inputView);
+		var $valueInput = $valueView.find('.jcsdl-filter-value-input-field');
+		$valueInput.data('inputType', field.input).html($inputView);
 
 		// add case sensitivity toggle
 		if (field.cs) {
 			var $csView = self.getTemplate('caseSensitivity');
-			$valueView.append($csView);
+			$valueInput.append($csView);
 		}
 
 		// now take care of possible operators
@@ -713,6 +721,21 @@ var JCSDLGui = function(el, config) {
 			$operatorsListView.find('.jcsdl-operator-select:first input').click();
 			$operatorsListView.hide();
 		}
+
+		/**
+		 * Listen for selection of operators and if 'exists' operator selected then hide the value input.
+		 * Otherwise show the value input (if was hidden).
+		 * @param  {Event} ev
+		 * @listener
+		 */
+		$operatorsListView.find('input').change(function(ev) {
+			var $input = $(this);
+			if (($input.val() == 'exists') && $input.is(':checked')) {
+				$valueInput.fadeOut(self.config.animationSpeed);
+			} else if (!$valueInput.is(':visible')) {
+				$valueInput.fadeIn(self.config.animationSpeed);
+			}
+		});
 
 		return $valueView;
 	};
