@@ -55,7 +55,7 @@ var JCSDLConfig = {
 						friends_count : {name: 'Friends Count', type: 'int', input: 'number', operators: ['exists', 'equals', 'different', 'greaterThan', 'lowerThan']},
 						id : {name: 'ID', icon: 'user-id', type: 'int', input: 'number', operators: ['exists', 'equals', 'different', 'in']},
 						lang : {name: 'Language', icon: 'language', type: 'string', cs: true, input: 'select', operators: ['exists', 'different', 'in']},
-						listed_count : {name: 'Listed Count', type: 'int', operators: ['exists', 'equals', 'different', 'greaterThan', 'lowerThan']},
+						listed_count : {name: 'Listed Count', type: 'int', input: 'number', operators: ['exists', 'equals', 'different', 'greaterThan', 'lowerThan']},
 						location : {name: 'Location', type: 'string', cs: true, input: 'text', operators: ['exists', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
 						name : {name: 'Name', icon: 'username', type: 'string', cs: true, input: 'text', operators: ['exists', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
 						profile_age : {name: 'Age', icon: 'age', type: 'int', input: 'number', operators: ['exists', 'equals', 'different', 'greaterThan', 'lowerThan']},
@@ -254,6 +254,22 @@ var JCSDLConfig = {
 		geo_polygon : {
 			description : 'Filter for content originating from geographical locations defined by a polygon with up to 32 vertices',
 			code : 'geo_polygon'
+		}
+	},
+
+	// some additional config for some input types
+	inputs : {
+		geo_box : {
+			operators : ['geo_box']
+		},
+		geo_radius : {
+			operators : ['geo_radius']
+		},
+		geo_polygon : {
+			operators : ['geo_polygon']
+		},
+		geo_text : {
+			operators : ['geo_text']
 		}
 	}
 

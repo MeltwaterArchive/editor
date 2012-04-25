@@ -351,6 +351,27 @@ var JCSDLGui = function(el, config) {
 				}
 			});
 		}
+		if (stepName == 'input') {
+			$stepView.jcsdlCarousel({
+				select : function() {
+					var $item = $(this);
+
+					// mark the previous step that its' child has now been selected
+					var previousStep = $stepView.data('number') - 1;
+					self.$currentFilterStepsView.find('.jcsdl-filter-step-field.jcsdl-filter-step-number-' + previousStep).addClass('field-selected');
+
+					// mark the current step that it has been selected
+					$stepView.addClass('selected');
+
+					// mark the selected item
+					$stepView.find('.jcsdl-carousel-item.selected').removeClass('selected');
+					$item.addClass('selected');
+
+					// call the callback
+					self.didSelectInput($item.data('name'), $view, $stepView);
+				}
+			});
+		}
 		if (stepName == 'value') {
 			// show the submit button
 			self.$currentFilterView.find('.jcsdl-filter-save').fadeIn(self.config.animationSpeed);
@@ -413,13 +434,10 @@ var JCSDLGui = function(el, config) {
 
 		// remove all steps regarding selection of fields in case another target was selected first
 		var firstRemoved = self.removeFilterStepsAfterPosition(0); // target is always position 0
-		var slide = (firstRemoved != 'field');
 
 		// now need to select a field, so build the selection view
-		var target = JCSDLConfig.targets[targetName];
-		var $fieldView = createFieldSelectionView(target.fields);
-
-		self.addFilterStep('field', $fieldView, slide);
+		var $fieldView = createFieldSelectionView(JCSDLConfig.targets[targetName].fields);
+		self.addFilterStep('field', $fieldView, (firstRemoved != 'field'));
 	};
 
 	/**
@@ -450,10 +468,33 @@ var JCSDLGui = function(el, config) {
 			return;
 		}
 
+		// if this fields has multiple possible input fields then add a step to choose one
+		if (typeof(field.input) !== 'string') {
+			var $inputView = createInputSelectionView(field.input);
+			var slide = (firstRemoved != 'input');
+			self.addFilterStep('input', $inputView, slide);
+			return;
+		}
+
 		// this is a "final" field, so now the user needs to input desired value(s)
 		var $valueView = createValueInputView(field);
-		var slide = (firstRemoved != 'value');
-		self.addFilterStep('value', $valueView, slide);
+		self.addFilterStep('value', $valueView, (firstRemoved != 'value'));
+	};
+
+	/**
+	 * When an input is selected then the user needs to input a value.
+	 * @param  {String} inputName  Name of the selected input type.
+	 * @param  {jQuery} $inputView The input selection view that was used.
+	 * @param  {jQuery} $stepView Step view at which the field was selected.
+	 */
+	this.didSelectInput = function(inputName, $inputView, $stepView) {
+		// remove any steps that are farther then this one, just in case
+		var inputPosition = $inputView.data('position');
+		var firstRemoved = self.removeFilterStepsAfterPosition($inputView.closest('.jcsdl-step').data('number'));
+
+		// now the user needs to input desired value(s)
+		var $valueView = createValueInputView(getFieldInfoAtCurrentPath(), inputName);
+		self.addFilterStep('value', $valueView, (firstRemoved != 'value'));
 	};
 
 	/**
@@ -668,6 +709,40 @@ var JCSDLGui = function(el, config) {
 		return $option;
 	};
 
+	/**
+	 * Creates an value input fields selection view for the given collection of possible inputs.
+	 * @param  {Object} inputs Collection of possible inputs.
+	 * @return {jQuery}
+	 */
+	var createInputSelectionView = function(inputs) {
+		var $inputView = self.getTemplate('inputSelect');
+
+		// add all possible selections
+		var $inputSelect = $inputView.find('.jcsdl-filter-target-field-input');
+		$.each(inputs, function(i, name) {
+			var $inputOptionView = createOptionForInput(name);
+			$inputOptionView.appendTo($inputSelect);
+		});
+
+		return $inputView;
+	};
+
+	/**
+	 * Creates a select option for the given value input type.
+	 * @param  {String} name  Unique name of the value input type.
+	 * @return {jQuery}
+	 */
+	var createOptionForInput = function(name) {
+		var $option = self.getTemplate('inputSelectOption');
+
+		$option.data('name', name);
+		$option.html(name);
+		$option.addClass('icon-' + name);
+		$option.addClass('input-' + name);
+
+		return $option;
+	};
+
 	/*
 	 * FILTER VALUE INPUTS
 	 */
@@ -690,36 +765,44 @@ var JCSDLGui = function(el, config) {
 	/**
 	 * Creates a DOM element for inputting the value for the given field.
 	 * @param  {Object} field Definition of the field from JCSDLConfig.
+	 * @param  {String} inputType Which input type to use (if many).
 	 * @return {jQuery}
 	 */
-	var createValueInputView = function(field) {
+	var createValueInputView = function(field, inputType) {
+		inputType = inputType || field.input;
+
 		var $valueView = self.getTemplate('valueInput');
+		if (typeof(fieldTypes[inputType]) == 'undefined') return $valueView;
 
-		// create the actual input based on the field definition
-		if (typeof(fieldTypes[field.input]) == 'undefined') return $valueView;
+		// get the config definition of this input type (if any) and a list of allowed operators
+		var inputConfig = (typeof(JCSDLConfig.inputs[inputType]) !== 'undefined') ? JCSDLConfig.inputs[inputType] : {};
+		var allowedOperators = (typeof(inputConfig.operators) !== 'undefined') ? inputConfig.operators : [];
 
-		// create the input view by this input type's handler and add it to the value view ontainer
-		var $inputView = fieldTypes[field.input].init.apply($(), [field]);
-		var $valueInput = $valueView.find('.jcsdl-filter-value-input-field');
-		$valueInput.data('inputType', field.input).html($inputView);
-
-		// add case sensitivity toggle
-		if (field.cs) {
-			var $csView = self.getTemplate('caseSensitivity');
-			$valueInput.append($csView);
-		}
-
-		// now take care of possible operators
+		// first take care of possible operators
 		var $operatorsListView = $valueView.find('.jcsdl-filter-value-input-operators');
 		$.each(field.operators, function(i, operator) {
+			// if a list of allowed operators is defined and this operator is not on it, then continue to the next one
+			if (allowedOperators.length > 0 && ($.inArray(operator, allowedOperators) == -1)) return true;
+
 			var $operatorView = createOperatorSelectView(operator);
 			$operatorsListView.append($operatorView);
 		});
 
 		// if there's only one possible operator then automatically select it and hide it
-		if (field.operators.length == 1) {
+		if ($operatorsListView.find('.jcsdl-operator-select').length == 1) {
 			$operatorsListView.find('.jcsdl-operator-select:first input').click();
 			$operatorsListView.hide();
+		}
+
+		// create the input view by this input type's handler and add it to the value view container
+		var $inputView = fieldTypes[inputType].init.apply($(), [field]);
+		var $valueInput = $valueView.find('.jcsdl-filter-value-input-field');
+		$valueInput.data('inputType', inputType).html($inputView);
+
+		// add case sensitivity toggle
+		if (field.cs) {
+			var $csView = self.getTemplate('caseSensitivity');
+			$valueInput.append($csView);
 		}
 
 		/**
@@ -879,6 +962,74 @@ var JCSDLGui = function(el, config) {
 				});
 
 				return values.join(',');
+			}
+		},
+
+		/*
+		 * GEO BOX
+		 */
+		geo_box : {
+			init : function(fieldInfo) {
+				console.log('init geo_box');
+				return $();
+			},
+
+			setValue : function(fieldInfo, value) {
+			},
+
+			getValue : function(fieldInfo) {
+				return '';
+			}
+		},
+
+		/*
+		 * GEO RADIUS
+		 */
+		geo_radius : {
+			init : function(fieldInfo) {
+				console.log('init geo_radius');
+				return $();
+			},
+
+			setValue : function(fieldInfo, value) {
+			},
+
+			getValue : function(fieldInfo) {
+				return '';
+			}
+		},
+
+		/*
+		 * GEO POLYGON
+		 */
+		geo_polygon : {
+			init : function(fieldInfo) {
+				console.log('init geo_polygon');
+				return $();
+			},
+
+			setValue : function(fieldInfo, value) {
+			},
+
+			getValue : function(fieldInfo) {
+				return '';
+			}
+		},
+
+		/*
+		 * GEO TEXT
+		 */
+		geo_text : {
+			init : function(fieldInfo) {
+				console.log('init geo_text');
+				return $();
+			},
+
+			setValue : function(fieldInfo, value) {
+			},
+
+			getValue : function(fieldInfo) {
+				return '';
 			}
 		}
 

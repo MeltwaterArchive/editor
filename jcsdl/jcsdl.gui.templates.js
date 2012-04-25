@@ -121,6 +121,20 @@ var JCSDLGuiTemplates = {
 	// field select option
 	fieldOption : $('<a href="#" class="jcsdl-icon field jcsdl-carousel-item"></a>'),
 
+	// input select
+	inputSelect : $([
+		'<div class="jcsdl-filter-target-field-input-wrap">',
+			'<a href="#" class="jcsdl-carousel-scroll left"></a>',
+			'<a href="#" class="jcsdl-carousel-scroll right"></a>',
+			'<div class="jcsdl-carousel-wrap">',
+				'<div class="jcsdl-filter-target-field-input jcsdl-carousel" />',
+			'</div>',
+		'</div>'
+	].join('')),
+
+	// field select option
+	inputSelectOption : $('<a href="#" class="jcsdl-icon input jcsdl-carousel-item"></a>'),
+
 	// value input container
 	valueInput : $([
 		'<div class="jcsdl-filter-value-input">',

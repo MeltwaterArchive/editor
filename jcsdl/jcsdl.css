@@ -317,6 +317,7 @@
       /* only target selected */
       /* a field has been selected */
       /* various states of field selection */
+      /* various states of field selection */
       /* when a step is selected it also has shadow underneath */ }
       .jcsdl-container .jcsdl-filter-editor .jcsdl-step.jcsdl-filter-step-value {
         padding-bottom: 30px; }
@@ -330,6 +331,10 @@
         background: transparent url("img/select.png?12") no-repeat center -255px; }
       .jcsdl-container .jcsdl-filter-editor .jcsdl-step.selected.field-selected .jcsdl-filter-target-field-wrap {
         background-position: center -165px; }
+      .jcsdl-container .jcsdl-filter-editor .jcsdl-step.selected .jcsdl-filter-target-field-input-wrap {
+        background: transparent url("img/select.png?12") no-repeat center -255px; }
+      .jcsdl-container .jcsdl-filter-editor .jcsdl-step.selected.field-selected .jcsdl-filter-target-field-input-wrap {
+        background-position: center -165px; }
       .jcsdl-container .jcsdl-filter-editor .jcsdl-step.selected {
         background: transparent url("img/step_background.png?5") no-repeat bottom center; }
     .jcsdl-container .jcsdl-filter-editor .jcsdl-filter-target-wrap {
@@ -341,6 +346,11 @@
       padding-top: 5px;
       padding-bottom: 40px; }
       .jcsdl-container .jcsdl-filter-editor .jcsdl-filter-target-field-wrap .jcsdl-carousel-scroll {
+        margin-top: 25px; }
+    .jcsdl-container .jcsdl-filter-editor .jcsdl-filter-target-field-input-wrap {
+      padding-top: 5px;
+      padding-bottom: 40px; }
+      .jcsdl-container .jcsdl-filter-editor .jcsdl-filter-target-field-input-wrap .jcsdl-carousel-scroll {
         margin-top: 25px; }
     .jcsdl-container .jcsdl-filter-editor .jcsdl-filter-value-input-operators {
       overflow: hidden;
@@ -698,3 +708,21 @@
       background-position: -640px -1200px; }
       .jcsdl-container .jcsdl-icon.field.icon-message.selected {
         background-position: -720px -1200px; }
+  .jcsdl-container .jcsdl-icon.input {
+    background: url("img/icons-sprite-other.png?1") no-repeat 0 0; }
+    .jcsdl-container .jcsdl-icon.input.icon-geo_radius {
+      background-position: 0 -400px; }
+      .jcsdl-container .jcsdl-icon.input.icon-geo_radius.selected {
+        background-position: -80px -400px; }
+    .jcsdl-container .jcsdl-icon.input.icon-geo_polygon {
+      background-position: 0 -480px; }
+      .jcsdl-container .jcsdl-icon.input.icon-geo_polygon.selected {
+        background-position: -80px -480px; }
+    .jcsdl-container .jcsdl-icon.input.icon-geo_box {
+      background-position: 0 -560px; }
+      .jcsdl-container .jcsdl-icon.input.icon-geo_box.selected {
+        background-position: -80px -560px; }
+    .jcsdl-container .jcsdl-icon.input.icon-geo_text {
+      background-position: 0 80px; }
+      .jcsdl-container .jcsdl-icon.input.icon-geo_text.selected {
+        background-position: -80px 80px; }
