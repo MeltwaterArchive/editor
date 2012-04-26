@@ -356,18 +356,17 @@
       .jcsdl-container .jcsdl-filter-editor .jcsdl-filter-target-field-input-wrap .jcsdl-carousel-scroll {
         margin-top: 25px; }
     .jcsdl-container .jcsdl-filter-editor .jcsdl-filter-value-input-operators {
-      overflow: hidden;
       margin: 10px auto;
       margin-top: 20px;
       display: block;
       width: 75%;
       text-align: center; }
       .jcsdl-container .jcsdl-filter-editor .jcsdl-filter-value-input-operators .jcsdl-operator-select {
-        float: left;
-        margin: 5px 0.4em;
-        display: block;
-        width: 29%;
-        min-height: 7em; }
+        margin: 10px;
+        display: inline-block;
+        /* ie 7 */
+        zoom: 1;
+        *display: inline; }
         .jcsdl-container .jcsdl-filter-editor .jcsdl-filter-value-input-operators .jcsdl-operator-select label {
           cursor: pointer; }
         .jcsdl-container .jcsdl-filter-editor .jcsdl-filter-value-input-operators .jcsdl-operator-select input {
