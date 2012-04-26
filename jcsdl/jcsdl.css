@@ -26,6 +26,9 @@
   /*
    * FILTER EDITOR INPUT FIELDS
    */
+  /* filter editor input fields overrides for the filters list view */
+  /* expanded view */
+  /* collapsed view overrides */
   /*
    * ICONS
    */ }
@@ -380,7 +383,7 @@
   .jcsdl-container .jcsdl-filter-cancel {
     color: #888888;
     font-weight: normal; }
-  .jcsdl-container .jcsdl-filter-value-input-field .jcsdl-input-text input, .jcsdl-container .jcsdl-filter-value-input-field .jcsdl-input-number input {
+  .jcsdl-container .jcsdl-input-text input, .jcsdl-container .jcsdl-input-number input {
     display: block;
     margin: 0 auto;
     padding: 5px 10px;
@@ -397,13 +400,65 @@
     -moz-background-clip: padding;
     -webkit-background-clip: padding-box;
     background-clip: padding-box; }
-  .jcsdl-container .jcsdl-filter-value-input-field .jcsdl-input-number input {
+  .jcsdl-container .jcsdl-input-number input {
     width: 100px; }
-  .jcsdl-container .jcsdl-filter-value-input-field .jcsdl-input-select {
-    overflow: hidden; }
-    .jcsdl-container .jcsdl-filter-value-input-field .jcsdl-input-select .jcsdl-input-select-option {
-      float: left;
-      margin: 0 5px; }
+  .jcsdl-container .jcsdl-input-select {
+    margin: 0 30px;
+    text-align: center; }
+    .jcsdl-container .jcsdl-input-select .jcsdl-input-select-option {
+      margin: 10px;
+      display: inline-block;
+      padding: 0 10px;
+      height: 25px;
+      line-height: 25px;
+      font-size: 13px;
+      color: #3a3a3a;
+      background: url("img/elements.png?5") repeat-x 0 -148px;
+      border: 1px solid #9b9b9b;
+      -webkit-border-radius: 3px;
+      -khtml-border-radius: 3px;
+      -moz-border-radius: 3px;
+      -ms-border-radius: 3px;
+      -o-border-radius: 3px;
+      border-radius: 3px;
+      -moz-background-clip: padding;
+      -webkit-background-clip: padding-box;
+      background-clip: padding-box;
+      /* ie7 */
+      zoom: 1;
+      *display: inline; }
+      .jcsdl-container .jcsdl-input-select .jcsdl-input-select-option.selected {
+        background-position: 0 -123px;
+        border-color: #da6e01;
+        color: #fff; }
+      .jcsdl-container .jcsdl-input-select .jcsdl-input-select-option:active {
+        background-position: 0 -173px;
+        border-color: #af5901;
+        color: #fff; }
+        .jcsdl-container .jcsdl-input-select .jcsdl-input-select-option:active span {
+          position: relative;
+          top: 1px; }
+  .jcsdl-container .jcsdl-filter-info.value.input-select {
+    padding: 0;
+    border: 0; }
+    .jcsdl-container .jcsdl-filter-info.value.input-select .jcsdl-input-select {
+      margin: 0; }
+      .jcsdl-container .jcsdl-filter-info.value.input-select .jcsdl-input-select .jcsdl-input-select-option {
+        margin: 3px 5px; }
+      .jcsdl-container .jcsdl-filter-info.value.input-select .jcsdl-input-select .jcsdl-input-select-more {
+        font-size: 13px;
+        line-height: 25px; }
+  .jcsdl-container .jcsdl-filters-list.collapsed .jcsdl-filter-info.value.input-select .jcsdl-input-select .jcsdl-input-select-option {
+    display: inline;
+    height: auto;
+    line-height: inherit;
+    padding: 0;
+    color: inherit;
+    font-weight: normal;
+    background: none;
+    border: 0; }
+    .jcsdl-container .jcsdl-filters-list.collapsed .jcsdl-filter-info.value.input-select .jcsdl-input-select .jcsdl-input-select-option span {
+      top: 0 !important; }
   .jcsdl-container .jcsdl-icon.target {
     background: url("img/icons-sprite-targets.png?5") no-repeat 0 0; }
     .jcsdl-container .jcsdl-icon.target.target-interaction {

@@ -587,6 +587,9 @@ var JCSDLGui = function(el, config) {
 			$filterRow.find('.jcsdl-filter-info.field').append($field);
 		});
 
+		// get the field definition
+		var field = jcsdl.getFieldInfo(filter.target, currentPath);
+
 		// operator
 		var $operator = self.getTemplate('filterOperator');
 		$operator.addClass('operator-' + filter.operator).html(jcsdl.getOperatorCode(filter.operator).escapeHtml());
@@ -594,9 +597,19 @@ var JCSDLGui = function(el, config) {
 
 		// value (but not for 'exists' operator)
 		if (filter.operator !== 'exists') {
-			var $value = self.getTemplate('filterValue');
-			$value.html(filter.value.truncate(50).escapeHtml());
-			$filterRow.find('.value').html($value);
+			var $value = $();
+			// use a custom display value function for this field's input type (if any)
+			if (typeof(fieldTypes[field.input].displayValue) == 'function') {
+				$value = fieldTypes[field.input].displayValue.apply(fieldTypes[field.input], [field, filter.value, filter]);
+
+			// or display a standard text
+			} else {
+				$value = self.getTemplate('filterValue');
+				$value.html(filter.value.truncate(50).escapeHtml());
+			}
+
+			$filterRow.find('.value').addClass('input-' + field.input).html($value);
+
 		} else {
 			$filterRow.find('.value').remove();
 		}
@@ -934,15 +947,25 @@ var JCSDLGui = function(el, config) {
 			init : function(fieldInfo) {
 				var $view = self.getTemplate('valueInput_select');
 
-				// also include all options
-				if (typeof(fieldInfo.options) !== 'undefined') {
-					$.each(fieldInfo.options, function(name, label) {
-						var $optionView = self.getTemplate('valueInput_select_option');
-						$optionView.find('input').val(name);
-						$optionView.find('label span').html(label);
-						$optionView.appendTo($view);
-					});
-				}
+				// decide from where to get the options
+				var options = fieldTypes.select.getOptionsSet(fieldInfo);
+
+				// render the options
+				$.each(options, function(value, label) {
+					var $optionView = fieldTypes.select.createOptionView(value, label);
+					$optionView.appendTo($view);
+				});
+
+				/**
+				 * Turn on/off the clicked option.
+				 * @param  {Event} ev
+				 * @listener
+				 */
+				$view.find('.jcsdl-input-select-option').click(function(ev) {
+					ev.preventDefault();
+					ev.target.blur();
+					$(this).toggleClass('selected');
+				});
 
 				return $view;
 			},
@@ -950,18 +973,76 @@ var JCSDLGui = function(el, config) {
 			setValue : function(fieldInfo, value) {
 				var values = value.split(',');
 				var $view = this;
-				$.each(values, function(i, name) {
-					$view.find('input[value="' + name + '"]').attr('checked', true);
+				$.each(values, function(i, val) {
+					$view.find('.jcsdl-input-select-option[data-value="' + val + '"]').addClass('selected');
 				});
 			},
 
 			getValue : function(fieldInfo) {
 				var values = [];
-				this.find('input:checked').each(function(i, option) {
-					values.push($(option).val());
+				this.find('.jcsdl-input-select-option.selected').each(function(i, option) {
+					values.push($(option).data('value'));
 				});
 
 				return values.join(',');
+			},
+
+			displayValue : function(fieldInfo, value, filter) {
+				var values = value.split(',');
+				var $view = self.getTemplate('valueInput_select');
+
+				// return nothing if empty
+				if (values.length == 0) return $view;
+
+				var options = fieldTypes.select.getOptionsSet(fieldInfo);
+
+				// only show maximum of 5 selected options
+				var showValues = values.slice(0, 5);
+				$.each(showValues, function(i, val) {
+					if (typeof(options[val]) == 'undefined') return true;
+
+					var $optionView = fieldTypes.select.createOptionView(val, options[val]);
+					$optionView.addClass('selected');
+					$optionView.appendTo($view);
+				});
+
+				// show more indicator if there are more left
+				if (values.length > showValues.length) {
+					var $indicator = self.getTemplate('valueInput_select_more');
+					$indicator.find('.count').html(values.length - showValues.length);
+					$indicator.appendTo($view);
+				}
+
+				/**
+				 * Turn off clicking of the options.
+				 * @param  {Event} ev
+				 * @listener
+				 */
+				$view.find('.jcsdl-input-select-option').click(function(ev) {
+					ev.preventDefault();
+					ev.target.blur();
+				});
+
+				return $view;
+			},
+
+			getOptionsSet : function(fieldInfo) {
+				var options = {};
+				if (typeof(fieldInfo.options) !== 'undefined') {
+					options = fieldInfo.options;
+				} else if ((typeof(fieldInfo.optionsSet) !== 'undefined') && (typeof(JCSDLConfig.inputs.select.sets[fieldInfo.optionsSet]) !== 'undefined')) {
+					options = JCSDLConfig.inputs.select.sets[fieldInfo.optionsSet];
+				}
+				return options;
+			},
+
+			createOptionView : function(value, label) {
+				var $optionView = self.getTemplate('valueInput_select_option');
+				$optionView.attr('data-value', value);
+				$optionView.addClass('option-' + value);
+				$optionView.attr('title', label);
+				$optionView.find('span').html(label);
+				return $optionView;
 			}
 		},
 

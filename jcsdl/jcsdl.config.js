@@ -54,7 +54,7 @@ var JCSDLConfig = {
 						follower_ratio : {name: 'Follower Ratio', type: 'float', input: 'number', operators: ['exists', 'equals', 'different', 'greaterThan', 'lowerThan']},
 						friends_count : {name: 'Friends Count', type: 'int', input: 'number', operators: ['exists', 'equals', 'different', 'greaterThan', 'lowerThan']},
 						id : {name: 'ID', icon: 'user-id', type: 'int', input: 'number', operators: ['exists', 'equals', 'different', 'in']},
-						lang : {name: 'Language', icon: 'language', type: 'string', cs: true, input: 'select', operators: ['exists', 'different', 'in']},
+						lang : {name: 'Language', icon: 'language', type: 'string', input: 'select', optionsSet: 'language', operators: ['exists', 'different', 'in']},
 						listed_count : {name: 'Listed Count', type: 'int', input: 'number', operators: ['exists', 'equals', 'different', 'greaterThan', 'lowerThan']},
 						location : {name: 'Location', type: 'string', cs: true, input: 'text', operators: ['exists', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
 						name : {name: 'Name', icon: 'username', type: 'string', cs: true, input: 'text', operators: ['exists', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
@@ -111,7 +111,7 @@ var JCSDLConfig = {
 				link : {name: 'Link', type: 'string', cs: true, input: 'text', operators: ['exists', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
 				sample : {name: 'sample', type: 'float', input: 'slider', operators: ['exists', 'equals', 'different', 'greaterThan', 'lowerThan']},
 				source : {name: 'Source', type: 'string', cs: true, input: 'text', operaotrs: ['contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-				type : {name: 'Type', type: 'string', cs: true, input: 'select', operators: ['exists', 'in'], options: {twitter : 'Twitter', myspace : 'MySpace', facebook : 'Facebook', digg : 'Digg', '2ch' : '2ch', amazon : 'Amazon', youtube : 'YouTube', dailymotion : 'DailyMotion'}},
+				type : {name: 'Type', type: 'string', input: 'select', operators: ['exists', 'in'], options: {'twitter': 'Twitter', 'myspace': 'MySpace', 'facebook': 'Facebook', 'digg': 'Digg', '2ch': '2ch', 'amazon': 'Amazon', 'youtube': 'YouTube', 'dailymotion': 'DailyMotion'}},
 				title : {name: 'Title', type: 'string', cs: true, input: 'text', operators: ['exists', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
 				author : {
 					name: 'Author',
@@ -259,6 +259,11 @@ var JCSDLConfig = {
 
 	// some additional config for some input types
 	inputs : {
+		select : {
+			sets : {
+				language : {'af': 'Afrikaans', 'bg': 'Bulgarian', 'zh': 'Chinese', 'cs': 'Czech', 'da': 'Danish', 'nl': 'Dutch', 'en': 'English', 'et': 'Estonian', 'fi': 'Finnish', 'fr': 'French', 'de': 'German', 'el': 'Greek', 'he': 'Hebrew', 'hu': 'Hungarian', 'is': 'Icelandic', 'it': 'Italian', 'ja': 'Japanese', 'ko': 'Korean', 'la': 'Latin', 'lt': 'Lithuanian)', 'lv': 'Latvian', 'no': 'Norwegian', 'pl': 'Polish', 'pt': 'Portuguese', 'ro': 'Romanian', 'ru': 'Russian', 'es': 'Spanish', 'sv': 'Swedish', 'tl': 'Tagalog'}
+			}
+		},
 		geo_box : {
 			operators : ['geo_box']
 		},

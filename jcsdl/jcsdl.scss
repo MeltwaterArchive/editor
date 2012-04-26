@@ -356,23 +356,67 @@ $otherIconsSprite : 'img/icons-sprite-other.png?1';
 	/*
 	 * FILTER EDITOR INPUT FIELDS
 	 */
-	.jcsdl-filter-value-input-field {
-		.jcsdl-input-text input, .jcsdl-input-number input {
-			display: block; margin: 0 auto;
-			padding: 5px 10px; width: 90%;
-			font-size: 1.3em; line-height: 1.5em;
-			border: 1px solid $borderColor;
+	.jcsdl-input-text input, .jcsdl-input-number input {
+		display: block; margin: 0 auto;
+		padding: 5px 10px; width: 90%;
+		font-size: 1.3em; line-height: 1.5em;
+		border: 1px solid $borderColor;
+		@include rounded(3px);
+	}
+	.jcsdl-input-number input {width: 100px;}
+
+	.jcsdl-input-select {
+		margin: 0 30px;
+		text-align: center;
+
+		.jcsdl-input-select-option {
+			margin: 10px;
+			display: inline-block; padding: 0 10px; height: 25px; line-height: 25px;
+			font-size: 13px; color: #3a3a3a;
+			background: url($elementsSprite) repeat-x 0 -148px;
+			border: 1px solid #9b9b9b;
 			@include rounded(3px);
-		}
-		.jcsdl-input-number input {width: 100px;}
 
-		.jcsdl-input-select {
-			overflow: hidden;
+			/* ie7 */
+			zoom: 1;
+			*display: inline;
 
-			.jcsdl-input-select-option {float: left; margin: 0 5px;}
+			&.selected {background-position: 0 -123px; border-color: #da6e01; color: #fff;}
+			&:active {
+				background-position: 0 -173px; border-color: #af5901; color: #fff;
+				span {position: relative; top: 1px;}
+			}
 		}
 	}
 
+	/* filter editor input fields overrides for the filters list view */
+	/* expanded view */
+	.jcsdl-filter-info.value {
+		&.input-select {
+			padding: 0; border: 0;
+
+			.jcsdl-input-select {
+				margin: 0;
+
+				.jcsdl-input-select-option {margin: 3px 5px;}
+				.jcsdl-input-select-more {font-size: 13px; line-height: 25px;}
+			}
+		}
+	}
+	/* collapsed view overrides */
+	.jcsdl-filters-list.collapsed .jcsdl-filter-info.value {
+		&.input-select {
+			.jcsdl-input-select {
+				.jcsdl-input-select-option {
+					display: inline; height: auto; line-height: inherit; padding: 0;
+					color: inherit; font-weight: normal;
+					background: none; border: 0;
+
+					span {top: 0 !important;}
+				}
+			}
+		}
+	}
 
 
 	/*

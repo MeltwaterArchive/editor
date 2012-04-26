@@ -175,19 +175,16 @@ var JCSDLGuiTemplates = {
 	].join('')),
 
 	// select input
-	valueInput_select : $([
-		'<div class="jcsdl-input-select">',
-		'</div>'
-	].join('')),
+	valueInput_select : $('<div class="jcsdl-input-select" />'),
 
 	// select input option
 	valueInput_select_option : $([
-		'<div class="jcsdl-input-select-option">',
-			'<label>',
-				'<input type="checkbox" name="selectvalue[]" />',
-				'<span />',
-			'</label>',
-		'</div>'
-	].join(''))
+		'<a href="#" class="jcsdl-input-select-option">',
+			'<span />',
+		'</a>'
+	].join('')),
+
+	// select input more indicator
+	valueInput_select_more : $('<span class="jcsdl-input-select-more">and <span class="count"></span> more...</span>')
 
 };
