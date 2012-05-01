@@ -6,9 +6,10 @@ $borderColorInput : #c8d7de;
 $elementsSprite : 'img/elements.png?5';
 $selectSprite : 'img/select.png?12';
 $stepBackground : 'img/step_background.png?5';
-$targetIconsSprite : 'img/icons-sprite-targets.png?5';
-$fieldIconsSprite : 'img/icons-sprite-fields.png?5';
-$otherIconsSprite : 'img/icons-sprite-other.png?1';
+$targetIconsSprite : 'img/icons-sprite-targets.png?6';
+$fieldIconsSprite : 'img/icons-sprite-fields.png?6';
+$operatorIconsSprite : 'img/icons-sprite-fields-operators.png?1';
+$otherIconsSprite : 'img/icons-sprite-other.png?2';
 
 /* useful mixins */
 @mixin rounded($radius: 5px) {
