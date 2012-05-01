@@ -109,7 +109,7 @@ var JCSDLConfig = {
 				content : {name: 'Content', type: 'string', cs: true, input: 'text', operators: ['exists', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
 				geo : {name: 'Location', type: 'geo', input: ['geo_box', 'geo_radius', 'geo_polygon', 'geo_text'], operators: ['exists', 'geo_box', 'geo_radius', 'geo_polygon']},
 				link : {name: 'Link', type: 'string', cs: true, input: 'text', operators: ['exists', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-				sample : {name: 'sample', type: 'float', input: 'slider', operators: ['exists', 'equals', 'different', 'greaterThan', 'lowerThan']},
+				sample : {name: 'sample', type: 'float', input: 'slider', operators: ['equals']},
 				source : {name: 'Source', type: 'string', cs: true, input: 'text', operaotrs: ['contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
 				type : {name: 'Type', type: 'string', input: 'select', operators: ['exists', 'in'], options: {'twitter': 'Twitter', 'myspace': 'MySpace', 'facebook': 'Facebook', 'digg': 'Digg', '2ch': '2ch', 'amazon': 'Amazon', 'youtube': 'YouTube', 'dailymotion': 'DailyMotion'}},
 				title : {name: 'Title', type: 'string', cs: true, input: 'text', operators: ['exists', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
@@ -271,6 +271,13 @@ var JCSDLConfig = {
 			sets : {
 				language : {'af': 'Afrikaans', 'bg': 'Bulgarian', 'zh': 'Chinese', 'cs': 'Czech', 'da': 'Danish', 'nl': 'Dutch', 'en': 'English', 'et': 'Estonian', 'fi': 'Finnish', 'fr': 'French', 'de': 'German', 'el': 'Greek', 'he': 'Hebrew', 'hu': 'Hungarian', 'is': 'Icelandic', 'it': 'Italian', 'ja': 'Japanese', 'ko': 'Korean', 'la': 'Latin', 'lt': 'Lithuanian)', 'lv': 'Latvian', 'no': 'Norwegian', 'pl': 'Polish', 'pt': 'Portuguese', 'ro': 'Romanian', 'ru': 'Russian', 'es': 'Spanish', 'sv': 'Swedish', 'tl': 'Tagalog'}
 			}
+		},
+		slider : {
+			min : 0,
+			max : 100,
+			step : 10,
+			default: 50,
+			suffix : ''
 		},
 		geo_box : {
 			operators : ['geo_box']

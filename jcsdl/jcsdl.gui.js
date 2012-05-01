@@ -799,12 +799,6 @@ var JCSDLGui = function(el, config) {
 			$operatorsListView.append($operatorView);
 		});
 
-		// if there's only one possible operator then automatically select it and hide it
-		if ($operatorsListView.children().length == 1) {
-			$operatorsListView.children().eq(0).click();
-			$operatorsListView.hide();
-		}
-
 		// create the input view by this input type's handler and add it to the value view container
 		var $inputView = fieldTypes[inputType].init.apply($(), [field]);
 		var $valueInput = $valueView.find('.jcsdl-filter-value-input-field');
@@ -837,6 +831,12 @@ var JCSDLGui = function(el, config) {
 				$valueInput.fadeIn(self.config.animationSpeed);
 			}
 		});
+
+		// if there's only one possible operator then automatically select it and hide it
+		if ($operatorsListView.children().length == 1) {
+			$operatorsListView.children().eq(0).click();
+			$operatorsListView.hide();
+		}
 
 		return $valueView;
 	};
@@ -1048,6 +1048,82 @@ var JCSDLGui = function(el, config) {
 				$optionView.attr('title', label);
 				$optionView.find('span').html(label);
 				return $optionView;
+			}
+		},
+
+		/*
+		 * SLIDER
+		 */
+		slider : {
+			init : function(fieldInfo) {
+				var $view = self.getTemplate('valueInput_slider');
+				var options = fieldTypes.slider.getOptions(fieldInfo);
+
+				// init slider
+				var $slider = $view.find('.jcsdl-slider').slider({
+					animate : true,
+					min : options.min,
+					max : options.max,
+					step : options.step,
+					value : options.default,
+					slide : function(ev, ui) {
+						var value = fieldTypes.slider.parseValue(fieldInfo, ui.value);
+						$view.find('.jcsdl-slider-input').val(value);
+					},
+					change : function(ev, ui) {
+						//$vision.find('input.satisfaction-value').val(ui.value);
+					}
+				});
+
+				// set the default value
+				fieldTypes.slider.setValue.apply($view, [fieldInfo, options.default]);
+
+				/**
+				 * Make the plus and minus signs clickable. They should change the slider value.
+				 * @param  {Event} ev
+				 * @listener
+				 */
+				$view.find('.jcsdl-slider-minus, .jcsdl-slider-plus').click(function(ev) {
+					ev.preventDefault();
+					ev.target.blur();
+
+					var value = parseFloat($view.find('.jcsdl-slider-input').val());
+					value = ($(this).is('.jcsdl-slider-minus')) ? value - options.step : value + options.step;
+					fieldTypes.slider.setValue.apply($view, [fieldInfo, value]);
+				});
+
+				return $view;
+			},
+
+			setValue : function(fieldInfo, value) {
+				var options = fieldTypes.slider.getOptions(fieldInfo);
+				if (value > options.max || value < options.min) return;
+
+				this.find('.jcsdl-slider').slider('value', value);
+				this.find('.jcsdl-slider-input').val(value);
+			},
+
+			getValue : function(fieldInfo) {
+				var value = this.find('.jcsdl-slider').slider('value');
+				return fieldTypes.slider.parseValue(fieldInfo, value);
+			},
+
+			displayValue : function(fieldInfo, value, filter) {
+				return value.toString();
+			},
+
+			parseValue : function(fieldInfo, value) {
+				return value;
+			},
+
+			getOptions : function(fieldInfo) {
+				var options = $.extend(JCSDLConfig.inputs.slider, {
+					min : fieldInfo.min,
+					max : fieldInfo.max,
+					step : fieldInfo.step,
+					default : fieldInfo.default
+				});
+				return options;
 			}
 		},
 

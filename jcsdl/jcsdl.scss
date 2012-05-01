@@ -3,7 +3,7 @@ $color : #376491;
 $colorLight : #888;
 $borderColor : #dcdcdc;
 $borderColorInput : #c8d7de;
-$elementsSprite : 'img/elements.png?5';
+$elementsSprite : 'img/elements.png?6';
 $selectSprite : 'img/select.png?12';
 $stepBackground : 'img/step_background.png?5';
 $targetIconsSprite : 'img/icons-sprite-targets.png?6';
@@ -385,6 +385,62 @@ $otherIconsSprite : 'img/icons-sprite-other.png?2';
 			&:active {
 				background-position: 0 -173px; border-color: #af5901; color: #fff;
 				span {position: relative; top: 1px;}
+			}
+		}
+	}
+
+	.jcsdl-input-slider {
+		margin: 10px 30px;
+		text-align: center;
+
+		.jcsdl-slider-controls {
+			margin: 0 auto;
+			width: 200px; padding: 5px 0; overflow: hidden;
+
+			.jcsdl-slider-minus, .jcsdl-slider-plus {
+				float: right; margin: 13px 10px; overflow: hidden;
+				display: block; width: 14px; height: 14px;
+				background: transparent url($elementsSprite) no-repeat -115px -89px;
+			}
+			.jcsdl-slider-minus {float: left; background-position: -129px -89px;}
+
+			.jcsdl-slider-input {
+				display: block; margin: 0 auto;
+				padding: 5px; width: 110px;
+				font-size: 24px; color: #1b1b1f; text-align: center;
+				border: 1px solid #ccc;
+				@include rounded(3px);
+			}
+		}
+
+		.jcsdl-slider-wrap {
+			display: block; overflow: hidden; position: relative;
+			min-height: 80px;
+
+			.jcsdl-slider-icon {
+				display: none; float: left; margin: 0 10px;
+				width: 80px; height: 80px;
+				background: url($otherIconsSprite) no-repeat 0 0;
+
+				&.max {float: right;}
+			}
+		}
+
+		.jcsdl-slider {
+			display: block; margin: 10px 20px;
+			height: 10px;
+			cursor: pointer;
+			background: transparent;
+			border: 0; border-top: 1px dotted #ccc;
+			@include rounded(0px);
+
+			.ui-slider-handle {
+				top: -5px; margin-left: -1em;
+				display: block; width: 30px; height: 40px;
+				cursor: pointer;
+				background: transparent url($elementsSprite) no-repeat -152px -83px;
+				border: 0;
+				outline: none;
 			}
 		}
 	}

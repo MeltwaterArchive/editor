@@ -181,6 +181,24 @@ var JCSDLGuiTemplates = {
 	].join('')),
 
 	// select input more indicator
-	valueInput_select_more : $('<span class="jcsdl-input-select-more">and <span class="count"></span> more...</span>')
+	valueInput_select_more : $('<span class="jcsdl-input-select-more">and <span class="count"></span> more...</span>'),
+
+	// slider
+	valueInput_slider : $([
+		'<div class="jcsdl-input-slider">',
+			'<div class="jcsdl-slider-controls">',
+				'<a href="#" class="jcsdl-slider-minus" />',
+				'<a href="#" class="jcsdl-slider-plus" />',
+				'<input type="text" name="value" class="jcsdl-slider-input" placeholder="0" />',
+			'</div>',
+			'<div class="jcsdl-slider-wrap">',
+				'<div class="jcsdl-slider-label min" />',
+				'<div class="jcsdl-slider-label max" />',
+				'<div class="jcsdl-slider-icon min" />',
+				'<div class="jcsdl-slider-icon max" />',
+				'<div class="jcsdl-slider" />',
+			'</div>',
+		'</div>'
+	].join(''))
 
 };
