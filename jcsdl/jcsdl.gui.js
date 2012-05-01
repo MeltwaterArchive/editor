@@ -204,7 +204,7 @@ var JCSDLGui = function(el, config) {
 			});
 
 			// select operator
-			self.$currentFilterView.find('input[value="' + filter.operator + '"]').click();
+			self.$currentFilterView.find('.jcsdl-filter-value-input-operators .operator-' + filter.operator).click();
 			
 			// fill in the value (using the proper delegate)
 			var $valueInputView = self.$currentFilterView.find('.jcsdl-filter-value-input-field');
@@ -504,7 +504,7 @@ var JCSDLGui = function(el, config) {
 		var fieldInfo = getFieldInfoAtCurrentPath();
 
 		// first check if the operator is selected
-		var operator = self.$currentFilterView.find('.jcsdl-filter-value-input-operators [name="operator"]:checked').val();
+		var operator = self.$currentFilterView.find('.jcsdl-filter-value-input-operators .operator.selected').data('name');
 		if (typeof(operator) == 'undefined') {
 			self.showError('You need to select an operator!');
 			return;
@@ -592,7 +592,7 @@ var JCSDLGui = function(el, config) {
 
 		// operator
 		var $operator = self.getTemplate('filterOperator');
-		$operator.addClass('operator-' + filter.operator).html(jcsdl.getOperatorCode(filter.operator).escapeHtml());
+		$operator.addClass('operator-' + filter.operator + ' icon-' + filter.operator + ' selected').html(JCSDLConfig.operators[filter.operator].label);
 		$filterRow.find('.operator').html($operator);
 
 		// value (but not for 'exists' operator)
@@ -747,12 +747,7 @@ var JCSDLGui = function(el, config) {
 	 */
 	var createOptionForInput = function(name) {
 		var $option = self.getTemplate('inputSelectOption');
-
-		$option.data('name', name);
-		$option.html(name);
-		$option.addClass('icon-' + name);
-		$option.addClass('input-' + name);
-
+		$option.data('name', name).addClass('icon-' + name + ' input-' + name).html(name);
 		return $option;
 	};
 
@@ -761,17 +756,15 @@ var JCSDLGui = function(el, config) {
 	 */
 	/**
 	 * Creates a single operator select view for the specified operator.
-	 * @param  {String} operatorName Name of the operator.
+	 * @param  {String} name Name of the operator.
 	 * @return {jQuery}
 	 */
-	var createOperatorSelectView = function(operatorName) {
-		var operator = JCSDLConfig.operators[operatorName];
+	var createOperatorSelectView = function(name) {
+		var operator = JCSDLConfig.operators[name];
 		if (typeof(operator) == 'undefined') return $(); // return empty jquery object if no such operator defined
 
 		var $operatorView = self.getTemplate('operatorSelect');
-		$operatorView.find('input').val(operatorName);
-		$operatorView.find('label').append(operator.description);
-
+		$operatorView.data('name', name).addClass('icon-' + name + ' operator-' + name).html(JCSDLConfig.operators[filter.operator].label);
 		return $operatorView;
 	};
 
@@ -802,8 +795,8 @@ var JCSDLGui = function(el, config) {
 		});
 
 		// if there's only one possible operator then automatically select it and hide it
-		if ($operatorsListView.find('.jcsdl-operator-select').length == 1) {
-			$operatorsListView.find('.jcsdl-operator-select:first input').click();
+		if ($operatorsListView.children().length == 1) {
+			$operatorsListView.children().eq(0).click();
 			$operatorsListView.hide();
 		}
 
@@ -819,14 +812,21 @@ var JCSDLGui = function(el, config) {
 		}
 
 		/**
-		 * Listen for selection of operators and if 'exists' operator selected then hide the value input.
-		 * Otherwise show the value input (if was hidden).
+		 * Listen for clicks on the operators and select the clicked one.
+		 * If 'exists' operator selected then hide the value input.
 		 * @param  {Event} ev
 		 * @listener
 		 */
-		$operatorsListView.find('input').change(function(ev) {
-			var $input = $(this);
-			if (($input.val() == 'exists') && $input.is(':checked')) {
+		$operatorsListView.children().click(function(ev) {
+			ev.preventDefault();
+			ev.target.blur();
+
+			var $operator = $(this);
+
+			$operatorsListView.children().removeClass('selected');
+			$operator.addClass('selected');
+
+			if ($operator.data('name') == 'exists') {
 				$valueInput.fadeOut(self.config.animationSpeed);
 			} else if (!$valueInput.is(':visible')) {
 				$valueInput.fadeIn(self.config.animationSpeed);

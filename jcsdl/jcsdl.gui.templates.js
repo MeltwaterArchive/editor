@@ -72,7 +72,7 @@ var JCSDLGuiTemplates = {
 
 	filterTarget : $('<div class="jcsdl-filter-target jcsdl-icon target" />'),
 	filterField : $('<div class="jcsdl-filter-field jcsdl-icon field" />'),
-	filterOperator : $('<div class="jcsdl-filter-operator" />'),
+	filterOperator : $('<div class="jcsdl-filter-operator jcsdl-icon operator" />'),
 	filterValue : $('<div class="jcsdl-filter-value" />'),
 
 	/* ##########################
@@ -119,7 +119,7 @@ var JCSDLGuiTemplates = {
 	].join('')),
 
 	// field select option
-	fieldOption : $('<a href="#" class="jcsdl-icon field jcsdl-carousel-item"></a>'),
+	fieldOption : $('<a href="#" class="jcsdl-icon field jcsdl-carousel-item" />'),
 
 	// input select
 	inputSelect : $([
@@ -133,7 +133,7 @@ var JCSDLGuiTemplates = {
 	].join('')),
 
 	// field select option
-	inputSelectOption : $('<a href="#" class="jcsdl-icon input jcsdl-carousel-item"></a>'),
+	inputSelectOption : $('<a href="#" class="jcsdl-icon input jcsdl-carousel-item" />'),
 
 	// value input container
 	valueInput : $([
@@ -144,11 +144,7 @@ var JCSDLGuiTemplates = {
 	].join('')),
 
 	// operator select
-	operatorSelect : $([
-		'<div class="jcsdl-operator-select">',
-			'<label><input type="radio" name="operator" /></label>',
-		'</div>'
-	].join('')),
+	operatorSelect : $('<a href="#" class="jcsdl-icon operator" />'),
 
 	// case sensitivity toggle
 	caseSensitivity : $([

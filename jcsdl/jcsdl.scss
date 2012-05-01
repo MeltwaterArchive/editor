@@ -214,7 +214,9 @@ $otherIconsSprite : 'img/icons-sprite-other.png?2';
 			.jcsdl-filter-target {margin: 0;}
 			.jcsdl-filter-field {margin: 15px 10px;}
 			.jcsdl-filter-operator {
-				line-height: 110px;
+				margin: 15px 10px;
+
+				.jcsdl-icon {margin: 0 !important;}
 
 				&.operator-contains {display: none;}
 				&.operator-substr {display: none;}
@@ -333,13 +335,10 @@ $otherIconsSprite : 'img/icons-sprite-other.png?2';
 			display: block; width: 75%;
 			text-align: center;
 
-			.jcsdl-operator-select {
-				margin: 10px; display: inline-block;
+			.jcsdl-icon.operator {
+				float: none; margin: 10px; display: inline-block;
 				/* ie 7 */
 				zoom: 1; *display: inline;
-
-				label {cursor: pointer;}
-				input {margin-right: 8px;}
 			}
 		}
 
@@ -518,6 +517,21 @@ $otherIconsSprite : 'img/icons-sprite-other.png?2';
 		&.icon-geo_polygon 	{background-position: 0 -480px; 		&.selected {background-position: -80px -480px;}}
 		&.icon-geo_box 		{background-position: 0 -560px; 		&.selected {background-position: -80px -560px;}}
 		&.icon-geo_text 	{background-position: 0 80px; 			&.selected {background-position: -80px 80px;}}
+	}
+
+	.jcsdl-icon.operator {
+		background: url($operatorIconsSprite) no-repeat 0 0;
+
+		&.icon-contains 	{background-position: 0 0; 				&.selected {background-position: -80px 0;}}
+		&.icon-substr 		{background-position: -160px 0; 		&.selected {background-position: -240px 0;}}
+		&.icon-contains_any {background-position: -320px 0; 		&.selected {background-position: -400px 0;}}
+		&.icon-contains_near{background-position: -480px 0; 		&.selected {background-position: -560px 0;}}
+		&.icon-equals 		{background-position: -640px 0; 		&.selected {background-position: -720px 0;}}
+		&.icon-exists 		{background-position: 0 -80px; 			&.selected {background-position: -80px -80px;}}
+		&.icon-in 			{background-position: -160px -80px; 	&.selected {background-position: -240px -80px;}}
+		&.icon-greaterThan 	{background-position: -480px -80px; 	&.selected {background-position: -560px -80px;}}
+		&.icon-lowerThan 	{background-position: -320px -80px; 	&.selected {background-position: -400px -80px;}}
+		&.icon-different 	{background-position: -640px -80px; 	&.selected {background-position: -720px -80px;}}
 	}
 
 }

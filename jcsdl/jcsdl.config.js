@@ -192,46 +192,52 @@ var JCSDLConfig = {
 	// some additional definition of the possible operators
 	operators : {
 		contains : {
+			label : 'Filter a word or phrase',
 			description : 'Filter for a word or phrase',
 			code : 'contains'
 		},
 		substr : {
+			label : 'Filter characters',
 			description : 'Filter for a sequence of characters',
 			code : 'substr'
 		},
 		contains_any : {
+			label : 'Filter words',
 			description : 'Filter for one or more words',
 			code : 'contains_any'
 		},
 		contains_near : {
+			label : 'Filter two words',
 			description : 'Two or more words that occur near each other',
 			code : 'contains_near'
 		},
-		exists : {
-			description : 'Check whether this data exists',
-			code : 'exists'
-		},
 		different : {
+			label : 'Different',
 			description : 'Is different than the following',
 			code : '!='
 		},
 		equals : {
+			label : 'Equals',
 			description : 'Equals',
 			code : '=='
 		},
 		'in' : {
+			label : 'Filter values from a list',
 			description : 'Filter for one or more values from a list',
 			code : 'in'
 		},
 		greaterThan : {
+			label : '&gt;=',
 			description : 'Greater than',
 			code : '>='
 		},
 		lowerThan : {
+			label : '&lt;=',
 			description : 'Lower than',
 			code : '<='
 		},
 		exists : {
+			label : 'Data exists',
 			description : 'This data exists',
 			code : 'exists'
 		},

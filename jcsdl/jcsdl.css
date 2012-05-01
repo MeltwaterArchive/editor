@@ -232,7 +232,9 @@
   .jcsdl-container .jcsdl-filters-list.expanded .jcsdl-filter .jcsdl-filter-field {
     margin: 15px 10px; }
   .jcsdl-container .jcsdl-filters-list.expanded .jcsdl-filter .jcsdl-filter-operator {
-    line-height: 110px; }
+    margin: 15px 10px; }
+    .jcsdl-container .jcsdl-filters-list.expanded .jcsdl-filter .jcsdl-filter-operator .jcsdl-icon {
+      margin: 0 !important; }
     .jcsdl-container .jcsdl-filters-list.expanded .jcsdl-filter .jcsdl-filter-operator.operator-contains {
       display: none; }
     .jcsdl-container .jcsdl-filters-list.expanded .jcsdl-filter .jcsdl-filter-operator.operator-substr {
@@ -361,16 +363,13 @@
       display: block;
       width: 75%;
       text-align: center; }
-      .jcsdl-container .jcsdl-filter-editor .jcsdl-filter-value-input-operators .jcsdl-operator-select {
+      .jcsdl-container .jcsdl-filter-editor .jcsdl-filter-value-input-operators .jcsdl-icon.operator {
+        float: none;
         margin: 10px;
         display: inline-block;
         /* ie 7 */
         zoom: 1;
         *display: inline; }
-        .jcsdl-container .jcsdl-filter-editor .jcsdl-filter-value-input-operators .jcsdl-operator-select label {
-          cursor: pointer; }
-        .jcsdl-container .jcsdl-filter-editor .jcsdl-filter-value-input-operators .jcsdl-operator-select input {
-          margin-right: 8px; }
     .jcsdl-container .jcsdl-filter-editor .jcsdl-footer {
       text-align: center; }
   .jcsdl-container .jcsdl-filter-save {
@@ -780,3 +779,45 @@
       background-position: 0 80px; }
       .jcsdl-container .jcsdl-icon.input.icon-geo_text.selected {
         background-position: -80px 80px; }
+  .jcsdl-container .jcsdl-icon.operator {
+    background: url("img/icons-sprite-fields-operators.png?1") no-repeat 0 0; }
+    .jcsdl-container .jcsdl-icon.operator.icon-contains {
+      background-position: 0 0; }
+      .jcsdl-container .jcsdl-icon.operator.icon-contains.selected {
+        background-position: -80px 0; }
+    .jcsdl-container .jcsdl-icon.operator.icon-substr {
+      background-position: -160px 0; }
+      .jcsdl-container .jcsdl-icon.operator.icon-substr.selected {
+        background-position: -240px 0; }
+    .jcsdl-container .jcsdl-icon.operator.icon-contains_any {
+      background-position: -320px 0; }
+      .jcsdl-container .jcsdl-icon.operator.icon-contains_any.selected {
+        background-position: -400px 0; }
+    .jcsdl-container .jcsdl-icon.operator.icon-contains_near {
+      background-position: -480px 0; }
+      .jcsdl-container .jcsdl-icon.operator.icon-contains_near.selected {
+        background-position: -560px 0; }
+    .jcsdl-container .jcsdl-icon.operator.icon-equals {
+      background-position: -640px 0; }
+      .jcsdl-container .jcsdl-icon.operator.icon-equals.selected {
+        background-position: -720px 0; }
+    .jcsdl-container .jcsdl-icon.operator.icon-exists {
+      background-position: 0 -80px; }
+      .jcsdl-container .jcsdl-icon.operator.icon-exists.selected {
+        background-position: -80px -80px; }
+    .jcsdl-container .jcsdl-icon.operator.icon-in {
+      background-position: -160px -80px; }
+      .jcsdl-container .jcsdl-icon.operator.icon-in.selected {
+        background-position: -240px -80px; }
+    .jcsdl-container .jcsdl-icon.operator.icon-greaterThan {
+      background-position: -480px -80px; }
+      .jcsdl-container .jcsdl-icon.operator.icon-greaterThan.selected {
+        background-position: -560px -80px; }
+    .jcsdl-container .jcsdl-icon.operator.icon-lowerThan {
+      background-position: -320px -80px; }
+      .jcsdl-container .jcsdl-icon.operator.icon-lowerThan.selected {
+        background-position: -400px -80px; }
+    .jcsdl-container .jcsdl-icon.operator.icon-different {
+      background-position: -640px -80px; }
+      .jcsdl-container .jcsdl-icon.operator.icon-different.selected {
+        background-position: -720px -80px; }
