@@ -1330,9 +1330,6 @@ var JCSDLGui = function(el, config) {
 			if ($.inArray(options, ['adjust']) >= 0) {
 				this.each(function() {
 					var carousel = get($(this));
-					if ($(this).data('name') == 'target') {
-						console.log('calling carousel method on target', options);
-					}
 					carousel[options].apply(carousel, []);
 				});
 			}
