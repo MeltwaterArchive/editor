@@ -389,6 +389,11 @@ var JCSDLGui = function(el, config) {
 			}
 		}
 
+		// adjust all carousels because the document size might have changed (right scroll bar might have appeared, but that doesn't trigger window.resize event)
+		setTimeout(function() {
+			self.$currentFilterStepsView.find('.jcsdl-step').jcsdlCarousel('adjust');
+		}, self.config.animationSpeed);
+
 		// add to the steps pool
 		self.currentFilterSteps.push($stepView);
 	};
@@ -764,7 +769,7 @@ var JCSDLGui = function(el, config) {
 		if (typeof(operator) == 'undefined') return $(); // return empty jquery object if no such operator defined
 
 		var $operatorView = self.getTemplate('operatorSelect');
-		$operatorView.data('name', name).addClass('icon-' + name + ' operator-' + name).html(JCSDLConfig.operators[filter.operator].label);
+		$operatorView.data('name', name).addClass('icon-' + name + ' operator-' + name).html(JCSDLConfig.operators[name].label);
 		return $operatorView;
 	};
 
@@ -1245,18 +1250,8 @@ var JCSDLGui = function(el, config) {
 		});
 
 		// adjust the carousel's width when window resizing
-		var resizeTimeout = null;
 		$(window).resize(function(ev) {
-			clearTimeout(resizeTimeout);
-			resizeTimeout = setTimeout(function() {
-				var wrapWidth = self.calculateWrapWidth();
-				self.$carouselWrap.css({
-					//width : wrapWidth,
-					maxWidth : wrapWidth
-				});
-				self.calculateCenterMargin();
-				self.changePosition(0, true);
-			}, 30);
+			self.adjust();
 		});
 	}
 
@@ -1291,9 +1286,12 @@ var JCSDLGui = function(el, config) {
 
 		// animate the carousel to its proper position
 		changePosition : function(speed, dontExpand) {
+			var self = this;
 			this.$carousel.animate({
 				left : this.calculateCurrentPosition()
-			}, speed);
+			}, speed, function() {
+				self.adjust();
+			});
 
 			// because position is changing, we may activate both buttons
 			this.toggleScrollButtons();
@@ -1302,17 +1300,22 @@ var JCSDLGui = function(el, config) {
 			if (!dontExpand && typeof(this.select) == 'function') {
 				this.select.apply(this.getSelectedItem());
 			}
+		},
+
+		// reposition the carousel (most pobably on window resize) to match its parent elements
+		adjust : function() {
+			this.$carouselWrap.css({
+				maxWidth : this.calculateWrapWidth()
+			});
+			this.calculateCenterMargin();
+			this.$carousel.css({
+				left : this.calculateCurrentPosition()
+			});
 		}
 	};
 
 	// the proper plugin
 	$.fn.jcsdlCarousel = function(options) {
-		options = $.extend({}, {
-			select : function() {},
-			expand : false,
-			speed : 200
-		}, options);
-
 		function get($el) {
 			var carousel = $el.data('jcsdlCarousel');
 			if (!carousel) {
@@ -1321,6 +1324,26 @@ var JCSDLGui = function(el, config) {
 			}
 			return carousel;
 		}
+
+		if (typeof(options) == 'string') {
+			// call a public method
+			if ($.inArray(options, ['adjust']) >= 0) {
+				this.each(function() {
+					var carousel = get($(this));
+					if ($(this).data('name') == 'target') {
+						console.log('calling carousel method on target', options);
+					}
+					carousel[options].apply(carousel, []);
+				});
+			}
+			return this;
+		}
+
+		options = $.extend({}, {
+			select : function() {},
+			expand : false,
+			speed : 200
+		}, options);
 
 		this.each(function() {get($(this));});
 		return this;

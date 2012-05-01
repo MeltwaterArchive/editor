@@ -242,10 +242,12 @@ var JCSDLConfig = {
 			code : 'exists'
 		},
 		regex_partial : {
+			label : 'Partial Regex',
 			description : 'Filter for content that contains text represented in a regular expression. The text can appear anywhere within the target you select.',
 			code : 'regex_partial'
 		},
 		regex_exact : {
+			label : 'Exact Regex',
 			description : 'Filter for content that contains text represented in a regular expression. The regular expression must match the entire content of the target you choose.',
 			code : 'regex_exact'
 		},
