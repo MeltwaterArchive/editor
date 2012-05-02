@@ -275,7 +275,7 @@ var JCSDLConfig = {
 		slider : {
 			min : 0,
 			max : 100,
-			step : 10,
+			step : 1,
 			default: 50,
 			suffix : ''
 		},

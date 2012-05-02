@@ -450,7 +450,21 @@
         display: block;
         width: 14px;
         height: 14px;
-        background: transparent url("img/elements.png?6") no-repeat -115px -89px; }
+        background: transparent url("img/elements.png?6") no-repeat -115px -89px;
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=$opacity * 10)";
+        filter: alpha(opacity=7);
+        -moz-opacity: 0.7;
+        -khtml-opacity: 0.7;
+        opacity: 0.7; }
+        .jcsdl-container .jcsdl-input-slider .jcsdl-slider-controls .jcsdl-slider-minus:active, .jcsdl-container .jcsdl-input-slider .jcsdl-slider-controls .jcsdl-slider-plus:active {
+          position: relative;
+          top: 1px; }
+        .jcsdl-container .jcsdl-input-slider .jcsdl-slider-controls .jcsdl-slider-minus:hover, .jcsdl-container .jcsdl-input-slider .jcsdl-slider-controls .jcsdl-slider-plus:hover {
+          -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=$opacity * 10)";
+          filter: alpha(opacity=10);
+          -moz-opacity: 1;
+          -khtml-opacity: 1;
+          opacity: 1; }
       .jcsdl-container .jcsdl-input-slider .jcsdl-slider-controls .jcsdl-slider-minus {
         float: left;
         background-position: -129px -89px; }

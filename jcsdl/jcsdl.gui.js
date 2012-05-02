@@ -1079,17 +1079,39 @@ var JCSDLGui = function(el, config) {
 				fieldTypes.slider.setValue.apply($view, [fieldInfo, options.default]);
 
 				/**
+				 * Changes the value of the slider by incrementing or decrementing.
+				 * @param  {jQuery} $view     Full slider input view.
+				 * @param  {Object} fieldInfo
+				 * @param  {Number} step      
+				 * @param  {Boolean} minus 
+				 */
+				var changeValue = function($view, fieldInfo, step, minus) {
+					var value = parseFloat($view.find('.jcsdl-slider-input').val());
+					value = (minus) ? value - step : value + step;
+					fieldTypes.slider.setValue.apply($view, [fieldInfo, value]);
+				}
+
+				// helper var for the listener below
+				var changeValueInterval = null;
+
+				/**
 				 * Make the plus and minus signs clickable. They should change the slider value.
+				 * Using mousedown and mouseup events so the mouse button can be hold to change the value.
 				 * @param  {Event} ev
 				 * @listener
 				 */
-				$view.find('.jcsdl-slider-minus, .jcsdl-slider-plus').click(function(ev) {
+				$view.find('.jcsdl-slider-minus, .jcsdl-slider-plus').mousedown(function(ev) {
+					var minus = $(this).is('.jcsdl-slider-minus');
+					changeValueInterval = setInterval(function() {
+						changeValue($view, fieldInfo, options.step, minus);
+					}, 50);
+				// mouse up will remove the interval (also mouseout)
+				}).bind('mouseup mouseout', function(ev) {
+					clearInterval(changeValueInterval);
+				// and prevent default behavior on click()
+				}).click(function(ev) {
 					ev.preventDefault();
 					ev.target.blur();
-
-					var value = parseFloat($view.find('.jcsdl-slider-input').val());
-					value = ($(this).is('.jcsdl-slider-minus')) ? value - options.step : value + options.step;
-					fieldTypes.slider.setValue.apply($view, [fieldInfo, value]);
 				});
 
 				return $view;
@@ -1097,7 +1119,12 @@ var JCSDLGui = function(el, config) {
 
 			setValue : function(fieldInfo, value) {
 				var options = fieldTypes.slider.getOptions(fieldInfo);
-				if (value > options.max || value < options.min) return;
+
+				value = (value > options.max)
+					? options.max
+					: ((value < options.min) 
+						? options.min
+						: value);
 
 				this.find('.jcsdl-slider').slider('value', value);
 				this.find('.jcsdl-slider-input').val(value);
