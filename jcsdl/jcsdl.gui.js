@@ -901,37 +901,7 @@ var JCSDLGui = function(el, config) {
 				var $view = self.getTemplate('valueInput_number');
 
 				// mask the input to allow only digits and dots and commas
-				$view.find('input[type=text]').keydown(function(ev) {
-					// dot can be entered only once
-					if ((ev.which == 190 || ev.which == 110) && ($(this).val().indexOf('.') >= 0)) {
-						ev.preventDefault();
-						return;
-					}
-
-					// Disallow: anything with shift or alt pressed
-					if (ev.shiftKey || ev.altKey) {
-						ev.preventDefault();
-						return;
-
-					} else if (
-			        	// Allow: backspace, delete, tab and escape
-			        	ev.which == 46 || ev.which == 8 || ev.which == 9 || ev.which == 27 ||
-			        	// Allow: dot (and dot from numpad)
-			        	ev.which == 190 || ev.which == 110 ||
-			            // Allow: Ctrl+A
-			            (ev.which == 65 && ev.ctrlKey === true) || 
-			            // Allow: home, end, left, right
-			            (ev.which >= 35 && ev.which <= 39)
-			        ) {
-		                // let it happen, don't do anything
-		                return;
-			        } else {
-			            // Ensure that it is a number and stop the keypress
-			            if ((ev.which < 48 || ev.which > 57) && (ev.which < 96 || ev.which > 105 )) {
-			                ev.preventDefault(); 
-			            }   
-			        }
-				});
+				$view.find('input[type=text]').jcsdlNumberMask();
 
 				return $view;
 			},
@@ -1077,6 +1047,20 @@ var JCSDLGui = function(el, config) {
 
 				// set the default value
 				fieldTypes.slider.setValue.apply($view, [fieldInfo, options.default]);
+
+				/**
+				 * Mask the input as a number field and update the slider when the value was changed in the input.
+				 * @param  {Event} ev
+				 * @listener
+				 */
+				$view.find('.jcsdl-slider-input').jcsdlNumberMask().keyup(function(ev) {
+					// don't do anything if a dot has been entered
+					if (ev.which == 110 || ev.which == 190) return;
+
+					var value = $(this).val();
+					value = (value) ? value : 0;
+					fieldTypes.slider.setValue.apply($view, [fieldInfo, parseFloat(value)]);
+				});
 
 				/**
 				 * Changes the value of the slider by incrementing or decrementing.
@@ -1446,6 +1430,50 @@ var JCSDLGui = function(el, config) {
 		}, options);
 
 		this.each(function() {get($(this));});
+		return this;
+	};
+})(window.jQuery);
+
+/**
+ * JCSDL Number Mask to prevent inputting other characters than digits into number inputs.
+ */
+(function($) {
+
+	$.fn.jcsdlNumberMask = function() {
+		this.each(function() {
+			$(this).keydown(function(ev) {
+				// dot can be entered only once
+				if ((ev.which == 190 || ev.which == 110) && ($(this).val().indexOf('.') >= 0)) {
+					ev.preventDefault();
+					return;
+				}
+
+				// Disallow: anything with shift or alt pressed
+				if (ev.shiftKey || ev.altKey) {
+					ev.preventDefault();
+					return;
+
+				} else if (
+		        	// Allow: backspace, delete, tab and escape
+		        	ev.which == 46 || ev.which == 8 || ev.which == 9 || ev.which == 27 ||
+		        	// Allow: dot (and dot from numpad)
+		        	ev.which == 190 || ev.which == 110 ||
+		            // Allow: Ctrl+A
+		            (ev.which == 65 && ev.ctrlKey === true) || 
+		            // Allow: home, end, left, right
+		            (ev.which >= 35 && ev.which <= 39)
+		        ) {
+	                // let it happen, don't do anything
+	                return;
+		        } else {
+		            // Ensure that it is a number and stop the keypress
+		            if ((ev.which < 48 || ev.which > 57) && (ev.which < 96 || ev.which > 105 )) {
+		                ev.preventDefault(); 
+		            }   
+		        }
+			});
+		});
+
 		return this;
 	};
 })(window.jQuery);
