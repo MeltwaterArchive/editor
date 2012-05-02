@@ -430,21 +430,14 @@ $otherIconsSprite : 'img/icons-sprite-other.png?2';
 			}
 		}
 
-		.jcsdl-slider-bottom {
-			display: block; overflow: hidden; margin: 0 8px;
-			height: 15px;
+		.jcsdl-slider-container {position: relative; padding-top: 12px;}
 
-			.jcsdl-slider-bottom-left, .jcsdl-slider-bottom-right {
-				display: block; width: 15px; height: 15px;
-				float: left;
-				background: transparent url($elementsSprite) no-repeat 0 -213px;
-			}
-			.jcsdl-slider-bottom-right {float: right; background-position: -31px -213px;}
+		.jcsdl-slider-label {
+			position: absolute; top: 0; left: 5px;
+			text-align: left;
+			color: #444; font-size: 0.9em;
 
-			.jcsdl-slider-bottom-line {
-				display: block; height: 15px; margin: 0 15px;
-				background: transparent url($elementsSprite) repeat-x 0 -198px;
-			}
+			&.max {right: 5px; left: auto; text-align: right;}
 		}
 
 		.jcsdl-slider {
@@ -461,6 +454,23 @@ $otherIconsSprite : 'img/icons-sprite-other.png?2';
 				background: transparent url($elementsSprite) no-repeat -152px -83px;
 				border: 0;
 				outline: none;
+			}
+		}
+
+		.jcsdl-slider-bottom {
+			display: block; overflow: hidden; margin: 0 8px;
+			height: 15px;
+
+			.jcsdl-slider-bottom-left, .jcsdl-slider-bottom-right {
+				display: block; width: 15px; height: 15px;
+				float: left;
+				background: transparent url($elementsSprite) no-repeat 0 -213px;
+			}
+			.jcsdl-slider-bottom-right {float: right; background-position: -31px -213px;}
+
+			.jcsdl-slider-bottom-line {
+				display: block; height: 15px; margin: 0 15px;
+				background: transparent url($elementsSprite) repeat-x 0 -198px;
 			}
 		}
 	}

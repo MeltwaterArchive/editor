@@ -1048,6 +1048,10 @@ var JCSDLGui = function(el, config) {
 				// set the default value
 				fieldTypes.slider.setValue.apply($view, [fieldInfo, options.default]);
 
+				// display the min and max labels
+				$view.find('.jcsdl-slider-label.min').html(fieldTypes.slider.displayValue(fieldInfo, options.min));
+				$view.find('.jcsdl-slider-label.max').html(fieldTypes.slider.displayValue(fieldInfo, options.max));
+
 				/**
 				 * Mask the input as a number field and update the slider when the value was changed in the input.
 				 * @param  {Event} ev
@@ -1115,12 +1119,13 @@ var JCSDLGui = function(el, config) {
 			},
 
 			getValue : function(fieldInfo) {
-				var value = this.find('.jcsdl-slider').slider('value');
+				var value = this.find('.jcsdl-slider-input').val();
 				return fieldTypes.slider.parseValue(fieldInfo, value);
 			},
 
 			displayValue : function(fieldInfo, value, filter) {
-				return value.toString();
+				var options = fieldTypes.slider.getOptions(fieldInfo);
+				return options.displayFormat.apply(options, [value.toString()]);
 			},
 
 			parseValue : function(fieldInfo, value) {
@@ -1132,7 +1137,8 @@ var JCSDLGui = function(el, config) {
 					min : fieldInfo.min,
 					max : fieldInfo.max,
 					step : fieldInfo.step,
-					default : fieldInfo.default
+					default : fieldInfo.default,
+					displayFormat : fieldInfo.displayFormat
 				});
 				return options;
 			}

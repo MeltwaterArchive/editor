@@ -500,25 +500,20 @@
         background: url("img/icons-sprite-other.png?2") no-repeat 0 0; }
         .jcsdl-container .jcsdl-input-slider .jcsdl-slider-wrap .jcsdl-slider-icon.max {
           float: right; }
-    .jcsdl-container .jcsdl-input-slider .jcsdl-slider-bottom {
-      display: block;
-      overflow: hidden;
-      margin: 0 8px;
-      height: 15px; }
-      .jcsdl-container .jcsdl-input-slider .jcsdl-slider-bottom .jcsdl-slider-bottom-left, .jcsdl-container .jcsdl-input-slider .jcsdl-slider-bottom .jcsdl-slider-bottom-right {
-        display: block;
-        width: 15px;
-        height: 15px;
-        float: left;
-        background: transparent url("img/elements.png?9") no-repeat 0 -213px; }
-      .jcsdl-container .jcsdl-input-slider .jcsdl-slider-bottom .jcsdl-slider-bottom-right {
-        float: right;
-        background-position: -31px -213px; }
-      .jcsdl-container .jcsdl-input-slider .jcsdl-slider-bottom .jcsdl-slider-bottom-line {
-        display: block;
-        height: 15px;
-        margin: 0 15px;
-        background: transparent url("img/elements.png?9") repeat-x 0 -198px; }
+    .jcsdl-container .jcsdl-input-slider .jcsdl-slider-container {
+      position: relative;
+      padding-top: 12px; }
+    .jcsdl-container .jcsdl-input-slider .jcsdl-slider-label {
+      position: absolute;
+      top: 0;
+      left: 5px;
+      text-align: left;
+      color: #444;
+      font-size: 0.9em; }
+      .jcsdl-container .jcsdl-input-slider .jcsdl-slider-label.max {
+        right: 5px;
+        left: auto;
+        text-align: right; }
     .jcsdl-container .jcsdl-input-slider .jcsdl-slider {
       display: block;
       margin: 10px 15px;
@@ -546,6 +541,25 @@
         background: transparent url("img/elements.png?9") no-repeat -152px -83px;
         border: 0;
         outline: none; }
+    .jcsdl-container .jcsdl-input-slider .jcsdl-slider-bottom {
+      display: block;
+      overflow: hidden;
+      margin: 0 8px;
+      height: 15px; }
+      .jcsdl-container .jcsdl-input-slider .jcsdl-slider-bottom .jcsdl-slider-bottom-left, .jcsdl-container .jcsdl-input-slider .jcsdl-slider-bottom .jcsdl-slider-bottom-right {
+        display: block;
+        width: 15px;
+        height: 15px;
+        float: left;
+        background: transparent url("img/elements.png?9") no-repeat 0 -213px; }
+      .jcsdl-container .jcsdl-input-slider .jcsdl-slider-bottom .jcsdl-slider-bottom-right {
+        float: right;
+        background-position: -31px -213px; }
+      .jcsdl-container .jcsdl-input-slider .jcsdl-slider-bottom .jcsdl-slider-bottom-line {
+        display: block;
+        height: 15px;
+        margin: 0 15px;
+        background: transparent url("img/elements.png?9") repeat-x 0 -198px; }
   .jcsdl-container .jcsdl-filter-info.value.input-select {
     padding: 0;
     border: 0; }
