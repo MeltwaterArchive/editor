@@ -1133,7 +1133,7 @@ var JCSDLGui = function(el, config) {
 			},
 
 			getOptions : function(fieldInfo) {
-				var options = $.extend(JCSDLConfig.inputs.slider, {
+				var options = $.extend({}, JCSDLConfig.inputs.slider, {
 					min : fieldInfo.min,
 					max : fieldInfo.max,
 					step : fieldInfo.step,
