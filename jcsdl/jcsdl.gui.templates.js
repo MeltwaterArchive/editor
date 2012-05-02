@@ -196,7 +196,14 @@ var JCSDLGuiTemplates = {
 				'<div class="jcsdl-slider-label max" />',
 				'<div class="jcsdl-slider-icon min" />',
 				'<div class="jcsdl-slider-icon max" />',
-				'<div class="jcsdl-slider" />',
+				'<div class="jcsdl-slider-container">',
+					'<div class="jcsdl-slider" />',
+					'<div class="jcsdl-slider-bottom">',
+						'<div class="jcsdl-slider-bottom-left" />',
+						'<div class="jcsdl-slider-bottom-right" />',
+						'<div class="jcsdl-slider-bottom-line" />',
+					'</div>',
+				'</div>',
 			'</div>',
 		'</div>'
 	].join(''))

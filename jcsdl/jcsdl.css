@@ -74,7 +74,7 @@
     display: block;
     height: 34px;
     width: 140px;
-    background: url("img/elements.png?6") no-repeat 0 -55px; }
+    background: url("img/elements.png?8") no-repeat 0 -55px; }
     .jcsdl-container .jcsdl-button.jcsdl-editor-cancel, .jcsdl-container .jcsdl-button.jcsdl-filter-cancel {
       width: 56px;
       background-position: 0 -89px; }
@@ -122,7 +122,7 @@
       display: block;
       width: 14px;
       height: 14px;
-      background: url("img/elements.png?6") no-repeat -140px -68px; }
+      background: url("img/elements.png?8") no-repeat -140px -68px; }
     .jcsdl-container .jcsdl-mainview-action.jcsdl-add-filter {
       margin-right: 0; }
   .jcsdl-container .jcsdl-mainview-mode {
@@ -143,7 +143,7 @@
     display: block;
     width: 13px;
     height: 13px;
-    background: url("img/elements.png?6") no-repeat -140px -55px;
+    background: url("img/elements.png?8") no-repeat -140px -55px;
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=$opacity * 10)";
     filter: alpha(opacity=3);
     -moz-opacity: 0.3;
@@ -295,7 +295,7 @@
     height: 29px;
     line-height: 29px;
     text-align: center;
-    background: transparent url("img/elements.png?6") no-repeat -56px -89px; }
+    background: transparent url("img/elements.png?8") no-repeat -56px -89px; }
     .jcsdl-container .jcsdl-carousel-scroll.right {
       float: right;
       background-position: -85px -89px; }
@@ -410,7 +410,7 @@
       line-height: 25px;
       font-size: 13px;
       color: #3a3a3a;
-      background: url("img/elements.png?6") repeat-x 0 -148px;
+      background: url("img/elements.png?8") repeat-x 0 -148px;
       border: 1px solid #9b9b9b;
       -webkit-border-radius: 3px;
       -khtml-border-radius: 3px;
@@ -450,7 +450,7 @@
         display: block;
         width: 14px;
         height: 14px;
-        background: transparent url("img/elements.png?6") no-repeat -115px -89px;
+        background: transparent url("img/elements.png?8") no-repeat -115px -89px;
         -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=$opacity * 10)";
         filter: alpha(opacity=7);
         -moz-opacity: 0.7;
@@ -500,14 +500,33 @@
         background: url("img/icons-sprite-other.png?2") no-repeat 0 0; }
         .jcsdl-container .jcsdl-input-slider .jcsdl-slider-wrap .jcsdl-slider-icon.max {
           float: right; }
+    .jcsdl-container .jcsdl-input-slider .jcsdl-slider-bottom {
+      display: block;
+      overflow: hidden;
+      margin: 0 8px;
+      height: 15px; }
+      .jcsdl-container .jcsdl-input-slider .jcsdl-slider-bottom .jcsdl-slider-bottom-left, .jcsdl-container .jcsdl-input-slider .jcsdl-slider-bottom .jcsdl-slider-bottom-right {
+        display: block;
+        width: 15px;
+        height: 15px;
+        float: left;
+        background: transparent url("img/elements.png?8") no-repeat 0 -213px; }
+      .jcsdl-container .jcsdl-input-slider .jcsdl-slider-bottom .jcsdl-slider-bottom-right {
+        float: right;
+        background-position: -31px -213px; }
+      .jcsdl-container .jcsdl-input-slider .jcsdl-slider-bottom .jcsdl-slider-bottom-line {
+        display: block;
+        height: 15px;
+        margin: 0 15px;
+        background: transparent url("img/elements.png?8") repeat-x 0 -198px; }
     .jcsdl-container .jcsdl-input-slider .jcsdl-slider {
       display: block;
-      margin: 10px 20px;
-      height: 10px;
+      margin: 10px 15px;
+      margin-bottom: 7px;
+      height: 12px;
       cursor: pointer;
-      background: transparent;
+      background: #f5f5f5;
       border: 0;
-      border-top: 1px dotted #ccc;
       -webkit-border-radius: 0px;
       -khtml-border-radius: 0px;
       -moz-border-radius: 0px;
@@ -518,13 +537,13 @@
       -webkit-background-clip: padding-box;
       background-clip: padding-box; }
       .jcsdl-container .jcsdl-input-slider .jcsdl-slider .ui-slider-handle {
-        top: -5px;
+        top: 0;
         margin-left: -1em;
         display: block;
         width: 30px;
         height: 40px;
         cursor: pointer;
-        background: transparent url("img/elements.png?6") no-repeat -152px -83px;
+        background: transparent url("img/elements.png?8") no-repeat -152px -83px;
         border: 0;
         outline: none; }
   .jcsdl-container .jcsdl-filter-info.value.input-select {
