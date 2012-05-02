@@ -3,7 +3,7 @@ $color : #376491;
 $colorLight : #888;
 $borderColor : #dcdcdc;
 $borderColorInput : #c8d7de;
-$elementsSprite : 'img/elements.png?8';
+$elementsSprite : 'img/elements.png?9';
 $selectSprite : 'img/select.png?12';
 $stepBackground : 'img/step_background.png?5';
 $targetIconsSprite : 'img/icons-sprite-targets.png?6';
@@ -451,7 +451,7 @@ $otherIconsSprite : 'img/icons-sprite-other.png?2';
 			display: block; margin: 10px 15px; margin-bottom: 7px;
 			height: 12px;
 			cursor: pointer;
-			background: #f5f5f5;
+			background: transparent url($elementsSprite) repeat-x center -228px;
 			border: 0; @include rounded(0px);
 
 			.ui-slider-handle {
