@@ -110,8 +110,8 @@ var JCSDLConfig = {
 				geo : {name: 'Location', type: 'geo', input: ['geo_box', 'geo_radius', 'geo_polygon', 'geo_text'], operators: ['exists', 'geo_box', 'geo_radius', 'geo_polygon']},
 				link : {name: 'Link', type: 'string', cs: true, input: 'text', operators: ['exists', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
 				sample : {name: 'sample', type: 'float', input: 'slider', operators: ['lowerThan'], displayFormat : function(v) { return v + '%';}},
-				source : {name: 'Source', type: 'string', cs: true, input: 'text', operaotrs: ['contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-				type : {name: 'Type', type: 'string', input: 'select', operators: ['exists', 'in'], options: {'twitter': 'Twitter', 'myspace': 'MySpace', 'facebook': 'Facebook', 'digg': 'Digg', '2ch': '2ch', 'amazon': 'Amazon', 'youtube': 'YouTube', 'dailymotion': 'DailyMotion'}},
+				source : {name: 'Source', type: 'string', cs: true, input: 'text', operators: ['contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				type : {name: 'Type', type: 'string', input: 'select', operators: ['in'], options: {'twitter': 'Twitter', 'myspace': 'MySpace', 'facebook': 'Facebook', 'digg': 'Digg', '2ch': '2ch', 'amazon': 'Amazon', 'youtube': 'YouTube', 'dailymotion': 'DailyMotion'}},
 				title : {name: 'Title', type: 'string', cs: true, input: 'text', operators: ['exists', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
 				author : {
 					name: 'Author',
@@ -193,27 +193,27 @@ var JCSDLConfig = {
 	operators : {
 		contains : {
 			label : 'Filter a word or phrase',
-			description : 'Filter for a word or phrase',
+			description : 'Filter for a word or phrase.',
 			code : 'contains'
 		},
 		substr : {
 			label : 'Filter characters',
-			description : 'Filter for a sequence of characters',
+			description : 'Filter for a sequence of characters.',
 			code : 'substr'
 		},
 		contains_any : {
 			label : 'Filter words',
-			description : 'Filter for one or more words',
+			description : 'Filter for one or more words.',
 			code : 'contains_any'
 		},
 		contains_near : {
 			label : 'Filter two words',
-			description : 'Two or more words that occur near each other',
+			description : 'Two or more words that occur near each other.',
 			code : 'contains_near'
 		},
 		different : {
 			label : 'Different',
-			description : 'Is different than the following',
+			description : 'Is different than the following.',
 			code : '!='
 		},
 		equals : {
@@ -223,22 +223,22 @@ var JCSDLConfig = {
 		},
 		'in' : {
 			label : 'Filter values from a list',
-			description : 'Filter for one or more values from a list',
+			description : 'Filter for one or more values from a list.',
 			code : 'in'
 		},
 		greaterThan : {
 			label : '&gt;=',
-			description : 'Greater than',
+			description : 'Greater than.',
 			code : '>='
 		},
 		lowerThan : {
 			label : '&lt;=',
-			description : 'Lower than',
+			description : 'Lower than.',
 			code : '<='
 		},
 		exists : {
 			label : 'Data exists',
-			description : 'This data exists',
+			description : 'This data exists.',
 			code : 'exists'
 		},
 		regex_partial : {
@@ -252,15 +252,15 @@ var JCSDLConfig = {
 			code : 'regex_exact'
 		},
 		geo_box : {
-			description : 'Filter for content originating from geographical locations within a bounding box',
+			description : 'Filter for content originating from geographical locations within a bounding box.',
 			code : 'geo_box'
 		},
 		geo_radius : {
-			description : 'Filter for posts originating inside a circle',
+			description : 'Filter for posts originating inside a circle.',
 			code : 'geo_radius'
 		},
 		geo_polygon : {
-			description : 'Filter for content originating from geographical locations defined by a polygon with up to 32 vertices',
+			description : 'Filter for content originating from geographical locations defined by a polygon with up to 32 vertices.',
 			code : 'geo_polygon'
 		}
 	},
@@ -269,7 +269,7 @@ var JCSDLConfig = {
 	inputs : {
 		select : {
 			sets : {
-				language : {'af': 'Afrikaans', 'bg': 'Bulgarian', 'zh': 'Chinese', 'cs': 'Czech', 'da': 'Danish', 'nl': 'Dutch', 'en': 'English', 'et': 'Estonian', 'fi': 'Finnish', 'fr': 'French', 'de': 'German', 'el': 'Greek', 'he': 'Hebrew', 'hu': 'Hungarian', 'is': 'Icelandic', 'it': 'Italian', 'ja': 'Japanese', 'ko': 'Korean', 'la': 'Latin', 'lt': 'Lithuanian)', 'lv': 'Latvian', 'no': 'Norwegian', 'pl': 'Polish', 'pt': 'Portuguese', 'ro': 'Romanian', 'ru': 'Russian', 'es': 'Spanish', 'sv': 'Swedish', 'tl': 'Tagalog'}
+				language : {'af': 'Afrikaans', 'bg': 'Bulgarian', 'zh': 'Chinese', 'cs': 'Czech', 'da': 'Danish', 'nl': 'Dutch', 'en': 'English', 'et': 'Estonian', 'fi': 'Finnish', 'fr': 'French', 'de': 'German', 'el': 'Greek', 'he': 'Hebrew', 'hu': 'Hungarian', 'is': 'Icelandic', 'it': 'Italian', 'ja': 'Japanese', 'ko': 'Korean', 'la': 'Latin', 'lt': 'Lithuanian', 'lv': 'Latvian', 'no': 'Norwegian', 'pl': 'Polish', 'pt': 'Portuguese', 'ro': 'Romanian', 'ru': 'Russian', 'es': 'Spanish', 'sv': 'Swedish', 'tl': 'Tagalog'}
 			}
 		},
 		slider : {

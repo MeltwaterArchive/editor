@@ -62,10 +62,6 @@
     height: 80px;
     overflow: hidden;
     text-indent: -9999px; }
-    .jcsdl-container .jcsdl-icon.target {
-      width: 110px;
-      height: 110px;
-      margin-right: 35px; }
   .jcsdl-container .jcsdl-button {
     float: left;
     margin-right: 8px;
@@ -74,7 +70,7 @@
     display: block;
     height: 34px;
     width: 140px;
-    background: url("img/elements.png?9") no-repeat 0 -55px; }
+    background: url("img/elements.png?10") no-repeat 0 -55px; }
     .jcsdl-container .jcsdl-button.jcsdl-editor-cancel, .jcsdl-container .jcsdl-button.jcsdl-filter-cancel {
       width: 56px;
       background-position: 0 -89px; }
@@ -122,7 +118,7 @@
       display: block;
       width: 14px;
       height: 14px;
-      background: url("img/elements.png?9") no-repeat -140px -68px; }
+      background: url("img/elements.png?10") no-repeat -140px -68px; }
     .jcsdl-container .jcsdl-mainview-action.jcsdl-add-filter {
       margin-right: 0; }
   .jcsdl-container .jcsdl-mainview-mode {
@@ -143,7 +139,7 @@
     display: block;
     width: 13px;
     height: 13px;
-    background: url("img/elements.png?9") no-repeat -140px -55px;
+    background: url("img/elements.png?10") no-repeat -140px -55px;
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=$opacity * 10)";
     filter: alpha(opacity=3);
     -moz-opacity: 0.3;
@@ -231,22 +227,20 @@
   .jcsdl-container .jcsdl-filters-list.expanded .jcsdl-filter .jcsdl-filter-field {
     margin: 15px 10px; }
   .jcsdl-container .jcsdl-filters-list.expanded .jcsdl-filter .jcsdl-filter-operator {
-    margin: 15px 10px; }
-    .jcsdl-container .jcsdl-filters-list.expanded .jcsdl-filter .jcsdl-filter-operator .jcsdl-icon {
-      margin: 0 !important; }
-    .jcsdl-container .jcsdl-filters-list.expanded .jcsdl-filter .jcsdl-filter-operator.operator-contains {
+    margin: 35px 0;
+    border-color: #dcdcdc; }
+    .jcsdl-container .jcsdl-filters-list.expanded .jcsdl-filter .jcsdl-filter-operator.operator-contains, .jcsdl-container .jcsdl-filters-list.expanded .jcsdl-filter .jcsdl-filter-operator.operator-substr, .jcsdl-container .jcsdl-filters-list.expanded .jcsdl-filter .jcsdl-filter-operator.operator-contains_any, .jcsdl-container .jcsdl-filters-list.expanded .jcsdl-filter .jcsdl-filter-operator.operator-in, .jcsdl-container .jcsdl-filters-list.expanded .jcsdl-filter .jcsdl-filter-operator.operator-equals {
       display: none; }
-    .jcsdl-container .jcsdl-filters-list.expanded .jcsdl-filter .jcsdl-filter-operator.operator-substr {
-      display: none; }
-    .jcsdl-container .jcsdl-filters-list.expanded .jcsdl-filter .jcsdl-filter-operator.operator-contains_any {
-      display: none; }
-    .jcsdl-container .jcsdl-filters-list.expanded .jcsdl-filter .jcsdl-filter-operator.operator-in {
-      display: none; }
-    .jcsdl-container .jcsdl-filters-list.expanded .jcsdl-filter .jcsdl-filter-operator.operator-equals {
-      display: none; }
+  .jcsdl-container .jcsdl-filters-list.expanded .jcsdl-filter .jcsdl-filter-info.operator {
+    margin: 0 5px;
+    margin-right: -3px; }
   .jcsdl-container .jcsdl-filters-list.expanded .jcsdl-filter .jcsdl-filter-info.value {
-    margin: 36px 0;
-    font-size: 1.2em; }
+    margin: 35px 0;
+    padding: 0 8px;
+    height: 38px;
+    line-height: 38px;
+    font-size: 1.2em;
+    background-color: white; }
   .jcsdl-container .jcsdl-filters-list.collapsed .jcsdl-filter .jcsdl-filter-description {
     float: left; }
   .jcsdl-container .jcsdl-filters-list.collapsed .jcsdl-filter .jcsdl-filter-info.value {
@@ -266,16 +260,9 @@
   .jcsdl-container .jcsdl-filters-list.collapsed .jcsdl-filter .jcsdl-filter-field {
     margin: 0 10px; }
   .jcsdl-container .jcsdl-filters-list.collapsed .jcsdl-filter .jcsdl-filter-operator {
-    font-weight: bold; }
-    .jcsdl-container .jcsdl-filters-list.collapsed .jcsdl-filter .jcsdl-filter-operator.operator-contains {
-      display: none; }
-    .jcsdl-container .jcsdl-filters-list.collapsed .jcsdl-filter .jcsdl-filter-operator.operator-substr {
-      display: none; }
-    .jcsdl-container .jcsdl-filters-list.collapsed .jcsdl-filter .jcsdl-filter-operator.operator-contains_any {
-      display: none; }
-    .jcsdl-container .jcsdl-filters-list.collapsed .jcsdl-filter .jcsdl-filter-operator.operator-in {
-      display: none; }
-    .jcsdl-container .jcsdl-filters-list.collapsed .jcsdl-filter .jcsdl-filter-operator.operator-equals {
+    font-weight: bold;
+    border: 0 !important; }
+    .jcsdl-container .jcsdl-filters-list.collapsed .jcsdl-filter .jcsdl-filter-operator.operator-contains, .jcsdl-container .jcsdl-filters-list.collapsed .jcsdl-filter .jcsdl-filter-operator.operator-substr, .jcsdl-container .jcsdl-filters-list.collapsed .jcsdl-filter .jcsdl-filter-operator.operator-contains_any, .jcsdl-container .jcsdl-filters-list.collapsed .jcsdl-filter .jcsdl-filter-operator.operator-in, .jcsdl-container .jcsdl-filters-list.collapsed .jcsdl-filter .jcsdl-filter-operator.operator-equals {
       display: none; }
   .jcsdl-container .jcsdl-filters-list.collapsed .jcsdl-filter .jcsdl-filter-options {
     position: relative;
@@ -295,7 +282,7 @@
     height: 29px;
     line-height: 29px;
     text-align: center;
-    background: transparent url("img/elements.png?9") no-repeat -56px -89px; }
+    background: transparent url("img/elements.png?10") no-repeat -56px -89px; }
     .jcsdl-container .jcsdl-carousel-scroll.right {
       float: right;
       background-position: -85px -89px; }
@@ -364,7 +351,7 @@
       text-align: center; }
       .jcsdl-container .jcsdl-filter-editor .jcsdl-filter-value-input-operators .jcsdl-icon.operator {
         float: none;
-        margin: 10px;
+        margin: 5px;
         display: inline-block;
         /* ie 7 */
         zoom: 1;
@@ -380,25 +367,38 @@
   .jcsdl-container .jcsdl-filter-cancel {
     color: #888888;
     font-weight: normal; }
-  .jcsdl-container .jcsdl-input-text input, .jcsdl-container .jcsdl-input-number input {
+  .jcsdl-container .jcsdl-input-text, .jcsdl-container .jcsdl-input-number {
     display: block;
-    margin: 0 auto;
-    padding: 5px 10px;
-    width: 90%;
-    font-size: 1.3em;
-    line-height: 1.5em;
-    border: 1px solid #dcdcdc;
-    -webkit-border-radius: 3px;
-    -khtml-border-radius: 3px;
-    -moz-border-radius: 3px;
-    -ms-border-radius: 3px;
-    -o-border-radius: 3px;
-    border-radius: 3px;
-    -moz-background-clip: padding;
-    -webkit-background-clip: padding-box;
-    background-clip: padding-box; }
-  .jcsdl-container .jcsdl-input-number input {
-    width: 100px; }
+    margin: 0 10px;
+    margin-right: 70px; }
+    .jcsdl-container .jcsdl-input-text input, .jcsdl-container .jcsdl-input-number input {
+      display: block;
+      box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      -webkit-box-sizing: border-box;
+      padding: 5px 10px;
+      width: 100%;
+      height: 40px;
+      font-size: 1.3em;
+      line-height: 1.5em;
+      border: 1px solid #dcdcdc;
+      -webkit-border-radius: 3px;
+      -khtml-border-radius: 3px;
+      -moz-border-radius: 3px;
+      -ms-border-radius: 3px;
+      -o-border-radius: 3px;
+      border-radius: 3px;
+      -moz-background-clip: padding;
+      -webkit-background-clip: padding-box;
+      background-clip: padding-box; }
+  .jcsdl-container .jcsdl-input-number {
+    margin: 0 10px; }
+    .jcsdl-container .jcsdl-input-number input {
+      margin: 0 auto;
+      width: 100px; }
+  .jcsdl-container .jcsdl-operator-cs {
+    float: right;
+    cursor: pointer; }
   .jcsdl-container .jcsdl-input-select {
     margin: 0 30px;
     text-align: center; }
@@ -410,7 +410,7 @@
       line-height: 25px;
       font-size: 13px;
       color: #3a3a3a;
-      background: url("img/elements.png?9") repeat-x 0 -148px;
+      background: url("img/elements.png?10") repeat-x 0 -148px;
       border: 1px solid #9b9b9b;
       -webkit-border-radius: 3px;
       -khtml-border-radius: 3px;
@@ -450,7 +450,7 @@
         display: block;
         width: 14px;
         height: 14px;
-        background: transparent url("img/elements.png?9") no-repeat -115px -89px;
+        background: transparent url("img/elements.png?10") no-repeat -115px -89px;
         -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=$opacity * 10)";
         filter: alpha(opacity=7);
         -moz-opacity: 0.7;
@@ -520,7 +520,7 @@
       margin-bottom: 7px;
       height: 12px;
       cursor: pointer;
-      background: transparent url("img/elements.png?9") repeat-x center -228px;
+      background: transparent url("img/elements.png?10") repeat-x center -228px;
       border: 0;
       -webkit-border-radius: 0px;
       -khtml-border-radius: 0px;
@@ -538,7 +538,7 @@
         width: 30px;
         height: 40px;
         cursor: pointer;
-        background: transparent url("img/elements.png?9") no-repeat -152px -83px;
+        background: transparent url("img/elements.png?10") no-repeat -152px -83px;
         border: 0;
         outline: none; }
     .jcsdl-container .jcsdl-input-slider .jcsdl-slider-bottom {
@@ -551,7 +551,7 @@
         width: 15px;
         height: 15px;
         float: left;
-        background: transparent url("img/elements.png?9") no-repeat 0 -213px; }
+        background: transparent url("img/elements.png?10") no-repeat 0 -213px; }
       .jcsdl-container .jcsdl-input-slider .jcsdl-slider-bottom .jcsdl-slider-bottom-right {
         float: right;
         background-position: -31px -213px; }
@@ -559,7 +559,7 @@
         display: block;
         height: 15px;
         margin: 0 15px;
-        background: transparent url("img/elements.png?9") repeat-x 0 -198px; }
+        background: transparent url("img/elements.png?10") repeat-x 0 -198px; }
   .jcsdl-container .jcsdl-filter-info.value.input-select {
     padding: 0;
     border: 0; }
@@ -582,6 +582,9 @@
     .jcsdl-container .jcsdl-filters-list.collapsed .jcsdl-filter-info.value.input-select .jcsdl-input-select .jcsdl-input-select-option span {
       top: 0 !important; }
   .jcsdl-container .jcsdl-icon.target {
+    width: 110px;
+    height: 110px;
+    margin-right: 35px;
     background: url("img/icons-sprite-targets.png?6") no-repeat 0 0; }
     .jcsdl-container .jcsdl-icon.target.target-interaction {
       background-position: 0 0; }
@@ -904,44 +907,65 @@
       .jcsdl-container .jcsdl-icon.input.icon-geo_text.selected {
         background-position: -80px 80px; }
   .jcsdl-container .jcsdl-icon.operator {
-    background: url("img/icons-sprite-fields-operators.png?1") no-repeat 0 0; }
+    width: 38px;
+    height: 38px;
+    background: url("img/icons-sprite-operators.png?2") no-repeat 0 0;
+    border: 1px solid #376491;
+    -webkit-border-radius: 2px;
+    -khtml-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -ms-border-radius: 2px;
+    -o-border-radius: 2px;
+    border-radius: 2px;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=$opacity * 10)";
+    filter: alpha(opacity=4);
+    -moz-opacity: 0.4;
+    -khtml-opacity: 0.4;
+    opacity: 0.4; }
     .jcsdl-container .jcsdl-icon.operator.icon-contains {
       background-position: 0 0; }
-      .jcsdl-container .jcsdl-icon.operator.icon-contains.selected {
-        background-position: -80px 0; }
     .jcsdl-container .jcsdl-icon.operator.icon-substr {
-      background-position: -160px 0; }
-      .jcsdl-container .jcsdl-icon.operator.icon-substr.selected {
-        background-position: -240px 0; }
+      background-position: -38px 0; }
     .jcsdl-container .jcsdl-icon.operator.icon-contains_any {
-      background-position: -320px 0; }
-      .jcsdl-container .jcsdl-icon.operator.icon-contains_any.selected {
-        background-position: -400px 0; }
+      background-position: -76px 0; }
     .jcsdl-container .jcsdl-icon.operator.icon-contains_near {
-      background-position: -480px 0; }
-      .jcsdl-container .jcsdl-icon.operator.icon-contains_near.selected {
-        background-position: -560px 0; }
-    .jcsdl-container .jcsdl-icon.operator.icon-equals {
-      background-position: -640px 0; }
-      .jcsdl-container .jcsdl-icon.operator.icon-equals.selected {
-        background-position: -720px 0; }
+      background-position: -114px 0; }
     .jcsdl-container .jcsdl-icon.operator.icon-exists {
-      background-position: 0 -80px; }
-      .jcsdl-container .jcsdl-icon.operator.icon-exists.selected {
-        background-position: -80px -80px; }
-    .jcsdl-container .jcsdl-icon.operator.icon-in {
-      background-position: -160px -80px; }
-      .jcsdl-container .jcsdl-icon.operator.icon-in.selected {
-        background-position: -240px -80px; }
-    .jcsdl-container .jcsdl-icon.operator.icon-greaterThan {
-      background-position: -480px -80px; }
-      .jcsdl-container .jcsdl-icon.operator.icon-greaterThan.selected {
-        background-position: -560px -80px; }
-    .jcsdl-container .jcsdl-icon.operator.icon-lowerThan {
-      background-position: -320px -80px; }
-      .jcsdl-container .jcsdl-icon.operator.icon-lowerThan.selected {
-        background-position: -400px -80px; }
+      background-position: 0 -38px; }
     .jcsdl-container .jcsdl-icon.operator.icon-different {
-      background-position: -640px -80px; }
-      .jcsdl-container .jcsdl-icon.operator.icon-different.selected {
-        background-position: -720px -80px; }
+      background-position: -38px -38px; }
+    .jcsdl-container .jcsdl-icon.operator.icon-equals {
+      background-position: -76px -38px; }
+    .jcsdl-container .jcsdl-icon.operator.icon-in {
+      background-position: -114px -38px; }
+    .jcsdl-container .jcsdl-icon.operator.icon-greaterThan {
+      background-position: 0 -76px; }
+    .jcsdl-container .jcsdl-icon.operator.icon-lowerThan {
+      background-position: -38px -76px; }
+    .jcsdl-container .jcsdl-icon.operator.icon-regex_partial {
+      background-position: -76px -76px; }
+    .jcsdl-container .jcsdl-icon.operator.icon-regex_exact {
+      background-position: -114px -76px; }
+    .jcsdl-container .jcsdl-icon.operator.icon-cs {
+      background-position: 0 -114px; }
+    .jcsdl-container .jcsdl-icon.operator:hover {
+      -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=$opacity * 10)";
+      filter: alpha(opacity=7);
+      -moz-opacity: 0.7;
+      -khtml-opacity: 0.7;
+      opacity: 0.7; }
+    .jcsdl-container .jcsdl-icon.operator.selected {
+      -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=$opacity * 10)";
+      filter: alpha(opacity=10);
+      -moz-opacity: 1;
+      -khtml-opacity: 1;
+      opacity: 1; }
+
+.tipsy {
+  line-height: 1.4em; }
+
+.tipsy-arrow {
+  background-image: url("img/jquery.tipsy.small.gif"); }

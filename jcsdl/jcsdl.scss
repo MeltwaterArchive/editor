@@ -3,12 +3,12 @@ $color : #376491;
 $colorLight : #888;
 $borderColor : #dcdcdc;
 $borderColorInput : #c8d7de;
-$elementsSprite : 'img/elements.png?9';
+$elementsSprite : 'img/elements.png?10';
 $selectSprite : 'img/select.png?12';
 $stepBackground : 'img/step_background.png?5';
 $targetIconsSprite : 'img/icons-sprite-targets.png?6';
 $fieldIconsSprite : 'img/icons-sprite-fields.png?6';
-$operatorIconsSprite : 'img/icons-sprite-fields-operators.png?1';
+$operatorIconsSprite : 'img/icons-sprite-operators.png?2';
 $otherIconsSprite : 'img/icons-sprite-other.png?2';
 
 /* useful mixins */
@@ -70,11 +70,6 @@ $otherIconsSprite : 'img/icons-sprite-other.png?2';
 		display: block; width: 80px; height: 80px;
 		overflow: hidden;
 		text-indent: -9999px;
-
-		&.target {width: 110px; height: 110px; margin-right: 35px;}
-
-		&:hover {}
-		&.selected {}
 	}
 
 	.jcsdl-button {
@@ -213,19 +208,20 @@ $otherIconsSprite : 'img/icons-sprite-other.png?2';
 			.jcsdl-filter-target {margin: 0;}
 			.jcsdl-filter-field {margin: 15px 10px;}
 			.jcsdl-filter-operator {
-				margin: 15px 10px;
+				margin: 35px 0; border-color: $borderColor;
 
-				.jcsdl-icon {margin: 0 !important;}
-
-				&.operator-contains {display: none;}
-				&.operator-substr {display: none;}
-				&.operator-contains_any {display: none;}
-				&.operator-in {display: none;}
+				&.operator-contains,
+				&.operator-substr,
+				&.operator-contains_any,
+				&.operator-in,
 				&.operator-equals {display: none;}
 			}
+			.jcsdl-filter-info.operator {margin: 0 5px; margin-right: -3px;}
 			.jcsdl-filter-info.value {
-				margin: 36px 0;
+				margin: 35px 0;
+				padding: 0 8px; height: 38px; line-height: 38px;
 				font-size: 1.2em;
+				background-color: white;
 			}
 
 		}
@@ -246,12 +242,12 @@ $otherIconsSprite : 'img/icons-sprite-other.png?2';
 			}
 			.jcsdl-filter-field {margin: 0 10px;}
 			.jcsdl-filter-operator {
-				font-weight: bold;
+				font-weight: bold; border: 0 !important;
 
-				&.operator-contains {display: none;}
-				&.operator-substr {display: none;}
-				&.operator-contains_any {display: none;}
-				&.operator-in {display: none;}
+				&.operator-contains,
+				&.operator-substr,
+				&.operator-contains_any,
+				&.operator-in,
 				&.operator-equals {display: none;}
 			}
 
@@ -335,7 +331,7 @@ $otherIconsSprite : 'img/icons-sprite-other.png?2';
 			text-align: center;
 
 			.jcsdl-icon.operator {
-				float: none; margin: 10px; display: inline-block;
+				float: none; margin: 5px; display: inline-block;
 				/* ie 7 */
 				zoom: 1; *display: inline;
 			}
@@ -356,14 +352,23 @@ $otherIconsSprite : 'img/icons-sprite-other.png?2';
 	/*
 	 * FILTER EDITOR INPUT FIELDS
 	 */
-	.jcsdl-input-text input, .jcsdl-input-number input {
-		display: block; margin: 0 auto;
-		padding: 5px 10px; width: 90%;
-		font-size: 1.3em; line-height: 1.5em;
-		border: 1px solid $borderColor;
-		@include rounded(3px);
+	.jcsdl-input-text, .jcsdl-input-number {
+		display: block; margin: 0 10px; margin-right: 70px;
+
+		input {
+			display: block; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;
+			padding: 5px 10px; width: 100%; height: 40px;
+			font-size: 1.3em; line-height: 1.5em;
+			border: 1px solid $borderColor;
+			@include rounded(3px);
+		}
 	}
-	.jcsdl-input-number input {width: 100px;}
+	.jcsdl-input-number {
+		margin: 0 10px;
+		input {margin: 0 auto; width: 100px;}
+	}
+
+	.jcsdl-operator-cs {float: right; cursor: pointer;}
 
 	.jcsdl-input-select {
 		margin: 0 30px;
@@ -509,6 +514,7 @@ $otherIconsSprite : 'img/icons-sprite-other.png?2';
 	 * ICONS
 	 */
 	.jcsdl-icon.target {
+		width: 110px; height: 110px; margin-right: 35px;
 		background: url($targetIconsSprite) no-repeat 0 0;
 
 		&.target-interaction {background-position: 0 0; 			&.selected {background-position: 0 -110px;}}
@@ -605,18 +611,30 @@ $otherIconsSprite : 'img/icons-sprite-other.png?2';
 	}
 
 	.jcsdl-icon.operator {
+		width: 38px; height: 38px;
 		background: url($operatorIconsSprite) no-repeat 0 0;
+		border: 1px solid $color; @include rounded(2px);
+		@include opacity(0.4);
 
-		&.icon-contains 	{background-position: 0 0; 				&.selected {background-position: -80px 0;}}
-		&.icon-substr 		{background-position: -160px 0; 		&.selected {background-position: -240px 0;}}
-		&.icon-contains_any {background-position: -320px 0; 		&.selected {background-position: -400px 0;}}
-		&.icon-contains_near{background-position: -480px 0; 		&.selected {background-position: -560px 0;}}
-		&.icon-equals 		{background-position: -640px 0; 		&.selected {background-position: -720px 0;}}
-		&.icon-exists 		{background-position: 0 -80px; 			&.selected {background-position: -80px -80px;}}
-		&.icon-in 			{background-position: -160px -80px; 	&.selected {background-position: -240px -80px;}}
-		&.icon-greaterThan 	{background-position: -480px -80px; 	&.selected {background-position: -560px -80px;}}
-		&.icon-lowerThan 	{background-position: -320px -80px; 	&.selected {background-position: -400px -80px;}}
-		&.icon-different 	{background-position: -640px -80px; 	&.selected {background-position: -720px -80px;}}
+		&.icon-contains 	{background-position: 0 0;}
+		&.icon-substr 		{background-position: -38px 0;}
+		&.icon-contains_any {background-position: -76px 0;}
+		&.icon-contains_near{background-position: -114px 0;}
+		&.icon-exists 		{background-position: 0 -38px;}
+		&.icon-different 	{background-position: -38px -38px;}
+		&.icon-equals 		{background-position: -76px -38px;}
+		&.icon-in 			{background-position: -114px -38px;}
+		&.icon-greaterThan 	{background-position: 0 -76px;}
+		&.icon-lowerThan 	{background-position: -38px -76px;}
+		&.icon-regex_partial{background-position: -76px -76px;}
+		&.icon-regex_exact 	{background-position: -114px -76px;}
+		&.icon-cs 			{background-position: 0 -114px;}
+
+		&:hover {@include opacity(0.7);}
+		&.selected {@include opacity(1);}
 	}
 
 }
+
+.tipsy {line-height: 1.4em;}
+.tipsy-arrow {background-image: url('img/jquery.tipsy.small.gif');}

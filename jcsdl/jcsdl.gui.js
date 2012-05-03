@@ -212,7 +212,7 @@ var JCSDLGui = function(el, config) {
 
 			// set case sensitivity (if any)
 			if (filter.cs) {
-				self.$currentFilterView.find('.jcsdl-operator-cs input').attr('checked', true);
+				self.$currentFilterView.find('.jcsdl-operator-cs').click();
 			}
 		}
 	};
@@ -528,7 +528,7 @@ var JCSDLGui = function(el, config) {
 
 		// now that we have all data, let's create a filter object from this
 		var filter = jcsdl.createFilter(self.currentFilterTarget, self.currentFilterFieldsPath, operator, value, {
-			cs : ((operator !== 'exists') && fieldInfo.cs && self.$currentFilterView.find('.jcsdl-operator-cs input:checked').length > 0) ? true : false
+			cs : ((operator !== 'exists') && fieldInfo.cs && self.$currentFilterView.find('.jcsdl-operator-cs.selected').length > 0) ? true : false
 		});
 
 		// also the filter row
@@ -597,7 +597,10 @@ var JCSDLGui = function(el, config) {
 
 		// operator
 		var $operator = self.getTemplate('filterOperator');
-		$operator.addClass('operator-' + filter.operator + ' icon-' + filter.operator + ' selected').html(JCSDLConfig.operators[filter.operator].label);
+		$operator.addClass('operator-' + filter.operator + ' icon-' + filter.operator + ' selected')
+			.prop('title', JCSDLConfig.operators[filter.operator].description)
+			.html(JCSDLConfig.operators[filter.operator].code.escapeHtml())
+			.tipsy({gravity:'s'});
 		$filterRow.find('.operator').html($operator);
 
 		// value (but not for 'exists' operator)
@@ -769,7 +772,11 @@ var JCSDLGui = function(el, config) {
 		if (typeof(operator) == 'undefined') return $(); // return empty jquery object if no such operator defined
 
 		var $operatorView = self.getTemplate('operatorSelect');
-		$operatorView.data('name', name).addClass('icon-' + name + ' operator-' + name).html(JCSDLConfig.operators[name].label);
+		$operatorView.data('name', name)
+			.addClass('icon-' + name + ' operator-' + name)
+			.prop('title', JCSDLConfig.operators[name].description)
+			.html(JCSDLConfig.operators[name].label)
+			.tipsy({gravity:'s'});
 		return $operatorView;
 	};
 
@@ -807,7 +814,12 @@ var JCSDLGui = function(el, config) {
 		// add case sensitivity toggle
 		if (field.cs) {
 			var $csView = self.getTemplate('caseSensitivity');
-			$valueInput.append($csView);
+			$csView.click(function(ev) {
+				ev.preventDefault();
+				ev.target.blur();
+				$(this).toggleClass('selected');
+			}).tipsy({gravity:'s'});
+			$valueInput.prepend($csView);
 		}
 
 		/**
