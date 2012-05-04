@@ -615,7 +615,8 @@ var JCSDLGui = function(el, config) {
 			// in case of 'geo' the input is decided on operator, not input type
 			var input = ($.inArray(filter.operator, ['geo_box', 'geo_polygon', 'geo_radius'] >= 0)) ? filter.operator : field.input;
 			// use a custom display value function for this field's input type (if any)
-			if (typeof(fieldTypes[input].displayValue) == 'function') {
+			console.log('input', input);
+			if (fieldTypes[input] && typeof(fieldTypes[input].displayValue) == 'function') {
 				$value = fieldTypes[input].displayValue.apply(fieldTypes[input], [field, filter.value, filter]);
 
 			// or display a standard text
