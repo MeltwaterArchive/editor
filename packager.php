@@ -24,6 +24,7 @@ $imgSuccess = Packager::copyImg(array(
 	'jcsdl/img/icons-sprite-other.png',
 	'jcsdl/img/icons-sprite-targets.png',
 	'jcsdl/img/jquery.tipsy.small.gif',
+	'jcsdl/img/maps-marker.png',
 	'jcsdl/img/select.png',
 	'jcsdl/img/step_background.png'
 ), 'production/jcsdl/img/');

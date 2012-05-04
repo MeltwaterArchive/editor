@@ -202,6 +202,28 @@ var JCSDLGuiTemplates = {
 				'</div>',
 			'</div>',
 		'</div>'
+	].join('')),
+
+	// geo box
+	valueInput_geobox : $([
+		'<div class="jcsdl-input-geo jcsdl-geo-box">',
+			'<div class="jcsdl-map-canvas" />',
+			'<a href="#" class="jcsdl-clear-map">Clear Map</a>',
+		'</div>'
+	].join('')),
+
+	// geo box
+	valueInput_georadius : $([
+		'<div class="jcsdl-input-geo jcsdl-geo-radius">',
+			'<div class="jcsdl-map-canvas" />',
+		'</div>'
+	].join('')),
+
+	// geo box
+	valueInput_geopolygon : $([
+		'<div class="jcsdl-input-geo jcsdl-geo-polygon">',
+			'<div class="jcsdl-map-canvas" />',
+		'</div>'
 	].join(''))
 
 };

@@ -1,4 +1,6 @@
 var JCSDLConfig = {
+	mapsApiKey : 'AIzaSyCFg4fuUFcGaI7axzJS5gq1XThY5MeVVkY',
+
 	// list of all possible targets and their fields and their types
 	targets : {
 
@@ -252,14 +254,17 @@ var JCSDLConfig = {
 			code : 'regex_exact'
 		},
 		geo_box : {
+			label : 'Geo Box',
 			description : 'Filter for content originating from geographical locations within a bounding box.',
 			code : 'geo_box'
 		},
 		geo_radius : {
+			label : 'Geo Radius',
 			description : 'Filter for posts originating inside a circle.',
 			code : 'geo_radius'
 		},
 		geo_polygon : {
+			label : 'Geo Polygon',
 			description : 'Filter for content originating from geographical locations defined by a polygon with up to 32 vertices.',
 			code : 'geo_polygon'
 		}

@@ -480,6 +480,10 @@ $otherIconsSprite : 'img/icons-sprite-other.png?2';
 		}
 	}
 
+	.jcsdl-input-geo {
+		.jcsdl-map-canvas {display: block; width: 100%; height: 400px;}
+	}
+
 	/* filter editor input fields overrides for the filters list view */
 	/* expanded view */
 	.jcsdl-filter-info.value {

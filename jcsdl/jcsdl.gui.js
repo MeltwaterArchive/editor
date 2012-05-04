@@ -12,6 +12,7 @@ var JCSDLGui = function(el, config) {
 	this.config = $.extend(true, {
 		animationSpeed : 200,
 		displayCancelButton : true,
+		mapsMarker : 'jcsdl/img/maps-marker.png',
 		save : function(code) {},
 		cancel : function() {
 			self.$container.hide();
@@ -202,6 +203,11 @@ var JCSDLGui = function(el, config) {
 				var $fieldView = self.$currentFilterView.find('.jcsdl-filter-target-field:last');
 				$fieldView.find('.field-' + field).click();
 			});
+
+			// also select which field based on operator
+			if (typeof(fieldInfo.input) !== 'string') {
+				self.$currentFilterView.find('.jcsdl-filter-target-field-input .input-' + filter.operator).click();
+			}
 
 			// select operator
 			self.$currentFilterView.find('.jcsdl-filter-value-input-operators .operator-' + filter.operator).click();
@@ -606,9 +612,11 @@ var JCSDLGui = function(el, config) {
 		// value (but not for 'exists' operator)
 		if (filter.operator !== 'exists') {
 			var $value = $();
+			// in case of 'geo' the input is decided on operator, not input type
+			var input = ($.inArray(filter.operator, ['geo_box', 'geo_polygon', 'geo_radius'] >= 0)) ? filter.operator : field.input;
 			// use a custom display value function for this field's input type (if any)
-			if (typeof(fieldTypes[field.input].displayValue) == 'function') {
-				$value = fieldTypes[field.input].displayValue.apply(fieldTypes[field.input], [field, filter.value, filter]);
+			if (typeof(fieldTypes[input].displayValue) == 'function') {
+				$value = fieldTypes[input].displayValue.apply(fieldTypes[input], [field, filter.value, filter]);
 
 			// or display a standard text
 			} else {
@@ -616,7 +624,7 @@ var JCSDLGui = function(el, config) {
 				$value.html(filter.value.truncate(50).escapeHtml());
 			}
 
-			$filterRow.find('.value').addClass('input-' + field.input).html($value);
+			$filterRow.find('.value').addClass('input-' + input).html($value);
 
 		} else {
 			$filterRow.find('.value').remove();
@@ -1157,19 +1165,229 @@ var JCSDLGui = function(el, config) {
 		},
 
 		/*
+		 * GEO HELPERS
+		 */
+		_geo : {
+			mapOptions : {}
+		},
+
+		/*
 		 * GEO BOX
 		 */
 		geo_box : {
 			init : function(fieldInfo) {
-				console.log('init geo_box');
-				return $();
+				var $view = self.getTemplate('valueInput_geobox');
+				loadGoogleMapsApi(self, fieldTypes.geo_box.load, [fieldInfo, $view]);
+				return $view;
+			},
+
+			load : function(fieldInfo, $view) {
+				// initialize the map
+				var map = new google.maps.Map($view.find('.jcsdl-map-canvas')[0], jcsdlMapsOptions);
+
+				// initialize the rectangle that we're gonna draw
+				var rect = new google.maps.Rectangle({
+					strokeWeight : 0,
+					fillColor : '#7585dd',
+					fillOpacity : 0.5
+				});
+
+				// store rectangle coordinates in an array
+				var coords = [];
+
+				// create corresponding markers
+				var markerOptions = {
+					position : new google.maps.LatLng(0, 0),
+					draggable : true,
+					icon : self.config.mapsMarker
+				};
+
+				var markers = [
+					new google.maps.Marker(markerOptions),
+					new google.maps.Marker(markerOptions)
+				];
+
+				/**
+				 * Listen for clicks on the map and adjust the rectangle to it.
+				 * @param  {Event} ev Google Maps Event.
+				 * @listener
+				 */
+				google.maps.event.addListener(map, 'click', function(ev) {
+					if (coords.length >= 2) coords.pop();
+
+					coords.push(ev.latLng);
+
+					// drop a corresponding marker
+					var m = coords.length - 1;
+					markers[m].setPosition(ev.latLng);
+					if (!$view.data('bothMarkersVisible')) markers[m].setAnimation(google.maps.Animation.DROP);
+					markers[m].setMap(map);
+
+					if (coords.length == 2) {
+						fieldTypes.geo_box.drawRectangle(map, rect, coords);
+						$view.data('bothMarkersVisible', true);
+					}
+				});
+
+				/**
+				 * When a marker is dragged to a different position then redraw the rectangle.
+				 * @listener
+				 */
+				google.maps.event.addListener(markers[0], 'position_changed', function() {
+					coords[0] = this.getPosition();
+					fieldTypes.geo_box.drawRectangle(map, rect, coords);
+				});
+
+				/**
+				 * When a marker is dragged to a different position then redraw the rectangle.
+				 * @listener
+				 */
+				google.maps.event.addListener(markers[1], 'position_changed', function() {
+					coords[1] = this.getPosition();
+					fieldTypes.geo_box.drawRectangle(map, rect, coords);
+				});
+
+				/**
+				 * Remove the rectangle and all values from the map.
+				 * @param  {Event} ev
+				 * @listener
+				 */
+				$view.find('.jcsdl-clear-map').click(function(ev) {
+					ev.preventDefault();
+					ev.target.blur();
+
+					// clear the coords
+					coords = [];
+
+					// hide the rectangle and marker
+					rect.setMap(null);
+					markers[0].setMap(null);
+					markers[1].setMap(null);
+					$view.data('bothMarkersVisible', false);
+				});
+
+				// attach the map, rect and coords objects to the view
+				$view.data('map', map);
+				$view.data('rect', rect);
+				$view.data('markers', markers);
 			},
 
 			setValue : function(fieldInfo, value) {
+				var $view = this.find('.jcsdl-input-geo');
+
+				value = value.split(':');
+				var nw = value[0].split(',');
+				var se = value[1].split(',');
+
+				var tips = fieldTypes.geo_box.getAllTipsFromNWSE(nw, se);
+
+				var sw = new google.maps.LatLng(tips.sw.lat, tips.sw.lng);
+				var ne = new google.maps.LatLng(tips.ne.lat, tips.ne.lng);
+				var bounds = new google.maps.LatLngBounds(sw, ne);
+
+				setTimeout(function() {
+					fieldTypes.geo_box.drawRectangleFromBounds($view.data('map'), $view.data('rect'), bounds);
+
+					var markers = $view.data('markers');
+					markers[0].setMap($view.data('map'));
+					markers[0].setPosition(ne);
+					markers[1].setMap($view.data('map'));
+					markers[1].setPosition(sw);
+					
+				}, self.config.animationSpeed + 200); // make sure everything is properly loaded
 			},
 
 			getValue : function(fieldInfo) {
-				return '';
+				var rect = this.find('.jcsdl-input-geo').data('rect');
+
+				// if no map then rect is not visible, so has no values
+				if (!rect.getMap()) return '';
+
+				var tips = fieldTypes.geo_box.getAllTipsFromBounds(rect.getBounds());
+
+				var value = tips.nw.lat + ',' + tips.nw.lng + ':' + tips.se.lat + ',' + tips.se.lng;
+				return value;
+			},
+
+			displayValue : function(fieldInfo, value, filter) {
+				value = value.split(':');
+				var v1 = value[0].split(',');
+				var v2 = value[1].split(',');
+
+				return v1[0].substr(0, 8) + ', ' + v1[1].substr(0, 8) + ' : ' + v2[0].substr(0, 8) + ', ' + v2[1].substr(0, 8);
+			},
+
+			/**
+			 * Draws the rectangle using the current coords.
+			 * @return {Boolean} Success or not.
+			 */
+			drawRectangle : function(map, rect, coords) {
+				if (coords.length != 2) return false;
+
+				var left = (coords[0].lng() > coords[1].lng()) ? 1 : 0;
+				var right = (left == 0) ? 1 : 0;
+				var bounds = new google.maps.LatLngBounds(coords[left], coords[right]);
+				fieldTypes.geo_box.drawRectangleFromBounds(map, rect, bounds);
+				return true;
+			},
+
+			drawRectangleFromBounds : function(map, rect, bounds) {
+				rect.setBounds(bounds);
+				rect.setMap(map);
+			},
+
+			getAllTipsFromBounds : function(bounds) {
+				var tips = {};
+
+				var neObject = bounds.getNorthEast();
+				tips.ne = {
+					lng : neObject.lng(),
+					lat : neObject.lat()
+				};
+
+				var swObject = bounds.getSouthWest();
+				tips.sw = {
+					lng : swObject.lng(),
+					lat : swObject.lat()
+				};
+
+				tips.nw = {
+					lng : tips.sw.lng,
+					lat : tips.ne.lat
+				};
+
+				tips.se = {
+					lng : tips.ne.lng,
+					lat : tips.sw.lat
+				};
+
+				return tips;
+			},
+
+			getAllTipsFromNWSE : function(nw, se) {
+				var tips = {};
+
+				tips.nw = {
+					lat : parseFloat(nw[0]),
+					lng : parseFloat(nw[1])
+				};
+
+				tips.se = {
+					lat : parseFloat(se[0]),
+					lng : parseFloat(se[1])
+				};
+
+				tips.ne = {
+					lng : tips.se.lng,
+					lat : tips.nw.lat
+				};
+
+				tips.sw = {
+					lng : tips.nw.lng,
+					lat : tips.se.lat
+				};
+
+				return tips;
 			}
 		},
 
@@ -1178,8 +1396,13 @@ var JCSDLGui = function(el, config) {
 		 */
 		geo_radius : {
 			init : function(fieldInfo) {
-				console.log('init geo_radius');
-				return $();
+				var $view = self.getTemplate('valueInput_georadius');
+				loadGoogleMapsApi(self, fieldTypes.geo_radius.load, [fieldInfo, $view]);
+				return $view;
+			},
+
+			load : function(fieldInfo, $view) {
+				console.log('load geo_radius', this, fieldInfo, fieldTypes);
 			},
 
 			setValue : function(fieldInfo, value) {
@@ -1195,8 +1418,13 @@ var JCSDLGui = function(el, config) {
 		 */
 		geo_polygon : {
 			init : function(fieldInfo) {
-				console.log('init geo_polygon');
-				return $();
+				var $view = self.getTemplate('valueInput_geopolygon');
+				loadGoogleMapsApi(self, fieldTypes.geo_polygon.load, [fieldInfo, $view]);
+				return $view;
+			},
+
+			load : function(fieldInfo, $view) {
+				console.log('load geo_polygon', this, fieldInfo, fieldTypes);
 			},
 
 			setValue : function(fieldInfo, value) {
@@ -1495,6 +1723,51 @@ var JCSDLGui = function(el, config) {
 		return this;
 	};
 })(window.jQuery);
+
+/*
+ * A hack to load the Google Maps API asynchronously and call the appropriate callback.
+ * All needs to be in global namespace.
+ */
+var jcsdlMapsLoaded = false;
+var jcsdlMapsCurrentGui = null;
+var jcsdlMapsCurrentCallback = function() {};
+var jcsdlMapsCurrentCallbackArgs = [];
+var jcsdlMapsOptions = {};
+
+var loadGoogleMapsApi = function(currentGui, callback, callbackArgs) {
+	jcsdlMapsCurrentGui = currentGui;
+	jcsdlMapsCurrentCallback = callback;
+	jcsdlMapsCurrentCallbackArgs = callbackArgs;
+
+	if (!jcsdlMapsLoaded) {
+		$('body').append('<script type="text/javascript" src="//maps.googleapis.com/maps/api/js?key=' + JCSDLConfig.mapsApiKey + '&sensor=false&callback=jcsdlMapsInit" />');
+		jcsdlMapsLoaded = true;
+	} else {
+		jcsdlMapsInit();
+	}
+};
+
+var jcsdlMapsInit = function() {
+	jcsdlMapsOptions = {
+		center: new google.maps.LatLng(51.5001524, -0.1262362),
+		zoom: 9,
+		mapTypeId: google.maps.MapTypeId.ROADMAP,
+		mapTypeControl: true,
+		mapTypeControlOptions: {
+			style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
+		},
+		navigationControl: true,
+		navigationControlOptions: {
+			style: google.maps.NavigationControlStyle.SMALL
+		}
+	};
+
+	if (jcsdlMapsCurrentGui && jcsdlMapsCurrentCallback) {
+		setTimeout(function() {
+			jcsdlMapsCurrentCallback.apply(jcsdlMapsCurrentGui, jcsdlMapsCurrentCallbackArgs);
+		}, jcsdlMapsCurrentGui.config.animationSpeed + 10); // make sure the map canvas is fully visible before loading them
+	}
+};
 
 $.extend(String.prototype, {
 	truncate : function(l, a) {

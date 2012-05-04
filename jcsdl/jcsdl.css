@@ -560,6 +560,10 @@
         height: 15px;
         margin: 0 15px;
         background: transparent url("img/elements.png?10") repeat-x 0 -198px; }
+  .jcsdl-container .jcsdl-input-geo .jcsdl-map-canvas {
+    display: block;
+    width: 100%;
+    height: 400px; }
   .jcsdl-container .jcsdl-filter-info.value.input-select {
     padding: 0;
     border: 0; }
