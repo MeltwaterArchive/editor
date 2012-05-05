@@ -42,7 +42,7 @@ var JCSDLConfig = {
 			name : 'Twitter',
 			fields : {
 				domains : {name: 'Domains',  type: 'string', cs: true, input: 'text', operators: ['exists', 'contains', 'in', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-				geo : {name: 'Location', type: 'geo', input: ['geo_box', 'geo_radius', 'geo_polygon', 'geo_text'], operators: ['exists', 'geo_box', 'geo_radius', 'geo_polygon']},
+				geo : {name: 'Location', type: 'geo', input: ['geo_box', 'geo_radius', 'geo_polygon'], operators: ['exists', 'geo_box', 'geo_radius', 'geo_polygon']},
 				in_reply_to_screen_name : {name: 'In Reply To',  icon: 'inreply', type: 'string', cs: true, input: 'text', operators: ['exists', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
 				links : {name: 'Links', icon: 'link', type: 'string', cs: true, input: 'text', operators: ['exists', 'contains', 'in', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
 				mentions : {name: 'Mentions',  type: 'string', cs: true, input: 'text', operators: ['exists', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
@@ -109,7 +109,7 @@ var JCSDLConfig = {
 			name : 'All',
 			fields : {
 				content : {name: 'Content', type: 'string', cs: true, input: 'text', operators: ['exists', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-				geo : {name: 'Location', type: 'geo', input: ['geo_box', 'geo_radius', 'geo_polygon', 'geo_text'], operators: ['exists', 'geo_box', 'geo_radius', 'geo_polygon']},
+				geo : {name: 'Location', type: 'geo', input: ['geo_box', 'geo_radius', 'geo_polygon'], operators: ['exists', 'geo_box', 'geo_radius', 'geo_polygon']},
 				link : {name: 'Link', type: 'string', cs: true, input: 'text', operators: ['exists', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
 				sample : {name: 'sample', type: 'float', input: 'slider', operators: ['lowerThan'], displayFormat : function(v) { return v + '%';}},
 				source : {name: 'Source', type: 'string', cs: true, input: 'text', operators: ['contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
@@ -183,7 +183,7 @@ var JCSDLConfig = {
 				category : {name: 'Category', type: 'string', cs: true, input: 'text', operators: ['exists', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
 				content : {name: 'Content', type: 'string', cs: true, input: 'text', operators: ['exists', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
 				contenttype : {name: 'Content Type', icon: 'type', type: 'string', cs: true, input: 'text', operators: ['exists', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-				geo : {name: 'Location', type: 'geo', input: ['geo_box', 'geo_radius', 'geo_polygon', 'geo_text'], operators: ['exists', 'geo_box', 'geo_radius', 'geo_polygon']},
+				geo : {name: 'Location', type: 'geo', input: ['geo_box', 'geo_radius', 'geo_polygon'], operators: ['exists', 'geo_box', 'geo_radius', 'geo_polygon']},
 				link : {name: 'Link', type: 'string', cs: true, input: 'text', operators: ['exists', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
 				verb : {name: 'Verb', type: 'string', cs: true, input: 'text', operators: ['exists', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']}
 			}
@@ -288,7 +288,8 @@ var JCSDLConfig = {
 
 		},
 		geo_box : {
-			operators : ['geo_box']
+			operators : ['geo_box'],
+			instructions : 'Click on the map to mark a corner of the box and then click again to mark another. You can drag the markers around to change the box coordinates.'
 		},
 		geo_radius : {
 			operators : ['geo_radius']

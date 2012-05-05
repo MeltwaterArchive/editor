@@ -197,7 +197,8 @@ $otherIconsSprite : 'img/icons-sprite-other.png?2';
 	.jcsdl-filter-info {
 		float: left; margin: 0 10px;
 
-		&.target {font-weight: bold;}
+		&.target,
+		&.input,
 		&.operator {font-weight: bold;}
 	}
 
@@ -207,6 +208,7 @@ $otherIconsSprite : 'img/icons-sprite-other.png?2';
 
 			.jcsdl-filter-target {margin: 0;}
 			.jcsdl-filter-field {margin: 15px 10px;}
+			.jcsdl-filter-field-input {margin: 15px 10px;}
 			.jcsdl-filter-operator {
 				margin: 35px 0; border-color: $borderColor;
 
@@ -234,6 +236,7 @@ $otherIconsSprite : 'img/icons-sprite-other.png?2';
 
 			.jcsdl-filter-target,
 			.jcsdl-filter-field,
+			.jcsdl-filter-field-input,
 			.jcsdl-filter-operator,
 			.jcsdl-filter-value {
 				float: none; margin: 0;
@@ -417,7 +420,7 @@ $otherIconsSprite : 'img/icons-sprite-other.png?2';
 				display: block; margin: 0 auto;
 				padding: 5px; width: 110px;
 				font-size: 24px; color: #1b1b1f; text-align: center;
-				border: 1px solid #ccc;
+				border: 1px solid $borderColor;
 				@include rounded(3px);
 			}
 		}
@@ -481,16 +484,41 @@ $otherIconsSprite : 'img/icons-sprite-other.png?2';
 	}
 
 	.jcsdl-map {
-		overflow: hidden;
+		text-align: center;
 
-		.jcsdl-map-box {
-			float: right; margin-left: 10px;
-			width: 230px; height: 400px; padding: 0 10px;
-			text-align: left;
-			border-left: 1px solid $borderColor;
+		.jcsdl-map-search {
+			display: block; margin: 10px auto; width: 50%; padding: 5px;
+			font-size: 15px;
+			border: 1px solid $borderColor; @include rounded(3px);
 		}
 
-		.jcsdl-map-canvas {display: block; margin: 0; min-width: 320px; height: 400px;}
+		.jcsdl-map-canvas {
+			display: block; margin: 10px auto;
+			min-width: 320px; width: 90%; height: 350px;
+		}
+
+		.jcsdl-map-instructions {
+			display: block; margin: 0 auto; margin-bottom: 10px; width: 70%;
+			text-align: center; line-height: 1.3em;
+		}
+
+		.jcsdl-clear-map {
+			color: $colorLight; font-weight: normal;
+			&:hover {color: $color;}
+		}
+
+		.jcsdl-map-coordinates,
+		.jcsdl-map-area {
+			margin: 10px; text-align: center;
+			span {margin-left: 10px;}
+		}
+
+		.jcsdl-map-coordinates {
+			label {clear: both;}
+			ul li {display: inline; margin: 5px;}
+		}
+
+		.jcsdl-map-area {}
 	}
 
 	/* filter editor input fields overrides for the filters list view */

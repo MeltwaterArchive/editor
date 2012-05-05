@@ -612,8 +612,19 @@ var JCSDLGui = function(el, config) {
 		// value (but not for 'exists' operator)
 		if (filter.operator !== 'exists') {
 			var $value = $();
+			var isGeo = ($.inArray(filter.operator, ['geo_box', 'geo_polygon', 'geo_radius']) >= 0);
+
 			// in case of 'geo' the input is decided on operator, not input type
-			var input = ($.inArray(filter.operator, ['geo_box', 'geo_polygon', 'geo_radius']) >= 0) ? filter.operator : field.input;
+			var input = (isGeo) ? filter.operator : field.input;
+
+			if (isGeo) {
+				// also display the input icon (but remove the operator)
+				var $input = self.getTemplate('filterFieldInput');
+				$input.find('.jcsdl-filter-field-input').addClass('selected icon-' + filter.operator);
+				$input.insertAfter($filterRow.find('.jcsdl-filter-info.field'));
+				$operator.remove();
+			}
+
 			// use a custom display value function for this field's input type (if any)
 			if (fieldTypes[input] && typeof(fieldTypes[input].displayValue) == 'function') {
 				$value = fieldTypes[input].displayValue.apply(fieldTypes[input], [field, filter.value, filter]);
@@ -1168,7 +1179,28 @@ var JCSDLGui = function(el, config) {
 		 * GEO HELPERS
 		 */
 		_geo : {
-			mapOptions : {}
+			mapOptions : {},
+
+			initSearch : function($view) {
+				var map = $view.data('map');
+				var autocomplete = new google.maps.places.Autocomplete($view.find('.jcsdl-map-search')[0], {});
+
+				/**
+				 * Move the map viewport to the found location.
+				 * @listener
+				 */
+				google.maps.event.addListener(autocomplete, 'place_changed', function() {
+					var place = autocomplete.getPlace();
+					if (typeof(place.geometry) == 'undefined') return;
+
+					if (place.geometry.viewport) {
+						map.fitBounds(place.geometry.viewport);
+					} else {
+						map.setCenter(place.geometry.location);
+						map.setZoom(17);
+					}
+				});
+			}
 		},
 
 		/*
@@ -1178,6 +1210,7 @@ var JCSDLGui = function(el, config) {
 			init : function(fieldInfo) {
 				var $view = self.getTemplate('valueInput_geobox');
 				$view.append(self.getTemplate('valueInput_geo_map'));
+				$view.find('.jcsdl-map-instructions').html(JCSDLConfig.inputs.geo_box.instructions);
 				loadGoogleMapsApi(self, fieldTypes.geo_box.load, [fieldInfo, $view]);
 				return $view;
 			},
@@ -1185,6 +1218,7 @@ var JCSDLGui = function(el, config) {
 			load : function(fieldInfo, $view) {
 				// initialize the map
 				var map = new google.maps.Map($view.find('.jcsdl-map-canvas')[0], jcsdlMapsOptions);
+				$view.data('map', map);
 
 				// initialize the rectangle that we're gonna draw
 				var rect = new google.maps.Rectangle({
@@ -1192,6 +1226,7 @@ var JCSDLGui = function(el, config) {
 					fillColor : '#7585dd',
 					fillOpacity : 0.5
 				});
+				$view.data('rect', rect);
 
 				// store rectangle coordinates in an array
 				var coords = [];
@@ -1207,6 +1242,10 @@ var JCSDLGui = function(el, config) {
 					new google.maps.Marker(markerOptions),
 					new google.maps.Marker(markerOptions)
 				];
+				$view.data('markers', markers);
+
+				// initialize places autocomplete search
+				fieldTypes._geo.initSearch($view);
 
 				/**
 				 * Listen for clicks on the map and adjust the rectangle to it.
@@ -1227,6 +1266,9 @@ var JCSDLGui = function(el, config) {
 					if (coords.length == 2) {
 						fieldTypes.geo_box.drawRectangle(map, rect, coords);
 						$view.data('bothMarkersVisible', true);
+
+						// calculate the area size
+						fieldTypes.geo_box.updateArea($view, rect);
 					}
 				});
 
@@ -1237,6 +1279,11 @@ var JCSDLGui = function(el, config) {
 				google.maps.event.addListener(markers[0], 'position_changed', function() {
 					coords[0] = this.getPosition();
 					fieldTypes.geo_box.drawRectangle(map, rect, coords);
+					
+					// calculate the area size
+					if (coords.length == 2) {
+						fieldTypes.geo_box.updateArea($view, rect);
+					}
 				});
 
 				/**
@@ -1246,6 +1293,9 @@ var JCSDLGui = function(el, config) {
 				google.maps.event.addListener(markers[1], 'position_changed', function() {
 					coords[1] = this.getPosition();
 					fieldTypes.geo_box.drawRectangle(map, rect, coords);
+
+					// calculate the area size
+					fieldTypes.geo_box.updateArea($view, rect);
 				});
 
 				/**
@@ -1265,12 +1315,9 @@ var JCSDLGui = function(el, config) {
 					markers[0].setMap(null);
 					markers[1].setMap(null);
 					$view.data('bothMarkersVisible', false);
-				});
 
-				// attach the map, rect and coords objects to the view
-				$view.data('map', map);
-				$view.data('rect', rect);
-				$view.data('markers', markers);
+					$view.find('.jcsdl-map-area span').html('0 km<sup>2</sup>');
+				});
 			},
 
 			setValue : function(fieldInfo, value) {
@@ -1280,20 +1327,25 @@ var JCSDLGui = function(el, config) {
 				var nw = value[0].split(',');
 				var se = value[1].split(',');
 
-				var tips = fieldTypes.geo_box.getAllTipsFromNWSE(nw, se);
-
-				var sw = new google.maps.LatLng(tips.sw.lat, tips.sw.lng);
-				var ne = new google.maps.LatLng(tips.ne.lat, tips.ne.lng);
-				var bounds = new google.maps.LatLngBounds(sw, ne);
-
 				setTimeout(function() {
-					fieldTypes.geo_box.drawRectangleFromBounds($view.data('map'), $view.data('rect'), bounds);
+					var map = $view.data('map');
+					var rect = $view.data('rect');
+
+					var tips = fieldTypes.geo_box.getAllTipsFromNWSE(nw, se);
+					var bounds = new google.maps.LatLngBounds(tips.sw, tips.ne);
+
+					fieldTypes.geo_box.drawRectangleFromBounds(map, rect, bounds);
 
 					var markers = $view.data('markers');
-					markers[0].setMap($view.data('map'));
-					markers[0].setPosition(ne);
-					markers[1].setMap($view.data('map'));
-					markers[1].setPosition(sw);
+					markers[0].setMap(map);
+					markers[0].setPosition(tips.ne);
+					markers[1].setMap(map);
+					markers[1].setPosition(tips.sw);
+
+					map.fitBounds(rect.getBounds());
+
+					// calculate the area size
+					fieldTypes.geo_box.updateArea($view, rect);
 					
 				}, self.config.animationSpeed + 200); // make sure everything is properly loaded
 			},
@@ -1305,8 +1357,7 @@ var JCSDLGui = function(el, config) {
 				if (!rect.getMap()) return '';
 
 				var tips = fieldTypes.geo_box.getAllTipsFromBounds(rect.getBounds());
-
-				var value = tips.nw.lat + ',' + tips.nw.lng + ':' + tips.se.lat + ',' + tips.se.lng;
+				var value = tips.nw.lat() + ',' + tips.nw.lng() + ':' + tips.se.lat() + ',' + tips.se.lng();
 				return value;
 			},
 
@@ -1315,7 +1366,7 @@ var JCSDLGui = function(el, config) {
 				var v1 = value[0].split(',');
 				var v2 = value[1].split(',');
 
-				return v1[0].substr(0, 8) + ', ' + v1[1].substr(0, 8) + ' : ' + v2[0].substr(0, 8) + ', ' + v2[1].substr(0, 8);
+				return parseFloat(v1[0]).format(2) + ', ' + parseFloat(v1[1]).format(2) + ' : ' + parseFloat(v2[0]).format(2) + ', ' + parseFloat(v2[1]).format(2);
 			},
 
 			/**
@@ -1339,56 +1390,26 @@ var JCSDLGui = function(el, config) {
 
 			getAllTipsFromBounds : function(bounds) {
 				var tips = {};
-
-				var neObject = bounds.getNorthEast();
-				tips.ne = {
-					lng : neObject.lng(),
-					lat : neObject.lat()
-				};
-
-				var swObject = bounds.getSouthWest();
-				tips.sw = {
-					lng : swObject.lng(),
-					lat : swObject.lat()
-				};
-
-				tips.nw = {
-					lng : tips.sw.lng,
-					lat : tips.ne.lat
-				};
-
-				tips.se = {
-					lng : tips.ne.lng,
-					lat : tips.sw.lat
-				};
-
+				tips.ne = bounds.getNorthEast();
+				tips.sw = bounds.getSouthWest();
+				tips.nw = new google.maps.LatLng(tips.ne.lat(), tips.sw.lng());
+				tips.se = new google.maps.LatLng(tips.sw.lat(), tips.ne.lng());
 				return tips;
 			},
 
 			getAllTipsFromNWSE : function(nw, se) {
 				var tips = {};
-
-				tips.nw = {
-					lat : parseFloat(nw[0]),
-					lng : parseFloat(nw[1])
-				};
-
-				tips.se = {
-					lat : parseFloat(se[0]),
-					lng : parseFloat(se[1])
-				};
-
-				tips.ne = {
-					lng : tips.se.lng,
-					lat : tips.nw.lat
-				};
-
-				tips.sw = {
-					lng : tips.nw.lng,
-					lat : tips.se.lat
-				};
-
+				tips.nw = new google.maps.LatLng(parseFloat(nw[0]), parseFloat(nw[1]));
+				tips.se = new google.maps.LatLng(parseFloat(se[0]), parseFloat(se[1]));
+				tips.ne = new google.maps.LatLng(tips.nw.lat(), tips.se.lng());
+				tips.sw = new google.maps.LatLng(tips.se.lat(), tips.nw.lng());
 				return tips;
+			},
+
+			updateArea : function($view, rect) {
+				var tips = fieldTypes.geo_box.getAllTipsFromBounds(rect.getBounds());
+				var area = google.maps.geometry.spherical.computeArea([tips.nw, tips.ne, tips.se, tips.sw]);
+				$view.find('.jcsdl-map-area span').html(Math.round(area / 1000000).format() + ' km<sup>2</sup>');
 			}
 		},
 
@@ -1743,7 +1764,7 @@ var loadGoogleMapsApi = function(currentGui, callback, callbackArgs) {
 	jcsdlMapsCurrentCallbackArgs = callbackArgs;
 
 	if (!jcsdlMapsLoaded) {
-		$('body').append('<script type="text/javascript" src="//maps.googleapis.com/maps/api/js?key=' + JCSDLConfig.mapsApiKey + '&sensor=false&callback=jcsdlMapsInit" />');
+		$('body').append('<script type="text/javascript" src="//maps.googleapis.com/maps/api/js?key=' + JCSDLConfig.mapsApiKey + '&libraries=places,geometry&sensor=false&callback=jcsdlMapsInit" />');
 		jcsdlMapsLoaded = true;
 	} else {
 		jcsdlMapsInit();
@@ -1752,8 +1773,8 @@ var loadGoogleMapsApi = function(currentGui, callback, callbackArgs) {
 
 var jcsdlMapsInit = function() {
 	jcsdlMapsOptions = {
-		center: new google.maps.LatLng(51.5001524, -0.1262362),
-		zoom: 9,
+		center: new google.maps.LatLng(40, 0),
+		zoom: 1,
 		mapTypeId: google.maps.MapTypeId.ROADMAP,
 		mapTypeControl: true,
 		mapTypeControlOptions: {
@@ -1800,5 +1821,31 @@ $.extend(String.prototype, {
 	},
 	unescapeCsdl : function() {
 		return this.replace(/\\"/g, '"');
+	}
+});
+
+$.extend(Number.prototype, {
+	format : function(decimals, dec_point, thousands_sep) {
+	    // Strip all characters but numerical ones.
+	    var number = this.toString().replace(/[^0-9+\-Ee.]/g, '');
+	    var n = !isFinite(+number) ? 0 : +number,
+	        prec = !isFinite(+decimals) ? 0 : Math.abs(decimals),
+	        sep = (typeof thousands_sep === 'undefined') ? ',' : thousands_sep,
+	        dec = (typeof dec_point === 'undefined') ? '.' : dec_point,
+	        s = '',
+	        toFixedFix = function (n, prec) {
+	            var k = Math.pow(10, prec);
+	            return '' + Math.round(n * k) / k;
+	        };
+	    // Fix for IE parseFloat(0.55).toFixed(0) = 0;
+	    s = (prec ? toFixedFix(n, prec) : '' + Math.round(n)).split('.');
+	    if (s[0].length > 3) {
+	        s[0] = s[0].replace(/\B(?=(?:\d{3})+(?!\d))/g, sep);
+	    }
+	    if ((s[1] || '').length < prec) {
+	        s[1] = s[1] || '';
+	        s[1] += new Array(prec - s[1].length + 1).join('0');
+	    }
+	    return s.join(dec);
 	}
 });

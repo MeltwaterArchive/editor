@@ -218,13 +218,13 @@
   .jcsdl-container .jcsdl-filter-info {
     float: left;
     margin: 0 10px; }
-    .jcsdl-container .jcsdl-filter-info.target {
-      font-weight: bold; }
-    .jcsdl-container .jcsdl-filter-info.operator {
+    .jcsdl-container .jcsdl-filter-info.target, .jcsdl-container .jcsdl-filter-info.input, .jcsdl-container .jcsdl-filter-info.operator {
       font-weight: bold; }
   .jcsdl-container .jcsdl-filters-list.expanded .jcsdl-filter .jcsdl-filter-target {
     margin: 0; }
   .jcsdl-container .jcsdl-filters-list.expanded .jcsdl-filter .jcsdl-filter-field {
+    margin: 15px 10px; }
+  .jcsdl-container .jcsdl-filters-list.expanded .jcsdl-filter .jcsdl-filter-field-input {
     margin: 15px 10px; }
   .jcsdl-container .jcsdl-filters-list.expanded .jcsdl-filter .jcsdl-filter-operator {
     margin: 35px 0;
@@ -248,6 +248,7 @@
     padding: 0; }
   .jcsdl-container .jcsdl-filters-list.collapsed .jcsdl-filter .jcsdl-filter-target,
   .jcsdl-container .jcsdl-filters-list.collapsed .jcsdl-filter .jcsdl-filter-field,
+  .jcsdl-container .jcsdl-filters-list.collapsed .jcsdl-filter .jcsdl-filter-field-input,
   .jcsdl-container .jcsdl-filters-list.collapsed .jcsdl-filter .jcsdl-filter-operator,
   .jcsdl-container .jcsdl-filters-list.collapsed .jcsdl-filter .jcsdl-filter-value {
     float: none;
@@ -476,7 +477,7 @@
         font-size: 24px;
         color: #1b1b1f;
         text-align: center;
-        border: 1px solid #ccc;
+        border: 1px solid #dcdcdc;
         -webkit-border-radius: 3px;
         -khtml-border-radius: 3px;
         -moz-border-radius: 3px;
@@ -561,20 +562,53 @@
         margin: 0 15px;
         background: transparent url("img/elements.png?10") repeat-x 0 -198px; }
   .jcsdl-container .jcsdl-map {
-    overflow: hidden; }
-    .jcsdl-container .jcsdl-map .jcsdl-map-box {
-      float: right;
-      margin-left: 10px;
-      width: 230px;
-      height: 400px;
-      padding: 0 10px;
-      text-align: left;
-      border-left: 1px solid #dcdcdc; }
+    text-align: center; }
+    .jcsdl-container .jcsdl-map .jcsdl-map-search {
+      display: block;
+      margin: 10px auto;
+      width: 50%;
+      padding: 5px;
+      font-size: 15px;
+      border: 1px solid #dcdcdc;
+      -webkit-border-radius: 3px;
+      -khtml-border-radius: 3px;
+      -moz-border-radius: 3px;
+      -ms-border-radius: 3px;
+      -o-border-radius: 3px;
+      border-radius: 3px;
+      -moz-background-clip: padding;
+      -webkit-background-clip: padding-box;
+      background-clip: padding-box; }
     .jcsdl-container .jcsdl-map .jcsdl-map-canvas {
       display: block;
-      margin: 0;
+      margin: 10px auto;
       min-width: 320px;
-      height: 400px; }
+      width: 90%;
+      height: 350px; }
+    .jcsdl-container .jcsdl-map .jcsdl-map-instructions {
+      display: block;
+      margin: 0 auto;
+      margin-bottom: 10px;
+      width: 70%;
+      text-align: center;
+      line-height: 1.3em; }
+    .jcsdl-container .jcsdl-map .jcsdl-clear-map {
+      color: #888888;
+      font-weight: normal; }
+      .jcsdl-container .jcsdl-map .jcsdl-clear-map:hover {
+        color: #376491; }
+    .jcsdl-container .jcsdl-map .jcsdl-map-coordinates,
+    .jcsdl-container .jcsdl-map .jcsdl-map-area {
+      margin: 10px;
+      text-align: center; }
+      .jcsdl-container .jcsdl-map .jcsdl-map-coordinates span,
+      .jcsdl-container .jcsdl-map .jcsdl-map-area span {
+        margin-left: 10px; }
+    .jcsdl-container .jcsdl-map .jcsdl-map-coordinates label {
+      clear: both; }
+    .jcsdl-container .jcsdl-map .jcsdl-map-coordinates ul li {
+      display: inline;
+      margin: 5px; }
   .jcsdl-container .jcsdl-filter-info.value.input-select {
     padding: 0;
     border: 0; }

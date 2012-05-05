@@ -57,10 +57,10 @@ var JCSDLGuiTemplates = {
 	filter : $([
 		'<div class="jcsdl-filter">',
 			'<div class="jcsdl-filter-description">',
-				'<div class="jcsdl-filter-info target"></div>',
-				'<div class="jcsdl-filter-info field"></div>',
-				'<div class="jcsdl-filter-info operator"></div>',
-				'<div class="jcsdl-filter-info jcsdl-bordered value"></div>',
+				'<div class="jcsdl-filter-info target" />',
+				'<div class="jcsdl-filter-info field" />',
+				'<div class="jcsdl-filter-info operator" />',
+				'<div class="jcsdl-filter-info jcsdl-bordered value" />',
 			'</div>',
 			'<div class="jcsdl-filter-options">',
 				'<a href="#" class="edit">Edit</a>',
@@ -72,6 +72,11 @@ var JCSDLGuiTemplates = {
 
 	filterTarget : $('<div class="jcsdl-filter-target jcsdl-icon target" />'),
 	filterField : $('<div class="jcsdl-filter-field jcsdl-icon field" />'),
+	filterFieldInput : $([
+		'<div class="jcsdl-filter-info input">',
+			'<div class="jcsdl-filter-field-input jcsdl-icon input" />',
+		'</div>'
+	].join('')),
 	filterOperator : $('<div class="jcsdl-filter-operator jcsdl-icon operator" />'),
 	filterValue : $('<div class="jcsdl-filter-value" />'),
 
@@ -207,20 +212,18 @@ var JCSDLGuiTemplates = {
 	// map for geo
 	valueInput_geo_map : $([
 		'<div class="jcsdl-map">',
-			'<div class="jcsdl-map-box">',
-				'<input type="text" name="location" class="jcsdl-map-search" placeholder="Search for location..." />',
-				'<p class="jcsdl-map-instructions" />',
-				'<div class="jcsdl-map-coordinates">',
-					'<label>Coordinates:</label>',
-					'<ul />',
-				'</div>',
-				'<div class="jcsdl-map-area">',
-					'<label>Area:</label>',
-					'<span />',
-				'</div>',
-				'<a href="#" class="jcsdl-clear-map">Clear</a>',
-			'</div>',
+			'<input type="text" name="location" class="jcsdl-map-search" placeholder="Search for location..." />',
 			'<div class="jcsdl-map-canvas" />',
+			'<p class="jcsdl-map-instructions" />',
+			'<a href="#" class="jcsdl-clear-map">clear coordinates</a>',
+			'<div class="jcsdl-map-coordinates">',
+				'<label>Coordinates:</label>',
+				'<ul />',
+			'</div>',
+			'<div class="jcsdl-map-area">',
+				'<label>Area:</label>',
+				'<span>0 km<sup>2</sup></span>',
+			'</div>',
 		'</div>'
 	].join('')),
 
