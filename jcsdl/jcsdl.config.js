@@ -284,6 +284,9 @@ var JCSDLConfig = {
 			default: 50,
 			displayFormat : function(v) {return v;}
 		},
+		geo : {
+
+		},
 		geo_box : {
 			operators : ['geo_box']
 		},

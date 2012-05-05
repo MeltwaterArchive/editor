@@ -613,9 +613,8 @@ var JCSDLGui = function(el, config) {
 		if (filter.operator !== 'exists') {
 			var $value = $();
 			// in case of 'geo' the input is decided on operator, not input type
-			var input = ($.inArray(filter.operator, ['geo_box', 'geo_polygon', 'geo_radius'] >= 0)) ? filter.operator : field.input;
+			var input = ($.inArray(filter.operator, ['geo_box', 'geo_polygon', 'geo_radius']) >= 0) ? filter.operator : field.input;
 			// use a custom display value function for this field's input type (if any)
-			console.log('input', input);
 			if (fieldTypes[input] && typeof(fieldTypes[input].displayValue) == 'function') {
 				$value = fieldTypes[input].displayValue.apply(fieldTypes[input], [field, filter.value, filter]);
 
@@ -1178,6 +1177,7 @@ var JCSDLGui = function(el, config) {
 		geo_box : {
 			init : function(fieldInfo) {
 				var $view = self.getTemplate('valueInput_geobox');
+				$view.append(self.getTemplate('valueInput_geo_map'));
 				loadGoogleMapsApi(self, fieldTypes.geo_box.load, [fieldInfo, $view]);
 				return $view;
 			},
@@ -1398,6 +1398,7 @@ var JCSDLGui = function(el, config) {
 		geo_radius : {
 			init : function(fieldInfo) {
 				var $view = self.getTemplate('valueInput_georadius');
+				$view.append(self.getTemplate('valueInput_geo_map'));
 				loadGoogleMapsApi(self, fieldTypes.geo_radius.load, [fieldInfo, $view]);
 				return $view;
 			},
@@ -1420,6 +1421,7 @@ var JCSDLGui = function(el, config) {
 		geo_polygon : {
 			init : function(fieldInfo) {
 				var $view = self.getTemplate('valueInput_geopolygon');
+				$view.append(self.getTemplate('valueInput_geo_map'));
 				loadGoogleMapsApi(self, fieldTypes.geo_polygon.load, [fieldInfo, $view]);
 				return $view;
 			},
