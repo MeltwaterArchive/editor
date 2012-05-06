@@ -12,6 +12,7 @@ var JCSDLGui = function(el, config) {
 	this.config = $.extend(true, {
 		animationSpeed : 200,
 		displayCancelButton : true,
+		mapsColor : '#7585dd',
 		mapsMarker : 'jcsdl/img/maps-marker.png',
 		save : function(code) {},
 		cancel : function() {
@@ -1232,7 +1233,7 @@ var JCSDLGui = function(el, config) {
 				// initialize the rectangle that we're gonna draw
 				var rect = new google.maps.Rectangle({
 					strokeWeight : 0,
-					fillColor : '#7585dd',
+					fillColor : self.config.mapsColor,
 					fillOpacity : 0.5
 				});
 				$view.data('rect', rect);
@@ -1503,7 +1504,7 @@ var JCSDLGui = function(el, config) {
 				// initialize the circle that we're gonna draw
 				var circle = new google.maps.Circle({
 					strokeWeight : 0,
-					fillColor : '#7585dd',
+					fillColor : self.config.mapsColor,
 					fillOpacity : 0.5
 				});
 				$view.data('circle', circle);
@@ -1678,36 +1679,164 @@ var JCSDLGui = function(el, config) {
 			init : function(fieldInfo) {
 				var $view = self.getTemplate('valueInput_geopolygon');
 				$view.append(self.getTemplate('valueInput_geo_map'));
+				$view.find('.jcsdl-map-coordinates').html(self.getTemplate('valueInput_geopolygon_coordinates'));
+				$view.find('.jcsdl-map-instructions').html(JCSDLConfig.inputs.geo_polygon.instructions);
 				loadGoogleMapsApi(self, fieldTypes.geo_polygon.load, [fieldInfo, $view]);
 				return $view;
 			},
 
 			load : function(fieldInfo, $view) {
-				console.log('load geo_polygon', this, fieldInfo, fieldTypes);
+				// initialize the map
+				var map = new google.maps.Map($view.find('.jcsdl-map-canvas')[0], jcsdlMapsOptions);
+				$view.data('map', map);
+
+				// initialize the polygon that we're gonna draw
+				var polygon = new google.maps.Polygon({
+					paths : [[]],
+					strokeWeight : 0,
+					fillColor : self.config.mapsColor,
+					fillOpacity : 0.5
+				});
+				$view.data('polygon', polygon);
+
+				// storage for pairs of markers and their polygon tips
+				$view.data('tips', []);
+
+				// initialize places autocomplete search
+				fieldTypes._geo.initSearch($view);
+
+				/**
+				 * Listen for clicks on the map and create new polygon points.
+				 * @param  {Event} ev Google Maps Event.
+				 * @listener
+				 */
+				google.maps.event.addListener(map, 'click', function(ev) {
+					fieldTypes.geo_polygon.addTip($view, ev.latLng.lat(), ev.latLng.lng());
+				});
+
+				/**
+				 * Remove the circle and all values from the map.
+				 * @param  {Event} ev
+				 * @listener
+				 */
+				$view.find('.jcsdl-clear-map').click(function(ev) {
+					ev.preventDefault();
+					ev.target.blur();
+
+					return;
+
+					circle.setMap(null);
+					centerMarker.setMap(null);
+					radiusMarker.setMap(null);
+					$view.find('.jcsdl-map-area span').html('0 km<sup>2</sup>');
+				});
 			},
 
 			setValue : function(fieldInfo, value) {
+				var $view = this.find('.jcsdl-input-geo');
+
+				value = value.split(':');
+
+				setTimeout(function() {
+					$.each(value, function(i, val) {
+						val = val.split(',');
+						fieldTypes.geo_polygon.addTip($view, val[0], val[1]);
+					});
+
+					var map = $view.data('map');
+					var polygon = $view.data('polygon');
+
+					//map.fitBounds(polygon.getBounds());
+
+					// calculate the area size
+					fieldTypes.geo_polygon.updateInfo($view, polygon);
+					
+				}, self.config.animationSpeed + 200); // make sure everything is properly loaded
 			},
 
 			getValue : function(fieldInfo) {
-				return '';
-			}
-		},
+				var polygon = this.find('.jcsdl-input-geo').data('polygon');
+				var path = polygon.getPath();
+				var value = [];
 
-		/*
-		 * GEO TEXT
-		 */
-		geo_text : {
-			init : function(fieldInfo) {
-				console.log('init geo_text');
-				return $();
+				for(var i = 0; i < path.getLength(); i++) {
+					var tip = path.getAt(i);
+					value.push(tip.lat() + ',' + tip.lng());
+				}
+
+				return value.join(':');
 			},
 
-			setValue : function(fieldInfo, value) {
+			displayValue : function(fieldInfo, value, filter) {
+				return '';
+				value = value.split(':');
+				var center = value[0].split(',');
+				var radius = value[1];
+
+				return 'Center: ' + parseFloat(center[0]).format(2) + ', ' + parseFloat(center[1]).format(2) + '; Radius: ' + parseFloat(radius).format(2) + ' km';
 			},
 
-			getValue : function(fieldInfo) {
-				return '';
+			addTip : function($view, lat, lng) {
+				var map = $view.data('map');
+				var polygon = $view.data('polygon');
+				var tips = $view.data('tips');
+
+				var position = new google.maps.LatLng(parseFloat(lat), parseFloat(lng));
+
+				// create a marker
+				var marker = new google.maps.Marker({
+					map : map,
+					position : position,
+					draggable : true,
+					icon : self.config.mapsMarker
+				});
+
+				// add the polygon point
+				var polyPath = polygon.getPath();
+				polyPath.push(position);
+
+				// if there are at least 3 tips then we can show the polygon
+				if (polyPath.getLength() >= 3) {
+					polygon.setMap(map);
+				}
+
+				google.maps.event.addListener(marker, 'position_changed', function(ev) {
+					// how to get to the tip corresponding to this marker???
+					return;
+
+					var i = $.inArray(marker, markers);
+					console.log('position', i);
+					polyPath.setAt(i, this.getPosition());
+				});
+
+				// remove the marker and the polygon tip
+				google.maps.event.addListener(marker, 'dblclick', function(ev) {
+
+				});
+
+				fieldTypes.geo_polygon.updateInfo($view, polygon);
+			},
+
+			/**
+			 * Updates the area information with calculated information on how big the marked area is.
+			 * @param  {jQuery} $view The value input view.
+			 * @param  {google.maps.Polygon} polygon Polygon marking.
+			 */
+			updateInfo : function($view, polygon) {
+				var path = polygon.getPath();
+
+				var $list = $view.find('.jcsdl-map-coordinates ul').html('');
+				for(var i = 0; i < path.getLength(); i++) {
+					var tip = path.getAt(i);
+					$('<li />').html('(' + tip.lat().format(4) + ', ' + tip.lng().format(4) + ')').appendTo($list);
+				}
+
+				if (path.getLength() >= 3) {
+					var area = google.maps.geometry.spherical.computeArea(path);
+					$view.find('.jcsdl-map-area span').html(Math.round(area / 1000000).format() + ' km<sup>2</sup>');
+				} else {
+					$view.find('.jcsdl-map-area span').html('0 km<sup>2</sup>');
+				}
 			}
 		}
 
