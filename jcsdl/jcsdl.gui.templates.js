@@ -216,10 +216,7 @@ var JCSDLGuiTemplates = {
 			'<div class="jcsdl-map-canvas" />',
 			'<p class="jcsdl-map-instructions" />',
 			'<a href="#" class="jcsdl-clear-map">clear coordinates</a>',
-			'<div class="jcsdl-map-coordinates">',
-				'<label>Coordinates:</label>',
-				'<ul />',
-			'</div>',
+			'<div class="jcsdl-map-coordinates" />',
 			'<div class="jcsdl-map-area">',
 				'<label>Area:</label>',
 				'<span>0 km<sup>2</sup></span>',
@@ -232,14 +229,34 @@ var JCSDLGuiTemplates = {
 		'<div class="jcsdl-input-geo jcsdl-geo-box" />'
 	].join('')),
 
+	valueInput_geobox_coordinates : $([
+		'<ul>',
+			'<li class="nw"><label>NW:</label><span /></li>',
+			'<li class="ne"><label>NE:</label><span /></li>',
+			'<li class="se"><label>SE:</label><span /></li>',
+			'<li class="sw"><label>SW:</label><span /></li>',
+		'</ul>'
+	].join('')),
+
 	// geo box
 	valueInput_georadius : $([
 		'<div class="jcsdl-input-geo jcsdl-geo-radius" />'
 	].join('')),
 
+	valueInput_georadius_coordinates : $([
+		'<ul>',
+			'<li class="center"><label>Center:</label><span /></li>',
+			'<li class="radius"><label>Radius:</label><span /></li>',
+		'</ul>'
+	].join('')),
+
 	// geo box
 	valueInput_geopolygon : $([
 		'<div class="jcsdl-input-geo jcsdl-geo-polygon" />'
+	].join('')),
+
+	valueInput_geopolygon_coordinates : $([
+		'<ul />'
 	].join(''))
 
 };

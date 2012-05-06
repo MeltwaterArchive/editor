@@ -1200,6 +1200,14 @@ var JCSDLGui = function(el, config) {
 						map.setZoom(17);
 					}
 				});
+			},
+
+			isNorth : function(coords1, coords2) {
+				return (coords1.lat() >= coords2.lat());
+			},
+
+			isEast : function(coords1, coords2) {
+				return (coords1.lng() >= coords2.lng());
 			}
 		},
 
@@ -1210,6 +1218,7 @@ var JCSDLGui = function(el, config) {
 			init : function(fieldInfo) {
 				var $view = self.getTemplate('valueInput_geobox');
 				$view.append(self.getTemplate('valueInput_geo_map'));
+				$view.find('.jcsdl-map-coordinates').html(self.getTemplate('valueInput_geobox_coordinates'));
 				$view.find('.jcsdl-map-instructions').html(JCSDLConfig.inputs.geo_box.instructions);
 				loadGoogleMapsApi(self, fieldTypes.geo_box.load, [fieldInfo, $view]);
 				return $view;
@@ -1266,9 +1275,6 @@ var JCSDLGui = function(el, config) {
 					if (coords.length == 2) {
 						fieldTypes.geo_box.drawRectangle(map, rect, coords);
 						$view.data('bothMarkersVisible', true);
-
-						// calculate the area size
-						fieldTypes.geo_box.updateArea($view, rect);
 					}
 				});
 
@@ -1282,7 +1288,7 @@ var JCSDLGui = function(el, config) {
 					
 					// calculate the area size
 					if (coords.length == 2) {
-						fieldTypes.geo_box.updateArea($view, rect);
+						fieldTypes.geo_box.updateInfo($view, rect);
 					}
 				});
 
@@ -1295,7 +1301,7 @@ var JCSDLGui = function(el, config) {
 					fieldTypes.geo_box.drawRectangle(map, rect, coords);
 
 					// calculate the area size
-					fieldTypes.geo_box.updateArea($view, rect);
+					fieldTypes.geo_box.updateInfo($view, rect);
 				});
 
 				/**
@@ -1345,7 +1351,7 @@ var JCSDLGui = function(el, config) {
 					map.fitBounds(rect.getBounds());
 
 					// calculate the area size
-					fieldTypes.geo_box.updateArea($view, rect);
+					fieldTypes.geo_box.updateInfo($view, rect);
 					
 				}, self.config.animationSpeed + 200); // make sure everything is properly loaded
 			},
@@ -1370,24 +1376,40 @@ var JCSDLGui = function(el, config) {
 			},
 
 			/**
-			 * Draws the rectangle using the current coords.
+			 * Draws the rectangle using the given coords.
 			 * @return {Boolean} Success or not.
 			 */
 			drawRectangle : function(map, rect, coords) {
 				if (coords.length != 2) return false;
 
-				var left = (coords[0].lng() > coords[1].lng()) ? 1 : 0;
-				var right = (left == 0) ? 1 : 0;
-				var bounds = new google.maps.LatLngBounds(coords[left], coords[right]);
+				var tips = fieldTypes.geo_box.getAllTipsFromUnspecified(coords[0], coords[1]);
+				var bounds = new google.maps.LatLngBounds(tips.sw, tips.ne);
+
+				/*
+				var sw = (coords[0].lng() > coords[1].lng()) ? 1 : 0;
+				var ne = (sw == 0) ? 1 : 0;
+				var bounds = new google.maps.LatLngBounds(coords[sw], coords[ne]);
+				*/
 				fieldTypes.geo_box.drawRectangleFromBounds(map, rect, bounds);
 				return true;
 			},
 
+			/**
+			 * Draws rectangle using the given bounds.
+			 * @param  {google.maps.Map} map Map on which to draw the rectangle.
+			 * @param  {google.maps.Rectangle} rect The rectangle to be drawn.
+			 * @param  {google.maps.LatLngBounds} bounds Bounds to be drawn with.
+			 */
 			drawRectangleFromBounds : function(map, rect, bounds) {
 				rect.setBounds(bounds);
 				rect.setMap(map);
 			},
 
+			/**
+			 * Gets coordinates for all four corners of the rectangle based on its bounds.
+			 * @param  {google.maps.LatLngBounds} bounds
+			 * @return {Object}
+			 */
 			getAllTipsFromBounds : function(bounds) {
 				var tips = {};
 				tips.ne = bounds.getNorthEast();
@@ -1397,6 +1419,12 @@ var JCSDLGui = function(el, config) {
 				return tips;
 			},
 
+			/**
+			 * Gets coordinates for all four corners of the rectangle based on it raw coordinates of NW and SE points.
+			 * @param  {Array} nw Array where at index 0 is latitude for NW corner, and at index 1 its longitude.
+			 * @param  {Array} se Array where at index 0 is latitude for SE corner, and at index 1 its longitude.
+			 * @return {Object}
+			 */
 			getAllTipsFromNWSE : function(nw, se) {
 				var tips = {};
 				tips.nw = new google.maps.LatLng(parseFloat(nw[0]), parseFloat(nw[1]));
@@ -1406,10 +1434,51 @@ var JCSDLGui = function(el, config) {
 				return tips;
 			},
 
-			updateArea : function($view, rect) {
+			getAllTipsFromUnspecified : function(coords1, coords2) {
+				var tips = {};
+
+				var north, south;
+				if (fieldTypes._geo.isNorth(coords1, coords2)) {
+					north = coords1;
+					south = coords2;
+				} else {
+					north = coords2;
+					south = coords1;
+				}
+
+				var west, east;
+				if (fieldTypes._geo.isEast(coords1, coords2)) {
+					east = coords1;
+					west = coords2;
+				} else {
+					east = coords2;
+					west = coords1;
+				}
+
+				var tips = {
+					nw : new google.maps.LatLng(north.lat(), west.lng()),
+					ne : new google.maps.LatLng(north.lat(), east.lng()),
+					se : new google.maps.LatLng(south.lat(), east.lng()),
+					sw : new google.maps.LatLng(south.lat(), west.lng())
+				};
+
+				return tips;
+			},
+
+			/**
+			 * Updates the marked area information (coordinates and size).
+			 * @param  {jQuery} $view The value input view.
+			 * @param  {google.maps.Rectangle} rect Rectangle marking.
+			 */
+			updateInfo : function($view, rect) {
 				var tips = fieldTypes.geo_box.getAllTipsFromBounds(rect.getBounds());
 				var area = google.maps.geometry.spherical.computeArea([tips.nw, tips.ne, tips.se, tips.sw]);
 				$view.find('.jcsdl-map-area span').html(Math.round(area / 1000000).format() + ' km<sup>2</sup>');
+
+				// update the tips displayed coordinates
+				$.each(tips, function(point, coords) {
+					$view.find('.jcsdl-map-coordinates .' + point + ' span').html(coords.lat().format(2) + ', ' + coords.lng().format(2));
+				});
 			}
 		},
 
@@ -1420,19 +1489,185 @@ var JCSDLGui = function(el, config) {
 			init : function(fieldInfo) {
 				var $view = self.getTemplate('valueInput_georadius');
 				$view.append(self.getTemplate('valueInput_geo_map'));
+				$view.find('.jcsdl-map-coordinates').html(self.getTemplate('valueInput_georadius_coordinates'));
+				$view.find('.jcsdl-map-instructions').html(JCSDLConfig.inputs.geo_radius.instructions);
 				loadGoogleMapsApi(self, fieldTypes.geo_radius.load, [fieldInfo, $view]);
 				return $view;
 			},
 
 			load : function(fieldInfo, $view) {
-				console.log('load geo_radius', this, fieldInfo, fieldTypes);
+				// initialize the map
+				var map = new google.maps.Map($view.find('.jcsdl-map-canvas')[0], jcsdlMapsOptions);
+				$view.data('map', map);
+
+				// initialize the circle that we're gonna draw
+				var circle = new google.maps.Circle({
+					strokeWeight : 0,
+					fillColor : '#7585dd',
+					fillOpacity : 0.5
+				});
+				$view.data('circle', circle);
+
+				// create center marker
+				var markerOptions = {
+					position : new google.maps.LatLng(0, 0),
+					draggable : true,
+					icon : self.config.mapsMarker
+				};
+
+				var centerMarker = new google.maps.Marker(markerOptions);
+				$view.data('centerMarker', centerMarker);
+				var radiusMarker = new google.maps.Marker(markerOptions);
+				$view.data('radiusMarker', radiusMarker);
+
+				// initialize places autocomplete search
+				fieldTypes._geo.initSearch($view);
+
+				/**
+				 * Listen for clicks on the map and adjust the circle to it.
+				 * @param  {Event} ev Google Maps Event.
+				 * @listener
+				 */
+				google.maps.event.addListener(map, 'click', function(ev) {
+					var center = circle.getCenter();
+
+					// the center has already been marked, so this is a click for the radius
+					if (typeof(center) !== 'undefined') {
+						var radius = google.maps.geometry.spherical.computeDistanceBetween(center, ev.latLng);
+						circle.setRadius(radius);
+						circle.setMap(map);
+
+						// drop the corresponding marker
+						radiusMarker.setPosition(ev.latLng);
+						radiusMarker.setMap(map);
+
+						fieldTypes.geo_radius.updateInfo($view, circle);
+
+					// the center hasn't been marked yet, so this is the click for it
+					} else {
+						circle.setCenter(ev.latLng);
+
+						// drop the corresponding marker
+						centerMarker.setPosition(ev.latLng);
+						centerMarker.setMap(map);
+					}
+				});
+
+				/**
+				 * When the center marker is dragged to a different position then redraw the circle.
+				 * @listener
+				 */
+				google.maps.event.addListener(centerMarker, 'position_changed', function() {
+					var center = this.getPosition();
+					var oldCenter = circle.getCenter();
+					circle.setCenter(center);
+
+					if (typeof(oldCenter) !== 'undefined') {
+						// move the radius marker as well, to fit new center
+						// so first calculate the lat and lng differences
+						var latDiff = center.lat() - oldCenter.lat();
+						var lngDiff = center.lng() - oldCenter.lng();
+
+						// and apply that to new position of the marker
+						var oldPosition = radiusMarker.getPosition();
+						var position = new google.maps.LatLng(oldPosition.lat() + latDiff, oldPosition.lng() + lngDiff);
+						radiusMarker.setPosition(position);
+					}
+				});
+
+				/**
+				 * When the radius marker is dragged to a different position then redraw the circle.
+				 * @listener
+				 */
+				google.maps.event.addListener(radiusMarker, 'position_changed', function() {
+					var center = circle.getCenter();
+					if (typeof(center) !== 'undefined') {
+						circle.setRadius(google.maps.geometry.spherical.computeDistanceBetween(circle.getCenter(), this.getPosition()));
+						fieldTypes.geo_radius.updateInfo($view, circle);
+					}
+				});
+
+				/**
+				 * Remove the circle and all values from the map.
+				 * @param  {Event} ev
+				 * @listener
+				 */
+				$view.find('.jcsdl-clear-map').click(function(ev) {
+					ev.preventDefault();
+					ev.target.blur();
+
+					circle.setMap(null);
+					centerMarker.setMap(null);
+					radiusMarker.setMap(null);
+					$view.find('.jcsdl-map-area span').html('0 km<sup>2</sup>');
+				});
 			},
 
 			setValue : function(fieldInfo, value) {
+				var $view = this.find('.jcsdl-input-geo');
+
+				value = value.split(':');
+				var latlng = value[0].split(',');
+				var radius = parseFloat(value[1]) * 1000;
+
+				setTimeout(function() {
+					var map = $view.data('map');
+					var circle = $view.data('circle');
+					var center = new google.maps.LatLng(latlng[0], latlng[1])
+
+					// first, set markers because changing their positions causes changes in the circle
+					var centerMarker = $view.data('centerMarker');
+					centerMarker.setPosition(center);
+					centerMarker.setMap(map);
+
+					var radiusMarker = $view.data('radiusMarker');
+					var radiusPosition = google.maps.geometry.spherical.computeOffset(center, radius, 90);
+					radiusMarker.setPosition(radiusPosition);
+					radiusMarker.setMap(map);
+
+					circle.setCenter(center);
+					circle.setRadius(radius);
+					circle.setMap(map); 
+
+					map.fitBounds(circle.getBounds());
+
+					// calculate the area size
+					fieldTypes.geo_radius.updateInfo($view, circle);
+					
+				}, self.config.animationSpeed + 200); // make sure everything is properly loaded
 			},
 
 			getValue : function(fieldInfo) {
-				return '';
+				var circle = this.find('.jcsdl-input-geo').data('circle');
+
+				// if no map then rect is not visible, so has no values
+				if (!circle.getMap()) return '';
+
+				var center = circle.getCenter();
+				return center.lat() + ',' + center.lng() + ':' + (circle.getRadius() / 1000);
+			},
+
+			displayValue : function(fieldInfo, value, filter) {
+				value = value.split(':');
+				var center = value[0].split(',');
+				var radius = value[1];
+
+				return 'Center: ' + parseFloat(center[0]).format(2) + ', ' + parseFloat(center[1]).format(2) + '; Radius: ' + parseFloat(radius).format(2) + ' km';
+			},
+
+			/**
+			 * Updates the area information with calculated information on how big the marked area is.
+			 * @param  {jQuery} $view The value input view.
+			 * @param  {google.maps.Circle} circle Circle marking.
+			 */
+			updateInfo : function($view, circle) {
+				var r = circle.getRadius();
+				var area = r * r * Math.PI;
+				$view.find('.jcsdl-map-area span').html(Math.round(area / 1000000).format() + ' km<sup>2</sup>');
+
+				var center = circle.getCenter();
+				$view.find('.jcsdl-map-coordinates .center span').html(center.lat().format(2) + ', ' + center.lng().format(2));
+				$view.find('.jcsdl-map-coordinates .radius span').html((circle.getRadius() / 1000).format(2) + ' km');
 			}
 		},
 

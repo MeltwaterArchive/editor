@@ -292,7 +292,8 @@ var JCSDLConfig = {
 			instructions : 'Click on the map to mark a corner of the box and then click again to mark another. You can drag the markers around to change the box coordinates.'
 		},
 		geo_radius : {
-			operators : ['geo_radius']
+			operators : ['geo_radius'],
+			instructions : 'Click on the map to mark the center of the selection and then click again to set its radius. You can drag the markers around to move the center of the circle or the radius.'
 		},
 		geo_polygon : {
 			operators : ['geo_polygon']
