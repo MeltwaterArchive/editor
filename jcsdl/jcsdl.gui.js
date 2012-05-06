@@ -1699,8 +1699,9 @@ var JCSDLGui = function(el, config) {
 				});
 				$view.data('polygon', polygon);
 
-				// storage for pairs of markers and their polygon tips
-				$view.data('tips', []);
+				// storage markers
+				var markers = [];
+				$view.data('markers', markers);
 
 				// initialize places autocomplete search
 				fieldTypes._geo.initSearch($view);
@@ -1711,7 +1712,8 @@ var JCSDLGui = function(el, config) {
 				 * @listener
 				 */
 				google.maps.event.addListener(map, 'click', function(ev) {
-					fieldTypes.geo_polygon.addTip($view, ev.latLng.lat(), ev.latLng.lng());
+					var marker = fieldTypes.geo_polygon.addTip($view, ev.latLng.lat(), ev.latLng.lng());
+					markers.push(marker);
 				});
 
 				/**
@@ -1723,12 +1725,12 @@ var JCSDLGui = function(el, config) {
 					ev.preventDefault();
 					ev.target.blur();
 
-					return;
+					$.each($view.data('markers'), function(i, marker) {
+						marker.setMap(null);
+					});
+					polygon.getPath().clear();
 
-					circle.setMap(null);
-					centerMarker.setMap(null);
-					radiusMarker.setMap(null);
-					$view.find('.jcsdl-map-area span').html('0 km<sup>2</sup>');
+					fieldTypes.geo_polygon.updateInfo($view, polygon);
 				});
 			},
 
@@ -1738,15 +1740,20 @@ var JCSDLGui = function(el, config) {
 				value = value.split(':');
 
 				setTimeout(function() {
+					var markers = $view.data('markers');
+
 					$.each(value, function(i, val) {
 						val = val.split(',');
-						fieldTypes.geo_polygon.addTip($view, val[0], val[1]);
+						var marker = fieldTypes.geo_polygon.addTip($view, val[0], val[1]);
+						markers.push(marker);
 					});
+
+					$view.data('markers', markers);
 
 					var map = $view.data('map');
 					var polygon = $view.data('polygon');
 
-					//map.fitBounds(polygon.getBounds());
+					map.fitBounds(polygon.getBounds());
 
 					// calculate the area size
 					fieldTypes.geo_polygon.updateInfo($view, polygon);
@@ -1768,12 +1775,19 @@ var JCSDLGui = function(el, config) {
 			},
 
 			displayValue : function(fieldInfo, value, filter) {
-				return '';
 				value = value.split(':');
-				var center = value[0].split(',');
-				var radius = value[1];
+				var output = [];
+				$.each(value, function(i, val) {
+					val = val.split(',');
+					output.push(parseFloat(val[0]).format(2) + ', ' + parseFloat(val[1]).format(2));
+					if (i == 1) return false; // break at 2 points
+				});
 
-				return 'Center: ' + parseFloat(center[0]).format(2) + ', ' + parseFloat(center[1]).format(2) + '; Radius: ' + parseFloat(radius).format(2) + ' km';
+				output = output.join(' : ');
+				if (value.length > 2) {
+					output += ' and ' + (value.length - 2) + ' more...';
+				}
+				return output;
 			},
 
 			addTip : function($view, lat, lng) {
@@ -1801,20 +1815,42 @@ var JCSDLGui = function(el, config) {
 				}
 
 				google.maps.event.addListener(marker, 'position_changed', function(ev) {
-					// how to get to the tip corresponding to this marker???
-					return;
+					var i = fieldTypes.geo_polygon.indexOfPosition(position, polygon);
+					position = this.getPosition();
+					if (i == -1) return;
 
-					var i = $.inArray(marker, markers);
-					console.log('position', i);
-					polyPath.setAt(i, this.getPosition());
+					polyPath.setAt(i, position);
+
+					fieldTypes.geo_polygon.updateInfo($view, polygon);
 				});
 
 				// remove the marker and the polygon tip
 				google.maps.event.addListener(marker, 'dblclick', function(ev) {
+					var i = fieldTypes.geo_polygon.indexOfPosition(position, polygon);
+					position = this.getPosition();
+					if (i == -1) return;
 
+					polyPath.removeAt(i);
+					this.setMap(null);
+
+					fieldTypes.geo_polygon.updateInfo($view, polygon);
 				});
 
 				fieldTypes.geo_polygon.updateInfo($view, polygon);
+
+				return marker;
+			},
+
+			indexOfPosition : function(position, polygon) {
+				var path = polygon.getPath();
+				for (var i = 0; i < path.getLength(); i++) {
+					var tip = path.getAt(i);
+					if (tip.equals(position)) {
+						return i;
+					}
+				}
+
+				return -1;
 			},
 
 			/**
@@ -2129,6 +2165,7 @@ var loadGoogleMapsApi = function(currentGui, callback, callbackArgs) {
 
 	if (!jcsdlMapsLoaded) {
 		$('body').append('<script type="text/javascript" src="//maps.googleapis.com/maps/api/js?key=' + JCSDLConfig.mapsApiKey + '&libraries=places,geometry&sensor=false&callback=jcsdlMapsInit" />');
+
 		jcsdlMapsLoaded = true;
 	} else {
 		jcsdlMapsInit();
@@ -2149,6 +2186,22 @@ var jcsdlMapsInit = function() {
 			style: google.maps.NavigationControlStyle.SMALL
 		}
 	};
+
+	// extend the Polygon of Google Maps API
+	if (!google.maps.Polygon.prototype.getBounds) {
+        google.maps.Polygon.prototype.getBounds = function(latLng) {
+            var bounds = new google.maps.LatLngBounds();
+            var paths = this.getPaths();
+            var path;
+            for (var p = 0; p < paths.getLength(); p++) {
+                path = paths.getAt(p);
+                for (var i = 0; i < path.getLength(); i++) {
+                    bounds.extend(path.getAt(i));
+                }
+            }
+            return bounds;
+        };
+    }
 
 	if (jcsdlMapsCurrentGui && jcsdlMapsCurrentCallback) {
 		setTimeout(function() {

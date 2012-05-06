@@ -297,7 +297,7 @@ var JCSDLConfig = {
 		},
 		geo_polygon : {
 			operators : ['geo_polygon'],
-			instructions : ''
+			instructions : 'Click on the map to mark tips of the polygon selection. You can drag the markers around to edit the selection or double-click them to remove.'
 		},
 		geo_text : {
 			operators : ['geo_text']
