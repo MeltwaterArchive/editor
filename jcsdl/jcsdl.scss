@@ -3,7 +3,7 @@ $color : #376491;
 $colorLight : #888;
 $borderColor : #dcdcdc;
 $borderColorInput : #c8d7de;
-$elementsSprite : 'img/elements.png?10';
+$elementsSprite : 'img/elements.png?11';
 $selectSprite : 'img/select.png?12';
 $stepBackground : 'img/step_background.png?5';
 $targetIconsSprite : 'img/icons-sprite-targets.png?6';
@@ -102,6 +102,17 @@ $otherIconsSprite : 'img/icons-sprite-other.png?2';
 		border-top: 1px dotted $borderColor;
 
 		.jcsdl-actions {float: left; overflow: hidden; margin-bottom: 5px;}
+	}
+
+	.jcsdl-error {
+		display: block; margin: 10px 20px;
+		padding: 0 10px; height: 38px; line-height: 38px; overflow: hidden;
+		text-align: left;
+		border: 1px solid #fbd2d2; @include rounded(3px);
+		background: url($elementsSprite) repeat-x center -240px;
+
+		strong {color: red; font-weight: bold;}
+		span {color: #222; margin-left: 5px;}
 	}
 
 	/*

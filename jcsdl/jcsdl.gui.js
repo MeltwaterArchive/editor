@@ -566,8 +566,19 @@ var JCSDLGui = function(el, config) {
 	 * @param  {String} code    Code that caused the error.
 	 */
 	this.showError = function(message, code) {
-		alert(message + "\n\n##################\n\n" + code + "\n\n#####\n\n See console for more info.");
-		console.error(message, arguments);
+		var $error = self.getTemplate('error');
+		$error.find('span').html(message);
+
+		if (self.$mainView.is(':visible')) {
+			$error.insertBefore(self.$mainView.find('.jcsdl-footer'));
+		} else {
+			$error.prependTo(self.$currentFilterView.find('.jcsdl-footer'));
+		}
+		$error.hide().fadeIn();
+
+		if (typeof(console) !== 'undefined') {
+			console.error(message, arguments);
+		}
 	};
 
 	/**

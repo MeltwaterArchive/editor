@@ -70,7 +70,7 @@
     display: block;
     height: 34px;
     width: 140px;
-    background: url("img/elements.png?10") no-repeat 0 -55px; }
+    background: url("img/elements.png?11") no-repeat 0 -55px; }
     .jcsdl-container .jcsdl-button.jcsdl-editor-cancel, .jcsdl-container .jcsdl-button.jcsdl-filter-cancel {
       width: 56px;
       background-position: 0 -89px; }
@@ -99,6 +99,31 @@
       float: left;
       overflow: hidden;
       margin-bottom: 5px; }
+  .jcsdl-container .jcsdl-error {
+    display: block;
+    margin: 10px 20px;
+    padding: 0 10px;
+    height: 38px;
+    line-height: 38px;
+    overflow: hidden;
+    text-align: left;
+    border: 1px solid #fbd2d2;
+    -webkit-border-radius: 3px;
+    -khtml-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 3px;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    background: url("img/elements.png?11") repeat-x center -240px; }
+    .jcsdl-container .jcsdl-error strong {
+      color: red;
+      font-weight: bold; }
+    .jcsdl-container .jcsdl-error span {
+      color: #222;
+      margin-left: 5px; }
   .jcsdl-container .jcsdl-mainview .jcsdl-header, .jcsdl-container .jcsdl-mainview .jcsdl-header h3 {
     line-height: 38px; }
   .jcsdl-container .jcsdl-mainview-actions {
@@ -118,7 +143,7 @@
       display: block;
       width: 14px;
       height: 14px;
-      background: url("img/elements.png?10") no-repeat -140px -68px; }
+      background: url("img/elements.png?11") no-repeat -140px -68px; }
     .jcsdl-container .jcsdl-mainview-action.jcsdl-add-filter {
       margin-right: 0; }
   .jcsdl-container .jcsdl-mainview-mode {
@@ -139,7 +164,7 @@
     display: block;
     width: 13px;
     height: 13px;
-    background: url("img/elements.png?10") no-repeat -140px -55px;
+    background: url("img/elements.png?11") no-repeat -140px -55px;
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=$opacity * 10)";
     filter: alpha(opacity=3);
     -moz-opacity: 0.3;
@@ -283,7 +308,7 @@
     height: 29px;
     line-height: 29px;
     text-align: center;
-    background: transparent url("img/elements.png?10") no-repeat -56px -89px; }
+    background: transparent url("img/elements.png?11") no-repeat -56px -89px; }
     .jcsdl-container .jcsdl-carousel-scroll.right {
       float: right;
       background-position: -85px -89px; }
@@ -411,7 +436,7 @@
       line-height: 25px;
       font-size: 13px;
       color: #3a3a3a;
-      background: url("img/elements.png?10") repeat-x 0 -148px;
+      background: url("img/elements.png?11") repeat-x 0 -148px;
       border: 1px solid #9b9b9b;
       -webkit-border-radius: 3px;
       -khtml-border-radius: 3px;
@@ -451,7 +476,7 @@
         display: block;
         width: 14px;
         height: 14px;
-        background: transparent url("img/elements.png?10") no-repeat -115px -89px;
+        background: transparent url("img/elements.png?11") no-repeat -115px -89px;
         -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=$opacity * 10)";
         filter: alpha(opacity=7);
         -moz-opacity: 0.7;
@@ -521,7 +546,7 @@
       margin-bottom: 7px;
       height: 12px;
       cursor: pointer;
-      background: transparent url("img/elements.png?10") repeat-x center -228px;
+      background: transparent url("img/elements.png?11") repeat-x center -228px;
       border: 0;
       -webkit-border-radius: 0px;
       -khtml-border-radius: 0px;
@@ -539,7 +564,7 @@
         width: 30px;
         height: 40px;
         cursor: pointer;
-        background: transparent url("img/elements.png?10") no-repeat -152px -83px;
+        background: transparent url("img/elements.png?11") no-repeat -152px -83px;
         border: 0;
         outline: none; }
     .jcsdl-container .jcsdl-input-slider .jcsdl-slider-bottom {
@@ -552,7 +577,7 @@
         width: 15px;
         height: 15px;
         float: left;
-        background: transparent url("img/elements.png?10") no-repeat 0 -213px; }
+        background: transparent url("img/elements.png?11") no-repeat 0 -213px; }
       .jcsdl-container .jcsdl-input-slider .jcsdl-slider-bottom .jcsdl-slider-bottom-right {
         float: right;
         background-position: -31px -213px; }
@@ -560,7 +585,7 @@
         display: block;
         height: 15px;
         margin: 0 15px;
-        background: transparent url("img/elements.png?10") repeat-x 0 -198px; }
+        background: transparent url("img/elements.png?11") repeat-x 0 -198px; }
   .jcsdl-container .jcsdl-map {
     text-align: center; }
     .jcsdl-container .jcsdl-map .jcsdl-map-search {

@@ -80,6 +80,13 @@ var JCSDLGuiTemplates = {
 	filterOperator : $('<div class="jcsdl-filter-operator jcsdl-icon operator" />'),
 	filterValue : $('<div class="jcsdl-filter-value" />'),
 
+	error : $([
+		'<div class="jcsdl-error">',
+			'<strong>Error:</strong>',
+			'<span />',
+		'</div>'
+	].join('')),
+
 	/* ##########################
 	 * SINGLE FILTER EDITOR
 	 * ########################## */
@@ -160,7 +167,8 @@ var JCSDLGuiTemplates = {
 	// text input
 	valueInput_text : $([
 		'<div class="jcsdl-input-text">',
-			'<input type="text" placeholder="Type your desired value" />',
+			'<input type="text" placeholder="Type your desired value..." />',
+			//'<input type="text" name="array" placeholder="Type your desired value..." />',
 		'</div>'
 	].join('')),
 
