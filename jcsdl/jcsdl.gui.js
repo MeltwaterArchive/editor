@@ -1071,9 +1071,6 @@ var JCSDLGui = function(el, config) {
 					slide : function(ev, ui) {
 						var value = fieldTypes.slider.parseValue(fieldInfo, ui.value);
 						$view.find('.jcsdl-slider-input').val(value);
-					},
-					change : function(ev, ui) {
-						//$vision.find('input.satisfaction-value').val(ui.value);
 					}
 				});
 
@@ -1084,12 +1081,13 @@ var JCSDLGui = function(el, config) {
 				$view.find('.jcsdl-slider-label.min').html(fieldTypes.slider.displayValue(fieldInfo, options.min));
 				$view.find('.jcsdl-slider-label.max').html(fieldTypes.slider.displayValue(fieldInfo, options.max));
 
+				var allowFloat = (fieldInfo.type == 'float') ? true : false;
 				/**
 				 * Mask the input as a number field and update the slider when the value was changed in the input.
 				 * @param  {Event} ev
 				 * @listener
 				 */
-				$view.find('.jcsdl-slider-input').jcsdlNumberMask().keyup(function(ev) {
+				$view.find('.jcsdl-slider-input').jcsdlNumberMask(allowFloat).keyup(function(ev) {
 					// don't do anything if a dot has been entered
 					if (ev.which == 110 || ev.which == 190) return;
 
@@ -2109,11 +2107,11 @@ var JCSDLGui = function(el, config) {
  */
 (function($) {
 
-	$.fn.jcsdlNumberMask = function() {
+	$.fn.jcsdlNumberMask = function(allowFloat) {
 		this.each(function() {
 			$(this).keydown(function(ev) {
-				// dot can be entered only once
-				if ((ev.which == 190 || ev.which == 110) && ($(this).val().indexOf('.') >= 0)) {
+				// dot can be entered only once (if float is allowed)
+				if ((ev.which == 190 || ev.which == 110) && (($(this).val().indexOf('.') >= 0) || !allowFloat)) {
 					ev.preventDefault();
 					return;
 				}
