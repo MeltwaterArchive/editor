@@ -2176,7 +2176,7 @@ var JCSDLGui = function(el, config) {
 		var $self = $(this[0]);
 
 		// override only for JCSDL Tag Input field
-		if ($self.data('jcsdlTagInput') && $self.data('jcsdlTagInputEnabled')) {
+		if ($self.data('jcsdlTagInput')) {
 			// setting a value
 			if (typeof(value) !== 'undefined') {
 				$self.jcsdlOrigVal(value);
@@ -2243,6 +2243,15 @@ var JCSDLGui = function(el, config) {
 			if (val.length == 0) return;
 
 			self.addTag(val);
+		});
+
+		this.$input.bind('paste.jcsdltaginput', function(ev) {
+			setTimeout(function() {
+				var val = self.$input.val();
+				if (val.length == 0) return;
+
+				self.addTag(val);
+			}, 10);
 		});
 
 		this.$input.bind('keypress.jcsdltaginput', function(ev) {
