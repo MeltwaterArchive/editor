@@ -391,18 +391,17 @@ $otherIconsSprite : 'img/icons-sprite-other.png?2';
 		.jcsdl-input-select-option {
 			margin: 10px;
 			display: inline-block; padding: 0 10px; height: 25px; line-height: 25px;
-			font-size: 13px; color: #3a3a3a;
-			background: url($elementsSprite) repeat-x 0 -148px;
-			border: 1px solid #9b9b9b;
+			font-size: 13px; color: #376491;
+			border: 1px solid #376491;
 			@include rounded(3px);
+			@include opacity(0.5);
 
 			/* ie7 */
 			zoom: 1;
 			*display: inline;
 
-			&.selected {background-position: 0 -123px; border-color: #da6e01; color: #fff;}
+			&.selected { @include opacity(1); }
 			&:active {
-				background-position: 0 -173px; border-color: #af5901; color: #fff;
 				span {position: relative; top: 1px;}
 			}
 		}
