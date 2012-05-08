@@ -394,7 +394,7 @@ $otherIconsSprite : 'img/icons-sprite-other.png?2';
 			font-size: 13px; color: #376491;
 			border: 1px solid #376491;
 			@include rounded(3px);
-			@include opacity(0.5);
+			@include opacity(0.75);
 
 			/* ie7 */
 			zoom: 1;
@@ -665,7 +665,7 @@ $otherIconsSprite : 'img/icons-sprite-other.png?2';
 		width: 38px; height: 38px;
 		background: url($operatorIconsSprite) no-repeat 0 0;
 		border: 1px solid $color; @include rounded(2px);
-		@include opacity(0.4);
+		@include opacity(0.75);
 
 		&.icon-contains 	{background-position: 0 0;}
 		&.icon-substr 		{background-position: -38px 0;}
