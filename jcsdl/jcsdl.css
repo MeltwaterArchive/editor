@@ -397,7 +397,7 @@
     display: block;
     margin: 0 10px;
     margin-right: 70px; }
-    .jcsdl-container .jcsdl-input-text input, .jcsdl-container .jcsdl-input-number input {
+    .jcsdl-container .jcsdl-input-text input, .jcsdl-container .jcsdl-input-text .jcsdl-tag-input, .jcsdl-container .jcsdl-input-number input, .jcsdl-container .jcsdl-input-number .jcsdl-tag-input {
       display: block;
       box-sizing: border-box;
       -moz-box-sizing: border-box;
@@ -407,6 +407,7 @@
       height: 40px;
       font-size: 1.3em;
       line-height: 1.5em;
+      color: #444;
       border: 1px solid #dcdcdc;
       -webkit-border-radius: 3px;
       -khtml-border-radius: 3px;
@@ -417,6 +418,72 @@
       -moz-background-clip: padding;
       -webkit-background-clip: padding-box;
       background-clip: padding-box; }
+      .jcsdl-container .jcsdl-input-text input.jcsdl-tag-input, .jcsdl-container .jcsdl-input-text .jcsdl-tag-input.jcsdl-tag-input, .jcsdl-container .jcsdl-input-number input.jcsdl-tag-input, .jcsdl-container .jcsdl-input-number .jcsdl-tag-input.jcsdl-tag-input {
+        height: auto;
+        min-height: 40px;
+        overflow: hidden;
+        position: relative;
+        font-size: 1em;
+        padding: 0; }
+        .jcsdl-container .jcsdl-input-text input.jcsdl-tag-input .jcsdl-tag, .jcsdl-container .jcsdl-input-text .jcsdl-tag-input.jcsdl-tag-input .jcsdl-tag, .jcsdl-container .jcsdl-input-number input.jcsdl-tag-input .jcsdl-tag, .jcsdl-container .jcsdl-input-number .jcsdl-tag-input.jcsdl-tag-input .jcsdl-tag {
+          display: block;
+          float: left;
+          margin: 3px;
+          position: relative;
+          padding: 0 5px;
+          height: 32px;
+          line-height: 32px;
+          padding-right: 14px;
+          font-size: 1.1em;
+          color: #376491;
+          font-weight: bold;
+          border: 1px solid #c8d7de;
+          -webkit-border-radius: 2px;
+          -khtml-border-radius: 2px;
+          -moz-border-radius: 2px;
+          -ms-border-radius: 2px;
+          -o-border-radius: 2px;
+          border-radius: 2px;
+          -moz-background-clip: padding;
+          -webkit-background-clip: padding-box;
+          background-clip: padding-box;
+          background: white; }
+          .jcsdl-container .jcsdl-input-text input.jcsdl-tag-input .jcsdl-tag a.jcsdl-tag-remove, .jcsdl-container .jcsdl-input-text .jcsdl-tag-input.jcsdl-tag-input .jcsdl-tag a.jcsdl-tag-remove, .jcsdl-container .jcsdl-input-number input.jcsdl-tag-input .jcsdl-tag a.jcsdl-tag-remove, .jcsdl-container .jcsdl-input-number .jcsdl-tag-input.jcsdl-tag-input .jcsdl-tag a.jcsdl-tag-remove {
+            display: block;
+            width: 8px;
+            height: 32px;
+            overflow: hidden;
+            position: absolute;
+            right: 3px;
+            top: 0;
+            color: #888888;
+            font-weight: bold;
+            font-size: 12px;
+            -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=$opacity * 10)";
+            filter: alpha(opacity=7);
+            -moz-opacity: 0.7;
+            -khtml-opacity: 0.7;
+            opacity: 0.7; }
+            .jcsdl-container .jcsdl-input-text input.jcsdl-tag-input .jcsdl-tag a.jcsdl-tag-remove:hover, .jcsdl-container .jcsdl-input-text .jcsdl-tag-input.jcsdl-tag-input .jcsdl-tag a.jcsdl-tag-remove:hover, .jcsdl-container .jcsdl-input-number input.jcsdl-tag-input .jcsdl-tag a.jcsdl-tag-remove:hover, .jcsdl-container .jcsdl-input-number .jcsdl-tag-input.jcsdl-tag-input .jcsdl-tag a.jcsdl-tag-remove:hover {
+              -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=$opacity * 10)";
+              filter: alpha(opacity=10);
+              -moz-opacity: 1;
+              -khtml-opacity: 1;
+              opacity: 1; }
+        .jcsdl-container .jcsdl-input-text input.jcsdl-tag-input .jcsdl-tag-field, .jcsdl-container .jcsdl-input-text .jcsdl-tag-input.jcsdl-tag-input .jcsdl-tag-field, .jcsdl-container .jcsdl-input-number input.jcsdl-tag-input .jcsdl-tag-field, .jcsdl-container .jcsdl-input-number .jcsdl-tag-input.jcsdl-tag-input .jcsdl-tag-field {
+          float: left; }
+          .jcsdl-container .jcsdl-input-text input.jcsdl-tag-input .jcsdl-tag-field input, .jcsdl-container .jcsdl-input-text input.jcsdl-tag-input .jcsdl-tag-field .jcsdl-tag-field-helper, .jcsdl-container .jcsdl-input-text .jcsdl-tag-input.jcsdl-tag-input .jcsdl-tag-field input, .jcsdl-container .jcsdl-input-text .jcsdl-tag-input.jcsdl-tag-input .jcsdl-tag-field .jcsdl-tag-field-helper, .jcsdl-container .jcsdl-input-number input.jcsdl-tag-input .jcsdl-tag-field input, .jcsdl-container .jcsdl-input-number input.jcsdl-tag-input .jcsdl-tag-field .jcsdl-tag-field-helper, .jcsdl-container .jcsdl-input-number .jcsdl-tag-input.jcsdl-tag-input .jcsdl-tag-field input, .jcsdl-container .jcsdl-input-number .jcsdl-tag-input.jcsdl-tag-input .jcsdl-tag-field .jcsdl-tag-field-helper {
+            box-sizing: content-box;
+            -moz-box-sizing: content-box;
+            -webkit-box-sizing: content-box;
+            padding: 0;
+            margin: 3px;
+            height: 34px;
+            line-height: 34px;
+            min-width: 100px;
+            font-size: 17px !important;
+            border: 0;
+            outline: 0; }
   .jcsdl-container .jcsdl-input-number {
     margin: 0 10px; }
     .jcsdl-container .jcsdl-input-number input {
@@ -435,9 +502,8 @@
       height: 25px;
       line-height: 25px;
       font-size: 13px;
-      color: #3a3a3a;
-      background: url("img/elements.png?11") repeat-x 0 -148px;
-      border: 1px solid #9b9b9b;
+      color: #376491;
+      border: 1px solid #376491;
       -webkit-border-radius: 3px;
       -khtml-border-radius: 3px;
       -moz-border-radius: 3px;
@@ -447,20 +513,23 @@
       -moz-background-clip: padding;
       -webkit-background-clip: padding-box;
       background-clip: padding-box;
+      -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=$opacity * 10)";
+      filter: alpha(opacity=7.5);
+      -moz-opacity: 0.75;
+      -khtml-opacity: 0.75;
+      opacity: 0.75;
       /* ie7 */
       zoom: 1;
       *display: inline; }
       .jcsdl-container .jcsdl-input-select .jcsdl-input-select-option.selected {
-        background-position: 0 -123px;
-        border-color: #da6e01;
-        color: #fff; }
-      .jcsdl-container .jcsdl-input-select .jcsdl-input-select-option:active {
-        background-position: 0 -173px;
-        border-color: #af5901;
-        color: #fff; }
-        .jcsdl-container .jcsdl-input-select .jcsdl-input-select-option:active span {
-          position: relative;
-          top: 1px; }
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=$opacity * 10)";
+        filter: alpha(opacity=10);
+        -moz-opacity: 1;
+        -khtml-opacity: 1;
+        opacity: 1; }
+      .jcsdl-container .jcsdl-input-select .jcsdl-input-select-option:active span {
+        position: relative;
+        top: 1px; }
   .jcsdl-container .jcsdl-input-slider {
     margin: 10px 30px;
     text-align: center; }
@@ -995,10 +1064,10 @@
     -webkit-background-clip: padding-box;
     background-clip: padding-box;
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=$opacity * 10)";
-    filter: alpha(opacity=4);
-    -moz-opacity: 0.4;
-    -khtml-opacity: 0.4;
-    opacity: 0.4; }
+    filter: alpha(opacity=7.5);
+    -moz-opacity: 0.75;
+    -khtml-opacity: 0.75;
+    opacity: 0.75; }
     .jcsdl-container .jcsdl-icon.operator.icon-contains {
       background-position: 0 0; }
     .jcsdl-container .jcsdl-icon.operator.icon-substr {

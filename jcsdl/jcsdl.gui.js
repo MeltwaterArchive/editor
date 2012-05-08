@@ -924,15 +924,16 @@ var JCSDLGui = function(el, config) {
 		text : {
 			init : function(fieldInfo) {
 				var $view = self.getTemplate('valueInput_text');
+				$view.find('input').jcsdlTagInput();
 				return $view;
 			},
 
 			setValue : function(fieldInfo, value) {
-				this.find('input[type=text]').val(value);
+				this.find('input[type=text]:first').val(value);
 			},
 
 			getValue : function(fieldInfo) {
-				return this.find('input[type=text]').val();
+				return this.find('input[type=text]:first').val();
 			}
 		},
 
@@ -2157,6 +2158,253 @@ var JCSDLGui = function(el, config) {
 	};
 })(window.jQuery);
 
+/**
+ * JCSDL Tag Input
+ */
+(function($) {
+
+	$.fn.jcsdlOrigVal = $.fn.val;
+	$.fn.val = function(value) {
+		if (!this[0]) return undefined;
+
+		var $self = $(this);
+
+		// override only for JCSDL Tag Input field
+		if ($self.data('jcsdlTagInput') && self.data('jcsdlTagInputEnabled')) {
+			// setting a value
+			if (typeof(value) !== 'undefined') {
+				$self.jcsdlOrigVal(value);
+				$self.trigger('change');
+				return $self;
+			}
+
+			// reading a value
+			var values = $self.data('jcsdlTagValue');
+			if (typeof(values) !== 'undefined') {
+				return values.join(',');
+			} else {
+				return '';
+			}
+		}
+
+		return $self.jcsdlOrigVal();
+	};
+
+	function JCSDLTagInput($el, options) {
+		var self = this;
+
+		this.delimeter = options.delimeter;
+
+		this.$original = $el;
+		this.$original.data('jcsdlTagInputEnabled', true);
+		this.$wrap = $(this.tpl);
+		this.$inputWrap = this.$wrap.find('.jcsdl-tag-field');
+		this.$input = this.$inputWrap.find('input');
+		this.$input.attr('placeholder', this.$original.attr('placeholder'));
+
+		this.$original.hide().data('jcsdlTagValue', []);
+		this.$wrap.insertAfter(this.$original);
+
+		this.$inputSizeHelper = $('<div />').addClass('jcsdl-tag-field-helper').css({
+			position: 'absolute',
+			left: -9999,
+			bottom: -9999,
+			minWidth : 100,
+			width : 'auto',
+			textAlign: 'left'
+		}).appendTo(this.$inputWrap);
+
+		this.update();
+
+		/*
+		 * REGISTER LISTENERS
+		 */
+		this.$wrap.click(function(ev) {
+			self.$input.focus();
+		});
+
+		this.$original.bind('change.jcsdltaginput', function(ev) {
+			if (self.updating) return;
+			self.update();
+		});
+
+		this.$input.blur(function(ev) {
+			var val = self.$input.val();
+			if (val.length == 0) return;
+
+			self.addTag(val);
+		});
+
+		this.$input.bind('keypress.jcsdltaginput', function(ev) {
+			var val = $(this).val();
+
+			if (ev.which == 13) {
+				ev.preventDefault();
+				self.addTag($(this).val());
+				return;
+			}
+
+			self.reposition();
+		});
+
+		this.$input.bind('keydown.jcsdltaginput', function(ev) {
+			if (ev.which == 8 && $(this).val().length == 0) {
+				ev.preventDefault();
+				self.removeTag(self.$wrap.find('.jcsdl-tag:last'));
+			}
+		});
+
+		this.$input.bind('keyup.jcsdltaginput', function(ev) {
+			var val = $(this).val();
+			if (val.charCodeAt(val.length - 1) == self.delimeter.charCodeAt(0)) {
+				if (val.charAt(val.length - 2) == '\\') return; // escaped
+				self.addTag(val.substr(0, val.length - 1));
+			}
+		});
+	}
+
+	JCSDLTagInput.prototype = {
+		/* templates */
+		tpl : [
+			'<div class="jcsdl-tag-input">',
+				'<div class="jcsdl-tag-field">',
+					'<input type="text" />',
+				'</div>',
+			'</div>'
+		].join(''),
+		tagTpl : [
+			'<span class="jcsdl-tag">',
+				'<span />',
+				'<a href="#" class="jcsdl-tag-remove" title="Remove">x</a>',
+			'</span>'
+		].join(''),
+
+		/* vars */
+		updating : false,
+		delimeter : ',',
+
+		/* functions */
+		addTag : function(val) {
+			this.$input.val('');
+
+			if (typeof(val) == 'undefined' || val.length == 0) return;
+			var self = this;
+
+			var $tag = $(this.tagTpl);
+			$tag.find('span').html(val.truncate());
+			$tag.insertBefore(this.$inputWrap);
+
+			var values = this.$original.data('jcsdlTagValue');
+			values.push(val);
+			this.$original.data('jcsdlTagValue', values);
+
+			// remove the tag
+			$tag.find('a').click(function(ev) {
+				ev.preventDefault();
+				ev.target.blur();
+				self.removeTag($tag);
+			});
+
+			this.reposition();
+		},
+
+		removeTag : function($tag) {
+			if ($tag.length == 0) return;
+
+			var i = this.$wrap.find('.jcsdl-tag').index($tag);
+			$tag.remove();
+
+			var values = this.$original.data('jcsdlTagValue');
+			values.splice(i, 1);
+			this.$original.data('jcsdlTagValue', values);
+
+			this.reposition();
+		},
+
+		update : function() {
+			// load from the current original value
+			var origVal = this.$original.jcsdlOrigVal();
+			if (origVal.length == 0) return;
+
+			var self = this;
+
+			// clear all current tags
+			this.$original.data('jcsdlTagValue', []);
+			this.$wrap.find('.jcsdl-tag').remove();
+
+			this.updating = true;
+
+			var values = origVal.split(this.delimeter);
+			var fixedValues = [];
+			// but look for escaped items as well
+			$.each(values, function(i, val) {
+				if (typeof(val) == 'undefined') return true; // continue
+
+				if (val.charAt(val.length - 1) == '\\') {
+					val += this.delimeter + values[i + 1];
+					values.splice(i + 1, 1);
+				} else {
+					fixedValues.push(val);
+				}
+			});
+			values = fixedValues;
+
+			$.each(values, function(i, val) {
+				self.addTag(val);
+			});
+
+			this.updating = false;
+
+			this.reposition();
+		},
+
+		reposition : function() {
+			var text = this.$input.val().escapeHtml();
+			if (text.length == 0) text = this.$input.attr('placeholder');
+
+			this.$inputSizeHelper.html(text);
+			this.$input.css({
+				width: this.$inputSizeHelper.width() + 32 + 'px',
+				maxWidth : this.$wrap.width() - 30,
+				'font-size' : this.$input.css('font-size'),
+				'font-family' : this.$input.css('font-family'),
+				'font-weight' : this.$input.css('font-weight'),
+				'letter-spacing' : this.$input.css('letter-spacing'),
+				whiteSpace : 'nowrap'
+			});
+		},
+
+		/* public functions */
+		enable : function() {
+			// todo
+		},
+
+		disable : function() {
+			// todo
+		}
+	};
+
+	// the proper plugin
+	$.fn.jcsdlTagInput = function(options) {
+		options = $.extend({}, {
+			delimeter : ','
+		});
+
+		function get($el) {
+			var tagInput = $el.data('jcsdlTagInput');
+			if (!tagInput) {
+				tagInput = new JCSDLTagInput($el, options);
+				$el.data('jcsdlTagInput', tagInput);
+			}
+			return tagInput;
+		}
+
+		this.each(function() {get($(this));});
+		return this;
+	};
+
+})(window.jQuery);
+
 /*
  * A hack to load the Google Maps API asynchronously and call the appropriate callback.
  * All needs to be in global namespace.
@@ -2223,7 +2471,7 @@ $.extend(String.prototype, {
 	truncate : function(l, a) {
 		l = l || 72;
 		a = a || '...';
-		if (this.length <= l) return this;
+		if (this.length <= l) return this.valueOf();
 
 		s = this.substr(0, l);
 		s = s.substr(0, s.lastIndexOf(' '));
