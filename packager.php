@@ -5,6 +5,7 @@ $jsSuccess = Packager::js(array(
 	'jcsdl/lib/crypto.md5.min.js',
 	'jcsdl/lib/jquery.ui.custom.min.js',
 	'jcsdl/lib/jquery.tipsy.js',
+	'jcsdl/lib/jquery.simulate.js',
 	'jcsdl/jcsdl.config.js',
 	'jcsdl/jcsdl.gui.templates.js',
 	'jcsdl/jcsdl.js',

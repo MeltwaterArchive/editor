@@ -1200,7 +1200,8 @@ var JCSDLGui = function(el, config) {
 
 			initSearch : function($view) {
 				var map = $view.data('map');
-				var autocomplete = new google.maps.places.Autocomplete($view.find('.jcsdl-map-search')[0], {});
+				var $ac = $view.find('.jcsdl-map-search');
+				var autocomplete = new google.maps.places.Autocomplete($ac[0], {});
 
 				/**
 				 * Move the map viewport to the found location.
@@ -1208,7 +1209,15 @@ var JCSDLGui = function(el, config) {
 				 */
 				google.maps.event.addListener(autocomplete, 'place_changed', function() {
 					var place = autocomplete.getPlace();
-					if (typeof(place.geometry) == 'undefined') return;
+					if (typeof(place.geometry) == 'undefined') {
+						// choose the first visible suggestion (if any)
+						if ($('.pac-container .pac-item').length > 0) {
+							$ac.trigger('focus');
+							$ac.simulate('keydown', {keyCode:40}); // down arrow
+							$ac.simulate('keydown', {keyCode:13}); // enter
+						}
+						return;
+					}
 
 					if (place.geometry.viewport) {
 						map.fitBounds(place.geometry.viewport);
