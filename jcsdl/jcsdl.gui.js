@@ -873,6 +873,12 @@ var JCSDLGui = function(el, config) {
 			} else if (!$valueInput.is(':visible')) {
 				$valueInput.fadeIn(self.config.animationSpeed);
 			}
+
+			// for text input field enable/disable the tag input
+			if (inputType == 'text') {
+				var action = ($.inArray($operator.data('name'), inputConfig.arrayOperators) >= 0) ? 'enable' : 'disable';
+				$inputView.find('input:first').jcsdlTagInput(action);
+			}
 		});
 
 		// if there's only one possible operator then automatically select it and hide it
@@ -2301,6 +2307,7 @@ var JCSDLGui = function(el, config) {
 			var values = this.$original.data('jcsdlTagValue');
 			values.push(val);
 			this.$original.data('jcsdlTagValue', values);
+			this.$original.val(values.join(this.delimeter));
 
 			// remove the tag
 			$tag.find('a').click(function(ev) {
@@ -2321,6 +2328,7 @@ var JCSDLGui = function(el, config) {
 			var values = this.$original.data('jcsdlTagValue');
 			values.splice(i, 1);
 			this.$original.data('jcsdlTagValue', values);
+			this.$original.val(values.join(this.delimeter));
 
 			this.reposition();
 		},
@@ -2380,20 +2388,20 @@ var JCSDLGui = function(el, config) {
 
 		/* public functions */
 		enable : function() {
-			// todo
+			this.$original.data('jcsdlTagInputEnabled', true);
+			this.$original.hide();
+			this.$wrap.show();
 		},
 
 		disable : function() {
-			// todo
+			this.$original.data('jcsdlTagInputEnabled', false);
+			this.$original.show();
+			this.$wrap.hide();
 		}
 	};
 
 	// the proper plugin
 	$.fn.jcsdlTagInput = function(options) {
-		options = $.extend({}, {
-			delimeter : ','
-		});
-
 		function get($el) {
 			var tagInput = $el.data('jcsdlTagInput');
 			if (!tagInput) {
@@ -2402,6 +2410,21 @@ var JCSDLGui = function(el, config) {
 			}
 			return tagInput;
 		}
+
+		if (typeof(options) == 'string') {
+			// call a public method
+			if ($.inArray(options, ['enable', 'disable']) >= 0) {
+				this.each(function() {
+					var tagInput = get($(this));
+					tagInput[options].apply(tagInput, []);
+				});
+			}
+			return this;
+		}
+
+		options = $.extend({}, {
+			delimeter : ','
+		});
 
 		this.each(function() {get($(this));});
 		return this;

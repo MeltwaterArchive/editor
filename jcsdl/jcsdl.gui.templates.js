@@ -168,7 +168,6 @@ var JCSDLGuiTemplates = {
 	valueInput_text : $([
 		'<div class="jcsdl-input-text">',
 			'<input type="text" placeholder="Type your desired value..." />',
-			//'<input type="text" name="array" placeholder="Type your desired value..." />',
 		'</div>'
 	].join('')),
 
