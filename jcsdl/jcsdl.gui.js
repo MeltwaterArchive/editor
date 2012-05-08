@@ -2167,10 +2167,10 @@ var JCSDLGui = function(el, config) {
 	$.fn.val = function(value) {
 		if (!this[0]) return undefined;
 
-		var $self = $(this);
+		var $self = $(this[0]);
 
 		// override only for JCSDL Tag Input field
-		if ($self.data('jcsdlTagInput') && self.data('jcsdlTagInputEnabled')) {
+		if ($self.data('jcsdlTagInput') && $self.data('jcsdlTagInputEnabled')) {
 			// setting a value
 			if (typeof(value) !== 'undefined') {
 				$self.jcsdlOrigVal(value);
@@ -2185,6 +2185,10 @@ var JCSDLGui = function(el, config) {
 			} else {
 				return '';
 			}
+		}
+
+		if (typeof(value) !== 'undefined') {
+			return $self.jcsdlOrigVal(value);
 		}
 
 		return $self.jcsdlOrigVal();
@@ -2341,11 +2345,11 @@ var JCSDLGui = function(el, config) {
 				if (typeof(val) == 'undefined') return true; // continue
 
 				if (val.charAt(val.length - 1) == '\\') {
-					val += this.delimeter + values[i + 1];
+					val += self.delimeter + values[i + 1];
 					values.splice(i + 1, 1);
-				} else {
-					fixedValues.push(val);
 				}
+				
+				fixedValues.push(val);
 			});
 			values = fixedValues;
 
