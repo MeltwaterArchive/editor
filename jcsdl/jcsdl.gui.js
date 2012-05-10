@@ -2041,6 +2041,11 @@ var JCSDLGui = function(el, config) {
 		var $selected = this.$carouselItems.filter('.selected');
 		this.selectedIndex = ($selected.length == 1) ? $selected.prevAll().length : Math.floor(this.itemsCount / 2);
 
+		// if even number of items then move by a half
+		if (this.itemsCount % 2 == 0) {
+			this.selectedIndex = this.selectedIndex - 0.5;
+		}
+
 		// style the wrap so nothing goes over the borders
 		this.$carouselWrap.css({
 			maxWidth : this.calculateWrapWidth(),
@@ -2069,7 +2074,13 @@ var JCSDLGui = function(el, config) {
 			if ($scroll.hasClass('inactive')) return;
 
 			var changeIndex = $scroll.is(self.$scrollLeft) ? -1 : 1;
-			self.selectedIndex = self.selectedIndex + changeIndex;
+
+			// fix the selected index
+			if (self.selectedIndex - Math.floor(self.selectedIndex) == 0.5) {
+				self.selectedIndex = (changeIndex < 0) ? self.selectedIndex : self.selectedIndex - 1;
+			}
+
+			self.selectedIndex = Math.round(self.selectedIndex) + changeIndex;
 			self.changePosition(options.speed);
 		});
 
