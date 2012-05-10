@@ -75,8 +75,8 @@
       width: 56px;
       background-position: 0 -89px; }
     .jcsdl-container .jcsdl-button:hover {
-      -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=$opacity * 10)";
-      filter: alpha(opacity=9);
+      -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=90)";
+      filter: alpha(opacity=90);
       -moz-opacity: 0.9;
       -khtml-opacity: 0.9;
       opacity: 0.9; }
@@ -165,8 +165,8 @@
     width: 13px;
     height: 13px;
     background: url("img/elements.png?11") no-repeat -140px -55px;
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=$opacity * 10)";
-    filter: alpha(opacity=3);
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
+    filter: alpha(opacity=30);
     -moz-opacity: 0.3;
     -khtml-opacity: 0.3;
     opacity: 0.3; }
@@ -176,14 +176,14 @@
       background-position: -140px -55px;
       margin-right: 0; }
     .jcsdl-container .jcsdl-mainview-mode-option:hover {
-      -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=$opacity * 10)";
-      filter: alpha(opacity=5);
+      -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+      filter: alpha(opacity=50);
       -moz-opacity: 0.5;
       -khtml-opacity: 0.5;
       opacity: 0.5; }
     .jcsdl-container .jcsdl-mainview-mode-option.active {
-      -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=$opacity * 10)";
-      filter: alpha(opacity=10);
+      -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+      filter: alpha(opacity=100);
       -moz-opacity: 1;
       -khtml-opacity: 1;
       opacity: 1; }
@@ -313,14 +313,14 @@
       float: right;
       background-position: -85px -89px; }
     .jcsdl-container .jcsdl-carousel-scroll:hover {
-      -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=$opacity * 10)";
-      filter: alpha(opacity=8);
+      -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+      filter: alpha(opacity=80);
       -moz-opacity: 0.8;
       -khtml-opacity: 0.8;
       opacity: 0.8; }
     .jcsdl-container .jcsdl-carousel-scroll.inactive {
-      -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=$opacity * 10)";
-      filter: alpha(opacity=5);
+      -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+      filter: alpha(opacity=50);
       -moz-opacity: 0.5;
       -khtml-opacity: 0.5;
       opacity: 0.5; }
@@ -459,14 +459,14 @@
             color: #888888;
             font-weight: bold;
             font-size: 12px;
-            -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=$opacity * 10)";
-            filter: alpha(opacity=7);
+            -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
+            filter: alpha(opacity=70);
             -moz-opacity: 0.7;
             -khtml-opacity: 0.7;
             opacity: 0.7; }
             .jcsdl-container .jcsdl-input-text input.jcsdl-tag-input .jcsdl-tag a.jcsdl-tag-remove:hover, .jcsdl-container .jcsdl-input-text .jcsdl-tag-input.jcsdl-tag-input .jcsdl-tag a.jcsdl-tag-remove:hover, .jcsdl-container .jcsdl-input-number input.jcsdl-tag-input .jcsdl-tag a.jcsdl-tag-remove:hover, .jcsdl-container .jcsdl-input-number .jcsdl-tag-input.jcsdl-tag-input .jcsdl-tag a.jcsdl-tag-remove:hover {
-              -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=$opacity * 10)";
-              filter: alpha(opacity=10);
+              -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+              filter: alpha(opacity=100);
               -moz-opacity: 1;
               -khtml-opacity: 1;
               opacity: 1; }
@@ -513,8 +513,8 @@
       -moz-background-clip: padding;
       -webkit-background-clip: padding-box;
       background-clip: padding-box;
-      -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=$opacity * 10)";
-      filter: alpha(opacity=7.5);
+      -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=75)";
+      filter: alpha(opacity=75);
       -moz-opacity: 0.75;
       -khtml-opacity: 0.75;
       opacity: 0.75;
@@ -522,8 +522,8 @@
       zoom: 1;
       *display: inline; }
       .jcsdl-container .jcsdl-input-select .jcsdl-input-select-option.selected {
-        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=$opacity * 10)";
-        filter: alpha(opacity=10);
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+        filter: alpha(opacity=100);
         -moz-opacity: 1;
         -khtml-opacity: 1;
         opacity: 1; }
@@ -546,8 +546,8 @@
         width: 14px;
         height: 14px;
         background: transparent url("img/elements.png?11") no-repeat -115px -89px;
-        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=$opacity * 10)";
-        filter: alpha(opacity=7);
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
+        filter: alpha(opacity=70);
         -moz-opacity: 0.7;
         -khtml-opacity: 0.7;
         opacity: 0.7; }
@@ -555,8 +555,8 @@
           position: relative;
           top: 1px; }
         .jcsdl-container .jcsdl-input-slider .jcsdl-slider-controls .jcsdl-slider-minus:hover, .jcsdl-container .jcsdl-input-slider .jcsdl-slider-controls .jcsdl-slider-plus:hover {
-          -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=$opacity * 10)";
-          filter: alpha(opacity=10);
+          -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+          filter: alpha(opacity=100);
           -moz-opacity: 1;
           -khtml-opacity: 1;
           opacity: 1; }
@@ -1063,8 +1063,8 @@
     -moz-background-clip: padding;
     -webkit-background-clip: padding-box;
     background-clip: padding-box;
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=$opacity * 10)";
-    filter: alpha(opacity=7.5);
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=75)";
+    filter: alpha(opacity=75);
     -moz-opacity: 0.75;
     -khtml-opacity: 0.75;
     opacity: 0.75; }
@@ -1095,14 +1095,14 @@
     .jcsdl-container .jcsdl-icon.operator.icon-cs {
       background-position: 0 -114px; }
     .jcsdl-container .jcsdl-icon.operator:hover {
-      -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=$opacity * 10)";
-      filter: alpha(opacity=7);
+      -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
+      filter: alpha(opacity=70);
       -moz-opacity: 0.7;
       -khtml-opacity: 0.7;
       opacity: 0.7; }
     .jcsdl-container .jcsdl-icon.operator.selected {
-      -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=$opacity * 10)";
-      filter: alpha(opacity=10);
+      -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+      filter: alpha(opacity=100);
       -moz-opacity: 1;
       -khtml-opacity: 1;
       opacity: 1; }

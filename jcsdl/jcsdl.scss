@@ -43,8 +43,9 @@ $otherIconsSprite : 'img/icons-sprite-other.png?2';
 }
 
 @mixin opacity($opacity: 0.5) {
-	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=$opacity * 10)";
-	filter: alpha(opacity=$opacity * 10);
+	$msOpacity : $opacity * 100;
+	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=" + $msOpacity + ")";
+	filter: alpha(opacity=$msOpacity);
 	-moz-opacity: $opacity;
 	-khtml-opacity: $opacity;
 	opacity: $opacity;
