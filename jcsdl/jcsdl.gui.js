@@ -2482,7 +2482,7 @@ var JCSDLGui = function(el, config) {
 
 		if (typeof(options) == 'string') {
 			// call a public method
-			if ($.inArray(options, ['enable', 'disable']) >= 0) {
+			if ($.inArray(options, ['enable', 'disable', 'reposition', 'update']) >= 0) {
 				this.each(function() {
 					var tagInput = get($(this));
 					tagInput[options].apply(tagInput, []);
