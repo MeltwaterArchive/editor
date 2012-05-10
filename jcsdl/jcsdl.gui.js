@@ -15,11 +15,15 @@ var JCSDLGui = function(el, config) {
 		mapsColor : '#7585dd',
 		mapsMarker : 'jcsdl/img/maps-marker.png',
 		hideTargets : [],
+		definition : {},
 		save : function(code) {},
 		cancel : function() {
 			self.$container.hide();
 		}
 	}, config);
+
+	// create "local" definition of the JCSDL, possible to be altered via config
+	this.definition = $.extend(true, JCSDLDefinition, this.config.definition);
 
 	// data
 	this.logic = 'AND';
@@ -440,7 +444,7 @@ var JCSDLGui = function(el, config) {
 	 * @param  {String} targetName Name of the selected target.
 	 */
 	this.didSelectTarget = function(targetName) {
-		if (typeof(JCSDLConfig.targets[targetName]) == 'undefined') return false;
+		if (typeof(self.definition.targets[targetName]) == 'undefined') return false;
 
 		self.currentFilterTarget = targetName;
 		self.currentFilterFieldsPath = [];
@@ -449,7 +453,7 @@ var JCSDLGui = function(el, config) {
 		var firstRemoved = self.removeFilterStepsAfterPosition(0); // target is always position 0
 
 		// now need to select a field, so build the selection view
-		var $fieldView = createFieldSelectionView(JCSDLConfig.targets[targetName].fields);
+		var $fieldView = createFieldSelectionView(self.definition.targets[targetName].fields);
 		self.addFilterStep('field', $fieldView, (firstRemoved != 'field'));
 	};
 
@@ -617,8 +621,8 @@ var JCSDLGui = function(el, config) {
 		// operator
 		var $operator = self.getTemplate('filterOperator');
 		$operator.addClass('operator-' + filter.operator + ' icon-' + filter.operator + ' selected')
-			.prop('title', JCSDLConfig.operators[filter.operator].description)
-			.html(JCSDLConfig.operators[filter.operator].code.escapeHtml())
+			.prop('title', self.definition.operators[filter.operator].description)
+			.html(self.definition.operators[filter.operator].code.escapeHtml())
 			.tipsy({gravity:'s'});
 		$filterRow.find('.operator').html($operator);
 
@@ -696,7 +700,7 @@ var JCSDLGui = function(el, config) {
 		var $targetSelect = $targetSelectView.find('.jcsdl-filter-target');
 
 		// create a select option for every possible target
-		$.each(JCSDLConfig.targets, function(name, target) {
+		$.each(self.definition.targets, function(name, target) {
 			// maybe this target is hidden?
 			if ($.inArray(name, self.config.hideTargets) >= 0) return true; // continue
 
@@ -712,8 +716,8 @@ var JCSDLGui = function(el, config) {
 
 	/**
 	 * Creates a select option for the given target with the specified name.
-	 * @param  {String} name   Unique name of the target, matching one from JCSDLConfig.
-	 * @param  {Object} target Definition of the target from JCSDLConfig.
+	 * @param  {String} name   Unique name of the target, matching one from the JCSDL definition.
+	 * @param  {Object} target Definition of the target from JCSDL definition.
 	 * @return {jQuery}
 	 */
 	var createOptionForTarget = function(name, target) {
@@ -769,8 +773,8 @@ var JCSDLGui = function(el, config) {
 
 	/**
 	 * Creates a select option for the given field with the specified name.
-	 * @param  {String} name  Unique name of the field in the current target, matching one from JCSDLConfig.
-	 * @param  {Object} fieldInfo Definition of the field from JCSDLConfig.
+	 * @param  {String} name  Unique name of the field in the current target, matching one from JCSDL definition.
+	 * @param  {Object} fieldInfo Definition of the field from JCSDL definition.
 	 * @return {jQuery}
 	 */
 	var createOptionForField = function(name, fieldInfo) {
@@ -823,21 +827,21 @@ var JCSDLGui = function(el, config) {
 	 * @return {jQuery}
 	 */
 	var createOperatorSelectView = function(name) {
-		var operator = JCSDLConfig.operators[name];
+		var operator = self.definition.operators[name];
 		if (typeof(operator) == 'undefined') return $(); // return empty jquery object if no such operator defined
 
 		var $operatorView = self.getTemplate('operatorSelect');
 		$operatorView.data('name', name)
 			.addClass('icon-' + name + ' operator-' + name)
-			.prop('title', JCSDLConfig.operators[name].description)
-			.html(JCSDLConfig.operators[name].label)
+			.prop('title', self.definition.operators[name].description)
+			.html(self.definition.operators[name].label)
 			.tipsy({gravity:'s'});
 		return $operatorView;
 	};
 
 	/**
 	 * Creates a DOM element for inputting the value for the given field.
-	 * @param  {Object} field Definition of the field from JCSDLConfig.
+	 * @param  {Object} field Definition of the field from JCSDL definition.
 	 * @param  {String} inputType Which input type to use (if many).
 	 * @return {jQuery}
 	 */
@@ -848,7 +852,7 @@ var JCSDLGui = function(el, config) {
 		if (typeof(fieldTypes[inputType]) == 'undefined') return $valueView;
 
 		// get the config definition of this input type (if any) and a list of allowed operators
-		var inputConfig = (typeof(JCSDLConfig.inputs[inputType]) !== 'undefined') ? JCSDLConfig.inputs[inputType] : {};
+		var inputConfig = (typeof(self.definition.inputs[inputType]) !== 'undefined') ? self.definition.inputs[inputType] : {};
 		var allowedOperators = (typeof(inputConfig.operators) !== 'undefined') ? inputConfig.operators : [];
 
 		// first take care of possible operators
@@ -1079,8 +1083,8 @@ var JCSDLGui = function(el, config) {
 				var options = {};
 				if (typeof(fieldInfo.options) !== 'undefined') {
 					options = fieldInfo.options;
-				} else if ((typeof(fieldInfo.optionsSet) !== 'undefined') && (typeof(JCSDLConfig.inputs.select.sets[fieldInfo.optionsSet]) !== 'undefined')) {
-					options = JCSDLConfig.inputs.select.sets[fieldInfo.optionsSet];
+				} else if ((typeof(fieldInfo.optionsSet) !== 'undefined') && (typeof(self.definition.inputs.select.sets[fieldInfo.optionsSet]) !== 'undefined')) {
+					options = self.definition.inputs.select.sets[fieldInfo.optionsSet];
 				}
 				return options;
 			},
@@ -1205,7 +1209,7 @@ var JCSDLGui = function(el, config) {
 			},
 
 			getOptions : function(fieldInfo) {
-				var options = $.extend({}, JCSDLConfig.inputs.slider, {
+				var options = $.extend({}, self.definition.inputs.slider, {
 					min : fieldInfo.min,
 					max : fieldInfo.max,
 					step : fieldInfo.step,
@@ -1269,7 +1273,7 @@ var JCSDLGui = function(el, config) {
 				var $view = self.getTemplate('valueInput_geobox');
 				$view.append(self.getTemplate('valueInput_geo_map'));
 				$view.find('.jcsdl-map-coordinates').html(self.getTemplate('valueInput_geobox_coordinates'));
-				$view.find('.jcsdl-map-instructions').html(JCSDLConfig.inputs.geo_box.instructions);
+				$view.find('.jcsdl-map-instructions').html(self.definition.inputs.geo_box.instructions);
 				loadGoogleMapsApi(self, fieldTypes.geo_box.load, [fieldInfo, $view]);
 				return $view;
 			},
@@ -1540,7 +1544,7 @@ var JCSDLGui = function(el, config) {
 				var $view = self.getTemplate('valueInput_georadius');
 				$view.append(self.getTemplate('valueInput_geo_map'));
 				$view.find('.jcsdl-map-coordinates').html(self.getTemplate('valueInput_georadius_coordinates'));
-				$view.find('.jcsdl-map-instructions').html(JCSDLConfig.inputs.geo_radius.instructions);
+				$view.find('.jcsdl-map-instructions').html(self.definition.inputs.geo_radius.instructions);
 				loadGoogleMapsApi(self, fieldTypes.geo_radius.load, [fieldInfo, $view]);
 				return $view;
 			},
@@ -1729,7 +1733,7 @@ var JCSDLGui = function(el, config) {
 				var $view = self.getTemplate('valueInput_geopolygon');
 				$view.append(self.getTemplate('valueInput_geo_map'));
 				$view.find('.jcsdl-map-coordinates').html(self.getTemplate('valueInput_geopolygon_coordinates'));
-				$view.find('.jcsdl-map-instructions').html(JCSDLConfig.inputs.geo_polygon.instructions);
+				$view.find('.jcsdl-map-instructions').html(self.definition.inputs.geo_polygon.instructions);
 				loadGoogleMapsApi(self, fieldTypes.geo_polygon.load, [fieldInfo, $view]);
 				return $view;
 			},
@@ -2490,7 +2494,7 @@ var loadGoogleMapsApi = function(currentGui, callback, callbackArgs) {
 	jcsdlMapsCurrentCallbackArgs = callbackArgs;
 
 	if (!jcsdlMapsLoaded) {
-		$('body').append('<script type="text/javascript" src="//maps.googleapis.com/maps/api/js?key=' + JCSDLConfig.mapsApiKey + '&libraries=places,geometry&sensor=false&callback=jcsdlMapsInit" />');
+		$('body').append('<script type="text/javascript" src="//maps.googleapis.com/maps/api/js?key=' + jcsdlMapsCurrentGui.definition.mapsApiKey + '&libraries=places,geometry&sensor=false&callback=jcsdlMapsInit" />');
 
 		jcsdlMapsLoaded = true;
 	} else {

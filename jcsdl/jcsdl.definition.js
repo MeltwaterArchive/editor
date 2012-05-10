@@ -1,4 +1,4 @@
-var JCSDLConfig = {
+var JCSDLDefinition = {
 	mapsApiKey : 'AIzaSyCFg4fuUFcGaI7axzJS5gq1XThY5MeVVkY',
 
 	// list of all possible targets and their fields and their types
@@ -307,6 +307,6 @@ var JCSDLConfig = {
 
 };
 
-JCSDLConfig.targets.twitter.fields.retweet.fields.user = JCSDLConfig.targets.twitter.fields.user;
-JCSDLConfig.targets.twitter.fields.retweeted.fields.place = JCSDLConfig.targets.twitter.fields.place;
-JCSDLConfig.targets.twitter.fields.retweeted.fields.user = JCSDLConfig.targets.twitter.fields.user;
+JCSDLDefinition.targets.twitter.fields.retweet.fields.user = JCSDLDefinition.targets.twitter.fields.user;
+JCSDLDefinition.targets.twitter.fields.retweeted.fields.place = JCSDLDefinition.targets.twitter.fields.place;
+JCSDLDefinition.targets.twitter.fields.retweeted.fields.user = JCSDLDefinition.targets.twitter.fields.user;

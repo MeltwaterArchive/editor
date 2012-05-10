@@ -252,7 +252,7 @@ var JCSDL = function(gui) {
 	/**
 	 * Changes the given value into CSDL output based on the definition of its field.
 	 * @param  {String} value     
-	 * @param  {Object} fieldInfo Field definition from JCSDLConfig.
+	 * @param  {Object} fieldInfo Field definition from JCSDL definition.
 	 * @return {String}
 	 */
 	var valueToCSDL = function(value, fieldInfo) {
@@ -274,7 +274,7 @@ var JCSDL = function(gui) {
 
 	/**
 	 * Properly parses the value of the given field into something usable by the GUI.
-	 * @param  {Object} fieldInfo Field definition for the given value, taken from JCSDLConfig.
+	 * @param  {Object} fieldInfo Field definition for the given value, taken from JCSDL definition.
 	 * @param  {String} value     The value.
 	 * @return {mixed}
 	 */
@@ -325,7 +325,7 @@ var JCSDL = function(gui) {
 	 * @return {String}
 	 */
 	this.getOperatorCode = function(operatorName) {
-		return JCSDLConfig.operators[operatorName].code;
+		return gui.definition.operators[operatorName].code;
 	};
 
 	/**
@@ -334,8 +334,8 @@ var JCSDL = function(gui) {
 	 * @return {Object}
 	 */
 	this.getTargetInfo = function(target) {
-		if (typeof(JCSDLConfig.targets[target]) !== 'undefined') {
-			return JCSDLConfig.targets[target];
+		if (typeof(gui.definition.targets[target]) !== 'undefined') {
+			return gui.definition.targets[target];
 		}
 		error('Such target does not exist!', target);
 		return false;
@@ -349,7 +349,7 @@ var JCSDL = function(gui) {
 	 */
 	this.getFieldInfo = function(target, fieldPath) {
 		// starting field is naturally the current target
-		var field = JCSDLConfig.targets[target];
+		var field = gui.definition.targets[target];
 		if (typeof(field) == 'undefined') {
 			error('Such target does not exist!', target);
 			return false;
