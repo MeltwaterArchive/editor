@@ -1,6 +1,4 @@
 var JCSDLDefinition = {
-	mapsApiKey : 'AIzaSyCFg4fuUFcGaI7axzJS5gq1XThY5MeVVkY',
-
 	// list of all possible targets and their fields and their types
 	targets : {
 

@@ -12,6 +12,7 @@ var JCSDLGui = function(el, config) {
 	this.config = $.extend(true, {
 		animationSpeed : 200,
 		displayCancelButton : true,
+		googleMapsApiKey : '',
 		mapsColor : '#7585dd',
 		mapsMarker : 'jcsdl/img/maps-marker.png',
 		hideTargets : [],
@@ -2494,8 +2495,9 @@ var loadGoogleMapsApi = function(currentGui, callback, callbackArgs) {
 	jcsdlMapsCurrentCallbackArgs = callbackArgs;
 
 	if (!jcsdlMapsLoaded) {
-		$('body').append('<script type="text/javascript" src="//maps.googleapis.com/maps/api/js?key=' + jcsdlMapsCurrentGui.definition.mapsApiKey + '&libraries=places,geometry&sensor=false&callback=jcsdlMapsInit" />');
-
+		var incKey = (jcsdlMapsCurrentGui.config.googleMapsApiKey.length > 0) ? 'key=' + jcsdlMapsCurrentGui.config.googleMapsApiKey + '&' : '';
+		var incProtocol = (window.location.protocol == 'file:') ? 'http:' : ''; // if not loaded from file then allow for dynamic protocol
+		$('body').append('<script type="text/javascript" src="' + incProtocol + '//maps.googleapis.com/maps/api/js?' + incKey + 'libraries=places,geometry&sensor=false&callback=jcsdlMapsInit" />');
 		jcsdlMapsLoaded = true;
 	} else {
 		jcsdlMapsInit();
