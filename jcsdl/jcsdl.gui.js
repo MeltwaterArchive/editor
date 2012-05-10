@@ -1136,7 +1136,7 @@ var JCSDLGui = function(el, config) {
 					min : options.min,
 					max : options.max,
 					step : options.step,
-					value : options.default,
+					value : options['default'],
 					slide : function(ev, ui) {
 						var value = fieldTypes.slider.parseValue(fieldInfo, ui.value);
 						$view.find('.jcsdl-slider-input').val(value);
@@ -1144,7 +1144,7 @@ var JCSDLGui = function(el, config) {
 				});
 
 				// set the default value
-				fieldTypes.slider.setValue.apply($view, [fieldInfo, options.default]);
+				fieldTypes.slider.setValue.apply($view, [fieldInfo, options['default']]);
 
 				// display the min and max labels
 				$view.find('.jcsdl-slider-label.min').html(fieldTypes.slider.displayValue(fieldInfo, options.min));
@@ -1236,7 +1236,7 @@ var JCSDLGui = function(el, config) {
 					min : fieldInfo.min,
 					max : fieldInfo.max,
 					step : fieldInfo.step,
-					default : fieldInfo.default,
+					'default' : fieldInfo['default'],
 					displayFormat : fieldInfo.displayFormat
 				});
 				return options;
