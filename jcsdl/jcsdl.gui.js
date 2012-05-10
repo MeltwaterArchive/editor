@@ -929,7 +929,29 @@ var JCSDLGui = function(el, config) {
 		var inputType = $view.data('inputType');
 		if (typeof(fieldTypes[inputType]) == 'undefined') return false;
 
-		fieldTypes[inputType].setValue.apply($view, [fieldInfo, value]);
+		// for these 3 field types we need a delayed set value and an additional function to be called
+		if ($.inArray(inputType, ['geo_box', 'geo_radius', 'geo_polygon']) >= 0) {
+			// store the current gui, callback and its arguments in local values (in case they change in the meantime)
+			var mapsGui = jcsdlMapsCurrentGui;
+			var mapsCallback = jcsdlMapsCurrentCallback;
+			var mapsCallbackArgs = jcsdlMapsCurrentCallbackArgs;
+
+			// override the callback - this will be called once the google maps api is fully loaded
+			jcsdlMapsCurrentCallback = function() {
+				// make sure all is ok
+				if (mapsGui && mapsCallback) {
+					setTimeout(function() {
+						// execute the standard callback (should be fieldTypes[inputType].load typically)
+						mapsCallback.apply(mapsGui, mapsCallbackArgs);
+
+						// and now when the maps are loaded, execute the setValue method of that input
+						fieldTypes[inputType].setValue.apply($view, [fieldInfo, value]);
+					}, mapsGui.config.animationSpeed + 10); // make sure the map canvas is fully visible before loading them
+				}
+			};
+		} else {
+			fieldTypes[inputType].setValue.apply($view, [fieldInfo, value]);
+		}
 		return true;
 	};
 
