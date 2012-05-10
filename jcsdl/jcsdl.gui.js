@@ -14,6 +14,7 @@ var JCSDLGui = function(el, config) {
 		displayCancelButton : true,
 		mapsColor : '#7585dd',
 		mapsMarker : 'jcsdl/img/maps-marker.png',
+		hideTargets : [],
 		save : function(code) {},
 		cancel : function() {
 			self.$container.hide();
@@ -696,6 +697,9 @@ var JCSDLGui = function(el, config) {
 
 		// create a select option for every possible target
 		$.each(JCSDLConfig.targets, function(name, target) {
+			// maybe this target is hidden?
+			if ($.inArray(name, self.config.hideTargets) >= 0) return true; // continue
+
 			// delegate creation of the option to a function
 			var $targetView = createOptionForTarget(name, target);
 
@@ -733,9 +737,29 @@ var JCSDLGui = function(el, config) {
 		$fieldView.data('position', fieldPosition);
 		$fieldView.addClass('field-select-' + fieldPosition);
 
+		var currentPath = self.currentFilterTarget + (self.currentFilterFieldsPath.length > 0 ? '.' + self.currentFilterFieldsPath.join('.') : '');
+
 		// add all possible selections
 		var $fieldSelect = $fieldView.find('.jcsdl-filter-target-field');
 		$.each(fields, function(name, field) {
+			// check if this field isn't hidden
+			var path = currentPath + '.' + name;
+			if ($.inArray(path, self.config.hideTargets) >= 0) return true; // continue
+
+			// sometimes the field target path is joined with a '-' - so check for these cases as well (e.g. digg.item)
+			var hidden = false;
+			var sectionPath = '';
+			path = path.split('-');
+			$.each(path, function(i, section) {
+				sectionPath += (i > 0 ? '.' : '') + section;
+				if ($.inArray(sectionPath, self.config.hideTargets) >= 0) {
+					hidden = true;
+					return true;
+				}
+			});
+			if (hidden) return true; // continue
+
+			// field not hidden, continue with adding it ;)
 			var $fieldView = createOptionForField(name, field);
 			$fieldView.appendTo($fieldSelect);
 		});

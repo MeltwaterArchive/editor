@@ -51,6 +51,7 @@ $(function() {
 	 */
 	var createEditor = new JCSDLGui('#jcsdl-create', {
 		displayCancelButton : false,
+		hideTargets : ['myspace', 'digg.comment', 'facebook.og'],
 		save : function(code) {
 			$('#jcsdl-create-output').val(code);
 
