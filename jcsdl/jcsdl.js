@@ -160,8 +160,8 @@ var JCSDL = function(gui) {
 
 		// for 'exists' operator the value and its range aren't included
 		if (filter.operator !== 'exists') {
-			var valueStart = (fieldInfo.type == 'string') ? csdl.length + 1 : csdl.length;
-			var valueLength = (fieldInfo.type == 'string') ? value.length - 2 : value.length;
+			var valueStart = (fieldInfo.type == 'string' || fieldInfo.type == 'geo') ? csdl.length + 1 : csdl.length;
+			var valueLength = (fieldInfo.type == 'string' || fieldInfo.type == 'geo') ? value.length - 2 : value.length;
 
 			// add the value to CSDL and it's range to JCSDL
 			csdl = csdl + value;
