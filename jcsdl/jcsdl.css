@@ -503,13 +503,13 @@
       line-height: 25px;
       font-size: 13px;
       color: #376491;
-      border: 1px solid #376491;
-      -webkit-border-radius: 3px;
-      -khtml-border-radius: 3px;
-      -moz-border-radius: 3px;
-      -ms-border-radius: 3px;
-      -o-border-radius: 3px;
-      border-radius: 3px;
+      border: 1px solid #4b4b4f;
+      -webkit-border-radius: 2px;
+      -khtml-border-radius: 2px;
+      -moz-border-radius: 2px;
+      -ms-border-radius: 2px;
+      -o-border-radius: 2px;
+      border-radius: 2px;
       -moz-background-clip: padding;
       -webkit-background-clip: padding-box;
       background-clip: padding-box;
@@ -526,10 +526,8 @@
         filter: alpha(opacity=100);
         -moz-opacity: 1;
         -khtml-opacity: 1;
-        opacity: 1; }
-      .jcsdl-container .jcsdl-input-select .jcsdl-input-select-option:active span {
-        position: relative;
-        top: 1px; }
+        opacity: 1;
+        border-color: #ff9933; }
   .jcsdl-container .jcsdl-input-slider {
     margin: 10px 30px;
     text-align: center; }
@@ -1051,9 +1049,9 @@
         background-position: -80px 80px; }
   .jcsdl-container .jcsdl-icon.operator {
     width: 46px;
-    height: 48px;
-    background: url("img/icons-sprite-operators.png?3") no-repeat 0 0;
-    border: 1px solid #1b1b1f;
+    height: 46px;
+    background: url("img/icons-sprite-operators.png?4") no-repeat 0 0;
+    border: 1px solid #4b4b4f;
     -webkit-border-radius: 2px;
     -khtml-border-radius: 2px;
     -moz-border-radius: 2px;
@@ -1070,30 +1068,58 @@
     opacity: 0.75; }
     .jcsdl-container .jcsdl-icon.operator.icon-contains {
       background-position: 0 0; }
+      .jcsdl-container .jcsdl-icon.operator.icon-contains.selected {
+        background-position: 0 -184px; }
     .jcsdl-container .jcsdl-icon.operator.icon-substr {
       background-position: -46px 0; }
+      .jcsdl-container .jcsdl-icon.operator.icon-substr.selected {
+        background-position: -46px -184px; }
     .jcsdl-container .jcsdl-icon.operator.icon-contains_any {
       background-position: -92px 0; }
+      .jcsdl-container .jcsdl-icon.operator.icon-contains_any.selected {
+        background-position: -92px -184px; }
     .jcsdl-container .jcsdl-icon.operator.icon-contains_near {
       background-position: -138px 0; }
+      .jcsdl-container .jcsdl-icon.operator.icon-contains_near.selected {
+        background-position: -138px -184px; }
     .jcsdl-container .jcsdl-icon.operator.icon-exists {
       background-position: 0 -46px; }
+      .jcsdl-container .jcsdl-icon.operator.icon-exists.selected {
+        background-position: 0 -230px; }
     .jcsdl-container .jcsdl-icon.operator.icon-different {
       background-position: -46px -46px; }
+      .jcsdl-container .jcsdl-icon.operator.icon-different.selected {
+        background-position: -46px -230px; }
     .jcsdl-container .jcsdl-icon.operator.icon-equals {
       background-position: -92px -46px; }
+      .jcsdl-container .jcsdl-icon.operator.icon-equals.selected {
+        background-position: -92px -230px; }
     .jcsdl-container .jcsdl-icon.operator.icon-in {
       background-position: -138px -46px; }
+      .jcsdl-container .jcsdl-icon.operator.icon-in.selected {
+        background-position: -138px -230px; }
     .jcsdl-container .jcsdl-icon.operator.icon-greaterThan {
       background-position: 0 -92px; }
+      .jcsdl-container .jcsdl-icon.operator.icon-greaterThan.selected {
+        background-position: 0 -276px; }
     .jcsdl-container .jcsdl-icon.operator.icon-lowerThan {
       background-position: -46px -92px; }
+      .jcsdl-container .jcsdl-icon.operator.icon-lowerThan.selected {
+        background-position: -46px -276px; }
     .jcsdl-container .jcsdl-icon.operator.icon-regex_partial {
       background-position: -92px -92px; }
+      .jcsdl-container .jcsdl-icon.operator.icon-regex_partial.selected {
+        background-position: -92px -276px; }
     .jcsdl-container .jcsdl-icon.operator.icon-regex_exact {
       background-position: -138px -92px; }
+      .jcsdl-container .jcsdl-icon.operator.icon-regex_exact.selected {
+        background-position: -138px -276px; }
     .jcsdl-container .jcsdl-icon.operator.icon-cs {
-      background-position: 0 -138px; }
+      width: 38px;
+      height: 38px;
+      background-position: -4px -142px; }
+      .jcsdl-container .jcsdl-icon.operator.icon-cs.selected {
+        background-position: -4px -326px; }
     .jcsdl-container .jcsdl-icon.operator:hover {
       -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
       filter: alpha(opacity=70);

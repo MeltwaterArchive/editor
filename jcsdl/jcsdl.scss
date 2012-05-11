@@ -1,7 +1,7 @@
 /* some theming variables */
 $color : #376491;
 $colorLight : #888;
-$colorBlack : #1b1b1f;
+$colorBlack : #4b4b4f;
 $colorOrange : #ff9933;
 $borderColor : #dcdcdc;
 $borderColorInput : #c8d7de;
@@ -10,8 +10,7 @@ $selectSprite : 'img/select.png?12';
 $stepBackground : 'img/step_background.png?5';
 $targetIconsSprite : 'img/icons-sprite-targets.png?6';
 $fieldIconsSprite : 'img/icons-sprite-fields.png?6';
-$operatorIconsSprite : 'img/icons-sprite-operators.png?3';
-$operatorIconsSpriteBlue : 'img/icons-sprite-operators-blue.png?1';
+$operatorIconsSprite : 'img/icons-sprite-operators.png?4';
 $otherIconsSprite : 'img/icons-sprite-other.png?2';
 
 /* useful mixins */
@@ -429,18 +428,15 @@ $otherIconsSprite : 'img/icons-sprite-other.png?2';
 			margin: 10px;
 			display: inline-block; padding: 0 10px; height: 25px; line-height: 25px;
 			font-size: 13px; color: #376491;
-			border: 1px solid #376491;
-			@include rounded(3px);
+			border: 1px solid $colorBlack;
+			@include rounded(2px);
 			@include opacity(0.75);
 
 			/* ie7 */
 			zoom: 1;
 			*display: inline;
 
-			&.selected { @include opacity(1); }
-			&:active {
-				span {position: relative; top: 1px;}
-			}
+			&.selected {@include opacity(1); border-color: $colorOrange;}
 		}
 	}
 
@@ -699,24 +695,27 @@ $otherIconsSprite : 'img/icons-sprite-other.png?2';
 	}
 
 	.jcsdl-icon.operator {
-		width: 46px; height: 48px;
+		width: 46px; height: 46px;
 		background: url($operatorIconsSprite) no-repeat 0 0;
 		border: 1px solid $colorBlack; @include rounded(2px);
 		@include opacity(0.75);
 
-		&.icon-contains 	{background-position: 0 0;}
-		&.icon-substr 		{background-position: -46px 0;}
-		&.icon-contains_any {background-position: -92px 0;}
-		&.icon-contains_near{background-position: -138px 0;}
-		&.icon-exists 		{background-position: 0 -46px;}
-		&.icon-different 	{background-position: -46px -46px;}
-		&.icon-equals 		{background-position: -92px -46px;}
-		&.icon-in 			{background-position: -138px -46px;}
-		&.icon-greaterThan 	{background-position: 0 -92px;}
-		&.icon-lowerThan 	{background-position: -46px -92px;}
-		&.icon-regex_partial{background-position: -92px -92px;}
-		&.icon-regex_exact 	{background-position: -138px -92px;}
-		&.icon-cs 			{background-position: 0 -138px;}
+		&.icon-contains 	{background-position: 0 0;				&.selected {background-position: 0 -184px;}}
+		&.icon-substr 		{background-position: -46px 0;			&.selected {background-position: -46px -184px;}}
+		&.icon-contains_any {background-position: -92px 0;			&.selected {background-position: -92px -184px;}}
+		&.icon-contains_near{background-position: -138px 0;			&.selected {background-position: -138px -184px;}}
+		&.icon-exists 		{background-position: 0 -46px;			&.selected {background-position: 0 -230px;}}
+		&.icon-different 	{background-position: -46px -46px;		&.selected {background-position: -46px -230px;}}
+		&.icon-equals 		{background-position: -92px -46px;		&.selected {background-position: -92px -230px;}}
+		&.icon-in 			{background-position: -138px -46px;		&.selected {background-position: -138px -230px;}}
+		&.icon-greaterThan 	{background-position: 0 -92px;			&.selected {background-position: 0 -276px;}}
+		&.icon-lowerThan 	{background-position: -46px -92px;		&.selected {background-position: -46px -276px;}}
+		&.icon-regex_partial{background-position: -92px -92px;		&.selected {background-position: -92px -276px;}}
+		&.icon-regex_exact 	{background-position: -138px -92px;		&.selected {background-position: -138px -276px;}}
+		&.icon-cs {
+			width: 38px; height: 38px;
+			background-position: -4px -142px;			&.selected {background-position: -4px -326px;}
+		}
 
 		&:hover {@include opacity(0.7);}
 		&.selected {@include opacity(1); border-color: $colorOrange;}
