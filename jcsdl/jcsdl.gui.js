@@ -90,7 +90,7 @@ var JCSDLGui = function(el, config) {
 		 * Switch between expanded and collapsed view mode of filters list.
 		 * @param  {Event} ev
 		 */
-		self.$mainView.find('.jcsdl-mainview-mode .jcsdl-mainview-mode-option').click(function(ev) {
+		self.$mainView.find('.jcsdl-mainview-mode .jcsdl-mainview-mode-option').bind('click touchstart', function(ev) {
 			ev.preventDefault();
 			ev.target.blur();
 
@@ -107,7 +107,7 @@ var JCSDLGui = function(el, config) {
 		 * Show filter editor to create a new one from scratch upon clicking 'Add filter'.
 		 * @param  {Event} ev Click Event.
 		 */
-		self.$mainView.find('.jcsdl-add-filter').click(function(ev) {
+		self.$mainView.find('.jcsdl-add-filter').bind('click touchstart', function(ev) {
 			ev.preventDefault();
 			ev.target.blur();
 
@@ -118,7 +118,7 @@ var JCSDLGui = function(el, config) {
 		 * Handle output / returning of the resulting JCSDL upon clicking save.
 		 * @param  {Event} ev Click Event.
 		 */
-		self.$mainView.find('.jcsdl-editor-save').bind('click.jcsdl', function(ev) {
+		self.$mainView.find('.jcsdl-editor-save').bind('click.jcsdl touchstart', function(ev) {
 			ev.preventDefault();
 			ev.target.blur();
 
@@ -129,7 +129,7 @@ var JCSDLGui = function(el, config) {
 		 * Handle pressing the cancel button,
 		 * @param  {Event} ev Click Event.
 		 */
-		self.$mainView.find('.jcsdl-editor-cancel').bind('click.jcsdl', function(ev) {
+		self.$mainView.find('.jcsdl-editor-cancel').bind('click.jcsdl touchstart', function(ev) {
 			ev.preventDefault();
 			ev.target.blur();
 
@@ -250,7 +250,7 @@ var JCSDLGui = function(el, config) {
 		 * Saves the filter that is currently being edited when clicked its save button.
 		 * @param  {Event} ev Click Event.
 		 */
-		self.$currentFilterView.find('.jcsdl-filter-save').click(function(ev) {
+		self.$currentFilterView.find('.jcsdl-filter-save').bind('click touchstart', function(ev) {
 			ev.preventDefault();
 			ev.target.blur();
 			self.didSubmitFilter();
@@ -260,7 +260,7 @@ var JCSDLGui = function(el, config) {
 		 * Hides the single filter editor and doesn't save the filter when the cancel button is clicked.
 		 * @param  {Event} ev Click Event.
 		 */
-		self.$currentFilterView.find('.jcsdl-filter-cancel').click(function(ev) {
+		self.$currentFilterView.find('.jcsdl-filter-cancel').bind('click touchstart', function(ev) {
 			ev.preventDefault();
 			ev.target.blur();
 			self.hideFilterEditor();
@@ -669,7 +669,7 @@ var JCSDLGui = function(el, config) {
 		 * Shows the filter editor for the clicked filter.
 		 * @param  {Event} ev Click Event.
 		 */
-		$filterRow.find('.edit').click(function(ev) {
+		$filterRow.find('.edit').bind('click touchstart', function(ev) {
 			ev.preventDefault();
 			ev.target.blur();
 
@@ -681,7 +681,7 @@ var JCSDLGui = function(el, config) {
 		 * Delete the filter when clicked on delete option.
 		 * @param  {Event} ev Click Event.
 		 */
-		$filterRow.find('.delete').click(function(ev) {
+		$filterRow.find('.delete').bind('click touchstart', function(ev) {
 			ev.preventDefault();
 			ev.target.blur();
 
@@ -874,7 +874,7 @@ var JCSDLGui = function(el, config) {
 		// add case sensitivity toggle
 		if (field.cs) {
 			var $csView = self.getTemplate('caseSensitivity');
-			$csView.click(function(ev) {
+			$csView.bind('click touchstart', function(ev) {
 				ev.preventDefault();
 				ev.target.blur();
 				$(this).toggleClass('selected');
@@ -888,7 +888,7 @@ var JCSDLGui = function(el, config) {
 		 * @param  {Event} ev
 		 * @listener
 		 */
-		$operatorsListView.children().click(function(ev) {
+		$operatorsListView.children().bind('click touchstart', function(ev) {
 			ev.preventDefault();
 			ev.target.blur();
 
@@ -1037,7 +1037,7 @@ var JCSDLGui = function(el, config) {
 				 * @param  {Event} ev
 				 * @listener
 				 */
-				$view.find('.jcsdl-input-select-option').click(function(ev) {
+				$view.find('.jcsdl-input-select-option').bind('click touchstart', function(ev) {
 					ev.preventDefault();
 					ev.target.blur();
 					$(this).toggleClass('selected');
@@ -1094,7 +1094,7 @@ var JCSDLGui = function(el, config) {
 				 * @param  {Event} ev
 				 * @listener
 				 */
-				$view.find('.jcsdl-input-select-option').click(function(ev) {
+				$view.find('.jcsdl-input-select-option').bind('click touchstart', function(ev) {
 					ev.preventDefault();
 					ev.target.blur();
 				});
@@ -1187,13 +1187,13 @@ var JCSDLGui = function(el, config) {
 				 * @param  {Event} ev
 				 * @listener
 				 */
-				$view.find('.jcsdl-slider-minus, .jcsdl-slider-plus').mousedown(function(ev) {
+				$view.find('.jcsdl-slider-minus, .jcsdl-slider-plus').bind('mousedown touchstart', function(ev) {
 					var minus = $(this).is('.jcsdl-slider-minus');
 					changeValueInterval = setInterval(function() {
 						changeValue($view, fieldInfo, options.step, minus);
 					}, 50);
 				// mouse up will remove the interval (also mouseout)
-				}).bind('mouseup mouseout', function(ev) {
+				}).bind('mouseup mouseout touchend', function(ev) {
 					clearInterval(changeValueInterval);
 				// and prevent default behavior on click()
 				}).click(function(ev) {
@@ -1386,7 +1386,7 @@ var JCSDLGui = function(el, config) {
 				 * @param  {Event} ev
 				 * @listener
 				 */
-				$view.find('.jcsdl-clear-map').click(function(ev) {
+				$view.find('.jcsdl-clear-map').bind('click touchstart', function(ev) {
 					ev.preventDefault();
 					ev.target.blur();
 
@@ -1669,7 +1669,7 @@ var JCSDLGui = function(el, config) {
 				 * @param  {Event} ev
 				 * @listener
 				 */
-				$view.find('.jcsdl-clear-map').click(function(ev) {
+				$view.find('.jcsdl-clear-map').bind('click touchstart', function(ev) {
 					ev.preventDefault();
 					ev.target.blur();
 
@@ -1797,7 +1797,7 @@ var JCSDLGui = function(el, config) {
 				 * @param  {Event} ev
 				 * @listener
 				 */
-				$view.find('.jcsdl-clear-map').click(function(ev) {
+				$view.find('.jcsdl-clear-map').bind('click touchstart', function(ev) {
 					ev.preventDefault();
 					ev.target.blur();
 
@@ -2066,7 +2066,7 @@ var JCSDLGui = function(el, config) {
 		 * REGISTER LISTENERS
 		 */
 		// activate the scroll left and right buttons
-		this.$carouselWrap.siblings('.jcsdl-carousel-scroll').click(function(ev) {
+		this.$carouselWrap.siblings('.jcsdl-carousel-scroll').bind('click touchstart', function(ev) {
 			ev.preventDefault();
 			ev.target.blur();
 
@@ -2085,7 +2085,7 @@ var JCSDLGui = function(el, config) {
 		});
 
 		// clicking on an item also makes it selected
-		this.$carouselItems.click(function(ev) {
+		this.$carouselItems.bind('click touchstart', function(ev) {
 			ev.preventDefault();
 			ev.target.blur();
 
@@ -2300,7 +2300,7 @@ var JCSDLGui = function(el, config) {
 		/*
 		 * REGISTER LISTENERS
 		 */
-		this.$wrap.click(function(ev) {
+		this.$wrap.bind('click touchstart', function(ev) {
 			self.$input.focus();
 		});
 
@@ -2390,7 +2390,7 @@ var JCSDLGui = function(el, config) {
 			this.$original.val(values.join(this.delimeter));
 
 			// remove the tag
-			$tag.find('a').click(function(ev) {
+			$tag.find('a').bind('click touchstart', function(ev) {
 				ev.preventDefault();
 				ev.target.blur();
 				self.removeTag($tag);
