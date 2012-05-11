@@ -2,6 +2,7 @@
 $color : #376491;
 $colorLight : #888;
 $colorBlack : #4b4b4f;
+$colorBlackLight : #c6c6c9;
 $colorOrange : #ff9933;
 $borderColor : #dcdcdc;
 $borderColorInput : #c8d7de;
@@ -427,8 +428,8 @@ $otherIconsSprite : 'img/icons-sprite-other.png?2';
 		.jcsdl-input-select-option {
 			margin: 10px;
 			display: inline-block; padding: 0 10px; height: 25px; line-height: 25px;
-			font-size: 13px; color: #376491;
-			border: 1px solid $colorBlack;
+			font-size: 13px; color: $colorBlack;
+			border: 1px solid $colorBlackLight;
 			@include rounded(2px);
 			@include opacity(0.75);
 
@@ -436,7 +437,7 @@ $otherIconsSprite : 'img/icons-sprite-other.png?2';
 			zoom: 1;
 			*display: inline;
 
-			&.selected {@include opacity(1); border-color: $colorOrange;}
+			&.selected {@include opacity(1); border-color: $colorOrange; color: $color;}
 		}
 	}
 
@@ -453,6 +454,7 @@ $otherIconsSprite : 'img/icons-sprite-other.png?2';
 				display: block; width: 14px; height: 14px;
 				background: transparent url($elementsSprite) no-repeat -115px -89px;
 				@include opacity(0.7);
+				-webkit-touch-callout: none; /* prevent callout menu on iOS */
 
 				&:active {position: relative; top: 1px;}
 				&:hover {@include opacity(1);}
@@ -697,7 +699,7 @@ $otherIconsSprite : 'img/icons-sprite-other.png?2';
 	.jcsdl-icon.operator {
 		width: 46px; height: 46px;
 		background: url($operatorIconsSprite) no-repeat 0 0;
-		border: 1px solid $colorBlack; @include rounded(2px);
+		border: 1px solid $colorBlackLight; @include rounded(2px);
 		@include opacity(0.75);
 
 		&.icon-contains 	{background-position: 0 0;				&.selected {background-position: 0 -184px;}}

@@ -502,8 +502,8 @@
       height: 25px;
       line-height: 25px;
       font-size: 13px;
-      color: #376491;
-      border: 1px solid #4b4b4f;
+      color: #4b4b4f;
+      border: 1px solid #c6c6c9;
       -webkit-border-radius: 2px;
       -khtml-border-radius: 2px;
       -moz-border-radius: 2px;
@@ -527,7 +527,8 @@
         -moz-opacity: 1;
         -khtml-opacity: 1;
         opacity: 1;
-        border-color: #ff9933; }
+        border-color: #ff9933;
+        color: #376491; }
   .jcsdl-container .jcsdl-input-slider {
     margin: 10px 30px;
     text-align: center; }
@@ -548,7 +549,9 @@
         filter: alpha(opacity=70);
         -moz-opacity: 0.7;
         -khtml-opacity: 0.7;
-        opacity: 0.7; }
+        opacity: 0.7;
+        -webkit-touch-callout: none;
+        /* prevent callout menu on iOS */ }
         .jcsdl-container .jcsdl-input-slider .jcsdl-slider-controls .jcsdl-slider-minus:active, .jcsdl-container .jcsdl-input-slider .jcsdl-slider-controls .jcsdl-slider-plus:active {
           position: relative;
           top: 1px; }
@@ -1051,7 +1054,7 @@
     width: 46px;
     height: 46px;
     background: url("img/icons-sprite-operators.png?4") no-repeat 0 0;
-    border: 1px solid #4b4b4f;
+    border: 1px solid #c6c6c9;
     -webkit-border-radius: 2px;
     -khtml-border-radius: 2px;
     -moz-border-radius: 2px;
