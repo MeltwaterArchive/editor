@@ -6,7 +6,7 @@ $colorBlackLight : #c6c6c9;
 $colorOrange : #ff9933;
 $borderColor : #dcdcdc;
 $borderColorInput : #c8d7de;
-$elementsSprite : 'img/elements.png?11';
+$elementsSprite : 'img/elements.png?12';
 $selectSprite : 'img/select.png?12';
 $stepBackground : 'img/step_background.png?5';
 $targetIconsSprite : 'img/icons-sprite-targets.png?6';
@@ -386,15 +386,15 @@ $otherIconsSprite : 'img/icons-sprite-other.png?2';
 
 				.jcsdl-tag {
 					display: block; float: left; margin: 3px; position: relative;
-					padding: 0 5px; height: 32px; line-height: 32px; padding-right: 14px;
+					padding: 0 5px; height: 32px; line-height: 32px; padding-right: 16px;
 					font-size: 1.1em; color: $color; font-weight: bold;
 					border: 1px solid $borderColorInput; @include rounded(2px);
 					background: lighten($color, 80%);
 
 					a.jcsdl-tag-remove {
-						display: block; width: 8px; height: 32px; overflow: hidden;
-						position: absolute; right: 3px; top: 0;
-						color: $colorLight; font-weight: bold; font-size: 12px;
+						display: block; width: 8px; height: 8px; overflow: hidden;
+						position: absolute; right: 4px; top: 12px;
+						background: url($elementsSprite) no-repeat -169px -55px;
 						@include opacity(0.7);
 
 						&:hover {@include opacity(1);}

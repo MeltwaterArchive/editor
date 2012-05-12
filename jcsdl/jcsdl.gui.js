@@ -2365,7 +2365,7 @@ var JCSDLGui = function(el, config) {
 		tagTpl : [
 			'<span class="jcsdl-tag">',
 				'<span />',
-				'<a href="#" class="jcsdl-tag-remove" title="Remove">x</a>',
+				'<a href="#" class="jcsdl-tag-remove" title="Remove"></a>',
 			'</span>'
 		].join(''),
 
