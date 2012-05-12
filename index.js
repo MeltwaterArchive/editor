@@ -87,7 +87,6 @@ $(function() {
 	 */
 	var $currentStream = $();
 
-	/*
 	var editEditor = new JCSDLGui('#jcsdl-edit', {
 		save : function(code) {
 			// display the output
@@ -130,7 +129,6 @@ $(function() {
 		var code = $(this).closest('li').find('.jcsdl-source').val();
 		$('#jcsdl-edit-output').val(code);
 	});
-	*/
 
 	/*
 	 * STYLING SHORTCUT
