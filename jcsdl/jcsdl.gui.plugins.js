@@ -600,7 +600,7 @@ var jcsdlMapsInit = function() {
 
 	if (jcsdlMapsCurrentGui && jcsdlMapsCurrentCallback) {
 		setTimeout(function() {
-			jcsdlMapsCurrentCallback.apply(jcsdlMapsCurrentGui, jcsdlMapsCurrentCallbackArgs);
+			jcsdlMapsCurrentCallback.apply(jcsdlMapsCurrentGui.inputs, jcsdlMapsCurrentCallbackArgs);
 		}, jcsdlMapsCurrentGui.config.animationSpeed + 10); // make sure the map canvas is fully visible before loading them
 	}
 };

@@ -10,6 +10,7 @@ $jsSuccess = Packager::js(array(
 	'jcsdl/jcsdl.definition.js',
 	'jcsdl/jcsdl.parser.js',
 	'jcsdl/jcsdl.gui.templates.js',
+	'jcsdl/jcsdl.gui.inputs.js',
 	'jcsdl/jcsdl.gui.plugins.js',
 	'jcsdl/jcsdl.gui.js'
 ), 'production/jcsdl/jcsdl.min.js');
