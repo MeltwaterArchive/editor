@@ -2084,13 +2084,43 @@ var JCSDLGui = function(el, config) {
 			self.changePosition(options.speed);
 		});
 
-		// clicking on an item also makes it selected
-		this.$carouselItems.bind('click touchstart', function(ev) {
+		// click and move the mouse / finger to drag the carousel around and snap to selection on finger/mouse up
+		this.$carouselItems.bind('mousedown.jcsdlcarousel touchstart.jcsdlcarousel', function(ev) {
 			ev.preventDefault();
 			ev.target.blur();
 
-			self.selectedIndex = $(this).prevAll().length;
-			self.changePosition(options.speed);
+			var $el = $(this);
+			var moving = false;
+			var pageX = (ev.type == 'touchmove') ? ev.originalEvent.targetTouches[0].pageX : ev.pageX;
+
+			$('body').bind('mousemove.jcsdlcarousel touchmove.jcsdlcarousel', function(ev) {
+				moving = true;
+
+				var evPageX = (ev.type == 'touchmove') ? ev.originalEvent.targetTouches[0].pageX : ev.pageX;
+				var curLeft = parseInt(self.$carousel.css('left'));
+				self.$carousel.css('left', curLeft - (pageX - evPageX));
+
+				pageX = evPageX;
+			});
+
+			$('body').bind('mouseup.jcsdlcarousel touchend.jcsdlcarousel', function(ev) {
+				if (moving) {
+					self.snapToSelection();
+				} else {
+					self.selectedIndex = $el.prevAll().length;
+					self.changePosition(options.speed);
+					moving = false;
+				}
+
+				$('body').unbind('mousemove.jcsdlcarousel touchmove.jcsdlcarousel');
+				$('body').unbind('mouseup.jcsdlcarousel touchend.jcsdlcarousel');
+			});
+		});
+
+		// prevent action on standard click
+		this.$carouselItems.click(function(ev) {
+			ev.preventDefault();
+			ev.target.blur();
 		});
 
 		// adjust the carousel's width when window resizing
@@ -2126,6 +2156,14 @@ var JCSDLGui = function(el, config) {
 		// get the currently selected item
 		getSelectedItem : function() {
 			return this.$carouselItems.eq(this.selectedIndex);
+		},
+
+		snapToSelection : function() {
+			var position = parseInt(this.$carousel.css('left'));
+			this.selectedIndex = Math.round((position - this.margin) / (-1 * this.itemWidth));
+			this.selectedIndex = (this.selectedIndex < 0) ? 0 : this.selectedIndex;
+			this.selectedIndex = (this.selectedIndex + 1 > this.itemsCount) ? this.itemsCount - 1 : this.selectedIndex;
+			this.changePosition(100);
 		},
 
 		// animate the carousel to its proper position
