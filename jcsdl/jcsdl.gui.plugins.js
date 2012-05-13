@@ -104,6 +104,11 @@
 			});
 		});
 
+		// special click handler for loading an existing filter and calling all proper actions
+		this.$carouselItems.bind('jcsdlclick', function(ev) {
+			$(this).trigger('mousedown').trigger('mouseup');
+		});
+
 		// prevent action on standard click
 		this.$carouselItems.click(function(ev) {
 			ev.preventDefault();

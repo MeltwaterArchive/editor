@@ -203,17 +203,17 @@ var JCSDLGui = function(el, config) {
 
 			var fieldInfo = jcsdl.getFieldInfo(filter.target, filter.fieldPath);
 
-			self.$currentFilterView.find('.jcsdl-filter-target .target-' + filter.target).click();
+			self.$currentFilterView.find('.jcsdl-filter-target .target-' + filter.target).trigger('jcsdlclick');
 
 			// select all fields and subfields
 			$.each(filter.fieldPath, function(i, field) {
 				var $fieldView = self.$currentFilterView.find('.jcsdl-filter-target-field:last');
-				$fieldView.find('.field-' + field).click();
+				$fieldView.find('.field-' + field).trigger('jcsdlclick');
 			});
 
 			// also select which field based on operator
 			if (typeof(fieldInfo.input) !== 'string') {
-				self.$currentFilterView.find('.jcsdl-filter-target-field-input .input-' + filter.operator).click();
+				self.$currentFilterView.find('.jcsdl-filter-target-field-input .input-' + filter.operator).trigger('jcsdlclick');
 			}
 
 			// select operator

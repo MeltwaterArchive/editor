@@ -1,7 +1,8 @@
 var JCSDLParser = function(gui) {
-	var self = this;
-	var gui = gui;
+	this.gui = gui;
+};
 
+JCSDLParser.prototype = {
 	/* ##########################
 	 * Loading JCSDL
 	 * ########################## */
@@ -10,14 +11,14 @@ var JCSDLParser = function(gui) {
 	 * @param  {String} code Full JCSDL code (with master lines and logic)
 	 * @return {Object} Object that contains 'filters' Array and 'logic' String.
 	 */
-	this.parseJCSDL = function(code) {
+	parseJCSDL : function(code) {
 		var lines = code.split("\n");
 		var masterLine = lines.shift();
 		var endLine = lines.pop();
 
 		// verify the inputed JCSDL
-		if (!verifyJCSDL(masterLine, lines)) {
-			error('The given JCSDL did not verify!', code);
+		if (!this.verifyJCSDL(masterLine, lines)) {
+			this.error('The given JCSDL did not verify!', code);
 			return false;
 		}
 
@@ -40,13 +41,13 @@ var JCSDLParser = function(gui) {
 			var jcsdlHash = jcsdlDescription[2];
 			var jcsdlCode = jcsdlDescription[3];
 
-			if (!verifyJCSDLFilter(jcsdlHash, csdl)) {
-				error('The given JCSDL Filter code did not verify!', csdl, code);
+			if (!this.verifyJCSDLFilter(jcsdlHash, csdl)) {
+				this.error('The given JCSDL Filter code did not verify!', csdl, code);
 				return false;
 			}
 
 			// parse the JCSDL filter code to a filter object
-			var filter = self.filterFromJCSDL(jcsdlCode, csdl);
+			var filter = this.filterFromJCSDL(jcsdlCode, csdl);
 
 			// add the filter object to the list of filters
 			filters.push(filter);
@@ -56,7 +57,7 @@ var JCSDLParser = function(gui) {
 			filters : filters,
 			logic : logic
 		};
-	};
+	},
 
 	/**
 	 * Creates a filter object from the given JCSDL code and based on CSDL code.
@@ -64,13 +65,13 @@ var JCSDLParser = function(gui) {
 	 * @param  {String} csdl      The CSDL code related to this filter.
 	 * @return {Object}
 	 */
-	this.filterFromJCSDL = function(jcsdlCode, csdl) {
+	filterFromJCSDL : function(jcsdlCode, csdl) {
 		jcsdlCode = jcsdlCode.split(',');
 
 		var fieldPath = jcsdlCode.shift().split('.');
 		var target = fieldPath.shift();
 
-		var fieldInfo = self.getFieldInfo(target, fieldPath);
+		var fieldInfo = this.getFieldInfo(target, fieldPath);
 		if (fieldInfo === false) return false;
 
 		var operator = jcsdlCode.shift();
@@ -83,7 +84,7 @@ var JCSDLParser = function(gui) {
 
 		if (operator !== 'exists') {
 			var range = jcsdlCode.shift().split('-');
-			value = valueFromCSDL(fieldInfo, csdl.substr(range[0], range[1]));
+			value = this.valueFromCSDL(fieldInfo, csdl.substr(range[0], range[1]));
 
 			// also parse additional data
 			$.each(jcsdlCode, function(i, code) {
@@ -95,9 +96,9 @@ var JCSDLParser = function(gui) {
 			});
 		}
 
-		var filter = self.createFilter(target, fieldPath, operator, value, additional);
+		var filter = this.createFilter(target, fieldPath, operator, value, additional);
 		return filter;
-	};
+	},
 
 	/* ##########################
 	 * OUTPUTTING CSDL
@@ -107,7 +108,9 @@ var JCSDLParser = function(gui) {
 	 * @param  {Array}  filters Array of filters to be parsed.
 	 * @return {String}
 	 */
-	this.getJCSDLForFilters = function(filters, logic) {
+	getJCSDLForFilters : function(filters, logic) {
+		var self = this;
+
 		// make sure the logic is valid
 		var logic = (logic) ? logic : 'AND';
 		logic = (logic == 'AND' || logic == 'OR') ? logic : 'AND';
@@ -126,30 +129,30 @@ var JCSDLParser = function(gui) {
 		var output = filterCodes.join("\n" + logic + "\n");
 
 		// calculate the hash for security
-		var hash = encodeJCSDL(output, logic);
+		var hash = this.encodeJCSDL(output, logic);
 
 		// add master comments to the final output
 		output = '// JCSDL_MASTER ' + hash + ' ' + logic + "\n" + output + "\n// JCSDL_MASTER_END";
 
 		return output;
-	};
+	},
 
 	/**
 	 * Parses a single filter from the filter object to a JCSDL output.
 	 * @param  {Object} filter Information about the filter.
 	 * @return {String}
 	 */
-	this.filterToCSDL = function(filter) {
-		var fieldInfo = self.getFieldInfo(filter.target, filter.fieldPath);
+	filterToCSDL : function(filter) {
+		var fieldInfo = this.getFieldInfo(filter.target, filter.fieldPath);
 		if (fieldInfo === false) return false;
 
-		var value = valueToCSDL(filter.value, fieldInfo);
+		var value = this.valueToCSDL(filter.value, fieldInfo);
 		if (value === false) return false;
 
-		var field = fieldToCSDL(filter.fieldPath);
+		var field = this.fieldToCSDL(filter.fieldPath);
 		if (field === false) return false;
 
-		var operatorCode = self.getOperatorCode(filter.operator);
+		var operatorCode = this.getOperatorCode(filter.operator);
 		if (operatorCode === false) return false;
 
 		var cs = (filter.cs) ? ' cs' : '';
@@ -173,7 +176,7 @@ var JCSDLParser = function(gui) {
 			}
 		}
 
-		var hash = encodeJCSDLFilter(csdl);
+		var hash = this.encodeJCSDLFilter(csdl);
 		
 		// JCSDL wrappers
 		var jcsdl_start = '// JCSDL_START ' + hash + ' ' + jcsdlSyntax;
@@ -181,7 +184,7 @@ var JCSDLParser = function(gui) {
 
 		// return the final filter output
 		return jcsdl_start + "\n" + csdl + "\n" + jcsdl_end;
-	};
+	},
 
 	/* ##########################
 	 * HELPERS
@@ -193,10 +196,10 @@ var JCSDLParser = function(gui) {
 	 * @param  {String} logic  Logic of the JCSDL.
 	 * @return {String}
 	 */
-	var encodeJCSDL = function(output, logic) {
+	encodeJCSDL : function(output, logic) {
 		var hash = Crypto.MD5(logic + "\n" + output);
 		return hash;
-	};
+	},
 
 	/**
 	 * Verifies that the whole JCSDL code wasn't altered in any way, based on hash in the master line.
@@ -204,7 +207,7 @@ var JCSDLParser = function(gui) {
 	 * @param  {Array}  lines      Array of all the remaining lines.
 	 * @return {Boolean}
 	 */
-	var verifyJCSDL = function(masterLine, lines) {
+	verifyJCSDL : function(masterLine, lines) {
 		// join all the lines to create a string
 		var input = lines.join("\n");
 
@@ -214,9 +217,9 @@ var JCSDLParser = function(gui) {
 		var hash = masterInfo[2];
 
 		// recalculate the original hash and see if it matches
-		var jcsdlHash = encodeJCSDL(input, logic);
+		var jcsdlHash = this.encodeJCSDL(input, logic);
 		return (hash == jcsdlHash);
-	};
+	},
 
 	/**
 	 * Encodes the given CSDL filter to a hash that can later be used to verify
@@ -224,10 +227,10 @@ var JCSDLParser = function(gui) {
 	 * @param  {String} csdl CSDL filter.
 	 * @return {String}
 	 */
-	var encodeJCSDLFilter = function(csdl) {
+	encodeJCSDLFilter : function(csdl) {
 		var hash = Crypto.MD5(csdl);
 		return hash;
-	};
+	},
 
 	/**
 	 * Verifies that a single JCSDL filter code wasn't altered in any way, based on hash in the filter's jcsdl line.
@@ -235,19 +238,19 @@ var JCSDLParser = function(gui) {
 	 * @param  {String} csdl Actual CSDL code for this filter.
 	 * @return {Boolean}
 	 */
-	var verifyJCSDLFilter = function(hash, csdl) {
-		var csdlHash = encodeJCSDLFilter(csdl);
+	verifyJCSDLFilter : function(hash, csdl) {
+		var csdlHash = this.encodeJCSDLFilter(csdl);
 		return (hash == csdlHash);
-	};
+	},
 
 	/**
 	 * Changes the given field path to JCSDL output.
 	 * @param  {Array} fieldPath Array of field names, path to specific field.
 	 * @return {String}
 	 */
-	var fieldToCSDL = function(fieldPath) {
+	fieldToCSDL : function(fieldPath) {
 		return fieldPath.join('.');
-	};
+	},
 
 	/**
 	 * Changes the given value into CSDL output based on the definition of its field.
@@ -255,12 +258,12 @@ var JCSDLParser = function(gui) {
 	 * @param  {Object} fieldInfo Field definition from JCSDL definition.
 	 * @return {String}
 	 */
-	var valueToCSDL = function(value, fieldInfo) {
+	valueToCSDL : function(value, fieldInfo) {
 		var parsedValue = '';
 		
 		if (fieldInfo.type == 'int') {
 			if (isNaN(value)) {
-				error('This field value is suppose to be a Number, String given.', value, fieldInfo);
+				this.error('This field value is suppose to be a Number, String given.', value, fieldInfo);
 				return false;
 			}
 			parsedValue = value;
@@ -270,7 +273,7 @@ var JCSDLParser = function(gui) {
 		}
 
 		return parsedValue;
-	};
+	},
 
 	/**
 	 * Properly parses the value of the given field into something usable by the GUI.
@@ -278,22 +281,22 @@ var JCSDLParser = function(gui) {
 	 * @param  {String} value     The value.
 	 * @return {mixed}
 	 */
-	var valueFromCSDL = function(fieldInfo, value) {
+	valueFromCSDL : function(fieldInfo, value) {
 		if (fieldInfo.type == 'int') {
 			return value;
 		} else {
 			return value.unescapeCsdl();
 		}
-	};
+	},
 
 	/**
 	 * Shows an error.
 	 * @param  {String} message Error message to be displayed.
 	 * @param  {String} code    Code that caused the error.
 	 */
-	var error = function(message, code) {
-		gui.showError.apply(gui, arguments);
-	};
+	error : function(message, code) {
+		this.gui.showError.apply(gui, arguments);
+	},
 
 	/* ##########################
 	 * SETTERS AND GETTERS, ETC.
@@ -307,7 +310,7 @@ var JCSDLParser = function(gui) {
 	 * @param {String} value     Value.
 	 * @param {Object} additional Object of any additional filter data.
 	 */
-	this.createFilter = function(target, fieldPath, operator, value, additional) {
+	createFilter : function(target, fieldPath, operator, value, additional) {
 		additional = additional || {};
 		var filter = {
 			target : target,
@@ -317,29 +320,29 @@ var JCSDLParser = function(gui) {
 			cs : additional.cs
 		}
 		return filter;
-	};
+	},
 
 	/**
 	 * Returns code of the operator under the given name.
 	 * @param  {String} operatorName
 	 * @return {String}
 	 */
-	this.getOperatorCode = function(operatorName) {
-		return gui.definition.operators[operatorName].code;
-	};
+	getOperatorCode : function(operatorName) {
+		return this.gui.definition.operators[operatorName].code;
+	},
 
 	/**
 	 * Returns definition of the specific given target or (bool) false it it doesn't exist.
 	 * @param  {String} target CSDL target.
 	 * @return {Object}
 	 */
-	this.getTargetInfo = function(target) {
-		if (typeof(gui.definition.targets[target]) !== 'undefined') {
-			return gui.definition.targets[target];
+	getTargetInfo : function(target) {
+		if (typeof(this.gui.definition.targets[target]) !== 'undefined') {
+			return this.gui.definition.targets[target];
 		}
-		error('Such target does not exist!', target);
+		this.error('Such target does not exist!', target);
 		return false;
-	};
+	},
 
 	/**
 	 * Returns definition of the specific given field or (bool) false if it doesn't exist.
@@ -347,11 +350,13 @@ var JCSDLParser = function(gui) {
 	 * @param  {Array} fieldPath  Array of field names, path to the specific field.
 	 * @return {Object}
 	 */
-	this.getFieldInfo = function(target, fieldPath) {
+	getFieldInfo : function(target, fieldPath) {
+		var self = this;
+
 		// starting field is naturally the current target
-		var field = gui.definition.targets[target];
+		var field = this.gui.definition.targets[target];
 		if (typeof(field) == 'undefined') {
-			error('Such target does not exist!', target);
+			this.error('Such target does not exist!', target);
 			return false;
 		}
 
@@ -362,19 +367,19 @@ var JCSDLParser = function(gui) {
 				if (typeof(field.fields[fieldName]) !== 'undefined') {
 					field = field.fields[fieldName];
 				} else {
-					error('Invalid path to a field a!', target, fieldPath, field);
+					self.error('Invalid path to a field a!', target, fieldPath, field);
 					field = false;
 					return false; // break the $.each
 				}
 
 			} else {
-				error('Invalid path to a field b!', target, fieldPath, field);
+				self.error('Invalid path to a field b!', target, fieldPath, field);
 				field = false;
 				return false; // break the $.each
 			}
 		});
 
 		return field;
-	};
+	}
 
 };
