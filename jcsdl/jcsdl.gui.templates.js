@@ -9,7 +9,7 @@ var JCSDLGuiTemplates = {
 			'<div class="jcsdl-header">',
 				'<h3>Filters</h3>',
 				'<div class="jcsdl-mainview-mode">',
-					'<span class="jcsdl-label">View as:</span>',
+					'<div class="jcsdl-label">View as:</div>',
 					'<div class="jcsdl-bordered jcsdl-mainview-mode-options">',
 						'<a href="#" class="jcsdl-mainview-mode-option jcsdl-expanded active" data-mode="expanded"></a>',
 						'<a href="#" class="jcsdl-mainview-mode-option jcsdl-collapsed" data-mode="collapsed"></a>',

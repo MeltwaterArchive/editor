@@ -84,6 +84,11 @@ JCSDLGui.prototype = {
 			this.$mainView.find('.jcsdl-editor-cancel').hide();
 		}
 
+		// add class for IE
+		if ($.browser.msie) {
+			this.$container.addClass('msie');
+		}
+
 		/*
 		 * REGISTER LISTENERS
 		 */
@@ -870,6 +875,9 @@ JCSDLGui.prototype = {
 			if (allowedOperators.length > 0 && ($.inArray(operator, allowedOperators) == -1)) return true;
 
 			var $operatorView = self.createOperatorSelectView(operator);
+			if ($.browser.msie) {
+				$operatorView.html('&nbsp;');
+			}
 			$operatorsListView.append($operatorView);
 		});
 
@@ -1043,6 +1051,6 @@ JCSDLGui.prototype = {
 	 */
 	getFilterIndexByElement : function($filterRow) {
 		return this.$filtersList.find('.jcsdl-filter').index($filterRow);
-	},
+	}
 
 };

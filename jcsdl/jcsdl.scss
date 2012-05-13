@@ -66,7 +66,7 @@ $otherIconsSprite : 'img/icons-sprite-other.png?2';
 		&:hover {color: lighten($color, 5%);}
 	}
 
-	.jcsdl-label {font-size: 1em; color: $colorLight; font-weight: normal;}
+	.jcsdl-label {float: left; font-size: 1em; color: $colorLight; font-weight: normal;}
 	.jcsdl-bordered {padding: 8px; border: 1px solid $borderColorInput; @include rounded(3px);}
 
 	.jcsdl-icon {
@@ -149,9 +149,8 @@ $otherIconsSprite : 'img/icons-sprite-other.png?2';
 
 	/* main view mode (expanded / collapsed) */
 	.jcsdl-mainview-mode {
-		overflow: hidden;
-		float: right; margin-left: 15px;
-		padding-left: 15px;
+		overflow: hidden; float: right; margin-left: 15px;
+		width: 130px; padding-left: 15px;
 		border-left: 1px dotted $borderColor;
 	}
 
@@ -225,7 +224,7 @@ $otherIconsSprite : 'img/icons-sprite-other.png?2';
 			.jcsdl-filter-field {margin: 15px 10px;}
 			.jcsdl-filter-field-input {margin: 15px 10px;}
 			.jcsdl-filter-operator {
-				margin: 35px 0; border-color: $borderColor;
+				margin: 31px 0; border-color: $borderColor;
 
 				&.operator-contains,
 				&.operator-substr,
@@ -235,8 +234,8 @@ $otherIconsSprite : 'img/icons-sprite-other.png?2';
 			}
 			.jcsdl-filter-info.operator {margin: 0 5px; margin-right: -3px;}
 			.jcsdl-filter-info.value {
-				margin: 35px 0;
-				padding: 0 8px; height: 38px; line-height: 38px;
+				margin: 31px 0;
+				padding: 0 8px; height: 46px; line-height: 46px;
 				font-size: 1.2em;
 				background-color: white;
 			}
@@ -256,7 +255,8 @@ $otherIconsSprite : 'img/icons-sprite-other.png?2';
 			.jcsdl-filter-value {
 				float: none; margin: 0;
 				display: inline; width: auto; height: auto;
-				background: none; line-height: 1em;
+				text-indent: 0;
+				background: none; line-height: 20px;
 			}
 			.jcsdl-filter-field {margin: 0 10px;}
 			.jcsdl-filter-operator {
@@ -285,6 +285,7 @@ $otherIconsSprite : 'img/icons-sprite-other.png?2';
 	.jcsdl-carousel-wrap {
 		overflow: hidden; position: relative;
 		margin: 0 auto;
+		text-align: left;
 	}
 
 	.jcsdl-carousel-scroll {
@@ -585,8 +586,8 @@ $otherIconsSprite : 'img/icons-sprite-other.png?2';
 		&.input-select {
 			.jcsdl-input-select {
 				.jcsdl-input-select-option {
-					display: inline; height: auto; line-height: inherit; padding: 0;
-					color: inherit; font-weight: normal;
+					display: inline; height: auto; line-height: 1em; padding: 0;
+					color: $colorLight; font-weight: normal;
 					background: none; border: 0;
 
 					span {top: 0 !important;}
@@ -721,6 +722,15 @@ $otherIconsSprite : 'img/icons-sprite-other.png?2';
 
 		&:hover {@include opacity(0.7);}
 		&.selected {@include opacity(1); border-color: $colorOrange;}
+	}
+
+
+	/* IE fixes */
+	&.msie {
+		.jcsdl-filter-value-input-operators .operator {text-indent: 0;}
+		.jcsdl-input-text, .jcsdl-input-number {
+			input, .jcsdl-tag-input {width: 90%;}
+		}
 	}
 
 }

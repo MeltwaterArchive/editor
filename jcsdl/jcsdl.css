@@ -31,13 +31,15 @@
   /* collapsed view overrides */
   /*
    * ICONS
-   */ }
+   */
+  /* IE fixes */ }
   .jcsdl-container a {
     color: #376491;
     text-decoration: none; }
     .jcsdl-container a:hover {
       color: #3e71a3; }
   .jcsdl-container .jcsdl-label {
+    float: left;
     font-size: 1em;
     color: #888888;
     font-weight: normal; }
@@ -150,6 +152,7 @@
     overflow: hidden;
     float: right;
     margin-left: 15px;
+    width: 130px;
     padding-left: 15px;
     border-left: 1px dotted #dcdcdc; }
   .jcsdl-container .jcsdl-mainview-mode-options {
@@ -252,7 +255,7 @@
   .jcsdl-container .jcsdl-filters-list.expanded .jcsdl-filter .jcsdl-filter-field-input {
     margin: 15px 10px; }
   .jcsdl-container .jcsdl-filters-list.expanded .jcsdl-filter .jcsdl-filter-operator {
-    margin: 35px 0;
+    margin: 31px 0;
     border-color: #dcdcdc; }
     .jcsdl-container .jcsdl-filters-list.expanded .jcsdl-filter .jcsdl-filter-operator.operator-contains, .jcsdl-container .jcsdl-filters-list.expanded .jcsdl-filter .jcsdl-filter-operator.operator-substr, .jcsdl-container .jcsdl-filters-list.expanded .jcsdl-filter .jcsdl-filter-operator.operator-contains_any, .jcsdl-container .jcsdl-filters-list.expanded .jcsdl-filter .jcsdl-filter-operator.operator-in, .jcsdl-container .jcsdl-filters-list.expanded .jcsdl-filter .jcsdl-filter-operator.operator-equals {
       display: none; }
@@ -260,10 +263,10 @@
     margin: 0 5px;
     margin-right: -3px; }
   .jcsdl-container .jcsdl-filters-list.expanded .jcsdl-filter .jcsdl-filter-info.value {
-    margin: 35px 0;
+    margin: 31px 0;
     padding: 0 8px;
-    height: 38px;
-    line-height: 38px;
+    height: 46px;
+    line-height: 46px;
     font-size: 1.2em;
     background-color: white; }
   .jcsdl-container .jcsdl-filters-list.collapsed .jcsdl-filter .jcsdl-filter-description {
@@ -281,8 +284,9 @@
     display: inline;
     width: auto;
     height: auto;
+    text-indent: 0;
     background: none;
-    line-height: 1em; }
+    line-height: 20px; }
   .jcsdl-container .jcsdl-filters-list.collapsed .jcsdl-filter .jcsdl-filter-field {
     margin: 0 10px; }
   .jcsdl-container .jcsdl-filters-list.collapsed .jcsdl-filter .jcsdl-filter-operator {
@@ -299,7 +303,8 @@
   .jcsdl-container .jcsdl-carousel-wrap {
     overflow: hidden;
     position: relative;
-    margin: 0 auto; }
+    margin: 0 auto;
+    text-align: left; }
   .jcsdl-container .jcsdl-carousel-scroll {
     float: left;
     margin: 0 10px;
@@ -715,9 +720,9 @@
   .jcsdl-container .jcsdl-filters-list.collapsed .jcsdl-filter-info.value.input-select .jcsdl-input-select .jcsdl-input-select-option {
     display: inline;
     height: auto;
-    line-height: inherit;
+    line-height: 1em;
     padding: 0;
-    color: inherit;
+    color: #888888;
     font-weight: normal;
     background: none;
     border: 0; }
@@ -1134,6 +1139,10 @@
       -khtml-opacity: 1;
       opacity: 1;
       border-color: #ff9933; }
+  .jcsdl-container.msie .jcsdl-filter-value-input-operators .operator {
+    text-indent: 0; }
+  .jcsdl-container.msie .jcsdl-input-text input, .jcsdl-container.msie .jcsdl-input-text .jcsdl-tag-input, .jcsdl-container.msie .jcsdl-input-number input, .jcsdl-container.msie .jcsdl-input-number .jcsdl-tag-input {
+    width: 90%; }
 
 .tipsy {
   line-height: 1.4em; }

@@ -113,6 +113,12 @@
 		this.$carouselItems.click(function(ev) {
 			ev.preventDefault();
 			ev.target.blur();
+
+			// but not for ie
+			if ($.browser.msie) {
+				self.selectedIndex = $(this).prevAll().length;
+				self.changePosition(options.speed);
+			}
 		});
 
 		// adjust the carousel's width when window resizing
