@@ -1,4 +1,4 @@
-var JCSDL = function(gui) {
+var JCSDLParser = function(gui) {
 	var self = this;
 	var gui = gui;
 

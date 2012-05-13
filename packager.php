@@ -8,8 +8,9 @@ $jsSuccess = Packager::js(array(
 	'jcsdl/lib/jquery.tipsy.js',
 	'jcsdl/lib/jquery.simulate.js',
 	'jcsdl/jcsdl.definition.js',
+	'jcsdl/jcsdl.parser.js',
 	'jcsdl/jcsdl.gui.templates.js',
-	'jcsdl/jcsdl.js',
+	'jcsdl/jcsdl.gui.plugins.js',
 	'jcsdl/jcsdl.gui.js'
 ), 'production/jcsdl/jcsdl.min.js');
 
