@@ -487,6 +487,12 @@
             font-size: 17px !important;
             border: 0;
             outline: 0; }
+    .jcsdl-container .jcsdl-input-text .jcsdl-regex-tester input, .jcsdl-container .jcsdl-input-number .jcsdl-regex-tester input {
+      margin: 5px 0; }
+      .jcsdl-container .jcsdl-input-text .jcsdl-regex-tester input.ok, .jcsdl-container .jcsdl-input-number .jcsdl-regex-tester input.ok {
+        border-color: green; }
+      .jcsdl-container .jcsdl-input-text .jcsdl-regex-tester input.err, .jcsdl-container .jcsdl-input-number .jcsdl-regex-tester input.err {
+        border-color: red; }
   .jcsdl-container .jcsdl-input-number {
     margin: 0 10px; }
     .jcsdl-container .jcsdl-input-number input {

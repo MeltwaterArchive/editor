@@ -414,6 +414,12 @@ $otherIconsSprite : 'img/icons-sprite-other.png?2';
 				}
 			}
 		}
+
+		.jcsdl-regex-tester input {
+			margin: 5px 0;
+			&.ok {border-color: green;}
+			&.err {border-color: red;}
+		}
 	}
 	.jcsdl-input-number {
 		margin: 0 10px;

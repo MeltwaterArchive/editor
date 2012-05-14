@@ -290,14 +290,16 @@
 				$self.trigger('change');
 				return $self;
 			}
+			/*
 
 			// reading a value
 			var values = $self.data('jcsdlTagValue');
-			if (typeof(values) !== 'undefined') {
-				return values.join(',');
+			if (typeof(values) !== 'undefined' && values.length > 0) {
+				return values.join(',') + $self.jcsdlOrigVal();
 			} else {
-				return '';
+				return $self.jcsdlOrigVal();
 			}
+			*/
 		}
 
 		if (typeof(value) !== 'undefined') {
@@ -341,7 +343,7 @@
 		});
 
 		this.$original.bind('change.jcsdltaginput', function(ev) {
-			if (self.updating) return;
+			if (self.updating || !$(this).data('jcsdlTagInputEnabled')) return;
 			self.update();
 		});
 
@@ -451,7 +453,7 @@
 
 		update : function() {
 			// load from the current original value
-			var origVal = this.$original.jcsdlOrigVal();
+			var origVal = this.$original.val();
 			if (origVal.length == 0) return;
 
 			var self = this;
@@ -540,11 +542,106 @@
 
 		options = $.extend({}, {
 			delimeter : ','
-		});
+		}, options);
 
 		this.each(function() {get($(this));});
 		return this;
 	};
+
+})(window.jQuery);
+
+/*
+ * REGEXP Tester for JCSDL
+ */
+(function($) {
+
+	function JCSDLRegExTester($el, config) {
+		var self = this;
+
+		this.$el = $el;
+		this.exp = new RegExp();
+		
+		this.$wrap = $('<div class="jcsdl-regex-tester" />').insertAfter(this.$el);
+		this.$fields = $();
+		for(var i = 1; i <= config.fields; i++) {
+			var $field = this.$el.clone().show().attr('placeholder', 'Test your expression against this field...');
+			$field.appendTo(this.$wrap);
+			this.$fields = this.$fields.add($field);
+		}
+
+		this.$el.bind('keyup change', function(ev) {
+			self.val = self.$el.val();
+			self.test();
+		});
+
+		this.$fields.bind('keyup', function(ev) {
+			self.test($(this));
+		});
+
+		this.disable(); // disabled by default
+	};
+
+	JCSDLRegExTester.prototype = {
+		mode : 'partial',
+		val : '',
+		test : function($fields) {
+			var self = this;
+			var $fields = (typeof($fields) !== 'undefined') ? $fields : this.$fields;
+
+			var pattern = this.val.replace(/\//g, '\/');
+			var exp = (this.mode == 'partial') ? '' + pattern + '' : '^' + pattern + '$';
+			this.exp = new RegExp(exp, 'i');
+
+			$fields.each(function(i, field) {
+				var $testField = $(field).removeClass('ok err');
+				var result = (self.exp.test($testField.val())) ? 'ok' : 'err';
+				$testField.addClass(result);
+			});
+		},
+		enable : function() {
+			this.$el.data('jcsdlRegExTesterEnabled', true);
+			this.$wrap.show();
+		},
+		disable : function() {
+			this.$el.data('jcsdlRegExTesterEnabled', false);
+			this.$wrap.hide();
+		},
+		setPartial : function() {
+			this.mode = 'partial';
+		},
+		setExact : function() {
+			this.mode = 'exact';
+		}
+	};
+
+	$.fn.jcsdlRegExTester = function(options) {
+		function get($el) {
+			var tester = $el.data('jcsdlRegExTester');
+			if (!tester) {
+				tester = new JCSDLRegExTester($el, options);
+				$el.data('jcsdlRegExTester', tester);
+			}
+			return tester;
+		}
+
+		if (typeof(options) == 'string') {
+			// call a public method
+			if ($.inArray(options, ['enable', 'disable', 'setPartial', 'setExact', 'test']) >= 0) {
+				this.each(function() {
+					var tester = get($(this));
+					tester[options].apply(tester, []);
+				});
+			}
+			return this;
+		}
+
+		options = $.extend({}, {
+			fields : 2
+		}, options);
+
+		this.each(function() {get($(this));});
+		return this;
+	}
 
 })(window.jQuery);
 
@@ -634,11 +731,14 @@ $.extend(String.prototype, {
 			.replace(/&gt;/g, '>')
 			.replace(/&quot;/g, '"');
 	},
-	escapeCsdl : function() {
-		return this.replace(/"/g, '\\"');
+	escapeCsdl : function(reg) {
+		// escape regular expressions?
+		s = (reg) ? this.replace(/\\/g, '\\\\') : this.valueOf();
+		return s.replace(/"/g, '\\"');
 	},
-	unescapeCsdl : function() {
-		return this.replace(/\\"/g, '"');
+	unescapeCsdl : function(reg) {
+		s = (reg) ? this.replace(/\\\\/g, '\\') : this.valueOf();
+		return s.replace(/\\"/g, '"');
 	}
 });
 

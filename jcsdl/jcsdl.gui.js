@@ -883,6 +883,7 @@ JCSDLGui.prototype = {
 
 		// create the input view by this input type's handler and add it to the value view container
 		var $inputView = this.inputs.exec(inputType, 'init', [field]);
+		var $input = $inputView.find('input:first');
 		var $valueInput = $valueView.find('.jcsdl-filter-value-input-field');
 		$valueInput.data('inputType', inputType).html($inputView);
 
@@ -920,8 +921,18 @@ JCSDLGui.prototype = {
 
 			// for text input field enable/disable the tag input
 			if (inputType == 'text') {
-				var action = ($.inArray($operator.data('name'), inputConfig.arrayOperators) >= 0) ? 'enable' : 'disable';
-				$inputView.find('input:first').jcsdlTagInput(action);
+				var opName = $operator.data('name');
+
+				var tagAction = ($.inArray(opName, inputConfig.arrayOperators) >= 0) ? 'enable' : 'disable';
+				$input.jcsdlTagInput(tagAction);
+
+				var regExAction = ($.inArray(opName, ['regex_partial', 'regex_exact']) >= 0) ? 'enable' : 'disable';
+				$input.jcsdlRegExTester(regExAction);
+				if (regExAction == 'enable') {
+					var regExSetting = (opName == 'regex_partial') ? 'Partial' : 'Exact';
+					$input.jcsdlRegExTester('set' + regExSetting);
+					$input.jcsdlRegExTester('test');
+				}
 			}
 		});
 

@@ -19,7 +19,9 @@ JCSDLGuiInputs.prototype = {
 	text : {
 		init : function(fieldInfo) {
 			var $view = this.getTemplate('valueInput_text');
-			$view.find('input').jcsdlTagInput();
+			var $input = $view.find('input');
+			$input.jcsdlTagInput();
+			$input.jcsdlRegExTester();
 			return $view;
 		},
 

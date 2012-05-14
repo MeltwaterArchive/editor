@@ -84,7 +84,7 @@ JCSDLParser.prototype = {
 
 		if (operator !== 'exists') {
 			var range = jcsdlCode.shift().split('-');
-			value = this.valueFromCSDL(fieldInfo, csdl.substr(range[0], range[1]));
+			value = this.valueFromCSDL(fieldInfo, csdl.substr(range[0], range[1]), operator);
 
 			// also parse additional data
 			$.each(jcsdlCode, function(i, code) {
@@ -146,7 +146,7 @@ JCSDLParser.prototype = {
 		var fieldInfo = this.getFieldInfo(filter.target, filter.fieldPath);
 		if (fieldInfo === false) return false;
 
-		var value = this.valueToCSDL(filter.value, fieldInfo);
+		var value = this.valueToCSDL(filter.value, fieldInfo, filter.operator);
 		if (value === false) return false;
 
 		var field = this.fieldToCSDL(filter.fieldPath);
@@ -256,9 +256,10 @@ JCSDLParser.prototype = {
 	 * Changes the given value into CSDL output based on the definition of its field.
 	 * @param  {String} value     
 	 * @param  {Object} fieldInfo Field definition from JCSDL definition.
+	 * @param  {String} operator  Operator used on this object.
 	 * @return {String}
 	 */
-	valueToCSDL : function(value, fieldInfo) {
+	valueToCSDL : function(value, fieldInfo, operator) {
 		var parsedValue = '';
 		
 		if (fieldInfo.type == 'int') {
@@ -269,7 +270,8 @@ JCSDLParser.prototype = {
 			parsedValue = value;
 
 		} else {
-			parsedValue = '"' + value.escapeCsdl() + '"';
+			var escapeRegEx = ($.inArray(operator, ['regex_partial', 'regex_exact']) >= 0) ? true : false;
+			parsedValue = '"' + value.escapeCsdl(escapeRegEx) + '"';
 		}
 
 		return parsedValue;
@@ -279,13 +281,15 @@ JCSDLParser.prototype = {
 	 * Properly parses the value of the given field into something usable by the GUI.
 	 * @param  {Object} fieldInfo Field definition for the given value, taken from JCSDL definition.
 	 * @param  {String} value     The value.
+	 * @param  {String} operator  Operator used on this value.
 	 * @return {mixed}
 	 */
-	valueFromCSDL : function(fieldInfo, value) {
+	valueFromCSDL : function(fieldInfo, value, operator) {
 		if (fieldInfo.type == 'int') {
 			return value;
 		} else {
-			return value.unescapeCsdl();
+			var escapeRegEx = ($.inArray(operator, ['regex_partial', 'regex_exact']) >= 0) ? true : false;
+			return value.unescapeCsdl(escapeRegEx);
 		}
 	},
 

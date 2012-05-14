@@ -272,7 +272,7 @@ var JCSDLDefinition = {
 	inputs : {
 		text : {
 			// list of operators for which the input field is a "tag" input field
-			arrayOperators : ['contains', 'contains_any', 'contains_near', 'in']
+			arrayOperators : ['contains_any', 'contains_near', 'in']
 		},
 		select : {
 			sets : {
