@@ -336,7 +336,7 @@ JCSDLGuiInputs.prototype = {
 			$view.append(this.getTemplate('valueInput_geo_map'));
 			$view.find('.jcsdl-map-coordinates').html(this.getTemplate('valueInput_geobox_coordinates'));
 			$view.find('.jcsdl-map-instructions').html(this.definition.inputs.geo_box.instructions);
-			loadGoogleMapsApi(this.gui, this.exec, ['geo_box', 'load', [fieldInfo, $view]]);//this.geo_box.load, [fieldInfo, $view]);
+			loadGoogleMapsApi(this.gui, this.exec, ['geo_box', 'load', [fieldInfo, $view]]);
 			return $view;
 		},
 
@@ -348,26 +348,23 @@ JCSDLGuiInputs.prototype = {
 			$view.data('map', map);
 
 			// initialize the rectangle that we're gonna draw
-			var rect = new google.maps.Rectangle({
-				strokeWeight : 0,
-				fillColor : this.gui.config.mapsColor,
-				fillOpacity : 0.5
-			});
+			var opt = $.extend({}, this.gui.config.mapsOverlay, {});
+			var rect = new google.maps.Rectangle(opt);
 			$view.data('rect', rect);
 
 			// store rectangle coordinates in an array
 			var coords = [];
 
 			// create corresponding markers
-			var markerOptions = {
+			var mOpt = {
 				position : new google.maps.LatLng(0, 0),
 				draggable : true,
 				icon : this.gui.config.mapsMarker
 			};
 
 			var markers = [
-				new google.maps.Marker(markerOptions),
-				new google.maps.Marker(markerOptions)
+				new google.maps.Marker(mOpt),
+				new google.maps.Marker(mOpt)
 			];
 			$view.data('markers', markers);
 
@@ -472,7 +469,7 @@ JCSDLGuiInputs.prototype = {
 				// calculate the area size
 				self.exec('geo_box', 'updateInfo', [$geoView, rect]);
 				
-			}, this.gui.config.animationSpeed + 200); // make sure everything is properly loaded
+			}, this.gui.config.animate + 200); // make sure everything is properly loaded
 		},
 
 		getValue : function($view, fieldInfo) {
@@ -616,11 +613,8 @@ JCSDLGuiInputs.prototype = {
 			$view.data('map', map);
 
 			// initialize the circle that we're gonna draw
-			var circle = new google.maps.Circle({
-				strokeWeight : 0,
-				fillColor : this.gui.config.mapsColor,
-				fillOpacity : 0.5
-			});
+			var opt = $.extend({}, this.gui.config.mapsOverlay, {});
+			var circle = new google.maps.Circle(opt);
 			$view.data('circle', circle);
 
 			// create center marker
@@ -750,7 +744,7 @@ JCSDLGuiInputs.prototype = {
 				// calculate the area size
 				self.exec('geo_radius', 'updateInfo', [$geoView, circle]);
 				
-			}, this.gui.config.animationSpeed + 200); // make sure everything is properly loaded
+			}, this.gui.config.animate + 200); // make sure everything is properly loaded
 		},
 
 		getValue : function($view, fieldInfo) {
@@ -807,12 +801,10 @@ JCSDLGuiInputs.prototype = {
 			$view.data('map', map);
 
 			// initialize the polygon that we're gonna draw
-			var polygon = new google.maps.Polygon({
-				paths : [[]],
-				strokeWeight : 0,
-				fillColor : this.gui.config.mapsColor,
-				fillOpacity : 0.5
+			var opt = $.extend({}, this.gui.config.mapsOverlay, {
+				paths : [[]]
 			});
+			var polygon = new google.maps.Polygon(opt);
 			$view.data('polygon', polygon);
 
 			// storage markers
@@ -875,7 +867,7 @@ JCSDLGuiInputs.prototype = {
 				// calculate the area size
 				self.exec('geo_polygon', 'updateInfo', [$geoView, polygon]);
 				
-			}, this.gui.config.animationSpeed + 200); // make sure everything is properly loaded
+			}, this.gui.config.animate + 200); // make sure everything is properly loaded
 		},
 
 		getValue : function($view, fieldInfo) {

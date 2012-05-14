@@ -1,4 +1,4 @@
-var JCSDLGui = function(el, config) {
+var JCSDLGui = function(el, cfg) {
 	var $el = $(el); // ensure that the container element is a jQuery object
 	if ($el.length == 0) return false; // break if no such element in DOM
 	this.$el = $el.eq(0); // use only on the first matched element
@@ -10,10 +10,14 @@ var JCSDLGui = function(el, config) {
 
 	/** @var {Object} GUI config object. */
 	this.config = $.extend(true, {
-		animationSpeed : 200,
-		displayCancelButton : true,
+		animate : 200,
+		cancelButtton : true,
 		googleMapsApiKey : '',
-		mapsColor : '#7585dd',
+		mapsOverlay : {
+			strokeWeight : 0,
+			fillColor : '#7585dd',
+			fillOpacity : 0.5
+		},
 		mapsMarker : 'jcsdl/img/maps-marker.png',
 		hideTargets : [],
 		definition : {},
@@ -21,7 +25,7 @@ var JCSDLGui = function(el, config) {
 		cancel : function() {
 			self.$container.hide();
 		}
-	}, config);
+	}, cfg);
 
 	/** @var {Object} Definition of JCSDL, that can be altered via config. */
 	this.definition = $.extend(true, JCSDLDefinition, this.config.definition);
@@ -80,7 +84,7 @@ JCSDLGui.prototype = {
 		this.$el.html(this.$container);
 
 		// hide the cancel button if so desired
-		if (!this.config.displayCancelButton) {
+		if (!this.config.cancelButton) {
 			this.$mainView.find('.jcsdl-editor-cancel').hide();
 		}
 
@@ -149,6 +153,13 @@ JCSDLGui.prototype = {
 
 			self.config.cancel.apply(self, []);
 		});
+	},
+
+	/**
+	 * Resets the editor to clear state.
+	 */
+	reset : function() {
+		this.init();
 	},
 
 	/**
@@ -298,7 +309,7 @@ JCSDLGui.prototype = {
 		this.currentFilterTarget = null;
 		this.currentFilterFieldsPath = [];
 
-		this.$currentFilterView.fadeOut(this.config.animationSpeed, function() {
+		this.$currentFilterView.fadeOut(this.config.animate, function() {
 			self.$currentFilterView.remove();
 			self.$mainView.show();
 		});
@@ -408,25 +419,25 @@ JCSDLGui.prototype = {
 		}
 		if (stepName == 'value') {
 			// show the submit button
-			this.$currentFilterView.find('.jcsdl-filter-save').fadeIn(this.config.animationSpeed);
+			this.$currentFilterView.find('.jcsdl-filter-save').fadeIn(this.config.animate);
 			this.$currentFilterView.find('.jcsdl-footer span').show();
 		}
 
 		// animate into view nicely
 		if (slide) {
-			$stepView.hide().slideDown(this.config.animationSpeed);
+			$stepView.hide().slideDown(this.config.animate);
 		} else {
 			if (stepName == 'field') {
-				$stepView.find('.jcsdl-filter-target-field').hide().fadeIn(this.config.animationSpeed);
+				$stepView.find('.jcsdl-filter-target-field').hide().fadeIn(this.config.animate);
 			} else {
-				$stepView.hide().fadeIn(this.config.animationSpeed);
+				$stepView.hide().fadeIn(this.config.animate);
 			}
 		}
 
 		// adjust all carousels because the document size might have changed (right scroll bar might have appeared, but that doesn't trigger window.resize event)
 		setTimeout(function() {
 			self.$currentFilterStepsView.find('.jcsdl-step').jcsdlCarousel('adjust');
-		}, this.config.animationSpeed);
+		}, this.config.animate);
 
 		// add to the steps pool
 		this.currentFilterSteps.push($stepView);
@@ -914,9 +925,9 @@ JCSDLGui.prototype = {
 			$operator.addClass('selected');
 
 			if ($operator.data('name') == 'exists') {
-				$valueInput.fadeOut(self.config.animationSpeed);
+				$valueInput.fadeOut(self.config.animate);
 			} else if (!$valueInput.is(':visible')) {
-				$valueInput.fadeIn(self.config.animationSpeed);
+				$valueInput.fadeIn(self.config.animate);
 			}
 
 			// for text input field enable/disable the tag input
@@ -992,7 +1003,7 @@ JCSDLGui.prototype = {
 
 						// and now when the maps are loaded, execute the setValue method of that input
 						self.inputs.exec(inputType, 'setValue', [$view, fieldInfo, value]);
-					}, mapsGui.config.animationSpeed + 10); // make sure the map canvas is fully visible before loading them
+					}, mapsGui.config.animate + 10); // make sure the map canvas is fully visible before loading them
 				}
 			};
 		} else {

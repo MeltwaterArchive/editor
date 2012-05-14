@@ -50,7 +50,7 @@ $(function() {
 	 * CREATE STREAM TAB
 	 */
 	var createEditor = new JCSDLGui('#jcsdl-create', {
-		displayCancelButton : false,
+		cancelButton : false,
 		hideTargets : ['myspace', 'digg.comment', 'facebook.og'],
 		definition: {
 			operators : {
@@ -78,7 +78,7 @@ $(function() {
 
 			// reset the editor
 			$('#stream-title').val('');
-			this.init();
+			this.reset();
 		}
 	});
 	
