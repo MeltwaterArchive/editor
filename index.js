@@ -51,14 +51,6 @@ $(function() {
 	 */
 	var createEditor = new JCSDLGui('#jcsdl-create', {
 		cancelButton : false,
-		hideTargets : ['myspace', 'digg.comment', 'facebook.og'],
-		definition: {
-			operators : {
-				exists : {
-					description : 'Lorem ipsum dolor sit amet, this is overwritten by local editor definition of JCSDL! Do not worry ;)'
-				}
-			}
-		},
 		save : function(code) {
 			$('#jcsdl-create-output').val(code);
 
