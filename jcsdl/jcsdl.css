@@ -340,7 +340,7 @@
       /* various states of field selection */
       /* when a step is selected it also has shadow underneath */ }
       .jcsdl-container .jcsdl-filter-editor .jcsdl-step.jcsdl-filter-step-value {
-        padding-bottom: 30px; }
+        padding-bottom: 20px; }
       .jcsdl-container .jcsdl-filter-editor .jcsdl-step .jcsdl-filter-target-wrap {
         background: transparent url("img/select.png?12") no-repeat center -378px; }
       .jcsdl-container .jcsdl-filter-editor .jcsdl-step.selected .jcsdl-filter-target-wrap {
@@ -538,6 +538,7 @@
         color: #376491; }
   .jcsdl-container .jcsdl-input-slider {
     margin: 10px 30px;
+    margin-bottom: 0;
     text-align: center; }
     .jcsdl-container .jcsdl-input-slider .jcsdl-slider-controls {
       margin: 0 auto;
@@ -593,7 +594,7 @@
       display: block;
       overflow: hidden;
       position: relative;
-      min-height: 80px; }
+      min-height: 65px; }
       .jcsdl-container .jcsdl-input-slider .jcsdl-slider-wrap .jcsdl-slider-icon {
         display: none;
         float: left;

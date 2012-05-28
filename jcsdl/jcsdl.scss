@@ -296,7 +296,7 @@ $otherIconsSprite : 'img/icons-sprite-other.png?2';
 		.jcsdl-step {
 			overflow: hidden; text-align: center;
 
-			&.jcsdl-filter-step-value {padding-bottom: 30px;}
+			&.jcsdl-filter-step-value {padding-bottom: 20px;}
 
 			/* various states of target selection */
 			.jcsdl-filter-target-wrap {background: transparent url($selectSprite) no-repeat center -378px;} /* prompt selection */
@@ -437,7 +437,7 @@ $otherIconsSprite : 'img/icons-sprite-other.png?2';
 	}
 
 	.jcsdl-input-slider {
-		margin: 10px 30px;
+		margin: 10px 30px; margin-bottom: 0;
 		text-align: center;
 
 		.jcsdl-slider-controls {
@@ -467,7 +467,7 @@ $otherIconsSprite : 'img/icons-sprite-other.png?2';
 
 		.jcsdl-slider-wrap {
 			display: block; overflow: hidden; position: relative;
-			min-height: 80px;
+			min-height: 65px;
 
 			.jcsdl-slider-icon {
 				display: none; float: left; margin: 0 10px;
