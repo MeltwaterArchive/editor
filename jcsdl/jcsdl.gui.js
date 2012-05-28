@@ -663,6 +663,16 @@ JCSDLGui.prototype = {
 			.tipsy({gravity:'s'});
 		$filterRow.find('.operator').html($operator);
 
+		// case sensitive?
+		if (filter.cs) {
+			var $cs = this.getTemplate('filterOperator');
+			$cs.addClass('operator-cs icon-cs selected')
+				.prop('title', 'Case Sensitive')
+				.html('case sensitive')
+				.tipsy({gravity:'s'});
+			$filterRow.find('.jcsdl-filter-info.operator').append($cs);
+		}
+
 		// value (but not for 'exists' operator)
 		if (filter.operator !== 'exists') {
 			var $value = $();

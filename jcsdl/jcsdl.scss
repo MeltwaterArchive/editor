@@ -721,6 +721,13 @@ $otherIconsSprite : 'img/icons-sprite-other.png?2';
 		&.selected {@include opacity(1); border-color: $colorOrange;}
 	}
 
+	/* overrides for the list view */
+	.jcsdl-filter-info .jcsdl-icon.operator {
+		width: 46px; height: 46px; @include roundedCorner(2px, 0, 0, 2px);
+
+		&.icon-cs {@include rounded(0); border-left: 0; background-position: 0 -138px;		&.selected {background-position: 0 -322px;}}
+	}
+
 
 	/* IE fixes */
 	&.msie {
