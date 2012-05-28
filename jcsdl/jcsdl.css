@@ -692,7 +692,6 @@
     .jcsdl-container .jcsdl-map .jcsdl-map-instructions {
       display: block;
       margin: 0 auto;
-      margin-bottom: 10px;
       width: 70%;
       text-align: center;
       line-height: 1.3em; }
@@ -703,16 +702,19 @@
         color: #376491; }
     .jcsdl-container .jcsdl-map .jcsdl-map-coordinates,
     .jcsdl-container .jcsdl-map .jcsdl-map-area {
-      margin: 10px;
+      margin: 0 10px;
       text-align: center; }
       .jcsdl-container .jcsdl-map .jcsdl-map-coordinates span,
       .jcsdl-container .jcsdl-map .jcsdl-map-area span {
         margin-left: 10px; }
     .jcsdl-container .jcsdl-map .jcsdl-map-coordinates label {
       clear: both; }
-    .jcsdl-container .jcsdl-map .jcsdl-map-coordinates ul li {
-      display: inline;
-      margin: 5px; }
+    .jcsdl-container .jcsdl-map .jcsdl-map-coordinates ul {
+      margin: 0;
+      padding: 0; }
+      .jcsdl-container .jcsdl-map .jcsdl-map-coordinates ul li {
+        display: inline;
+        margin: 5px; }
   .jcsdl-container .jcsdl-filter-info.value.input-select {
     padding: 0;
     border: 0; }

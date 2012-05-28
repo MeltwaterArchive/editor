@@ -538,7 +538,7 @@ $otherIconsSprite : 'img/icons-sprite-other.png?2';
 		}
 
 		.jcsdl-map-instructions {
-			display: block; margin: 0 auto; margin-bottom: 10px; width: 70%;
+			display: block; margin: 0 auto; width: 70%;
 			text-align: center; line-height: 1.3em;
 		}
 
@@ -549,13 +549,16 @@ $otherIconsSprite : 'img/icons-sprite-other.png?2';
 
 		.jcsdl-map-coordinates,
 		.jcsdl-map-area {
-			margin: 10px; text-align: center;
+			margin: 0 10px; text-align: center;
 			span {margin-left: 10px;}
 		}
 
 		.jcsdl-map-coordinates {
 			label {clear: both;}
-			ul li {display: inline; margin: 5px;}
+			ul {
+				margin: 0; padding: 0;
+				li {display: inline; margin: 5px;}
+			}
 		}
 
 		.jcsdl-map-area {}
