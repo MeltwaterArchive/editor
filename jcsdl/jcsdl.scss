@@ -534,7 +534,7 @@ $otherIconsSprite : 'img/icons-sprite-other.png?2';
 
 		.jcsdl-map-canvas {
 			display: block; margin: 10px auto;
-			min-width: 320px; width: 90%; height: 350px;
+			min-width: 320px; max-width: 600px; width: 90%; height: 350px;
 		}
 
 		.jcsdl-map-instructions {
