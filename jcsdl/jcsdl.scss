@@ -226,11 +226,7 @@ $otherIconsSprite : 'img/icons-sprite-other.png?2';
 			.jcsdl-filter-operator {
 				margin: 31px 0; border-color: $borderColor;
 
-				&.operator-contains,
-				&.operator-substr,
-				&.operator-contains_any,
-				&.operator-in,
-				&.operator-equals {display: none;}
+				&.input-select {display: none;}
 			}
 			.jcsdl-filter-info.operator {margin: 0 5px; margin-right: -3px;}
 			.jcsdl-filter-info.value {
@@ -259,15 +255,7 @@ $otherIconsSprite : 'img/icons-sprite-other.png?2';
 				background: none; line-height: 20px;
 			}
 			.jcsdl-filter-field {margin: 0 10px;}
-			.jcsdl-filter-operator {
-				font-weight: bold; border: 0 !important;
-
-				&.operator-contains,
-				&.operator-substr,
-				&.operator-contains_any,
-				&.operator-in,
-				&.operator-equals {display: none;}
-			}
+			.jcsdl-filter-operator {font-weight: bold; border: 0 !important;}
 
 			.jcsdl-filter-options {
 				position: relative; float: right;

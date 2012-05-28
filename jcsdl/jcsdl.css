@@ -257,7 +257,7 @@
   .jcsdl-container .jcsdl-filters-list.expanded .jcsdl-filter .jcsdl-filter-operator {
     margin: 31px 0;
     border-color: #dcdcdc; }
-    .jcsdl-container .jcsdl-filters-list.expanded .jcsdl-filter .jcsdl-filter-operator.operator-contains, .jcsdl-container .jcsdl-filters-list.expanded .jcsdl-filter .jcsdl-filter-operator.operator-substr, .jcsdl-container .jcsdl-filters-list.expanded .jcsdl-filter .jcsdl-filter-operator.operator-contains_any, .jcsdl-container .jcsdl-filters-list.expanded .jcsdl-filter .jcsdl-filter-operator.operator-in, .jcsdl-container .jcsdl-filters-list.expanded .jcsdl-filter .jcsdl-filter-operator.operator-equals {
+    .jcsdl-container .jcsdl-filters-list.expanded .jcsdl-filter .jcsdl-filter-operator.input-select {
       display: none; }
   .jcsdl-container .jcsdl-filters-list.expanded .jcsdl-filter .jcsdl-filter-info.operator {
     margin: 0 5px;
@@ -292,8 +292,6 @@
   .jcsdl-container .jcsdl-filters-list.collapsed .jcsdl-filter .jcsdl-filter-operator {
     font-weight: bold;
     border: 0 !important; }
-    .jcsdl-container .jcsdl-filters-list.collapsed .jcsdl-filter .jcsdl-filter-operator.operator-contains, .jcsdl-container .jcsdl-filters-list.collapsed .jcsdl-filter .jcsdl-filter-operator.operator-substr, .jcsdl-container .jcsdl-filters-list.collapsed .jcsdl-filter .jcsdl-filter-operator.operator-contains_any, .jcsdl-container .jcsdl-filters-list.collapsed .jcsdl-filter .jcsdl-filter-operator.operator-in, .jcsdl-container .jcsdl-filters-list.collapsed .jcsdl-filter .jcsdl-filter-operator.operator-equals {
-      display: none; }
   .jcsdl-container .jcsdl-filters-list.collapsed .jcsdl-filter .jcsdl-filter-options {
     position: relative;
     float: right;

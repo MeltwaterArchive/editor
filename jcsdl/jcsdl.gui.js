@@ -690,6 +690,7 @@ JCSDLGui.prototype = {
 			}
 
 			$filterRow.find('.value').addClass('input-' + input).html($value);
+			$filterRow.find('.operator').addClass('input-' + input);
 
 		} else {
 			$filterRow.find('.value').remove();
