@@ -316,17 +316,17 @@
       float: right;
       background-position: -85px -89px; }
     .jcsdl-container .jcsdl-carousel-scroll:hover {
-      -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
-      filter: alpha(opacity=80);
-      -moz-opacity: 0.8;
-      -khtml-opacity: 0.8;
-      opacity: 0.8; }
+      -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=60)";
+      filter: alpha(opacity=60);
+      -moz-opacity: 0.6;
+      -khtml-opacity: 0.6;
+      opacity: 0.6; }
     .jcsdl-container .jcsdl-carousel-scroll.inactive {
-      -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
-      filter: alpha(opacity=50);
-      -moz-opacity: 0.5;
-      -khtml-opacity: 0.5;
-      opacity: 0.5; }
+      -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
+      filter: alpha(opacity=30);
+      -moz-opacity: 0.3;
+      -khtml-opacity: 0.3;
+      opacity: 0.3; }
   .jcsdl-container .jcsdl-filter-editor {
     /* filter editor footer */ }
     .jcsdl-container .jcsdl-filter-editor .jcsdl-step {

@@ -287,8 +287,8 @@ $otherIconsSprite : 'img/icons-sprite-other.png?2';
 			background-position: -85px -89px;
 		}
 
-		&:hover {@include opacity(0.8);}
-		&.inactive {@include opacity(0.5);}
+		&:hover {@include opacity(0.6);}
+		&.inactive {@include opacity(0.3);}
 	}
 
 	/* editor steps */
