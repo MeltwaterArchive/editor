@@ -335,7 +335,7 @@ JCSDLGuiInputs.prototype = {
 			var $view = this.getTemplate('valueInput_geobox');
 			$view.append(this.getTemplate('valueInput_geo_map'));
 			$view.find('.jcsdl-map-coordinates').html(this.getTemplate('valueInput_geobox_coordinates'));
-			$view.find('.jcsdl-map-instructions').html(this.definition.inputs.geo_box.instructions);
+			$view.find('.jcsdl-map-instructions').html(this.definition.inputs.geo_box.instructions[0]);
 			loadGoogleMapsApi(this.gui, this.exec, ['geo_box', 'load', [fieldInfo, $view]]);
 			return $view;
 		},
@@ -391,6 +391,8 @@ JCSDLGuiInputs.prototype = {
 					self.exec('geo_box', 'drawRectangle', [map, rect, coords]);
 					$view.data('bothMarkersVisible', true);
 				}
+
+				$view.find('.jcsdl-map-instructions').html(self.definition.inputs.geo_box.instructions[coords.length]);
 			});
 
 			/**
@@ -438,6 +440,8 @@ JCSDLGuiInputs.prototype = {
 				$view.data('bothMarkersVisible', false);
 
 				$view.find('.jcsdl-map-area span').html('0 km<sup>2</sup>');
+
+				$view.find('.jcsdl-map-instructions').html(self.definition.inputs.geo_box.instructions[0]);
 			});
 		},
 
@@ -468,6 +472,8 @@ JCSDLGuiInputs.prototype = {
 
 				// calculate the area size
 				self.exec('geo_box', 'updateInfo', [$geoView, rect]);
+
+				$view.find('.jcsdl-map-instructions').html(self.definition.inputs.geo_box.instructions[2]);
 				
 			}, this.gui.config.animate + 200); // make sure everything is properly loaded
 		},
@@ -600,7 +606,7 @@ JCSDLGuiInputs.prototype = {
 			var $view = this.getTemplate('valueInput_georadius');
 			$view.append(this.getTemplate('valueInput_geo_map'));
 			$view.find('.jcsdl-map-coordinates').html(this.getTemplate('valueInput_georadius_coordinates'));
-			$view.find('.jcsdl-map-instructions').html(this.definition.inputs.geo_radius.instructions);
+			$view.find('.jcsdl-map-instructions').html(this.definition.inputs.geo_radius.instructions[0]);
 			loadGoogleMapsApi(this.gui, this.exec, ['geo_radius', 'load', [fieldInfo, $view]]);
 			return $view;
 		},
@@ -629,6 +635,8 @@ JCSDLGuiInputs.prototype = {
 			var radiusMarker = new google.maps.Marker(markerOptions);
 			$view.data('radiusMarker', radiusMarker);
 
+			$view.data('center', false);
+
 			// initialize places autocomplete search
 			this._geo.initSearch($view);
 
@@ -638,11 +646,9 @@ JCSDLGuiInputs.prototype = {
 			 * @listener
 			 */
 			google.maps.event.addListener(map, 'click', function(ev) {
-				var center = circle.getCenter();
-
 				// the center has already been marked, so this is a click for the radius
-				if (typeof(center) !== 'undefined') {
-					var radius = google.maps.geometry.spherical.computeDistanceBetween(center, ev.latLng);
+				if ($view.data('center')) {
+					var radius = google.maps.geometry.spherical.computeDistanceBetween(circle.getCenter(), ev.latLng);
 					circle.setRadius(radius);
 					circle.setMap(map);
 
@@ -652,6 +658,8 @@ JCSDLGuiInputs.prototype = {
 
 					self.exec('geo_radius', 'updateInfo', [$view, circle]);
 
+					$view.find('.jcsdl-map-instructions').html(self.definition.inputs.geo_radius.instructions[2]);
+
 				// the center hasn't been marked yet, so this is the click for it
 				} else {
 					circle.setCenter(ev.latLng);
@@ -659,6 +667,10 @@ JCSDLGuiInputs.prototype = {
 					// drop the corresponding marker
 					centerMarker.setPosition(ev.latLng);
 					centerMarker.setMap(map);
+
+					$view.data('center', true);
+
+					$view.find('.jcsdl-map-instructions').html(self.definition.inputs.geo_radius.instructions[1]);
 				}
 			});
 
@@ -705,10 +717,14 @@ JCSDLGuiInputs.prototype = {
 				ev.preventDefault();
 				ev.target.blur();
 
+				circle.setCenter(null);
 				circle.setMap(null);
 				centerMarker.setMap(null);
 				radiusMarker.setMap(null);
+				$view.data('center', false);
 				$view.find('.jcsdl-map-area span').html('0 km<sup>2</sup>');
+
+				$view.find('.jcsdl-map-instructions').html(self.definition.inputs.geo_radius.instructions[0]);
 			});
 		},
 
@@ -739,10 +755,14 @@ JCSDLGuiInputs.prototype = {
 				circle.setRadius(radius);
 				circle.setMap(map); 
 
+				$geoView.data('center', true);
+
 				map.fitBounds(circle.getBounds());
 
 				// calculate the area size
 				self.exec('geo_radius', 'updateInfo', [$geoView, circle]);
+
+				$view.find('.jcsdl-map-instructions').html(self.definition.inputs.geo_radius.instructions[2]);
 				
 			}, this.gui.config.animate + 200); // make sure everything is properly loaded
 		},
@@ -789,13 +809,14 @@ JCSDLGuiInputs.prototype = {
 			var $view = this.getTemplate('valueInput_geopolygon');
 			$view.append(this.getTemplate('valueInput_geo_map'));
 			$view.find('.jcsdl-map-coordinates').html(this.getTemplate('valueInput_geopolygon_coordinates'));
-			$view.find('.jcsdl-map-instructions').html(this.definition.inputs.geo_polygon.instructions);
+			$view.find('.jcsdl-map-instructions').html(this.definition.inputs.geo_polygon.instructions[0]);
 			loadGoogleMapsApi(this.gui, this.exec, ['geo_polygon', 'load', [fieldInfo, $view]]);
 			return $view;
 		},
 
 		load : function(fieldInfo, $view) {
 			var self = this;
+
 			// initialize the map
 			var map = new google.maps.Map($view.find('.jcsdl-map-canvas')[0], jcsdlMapsOptions);
 			$view.data('map', map);
@@ -822,6 +843,9 @@ JCSDLGuiInputs.prototype = {
 			google.maps.event.addListener(map, 'click', function(ev) {
 				var marker = self.exec('geo_polygon', 'addTip', [$view, ev.latLng.lat(), ev.latLng.lng()]);
 				markers.push(marker);
+
+				var instr = (markers.length <= 3) ? markers.length : 3;
+				$view.find('.jcsdl-map-instructions').html(self.definition.inputs.geo_polygon.instructions[instr]);
 			});
 
 			/**
@@ -838,7 +862,11 @@ JCSDLGuiInputs.prototype = {
 				});
 				polygon.getPath().clear();
 
+				markers = [];
+
 				self.exec('geo_polygon', 'updateInfo', [$view, polygon]);
+
+				$view.find('.jcsdl-map-instructions').html(self.definition.inputs.geo_polygon.instructions[0]);
 			});
 		},
 
@@ -866,6 +894,8 @@ JCSDLGuiInputs.prototype = {
 
 				// calculate the area size
 				self.exec('geo_polygon', 'updateInfo', [$geoView, polygon]);
+
+				$view.find('.jcsdl-map-instructions').html(self.definition.inputs.geo_polygon.instructions[3]);
 				
 			}, this.gui.config.animate + 200); // make sure everything is properly loaded
 		},

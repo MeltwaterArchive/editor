@@ -291,15 +291,28 @@ var JCSDLDefinition = {
 		},
 		geo_box : {
 			operators : ['geo_box'],
-			instructions : 'Click on the map to mark a corner of the box and then click again to mark another. You can drag the markers around to change the box coordinates.'
+			instructions : [
+				'Click on the map to mark first corner of the box.',
+				'Now click on the map to mark the second corner of the box.',
+				'You can drag the markers around to change the box coordinates.'
+			]
 		},
 		geo_radius : {
 			operators : ['geo_radius'],
-			instructions : 'Click on the map to mark the center of the selection and then click again to set its radius. You can drag the markers around to move the center of the circle or the radius.'
+			instructions : [
+				'Click on the map to mark the center of the selection.',
+				'Click again to set the radius.', 
+				'You can drag the markers around to move the center of the circle or the radius.'
+			]
 		},
 		geo_polygon : {
 			operators : ['geo_polygon'],
-			instructions : 'Click on the map to mark tips of the polygon selection. You can drag the markers around to edit the selection or double-click them to remove.'
+			instructions : [
+				'Click on the map to mark first tip of the polygon selection.',
+				'Click on the map to mark the second tip of the polygon.',
+				'Click on the map to mark the third tip and close the shape.',
+				'Click on the map to add new markers or drag them around. Double-click a marker to remove it.'
+			]
 		}
 	}
 
