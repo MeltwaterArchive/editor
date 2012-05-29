@@ -232,11 +232,16 @@
  */
 (function($) {
 
-	$.fn.jcsdlNumberMask = function(allowFloat) {
+	/**
+	 * @param  {Boolean} fl  Allow floats?
+	 * @param  {Boolean} arr Allow arrays? (commas)
+	 * @return {jQuery}
+	 */
+	$.fn.jcsdlNumberMask = function(fl, arr) {
 		this.each(function() {
 			$(this).keydown(function(ev) {
 				// dot can be entered only once (if float is allowed)
-				if ((ev.which == 190 || ev.which == 110) && (($(this).val().indexOf('.') >= 0) || !allowFloat)) {
+				if ((ev.which == 190 || ev.which == 110) && (($(this).val().indexOf('.') >= 0) || !fl)) {
 					ev.preventDefault();
 					return;
 				}
@@ -251,10 +256,14 @@
 		        	ev.which == 46 || ev.which == 8 || ev.which == 9 || ev.which == 27 ||
 		        	// Allow: dot (and dot from numpad)
 		        	ev.which == 190 || ev.which == 110 ||
+		        	// Allow: comma (if array allowed)
+		        	(ev.which == 188 && arr) ||
 		            // Allow: Ctrl+A
 		            (ev.which == 65 && ev.ctrlKey === true) || 
 		            // Allow: home, end, left, right
-		            (ev.which >= 35 && ev.which <= 39)
+		            (ev.which >= 35 && ev.which <= 39) ||
+		            // Allow: enter
+		            ev.which == 13
 		        ) {
 	                // let it happen, don't do anything
 	                return;
@@ -313,6 +322,8 @@
 		var self = this;
 
 		this.delimeter = options.delimeter;
+		this.numbers = options.numbers;
+		this.floats = options.floats;
 
 		this.$original = $el;
 		this.$original.data('jcsdlTagInputEnabled', true);
@@ -332,6 +343,10 @@
 			width : 'auto',
 			textAlign: 'left'
 		}).appendTo(this.$inputWrap);
+
+		if (this.numbers) {
+			this.$input.jcsdlNumberMask(this.floats, true);
+		}
 
 		this.update();
 
@@ -410,6 +425,9 @@
 		/* vars */
 		updating : false,
 		delimeter : ',',
+		numbers : false,
+		numbersArrVal : [],
+		floats : false,
 
 		/* functions */
 		addTag : function(val) {
@@ -451,6 +469,7 @@
 			this.reposition();
 		},
 
+		/* public functions */
 		update : function() {
 			// load from the current original value
 			var origVal = this.$original.val();
@@ -504,15 +523,42 @@
 			});
 		},
 
-		/* public functions */
 		enable : function() {
+			if (this.numbers) {
+				if (!this.$original.data('jcsdlTagInputEnabled')) {
+					this.numbersArrVal[0] = this.$original.val();
+				} else {
+					this.numbersArrVal = this.$original.val().split(this.delimeter);
+				}
+			}
+
 			this.$original.data('jcsdlTagInputEnabled', true);
+
+			if (this.numbers) {
+				this.$original.val(this.numbersArrVal.join(this.delimeter));
+			}
+
 			this.$original.hide();
 			this.$wrap.show();
 		},
 
 		disable : function() {
+			if (this.numbers) {
+				var val = '';
+				if (this.$original.data('jcsdlTagInputEnabled')) {
+					this.numbersArrVal = this.$original.val().split(this.delimeter);
+					val = this.numbersArrVal[0];
+				} else {
+					val = this.$original.val();
+				}
+			}
+
 			this.$original.data('jcsdlTagInputEnabled', false);
+
+			if (this.numbers) {
+				this.$original.val(val);
+			}
+
 			this.$original.show();
 			this.$wrap.hide();
 		}
@@ -541,7 +587,9 @@
 		}
 
 		options = $.extend({}, {
-			delimeter : ','
+			delimeter : ',',
+			numbers : false,
+			floats : false
 		}, options);
 
 		this.each(function() {get($(this));});

@@ -39,17 +39,44 @@ JCSDLGuiInputs.prototype = {
 	 */
 	number : {
 		init : function(fieldInfo) {
-			var $view = this.getTemplate('valueInput_number');
-			$view.find('input[type=text]').jcsdlNumberMask();
+			var $view = this.getTemplate('valueInput_number'),
+				fl = (fieldInfo.type == 'float'),
+				arr = ($.inArray('in', fieldInfo.operators) >= 0);
+			var $input = $view.find('input[type=text]');
+
+			$input.jcsdlNumberMask(fl);
+
+			if (arr) {
+				$input.jcsdlTagInput({
+					numbers : true,
+					floats : fl
+				});
+			}
+
 			return $view;
 		},
 
 		setValue : function($view, fieldInfo, value) {
-			$view.find('input[type=text]').val(value);
+			$view.find('input[type=text]:first').val(value);
 		},
 
 		getValue : function($view, fieldInfo) {
-			return $view.find('input[type=text]').val();
+			return $view.find('input[type=text]:first').val();
+		},
+
+		displayValue : function(fieldInfo, value, filter) {
+			if (filter.operator !== 'in') return value;
+
+			var fl = (fieldInfo.type == 'float');
+			value = value.split(',');
+
+			var showValues = value.slice(0, 3);
+			$.each(showValues, function(i, val) {
+				showValues[i] = (fl) ? parseFloat(val).format(2) : val;
+			});
+
+			var more = (showValues.length < value.length) ? ' and ' + (value.length - showValues.length) + ' more...' : '';
+			return showValues.join(', ') + more;
 		}
 	},
 

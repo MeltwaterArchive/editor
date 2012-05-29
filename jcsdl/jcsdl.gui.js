@@ -941,8 +941,8 @@ JCSDLGui.prototype = {
 				$valueInput.fadeIn(self.config.animate);
 			}
 
-			// for text input field enable/disable the tag input
-			if (inputType == 'text') {
+			// for text or number input field enable/disable the tag input
+			if (inputType == 'text' || inputType == 'number') {
 				var opName = $operator.data('name');
 
 				var tagAction = ($.inArray(opName, inputConfig.arrayOperators) >= 0) ? 'enable' : 'disable';

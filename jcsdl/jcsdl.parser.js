@@ -263,11 +263,20 @@ JCSDLParser.prototype = {
 		var parsedValue = '';
 		
 		if (fieldInfo.type == 'int') {
-			if (isNaN(value)) {
+			if (operator !== 'in' && isNaN(value)) {
 				this.error('This field value is suppose to be a Number, String given.', value, fieldInfo);
 				return false;
+
+			} else if (operator == 'in') {
+				value = value.split(',');
+				$.each(value, function(i, val) {
+					value[i] == parseInt(val);
+				});
+				parsedValue = '[' + value.join(',') + ']';
+
+			} else {
+				parsedValue = value;
 			}
-			parsedValue = value;
 
 		} else {
 			var escapeRegEx = ($.inArray(operator, ['regex_partial', 'regex_exact']) >= 0) ? true : false;
@@ -286,7 +295,11 @@ JCSDLParser.prototype = {
 	 */
 	valueFromCSDL : function(fieldInfo, value, operator) {
 		if (fieldInfo.type == 'int') {
+			if (operator == 'in') {
+				value = value.substr(1, value.length - 2);
+			}
 			return value;
+			
 		} else {
 			var escapeRegEx = ($.inArray(operator, ['regex_partial', 'regex_exact']) >= 0) ? true : false;
 			return value.unescapeCsdl(escapeRegEx);
@@ -299,7 +312,7 @@ JCSDLParser.prototype = {
 	 * @param  {String} code    Code that caused the error.
 	 */
 	error : function(message, code) {
-		this.gui.showError.apply(gui, arguments);
+		this.gui.showError.apply(this.gui, arguments);
 	},
 
 	/* ##########################
