@@ -3,6 +3,8 @@ var JCSDLParser = function(gui) {
 };
 
 JCSDLParser.prototype = {
+	v : '1.0',
+
 	/* ##########################
 	 * Loading JCSDL
 	 * ########################## */
@@ -13,6 +15,7 @@ JCSDLParser.prototype = {
 	 */
 	parseJCSDL : function(code) {
 		var lines = code.split("\n");
+		var versionLine = lines.shift();
 		var masterLine = lines.shift();
 		var endLine = lines.pop();
 
@@ -132,7 +135,7 @@ JCSDLParser.prototype = {
 		var hash = this.encodeJCSDL(output, logic);
 
 		// add master comments to the final output
-		output = '// JCSDL_MASTER ' + hash + ' ' + logic + "\n" + output + "\n// JCSDL_MASTER_END";
+		output = '// JCSDL_VERSION ' + this.v + "\n" + '// JCSDL_MASTER ' + hash + ' ' + logic + "\n" + output + "\n// JCSDL_MASTER_END";
 
 		return output;
 	},
@@ -299,7 +302,7 @@ JCSDLParser.prototype = {
 				value = value.substr(1, value.length - 2);
 			}
 			return value;
-			
+
 		} else {
 			var escapeRegEx = ($.inArray(operator, ['regex_partial', 'regex_exact']) >= 0) ? true : false;
 			return value.unescapeCsdl(escapeRegEx);
