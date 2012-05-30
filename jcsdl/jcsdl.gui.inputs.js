@@ -850,7 +850,8 @@ JCSDLGuiInputs.prototype = {
 
 			// initialize the polygon that we're gonna draw
 			var opt = $.extend({}, this.gui.config.mapsOverlay, {
-				paths : [[]]
+				paths : [[]],
+				editable : true
 			});
 			var polygon = new google.maps.Polygon(opt);
 			$view.data('polygon', polygon);

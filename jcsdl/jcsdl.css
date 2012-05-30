@@ -741,7 +741,7 @@
     width: 110px;
     height: 110px;
     margin-right: 35px;
-    background: url("img/icons-sprite-targets.png?6") no-repeat 0 0; }
+    background: url("img/icons-sprite-targets.png?7") no-repeat 0 0; }
     .jcsdl-container .jcsdl-icon.target.target-interaction {
       background-position: 0 0; }
       .jcsdl-container .jcsdl-icon.target.target-interaction.selected {
@@ -766,8 +766,52 @@
       background-position: -550px 0; }
       .jcsdl-container .jcsdl-icon.target.target-klout.selected {
         background-position: -550px -110px; }
+    .jcsdl-container .jcsdl-icon.target.target-amazon {
+      background-position: -660px 0; }
+      .jcsdl-container .jcsdl-icon.target.target-amazon.selected {
+        background-position: -660px -110px; }
+    .jcsdl-container .jcsdl-icon.target.target-youtube {
+      background-position: -770px 0; }
+      .jcsdl-container .jcsdl-icon.target.target-youtube.selected {
+        background-position: -770px -110px; }
+    .jcsdl-container .jcsdl-icon.target.target-flickr {
+      background-position: -880px 0; }
+      .jcsdl-container .jcsdl-icon.target.target-flickr.selected {
+        background-position: -880px -110px; }
+    .jcsdl-container .jcsdl-icon.target.target-blog {
+      background-position: -990px 0; }
+      .jcsdl-container .jcsdl-icon.target.target-blog.selected {
+        background-position: -990px -110px; }
+    .jcsdl-container .jcsdl-icon.target.target-video {
+      background-position: -1100px 0; }
+      .jcsdl-container .jcsdl-icon.target.target-video.selected {
+        background-position: -1100px -110px; }
+    .jcsdl-container .jcsdl-icon.target.target-reddit {
+      background-position: -1210px 0; }
+      .jcsdl-container .jcsdl-icon.target.target-reddit.selected {
+        background-position: -1210px -110px; }
+    .jcsdl-container .jcsdl-icon.target.target-imdb {
+      background-position: -1320px 0; }
+      .jcsdl-container .jcsdl-icon.target.target-imdb.selected {
+        background-position: -1320px -110px; }
+    .jcsdl-container .jcsdl-icon.target.target-dailymotion {
+      background-position: -1430px 0; }
+      .jcsdl-container .jcsdl-icon.target.target-dailymotion.selected {
+        background-position: -1430px -110px; }
+    .jcsdl-container .jcsdl-icon.target.target-newscred {
+      background-position: -1540px 0; }
+      .jcsdl-container .jcsdl-icon.target.target-newscred.selected {
+        background-position: -1540px -110px; }
+    .jcsdl-container .jcsdl-icon.target.target-board {
+      background-position: -1650px 0; }
+      .jcsdl-container .jcsdl-icon.target.target-board.selected {
+        background-position: -1650px -110px; }
+    .jcsdl-container .jcsdl-icon.target.target-topix {
+      background-position: -1760px 0; }
+      .jcsdl-container .jcsdl-icon.target.target-topix.selected {
+        background-position: -1760px -110px; }
   .jcsdl-container .jcsdl-icon.field {
-    background: url("img/icons-sprite-fields.png?6") no-repeat 0 0; }
+    background: url("img/icons-sprite-fields.png?7") no-repeat 0 0; }
     .jcsdl-container .jcsdl-icon.field.icon-geo {
       background-position: 0 0; }
       .jcsdl-container .jcsdl-icon.field.icon-geo.selected {
@@ -948,10 +992,34 @@
       background-position: -480px -640px; }
       .jcsdl-container .jcsdl-icon.field.icon-gender.selected {
         background-position: -560px -640px; }
+    .jcsdl-container .jcsdl-icon.field.icon-commentslink {
+      background-position: -640px -640px; }
+      .jcsdl-container .jcsdl-icon.field.icon-commentslink.selected {
+        background-position: -720px -640px; }
+    .jcsdl-container .jcsdl-icon.field.icon-authors {
+      background-position: 0 -720px; }
+      .jcsdl-container .jcsdl-icon.field.icon-authors.selected {
+        background-position: -80px -720px; }
+    .jcsdl-container .jcsdl-icon.field.icon-author-name {
+      background-position: -160px -720px; }
+      .jcsdl-container .jcsdl-icon.field.icon-author-name.selected {
+        background-position: -240px -720px; }
+    .jcsdl-container .jcsdl-icon.field.icon-duration {
+      background-position: -320px -720px; }
+      .jcsdl-container .jcsdl-icon.field.icon-duration.selected {
+        background-position: -400px -720px; }
+    .jcsdl-container .jcsdl-icon.field.icon-tags {
+      background-position: -480px -720px; }
+      .jcsdl-container .jcsdl-icon.field.icon-tags.selected {
+        background-position: -560px -720px; }
     .jcsdl-container .jcsdl-icon.field.icon-tweet {
       background-position: -640px -720px; }
       .jcsdl-container .jcsdl-icon.field.icon-tweet.selected {
         background-position: -720px -720px; }
+    .jcsdl-container .jcsdl-icon.field.icon-post {
+      background-position: 0 -800px; }
+      .jcsdl-container .jcsdl-icon.field.icon-post.selected {
+        background-position: -80px -800px; }
     .jcsdl-container .jcsdl-icon.field.icon-place {
       background-position: -160px -800px; }
       .jcsdl-container .jcsdl-icon.field.icon-place.selected {
@@ -992,6 +1060,18 @@
       background-position: 0 -960px; }
       .jcsdl-container .jcsdl-icon.field.icon-country.selected {
         background-position: -80px -960px; }
+    .jcsdl-container .jcsdl-icon.field.icon-article {
+      background-position: -160px -960px; }
+      .jcsdl-container .jcsdl-icon.field.icon-article.selected {
+        background-position: -240px -960px; }
+    .jcsdl-container .jcsdl-icon.field.icon-video-caption {
+      background-position: -320px -960px; }
+      .jcsdl-container .jcsdl-icon.field.icon-video-caption.selected {
+        background-position: -400px -960px; }
+    .jcsdl-container .jcsdl-icon.field.icon-video {
+      background-position: -480px -960px; }
+      .jcsdl-container .jcsdl-icon.field.icon-video.selected {
+        background-position: -560px -960px; }
     .jcsdl-container .jcsdl-icon.field.icon-elapsed {
       background-position: -640px -960px; }
       .jcsdl-container .jcsdl-icon.field.icon-elapsed.selected {
@@ -1008,6 +1088,14 @@
       background-position: -320px -1040px; }
       .jcsdl-container .jcsdl-icon.field.icon-status.selected {
         background-position: -400px -1040px; }
+    .jcsdl-container .jcsdl-icon.field.icon-videolink {
+      background-position: -480px -1040px; }
+      .jcsdl-container .jcsdl-icon.field.icon-videolink.selected {
+        background-position: -560px -1040px; }
+    .jcsdl-container .jcsdl-icon.field.icon-thumbnail {
+      background-position: -640px -1040px; }
+      .jcsdl-container .jcsdl-icon.field.icon-thumbnail.selected {
+        background-position: -720px -1040px; }
     .jcsdl-container .jcsdl-icon.field.icon-profileviews {
       background-position: 0 -1120px; }
       .jcsdl-container .jcsdl-icon.field.icon-profileviews.selected {
@@ -1016,6 +1104,10 @@
       background-position: -160px -1120px; }
       .jcsdl-container .jcsdl-icon.field.icon-photos.selected {
         background-position: -240px -1120px; }
+    .jcsdl-container .jcsdl-icon.field.icon-image {
+      background-position: -320px -1120px; }
+      .jcsdl-container .jcsdl-icon.field.icon-image.selected {
+        background-position: -400px -1120px; }
     .jcsdl-container .jcsdl-icon.field.icon-verb {
       background-position: -480px -1120px; }
       .jcsdl-container .jcsdl-icon.field.icon-verb.selected {
@@ -1044,6 +1136,30 @@
       background-position: -640px -1200px; }
       .jcsdl-container .jcsdl-icon.field.icon-message.selected {
         background-position: -720px -1200px; }
+    .jcsdl-container .jcsdl-icon.field.icon-attribution-link {
+      background-position: 0 -1280px; }
+      .jcsdl-container .jcsdl-icon.field.icon-attribution-link.selected {
+        background-position: -80px -1280px; }
+    .jcsdl-container .jcsdl-icon.field.icon-attribution-text {
+      background-position: -160px -1280px; }
+      .jcsdl-container .jcsdl-icon.field.icon-attribution-text.selected {
+        background-position: -240px -1280px; }
+    .jcsdl-container .jcsdl-icon.field.icon-thread {
+      background-position: -320px -1280px; }
+      .jcsdl-container .jcsdl-icon.field.icon-thread.selected {
+        background-position: -400px -1280px; }
+    .jcsdl-container .jcsdl-icon.field.icon-sentiment {
+      background-position: -480px -1280px; }
+      .jcsdl-container .jcsdl-icon.field.icon-sentiment.selected {
+        background-position: -560px -1280px; }
+    .jcsdl-container .jcsdl-icon.field.icon-contenttype {
+      background-position: -640px -1280px; }
+      .jcsdl-container .jcsdl-icon.field.icon-contenttype.selected {
+        background-position: -720px -1280px; }
+    .jcsdl-container .jcsdl-icon.field.icon-signature {
+      background-position: 0 -1360px; }
+      .jcsdl-container .jcsdl-icon.field.icon-signature.selected {
+        background-position: -80px -1360px; }
   .jcsdl-container .jcsdl-icon.input {
     background: url("img/icons-sprite-other.png?2") no-repeat 0 0; }
     .jcsdl-container .jcsdl-icon.input.icon-geo_radius {
