@@ -105,6 +105,10 @@ JCSDLGuiInputs.prototype = {
 			$view.find('.jcsdl-input-select-option').bind('click touchstart', function(ev) {
 				ev.preventDefault();
 				ev.target.blur();
+
+				if (fieldInfo.single) {
+					$view.find('.jcsdl-input-select-option').removeClass('selected');
+				}
 				$(this).toggleClass('selected');
 			});
 
