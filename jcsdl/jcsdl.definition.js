@@ -205,6 +205,7 @@ var JCSDLDefinition = {
 			fields : {
 				author : {
 					name : 'Author',
+					icon : 'user',
 					fields : {
 						link : {name: 'Author Link', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
 						name : {name: 'Author Name', icon: 'author-name', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']}
@@ -224,6 +225,7 @@ var JCSDLDefinition = {
 			fields : {
 				author : {
 					name : 'Author',
+					icon : 'user',
 					fields : {
 						avatar : {name: 'Avatar', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
 						link : {name: 'Author Link', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
@@ -252,6 +254,7 @@ var JCSDLDefinition = {
 			fields : {
 				author : {
 					name : 'Author',
+					icon : 'user',
 					fields : {
 						age : {name: 'Age', type: 'int', input: 'slider', operators: ['exists', 'equals', 'greaterThan', 'lowerThan'], min : 7, max : 100, 'default' : 21},
 						avatar : {name: 'Avatar', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
@@ -279,6 +282,7 @@ var JCSDLDefinition = {
 			fields : {
 				author : {
 					name : 'Author',
+					icon : 'user',
 					fields : {
 						link : {name: 'Author Link', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
 						name : {name: 'Author Name', icon: 'author-name', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']}
@@ -300,6 +304,7 @@ var JCSDLDefinition = {
 			fields : {
 				author : {
 					name : 'Author',
+					icon : 'user',
 					fields : {
 						link : {name: 'Author Link', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
 						name : {name: 'Author Name', icon: 'author-name', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
@@ -320,6 +325,7 @@ var JCSDLDefinition = {
 			fields : {
 				author : {
 					name : 'Author',
+					icon : 'user',
 					fields : {
 						link : {name: 'Author Link', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
 						name : {name: 'Author Name', icon: 'author-name', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']}
@@ -356,7 +362,7 @@ var JCSDLDefinition = {
 						caption : {name: 'Caption', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']}
 					}
 				},
-				'source-domain' : {name: 'Source Domain', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				'source-domain' : {name: 'Source Domain', icon: 'domain', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
 				type : {name: 'Type', type: 'string', input: 'select', single: true, options: {'article':'Article','video':'Video','image':'Image'}, operators: ['exists', 'equals', 'different']},
 				video : {
 					name : 'Video',
@@ -376,6 +382,7 @@ var JCSDLDefinition = {
 			fields : {
 				author : {
 					name : 'Author',
+					icon : 'user',
 					fields : {
 						link : {name: 'Author Link', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
 						name : {name: 'Author Name', icon: 'author-name', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']}
@@ -395,6 +402,7 @@ var JCSDLDefinition = {
 			fields : {
 				author : {
 					name : 'Author',
+					icon : 'user',
 					fields : {
 						location : {name: 'Location', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
 						name : {name: 'Author Name', icon: 'author-name', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']}
@@ -414,6 +422,7 @@ var JCSDLDefinition = {
 			fields : {
 				author : {
 					name : 'Author',
+					icon : 'user',
 					fields : {
 						avatar : {name: 'Avatar', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
 						link : {name: 'Author Link', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
@@ -440,6 +449,7 @@ var JCSDLDefinition = {
 			fields : {
 				author : {
 					name : 'Author',
+					icon : 'user',
 					fields : {
 						link : {name: 'Author Link', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
 						name : {name: 'Author Name', icon: 'author-name', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']}
@@ -454,6 +464,17 @@ var JCSDLDefinition = {
 				title : {name: 'Title', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
 				type : {name: 'Type', type: 'string', input: 'select', single: true, options: {'video':'Video','comment':'Comment'}, operators: ['exists', 'equals', 'different']},
 				videolink : {name: 'Video Link', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']}
+			}
+		},
+
+		klout : {
+			name : 'Klout',
+			fields : {
+				amplification : {name: 'Amplification', type: 'int', input: 'slider', operators: ['exists', 'equals', 'greaterThan', 'lowerThan'], min: 0, max: 100, 'default': 50},
+				network : {name: 'Network Effect', type: 'int', input: 'slider', operators: ['exists', 'equals', 'greaterThan', 'lowerThan'], min: 0, max: 100, 'default': 50},
+				score : {name: 'Score', type: 'int', input: 'slider', operators: ['exists', 'equals', 'greaterThan', 'lowerThan'], min: 0, max: 100, 'default': 50},
+				topics : {name: 'Topics', icon: 'topic', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				true_reach : {name: 'True Reach', type: 'int', input: 'slider', operators: ['exists', 'equals', 'greaterThan', 'lowerThan'], min: 0, max: 100000, 'default': 1000}
 			}
 		}
 

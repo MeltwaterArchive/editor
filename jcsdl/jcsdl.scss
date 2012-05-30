@@ -9,7 +9,7 @@ $borderColorInput : #c8d7de;
 $elementsSprite : 'img/elements.png?12';
 $selectSprite : 'img/select.png?12';
 $stepBackground : 'img/step_background.png?5';
-$targetIconsSprite : 'img/icons-sprite-targets.png?7';
+$targetIconsSprite : 'img/icons-sprite-targets.png?9';
 $fieldIconsSprite : 'img/icons-sprite-fields.png?7';
 $operatorIconsSprite : 'img/icons-sprite-operators.png?4';
 $otherIconsSprite : 'img/icons-sprite-other.png?2';
@@ -646,8 +646,8 @@ $otherIconsSprite : 'img/icons-sprite-other.png?2';
 		&.icon-friends_count	{background-position: -480px -240px;		&.selected {background-position: -560px -240px;}}
 		&.icon-location 	{background-position: -640px -240px;	&.selected {background-position: -720px -240px;}}
 		&.icon-screen_name	{background-position: 0 -320px;			&.selected {background-position: -80px -320px;}}
-		&.icon-domains 		{background-position: -160px -320px;	&.selected {background-position: -240px -320px;}}
-		&.icon-topic 		{background-position: -320px -320px; 	&.selected {background-position: -400px -320px;}}
+		&.icon-domains, &.icon-domain 	{background-position: -160px -320px;	&.selected {background-position: -240px -320px;}}
+		&.icon-topic, &.icon-topics		{background-position: -320px -320px; 	&.selected {background-position: -400px -320px;}}
 		&.icon-language 	{background-position: -480px -320px; 	&.selected {background-position: -560px -320px;}}
 		&.icon-statuses_count {background-position: -640px -320px;	&.selected {background-position: -720px -320px;}}
 		&.icon-time_zone 	{background-position: 0 -400px;			&.selected {background-position: -80px -400px;}}
@@ -657,7 +657,7 @@ $otherIconsSprite : 'img/icons-sprite-other.png?2';
 		&.icon-listed_count {background-position: -640px -400px;	&.selected {background-position: -720px -400px;}}
 		&.icon-network 		{background-position: 0 -480px; 		&.selected {background-position: -80px -480px;}}
 		&.icon-score 		{background-position: -160px -480px; 	&.selected {background-position: -240px -480px;}}
-		&.icon-truereach 	{background-position: -320px -480px; 	&.selected {background-position: -400px -480px;}}
+		&.icon-true_reach 	{background-position: -320px -480px; 	&.selected {background-position: -400px -480px;}}
 		&.icon-trends 		{background-position: -480px -480px; 	&.selected {background-position: -560px -480px;}}
 		&.icon-country_code {background-position: -640px -480px;	&.selected {background-position: -720px -480px;}}
 		&.icon-likes-ids	{background-position: 0 -560px;			&.selected {background-position: -80px -560px;}}

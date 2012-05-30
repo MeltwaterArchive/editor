@@ -741,7 +741,7 @@
     width: 110px;
     height: 110px;
     margin-right: 35px;
-    background: url("img/icons-sprite-targets.png?7") no-repeat 0 0; }
+    background: url("img/icons-sprite-targets.png?9") no-repeat 0 0; }
     .jcsdl-container .jcsdl-icon.target.target-interaction {
       background-position: 0 0; }
       .jcsdl-container .jcsdl-icon.target.target-interaction.selected {
@@ -900,13 +900,13 @@
       background-position: 0 -320px; }
       .jcsdl-container .jcsdl-icon.field.icon-screen_name.selected {
         background-position: -80px -320px; }
-    .jcsdl-container .jcsdl-icon.field.icon-domains {
+    .jcsdl-container .jcsdl-icon.field.icon-domains, .jcsdl-container .jcsdl-icon.field.icon-domain {
       background-position: -160px -320px; }
-      .jcsdl-container .jcsdl-icon.field.icon-domains.selected {
+      .jcsdl-container .jcsdl-icon.field.icon-domains.selected, .jcsdl-container .jcsdl-icon.field.icon-domain.selected {
         background-position: -240px -320px; }
-    .jcsdl-container .jcsdl-icon.field.icon-topic {
+    .jcsdl-container .jcsdl-icon.field.icon-topic, .jcsdl-container .jcsdl-icon.field.icon-topics {
       background-position: -320px -320px; }
-      .jcsdl-container .jcsdl-icon.field.icon-topic.selected {
+      .jcsdl-container .jcsdl-icon.field.icon-topic.selected, .jcsdl-container .jcsdl-icon.field.icon-topics.selected {
         background-position: -400px -320px; }
     .jcsdl-container .jcsdl-icon.field.icon-language {
       background-position: -480px -320px; }
@@ -944,9 +944,9 @@
       background-position: -160px -480px; }
       .jcsdl-container .jcsdl-icon.field.icon-score.selected {
         background-position: -240px -480px; }
-    .jcsdl-container .jcsdl-icon.field.icon-truereach {
+    .jcsdl-container .jcsdl-icon.field.icon-true_reach {
       background-position: -320px -480px; }
-      .jcsdl-container .jcsdl-icon.field.icon-truereach.selected {
+      .jcsdl-container .jcsdl-icon.field.icon-true_reach.selected {
         background-position: -400px -480px; }
     .jcsdl-container .jcsdl-icon.field.icon-trends {
       background-position: -480px -480px; }
