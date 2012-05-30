@@ -782,11 +782,11 @@ $.extend(String.prototype, {
 	escapeCsdl : function(reg) {
 		// escape regular expressions?
 		s = (reg) ? this.replace(/\\/g, '\\\\') : this.valueOf();
-		return s.replace(/"/g, '\\"');
+		return this.replace(/\\/g, '\\\\').replace(/"/g, '\\"');
 	},
 	unescapeCsdl : function(reg) {
 		s = (reg) ? this.replace(/\\\\/g, '\\') : this.valueOf();
-		return s.replace(/\\"/g, '"');
+		return this.replace(/\\"/g, '"').replace(/\\\\/g, '\\');
 	}
 });
 
