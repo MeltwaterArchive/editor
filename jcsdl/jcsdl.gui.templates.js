@@ -150,13 +150,36 @@ var JCSDLGuiTemplates = {
 	// value input container
 	valueInput : $([
 		'<div class="jcsdl-filter-value-input">',
-			'<div class="jcsdl-filter-value-input-operators"></div>',
-			'<div class="jcsdl-filter-value-input-field"></div>',
+			'<div class="jcsdl-filter-value-input-operators" />',
+			'<div class="jcsdl-filter-value-input-field" />',
 		'</div>'
 	].join('')),
 
 	// operator select
-	operatorSelect : $('<a href="#" class="jcsdl-icon operator" />'),
+	operatorOption : $('<a href="#" class="jcsdl-icon operator" />'),
+
+	// operator selection for text inputs is done via dropdown
+	textOperatorsSelect : $([
+		'<div class="jcsdl-operators-select">',
+			'<div class="jcsdl-operator-label" />',
+			'<div class="jcsdl-dropdown-icon" />',
+		'</div>'
+	].join('')),
+
+	textOperatorsDropdown : $('<div class="jcsdl-dropdown jcsdl-operators-dropdown" />'),
+
+	textOperatorOption : $([
+		'<div class="jcsdl-dropdown-option">',
+			'<div class="jcsdl-icon operator" />',
+			'<div class="jcsdl-dropdown-option-desc">',
+				'<div class="jcsdl-operator-label">',
+					'<span /> ',
+					'<a href="#" class="jcsdl-operator-help">(?)</a>',
+				'</div>',
+				'<div class="jcsdl-operator-desc" />',
+			'</div>',
+		'</div>'
+	].join('')),
 
 	// case sensitivity toggle
 	caseSensitivity : $('<a class="jcsdl-operator-cs jcsdl-icon icon-cs operator" title="Case Sensitive" />'),

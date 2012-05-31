@@ -553,8 +553,10 @@ JCSDLGui.prototype = {
 	didSubmitFilter : function() {
 		var fieldInfo = this.getFieldInfoAtCurrentPath();
 
-		// first check if the operator is selected
-		var operator = this.$currentFilterView.find('.jcsdl-filter-value-input-operators .operator.selected').data('name');
+		// read the operator
+		var operator = (fieldInfo.input == 'text')
+			? this.$currentFilterView.find('.jcsdl-filter-value-input-operators .jcsdl-operators-select').data('operator')
+			: this.$currentFilterView.find('.jcsdl-filter-value-input-operators .operator.selected').data('name');
 		if (typeof(operator) == 'undefined') {
 			this.showError('You need to select an operator!');
 			return;
@@ -886,28 +888,108 @@ JCSDLGui.prototype = {
 		var $valueView = this.getTemplate('valueInput');
 		if (typeof(this.inputs[inputType]) == 'undefined') return $valueView;
 
-		// get the config definition of this input type (if any) and a list of allowed operators
-		var inputConfig = (typeof(this.definition.inputs[inputType]) !== 'undefined') ? this.definition.inputs[inputType] : {};
-		var allowedOperators = (typeof(inputConfig.operators) !== 'undefined') ? inputConfig.operators : [];
-
-		// first take care of possible operators
-		var $operatorsListView = $valueView.find('.jcsdl-filter-value-input-operators');
-		$.each(field.operators, function(i, operator) {
-			// if a list of allowed operators is defined and this operator is not on it, then continue to the next one
-			if (allowedOperators.length > 0 && ($.inArray(operator, allowedOperators) == -1)) return true;
-
-			var $operatorView = self.createOperatorSelectView(operator);
-			if ($.browser.msie) {
-				$operatorView.html('&nbsp;');
-			}
-			$operatorsListView.append($operatorView);
-		});
-
 		// create the input view by this input type's handler and add it to the value view container
 		var $inputView = this.inputs.exec(inputType, 'init', [field]);
 		var $input = $inputView.find('input:first');
 		var $valueInput = $valueView.find('.jcsdl-filter-value-input-field');
 		$valueInput.data('inputType', inputType).html($inputView);
+
+		// create a list of possible operators
+		var $operatorsListView = $valueView.find('.jcsdl-filter-value-input-operators');
+		if (inputType == 'text') {
+			this.createTextOperatorsSelectView($operatorsListView, field, inputType, $valueInput);
+		} else {
+			this.createOperatorsSelectView($operatorsListView, field, inputType, $valueInput);
+		}
+
+		return $valueView;
+	},
+
+	createOperatorsSelectView : function($view, field, inputType, $inputView) {
+		var self = this;
+
+		var $input = $inputView.find('input:first');
+
+		// get the config definition of this input type (if any) and a list of allowed operators
+		var inputConfig = (typeof(this.definition.inputs[inputType]) !== 'undefined') ? this.definition.inputs[inputType] : {};
+		var allowedOperators = (typeof(inputConfig.operators) !== 'undefined') ? inputConfig.operators : [];
+
+		$.each(field.operators, function(i, operator) {
+			// if a list of allowed operators is defined and this operator is not on it, then continue to the next one
+			if (allowedOperators.length > 0 && ($.inArray(operator, allowedOperators) == -1)) return true;
+
+			var $operatorView = self.createOperatorOptionView(operator);
+			if ($.browser.msie) {
+				$operatorView.html('&nbsp;');
+			}
+			$view.append($operatorView);
+		});
+
+		/**
+		 * Listen for clicks on the operators and select the clicked one.
+		 * If 'exists' operator selected then hide the value input.
+		 * @param  {Event} ev
+		 * @listener
+		 */
+		$view.children().bind('click touchstart', function(ev) {
+			ev.preventDefault();
+			ev.target.blur();
+
+			var $operator = $(this);
+
+			$view.children().removeClass('selected');
+			$operator.addClass('selected');
+
+			if ($operator.data('name') == 'exists') {
+				$inputView.fadeOut(self.config.animate);
+			} else if (!$inputView.is(':visible')) {
+				$inputView.fadeIn(self.config.animate);
+			}
+
+			// for text or number input field enable/disable the tag input
+			if (inputType == 'number') {
+				var opName = $operator.data('name');
+
+				var tagAction = ($.inArray(opName, inputConfig.arrayOperators) >= 0) ? 'enable' : 'disable';
+				$input.jcsdlTagInput(tagAction);
+			}
+		});
+
+		// if there's only one possible operator then automatically select it and hide it
+		if ($view.children().length == 1) {
+			$view.children().eq(0).click();
+			$view.hide();
+		} else {
+			$view.find('.operator-greaterThan').click();
+			$view.find('.operator-equals').click();
+			$view.find('.operator-in').click();
+		}
+
+		return $view;
+	},
+
+	createTextOperatorsSelectView : function($view, field, inputType, $inputView) {
+		var self = this;
+
+		$view.addClass('text');
+		var $input = $inputView.find('input:first');
+		var $select = this.getTemplate('textOperatorsSelect');
+		var $dropdown = this.getTemplate('textOperatorsDropdown');
+
+		// get the config definition of this input type (if any) and a list of allowed operators
+		var inputConfig = (typeof(this.definition.inputs[inputType]) !== 'undefined') ? this.definition.inputs[inputType] : {};
+		var allowedOperators = (typeof(inputConfig.operators) !== 'undefined') ? inputConfig.operators : [];
+
+		$.each(field.operators, function(i, operator) {
+			// if a list of allowed operators is defined and this operator is not on it, then continue to the next one
+			if (allowedOperators.length > 0 && ($.inArray(operator, allowedOperators) == -1)) return true;
+
+			var $operatorView = self.createTextOperatorOptionView(operator);
+			$dropdown.append($operatorView);
+		});
+
+		$view.html($select).insertAfter($inputView);
+		$dropdown.hide().appendTo('body');
 
 		// add case sensitivity toggle
 		if (field.cs) {
@@ -917,54 +999,83 @@ JCSDLGui.prototype = {
 				ev.target.blur();
 				$(this).toggleClass('selected');
 			}).tipsy({gravity:'s'});
-			$valueInput.prepend($csView);
+
+			$csView.prependTo($view);
+			$select.addClass('has-cs');
 		}
 
-		/**
-		 * Listen for clicks on the operators and select the clicked one.
-		 * If 'exists' operator selected then hide the value input.
-		 * @param  {Event} ev
-		 * @listener
+		/*
+		 * LISTENERS
 		 */
-		$operatorsListView.children().bind('click touchstart', function(ev) {
+		$select.click(function(ev) {
+			ev.preventDefault();
+			ev.target.blur();
+			ev.stopPropagation();
+
+			$select.addClass('active');
+
+			$dropdown.css({
+				top : $select.offset().top + $select.outerHeight() - 1,
+				left : $select.offset().left,
+				width : $select.outerWidth() - 2
+			}).slideDown(self.config.animate);
+
+			$('body').bind('click.jcsdldropdown', function(ev) {
+				var $parent = $(ev.target).closest('.jcsdl-dropdown');
+				if ($parent == null || !$parent.is($dropdown)) {
+					$select.removeClass('active');
+					$dropdown.slideUp(self.config.animate);
+					$('body').unbind('click.jcsdldropdown');
+				}
+			});
+		});
+
+		$dropdown.find('.jcsdl-dropdown-option').click(function(ev) {
 			ev.preventDefault();
 			ev.target.blur();
 
-			var $operator = $(this);
+			$select.removeClass('active');
+			$dropdown.hide();
 
-			$operatorsListView.children().removeClass('selected');
-			$operator.addClass('selected');
+			var name = $(this).data('name');
+			var operator = self.definition.operators[$(this).data('name')];
 
-			if ($operator.data('name') == 'exists') {
-				$valueInput.fadeOut(self.config.animate);
-			} else if (!$valueInput.is(':visible')) {
-				$valueInput.fadeIn(self.config.animate);
+			$select.find('.jcsdl-operator-label').html(operator.label);
+			$select.data('operator', name);
+
+			if (name == 'exists') {
+				$inputView.fadeOut(self.config.animate);
+				if (field.cs) {
+					$csView.fadeOut(self.config.animate);
+				}
+			} else if (!$inputView.is(':visible')) {
+				$inputView.fadeIn(self.config.animate);
+				if (field.cs) {
+					$csView.fadeIn(self.config.animate);
+				}
 			}
 
-			// for text or number input field enable/disable the tag input
-			if (inputType == 'text' || inputType == 'number') {
-				var opName = $operator.data('name');
+			var tagAction = ($.inArray(name, inputConfig.arrayOperators) >= 0) ? 'enable' : 'disable';
+			$input.jcsdlTagInput(tagAction);
+			if (tagAction == 'enable') {
+				$input.jcsdlTagInput('update');
+			}
 
-				var tagAction = ($.inArray(opName, inputConfig.arrayOperators) >= 0) ? 'enable' : 'disable';
-				$input.jcsdlTagInput(tagAction);
-
-				var regExAction = ($.inArray(opName, ['regex_partial', 'regex_exact']) >= 0) ? 'enable' : 'disable';
-				$input.jcsdlRegExTester(regExAction);
-				if (regExAction == 'enable') {
-					var regExSetting = (opName == 'regex_partial') ? 'Partial' : 'Exact';
-					$input.jcsdlRegExTester('set' + regExSetting);
-					$input.jcsdlRegExTester('test');
-				}
+			var regExAction = ($.inArray(name, ['regex_partial', 'regex_exact']) >= 0) ? 'enable' : 'disable';
+			$input.jcsdlRegExTester(regExAction);
+			if (regExAction == 'enable') {
+				var regExSetting = (name == 'regex_partial') ? 'Partial' : 'Exact';
+				$input.jcsdlRegExTester('set' + regExSetting);
+				$input.jcsdlRegExTester('test');
 			}
 		});
 
-		// if there's only one possible operator then automatically select it and hide it
-		if ($operatorsListView.children().length == 1) {
-			$operatorsListView.children().eq(0).click();
-			$operatorsListView.hide();
-		}
+		// preselect "equals" and then "in" (if available)
+		$dropdown.find('.jcsdl-dropdown-option.operator-equals').click();
+		$dropdown.find('.jcsdl-dropdown-option.operator-contains_any').click();
+		$dropdown.find('.jcsdl-dropdown-option.operator-in').click();
 
-		return $valueView;
+		return $view;
 	},
 
 	/**
@@ -972,17 +1083,30 @@ JCSDLGui.prototype = {
 	 * @param  {String} name Name of the operator.
 	 * @return {jQuery}
 	 */
-	createOperatorSelectView : function(name) {
+	createOperatorOptionView : function(name) {
 		var operator = this.definition.operators[name];
 		if (typeof(operator) == 'undefined') return $(); // return empty jquery object if no such operator defined
 
-		var $operatorView = this.getTemplate('operatorSelect');
+		var $operatorView = this.getTemplate('operatorOption');
 		$operatorView.data('name', name)
 			.addClass('icon-' + name + ' operator-' + name)
-			.prop('title', this.definition.operators[name].description)
-			.html(this.definition.operators[name].label)
+			.prop('title', operator.description)
+			.html(operator.label)
 			.tipsy({gravity:'s'});
 		return $operatorView;
+	},
+
+	createTextOperatorOptionView : function(name) {
+		var operator = this.definition.operators[name];
+		if (typeof(operator) == 'undefined') return $();
+
+		var $view = this.getTemplate('textOperatorOption');
+		$view.data('name', name).addClass('operator-' + name);
+		$view.find('.jcsdl-icon').addClass('icon-' + name + ' operator-' + name + ' selected');
+		$view.find('.jcsdl-operator-label span').html(operator.label);
+		$view.find('.jcsdl-operator-desc').html(operator.description);
+
+		return $view;
 	},
 
 	/**

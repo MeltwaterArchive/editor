@@ -6,7 +6,7 @@ $colorBlackLight : #c6c6c9;
 $colorOrange : #ff9933;
 $borderColor : #dcdcdc;
 $borderColorInput : #c8d7de;
-$elementsSprite : 'img/elements.png?12';
+$elementsSprite : 'img/elements.png?13';
 $selectSprite : 'img/select.png?12';
 $stepBackground : 'img/step_background.png?5';
 $targetIconsSprite : 'img/icons-sprite-targets.png?9';
@@ -65,706 +65,769 @@ $otherIconsSprite : 'img/icons-sprite-other.png?2';
 	a {color: $color; text-decoration: none;
 		&:hover {color: lighten($color, 5%);}
 	}
+}
 
-	.jcsdl-label {float: left; font-size: 1em; color: $colorLight; font-weight: normal;}
-	.jcsdl-bordered {padding: 8px; border: 1px solid $borderColorInput; @include rounded(3px);}
 
-	.jcsdl-icon {
-		float: left; margin: 0; margin-right: 20px;
-		display: block; width: 80px; height: 80px;
-		overflow: hidden;
-		text-indent: -9999px;
+.jcsdl-label {float: left; font-size: 1em; color: $colorLight; font-weight: normal;}
+.jcsdl-bordered {padding: 8px; border: 1px solid $borderColorInput; @include rounded(3px);}
+
+.jcsdl-icon {
+	float: left; margin: 0; margin-right: 20px;
+	display: block; width: 80px; height: 80px;
+	overflow: hidden;
+	text-indent: -9999px;
+}
+
+.jcsdl-button {
+	float: left; margin-right: 8px;
+	overflow: hidden; text-indent: -9999px;
+	display: block; height: 34px; width: 140px;
+	background: url($elementsSprite) no-repeat 0 -55px;
+
+	&.jcsdl-editor-save, &.jcsdl-filter-save {}
+	&.jcsdl-editor-cancel, &.jcsdl-filter-cancel {width: 56px; background-position: 0 -89px;}
+
+	&:hover {@include opacity(0.9);}
+}
+
+.jcsdl-header {
+	overflow: hidden;
+	padding: 15px;
+	border-bottom: 1px dotted $borderColor;
+
+	h3 {
+		float: left; margin: 0;
+		line-height: 1em;
+		font-size: 1.8em; color: $color; font-weight: normal;
 	}
+}
 
-	.jcsdl-button {
+.jcsdl-footer {
+	overflow: hidden;
+	padding: 15px;
+	border-top: 1px dotted $borderColor;
+
+	.jcsdl-actions {float: left; overflow: hidden; margin-bottom: 5px;}
+}
+
+.jcsdl-error {
+	display: block; margin: 10px 20px;
+	padding: 0 10px; height: 38px; line-height: 38px; overflow: hidden;
+	text-align: left;
+	border: 1px solid #fbd2d2; @include rounded(3px);
+	background: url($elementsSprite) repeat-x center -240px;
+
+	strong {color: red; font-weight: bold;}
+	span {color: #222; margin-left: 5px;}
+}
+
+/*
+ * MAIN VIEW
+ */
+.jcsdl-mainview {
+	.jcsdl-header, .jcsdl-header h3 {line-height: 38px;}
+}
+
+/* main view actions (add new filter, add existing stream) */
+.jcsdl-mainview-actions {
+	overflow: hidden;
+	float: right; margin-top: 2px;
+}
+
+.jcsdl-mainview-action {
+	float: left; margin-right: 8px;
+	display: block; overflow: hidden;
+	line-height: 14px;
+	color: $color;
+
+	.jcsdl-picto {
 		float: left; margin-right: 8px;
-		overflow: hidden; text-indent: -9999px;
-		display: block; height: 34px; width: 140px;
-		background: url($elementsSprite) no-repeat 0 -55px;
-
-		&.jcsdl-editor-save, &.jcsdl-filter-save {}
-		&.jcsdl-editor-cancel, &.jcsdl-filter-cancel {width: 56px; background-position: 0 -89px;}
-
-		&:hover {@include opacity(0.9);}
+		display: block; width: 14px; height: 14px;
+		background: url($elementsSprite) no-repeat -140px -68px;
 	}
 
-	.jcsdl-header {
-		overflow: hidden;
-		padding: 15px;
-		border-bottom: 1px dotted $borderColor;
+	&.jcsdl-add-filter {margin-right: 0;}
+}
 
-		h3 {
-			float: left; margin: 0;
-			line-height: 1em;
-			font-size: 1.8em; color: $color; font-weight: normal;
+/* main view mode (expanded / collapsed) */
+.jcsdl-mainview-mode {
+	overflow: hidden; float: right; margin-left: 15px;
+	width: 130px; padding-left: 15px;
+	border-left: 1px dotted $borderColor;
+}
+
+.jcsdl-mainview-mode-options {
+	overflow: hidden;
+	float: right; margin-left: 8px; margin-top: 2px;
+	height: 14px;
+}
+
+.jcsdl-mainview-mode-option {
+	float: left; margin-right: 8px;
+	display: block; width: 13px; height: 13px;
+	background: url($elementsSprite) no-repeat -140px -55px;
+	@include opacity(0.3);
+
+	&.jcsdl-expanded {background-position: -156px -55px;}
+	&.jcsdl-collapsed {background-position: -140px -55px; margin-right: 0;}
+
+	&:hover {@include opacity(0.5);}
+	&.active {@include opacity(1);}
+}
+
+/* filters logic (AND/OR) */
+.jcsdl-filters-logic {
+	margin: 15px;
+	text-align: left;
+}
+
+.jcsdl-filters-logic-option {
+	margin-right: 8px;
+	cursor: pointer;
+
+	input {margin-right: 5px;}
+
+	&.jcsdl-or {margin-right: 0;}
+}
+
+/* filters list */
+.jcsdl-filter {
+	overflow: hidden; position: relative; margin: 15px;
+	padding: 5px;
+	border: 1px solid $borderColor;
+	@include rounded(3px);
+
+	.jcsdl-filter-options {
+		position: absolute; top: 0; right: 0;
+		padding: 6px;
+		background: #f7f7f7;
+		border: 1px solid $borderColor; border-top: 0; border-right: 0;
+		@include roundedCorner(0, 0, 0, 3px);
+
+		a, span {margin: 0 2px;}
+	}
+}
+
+.jcsdl-filter-description {overflow: hidden;}
+
+.jcsdl-filter-info {
+	float: left; margin: 0 10px;
+
+	&.target,
+	&.input,
+	&.operator {font-weight: bold;}
+}
+
+/* expanded / collapsed filters list */
+.jcsdl-filters-list {
+	&.expanded .jcsdl-filter {
+
+		.jcsdl-filter-target {margin: 0;}
+		.jcsdl-filter-field {margin: 15px 10px;}
+		.jcsdl-filter-field-input {margin: 15px 10px;}
+		.jcsdl-filter-operator {
+			margin: 31px 0; border-color: $borderColor;
+
+			&.input-select {display: none;}
 		}
-	}
-
-	.jcsdl-footer {
-		overflow: hidden;
-		padding: 15px;
-		border-top: 1px dotted $borderColor;
-
-		.jcsdl-actions {float: left; overflow: hidden; margin-bottom: 5px;}
-	}
-
-	.jcsdl-error {
-		display: block; margin: 10px 20px;
-		padding: 0 10px; height: 38px; line-height: 38px; overflow: hidden;
-		text-align: left;
-		border: 1px solid #fbd2d2; @include rounded(3px);
-		background: url($elementsSprite) repeat-x center -240px;
-
-		strong {color: red; font-weight: bold;}
-		span {color: #222; margin-left: 5px;}
-	}
-
-	/*
-	 * MAIN VIEW
-	 */
-	.jcsdl-mainview {
-		.jcsdl-header, .jcsdl-header h3 {line-height: 38px;}
-	}
-
-	/* main view actions (add new filter, add existing stream) */
-	.jcsdl-mainview-actions {
-		overflow: hidden;
-		float: right; margin-top: 2px;
-	}
-
-	.jcsdl-mainview-action {
-		float: left; margin-right: 8px;
-		display: block; overflow: hidden;
-		line-height: 14px;
-		color: $color;
-
-		.jcsdl-picto {
-			float: left; margin-right: 8px;
-			display: block; width: 14px; height: 14px;
-			background: url($elementsSprite) no-repeat -140px -68px;
+		.jcsdl-filter-info.operator {margin: 0 5px; margin-right: -3px;}
+		.jcsdl-filter-info.value {
+			margin: 31px 0;
+			padding: 0 8px; height: 46px; line-height: 46px;
+			font-size: 1.2em;
+			background-color: white;
 		}
 
-		&.jcsdl-add-filter {margin-right: 0;}
 	}
 
-	/* main view mode (expanded / collapsed) */
-	.jcsdl-mainview-mode {
-		overflow: hidden; float: right; margin-left: 15px;
-		width: 130px; padding-left: 15px;
-		border-left: 1px dotted $borderColor;
-	}
+	&.collapsed .jcsdl-filter {
 
-	.jcsdl-mainview-mode-options {
-		overflow: hidden;
-		float: right; margin-left: 8px; margin-top: 2px;
-		height: 14px;
-	}
+		.jcsdl-filter-description {float: left;}
 
-	.jcsdl-mainview-mode-option {
-		float: left; margin-right: 8px;
-		display: block; width: 13px; height: 13px;
-		background: url($elementsSprite) no-repeat -140px -55px;
-		@include opacity(0.3);
+		.jcsdl-filter-info.value {border: 0; padding: 0;}
 
-		&.jcsdl-expanded {background-position: -156px -55px;}
-		&.jcsdl-collapsed {background-position: -140px -55px; margin-right: 0;}
-
-		&:hover {@include opacity(0.5);}
-		&.active {@include opacity(1);}
-	}
-
-	/* filters logic (AND/OR) */
-	.jcsdl-filters-logic {
-		margin: 15px;
-		text-align: left;
-	}
-
-	.jcsdl-filters-logic-option {
-		margin-right: 8px;
-		cursor: pointer;
-
-		input {margin-right: 5px;}
-
-		&.jcsdl-or {margin-right: 0;}
-	}
-
-	/* filters list */
-	.jcsdl-filter {
-		overflow: hidden; position: relative; margin: 15px;
-		padding: 5px;
-		border: 1px solid $borderColor;
-		@include rounded(3px);
+		.jcsdl-filter-target,
+		.jcsdl-filter-field,
+		.jcsdl-filter-field-input,
+		.jcsdl-filter-operator,
+		.jcsdl-filter-value {
+			float: none; margin: 0;
+			display: inline; width: auto; height: auto;
+			text-indent: 0;
+			background: none; line-height: 20px;
+		}
+		.jcsdl-filter-field {margin: 0 10px;}
+		.jcsdl-filter-operator {font-weight: bold; border: 0 !important;}
 
 		.jcsdl-filter-options {
-			position: absolute; top: 0; right: 0;
-			padding: 6px;
-			background: #f7f7f7;
-			border: 1px solid $borderColor; border-top: 0; border-right: 0;
-			@include roundedCorner(0, 0, 0, 3px);
-
-			a, span {margin: 0 2px;}
+			position: relative; float: right;
+			padding: 0;
+			background: transparent; border: 0;
 		}
+
+	}
+}
+
+/*
+ * FILTER EDITOR VIEW
+ */
+/* JCSDL Carousel */
+.jcsdl-carousel-wrap {
+	overflow: hidden; position: relative;
+	margin: 0 auto;
+	text-align: left;
+}
+
+.jcsdl-carousel-scroll {
+	float: left; margin: 0 10px;
+	display: block; width: 29px; height: 29px;
+	line-height: 29px; text-align: center;
+	background: transparent url($elementsSprite) no-repeat -56px -89px;
+
+	&.right {
+		float: right;
+		background-position: -85px -89px;
 	}
 
-	.jcsdl-filter-description {overflow: hidden;}
+	&:hover {@include opacity(0.6);}
+	&.inactive {@include opacity(0.3);}
+}
 
-	.jcsdl-filter-info {
-		float: left; margin: 0 10px;
+/* editor steps */
+.jcsdl-filter-editor {
+	.jcsdl-step {
+		overflow: hidden; text-align: center;
 
-		&.target,
-		&.input,
-		&.operator {font-weight: bold;}
+		&.jcsdl-filter-step-value {padding-bottom: 20px;}
+
+		/* various states of target selection */
+		.jcsdl-filter-target-wrap {background: transparent url($selectSprite) no-repeat center -378px;} /* prompt selection */
+		&.selected .jcsdl-filter-target-wrap {background-position: center -553px;} /* only target selected */
+		&.selected.field-selected .jcsdl-filter-target-wrap {background-position: center 8px;} /* a field has been selected */
+
+		/* various states of field selection */
+		.jcsdl-filter-target-field-wrap {}
+		&.selected .jcsdl-filter-target-field-wrap {background: transparent url($selectSprite) no-repeat center -255px;}
+		&.selected.field-selected .jcsdl-filter-target-field-wrap {background-position: center -165px;}
+
+		/* various states of field selection */
+		.jcsdl-filter-target-field-input-wrap {}
+		&.selected .jcsdl-filter-target-field-input-wrap {background: transparent url($selectSprite) no-repeat center -255px;}
+		&.selected.field-selected .jcsdl-filter-target-field-input-wrap {background-position: center -165px;}
+
+		/* when a step is selected it also has shadow underneath */
+		&.selected {background: transparent url($stepBackground) no-repeat bottom center;}
 	}
 
-	/* expanded / collapsed filters list */
-	.jcsdl-filters-list {
-		&.expanded .jcsdl-filter {
-
-			.jcsdl-filter-target {margin: 0;}
-			.jcsdl-filter-field {margin: 15px 10px;}
-			.jcsdl-filter-field-input {margin: 15px 10px;}
-			.jcsdl-filter-operator {
-				margin: 31px 0; border-color: $borderColor;
-
-				&.input-select {display: none;}
-			}
-			.jcsdl-filter-info.operator {margin: 0 5px; margin-right: -3px;}
-			.jcsdl-filter-info.value {
-				margin: 31px 0;
-				padding: 0 8px; height: 46px; line-height: 46px;
-				font-size: 1.2em;
-				background-color: white;
-			}
-
-		}
-
-		&.collapsed .jcsdl-filter {
-
-			.jcsdl-filter-description {float: left;}
-
-			.jcsdl-filter-info.value {border: 0; padding: 0;}
-
-			.jcsdl-filter-target,
-			.jcsdl-filter-field,
-			.jcsdl-filter-field-input,
-			.jcsdl-filter-operator,
-			.jcsdl-filter-value {
-				float: none; margin: 0;
-				display: inline; width: auto; height: auto;
-				text-indent: 0;
-				background: none; line-height: 20px;
-			}
-			.jcsdl-filter-field {margin: 0 10px;}
-			.jcsdl-filter-operator {font-weight: bold; border: 0 !important;}
-
-			.jcsdl-filter-options {
-				position: relative; float: right;
-				padding: 0;
-				background: transparent; border: 0;
-			}
-
-		}
+	.jcsdl-filter-target-wrap {
+		height: 145px; padding-top: 30px;
+		.jcsdl-carousel-scroll {margin-top: 40px;}
 	}
 
-	/*
-	 * FILTER EDITOR VIEW
-	 */
-	/* JCSDL Carousel */
-	.jcsdl-carousel-wrap {
-		overflow: hidden; position: relative;
-		margin: 0 auto;
-		text-align: left;
+	.jcsdl-filter-target-field-wrap {
+		padding-top: 5px; padding-bottom: 40px;
+		.jcsdl-carousel-scroll {margin-top: 25px;}
 	}
 
-	.jcsdl-carousel-scroll {
-		float: left; margin: 0 10px;
-		display: block; width: 29px; height: 29px;
-		line-height: 29px; text-align: center;
-		background: transparent url($elementsSprite) no-repeat -56px -89px;
-
-		&.right {
-			float: right;
-			background-position: -85px -89px;
-		}
-
-		&:hover {@include opacity(0.6);}
-		&.inactive {@include opacity(0.3);}
+	.jcsdl-filter-target-field-input-wrap {
+		padding-top: 5px; padding-bottom: 40px;
+		.jcsdl-carousel-scroll {margin-top: 25px;}
 	}
 
-	/* editor steps */
-	.jcsdl-filter-editor {
-		.jcsdl-step {
-			overflow: hidden; text-align: center;
-
-			&.jcsdl-filter-step-value {padding-bottom: 20px;}
-
-			/* various states of target selection */
-			.jcsdl-filter-target-wrap {background: transparent url($selectSprite) no-repeat center -378px;} /* prompt selection */
-			&.selected .jcsdl-filter-target-wrap {background-position: center -553px;} /* only target selected */
-			&.selected.field-selected .jcsdl-filter-target-wrap {background-position: center 8px;} /* a field has been selected */
-
-			/* various states of field selection */
-			.jcsdl-filter-target-field-wrap {}
-			&.selected .jcsdl-filter-target-field-wrap {background: transparent url($selectSprite) no-repeat center -255px;}
-			&.selected.field-selected .jcsdl-filter-target-field-wrap {background-position: center -165px;}
-
-			/* various states of field selection */
-			.jcsdl-filter-target-field-input-wrap {}
-			&.selected .jcsdl-filter-target-field-input-wrap {background: transparent url($selectSprite) no-repeat center -255px;}
-			&.selected.field-selected .jcsdl-filter-target-field-input-wrap {background-position: center -165px;}
-
-			/* when a step is selected it also has shadow underneath */
-			&.selected {background: transparent url($stepBackground) no-repeat bottom center;}
-		}
-
-		.jcsdl-filter-target-wrap {
-			height: 145px; padding-top: 30px;
-			.jcsdl-carousel-scroll {margin-top: 40px;}
-		}
-
-		.jcsdl-filter-target-field-wrap {
-			padding-top: 5px; padding-bottom: 40px;
-			.jcsdl-carousel-scroll {margin-top: 25px;}
-		}
-
-		.jcsdl-filter-target-field-input-wrap {
-			padding-top: 5px; padding-bottom: 40px;
-			.jcsdl-carousel-scroll {margin-top: 25px;}
-		}
-
-		.jcsdl-filter-value-input-operators {
-			margin: 10px auto; margin-top: 20px;
-			display: block; width: 75%;
-			text-align: center;
-
-			.jcsdl-icon.operator {
-				float: none; margin: 5px; display: inline-block;
-				/* ie 7 */
-				zoom: 1; *display: inline;
-			}
-		}
-
-		/* filter editor footer */
-		.jcsdl-footer {text-align: center;}
-	}
-
-	.jcsdl-filter-save {
-		float: none; margin: 10px auto;
-		width: 181px; height: 55px;
-		background-position: 0 0;
-	}
-
-	.jcsdl-filter-cancel {color: $colorLight; font-weight: normal;}
-
-	/*
-	 * FILTER EDITOR INPUT FIELDS
-	 */
-	.jcsdl-input-text, .jcsdl-input-number {
-		display: block; margin: 0 10px; margin-right: 70px;
-
-		input, .jcsdl-tag-input {
-			display: block; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;
-			padding: 5px 10px; width: 100%; height: 40px;
-			font-size: 1.3em; line-height: 1.5em; color: #444;
-			border: 1px solid $borderColor; @include rounded(3px);
-
-			&.jcsdl-tag-input {
-				height: auto; min-height: 40px; overflow: hidden; position: relative;
-				font-size: 1em;
-				padding: 0;
-
-				.jcsdl-tag {
-					display: block; float: left; margin: 3px; position: relative;
-					padding: 0 5px; height: 32px; line-height: 32px; padding-right: 16px;
-					font-size: 1.1em; color: $color; font-weight: bold;
-					border: 1px solid $borderColorInput; @include rounded(2px);
-					background: lighten($color, 80%);
-
-					a.jcsdl-tag-remove {
-						display: block; width: 8px; height: 8px; overflow: hidden;
-						position: absolute; right: 4px; top: 12px;
-						background: url($elementsSprite) no-repeat -169px -55px;
-						@include opacity(0.7);
-
-						&:hover {@include opacity(1);}
-					}
-				}
-
-				.jcsdl-tag-field {
-					float: left;
-
-					input, .jcsdl-tag-field-helper {
-						box-sizing: content-box; -moz-box-sizing: content-box; -webkit-box-sizing: content-box;
-						padding: 0; margin: 3px; height: 34px; line-height: 34px; min-width: 230px;
-						font-size: 17px !important;
-						border: 0; outline: 0;
-					}
-				}
-			}
-		}
-
-		.jcsdl-regex-tester input {
-			margin: 5px 0;
-			&.ok {border-color: green;}
-			&.err {border-color: red;}
-		}
-	}
-	.jcsdl-input-number {
-		margin: 0 10px;
-		input {margin: 0 auto; width: 100px;}
-	}
-
-	.jcsdl-operator-cs {float: right; cursor: pointer;}
-
-	.jcsdl-input-select {
-		margin: 0 30px;
+	.jcsdl-filter-value-input-operators {
+		margin: 10px auto; margin-top: 20px;
+		display: block; width: 75%;
 		text-align: center;
 
-		.jcsdl-input-select-option {
-			margin: 10px;
-			display: inline-block; padding: 0 10px; height: 25px; line-height: 25px;
-			font-size: 13px; color: $colorBlack;
-			border: 1px solid $colorBlackLight;
-			@include rounded(2px);
-			@include opacity(0.75);
-
-			/* ie7 */
-			zoom: 1;
-			*display: inline;
-
-			&.selected {@include opacity(1); border-color: $colorOrange; color: $color;}
+		.jcsdl-icon.operator {
+			float: none; margin: 5px; display: inline-block;
+			/* ie 7 */
+			zoom: 1; *display: inline;
 		}
+
+		&.text {margin-top: 10px; width: auto; text-align: left;}
 	}
 
-	.jcsdl-input-slider {
-		margin: 10px 30px; margin-bottom: 0;
-		text-align: center;
+	.jcsdl-operators-select {
+		display: block; position: relative;
+		margin: 0 20px;
+		height: 38px; line-height: 37px;
+		padding: 0 10px;
+		border: 1px solid $borderColor; @include rounded(3px);
+		cursor: pointer;
 
-		.jcsdl-slider-controls {
-			margin: 0 auto;
-			width: 200px; padding: 5px 0; overflow: hidden;
+		.jcsdl-operator-label {font-weight: bold; color: $color; font-size: 15px;}
 
-			.jcsdl-slider-minus, .jcsdl-slider-plus {
-				float: right; margin: 13px 10px; overflow: hidden;
-				display: block; width: 14px; height: 14px;
-				background: transparent url($elementsSprite) no-repeat -115px -89px;
-				@include opacity(0.7);
-				-webkit-touch-callout: none; /* prevent callout menu on iOS */
-
-				&:active {position: relative; top: 1px;}
-				&:hover {@include opacity(1);}
-			}
-			.jcsdl-slider-minus {float: left; background-position: -129px -89px;}
-
-			.jcsdl-slider-input {
-				display: block; margin: 0 auto;
-				padding: 5px; width: 110px;
-				font-size: 24px; color: #1b1b1f; text-align: center;
-				border: 1px solid $borderColor;
-				@include rounded(3px);
-			}
+		.jcsdl-dropdown-icon {
+			display: block; width: 39px; height: 38px;
+			position: absolute; top: -1px; right: -1px;
+			overflow: hidden;
+			border: 1px solid $color; @include roundedCorner(0, 3px, 3px, 0);
+			background: url($elementsSprite) no-repeat 0 -278px;
 		}
 
-		.jcsdl-slider-wrap {
-			display: block; overflow: hidden; position: relative;
-			min-height: 65px;
+		&:hover {
+			background: #fafafa;
+			.jcsdl-dropdown-icon {@include opacity(0.9);}
+		}
 
-			.jcsdl-slider-icon {
-				display: none; float: left; margin: 0 10px;
-				width: 80px; height: 80px;
-				background: url($otherIconsSprite) no-repeat 0 0;
+		&.active {
+			@include roundedCorner(3px, 3px, 0, 0);
+			.jcsdl-dropdown-icon {@include roundedCorner(0, 3px, 0, 0);}
+		}
 
-				&.max {float: right;}
+		&.has-cs {margin-right: 70px;}
+	}
+
+	/* filter editor footer */
+	.jcsdl-footer {text-align: center;}
+}
+
+.jcsdl-filter-save {
+	float: none; margin: 10px auto;
+	width: 181px; height: 55px;
+	background-position: 0 0;
+}
+
+.jcsdl-filter-cancel {color: $colorLight; font-weight: normal;}
+
+/*
+ * FILTER EDITOR INPUT FIELDS
+ */
+.jcsdl-input-text, .jcsdl-input-number {
+	display: block; margin: 0 20px;
+
+	input, .jcsdl-tag-input {
+		display: block; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;
+		padding: 5px 10px; width: 100%; height: 40px;
+		font-size: 1.3em; line-height: 1.5em; color: #444;
+		border: 1px solid $borderColor; @include rounded(3px);
+
+		&.jcsdl-tag-input {
+			height: auto; min-height: 40px; overflow: hidden; position: relative;
+			font-size: 1em;
+			padding: 0;
+
+			.jcsdl-tag {
+				display: block; float: left; margin: 3px; position: relative;
+				padding: 0 5px; height: 32px; line-height: 32px; padding-right: 16px;
+				font-size: 1.1em; color: $color; font-weight: bold;
+				border: 1px solid $borderColorInput; @include rounded(2px);
+				background: lighten($color, 80%);
+
+				a.jcsdl-tag-remove {
+					display: block; width: 8px; height: 8px; overflow: hidden;
+					position: absolute; right: 4px; top: 12px;
+					background: url($elementsSprite) no-repeat -169px -55px;
+					@include opacity(0.7);
+
+					&:hover {@include opacity(1);}
+				}
 			}
-		}
 
-		.jcsdl-slider-container {position: relative; padding-top: 12px;}
-
-		.jcsdl-slider-label {
-			position: absolute; top: 0; left: 5px;
-			text-align: left;
-			color: #444; font-size: 0.9em;
-
-			&.max {right: 5px; left: auto; text-align: right;}
-		}
-
-		.jcsdl-slider {
-			display: block; margin: 10px 15px; margin-bottom: 7px;
-			height: 12px;
-			cursor: pointer;
-			background: transparent url($elementsSprite) repeat-x center -228px;
-			border: 0; @include rounded(0px);
-
-			.ui-slider-handle {
-				top: 0; margin-left: -1em;
-				display: block; width: 30px; height: 40px;
-				cursor: pointer;
-				background: transparent url($elementsSprite) no-repeat -152px -83px;
-				border: 0;
-				outline: none;
-			}
-		}
-
-		.jcsdl-slider-bottom {
-			display: block; overflow: hidden; margin: 0 8px;
-			height: 15px;
-
-			.jcsdl-slider-bottom-left, .jcsdl-slider-bottom-right {
-				display: block; width: 15px; height: 15px;
+			.jcsdl-tag-field {
 				float: left;
-				background: transparent url($elementsSprite) no-repeat 0 -213px;
-			}
-			.jcsdl-slider-bottom-right {float: right; background-position: -31px -213px;}
 
-			.jcsdl-slider-bottom-line {
-				display: block; height: 15px; margin: 0 15px;
-				background: transparent url($elementsSprite) repeat-x 0 -198px;
-			}
-		}
-	}
-
-	.jcsdl-map {
-		text-align: center;
-
-		.jcsdl-map-search {
-			display: block; margin: 10px auto; width: 50%; padding: 5px;
-			font-size: 15px;
-			border: 1px solid $borderColor; @include rounded(3px);
-		}
-
-		.jcsdl-map-canvas {
-			display: block; margin: 10px auto;
-			min-width: 320px; max-width: 600px; width: 90%; height: 350px;
-		}
-
-		.jcsdl-map-instructions {
-			display: block; margin: 0 auto; width: 70%;
-			text-align: center; line-height: 1.3em;
-		}
-
-		.jcsdl-clear-map {
-			color: $colorLight; font-weight: normal;
-			&:hover {color: $color;}
-		}
-
-		.jcsdl-map-coordinates,
-		.jcsdl-map-area {
-			margin: 0 10px; text-align: center;
-			span {margin-left: 10px;}
-		}
-
-		.jcsdl-map-coordinates {
-			label {clear: both;}
-			ul {
-				margin: 0; padding: 0;
-				li {display: inline; margin: 5px;}
-			}
-		}
-
-		.jcsdl-map-area {}
-	}
-
-	/* filter editor input fields overrides for the filters list view */
-	/* expanded view */
-	.jcsdl-filter-info.value {
-		&.input-select {
-			padding: 0; border: 0;
-
-			.jcsdl-input-select {
-				margin: 0;
-
-				.jcsdl-input-select-option {margin: 3px 5px;}
-				.jcsdl-input-select-more {font-size: 13px; line-height: 25px;}
-			}
-		}
-	}
-	/* collapsed view overrides */
-	.jcsdl-filters-list.collapsed .jcsdl-filter-info.value {
-		&.input-select {
-			.jcsdl-input-select {
-				.jcsdl-input-select-option {
-					display: inline; height: auto; line-height: 1em; padding: 0;
-					color: $colorLight; font-weight: normal;
-					background: none; border: 0;
-
-					span {top: 0 !important;}
+				input, .jcsdl-tag-field-helper {
+					box-sizing: content-box; -moz-box-sizing: content-box; -webkit-box-sizing: content-box;
+					padding: 0; margin: 3px; height: 34px; line-height: 34px; min-width: 230px;
+					font-size: 17px !important;
+					border: 0; outline: 0;
 				}
 			}
 		}
 	}
 
-
-	/*
-	 * ICONS
-	 */
-	.jcsdl-icon.target {
-		width: 110px; height: 110px; margin-right: 35px;
-		background: url($targetIconsSprite) no-repeat 0 0;
-
-		&.target-interaction {background-position: 0 0; 			&.selected {background-position: 0 -110px;}}
-		&.target-facebook	{background-position: -110px 0; 		&.selected {background-position: -110px -110px;}}
-		&.target-twitter 	{background-position: -220px 0; 		&.selected {background-position: -220px -110px;}}
-		&.target-digg 		{background-position: -330px 0; 		&.selected {background-position: -330px -110px;}}
-		&.target-myspace 	{background-position: -440px 0; 		&.selected {background-position: -440px -110px;}}
-		&.target-klout 		{background-position: -550px 0; 		&.selected {background-position: -550px -110px;}}
-		&.target-amazon		{background-position: -660px 0;			&.selected {background-position: -660px -110px;}}
-		&.target-youtube	{background-position: -770px 0;			&.selected {background-position: -770px -110px;}}
-		&.target-flickr		{background-position: -880px 0;			&.selected {background-position: -880px -110px;}}
-		&.target-blog		{background-position: -990px 0;			&.selected {background-position: -990px -110px;}}
-		&.target-video		{background-position: -1100px 0;			&.selected {background-position: -1100px -110px;}}
-		&.target-reddit		{background-position: -1210px 0;			&.selected {background-position: -1210px -110px;}}
-		&.target-imdb		{background-position: -1320px 0;			&.selected {background-position: -1320px -110px;}}
-		&.target-dailymotion{background-position: -1430px 0;			&.selected {background-position: -1430px -110px;}}
-		&.target-newscred	{background-position: -1540px 0;			&.selected {background-position: -1540px -110px;}}
-		&.target-board		{background-position: -1650px 0;			&.selected {background-position: -1650px -110px;}}
-		&.target-topix		{background-position: -1760px 0;			&.selected {background-position: -1760px -110px;}}
-		&.target-2channel	{}
+	.jcsdl-regex-tester input {
+		margin: 5px 0;
+		&.ok {border-color: green;}
+		&.err {border-color: red;}
 	}
+}
+.jcsdl-input-text {margin-top: 20px;}
+.jcsdl-input-number {
+	margin: 0 10px;
+	input {margin: 0 auto; width: 100px;}
+}
 
-	.jcsdl-icon.field {
-		background: url($fieldIconsSprite) no-repeat 0 0;
+.jcsdl-operator-cs {float: right !important; cursor: pointer; margin: 0 !important; margin-right: 20px !important;}
 
-		&.icon-geo			{background-position: 0 0; 				&.selected {background-position: -80px 0;}}
-		&.icon-link 		{background-position: -160px 0; 		&.selected {background-position: -240px 0;}}
-		&.icon-sample 		{background-position: -320px 0; 		&.selected {background-position: -400px 0;}}
-		&.icon-title 		{background-position: -480px 0; 		&.selected {background-position: -560px 0;}}
-		&.icon-content 		{background-position: -640px 0; 		&.selected {background-position: -720px 0;}}
-		&.icon-description 	{background-position: 0 -80px; 			&.selected {background-position: -80px -80px;}}
-		&.icon-source 		{background-position: -160px -80px; 	&.selected {background-position: -240px -80px;}}
-		&.icon-type 		{background-position: -320px -80px; 	&.selected {background-position: -400px -80px;}}
-		&.icon-avatar 		{background-position: -480px -80px; 	&.selected {background-position: -560px -80px;}}
-		&.icon-comment 		{background-position: -640px -80px;		&.selected {background-position: -720px -80px;}}
-		&.icon-comments-count {background-position: 0 -160px;		&.selected {background-position: -80px -160px;}}
-		&.icon-author-username, &.icon-username {background-position: -160px -160px; &.selected {background-position: -240px -160px;}}
-		&.icon-username 	{background-position: -160px -160px; 	&.selected {background-position: -240px -160px;}}
-		&.icon-user 		{background-position: -320px -160px;	&.selected {background-position: -400px -160px;}}
-		&.icon-fullname 	{background-position: -480px -160px;	&.selected {background-position: -560px -160px;}}
-		&.icon-registered	{background-position: -640px -160px;	&.selected {background-position: -720px -160px;}}
-		&.icon-user-description {background-position: 0 -240px;		&.selected {background-position: -80px -240px;}}
-		&.icon-followers_count	{background-position: -160px -240px;		&.selected {background-position: -240px -240px;}}
-		&.icon-follower_ratio	{background-position: -320px -240px;		&.selected {background-position: -400px -240px;}}
-		&.icon-friends_count	{background-position: -480px -240px;		&.selected {background-position: -560px -240px;}}
-		&.icon-location 	{background-position: -640px -240px;	&.selected {background-position: -720px -240px;}}
-		&.icon-screen_name	{background-position: 0 -320px;			&.selected {background-position: -80px -320px;}}
-		&.icon-domains, &.icon-domain 	{background-position: -160px -320px;	&.selected {background-position: -240px -320px;}}
-		&.icon-topic, &.icon-topics		{background-position: -320px -320px; 	&.selected {background-position: -400px -320px;}}
-		&.icon-language 	{background-position: -480px -320px; 	&.selected {background-position: -560px -320px;}}
-		&.icon-statuses_count {background-position: -640px -320px;	&.selected {background-position: -720px -320px;}}
-		&.icon-time_zone 	{background-position: 0 -400px;			&.selected {background-position: -80px -400px;}}
-		&.icon-placename 	{background-position: -160px -400px;	&.selected {background-position: -240px -400px;}}
-		&.icon-id 			{background-position: -320px -400px;	&.selected {background-position: -400px -400px;}}
-		&.icon-amplification {background-position: -480px -400px; 	&.selected {background-position: -560px -400px;}}
-		&.icon-listed_count {background-position: -640px -400px;	&.selected {background-position: -720px -400px;}}
-		&.icon-network 		{background-position: 0 -480px; 		&.selected {background-position: -80px -480px;}}
-		&.icon-score 		{background-position: -160px -480px; 	&.selected {background-position: -240px -480px;}}
-		&.icon-true_reach 	{background-position: -320px -480px; 	&.selected {background-position: -400px -480px;}}
-		&.icon-trends 		{background-position: -480px -480px; 	&.selected {background-position: -560px -480px;}}
-		&.icon-country_code {background-position: -640px -480px;	&.selected {background-position: -720px -480px;}}
-		&.icon-likes-ids	{background-position: 0 -560px;			&.selected {background-position: -80px -560px;}}
-		&.icon-likes-names	{background-position: -160px -560px;	&.selected {background-position: -240px -560px;}}
-		&.icon-to-ids		{background-position: -320px -560px;	&.selected {background-position: -400px -560px;}}
-		&.icon-to-names		{background-position: -480px -560px;	&.selected {background-position: -560px -560px;}}
-		&.icon-age 			{background-position: -640px -560px; 	&.selected {background-position: -720px -560px;}}
-		&.icon-category		{background-position: 0 -640px;			&.selected {background-position: -80px -640px;}}
-		&.icon-url 			{background-position: -160px -640px; 	&.selected {background-position: -240px -640px;}}
-		&.icon-retweet-count{background-position: -320px -640px; 	&.selected {background-position: -400px -640px;}}
-		&.icon-gender 		{background-position: -480px -640px; 	&.selected {background-position: -560px -640px;}}
-		&.icon-commentslink {background-position: -640px -640px; 	&.selected {background-position: -720px -640px;}}
-		&.icon-authors 		{background-position: 0 -720px; 		&.selected {background-position: -80px -720px;}}
-		&.icon-author-name 	{background-position: -160px -720px; 	&.selected {background-position: -240px -720px;}}
-		&.icon-duration		{background-position: -320px -720px; 	&.selected {background-position: -400px -720px;}}
-		&.icon-tags 		{background-position: -480px -720px; 	&.selected {background-position: -560px -720px;}}
-		&.icon-tweet 		{background-position: -640px -720px; 	&.selected {background-position: -720px -720px;}}
-		&.icon-post			{background-position: 0 -800px; 		&.selected {background-position: -80px -800px;}}
-		&.icon-place 		{background-position: -160px -800px; 	&.selected {background-position: -240px -800px;}}
-		&.icon-retweet 		{background-position: -320px -800px; 	&.selected {background-position: -400px -800px;}}
-		&.icon-retweeted 	{background-position: -480px -800px; 	&.selected {background-position: -560px -800px;}}
-		&.icon-mentions 	{background-position: -640px -800px; 	&.selected {background-position: -720px -800px;}}
-		&.icon-inreply 		{background-position: 0 -880px; 		&.selected {background-position: -80px -880px;}}
-		&.icon-count 		{background-position: -160px -880px; 	&.selected {background-position: -240px -880px;}}
-		&.icon-ratio 		{background-position: -320px -880px; 	&.selected {background-position: -400px -880px;}}
-		&.icon-user-id 		{background-position: -480px -880px; 	&.selected {background-position: -560px -880px;}}
-		&.icon-placeattrs 	{background-position: -640px -880px; 	&.selected {background-position: -720px -880px;}}
-		&.icon-country 		{background-position: 0 -960px; 		&.selected {background-position: -80px -960px;}}
-		&.icon-article 		{background-position: -160px -960px; 	&.selected {background-position: -240px -960px;}}
-		&.icon-video-caption{background-position: -320px -960px; 	&.selected {background-position: -400px -960px;}}
-		&.icon-video 		{background-position: -480px -960px; 	&.selected {background-position: -560px -960px;}}
-		&.icon-elapsed 		{background-position: -640px -960px; 	&.selected {background-position: -720px -960px;}}
-		&.icon-buries 		{background-position: 0 -1040px; 		&.selected {background-position: -80px -1040px;}}
-		&.icon-diggs 		{background-position: -160px -1040px; 	&.selected {background-position: -240px -1040px;}}
-		&.icon-status 		{background-position: -320px -1040px; 	&.selected {background-position: -400px -1040px;}}
-		&.icon-videolink 	{background-position: -480px -1040px; 	&.selected {background-position: -560px -1040px;}}
-		&.icon-thumbnail 	{background-position: -640px -1040px; 	&.selected {background-position: -720px -1040px;}}
-		&.icon-profileviews {background-position: 0 -1120px; 		&.selected {background-position: -80px -1120px;}}
-		&.icon-photos 		{background-position: -160px -1120px;	&.selected {background-position: -240px -1120px;}}
-		&.icon-image		{background-position: -320px -1120px; 	&.selected {background-position: -400px -1120px;}}
-		&.icon-verb 		{background-position: -480px -1120px; 	&.selected {background-position: -560px -1120px;}}
-		&.icon-application 	{background-position: -640px -1120px; 	&.selected {background-position: -720px -1120px;}}
-		&.icon-caption 		{background-position: 0 -1200px; 		&.selected {background-position: -80px -1200px;}}
-		&.icon-likes-count 	{background-position: -160px -1200px; 	&.selected {background-position: -240px -1200px;}}
-		&.icon-og-by 		{background-position: -320px -1200px; 	&.selected {background-position: -400px -1200px;}}
-		&.icon-opengraph 	{background-position: -480px -1200px;	&.selected {background-position: -560px -1200px;}}
-		&.icon-message 		{background-position: -640px -1200px; 	&.selected {background-position: -720px -1200px;}}
-		&.icon-attribution-link {background-position: 0 -1280px; 	&.selected {background-position: -80px -1280px;}}
-		&.icon-attribution-text {background-position: -160px -1280px; &.selected {background-position: -240px -1280px;}}
-		&.icon-thread		{background-position: -320px -1280px; 	&.selected {background-position: -400px -1280px;}}
-		&.icon-sentiment	{background-position: -480px -1280px; 	&.selected {background-position: -560px -1280px;}}
-		&.icon-contenttype	{background-position: -640px -1280px; 	&.selected {background-position: -720px -1280px;}}
-		&.icon-signature	{background-position: 0 -1360px; 		&.selected {background-position: -80px -1360px;}}
-	}
+.jcsdl-input-select {
+	margin: 0 30px;
+	text-align: center;
 
-	.jcsdl-icon.input {
-		background: url($otherIconsSprite) no-repeat 0 0;
-
-		&.icon-geo_radius 	{background-position: 0 -400px; 		&.selected {background-position: -80px -400px;}}
-		&.icon-geo_polygon 	{background-position: 0 -480px; 		&.selected {background-position: -80px -480px;}}
-		&.icon-geo_box 		{background-position: 0 -560px; 		&.selected {background-position: -80px -560px;}}
-		&.icon-geo_text 	{background-position: 0 80px; 			&.selected {background-position: -80px 80px;}}
-	}
-
-	.jcsdl-icon.operator {
-		width: 46px; height: 46px;
-		background: url($operatorIconsSprite) no-repeat 0 0;
-		border: 1px solid $colorBlackLight; @include rounded(2px);
+	.jcsdl-input-select-option {
+		margin: 10px;
+		display: inline-block; padding: 0 10px; height: 25px; line-height: 25px;
+		font-size: 13px; color: $colorBlack;
+		border: 1px solid $colorBlackLight;
+		@include rounded(2px);
 		@include opacity(0.75);
 
-		&.icon-contains 	{background-position: 0 0;				&.selected {background-position: 0 -184px;}}
-		&.icon-substr 		{background-position: -46px 0;			&.selected {background-position: -46px -184px;}}
-		&.icon-contains_any {background-position: -92px 0;			&.selected {background-position: -92px -184px;}}
-		&.icon-contains_near{background-position: -138px 0;			&.selected {background-position: -138px -184px;}}
-		&.icon-exists 		{background-position: 0 -46px;			&.selected {background-position: 0 -230px;}}
-		&.icon-different 	{background-position: -46px -46px;		&.selected {background-position: -46px -230px;}}
-		&.icon-equals 		{background-position: -92px -46px;		&.selected {background-position: -92px -230px;}}
-		&.icon-in 			{background-position: -138px -46px;		&.selected {background-position: -138px -230px;}}
-		&.icon-greaterThan 	{background-position: 0 -92px;			&.selected {background-position: 0 -276px;}}
-		&.icon-lowerThan 	{background-position: -46px -92px;		&.selected {background-position: -46px -276px;}}
-		&.icon-regex_partial{background-position: -92px -92px;		&.selected {background-position: -92px -276px;}}
-		&.icon-regex_exact 	{background-position: -138px -92px;		&.selected {background-position: -138px -276px;}}
-		&.icon-cs {
-			width: 38px; height: 38px;
-			background-position: -4px -142px;			&.selected {background-position: -4px -326px;}
+		/* ie7 */
+		zoom: 1;
+		*display: inline;
+
+		&.selected {@include opacity(1); border-color: $colorOrange; color: $color;}
+	}
+}
+
+.jcsdl-input-slider {
+	margin: 10px 30px; margin-bottom: 0;
+	text-align: center;
+
+	.jcsdl-slider-controls {
+		margin: 0 auto;
+		width: 200px; padding: 5px 0; overflow: hidden;
+
+		.jcsdl-slider-minus, .jcsdl-slider-plus {
+			float: right; margin: 13px 10px; overflow: hidden;
+			display: block; width: 14px; height: 14px;
+			background: transparent url($elementsSprite) no-repeat -115px -89px;
+			@include opacity(0.7);
+			-webkit-touch-callout: none; /* prevent callout menu on iOS */
+
+			&:active {position: relative; top: 1px;}
+			&:hover {@include opacity(1);}
+		}
+		.jcsdl-slider-minus {float: left; background-position: -129px -89px;}
+
+		.jcsdl-slider-input {
+			display: block; margin: 0 auto;
+			padding: 5px; width: 110px;
+			font-size: 24px; color: #1b1b1f; text-align: center;
+			border: 1px solid $borderColor;
+			@include rounded(3px);
+		}
+	}
+
+	.jcsdl-slider-wrap {
+		display: block; overflow: hidden; position: relative;
+		min-height: 65px;
+
+		.jcsdl-slider-icon {
+			display: none; float: left; margin: 0 10px;
+			width: 80px; height: 80px;
+			background: url($otherIconsSprite) no-repeat 0 0;
+
+			&.max {float: right;}
+		}
+	}
+
+	.jcsdl-slider-container {position: relative; padding-top: 12px;}
+
+	.jcsdl-slider-label {
+		position: absolute; top: 0; left: 5px;
+		text-align: left;
+		color: #444; font-size: 0.9em;
+
+		&.max {right: 5px; left: auto; text-align: right;}
+	}
+
+	.jcsdl-slider {
+		display: block; margin: 10px 15px; margin-bottom: 7px;
+		height: 12px;
+		cursor: pointer;
+		background: transparent url($elementsSprite) repeat-x center -228px;
+		border: 0; @include rounded(0px);
+
+		.ui-slider-handle {
+			top: 0; margin-left: -1em;
+			display: block; width: 30px; height: 40px;
+			cursor: pointer;
+			background: transparent url($elementsSprite) no-repeat -152px -83px;
+			border: 0;
+			outline: none;
+		}
+	}
+
+	.jcsdl-slider-bottom {
+		display: block; overflow: hidden; margin: 0 8px;
+		height: 15px;
+
+		.jcsdl-slider-bottom-left, .jcsdl-slider-bottom-right {
+			display: block; width: 15px; height: 15px;
+			float: left;
+			background: transparent url($elementsSprite) no-repeat 0 -213px;
+		}
+		.jcsdl-slider-bottom-right {float: right; background-position: -31px -213px;}
+
+		.jcsdl-slider-bottom-line {
+			display: block; height: 15px; margin: 0 15px;
+			background: transparent url($elementsSprite) repeat-x 0 -198px;
+		}
+	}
+}
+
+.jcsdl-map {
+	text-align: center;
+
+	.jcsdl-map-search {
+		display: block; margin: 10px auto; width: 50%; padding: 5px;
+		font-size: 15px;
+		border: 1px solid $borderColor; @include rounded(3px);
+	}
+
+	.jcsdl-map-canvas {
+		display: block; margin: 10px auto;
+		min-width: 320px; max-width: 600px; width: 90%; height: 350px;
+	}
+
+	.jcsdl-map-instructions {
+		display: block; margin: 0 auto; width: 70%;
+		text-align: center; line-height: 1.3em;
+	}
+
+	.jcsdl-clear-map {
+		color: $colorLight; font-weight: normal;
+		&:hover {color: $color;}
+	}
+
+	.jcsdl-map-coordinates,
+	.jcsdl-map-area {
+		margin: 0 10px; text-align: center;
+		span {margin-left: 10px;}
+	}
+
+	.jcsdl-map-coordinates {
+		label {clear: both;}
+		ul {
+			margin: 0; padding: 0;
+			li {display: inline; margin: 5px;}
+		}
+	}
+
+	.jcsdl-map-area {}
+}
+
+/* filter editor input fields overrides for the filters list view */
+/* expanded view */
+.jcsdl-filter-info.value {
+	&.input-select {
+		padding: 0; border: 0;
+
+		.jcsdl-input-select {
+			margin: 0;
+
+			.jcsdl-input-select-option {margin: 3px 5px;}
+			.jcsdl-input-select-more {font-size: 13px; line-height: 25px;}
+		}
+	}
+}
+/* collapsed view overrides */
+.jcsdl-filters-list.collapsed .jcsdl-filter-info.value {
+	&.input-select {
+		.jcsdl-input-select {
+			.jcsdl-input-select-option {
+				display: inline; height: auto; line-height: 1em; padding: 0;
+				color: $colorLight; font-weight: normal;
+				background: none; border: 0;
+
+				span {top: 0 !important;}
+			}
+		}
+	}
+}
+
+
+/*
+ * ICONS
+ */
+.jcsdl-icon.target {
+	width: 110px; height: 110px; margin-right: 35px;
+	background: url($targetIconsSprite) no-repeat 0 0;
+
+	&.target-interaction {background-position: 0 0; 			&.selected {background-position: 0 -110px;}}
+	&.target-facebook	{background-position: -110px 0; 		&.selected {background-position: -110px -110px;}}
+	&.target-twitter 	{background-position: -220px 0; 		&.selected {background-position: -220px -110px;}}
+	&.target-digg 		{background-position: -330px 0; 		&.selected {background-position: -330px -110px;}}
+	&.target-myspace 	{background-position: -440px 0; 		&.selected {background-position: -440px -110px;}}
+	&.target-klout 		{background-position: -550px 0; 		&.selected {background-position: -550px -110px;}}
+	&.target-amazon		{background-position: -660px 0;			&.selected {background-position: -660px -110px;}}
+	&.target-youtube	{background-position: -770px 0;			&.selected {background-position: -770px -110px;}}
+	&.target-flickr		{background-position: -880px 0;			&.selected {background-position: -880px -110px;}}
+	&.target-blog		{background-position: -990px 0;			&.selected {background-position: -990px -110px;}}
+	&.target-video		{background-position: -1100px 0;			&.selected {background-position: -1100px -110px;}}
+	&.target-reddit		{background-position: -1210px 0;			&.selected {background-position: -1210px -110px;}}
+	&.target-imdb		{background-position: -1320px 0;			&.selected {background-position: -1320px -110px;}}
+	&.target-dailymotion{background-position: -1430px 0;			&.selected {background-position: -1430px -110px;}}
+	&.target-newscred	{background-position: -1540px 0;			&.selected {background-position: -1540px -110px;}}
+	&.target-board		{background-position: -1650px 0;			&.selected {background-position: -1650px -110px;}}
+	&.target-topix		{background-position: -1760px 0;			&.selected {background-position: -1760px -110px;}}
+	&.target-2channel	{}
+}
+
+.jcsdl-icon.field {
+	background: url($fieldIconsSprite) no-repeat 0 0;
+
+	&.icon-geo			{background-position: 0 0; 				&.selected {background-position: -80px 0;}}
+	&.icon-link 		{background-position: -160px 0; 		&.selected {background-position: -240px 0;}}
+	&.icon-sample 		{background-position: -320px 0; 		&.selected {background-position: -400px 0;}}
+	&.icon-title 		{background-position: -480px 0; 		&.selected {background-position: -560px 0;}}
+	&.icon-content 		{background-position: -640px 0; 		&.selected {background-position: -720px 0;}}
+	&.icon-description 	{background-position: 0 -80px; 			&.selected {background-position: -80px -80px;}}
+	&.icon-source 		{background-position: -160px -80px; 	&.selected {background-position: -240px -80px;}}
+	&.icon-type 		{background-position: -320px -80px; 	&.selected {background-position: -400px -80px;}}
+	&.icon-avatar 		{background-position: -480px -80px; 	&.selected {background-position: -560px -80px;}}
+	&.icon-comment 		{background-position: -640px -80px;		&.selected {background-position: -720px -80px;}}
+	&.icon-comments-count {background-position: 0 -160px;		&.selected {background-position: -80px -160px;}}
+	&.icon-author-username, &.icon-username {background-position: -160px -160px; &.selected {background-position: -240px -160px;}}
+	&.icon-username 	{background-position: -160px -160px; 	&.selected {background-position: -240px -160px;}}
+	&.icon-user 		{background-position: -320px -160px;	&.selected {background-position: -400px -160px;}}
+	&.icon-fullname 	{background-position: -480px -160px;	&.selected {background-position: -560px -160px;}}
+	&.icon-registered	{background-position: -640px -160px;	&.selected {background-position: -720px -160px;}}
+	&.icon-user-description {background-position: 0 -240px;		&.selected {background-position: -80px -240px;}}
+	&.icon-followers_count	{background-position: -160px -240px;		&.selected {background-position: -240px -240px;}}
+	&.icon-follower_ratio	{background-position: -320px -240px;		&.selected {background-position: -400px -240px;}}
+	&.icon-friends_count	{background-position: -480px -240px;		&.selected {background-position: -560px -240px;}}
+	&.icon-location 	{background-position: -640px -240px;	&.selected {background-position: -720px -240px;}}
+	&.icon-screen_name	{background-position: 0 -320px;			&.selected {background-position: -80px -320px;}}
+	&.icon-domains, &.icon-domain 	{background-position: -160px -320px;	&.selected {background-position: -240px -320px;}}
+	&.icon-topic, &.icon-topics		{background-position: -320px -320px; 	&.selected {background-position: -400px -320px;}}
+	&.icon-language 	{background-position: -480px -320px; 	&.selected {background-position: -560px -320px;}}
+	&.icon-statuses_count {background-position: -640px -320px;	&.selected {background-position: -720px -320px;}}
+	&.icon-time_zone 	{background-position: 0 -400px;			&.selected {background-position: -80px -400px;}}
+	&.icon-placename 	{background-position: -160px -400px;	&.selected {background-position: -240px -400px;}}
+	&.icon-id 			{background-position: -320px -400px;	&.selected {background-position: -400px -400px;}}
+	&.icon-amplification {background-position: -480px -400px; 	&.selected {background-position: -560px -400px;}}
+	&.icon-listed_count {background-position: -640px -400px;	&.selected {background-position: -720px -400px;}}
+	&.icon-network 		{background-position: 0 -480px; 		&.selected {background-position: -80px -480px;}}
+	&.icon-score 		{background-position: -160px -480px; 	&.selected {background-position: -240px -480px;}}
+	&.icon-true_reach 	{background-position: -320px -480px; 	&.selected {background-position: -400px -480px;}}
+	&.icon-trends 		{background-position: -480px -480px; 	&.selected {background-position: -560px -480px;}}
+	&.icon-country_code {background-position: -640px -480px;	&.selected {background-position: -720px -480px;}}
+	&.icon-likes-ids	{background-position: 0 -560px;			&.selected {background-position: -80px -560px;}}
+	&.icon-likes-names	{background-position: -160px -560px;	&.selected {background-position: -240px -560px;}}
+	&.icon-to-ids		{background-position: -320px -560px;	&.selected {background-position: -400px -560px;}}
+	&.icon-to-names		{background-position: -480px -560px;	&.selected {background-position: -560px -560px;}}
+	&.icon-age 			{background-position: -640px -560px; 	&.selected {background-position: -720px -560px;}}
+	&.icon-category		{background-position: 0 -640px;			&.selected {background-position: -80px -640px;}}
+	&.icon-url 			{background-position: -160px -640px; 	&.selected {background-position: -240px -640px;}}
+	&.icon-retweet-count{background-position: -320px -640px; 	&.selected {background-position: -400px -640px;}}
+	&.icon-gender 		{background-position: -480px -640px; 	&.selected {background-position: -560px -640px;}}
+	&.icon-commentslink {background-position: -640px -640px; 	&.selected {background-position: -720px -640px;}}
+	&.icon-authors 		{background-position: 0 -720px; 		&.selected {background-position: -80px -720px;}}
+	&.icon-author-name 	{background-position: -160px -720px; 	&.selected {background-position: -240px -720px;}}
+	&.icon-duration		{background-position: -320px -720px; 	&.selected {background-position: -400px -720px;}}
+	&.icon-tags 		{background-position: -480px -720px; 	&.selected {background-position: -560px -720px;}}
+	&.icon-tweet 		{background-position: -640px -720px; 	&.selected {background-position: -720px -720px;}}
+	&.icon-post			{background-position: 0 -800px; 		&.selected {background-position: -80px -800px;}}
+	&.icon-place 		{background-position: -160px -800px; 	&.selected {background-position: -240px -800px;}}
+	&.icon-retweet 		{background-position: -320px -800px; 	&.selected {background-position: -400px -800px;}}
+	&.icon-retweeted 	{background-position: -480px -800px; 	&.selected {background-position: -560px -800px;}}
+	&.icon-mentions 	{background-position: -640px -800px; 	&.selected {background-position: -720px -800px;}}
+	&.icon-inreply 		{background-position: 0 -880px; 		&.selected {background-position: -80px -880px;}}
+	&.icon-count 		{background-position: -160px -880px; 	&.selected {background-position: -240px -880px;}}
+	&.icon-ratio 		{background-position: -320px -880px; 	&.selected {background-position: -400px -880px;}}
+	&.icon-user-id 		{background-position: -480px -880px; 	&.selected {background-position: -560px -880px;}}
+	&.icon-placeattrs 	{background-position: -640px -880px; 	&.selected {background-position: -720px -880px;}}
+	&.icon-country 		{background-position: 0 -960px; 		&.selected {background-position: -80px -960px;}}
+	&.icon-article 		{background-position: -160px -960px; 	&.selected {background-position: -240px -960px;}}
+	&.icon-video-caption{background-position: -320px -960px; 	&.selected {background-position: -400px -960px;}}
+	&.icon-video 		{background-position: -480px -960px; 	&.selected {background-position: -560px -960px;}}
+	&.icon-elapsed 		{background-position: -640px -960px; 	&.selected {background-position: -720px -960px;}}
+	&.icon-buries 		{background-position: 0 -1040px; 		&.selected {background-position: -80px -1040px;}}
+	&.icon-diggs 		{background-position: -160px -1040px; 	&.selected {background-position: -240px -1040px;}}
+	&.icon-status 		{background-position: -320px -1040px; 	&.selected {background-position: -400px -1040px;}}
+	&.icon-videolink 	{background-position: -480px -1040px; 	&.selected {background-position: -560px -1040px;}}
+	&.icon-thumbnail 	{background-position: -640px -1040px; 	&.selected {background-position: -720px -1040px;}}
+	&.icon-profileviews {background-position: 0 -1120px; 		&.selected {background-position: -80px -1120px;}}
+	&.icon-photos 		{background-position: -160px -1120px;	&.selected {background-position: -240px -1120px;}}
+	&.icon-image		{background-position: -320px -1120px; 	&.selected {background-position: -400px -1120px;}}
+	&.icon-verb 		{background-position: -480px -1120px; 	&.selected {background-position: -560px -1120px;}}
+	&.icon-application 	{background-position: -640px -1120px; 	&.selected {background-position: -720px -1120px;}}
+	&.icon-caption 		{background-position: 0 -1200px; 		&.selected {background-position: -80px -1200px;}}
+	&.icon-likes-count 	{background-position: -160px -1200px; 	&.selected {background-position: -240px -1200px;}}
+	&.icon-og-by 		{background-position: -320px -1200px; 	&.selected {background-position: -400px -1200px;}}
+	&.icon-opengraph 	{background-position: -480px -1200px;	&.selected {background-position: -560px -1200px;}}
+	&.icon-message 		{background-position: -640px -1200px; 	&.selected {background-position: -720px -1200px;}}
+	&.icon-attribution-link {background-position: 0 -1280px; 	&.selected {background-position: -80px -1280px;}}
+	&.icon-attribution-text {background-position: -160px -1280px; &.selected {background-position: -240px -1280px;}}
+	&.icon-thread		{background-position: -320px -1280px; 	&.selected {background-position: -400px -1280px;}}
+	&.icon-sentiment	{background-position: -480px -1280px; 	&.selected {background-position: -560px -1280px;}}
+	&.icon-contenttype	{background-position: -640px -1280px; 	&.selected {background-position: -720px -1280px;}}
+	&.icon-signature	{background-position: 0 -1360px; 		&.selected {background-position: -80px -1360px;}}
+}
+
+.jcsdl-icon.input {
+	background: url($otherIconsSprite) no-repeat 0 0;
+
+	&.icon-geo_radius 	{background-position: 0 -400px; 		&.selected {background-position: -80px -400px;}}
+	&.icon-geo_polygon 	{background-position: 0 -480px; 		&.selected {background-position: -80px -480px;}}
+	&.icon-geo_box 		{background-position: 0 -560px; 		&.selected {background-position: -80px -560px;}}
+	&.icon-geo_text 	{background-position: 0 80px; 			&.selected {background-position: -80px 80px;}}
+}
+
+.jcsdl-icon.operator {
+	width: 46px; height: 46px;
+	background: url($operatorIconsSprite) no-repeat 0 0;
+	border: 1px solid $colorBlackLight; @include rounded(2px);
+	@include opacity(0.75);
+
+	&.icon-contains 	{background-position: 0 0;				&.selected {background-position: 0 -184px;}}
+	&.icon-substr 		{background-position: -46px 0;			&.selected {background-position: -46px -184px;}}
+	&.icon-contains_any {background-position: -92px 0;			&.selected {background-position: -92px -184px;}}
+	&.icon-contains_near{background-position: -138px 0;			&.selected {background-position: -138px -184px;}}
+	&.icon-exists 		{background-position: 0 -46px;			&.selected {background-position: 0 -230px;}}
+	&.icon-different 	{background-position: -46px -46px;		&.selected {background-position: -46px -230px;}}
+	&.icon-equals 		{background-position: -92px -46px;		&.selected {background-position: -92px -230px;}}
+	&.icon-in 			{background-position: -138px -46px;		&.selected {background-position: -138px -230px;}}
+	&.icon-greaterThan 	{background-position: 0 -92px;			&.selected {background-position: 0 -276px;}}
+	&.icon-lowerThan 	{background-position: -46px -92px;		&.selected {background-position: -46px -276px;}}
+	&.icon-regex_partial{background-position: -92px -92px;		&.selected {background-position: -92px -276px;}}
+	&.icon-regex_exact 	{background-position: -138px -92px;		&.selected {background-position: -138px -276px;}}
+	&.icon-cs {
+		width: 38px; height: 38px;
+		background-position: -4px -142px;			&.selected {background-position: -4px -326px;}
+	}
+
+	&:hover {@include opacity(0.7);}
+	&.selected {@include opacity(1); border-color: $colorOrange;}
+}
+
+/* overrides for the list view */
+.jcsdl-filter-info .jcsdl-icon.operator {
+	width: 46px; height: 46px; @include roundedCorner(2px, 0, 0, 2px);
+
+	&.icon-cs {@include rounded(0); border-left: 0; background-position: 0 -138px;		&.selected {background-position: 0 -322px;}}
+}
+
+.jcsdl-dropdown {
+	display: block; width: 250px;
+	position: absolute; top: 10px; left: 10px; z-index: 10;
+	border: 1px solid $borderColor; border-top: 0;
+	@include roundedCorner(0, 0, 3px, 3px);
+	background: white;
+
+	.jcsdl-dropdown-option {
+		display: block; overflow: hidden;
+		border-top: 1px solid $borderColor;
+		cursor: pointer;
+
+		.jcsdl-icon {
+			border: 0; margin: 0; @include opacity(1);
+			&:hover {@include opacity(1);}
 		}
 
-		&:hover {@include opacity(0.7);}
-		&.selected {@include opacity(1); border-color: $colorOrange;}
-	}
+		.jcsdl-dropdown-option-desc {margin: 10px; margin-left: 56px;}
 
-	/* overrides for the list view */
-	.jcsdl-filter-info .jcsdl-icon.operator {
-		width: 46px; height: 46px; @include roundedCorner(2px, 0, 0, 2px);
-
-		&.icon-cs {@include rounded(0); border-left: 0; background-position: 0 -138px;		&.selected {background-position: 0 -322px;}}
-	}
-
-
-	/* IE fixes */
-	&.msie {
-		.jcsdl-filter-value-input-operators .operator {text-indent: 0;}
-		.jcsdl-input-text, .jcsdl-input-number {
-			input, .jcsdl-tag-input {width: 90%;}
+		.jcsdl-operator-label {
+			margin-bottom: 3px; color: $colorBlack; line-height: 1.2em; font-weight: bold;
+			a {color: $color;}
 		}
-	}
 
+		.jcsdl-operator-desc {font-size: 0.9em; color: $colorLight; line-height: 1.2em;}
+
+		&:hover {background: #f5f5f5;}
+	}
+}
+
+/* IE fixes */
+.jcsdl-container.msie {
+	.jcsdl-filter-value-input-operators .operator {text-indent: 0;}
+	.jcsdl-input-text, .jcsdl-input-number {
+		input, .jcsdl-tag-input {width: 90%;}
+	}
 }
 
 .tipsy {line-height: 1.4em;}
