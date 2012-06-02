@@ -971,6 +971,9 @@ JCSDLGui.prototype = {
 	createTextOperatorsSelectView : function($view, field, inputType, $inputView) {
 		var self = this;
 
+		// remove all old dropdowns
+		$('.jcsdl-dropdown').remove();
+
 		$view.addClass('text');
 		var $input = $inputView.find('input:first');
 		var $select = this.getTemplate('textOperatorsSelect');
@@ -1028,6 +1031,26 @@ JCSDLGui.prototype = {
 					$('body').unbind('click.jcsdldropdown');
 				}
 			});
+		});
+
+		$dropdown.find('.jcsdl-dropdown-details-trigger, .jcsdl-operator-help').click(function(ev) {
+			ev.preventDefault();
+			ev.target.blur();
+			ev.stopPropagation();
+
+			var $option = $(this).closest('.jcsdl-dropdown-option');
+
+			if ($option.hasClass('expanded')) {
+				$option.removeClass('expanded');
+				$option.find('.jcsdl-dropdown-option-details').slideUp(self.config.animate);
+			} else {
+				$dropdown.find('.jcsdl-dropdown-option.expanded').removeClass('expanded').find('.jcsdl-dropdown-option-details').slideUp(self.config.animate);
+				$option.addClass('expanded').find('.jcsdl-dropdown-option-details').slideDown(self.config.animate);
+			}
+		});
+
+		$dropdown.find('.jcsdl-doc-url').click(function(ev) {
+			ev.stopPropagation();
 		});
 
 		$dropdown.find('.jcsdl-dropdown-option').click(function(ev) {
@@ -1105,6 +1128,13 @@ JCSDLGui.prototype = {
 		$view.find('.jcsdl-icon').addClass('icon-' + name + ' operator-' + name + ' selected');
 		$view.find('.jcsdl-operator-label span').html(operator.label);
 		$view.find('.jcsdl-operator-desc').html(operator.description);
+		var $details = $view.find('.jcsdl-dropdown-option-details p');
+		if (operator.details.length > 0) {
+			$details.html(operator.details);
+		} else {
+			$details.remove();
+		}
+		$view.find('.jcsdl-dropdown-option-details a.jcsdl-doc-url').attr('href', operator.url).html(operator.url);
 
 		return $view;
 	},

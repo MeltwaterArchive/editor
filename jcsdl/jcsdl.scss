@@ -793,7 +793,7 @@ $otherIconsSprite : 'img/icons-sprite-other.png?2';
 }
 
 .jcsdl-dropdown {
-	display: block; width: 250px;
+	display: block; width: 250px; margin-bottom: 50px;
 	position: absolute; top: 10px; left: 10px; z-index: 10;
 	border: 1px solid $borderColor; border-top: 0;
 	@include roundedCorner(0, 0, 3px, 3px);
@@ -805,11 +805,20 @@ $otherIconsSprite : 'img/icons-sprite-other.png?2';
 		cursor: pointer;
 
 		.jcsdl-icon {
-			border: 0; margin: 0; @include opacity(1);
+			border: 0; margin: 0; margin-left: 5px; @include opacity(1);
 			&:hover {@include opacity(1);}
 		}
 
-		.jcsdl-dropdown-option-desc {margin: 10px; margin-left: 56px;}
+		.jcsdl-dropdown-details-trigger {
+			display: block; float: right; margin: 18px 10px;
+			width: 18px; height: 10px;
+			background: url($elementsSprite) no-repeat -39px -288px;
+			@include opacity(0.5);
+
+			&:hover {@include opacity(0.9);}
+		}
+
+		.jcsdl-dropdown-option-desc {margin-left: 56px; margin-right: 38px; padding: 10px 0;}
 
 		.jcsdl-operator-label {
 			margin-bottom: 3px; color: $colorBlack; line-height: 1.2em; font-weight: bold;
@@ -818,7 +827,19 @@ $otherIconsSprite : 'img/icons-sprite-other.png?2';
 
 		.jcsdl-operator-desc {font-size: 0.9em; color: $colorLight; line-height: 1.2em;}
 
-		&:hover {background: #f5f5f5;}
+		.jcsdl-dropdown-option-details {
+			display: none; border-top: 1px solid #eee;
+			padding: 10px 20px;
+
+			p {margin-top: 0; margin-bottom: 10px;}
+			a.jcsdl-doc-url {color: $color; font-weight: bold;}
+		}
+
+		&.expanded {
+			.jcsdl-dropdown-details-trigger {background-position: -39px -278px; @include opacity(1);}
+		}
+
+		&:hover {background: #f8f8f8;}
 	}
 }
 
