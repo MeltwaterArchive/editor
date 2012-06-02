@@ -905,6 +905,14 @@ JCSDLGui.prototype = {
 		return $valueView;
 	},
 
+	/**
+	 * Create operators selection for most input fields.
+	 * @param  {jQuery} $view      Operators list view.
+	 * @param  {Object} field      Field definition from JCSDL Definition.
+	 * @param  {String} inputType  Name of the input type.
+	 * @param  {jQuery} $inputView View of the input.
+	 * @return {jQuery}            Should return the original $view with appended operators.
+	 */
 	createOperatorsSelectView : function($view, field, inputType, $inputView) {
 		var self = this;
 
@@ -968,6 +976,14 @@ JCSDLGui.prototype = {
 		return $view;
 	},
 
+	/**
+	 * Create operators selection for text input fields.
+	 * @param  {jQuery} $view      Operators list view.
+	 * @param  {Object} field      Field definition from JCSDL Definition.
+	 * @param  {String} inputType  Name of the input type.
+	 * @param  {jQuery} $inputView View of the input.
+	 * @return {jQuery}            Should return the original $view with appended operators.
+	 */
 	createTextOperatorsSelectView : function($view, field, inputType, $inputView) {
 		var self = this;
 
@@ -1010,6 +1026,11 @@ JCSDLGui.prototype = {
 		/*
 		 * LISTENERS
 		 */
+		/**
+		 * Shows the operators dropdown when clicked on the select box.
+		 * @param  {Event} ev Click event.
+		 * @listener
+		 */
 		$select.click(function(ev) {
 			ev.preventDefault();
 			ev.target.blur();
@@ -1017,12 +1038,14 @@ JCSDLGui.prototype = {
 
 			$select.addClass('active');
 
+			// update position of the dropdown and show it
 			$dropdown.css({
 				top : $select.offset().top + $select.outerHeight() - 1,
 				left : $select.offset().left,
 				width : $select.outerWidth() - 2
 			}).slideDown(self.config.animate);
 
+			// hide on click out
 			$('body').bind('click.jcsdldropdown', function(ev) {
 				var $parent = $(ev.target).closest('.jcsdl-dropdown');
 				if ($parent == null || !$parent.is($dropdown)) {
@@ -1033,6 +1056,11 @@ JCSDLGui.prototype = {
 			});
 		});
 
+		/**
+		 * Shows details of the operator.
+		 * @param  {Event} ev Click event.
+		 * @listener
+		 */
 		$dropdown.find('.jcsdl-dropdown-details-trigger, .jcsdl-operator-help').click(function(ev) {
 			ev.preventDefault();
 			ev.target.blur();
@@ -1049,10 +1077,20 @@ JCSDLGui.prototype = {
 			}
 		});
 
+		/**
+		 * Stop propagation of click event when clicked on external doc link.
+		 * @param  {Event} ev Click event.
+		 * @listener
+		 */
 		$dropdown.find('.jcsdl-doc-url').click(function(ev) {
 			ev.stopPropagation();
 		});
 
+		/**
+		 * Select the operator when it was clicked in the dropdown.
+		 * @param  {Event} ev Click event.
+		 * @listener
+		 */
 		$dropdown.find('.jcsdl-dropdown-option').click(function(ev) {
 			ev.preventDefault();
 			ev.target.blur();
@@ -1119,6 +1157,11 @@ JCSDLGui.prototype = {
 		return $operatorView;
 	},
 
+	/**
+	 * Creates a single operator view for operators selection for text inputs.
+	 * @param  {String} name Name of the operator.
+	 * @return {jQuery} View of the operator.
+	 */
 	createTextOperatorOptionView : function(name) {
 		var operator = this.definition.operators[name];
 		if (typeof(operator) == 'undefined') return $();
