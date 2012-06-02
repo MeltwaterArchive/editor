@@ -244,7 +244,11 @@ JCSDLGui.prototype = {
 			}
 
 			// select operator
-			this.$currentFilterView.find('.jcsdl-filter-value-input-operators .operator-' + filter.operator).click();
+			if (fieldInfo.input == 'text') {
+				$('.jcsdl-dropdown .jcsdl-dropdown-option.operator-' + filter.operator).click();
+			} else {
+				this.$currentFilterView.find('.jcsdl-filter-value-input-operators .operator-' + filter.operator).click();
+			}
 			
 			// fill in the value (using the proper delegate)
 			var $valueInputView = this.$currentFilterView.find('.jcsdl-filter-value-input-field');
@@ -966,11 +970,17 @@ JCSDLGui.prototype = {
 		// if there's only one possible operator then automatically select it and hide it
 		if ($view.children().length == 1) {
 			$view.children().eq(0).click();
-			$view.hide();
 		} else {
-			$view.find('.operator-greaterThan').click();
-			$view.find('.operator-equals').click();
-			$view.find('.operator-in').click();
+			var preselect = (typeof(field.operator) !== 'undefined') ? field.operator : inputConfig.operator;
+			var $preselect = $view.find('.operator-' + preselect);
+
+			// if preselected operator exists then select it
+			if ($preselect.length > 0) {
+				$preselect.click();
+			} else {
+				// if not, then select first operator (other than "exists")
+				$view.find('.operator:not(.operator-exists):first').click();
+			}
 		}
 
 		return $view;
@@ -1131,10 +1141,21 @@ JCSDLGui.prototype = {
 			}
 		});
 
-		// preselect "equals" and then "in" (if available)
-		$dropdown.find('.jcsdl-dropdown-option.operator-equals').click();
-		$dropdown.find('.jcsdl-dropdown-option.operator-contains_any').click();
-		$dropdown.find('.jcsdl-dropdown-option.operator-in').click();
+		// if there's only one possible operator then automatically select it and hide it
+		if ($dropdown.find('.jcsdl-dropdown-option').length == 1) {
+			$dropdown.find('.jcsdl-dropdown-option:first').click();
+		} else {
+			var preselect = (typeof(field.operator) !== 'undefined') ? field.operator : inputConfig.operator;
+			var $preselect = $dropdown.find('.jcsdl-dropdown-option.operator-' + preselect);
+
+			// if preselected operator exists then select it
+			if ($preselect.length > 0) {
+				$preselect.click();
+			} else {
+				// if not, then select first operator (other than "exists")
+				$dropdown.find('.jcsdl-dropdown-option:not(.operator-exists):first').click();
+			}
+		}
 
 		return $view;
 	},
