@@ -11,7 +11,7 @@ var JCSDLDefinition = {
 				link : {name: 'Link', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
 				sample : {name: 'sample', type: 'float', input: 'slider', operators: ['lowerThan'], displayFormat : function(v) { return v + '%';}},
 				source : {name: 'Source', type: 'string', cs: true, input: 'text', operators: ['contains', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-				type : {name: 'Type', type: 'string', input: 'select', operators: ['in'], options: {'twitter': 'Twitter', 'myspace': 'MySpace', 'facebook': 'Facebook', 'digg': 'Digg', '2ch': '2ch', 'amazon': 'Amazon', 'youtube': 'YouTube', 'dailymotion': 'DailyMotion'}},
+				type : {name: 'Type', type: 'string', input: 'select', operators: ['in'], options: {'2ch':'2channel','amazon':'Amazon','blog':'Blog','board':'Board','digg':'Digg','dailymotion':'DailyMotion','facebook':'Facebook','flickr':'Flickr','imdb':'IMDb','myspace':'MySpace','reddit':'Reddit','topic':'Topix','twitter':'Twitter','video':'Videos','youtube':'YouTube'}},
 				title : {name: 'Title', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
 				author : {
 					name: 'Author',
