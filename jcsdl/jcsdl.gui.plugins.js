@@ -779,13 +779,10 @@ $.extend(String.prototype, {
 			.replace(/&gt;/g, '>')
 			.replace(/&quot;/g, '"');
 	},
-	escapeCsdl : function(reg) {
-		// escape regular expressions?
-		s = (reg) ? this.replace(/\\/g, '\\\\') : this.valueOf();
-		return this.replace(/\\/g, '\\\\').replace(/"/g, '\\"');
+	escapeCsdl : function() {
+		return this.replace(/\\(?![,:]+)/g, '\\\\').replace(/"/g, '\\"');
 	},
-	unescapeCsdl : function(reg) {
-		s = (reg) ? this.replace(/\\\\/g, '\\') : this.valueOf();
+	unescapeCsdl : function() {
 		return this.replace(/\\"/g, '"').replace(/\\\\/g, '\\');
 	}
 });
