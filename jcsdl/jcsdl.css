@@ -869,7 +869,7 @@
   width: 110px;
   height: 110px;
   margin-right: 35px;
-  background: url("img/icons-sprite-targets.png?9") no-repeat 0 0; }
+  background: url("img/icons-sprite-targets.png?10") no-repeat 0 0; }
   .jcsdl-icon.target.target-interaction {
     background-position: 0 0; }
     .jcsdl-icon.target.target-interaction.selected {
@@ -938,9 +938,17 @@
     background-position: -1760px 0; }
     .jcsdl-icon.target.target-topix.selected {
       background-position: -1760px -110px; }
+  .jcsdl-icon.target.target-augmentation {
+    background-position: -1870px 0; }
+    .jcsdl-icon.target.target-augmentation.selected {
+      background-position: -1870px -110px; }
+  .jcsdl-icon.target.target-2channel {
+    background-position: -1980px 0; }
+    .jcsdl-icon.target.target-2channel.selected {
+      background-position: -1980px -110px; }
 
 .jcsdl-icon.field {
-  background: url("img/icons-sprite-fields.png?7") no-repeat 0 0; }
+  background: url("img/icons-sprite-fields.png?8") no-repeat 0 0; }
   .jcsdl-icon.field.icon-geo {
     background-position: 0 0; }
     .jcsdl-icon.field.icon-geo.selected {
@@ -1289,6 +1297,18 @@
     background-position: 0 -1360px; }
     .jcsdl-icon.field.icon-signature.selected {
       background-position: -80px -1360px; }
+  .jcsdl-icon.field.icon-links {
+    background-position: -160px -1360px; }
+    .jcsdl-icon.field.icon-links.selected {
+      background-position: -240px -1360px; }
+  .jcsdl-icon.field.icon-demographic {
+    background-position: -320px -1360px; }
+    .jcsdl-icon.field.icon-demographic.selected {
+      background-position: -400px -1360px; }
+  .jcsdl-icon.field.icon-salience {
+    background-position: -480px -1360px; }
+    .jcsdl-icon.field.icon-salience.selected {
+      background-position: -560px -1360px; }
 
 .jcsdl-icon.input {
   background: url("img/icons-sprite-other.png?2") no-repeat 0 0; }

@@ -9,8 +9,8 @@ $borderColorInput : #c8d7de;
 $elementsSprite : 'img/elements.png?13';
 $selectSprite : 'img/select.png?12';
 $stepBackground : 'img/step_background.png?5';
-$targetIconsSprite : 'img/icons-sprite-targets.png?9';
-$fieldIconsSprite : 'img/icons-sprite-fields.png?7';
+$targetIconsSprite : 'img/icons-sprite-targets.png?10';
+$fieldIconsSprite : 'img/icons-sprite-fields.png?8';
 $operatorIconsSprite : 'img/icons-sprite-operators.png?4';
 $otherIconsSprite : 'img/icons-sprite-other.png?2';
 
@@ -647,14 +647,15 @@ $otherIconsSprite : 'img/icons-sprite-other.png?2';
 	&.target-youtube	{background-position: -770px 0;			&.selected {background-position: -770px -110px;}}
 	&.target-flickr		{background-position: -880px 0;			&.selected {background-position: -880px -110px;}}
 	&.target-blog		{background-position: -990px 0;			&.selected {background-position: -990px -110px;}}
-	&.target-video		{background-position: -1100px 0;			&.selected {background-position: -1100px -110px;}}
-	&.target-reddit		{background-position: -1210px 0;			&.selected {background-position: -1210px -110px;}}
-	&.target-imdb		{background-position: -1320px 0;			&.selected {background-position: -1320px -110px;}}
-	&.target-dailymotion{background-position: -1430px 0;			&.selected {background-position: -1430px -110px;}}
-	&.target-newscred	{background-position: -1540px 0;			&.selected {background-position: -1540px -110px;}}
-	&.target-board		{background-position: -1650px 0;			&.selected {background-position: -1650px -110px;}}
-	&.target-topix		{background-position: -1760px 0;			&.selected {background-position: -1760px -110px;}}
-	&.target-2channel	{}
+	&.target-video		{background-position: -1100px 0;		&.selected {background-position: -1100px -110px;}}
+	&.target-reddit		{background-position: -1210px 0;		&.selected {background-position: -1210px -110px;}}
+	&.target-imdb		{background-position: -1320px 0;		&.selected {background-position: -1320px -110px;}}
+	&.target-dailymotion{background-position: -1430px 0;		&.selected {background-position: -1430px -110px;}}
+	&.target-newscred	{background-position: -1540px 0;		&.selected {background-position: -1540px -110px;}}
+	&.target-board		{background-position: -1650px 0;		&.selected {background-position: -1650px -110px;}}
+	&.target-topix		{background-position: -1760px 0;		&.selected {background-position: -1760px -110px;}}
+	&.target-augmentation {background-position: -1870px 0;		&.selected {background-position: -1870px -110px;}}
+	&.target-2channel	{background-position: -1980px 0;		&.selected {background-position: -1980px -110px;}}
 }
 
 .jcsdl-icon.field {
@@ -747,6 +748,9 @@ $otherIconsSprite : 'img/icons-sprite-other.png?2';
 	&.icon-sentiment	{background-position: -480px -1280px; 	&.selected {background-position: -560px -1280px;}}
 	&.icon-contenttype	{background-position: -640px -1280px; 	&.selected {background-position: -720px -1280px;}}
 	&.icon-signature	{background-position: 0 -1360px; 		&.selected {background-position: -80px -1360px;}}
+	&.icon-links 		{background-position: -160px -1360px;	&.selected {background-position: -240px -1360px;}}
+	&.icon-demographic	{background-position: -320px -1360px;	&.selected {background-position: -400px -1360px;}}
+	&.icon-salience		{background-position: -480px -1360px;	&.selected {background-position: -560px -1360px;}}
 }
 
 .jcsdl-icon.input {

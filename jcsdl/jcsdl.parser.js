@@ -161,7 +161,7 @@ JCSDLParser.prototype = {
 		var cs = (filter.cs) ? ' cs' : '';
 
 		// create CSDL and JCSDL syntaxes
-		var csdl = filter.target + '.' + field.replace('-', '.') + cs + ' ' + operatorCode + ' ';
+		var csdl = ((filter.target == 'augmentation') ? '' : filter.target + '.') + field.replace('-', '.') + cs + ' ' + operatorCode + ' ';
 		var jcsdlSyntax = filter.target + '.' + field + ',' + filter.operator;
 
 		// for 'exists' operator the value and its range aren't included

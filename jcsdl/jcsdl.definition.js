@@ -476,6 +476,51 @@ var JCSDLDefinition = {
 				topics : {name: 'Topics', icon: 'topic', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
 				true_reach : {name: 'True Reach', type: 'int', input: 'slider', operators: ['exists', 'equals', 'greaterThan', 'lowerThan'], min: 0, max: 100000, 'default': 1000}
 			}
+		},
+
+		augmentation : {
+			name : 'Augmentations',
+			fields : {
+				links : {
+					name : 'Links',
+					fields : {
+						age : {name: 'Age', type: 'int', input: 'number', operators: ['equals', 'greaterThan', 'lowerThan'], operator: 'greaterThan'},
+						title : {name: 'Title', type: 'string', input: 'text', operators: ['equals', 'contains', 'substr', 'contains_any', 'contains_near', 'regex_partial', 'regex_exact'], operator: 'contains_any'},
+						domain : {name: 'Domain', type: 'string', input: 'text', operators: ['substr', 'in', 'equals', 'regex_partial', 'regex_exact'], operator: 'in'},
+						url : {name: 'URL', type: 'string', input: 'text', operators: ['substr', 'in', 'equals', 'regex_partial', 'regex_exact'], operator: 'in'},
+						retweet_count : {name: 'Retweet Count', icon: 'retweet-count', type: 'int', input: 'slider', operators: ['greaterThan', 'lowerThan', 'equals'], operator: 'greaterThan'}
+					}
+				},
+				trends : {
+					name : 'Trends',
+					fields : {
+						type : {name: 'Type', type: 'string', input: 'text', operators: ['equals', 'in', 'contains', 'contains_any', 'substr', 'regex_partial', 'regex_exact'], operator: 'equals'},
+						content : {name: 'Content', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+						source : {name: 'Source', type: 'string', input: 'select', single: true, operators: ['equals'], operator: 'equals', options: {'twitter':'Twitter'}}
+					}
+				},
+				'language-tag' : {name: 'Language', icon: 'language', type: 'string', input: 'select', optionsSet: 'language', operators: ['equals', 'in', 'different'], operator: 'in'},
+				'demographic-gender' : {name: 'Demographic', icon: 'demographic', type: 'string', input: 'select', single: true, options: {'male':'Male','mostly_male':'Mostly Male','mostly_female':'Mostly Female','female':'Female','unisex':'Unisex'}, operators: ['equals']},
+				salience : {
+					name : 'Salience',
+					fields : {
+						content : {
+							name: 'Content',
+							fields : {
+								sentiment : {name: 'Sentiment', type: 'int', input: 'slider', operators: ['greaterThan', 'lowerThan'], min: -100, max: 100, 'default': 0},
+								topics : {name: 'Topics', type: 'string', input: 'select', operators: ['in'], optionsSet: 'salienceTopics'}
+							}
+						},
+						title : {
+							name: 'Title',
+							fields : {
+								sentiment : {name: 'Sentiment', type: 'int', input: 'slider', operators: ['greaterThan', 'lowerThan'], min: -100, max: 100, 'default': 0},
+								topics : {name: 'Topics', type: 'string', input: 'select', operators: ['in'], optionsSet: 'salienceTopics'}
+							}
+						}
+					}
+				}
+			}
 		}
 
 	},
@@ -598,6 +643,7 @@ var JCSDLDefinition = {
 			operator : 'in',
 			sets : {
 				language : {'af': 'Afrikaans', 'bg': 'Bulgarian', 'zh': 'Chinese', 'cs': 'Czech', 'da': 'Danish', 'nl': 'Dutch', 'en': 'English', 'et': 'Estonian', 'fi': 'Finnish', 'fr': 'French', 'de': 'German', 'el': 'Greek', 'he': 'Hebrew', 'hu': 'Hungarian', 'is': 'Icelandic', 'it': 'Italian', 'ja': 'Japanese', 'ko': 'Korean', 'la': 'Latin', 'lt': 'Lithuanian', 'lv': 'Latvian', 'no': 'Norwegian', 'pl': 'Polish', 'pt': 'Portuguese', 'ro': 'Romanian', 'ru': 'Russian', 'es': 'Spanish', 'sv': 'Swedish', 'tl': 'Tagalog'},
+				salienceTopics : {'Advertising':'Advertising','Agriculture':'Agriculture','Art':'Art','Automotive':'Automotive','Aviation':'Aviation','Banking':'Banking','Beverages':'Beverages','Biotechnology':'Biotechnology','Business':'Business','Crime':'Crime','Disasters':'Disasters','Economics':'Economics','Education':'Education','Elections':'Elections','Energy':'Energy','Fashion':'Fashion','Food':'Food','Hardware':'Hardware','Health':'Health','Hotels':'Hotels','Intellectual Property':'Intellectual Property','Investing':'Investing','Labor':'Labor','Law':'Law','Marriage':'Marriage','Mobile Devices':'Mobile Devices','Politics':'Politics','Real Estate':'Real Estate','Renewable Energy':'Renewable Energy','Robotics':'Robotics','Science':'Science','Social Media':'Social Media','Software and Internet':'Software and Internet','Space':'Space','Sports':'Sports','Technology':'Technology','Traditional':'Traditional','Travel':'Travel','Video Games':'Video Games','War':'War','Weather':'Weather'},
 				newscredCategories : {'Africa':'Africa', 'Asia':'Asia', 'Business':'Business', 'Entertainment':'Entertainment', 'Environment':'Environment', 'Europe':'Europe', 'Health':'Health', 'Lifestyle':'Lifestyle', 'Other':'Other', 'Politics':'Politics', 'Regional':'Regional', 'Sports':'Sports', 'Technology':'Technology', 'Travel':'Travel', 'U.K.':'U.K.', 'U.S.':'U.S.', 'World':'World'}
 			}
 		},
