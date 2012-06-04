@@ -6,7 +6,7 @@ $colorBlackLight : #c6c6c9;
 $colorOrange : #ff9933;
 $borderColor : #dcdcdc;
 $borderColorInput : #c8d7de;
-$elementsSprite : 'img/elements.png?13';
+$elementsSprite : 'img/elements.png?14';
 $selectSprite : 'img/select.png?12';
 $stepBackground : 'img/step_background.png?5';
 $targetIconsSprite : 'img/icons-sprite-targets.png?10';
@@ -395,7 +395,7 @@ $otherIconsSprite : 'img/icons-sprite-other.png?2';
  * FILTER EDITOR INPUT FIELDS
  */
 .jcsdl-input-text, .jcsdl-input-number {
-	display: block; margin: 0 20px;
+	display: block; margin: 0 20px; position: relative;
 
 	input, .jcsdl-tag-input {
 		display: block; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;
@@ -436,12 +436,28 @@ $otherIconsSprite : 'img/icons-sprite-other.png?2';
 				}
 			}
 		}
+
+		&.jcsdl-regex-active {padding-right: 54px;}
 	}
 
-	.jcsdl-regex-tester input {
-		margin: 5px 0;
-		&.ok {border-color: green;}
-		&.err {border-color: red;}
+	/* regex tester */
+	.jcsdl-regex-tester-button {
+		position: absolute; top: 5px; right: 5px;
+		display: block; width: 46px; height: 30px;
+		overflow: hidden; text-indent: -9999px;
+		background: url($elementsSprite) no-repeat -57px -278px;
+
+		&:hover {@include opacity(0.9);}
+	}
+
+	.jcsdl-regex-tester {
+		p {text-align: center; margin: 5px 30px; color: $colorLight;}
+		
+		input {
+			margin: 5px 0;
+			&.ok {border-color: green;}
+			&.err {border-color: red;}
+		}
 	}
 }
 .jcsdl-input-text {margin-top: 20px;}

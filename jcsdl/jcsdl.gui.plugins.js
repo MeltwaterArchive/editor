@@ -608,8 +608,10 @@
 
 		this.$el = $el;
 		this.exp = new RegExp();
+
+		this.$btn = $('<a href="#" class="jcsdl-regex-tester-button">Test</a>').insertAfter(this.$el);
 		
-		this.$wrap = $('<div class="jcsdl-regex-tester" />').insertAfter(this.$el);
+		this.$wrap = $('<div class="jcsdl-regex-tester"><p>If you want to test whether your regular expression correctly matches the desired strings, click the "Test" button and input example content in the shown fields.</p></div>').insertAfter(this.$el).hide();
 		this.$fields = $();
 		for(var i = 1; i <= config.fields; i++) {
 			var $field = this.$el.clone().show().attr('placeholder', 'Test your expression against this field...');
@@ -617,6 +619,16 @@
 			this.$fields = this.$fields.add($field);
 		}
 
+		this.$btn.bind('click touchstart', function(ev) {
+			ev.preventDefault();
+			ev.target.blur();
+
+			self.$fields.fadeIn();
+			self.val = self.$el.val();
+			self.test();
+		});
+
+		/*
 		this.$el.bind('keyup change', function(ev) {
 			self.val = self.$el.val();
 			self.test();
@@ -625,6 +637,7 @@
 		this.$fields.bind('keyup', function(ev) {
 			self.test($(this));
 		});
+		*/
 
 		this.disable(); // disabled by default
 	};
@@ -648,11 +661,16 @@
 		},
 		enable : function() {
 			this.$el.data('jcsdlRegExTesterEnabled', true);
-			this.$wrap.show();
+			this.$el.addClass('jcsdl-regex-active');
+			this.$wrap.fadeIn();
+			this.$btn.fadeIn();
 		},
 		disable : function() {
 			this.$el.data('jcsdlRegExTesterEnabled', false);
+			this.$el.removeClass('jcsdl-regex-active');
 			this.$wrap.hide();
+			this.$fields.hide();
+			this.$btn.hide();
 		},
 		setPartial : function() {
 			this.mode = 'partial';
