@@ -858,11 +858,13 @@ JCSDLGuiInputs.prototype = {
 				editable : true
 			});
 			var polygon = new google.maps.Polygon(opt);
+			var path = polygon.getPath();
 			$view.data('polygon', polygon);
 
 			// storage markers
-			var markers = [];
+			var markers = new google.maps.MVCArray();
 			$view.data('markers', markers);
+			var mc = 1;
 
 			// initialize places autocomplete search
 			this._geo.initSearch($view);
@@ -873,15 +875,77 @@ JCSDLGuiInputs.prototype = {
 			 * @listener
 			 */
 			google.maps.event.addListener(map, 'click', function(ev) {
-				var marker = self.exec('geo_polygon', 'addTip', [$view, ev.latLng.lat(), ev.latLng.lng()]);
-				markers.push(marker);
-
-				var instr = (markers.length <= 3) ? markers.length : 3;
-				$view.find('.jcsdl-map-instructions').html(self.definition.inputs.geo_polygon.instructions[instr]);
+				path.push(ev.latLng);
 			});
 
 			/**
-			 * Remove the circle and all values from the map.
+			 * Listen for new items added in the polygon path and create corresponding markers.
+			 * @param  {Integer} i Index of the new point.
+			 * @listener
+			 */
+			google.maps.event.addListener(path, 'insert_at', function(i) {
+				var marker = new google.maps.Marker({
+					map : map,
+					position : path.getAt(i),
+					draggable : true,
+					icon : self.gui.config.mapsMarker,
+					zIndex : mc++ // zindex serves as a hacky ID to find this marker later
+				});
+
+				// add to markers array
+				markers.insertAt(i, marker);
+
+				// show the polygon if already 3 tips
+				if (path.getLength() >= 3) {
+					polygon.setMap(map);
+				}
+
+				// update instructions
+				var instr = (path.getLength() <= 3) ? path.getLength() : 3;
+				$view.find('.jcsdl-map-instructions').html(self.definition.inputs.geo_polygon.instructions[instr]);
+
+				// update info
+				self.exec('geo_polygon', 'updateInfo', [$view, polygon]);
+
+				// setup listeners for the marker
+				// after marker has moved, move the polygon tip as well
+				google.maps.event.addListener(marker, 'position_changed', function(ev) {
+					var p = self.exec('geo_polygon', 'getMarkerIndex', [marker, markers]);
+					if (p == -1) return;
+
+					path.setAt(p, this.getPosition());
+
+					self.exec('geo_polygon', 'updateInfo', [$view, polygon]);
+				});
+
+				// remove the marker and the polygon tip
+				google.maps.event.addListener(marker, 'dblclick', function(ev) {
+					var p = self.exec('geo_polygon', 'getMarkerIndex', [marker, markers]);
+					if (p == -1) return;
+
+					path.removeAt(p);
+					markers.removeAt(p);
+					this.setMap(null);
+
+					self.exec('geo_polygon', 'updateInfo', [$view, polygon]);
+				});
+			});
+
+			/**
+			 * A tip of the polygon has moved, update corresponding marker.
+			 * @param  {[type]} i [description]
+			 * @return {[type]}   [description]
+			 */
+			google.maps.event.addListener(path, 'set_at', function(i) {
+				var mark = markers.getAt(i),
+					pos = path.getAt(i);
+				if (!mark.getPosition().equals(pos)) {
+					mark.setPosition(pos);
+				}
+			});
+
+			/**
+			 * Remove the polygon and all values from the map.
 			 * @param  {Event} ev
 			 * @listener
 			 */
@@ -889,12 +953,11 @@ JCSDLGuiInputs.prototype = {
 				ev.preventDefault();
 				ev.target.blur();
 
-				$.each($view.data('markers'), function(i, marker) {
+				markers.forEach(function(marker, i) {
 					marker.setMap(null);
 				});
-				polygon.getPath().clear();
-
-				markers = [];
+				markers.clear();
+				path.clear();
 
 				self.exec('geo_polygon', 'updateInfo', [$view, polygon]);
 
@@ -909,18 +972,15 @@ JCSDLGuiInputs.prototype = {
 			value = value.split(':');
 
 			setTimeout(function() {
-				var markers = $geoView.data('markers');
+				var polygon = $geoView.data('polygon');
+				var map = $geoView.data('map');
 
 				$.each(value, function(i, val) {
 					val = val.split(',');
-					var marker = self.exec('geo_polygon', 'addTip', [$geoView, val[0], val[1]]);
-					markers.push(marker);
+					var pos = new google.maps.LatLng(parseFloat(val[0]), parseFloat(val[1]));
+
+					polygon.getPath().push(pos);
 				});
-
-				$geoView.data('markers', markers);
-
-				var map = $geoView.data('map');
-				var polygon = $geoView.data('polygon');
 
 				map.fitBounds(polygon.getBounds());
 
@@ -933,16 +993,14 @@ JCSDLGuiInputs.prototype = {
 		},
 
 		getValue : function($view, fieldInfo) {
-			var polygon = $view.find('.jcsdl-input-geo').data('polygon');
-			var path = polygon.getPath();
-			var value = [];
+			var pth = $view.find('.jcsdl-input-geo').data('polygon').getPath(),
+				v = [];
 
-			for(var i = 0; i < path.getLength(); i++) {
-				var tip = path.getAt(i);
-				value.push(tip.lat() + ',' + tip.lng());
-			}
+			pth.forEach(function(p, i) {
+				v.push(p.lat() + ',' + p.lng());
+			});
 
-			return value.join(':');
+			return v.join(':');
 		},
 
 		displayValue : function(fieldInfo, value, filter) {
@@ -961,68 +1019,13 @@ JCSDLGuiInputs.prototype = {
 			return output;
 		},
 
-		addTip : function($view, lat, lng) {
-			var self = this;
-			var map = $view.data('map');
-			var polygon = $view.data('polygon');
-			var tips = $view.data('tips');
-
-			var position = new google.maps.LatLng(parseFloat(lat), parseFloat(lng));
-
-			// create a marker
-			var marker = new google.maps.Marker({
-				map : map,
-				position : position,
-				draggable : true,
-				icon : this.gui.config.mapsMarker
+		// get index of the marker (using zindex as an ID)
+		getMarkerIndex : function(mrk, mrks) {
+			var p = -1;
+			mrks.forEach(function(m, k) {
+				if (m.getZIndex() == mrk.getZIndex()) p = k;
 			});
-
-			// add the polygon point
-			var polyPath = polygon.getPath();
-			polyPath.push(position);
-
-			// if there are at least 3 tips then we can show the polygon
-			if (polyPath.getLength() >= 3) {
-				polygon.setMap(map);
-			}
-
-			google.maps.event.addListener(marker, 'position_changed', function(ev) {
-				var i = self.exec('geo_polygon', 'indexOfPosition', [position, polygon]);
-				position = this.getPosition();
-				if (i == -1) return;
-
-				polyPath.setAt(i, position);
-
-				self.exec('geo_polygon', 'updateInfo', [$view, polygon]);
-			});
-
-			// remove the marker and the polygon tip
-			google.maps.event.addListener(marker, 'dblclick', function(ev) {
-				var i = self.exec('geo_polygon', 'indexOfPosition', [position, polygon]);
-				position = this.getPosition();
-				if (i == -1) return;
-
-				polyPath.removeAt(i);
-				this.setMap(null);
-
-				self.exec('geo_polygon', 'updateInfo', [$view, polygon]);
-			});
-
-			self.exec('geo_polygon', 'updateInfo', [$view, polygon]);
-
-			return marker;
-		},
-
-		indexOfPosition : function(position, polygon) {
-			var path = polygon.getPath();
-			for (var i = 0; i < path.getLength(); i++) {
-				var tip = path.getAt(i);
-				if (tip.equals(position)) {
-					return i;
-				}
-			}
-
-			return -1;
+			return p;
 		},
 
 		/**
@@ -1032,12 +1035,11 @@ JCSDLGuiInputs.prototype = {
 		 */
 		updateInfo : function($view, polygon) {
 			var path = polygon.getPath();
-
 			var $list = $view.find('.jcsdl-map-coordinates ul').html('');
-			for(var i = 0; i < path.getLength(); i++) {
-				var tip = path.getAt(i);
-				$('<li />').html('(' + tip.lat().format(4) + ', ' + tip.lng().format(4) + ')').appendTo($list);
-			}
+
+			path.forEach(function(p, i) {
+				$('<li />').html('(' + p.lat().format(4) + ', ' + p.lng().format(4) + ')').appendTo($list);
+			});
 
 			if (path.getLength() >= 3) {
 				var area = google.maps.geometry.spherical.computeArea(path);
@@ -1046,6 +1048,7 @@ JCSDLGuiInputs.prototype = {
 				$view.find('.jcsdl-map-area span').html('0 km<sup>2</sup>');
 			}
 		}
+
 	}
 
 };

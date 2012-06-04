@@ -970,6 +970,7 @@ JCSDLGui.prototype = {
 		// if there's only one possible operator then automatically select it and hide it
 		if ($view.children().length == 1) {
 			$view.children().eq(0).click();
+			$view.children().hide();
 		} else {
 			var preselect = (typeof(field.operator) !== 'undefined') ? field.operator : inputConfig.operator;
 			var $preselect = $view.find('.operator-' + preselect);
