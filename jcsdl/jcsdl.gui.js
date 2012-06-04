@@ -612,6 +612,7 @@ JCSDLGui.prototype = {
 	showError : function(message, code) {
 		// clear all previous errors
 		this.$mainView.find('.jcsdl-error').remove();
+		this.$currentFilterView.find('.jcsdl-error').remove();
 
 		var $error = this.getTemplate('error');
 		$error.find('span').html(message);
