@@ -5,31 +5,45 @@ var JCSDLGuiInputs = function(gui) {
 
 JCSDLGuiInputs.prototype = {
 
-	exec : function(type, method, args) {
-		return this[type][method].apply(this, args);
+	/**
+	 * Execute the given method for value input type in the context of JCSDLGuiInputs object.
+	 * @param  {String} t Value input type.
+	 * @param  {Method} m Method to be called.
+	 * @param  {Array} a Array of arguments.
+	 * @return {mixed}
+	 */
+	exec : function(t, m, a) {
+		return this[t][m].apply(this, a);
 	},
 
-	getTemplate : function(name) {
-		return this.gui.getTemplate(name);
+	/**
+	 * Returns the specified template as jQuery object.
+	 * @param  {String} n Template name.
+	 * @return {jQuery}
+	 */
+	getTemplate : function(n) {
+		return this.gui.getTemplate(n);
 	},
 
 	/*
 	 * TEXT FIELD
 	 */
 	text : {
-		init : function(fieldInfo) {
-			var $view = this.getTemplate('valueInput_text');
-			var $input = $view.find('input');
+		init : function(info) {
+			var $view = this.getTemplate('valueInput_text'),
+				$input = $view.find('input');
+
 			$input.jcsdlTagInput();
 			$input.jcsdlRegExTester();
+
 			return $view;
 		},
 
-		setValue : function($view, fieldInfo, value) {
-			$view.find('input[type=text]:first').val(value);
+		setValue : function($view, info, val) {
+			$view.find('input[type=text]:first').val(val);
 		},
 
-		getValue : function($view, fieldInfo) {
+		getValue : function($view, info) {
 			return $view.find('input[type=text]:first').val();
 		}
 	},
@@ -38,11 +52,11 @@ JCSDLGuiInputs.prototype = {
 	 * NUMBER FIELD
 	 */
 	number : {
-		init : function(fieldInfo) {
+		init : function(info) {
 			var $view = this.getTemplate('valueInput_number'),
-				fl = (fieldInfo.type == 'float'),
-				arr = ($.inArray('in', fieldInfo.operators) >= 0);
-			var $input = $view.find('input[type=text]');
+				fl = (info.type == 'float'),
+				arr = ($.inArray('in', info.operators) >= 0),
+				$input = $view.find('input[type=text]');
 
 			$input.jcsdlNumberMask(fl);
 
@@ -56,27 +70,27 @@ JCSDLGuiInputs.prototype = {
 			return $view;
 		},
 
-		setValue : function($view, fieldInfo, value) {
-			$view.find('input[type=text]:first').val(value);
+		setValue : function($view, info, val) {
+			$view.find('input[type=text]:first').val(val);
 		},
 
-		getValue : function($view, fieldInfo) {
+		getValue : function($view, info) {
 			return $view.find('input[type=text]:first').val();
 		},
 
-		displayValue : function(fieldInfo, value, filter) {
-			if (filter.operator !== 'in') return value;
+		displayValue : function(info, val, filter) {
+			if (filter.operator !== 'in') return val;
 
-			var fl = (fieldInfo.type == 'float');
-			value = value.split(',');
+			var fl = (info.type == 'float');
+			val = val.split(',');
 
-			var showValues = value.slice(0, 3);
-			$.each(showValues, function(i, val) {
-				showValues[i] = (fl) ? parseFloat(val).format(2) : val;
+			var show = val.slice(0, 3);
+			$.each(show, function(i, v) {
+				show[i] = (fl) ? parseFloat(v).format(2) : v;
 			});
 
-			var more = (showValues.length < value.length) ? ' and ' + (value.length - showValues.length) + ' more...' : '';
-			return showValues.join(', ') + more;
+			var more = (show.length < val.length) ? ' and ' + (val.length - show.length) + ' more...' : '';
+			return show.join(', ') + more;
 		}
 	},
 
@@ -84,17 +98,16 @@ JCSDLGuiInputs.prototype = {
 	 * SELECT FIELD
 	 */
 	select : {
-		init : function(fieldInfo) {
-			var self = this;
-			var $view = this.getTemplate('valueInput_select');
-
-			// decide from where to get the options
-			var options = this.exec('select', 'getOptionsSet', [fieldInfo]);
+		init : function(info) {
+			var self = this,
+				$view = this.getTemplate('valueInput_select'),
+				// decide from where to get the options
+				opts = this.exec('select', 'getOptionsSet', [info]);
 
 			// render the options
-			$.each(options, function(value, label) {
-				var $optionView = self.exec('select', 'createOptionView', [value, label]);
-				$optionView.appendTo($view);
+			$.each(opts, function(val, lbl) {
+				self.exec('select', 'createOptionView', [val, lbl])
+					.appendTo($view);
 			});
 
 			/**
@@ -106,7 +119,7 @@ JCSDLGuiInputs.prototype = {
 				ev.preventDefault();
 				ev.target.blur();
 
-				if (fieldInfo.single) {
+				if (info.single) {
 					$view.find('.jcsdl-input-select-option').removeClass('selected');
 				}
 				$(this).toggleClass('selected');
@@ -115,47 +128,47 @@ JCSDLGuiInputs.prototype = {
 			return $view;
 		},
 
-		setValue : function($view, fieldInfo, value) {
-			var values = value.split(',');
-			$.each(values, function(i, val) {
-				$view.find('.jcsdl-input-select-option[data-value="' + val + '"]').addClass('selected');
+		setValue : function($view, info, val) {
+			var vals = val.split(',');
+			$.each(vals, function(i, v) {
+				$view.find('.jcsdl-input-select-option[data-value="' + v + '"]').addClass('selected');
 			});
 		},
 
-		getValue : function($view, fieldInfo) {
-			var values = [];
-			$view.find('.jcsdl-input-select-option.selected').each(function(i, option) {
-				values.push($(option).data('value'));
+		getValue : function($view, info) {
+			var vals = [];
+			$view.find('.jcsdl-input-select-option.selected').each(function(i, o) {
+				vals.push($(o).data('value'));
 			});
 
-			return values.join(',');
+			return vals.join(',');
 		},
 
-		displayValue : function(fieldInfo, value, filter) {
-			var self = this;
-			var values = value.split(',');
-			var $view = this.getTemplate('valueInput_select');
+		displayValue : function(info, val, filter) {
+			var self = this,
+				vals = val.split(','),
+				$view = this.getTemplate('valueInput_select');
 
 			// return nothing if empty
-			if (values.length == 0) return $view;
+			if (vals.length == 0) return $view;
 
-			var options = this.exec('select', 'getOptionsSet', [fieldInfo]);
+			var opts = this.exec('select', 'getOptionsSet', [info]);
 
 			// only show maximum of 5 selected options
-			var showValues = values.slice(0, 5);
-			$.each(showValues, function(i, val) {
-				if (typeof(options[val]) == 'undefined') return true;
+			var show = vals.slice(0, 5);
+			$.each(show, function(i, v) {
+				if (typeof(opts[v]) == 'undefined') return true;
 
-				var $optionView = self.exec('select', 'createOptionView', [val, options[val]]);
-				$optionView.addClass('selected');
-				$optionView.appendTo($view);
+				self.exec('select', 'createOptionView', [v, opts[v]])
+					.addClass('selected')
+					.appendTo($view);
 			});
 
 			// show more indicator if there are more left
-			if (values.length > showValues.length) {
-				var $indicator = this.getTemplate('valueInput_select_more');
-				$indicator.find('.count').html(values.length - showValues.length);
-				$indicator.appendTo($view);
+			if (vals.length > show.length) {
+				var $ind = this.getTemplate('valueInput_select_more');
+				$ind.find('.count').html(vals.length - show.length);
+				$ind.appendTo($view);
 			}
 
 			/**
@@ -171,23 +184,24 @@ JCSDLGuiInputs.prototype = {
 			return $view;
 		},
 
-		getOptionsSet : function(fieldInfo) {
-			var options = {};
-			if (typeof(fieldInfo.options) !== 'undefined') {
-				options = fieldInfo.options;
-			} else if ((typeof(fieldInfo.optionsSet) !== 'undefined') && (typeof(this.definition.inputs.select.sets[fieldInfo.optionsSet]) !== 'undefined')) {
-				options = this.definition.inputs.select.sets[fieldInfo.optionsSet];
+		getOptionsSet : function(info) {
+			var opts = {};
+			if (typeof(info.options) !== 'undefined') {
+				opts = info.options;
+			} else if ((typeof(info.optionsSet) !== 'undefined') && (typeof(this.definition.inputs.select.sets[info.optionsSet]) !== 'undefined')) {
+				opts = this.definition.inputs.select.sets[info.optionsSet];
 			}
-			return options;
+			return opts;
 		},
 
-		createOptionView : function(value, label) {
-			var $optionView = this.getTemplate('valueInput_select_option');
-			$optionView.attr('data-value', value);
-			$optionView.addClass('option-' + value);
-			$optionView.attr('title', label);
-			$optionView.find('span').html(label);
-			return $optionView;
+		createOptionView : function(val, lbl) {
+			var $v = this.getTemplate('valueInput_select_option')
+				.attr('data-value', val)
+				.addClass('option-' + val)
+				.attr('title', lbl);
+			$v.find('span').html(lbl);
+
+			return $v;
 		}
 	},
 
@@ -195,61 +209,58 @@ JCSDLGuiInputs.prototype = {
 	 * SLIDER
 	 */
 	slider : {
-		init : function(fieldInfo) {
-			var self = this;
-			var $view = this.getTemplate('valueInput_slider');
-			var options = this.exec('slider', 'getOptions', [fieldInfo]);
+		init : function(info) {
+			var self = this,
+				$view = this.getTemplate('valueInput_slider'),
+				opts = this.exec('slider', 'getOptions', [info]),
 
-			// init slider
-			var $slider = $view.find('.jcsdl-slider').slider({
-				animate : true,
-				min : options.min,
-				max : options.max,
-				step : options.step,
-				value : options['default'],
-				slide : function(ev, ui) {
-					var value = self.exec('slider', 'parseValue', [fieldInfo, ui.value]);
-					$view.find('.jcsdl-slider-input').val(value);
-				}
-			});
+				// init slider
+				$slider = $view.find('.jcsdl-slider').slider({
+					animate : true,
+					min : opts.min,
+					max : opts.max,
+					step : opts.step,
+					value : opts['default'],
+					slide : function(ev, ui) {
+						$view.find('.jcsdl-slider-input').val(self.exec('slider', 'parseValue', [info, ui.value]));
+					}
+				});
 
 			// set the default value
-			this.exec('slider', 'setValue', [$view, fieldInfo, options['default']]);
+			this.exec('slider', 'setValue', [$view, info, opts['default']]);
 
 			// display the min and max labels
-			$view.find('.jcsdl-slider-label.min').html(this.exec('slider', 'displayValue', [fieldInfo, options.min]));
-			$view.find('.jcsdl-slider-label.max').html(this.exec('slider', 'displayValue', [fieldInfo, options.max]));
+			$view.find('.jcsdl-slider-label.min').html(this.exec('slider', 'displayValue', [info, opts.min]));
+			$view.find('.jcsdl-slider-label.max').html(this.exec('slider', 'displayValue', [info, opts.max]));
 
-			var allowFloat = (fieldInfo.type == 'float') ? true : false;
 			/**
 			 * Mask the input as a number field and update the slider when the value was changed in the input.
 			 * @param  {Event} ev
 			 * @listener
 			 */
-			$view.find('.jcsdl-slider-input').jcsdlNumberMask(allowFloat).keyup(function(ev) {
+			$view.find('.jcsdl-slider-input').jcsdlNumberMask((info.type == 'float')).keyup(function(ev) {
 				// don't do anything if a dot has been entered
 				if (ev.which == 110 || ev.which == 190) return;
 
-				var value = $(this).val();
-				value = (value) ? value : 0;
-				self.exec('slider', 'setValue', [$view, fieldInfo, parseFloat(value)]);
+				var v = $(this).val();
+				self.exec('slider', 'setValue', [$view, info, parseFloat((v) ? v : 0)]);
 			});
 
 			/**
 			 * Changes the value of the slider by incrementing or decrementing.
 			 * @param  {jQuery} $view     Full slider input view.
-			 * @param  {Object} fieldInfo
+			 * @param  {Object} info
 			 * @param  {Number} step      
 			 * @param  {Boolean} minus 
 			 */
-			var changeValue = function($view, fieldInfo, step, minus) {
-				var value = parseFloat($view.find('.jcsdl-slider-input').val());
-				value = (minus) ? value - step : value + step;
-				self.exec('slider', 'setValue', [$view, fieldInfo, value]);
+			var changeValue = function($view, info, step, minus) {
+				var val = parseFloat($view.find('.jcsdl-slider-input').val());
+				val = (minus) ? val - step : val + step;
+				self.exec('slider', 'setValue', [$view, info, val]);
 			}
 
 			// helper var for the listener below
-			var changeValueInterval = null;
+			var interval = null;
 
 			/**
 			 * Make the plus and minus signs clickable. They should change the slider value.
@@ -258,13 +269,15 @@ JCSDLGuiInputs.prototype = {
 			 * @listener
 			 */
 			$view.find('.jcsdl-slider-minus, .jcsdl-slider-plus').bind('mousedown touchstart', function(ev) {
-				var minus = $(this).is('.jcsdl-slider-minus');
-				changeValueInterval = setInterval(function() {
-					changeValue($view, fieldInfo, options.step, minus);
+				var min = $(this).is('.jcsdl-slider-minus');
+				interval = setInterval(function() {
+					changeValue($view, info, opts.step, min);
 				}, 50);
+
 			// mouse up will remove the interval (also mouseout)
 			}).bind('mouseup mouseout touchend', function(ev) {
-				clearInterval(changeValueInterval);
+				clearInterval(interval);
+
 			// and prevent default behavior on click()
 			}).click(function(ev) {
 				ev.preventDefault();
@@ -274,42 +287,40 @@ JCSDLGuiInputs.prototype = {
 			return $view;
 		},
 
-		setValue : function($view, fieldInfo, value) {
-			var options = this.exec('slider', 'getOptions', [fieldInfo]);
+		setValue : function($view, info, val) {
+			var opts = this.exec('slider', 'getOptions', [info]);
 
-			value = (value > options.max)
-				? options.max
-				: ((value < options.min) 
-					? options.min
-					: value);
+			val = (val > opts.max)
+				? opts.max
+				: ((val < opts.min) 
+					? opts.min
+					: val);
 
-			$view.find('.jcsdl-slider').slider('value', value);
-			$view.find('.jcsdl-slider-input').val(value);
+			$view.find('.jcsdl-slider').slider('value', val);
+			$view.find('.jcsdl-slider-input').val(val);
 		},
 
-		getValue : function($view, fieldInfo) {
-			var value = $view.find('.jcsdl-slider-input').val();
-			return this.exec('slider', 'parseValue', [fieldInfo, value]);
+		getValue : function($view, info) {
+			return this.exec('slider', 'parseValue', [info, $view.find('.jcsdl-slider-input').val()]);
 		},
 
-		displayValue : function(fieldInfo, value, filter) {
-			var options = this.exec('slider', 'getOptions', [fieldInfo]);
-			return options.displayFormat.apply(options, [value.toString()]);
+		displayValue : function(info, val, filter) {
+			var opts = this.exec('slider', 'getOptions', [info]);
+			return opts.displayFormat.apply(opts, [val.toString()]);
 		},
 
-		parseValue : function(fieldInfo, value) {
-			return value;
+		parseValue : function(info, val) {
+			return val;
 		},
 
-		getOptions : function(fieldInfo) {
-			var options = $.extend({}, this.definition.inputs.slider, {
-				min : fieldInfo.min,
-				max : fieldInfo.max,
-				step : fieldInfo.step,
-				'default' : fieldInfo['default'],
-				displayFormat : fieldInfo.displayFormat
+		getOptions : function(info) {
+			return $.extend({}, this.definition.inputs.slider, {
+				min : info.min,
+				max : info.max,
+				step : info.step,
+				'default' : info['default'],
+				displayFormat : info.displayFormat
 			});
-			return options;
 		}
 	},
 
@@ -320,16 +331,17 @@ JCSDLGuiInputs.prototype = {
 		mapOptions : {},
 
 		initSearch : function($view) {
-			var map = $view.data('map');
-			var $ac = $view.find('.jcsdl-map-search');
-			var autocomplete = new google.maps.places.Autocomplete($ac[0], {});
+			var map = $view.data('map'),
+				$ac = $view.find('.jcsdl-map-search'),
+				ac = new google.maps.places.Autocomplete($ac[0], {});
 
 			/**
 			 * Move the map viewport to the found location.
 			 * @listener
 			 */
-			google.maps.event.addListener(autocomplete, 'place_changed', function() {
-				var place = autocomplete.getPlace();
+			google.maps.event.addListener(ac, 'place_changed', function() {
+				var place = ac.getPlace();
+
 				if (typeof(place.geometry) == 'undefined') {
 					// choose the first visible suggestion (if any)
 					if ($('.pac-container .pac-item').length > 0) {
@@ -349,12 +361,12 @@ JCSDLGuiInputs.prototype = {
 			});
 		},
 
-		isNorth : function(coords1, coords2) {
-			return (coords1.lat() >= coords2.lat());
+		isNorth : function(c1, c2) {
+			return (c1.lat() >= c2.lat());
 		},
 
-		isEast : function(coords1, coords2) {
-			return (coords1.lng() >= coords2.lng());
+		isEast : function(c1, c2) {
+			return (c1.lng() >= c2.lng());
 		}
 	},
 
@@ -362,25 +374,27 @@ JCSDLGuiInputs.prototype = {
 	 * GEO BOX
 	 */
 	geo_box : {
-		init : function(fieldInfo) {
+		init : function(info) {
 			var $view = this.getTemplate('valueInput_geobox');
 			$view.append(this.getTemplate('valueInput_geo_map'));
+
 			$view.find('.jcsdl-map-coordinates').html(this.getTemplate('valueInput_geobox_coordinates'));
 			$view.find('.jcsdl-map-instructions').html(this.definition.inputs.geo_box.instructions[0]);
-			loadGoogleMapsApi(this.gui, this.exec, ['geo_box', 'load', [fieldInfo, $view]]);
+
+			loadGoogleMapsApi(this.gui, this.exec, ['geo_box', 'load', [info, $view]]);
+
 			return $view;
 		},
 
-		load : function(fieldInfo, $view) {
-			var self = this;
-
-			// initialize the map
-			var map = new google.maps.Map($view.find('.jcsdl-map-canvas')[0], jcsdlMapsOptions);
+		load : function(info, $view) {
+			var self = this,
+				// initialize the map
+				map = new google.maps.Map($view.find('.jcsdl-map-canvas')[0], jcsdlMapsOptions);
+			
 			$view.data('map', map);
 
 			// initialize the rectangle that we're gonna draw
-			var opt = $.extend({}, this.gui.config.mapsOverlay, {});
-			var rect = new google.maps.Rectangle(opt);
+			var rect = new google.maps.Rectangle($.extend({}, this.gui.config.mapsOverlay, {}));
 			$view.data('rect', rect);
 
 			// store rectangle coordinates in an array
@@ -476,20 +490,19 @@ JCSDLGuiInputs.prototype = {
 			});
 		},
 
-		setValue : function($view, fieldInfo, value) {
-			var self = this;
-			var $geoView = $view.find('.jcsdl-input-geo');
+		setValue : function($view, info, val) {
+			var self = this,
+				$geoView = $view.find('.jcsdl-input-geo');
 
-			value = value.split(':');
-			var nw = value[0].split(',');
-			var se = value[1].split(',');
+			val = val.split(':');
+			var nw = val[0].split(',');
+			var se = val[1].split(',');
 
 			setTimeout(function() {
-				var map = $geoView.data('map');
-				var rect = $geoView.data('rect');
-
-				var tips = self.exec('geo_box', 'getAllTipsFromNWSE', [nw, se]);
-				var bounds = new google.maps.LatLngBounds(tips.sw, tips.ne);
+				var map = $geoView.data('map'),
+					rect = $geoView.data('rect'),
+					tips = self.exec('geo_box', 'getAllTipsFromNWSE', [nw, se]),
+					bounds = new google.maps.LatLngBounds(tips.sw, tips.ne);
 
 				self.exec('geo_box', 'drawRectangleFromBounds', [map, rect, bounds]);
 
@@ -509,21 +522,20 @@ JCSDLGuiInputs.prototype = {
 			}, this.gui.config.animate + 200); // make sure everything is properly loaded
 		},
 
-		getValue : function($view, fieldInfo) {
+		getValue : function($view, info) {
 			var rect = $view.find('.jcsdl-input-geo').data('rect');
 
 			// if no map then rect is not visible, so has no values
 			if (!rect.getMap()) return '';
 
 			var tips = this.exec('geo_box', 'getAllTipsFromBounds', [rect.getBounds()]);
-			var value = tips.nw.lat() + ',' + tips.nw.lng() + ':' + tips.se.lat() + ',' + tips.se.lng();
-			return value;
+			return tips.nw.lat() + ',' + tips.nw.lng() + ':' + tips.se.lat() + ',' + tips.se.lng();
 		},
 
-		displayValue : function(fieldInfo, value, filter) {
-			value = value.split(':');
-			var v1 = value[0].split(',');
-			var v2 = value[1].split(',');
+		displayValue : function(info, val, filter) {
+			val = val.split(':');
+			var v1 = val[0].split(',');
+			var v2 = val[1].split(',');
 
 			return parseFloat(v1[0]).format(2) + ', ' + parseFloat(v1[1]).format(2) + ' : ' + parseFloat(v2[0]).format(2) + ', ' + parseFloat(v2[1]).format(2);
 		},
@@ -535,8 +547,9 @@ JCSDLGuiInputs.prototype = {
 		drawRectangle : function(map, rect, coords) {
 			if (coords.length != 2) return false;
 
-			var tips = this.exec('geo_box', 'getAllTipsFromUnspecified', [coords[0], coords[1]]);
-			var bounds = new google.maps.LatLngBounds(tips.sw, tips.ne);
+			var tips = this.exec('geo_box', 'getAllTipsFromUnspecified', [coords[0], coords[1]]),
+				bounds = new google.maps.LatLngBounds(tips.sw, tips.ne);
+
 			this.exec('geo_box', 'drawRectangleFromBounds', [map, rect, bounds]);
 			return true;
 		},
@@ -581,32 +594,30 @@ JCSDLGuiInputs.prototype = {
 			return tips;
 		},
 
-		getAllTipsFromUnspecified : function(coords1, coords2) {
-			var tips = {};
+		getAllTipsFromUnspecified : function(c1, c2) {
+			var tips = {}, n, s, w, e;
 
-			var north, south;
-			if (this._geo.isNorth(coords1, coords2)) {
-				north = coords1;
-				south = coords2;
+			if (this._geo.isNorth(c1, c2)) {
+				n = c1;
+				s = c2;
 			} else {
-				north = coords2;
-				south = coords1;
+				n = c2;
+				s = c1;
 			}
 
-			var west, east;
-			if (this._geo.isEast(coords1, coords2)) {
-				east = coords1;
-				west = coords2;
+			if (this._geo.isEast(c1, c2)) {
+				e = c1;
+				w = c2;
 			} else {
-				east = coords2;
-				west = coords1;
+				e = c2;
+				w = c1;
 			}
 
 			var tips = {
-				nw : new google.maps.LatLng(north.lat(), west.lng()),
-				ne : new google.maps.LatLng(north.lat(), east.lng()),
-				se : new google.maps.LatLng(south.lat(), east.lng()),
-				sw : new google.maps.LatLng(south.lat(), west.lng())
+				nw : new google.maps.LatLng(n.lat(), w.lng()),
+				ne : new google.maps.LatLng(n.lat(), e.lng()),
+				se : new google.maps.LatLng(s.lat(), e.lng()),
+				sw : new google.maps.LatLng(s.lat(), w.lng())
 			};
 
 			return tips;
@@ -618,8 +629,9 @@ JCSDLGuiInputs.prototype = {
 		 * @param  {google.maps.Rectangle} rect Rectangle marking.
 		 */
 		updateInfo : function($view, rect) {
-			var tips = this.exec('geo_box', 'getAllTipsFromBounds', [rect.getBounds()]);
-			var area = google.maps.geometry.spherical.computeArea([tips.nw, tips.ne, tips.se, tips.sw]);
+			var tips = this.exec('geo_box', 'getAllTipsFromBounds', [rect.getBounds()]),
+				area = google.maps.geometry.spherical.computeArea([tips.nw, tips.ne, tips.se, tips.sw]);
+
 			$view.find('.jcsdl-map-area span').html(Math.round(area / 1000000).format() + ' km<sup>2</sup>');
 
 			// update the tips displayed coordinates
@@ -633,16 +645,19 @@ JCSDLGuiInputs.prototype = {
 	 * GEO RADIUS
 	 */
 	geo_radius : {
-		init : function(fieldInfo) {
+		init : function(info) {
 			var $view = this.getTemplate('valueInput_georadius');
 			$view.append(this.getTemplate('valueInput_geo_map'));
+
 			$view.find('.jcsdl-map-coordinates').html(this.getTemplate('valueInput_georadius_coordinates'));
 			$view.find('.jcsdl-map-instructions').html(this.definition.inputs.geo_radius.instructions[0]);
-			loadGoogleMapsApi(this.gui, this.exec, ['geo_radius', 'load', [fieldInfo, $view]]);
+
+			loadGoogleMapsApi(this.gui, this.exec, ['geo_radius', 'load', [info, $view]]);
+			
 			return $view;
 		},
 
-		load : function(fieldInfo, $view) {
+		load : function(info, $view) {
 			var self = this;
 
 			// initialize the map
@@ -759,13 +774,13 @@ JCSDLGuiInputs.prototype = {
 			});
 		},
 
-		setValue : function($view, fieldInfo, value) {
+		setValue : function($view, info, val) {
 			var self = this;
 			var $geoView = $view.find('.jcsdl-input-geo');
 
-			value = value.split(':');
-			var latlng = value[0].split(',');
-			var radius = parseFloat(value[1]) * 1000;
+			val = val.split(':');
+			var latlng = val[0].split(',');
+			var radius = parseFloat(val[1]) * 1000;
 
 			setTimeout(function() {
 				var map = $geoView.data('map');
@@ -798,7 +813,7 @@ JCSDLGuiInputs.prototype = {
 			}, this.gui.config.animate + 200); // make sure everything is properly loaded
 		},
 
-		getValue : function($view, fieldInfo) {
+		getValue : function($view, info) {
 			var circle = $view.find('.jcsdl-input-geo').data('circle');
 
 			// if no map then rect is not visible, so has no values
@@ -808,10 +823,10 @@ JCSDLGuiInputs.prototype = {
 			return center.lat() + ',' + center.lng() + ':' + (circle.getRadius() / 1000);
 		},
 
-		displayValue : function(fieldInfo, value, filter) {
-			value = value.split(':');
-			var center = value[0].split(',');
-			var radius = value[1];
+		displayValue : function(info, val, filter) {
+			val = val.split(':');
+			var center = val[0].split(',');
+			var radius = val[1];
 
 			return 'Center: ' + parseFloat(center[0]).format(2) + ', ' + parseFloat(center[1]).format(2) + '; Radius: ' + parseFloat(radius).format(2) + ' km';
 		},
@@ -836,16 +851,16 @@ JCSDLGuiInputs.prototype = {
 	 * GEO POLYGON
 	 */
 	geo_polygon : {
-		init : function(fieldInfo) {
+		init : function(info) {
 			var $view = this.getTemplate('valueInput_geopolygon');
 			$view.append(this.getTemplate('valueInput_geo_map'));
 			$view.find('.jcsdl-map-coordinates').html(this.getTemplate('valueInput_geopolygon_coordinates'));
 			$view.find('.jcsdl-map-instructions').html(this.definition.inputs.geo_polygon.instructions[0]);
-			loadGoogleMapsApi(this.gui, this.exec, ['geo_polygon', 'load', [fieldInfo, $view]]);
+			loadGoogleMapsApi(this.gui, this.exec, ['geo_polygon', 'load', [info, $view]]);
 			return $view;
 		},
 
-		load : function(fieldInfo, $view) {
+		load : function(info, $view) {
 			var self = this;
 
 			// initialize the map
@@ -965,19 +980,19 @@ JCSDLGuiInputs.prototype = {
 			});
 		},
 
-		setValue : function($view, fieldInfo, value) {
+		setValue : function($view, info, val) {
 			var self = this;
 			var $geoView = $view.find('.jcsdl-input-geo');
 
-			value = value.split(':');
+			val = val.split(':');
 
 			setTimeout(function() {
 				var polygon = $geoView.data('polygon');
 				var map = $geoView.data('map');
 
-				$.each(value, function(i, val) {
-					val = val.split(',');
-					var pos = new google.maps.LatLng(parseFloat(val[0]), parseFloat(val[1]));
+				$.each(val, function(i, v) {
+					v = v.split(',');
+					var pos = new google.maps.LatLng(parseFloat(v[0]), parseFloat(v[1]));
 
 					polygon.getPath().push(pos);
 				});
@@ -992,7 +1007,7 @@ JCSDLGuiInputs.prototype = {
 			}, this.gui.config.animate + 200); // make sure everything is properly loaded
 		},
 
-		getValue : function($view, fieldInfo) {
+		getValue : function($view, info) {
 			var pth = $view.find('.jcsdl-input-geo').data('polygon').getPath(),
 				v = [];
 
@@ -1003,18 +1018,18 @@ JCSDLGuiInputs.prototype = {
 			return v.join(':');
 		},
 
-		displayValue : function(fieldInfo, value, filter) {
-			value = value.split(':');
+		displayValue : function(info, val, filter) {
+			val = val.split(':');
 			var output = [];
-			$.each(value, function(i, val) {
-				val = val.split(',');
-				output.push(parseFloat(val[0]).format(2) + ', ' + parseFloat(val[1]).format(2));
+			$.each(val, function(i, v) {
+				v = v.split(',');
+				output.push(parseFloat(v[0]).format(2) + ', ' + parseFloat(v[1]).format(2));
 				if (i == 1) return false; // break at 2 points
 			});
 
 			output = output.join(' : ');
-			if (value.length > 2) {
-				output += ' and ' + (value.length - 2) + ' more...';
+			if (val.length > 2) {
+				output += ' and ' + (val.length - 2) + ' more...';
 			}
 			return output;
 		},
