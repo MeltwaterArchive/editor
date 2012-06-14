@@ -15,7 +15,6 @@ JCSDLParser.prototype = {
 	 */
 	parseJCSDL : function(code) {
 		var lines = code.split("\n");
-		var versionLine = lines.shift();
 		var masterLine = lines.shift();
 		var endLine = lines.pop();
 
@@ -24,6 +23,8 @@ JCSDLParser.prototype = {
 			this.error('The given JCSDL did not verify!', code);
 			return false;
 		}
+
+		var versionLine = lines.shift(); // remove the version line as well now
 
 		// get the logic
 		var logic = masterLine.split(' ')[3];
@@ -129,13 +130,13 @@ JCSDLParser.prototype = {
 		});
 
 		// create the final output of the JCSDL filters
-		var output = filterCodes.join("\n" + logic + "\n");
+		var output = '// JCSDL_VERSION ' + this.v + "\n" + filterCodes.join("\n" + logic + "\n");
 
 		// calculate the hash for security
 		var hash = this.encodeJCSDL(output, logic);
 
 		// add master comments to the final output
-		output = '// JCSDL_VERSION ' + this.v + "\n" + '// JCSDL_MASTER ' + hash + ' ' + logic + "\n" + output + "\n// JCSDL_MASTER_END";
+		output = '// JCSDL_MASTER ' + hash + ' ' + logic + "\n" + output + "\n// JCSDL_MASTER_END";
 
 		return output;
 	},
