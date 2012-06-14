@@ -330,7 +330,8 @@
 		this.$wrap = $(this.tpl);
 		this.$inputWrap = this.$wrap.find('.jcsdl-tag-field');
 		this.$input = this.$inputWrap.find('input');
-		this.$input.attr('placeholder', this.$original.attr('placeholder'));
+		this.inputPh = this.$original.attr('placeholder');
+		this.$input.attr('placeholder', this.inputPh);
 
 		this.$original.hide().data('jcsdlTagValue', []);
 		this.$wrap.insertAfter(this.$original);
@@ -445,6 +446,8 @@
 			this.$original.data('jcsdlTagValue', values);
 			this.$original.val(values.join(this.delimeter));
 
+			this.$input.attr('placeholder', ''); // clear placeholder when there's tag content
+
 			// remove the tag
 			$tag.find('a').bind('click touchstart', function(ev) {
 				ev.preventDefault();
@@ -465,6 +468,10 @@
 			values.splice(i, 1);
 			this.$original.data('jcsdlTagValue', values);
 			this.$original.val(values.join(this.delimeter));
+
+			if (values.length == 0) {
+				this.$input.attr('placeholder', this.inputPh);
+			}
 
 			this.reposition();
 		},
