@@ -6,22 +6,22 @@ var JCSDLDefinition = {
 		interaction : {
 			name : 'All',
 			fields : {
-				content : {name: 'Content', type: 'string', cs: true, input: 'text', operators: ['exists', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				content : {name: 'Content', type: 'string', cs: true, input: 'text', operators: ['exists', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
 				geo : {name: 'Location', type: 'geo', input: ['geo_box', 'geo_radius', 'geo_polygon'], operators: ['exists', 'geo_box', 'geo_radius', 'geo_polygon']},
-				link : {name: 'Link', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				link : {name: 'Link', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
 				sample : {name: 'sample', type: 'float', input: 'slider', operators: ['lowerThan'], displayFormat : function(v) { return v + '%';}},
-				source : {name: 'Source', type: 'string', cs: true, input: 'text', operators: ['contains', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				source : {name: 'Source', type: 'string', cs: true, input: 'text', operators: ['equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
 				type : {name: 'Type', type: 'string', input: 'select', operators: ['in'], options: {'2ch':'2channel','amazon':'Amazon','blog':'Blog','board':'Board','digg':'Digg','dailymotion':'DailyMotion','facebook':'Facebook','flickr':'Flickr','imdb':'IMDb','myspace':'MySpace','reddit':'Reddit','topic':'Topix','twitter':'Twitter','video':'Videos','youtube':'YouTube'}},
-				title : {name: 'Title', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				title : {name: 'Title', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
 				author : {
 					name: 'Author',
 					icon : 'user',
 					fields: {
 						id : {name: 'ID', icon: 'user-id', type: 'int', input: 'text', operators: ['exists', 'equals', 'different', 'greaterThan', 'lowerThan']},
 						avatar : {name: 'Avatar', type: 'string', cs: true, input: 'text', operators: ['exists']},
-						link : {name: 'Link', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-						name : {name: 'Name', icon: 'fullname', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-						username : {name: 'User Name', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']}
+						link : {name: 'Link', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+						name : {name: 'Name', icon: 'fullname', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+						username : {name: 'User Name', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']}
 					}
 				}
 			}
@@ -31,62 +31,62 @@ var JCSDLDefinition = {
 		twitter : {
 			name : 'Twitter',
 			fields : {
-				domains : {name: 'Domains',  type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'contains', 'in', 'substr', 'different', 'regex_partial', 'regex_exact']},
+				domains : {name: 'Domains',  type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'in', 'substr', 'different', 'regex_partial', 'regex_exact']},
 				geo : {name: 'Location', type: 'geo', input: ['geo_box', 'geo_radius', 'geo_polygon'], operators: ['geo_box', 'geo_radius', 'geo_polygon']},
-				in_reply_to_screen_name : {name: 'In Reply To',  icon: 'inreply', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'contains', 'substr', 'different', 'regex_partial', 'regex_exact']},
-				links : {name: 'Links', icon: 'link', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'contains', 'in', 'substr', 'different', 'regex_partial', 'regex_exact']},
-				mentions : {name: 'Mentions',  type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-				source : {name: 'Source',  type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'contains', 'substr', 'different', 'regex_partial', 'regex_exact']},
-				text : {name: 'Tweet', icon: 'tweet', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				in_reply_to_screen_name : {name: 'In Reply To',  icon: 'inreply', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'substr', 'different', 'regex_partial', 'regex_exact']},
+				links : {name: 'Links', icon: 'link', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'in', 'substr', 'different', 'regex_partial', 'regex_exact']},
+				mentions : {name: 'Mentions',  type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				source : {name: 'Source',  type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'substr', 'different', 'regex_partial', 'regex_exact']},
+				text : {name: 'Tweet', icon: 'tweet', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
 				user : {
 					name: 'Author',
 					fields : {
-						description : {name: 'Description', icon: 'user-description', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+						description : {name: 'Description', icon: 'user-description', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
 						followers_count : {name: 'Followers Count', type: 'int', input: 'slider', operators: ['greaterThan', 'lowerThan'], max : 50000, 'default' : 1000, step : 100},
 						follower_ratio : {name: 'Follower Ratio', type: 'float', input: 'slider', operators: ['greaterThan', 'lowerThan'], max : 10, step : 0.1, 'default' : 2},
 						friends_count : {name: 'Friends Count', type: 'int', input: 'slider', operators: ['greaterThan', 'lowerThan'], max : 50000, 'default' : 1000, step : 100},
 						id : {name: 'ID', icon: 'user-id', type: 'int', input: 'number', operators: ['exists', 'equals', 'different', 'in'], operator: 'in'},
 						lang : {name: 'Language', icon: 'language', type: 'string', input: 'select', optionsSet: 'language', operators: ['exists', 'in']},
 						listed_count : {name: 'Listed Count', type: 'int', input: 'slider', operators: ['greaterThan', 'lowerThan'], max : 1000, 'default' : 500},
-						location : {name: 'Location', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-						name : {name: 'Name', icon: 'username', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+						location : {name: 'Location', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+						name : {name: 'Name', icon: 'username', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
 						profile_age : {name: 'Age', icon: 'age', type: 'int', input: 'slider', operators: ['exists', 'equals', 'greaterThan', 'lowerThan'], min : 7, max : 100, 'default' : 21},
-						screen_name : {name: 'Screen Name',  type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+						screen_name : {name: 'Screen Name',  type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
 						statuses_count : {name: 'Statuses Count', type: 'int', input: 'slider', operators: ['greaterThan', 'lowerThan'], max : 10000, 'default' : 50},
-						time_zone : {name: 'Time Zone',  type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-						url : {name: 'URL', icon: 'url', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'contains', 'substr', 'different', 'regex_partial', 'regex_exact']}
+						time_zone : {name: 'Time Zone',  type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+						url : {name: 'URL', icon: 'url', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'substr', 'different', 'regex_partial', 'regex_exact']}
 					}
 				},
 				place : {
 					name: 'Place',
 					fields : {
-						attributes : {name: 'Attributes', icon: 'placeattrs', type: 'string', cs: true, input: 'text', operators: ['exists', 'contains', 'in', 'equals', 'different', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-						country : {name: 'Country', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-						country_code : {name: 'Country Code', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-						full_name : {name: 'Full Name', icon: 'fullname', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-						name : {name: 'Name', icon: 'placename', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-						place_type : {name: 'Place Type', icon: 'type', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-						url : {name: 'URL', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']}
+						attributes : {name: 'Attributes', icon: 'placeattrs', type: 'string', cs: true, input: 'text', operators: ['exists', 'in', 'equals', 'different', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+						country : {name: 'Country', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+						country_code : {name: 'Country Code', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+						full_name : {name: 'Full Name', icon: 'fullname', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+						name : {name: 'Name', icon: 'placename', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+						place_type : {name: 'Place Type', icon: 'type', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+						url : {name: 'URL', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']}
 					}
 				},
 				retweet : {
 					name: 'Retweet',
 					fields : {
 						count : {name: 'No. of Retweets', type: 'int', input: 'slider', operators: ['exists', 'equals', 'different', 'greaterThan', 'lowerThan'], max : 10000, 'default' : 100},
-						domains : {name: 'Domains',  type: 'string', cs: true, input: 'text', operators: ['exists', 'contains', 'in', 'substr', 'different', 'regex_partial', 'regex_exact']},
+						domains : {name: 'Domains',  type: 'string', cs: true, input: 'text', operators: ['exists', 'in', 'substr', 'different', 'regex_partial', 'regex_exact']},
 						elapsed : {name: 'Elapsed', type: 'int', input: 'number', operators: ['exists', 'equals', 'different', 'greaterThan', 'lowerThan']},
-						links : {name: 'Links', icon: 'link', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'contains', 'in', 'substr', 'different', 'regex_partial', 'regex_exact']},
-						source : {name: 'Source',  type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'contains', 'substr', 'different', 'regex_partial', 'regex_exact']},
-						text : {name: 'Tweet', icon: 'tweet', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+						links : {name: 'Links', icon: 'link', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'in', 'substr', 'different', 'regex_partial', 'regex_exact']},
+						source : {name: 'Source',  type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'substr', 'different', 'regex_partial', 'regex_exact']},
+						text : {name: 'Tweet', icon: 'tweet', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
 						user : null // look at the bottom of the file
 					}
 				},
 				retweeted : {
 					name : 'Retweeted',
 					fields : {
-						id : {name: 'ID', type: 'string', cs: true, input: 'text', operators: ['exists', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-						mentions : {name: 'Mentions',  type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-						source : {name: 'Source',  type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'contains', 'substr', 'different', 'regex_partial', 'regex_exact']},
+						id : {name: 'ID', type: 'string', cs: true, input: 'text', operators: ['exists', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+						mentions : {name: 'Mentions',  type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+						source : {name: 'Source',  type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'substr', 'different', 'regex_partial', 'regex_exact']},
 						place : null, // look at the bottom of the file
 						user : null // look at the bottom of the file
 					}
@@ -98,35 +98,35 @@ var JCSDLDefinition = {
 		facebook : {
 			name : 'Facebook',
 			fields : {
-				application : {name: 'Application', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				application : {name: 'Application', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
 				'author-avatar': {name: 'Author Avatar', icon: 'avatar', type: 'string', cs: true, input: 'text', operators: ['exists']},
 				'author-id': {name: 'Author ID', icon: 'user-id', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'different', 'in']},
-				'author-link': {name: 'Author Link', icon: 'link', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-				'author-name': {name: 'Author Name', icon: 'username', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-				caption : {name: 'Caption', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				'author-link': {name: 'Author Link', icon: 'link', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				'author-name': {name: 'Author Name', icon: 'username', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				caption : {name: 'Caption', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
 				'likes-count' : {name: 'Likes Count', type: 'int', input: 'slider', operators: ['exists', 'greaterThan', 'lowerThan'], max : 10000, 'default' : 500, step : 10},
 				'likes-ids' : {name: 'Likes IDs', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'in', 'different']},
-				'likes-names' : {name: 'Likes Names', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-				link : {name: 'Link', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-				message : {name: 'Message',type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-				name : {name: 'Name', icon: 'fullname', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				'likes-names' : {name: 'Likes Names', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				link : {name: 'Link', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				message : {name: 'Message',type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				name : {name: 'Name', icon: 'fullname', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
 				og : {
 					name : 'Open Graph',
 					icon : 'opengraph',
 					fields : {
-						by : {name: 'By', icon: 'og-by', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-						description : {name: 'Description', icon: 'description', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-						//length : {name: 'Length', icon: 'og-length', type: 'string', cs: true, input: 'text', operators: ['exists', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-						location : {name: 'Location', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-						photos : {name: 'Photos', icon: 'photos', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-						title : {name: 'Title', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-						type : {name: 'Type', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']}
+						by : {name: 'By', icon: 'og-by', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+						description : {name: 'Description', icon: 'description', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+						//length : {name: 'Length', icon: 'og-length', type: 'string', cs: true, input: 'text', operators: ['exists', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+						location : {name: 'Location', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+						photos : {name: 'Photos', icon: 'photos', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+						title : {name: 'Title', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+						type : {name: 'Type', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']}
 					}
 				},
-				source : {name: 'Source',type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-				'to-ids' : {name: 'To IDs', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'contains', 'different']},
-				'to-names' : {name: 'To Names', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-				type : {name: 'Type', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']}
+				source : {name: 'Source',type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				'to-ids' : {name: 'To IDs', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'different']},
+				'to-names' : {name: 'To Names', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				type : {name: 'Type', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']}
 			}
 		},
 
@@ -138,19 +138,19 @@ var JCSDLDefinition = {
 					name : 'Author',
 					icon : 'user',
 					fields : {
-						avatar : {name: 'Avatar', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+						avatar : {name: 'Avatar', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
 						id : {name: 'ID', icon: 'user-id', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'different', 'in']},
-						link : {name: 'Link', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-						name : {name: 'Name', icon: 'fullname', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-						username : {name: 'User Name', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']}
+						link : {name: 'Link', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+						name : {name: 'Name', icon: 'fullname', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+						username : {name: 'User Name', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']}
 					}
 				},
-				category : {name: 'Category', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-				content : {name: 'Content', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-				contenttype : {name: 'Content Type', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				category : {name: 'Category', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				content : {name: 'Content', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				contenttype : {name: 'Content Type', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
 				geo : {name: 'Location', type: 'geo', input: ['geo_box', 'geo_radius', 'geo_polygon'], operators: ['exists', 'geo_box', 'geo_radius', 'geo_polygon']},
-				link : {name: 'Link', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-				verb : {name: 'Verb', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']}
+				link : {name: 'Link', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				verb : {name: 'Verb', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']}
 			}
 		},
 
@@ -163,25 +163,25 @@ var JCSDLDefinition = {
 					fields : {
 						buries : {name: 'Buries', type: 'int', input: 'slider', operators: ['greaterThan', 'lowerThan'], max : 2000, step : 10, 'default' : 1000},
 						diggs : {name: 'Diggs', type: 'int', input: 'slider', operators: ['greaterThan', 'lowerThan'], max : 2000, step : 10, 'default' : 1000},
-						text : {name: 'Text', icon: 'content', type: 'string', cs: true, cs: true, input: 'text', operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']}
+						text : {name: 'Text', icon: 'content', type: 'string', cs: true, cs: true, input: 'text', operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']}
 					}
 				},
 				'item-comments' : {name: 'Comments Count', icon: 'comments-count', type: 'int', input: 'slider', operators: ['equals', 'greaterThan', 'lowerThan'], max : 1000, 'default' : 20, step : 5},
-				'item-description' : {name: 'Description', icon: 'description', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				'item-description' : {name: 'Description', icon: 'description', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
 				'item-diggs' : {name: 'Diggs', icon: 'diggs', type: 'int', input: 'slider', operators: ['equals', 'greaterThan', 'lowerThan'], max : 2000, 'default' : 100, step : 10},
-				'item-status' : {name: 'Status', icon: 'status', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-				'item-title' : {name: 'Title', icon: 'title', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-				'item-topic' : {name: 'Topic', icon: 'topic', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-				type : {name: 'Type', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				'item-status' : {name: 'Status', icon: 'status', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				'item-title' : {name: 'Title', icon: 'title', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				'item-topic' : {name: 'Topic', icon: 'topic', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				type : {name: 'Type', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
 				user : {
 					name : 'User',
 					fields : {
-						fullname : {name: 'Full Name', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+						fullname : {name: 'Full Name', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
 						icon : {name: 'Icon', icon: 'avatar', type: 'string', cs: true, input: 'text', operators: ['exists']},
-						links : {name: 'Links', icon: 'link', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'contains', 'in', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-						name : {name: 'Name', icon: 'username', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+						links : {name: 'Links', icon: 'link', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'in', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+						name : {name: 'Name', icon: 'username', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
 						profileviews : {name: 'Profile Views', type: 'int', input: 'slider', operators: ['greaterThan', 'lowerThan'], max : 10000, 'default' : 100, step : 25},
-						registered : {name: 'Registered',  type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']}
+						registered : {name: 'Registered',  type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']}
 					}
 				}
 			}
@@ -190,12 +190,12 @@ var JCSDLDefinition = {
 		'2channel' : {
 			name : '2channel',
 			fields : {
-				'author-name' : {name: 'Author Name', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-				content : {name: 'Content', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				'author-name' : {name: 'Author Name', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				content : {name: 'Content', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
 				contenttype : {name: 'Content Type', type: 'string', input: 'select', single: true, options: {'HTML':'html'}, operators: ['exists', 'equals', 'different']},
-				link : {name: 'Link', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-				thread : {name: 'Thread', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-				title : {name: 'Title', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				link : {name: 'Link', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				thread : {name: 'Thread', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				title : {name: 'Title', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
 				type : {name: 'Type', type: 'string', input: 'select', single: true, options: {'thread':'Thread','post':'Post'}, operators: ['exists', 'equals', 'different']}
 			}
 		},
@@ -207,15 +207,15 @@ var JCSDLDefinition = {
 					name : 'Author',
 					icon : 'user',
 					fields : {
-						link : {name: 'Author Link', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-						name : {name: 'Author Name', icon: 'author-name', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']}
+						link : {name: 'Author Link', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+						name : {name: 'Author Name', icon: 'author-name', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']}
 					}
 				},
-				content : {name: 'Content', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				content : {name: 'Content', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
 				contenttype : {name: 'Content Type', type: 'string', input: 'select', single: true, options: {'HTML':'html'}, operators: ['exists', 'equals', 'different']},
-				link : {name: 'Link', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-				thread : {name: 'Thread', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-				title : {name: 'Title', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				link : {name: 'Link', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				thread : {name: 'Thread', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				title : {name: 'Title', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
 				type : {name: 'Type', type: 'string', input: 'select', single: true, options: {'thread':'Thread','post':'Post'}, operators: ['exists', 'equals', 'different']}
 			}
 		},
@@ -227,24 +227,24 @@ var JCSDLDefinition = {
 					name : 'Author',
 					icon : 'user',
 					fields : {
-						avatar : {name: 'Avatar', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-						link : {name: 'Author Link', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-						name : {name: 'Author Name', icon: 'author-name', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-						username : {name: 'User Name', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']}
+						avatar : {name: 'Avatar', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+						link : {name: 'Author Link', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+						name : {name: 'Author Name', icon: 'author-name', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+						username : {name: 'User Name', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']}
 					}
 				},
-				content : {name: 'Content', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				content : {name: 'Content', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
 				contenttype : {name: 'Content Type', type: 'string', input: 'select', single: true, options: {'HTML':'html'}, operators: ['exists', 'equals', 'different']},
-				domain : {name: 'Domain', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-				link : {name: 'Link', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				domain : {name: 'Domain', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				link : {name: 'Link', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
 				post : {
 					name : 'Post',
 					fields : {
-						link : {name: 'Link', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-						title : {name: 'Title', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']}
+						link : {name: 'Link', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+						title : {name: 'Title', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']}
 					}
 				},
-				title : {name: 'Title', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				title : {name: 'Title', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
 				type : {name: 'Type', type: 'string', input: 'select', single: true, options: {'thread':'Thread','post':'Post'}, operators: ['exists', 'equals', 'different']}
 			}
 		},
@@ -257,22 +257,22 @@ var JCSDLDefinition = {
 					icon : 'user',
 					fields : {
 						age : {name: 'Age', type: 'int', input: 'slider', operators: ['exists', 'equals', 'greaterThan', 'lowerThan'], min : 7, max : 100, 'default' : 21},
-						avatar : {name: 'Avatar', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-						gender : {name: 'Gender', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-						link : {name: 'Author Link', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-						location : {name: 'Location', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-						name : {name: 'Author Name', icon: 'author-name', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-						registered : {name: 'Registered',  type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-						signature : {name: 'Signature',  type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-						username : {name: 'User Name', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']}
+						avatar : {name: 'Avatar', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+						gender : {name: 'Gender', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+						link : {name: 'Author Link', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+						location : {name: 'Location', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+						name : {name: 'Author Name', icon: 'author-name', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+						registered : {name: 'Registered',  type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+						signature : {name: 'Signature',  type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+						username : {name: 'User Name', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']}
 					}
 				},
-				content : {name: 'Content', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				content : {name: 'Content', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
 				contenttype : {name: 'Content Type', type: 'string', input: 'select', single: true, options: {'HTML':'html'}, operators: ['exists', 'equals', 'different']},
-				domain : {name: 'Domain', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-				link : {name: 'Link', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-				thread : {name: 'Thread', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-				title : {name: 'Title', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				domain : {name: 'Domain', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				link : {name: 'Link', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				thread : {name: 'Thread', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				title : {name: 'Title', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
 				type : {name: 'Type', type: 'string', input: 'select', single: true, options: {'thread':'Thread','post':'Post'}, operators: ['exists', 'equals', 'different']}
 			}
 		},
@@ -284,18 +284,18 @@ var JCSDLDefinition = {
 					name : 'Author',
 					icon : 'user',
 					fields : {
-						link : {name: 'Author Link', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-						name : {name: 'Author Name', icon: 'author-name', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']}
+						link : {name: 'Author Link', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+						name : {name: 'Author Name', icon: 'author-name', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']}
 					}
 				},
-				category : {name: 'Category', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-				content : {name: 'Content', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				category : {name: 'Category', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				content : {name: 'Content', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
 				contenttype : {name: 'Content Type', type: 'string', input: 'select', single: true, options: {'HTML':'html'}, operators: ['exists', 'equals', 'different']},
 				duration : {name: 'Duration', type: 'int', input: 'slider', operators: ['exists', 'equals', 'greaterThan', 'lowerThan'], min : 0, max : 10800, 'default' : 3600, displayFormat : function(v) {return v + 's';}},
-				tags : {name: 'Tags', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-				thumbnail : {name: 'Thumbnail', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-				title : {name: 'Title', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-				videolink : {name: 'Video Link', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']}
+				tags : {name: 'Tags', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				thumbnail : {name: 'Thumbnail', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				title : {name: 'Title', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				videolink : {name: 'Video Link', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']}
 			}
 		},
 
@@ -306,16 +306,16 @@ var JCSDLDefinition = {
 					name : 'Author',
 					icon : 'user',
 					fields : {
-						link : {name: 'Author Link', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-						name : {name: 'Author Name', icon: 'author-name', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-						username : {name: 'User Name', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']}
+						link : {name: 'Author Link', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+						name : {name: 'Author Name', icon: 'author-name', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+						username : {name: 'User Name', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']}
 					}
 				},
-				content : {name: 'Content', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				content : {name: 'Content', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
 				contenttype : {name: 'Content Type', type: 'string', input: 'select', single: true, options: {'HTML':'html'}, operators: ['exists', 'equals', 'different']},
-				link : {name: 'Link', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-				thread : {name: 'Thread', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-				title : {name: 'Title', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				link : {name: 'Link', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				thread : {name: 'Thread', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				title : {name: 'Title', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
 				type : {name: 'Type', type: 'string', input: 'select', single: true, options: {'thread':'Thread','post':'Post'}, operators: ['exists', 'equals', 'different']}
 			}
 		},
@@ -327,15 +327,15 @@ var JCSDLDefinition = {
 					name : 'Author',
 					icon : 'user',
 					fields : {
-						link : {name: 'Author Link', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-						name : {name: 'Author Name', icon: 'author-name', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']}
+						link : {name: 'Author Link', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+						name : {name: 'Author Name', icon: 'author-name', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']}
 					}
 				},
-				content : {name: 'Content', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				content : {name: 'Content', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
 				contenttype : {name: 'Content Type', type: 'string', input: 'select', single: true, options: {'HTML':'html'}, operators: ['exists', 'equals', 'different']},
-				link : {name: 'Link', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-				thread : {name: 'Thread', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-				title : {name: 'Title', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				link : {name: 'Link', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				thread : {name: 'Thread', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				title : {name: 'Title', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
 				type : {name: 'Type', type: 'string', input: 'select', single: true, options: {'thread':'Thread','post':'Post'}, operators: ['exists', 'equals', 'different']}
 			}
 		},
@@ -346,32 +346,32 @@ var JCSDLDefinition = {
 				article : {
 					name : 'Article',
 					fields : {
-						authors : {name: 'Authors', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+						authors : {name: 'Authors', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
 						category : {name: 'Category', type: 'string', input: 'select', operators: ['exists', 'equals', 'different', 'in'], optionsSet: 'newscredCategories'},
-						content : {name: 'Content', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-						domain : {name: 'Domain', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-						title : {name: 'Title', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-						topics : {name: 'Topics', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']}
+						content : {name: 'Content', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+						domain : {name: 'Domain', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+						title : {name: 'Title', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+						topics : {name: 'Topics', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']}
 					}
 				},
 				image : {
 					name : 'Image',
 					fields : {
-						'attribution-link' : {name: 'Attribution Link', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-						'attribution-text' : {name: 'Attribution Text', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-						caption : {name: 'Caption', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']}
+						'attribution-link' : {name: 'Attribution Link', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+						'attribution-text' : {name: 'Attribution Text', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+						caption : {name: 'Caption', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']}
 					}
 				},
-				'source-domain' : {name: 'Source Domain', icon: 'domain', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				'source-domain' : {name: 'Source Domain', icon: 'domain', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
 				type : {name: 'Type', type: 'string', input: 'select', single: true, options: {'article':'Article','video':'Video','image':'Image'}, operators: ['exists', 'equals', 'different']},
 				video : {
 					name : 'Video',
 					fields : {
-						caption : {name: 'Caption', icon: 'video-caption', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+						caption : {name: 'Caption', icon: 'video-caption', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
 						category : {name: 'Category', type: 'string', input: 'select', operators: ['exists', 'equals', 'different', 'in'], optionsSet: 'newscredCategories'},
-						domain : {name: 'Domain', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-						title : {name: 'Title', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-						topics : {name: 'Topics', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']}
+						domain : {name: 'Domain', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+						title : {name: 'Title', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+						topics : {name: 'Topics', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']}
 					}
 				}
 			}
@@ -384,15 +384,15 @@ var JCSDLDefinition = {
 					name : 'Author',
 					icon : 'user',
 					fields : {
-						link : {name: 'Author Link', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-						name : {name: 'Author Name', icon: 'author-name', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']}
+						link : {name: 'Author Link', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+						name : {name: 'Author Name', icon: 'author-name', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']}
 					}
 				},
-				content : {name: 'Content', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				content : {name: 'Content', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
 				contenttype : {name: 'Content Type', type: 'string', input: 'select', single: true, options: {'HTML':'html'}, operators: ['exists', 'equals', 'different']},
-				link : {name: 'Link', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-				thread : {name: 'Thread', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-				title : {name: 'Title', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				link : {name: 'Link', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				thread : {name: 'Thread', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				title : {name: 'Title', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
 				type : {name: 'Type', type: 'string', input: 'select', single: true, options: {'thread':'Thread','post':'Post'}, operators: ['exists', 'equals', 'different']}
 			}
 		},
@@ -404,15 +404,15 @@ var JCSDLDefinition = {
 					name : 'Author',
 					icon : 'user',
 					fields : {
-						location : {name: 'Location', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-						name : {name: 'Author Name', icon: 'author-name', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']}
+						location : {name: 'Location', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+						name : {name: 'Author Name', icon: 'author-name', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']}
 					}
 				},
-				content : {name: 'Content', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				content : {name: 'Content', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
 				contenttype : {name: 'Content Type', type: 'string', input: 'select', single: true, options: {'HTML':'html'}, operators: ['exists', 'equals', 'different']},
-				link : {name: 'Link', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-				thread : {name: 'Thread', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-				title : {name: 'Title', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				link : {name: 'Link', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				thread : {name: 'Thread', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				title : {name: 'Title', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
 				type : {name: 'Type', type: 'string', input: 'select', single: true, options: {'thread':'Thread','post':'Post'}, operators: ['exists', 'equals', 'different']}
 			}
 		},
@@ -424,23 +424,23 @@ var JCSDLDefinition = {
 					name : 'Author',
 					icon : 'user',
 					fields : {
-						avatar : {name: 'Avatar', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-						link : {name: 'Author Link', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-						name : {name: 'Author Name', icon: 'author-name', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-						username : {name: 'User Name', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']}
+						avatar : {name: 'Avatar', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+						link : {name: 'Author Link', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+						name : {name: 'Author Name', icon: 'author-name', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+						username : {name: 'User Name', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']}
 					}
 				},
-				category : {name: 'Category', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-				commentslink : {name: 'Comments Link', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-				content : {name: 'Content', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				category : {name: 'Category', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				commentslink : {name: 'Comments Link', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				content : {name: 'Content', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
 				contenttype : {name: 'Content Type', type: 'string', input: 'select', single: true, options: {'HTML':'html'}, operators: ['exists', 'equals', 'different']},
-				domain : {name: 'Domain', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				domain : {name: 'Domain', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
 				duration : {name: 'Duration', type: 'int', input: 'slider', operators: ['exists', 'equals', 'greaterThan', 'lowerThan'], min : 0, max : 10800, 'default' : 3600, displayFormat : function(v) {return v + 's';}},
-				tags : {name: 'Tags', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-				thumbnail : {name: 'Thumbnail', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-				title : {name: 'Title', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				tags : {name: 'Tags', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				thumbnail : {name: 'Thumbnail', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				title : {name: 'Title', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
 				type : {name: 'Type', type: 'string', input: 'select', single: true, options: {'video':'Video','comment':'Comment'}, operators: ['exists', 'equals', 'different']},
-				videolink : {name: 'Video Link', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']}
+				videolink : {name: 'Video Link', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']}
 			}
 		},
 
@@ -451,19 +451,19 @@ var JCSDLDefinition = {
 					name : 'Author',
 					icon : 'user',
 					fields : {
-						link : {name: 'Author Link', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-						name : {name: 'Author Name', icon: 'author-name', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']}
+						link : {name: 'Author Link', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+						name : {name: 'Author Name', icon: 'author-name', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']}
 					}
 				},
-				category : {name: 'Category', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-				commentslink : {name: 'Comments Link', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-				content : {name: 'Content', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				category : {name: 'Category', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				commentslink : {name: 'Comments Link', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				content : {name: 'Content', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
 				duration : {name: 'Duration', type: 'int', input: 'slider', operators: ['exists', 'equals', 'greaterThan', 'lowerThan'], min : 0, max : 10800, 'default' : 3600, displayFormat : function(v) {return v + 's';}},
-				tags : {name: 'Tags', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-				thumbnail : {name: 'Thumbnail', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-				title : {name: 'Title', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				tags : {name: 'Tags', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				thumbnail : {name: 'Thumbnail', type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				title : {name: 'Title', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
 				type : {name: 'Type', type: 'string', input: 'select', single: true, options: {'video':'Video','comment':'Comment'}, operators: ['exists', 'equals', 'different']},
-				videolink : {name: 'Video Link', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']}
+				videolink : {name: 'Video Link', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']}
 			}
 		},
 
@@ -473,7 +473,7 @@ var JCSDLDefinition = {
 				amplification : {name: 'Amplification', type: 'int', input: 'slider', operators: ['exists', 'equals', 'greaterThan', 'lowerThan'], min: 0, max: 100, 'default': 50},
 				network : {name: 'Network Effect', type: 'int', input: 'slider', operators: ['exists', 'equals', 'greaterThan', 'lowerThan'], min: 0, max: 100, 'default': 50},
 				score : {name: 'Score', type: 'int', input: 'slider', operators: ['exists', 'equals', 'greaterThan', 'lowerThan'], min: 0, max: 100, 'default': 50},
-				topics : {name: 'Topics', icon: 'topic', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+				topics : {name: 'Topics', icon: 'topic', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
 				true_reach : {name: 'True Reach', type: 'int', input: 'slider', operators: ['exists', 'equals', 'greaterThan', 'lowerThan'], min: 0, max: 100000, 'default': 1000}
 			}
 		},
@@ -485,7 +485,7 @@ var JCSDLDefinition = {
 					name : 'Links',
 					fields : {
 						age : {name: 'Age', type: 'int', input: 'number', operators: ['equals', 'greaterThan', 'lowerThan'], operator: 'greaterThan'},
-						title : {name: 'Title', type: 'string', input: 'text', operators: ['equals', 'contains', 'substr', 'contains_any', 'contains_near', 'regex_partial', 'regex_exact'], operator: 'contains_any'},
+						title : {name: 'Title', type: 'string', input: 'text', operators: ['equals', 'substr', 'contains_any', 'contains_near', 'regex_partial', 'regex_exact'], operator: 'contains_any'},
 						domain : {name: 'Domain', type: 'string', input: 'text', operators: ['substr', 'in', 'equals', 'regex_partial', 'regex_exact'], operator: 'in'},
 						url : {name: 'URL', type: 'string', input: 'text', operators: ['substr', 'in', 'equals', 'regex_partial', 'regex_exact'], operator: 'in'},
 						retweet_count : {name: 'Retweet Count', icon: 'retweet-count', type: 'int', input: 'slider', operators: ['greaterThan', 'lowerThan', 'equals'], operator: 'greaterThan'}
@@ -494,8 +494,8 @@ var JCSDLDefinition = {
 				trends : {
 					name : 'Trends',
 					fields : {
-						type : {name: 'Type', type: 'string', input: 'text', operators: ['equals', 'in', 'contains', 'contains_any', 'substr', 'regex_partial', 'regex_exact'], operator: 'equals'},
-						content : {name: 'Content', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'contains', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+						type : {name: 'Type', type: 'string', input: 'text', operators: ['equals', 'in', 'contains_any', 'substr', 'regex_partial', 'regex_exact'], operator: 'equals'},
+						content : {name: 'Content', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
 						source : {name: 'Source', type: 'string', input: 'select', single: true, operators: ['equals'], operator: 'equals', options: {'twitter':'Twitter'}}
 					}
 				},
@@ -527,13 +527,6 @@ var JCSDLDefinition = {
 
 	// some additional definition of the possible operators
 	operators : {
-		contains : {
-			label : 'Contains',
-			description : 'Filter for a word or phrase.',
-			details : '',
-			code : 'contains',
-			url : 'http://dev.datasift.com/docs/operators/contains'
-		},
 		substr : {
 			label : 'Substring',
 			description : 'Filter for a sequence of characters that form a word or part of a word.',
