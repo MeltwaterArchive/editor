@@ -1580,7 +1580,34 @@
   width: 90%; }
 
 .tipsy {
-  line-height: 1.4em; }
-
-.tipsy-arrow {
-  background-image: url("img/jquery.tipsy.small.gif"); }
+  font-size: 1.1em;
+  line-height: 1.5em; }
+  .tipsy .tipsy-inner {
+    background-color: #fff;
+    color: #000;
+    border: 2px solid #ff9933;
+    -webkit-border-radius: 5px;
+    -khtml-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    border-radius: 5px;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    -webkit-box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.5); }
+  .tipsy .tipsy-arrow {
+    background: none;
+    width: 0 !important;
+    height: 0 !important;
+    border-width: 12px;
+    border-style: solid;
+    border-color: #ff9933 transparent transparent transparent; }
+  .tipsy.tipsy-s .tipsy-arrow {
+    top: 100%;
+    left: 50%;
+    bottom: auto;
+    margin-top: -5px;
+    margin-left: -8px; }
