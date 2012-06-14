@@ -467,20 +467,19 @@ var JCSDLDefinition = {
 			}
 		},
 
-		klout : {
-			name : 'Klout',
-			fields : {
-				amplification : {name: 'Amplification', type: 'int', input: 'slider', operators: ['exists', 'equals', 'greaterThan', 'lowerThan'], min: 0, max: 100, 'default': 50},
-				network : {name: 'Network Effect', type: 'int', input: 'slider', operators: ['exists', 'equals', 'greaterThan', 'lowerThan'], min: 0, max: 100, 'default': 50},
-				score : {name: 'Score', type: 'int', input: 'slider', operators: ['exists', 'equals', 'greaterThan', 'lowerThan'], min: 0, max: 100, 'default': 50},
-				topics : {name: 'Topics', icon: 'topic', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-				true_reach : {name: 'True Reach', type: 'int', input: 'slider', operators: ['exists', 'equals', 'greaterThan', 'lowerThan'], min: 0, max: 100000, 'default': 1000}
-			}
-		},
-
 		augmentation : {
 			name : 'Augmentations',
 			fields : {
+				klout : {
+					name : 'Klout',
+					fields : {
+						amplification : {name: 'Amplification', type: 'int', input: 'slider', operators: ['exists', 'equals', 'greaterThan', 'lowerThan'], min: 0, max: 100, 'default': 50},
+						network : {name: 'Network Effect', type: 'int', input: 'slider', operators: ['exists', 'equals', 'greaterThan', 'lowerThan'], min: 0, max: 100, 'default': 50},
+						score : {name: 'Score', type: 'int', input: 'slider', operators: ['exists', 'equals', 'greaterThan', 'lowerThan'], min: 0, max: 100, 'default': 50},
+						topics : {name: 'Topics', icon: 'topic', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+						true_reach : {name: 'True Reach', type: 'int', input: 'slider', operators: ['exists', 'equals', 'greaterThan', 'lowerThan'], min: 0, max: 100000, 'default': 1000}
+					}
+				},
 				links : {
 					name : 'Links',
 					fields : {

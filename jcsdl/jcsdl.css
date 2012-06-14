@@ -972,7 +972,7 @@
       background-position: -1980px -110px; }
 
 .jcsdl-icon.field {
-  background: url("img/icons-sprite-fields.png?8") no-repeat 0 0; }
+  background: url("img/icons-sprite-fields.png?10") no-repeat 0 0; }
   .jcsdl-icon.field.icon-geo {
     background-position: 0 0; }
     .jcsdl-icon.field.icon-geo.selected {
@@ -1333,6 +1333,10 @@
     background-position: -480px -1360px; }
     .jcsdl-icon.field.icon-salience.selected {
       background-position: -560px -1360px; }
+  .jcsdl-icon.field.icon-klout {
+    background-position: -640px -1360px; }
+    .jcsdl-icon.field.icon-klout.selected {
+      background-position: -720px -1360px; }
 
 .jcsdl-icon.input {
   background: url("img/icons-sprite-other.png?2") no-repeat 0 0; }

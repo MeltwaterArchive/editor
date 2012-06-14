@@ -10,7 +10,7 @@ $elementsSprite : 'img/elements.png?14';
 $selectSprite : 'img/select.png?12';
 $stepBackground : 'img/step_background.png?5';
 $targetIconsSprite : 'img/icons-sprite-targets.png?11';
-$fieldIconsSprite : 'img/icons-sprite-fields.png?8';
+$fieldIconsSprite : 'img/icons-sprite-fields.png?10';
 $operatorIconsSprite : 'img/icons-sprite-operators.png?4';
 $otherIconsSprite : 'img/icons-sprite-other.png?2';
 
@@ -773,6 +773,7 @@ $otherIconsSprite : 'img/icons-sprite-other.png?2';
 	&.icon-links 		{background-position: -160px -1360px;	&.selected {background-position: -240px -1360px;}}
 	&.icon-demographic	{background-position: -320px -1360px;	&.selected {background-position: -400px -1360px;}}
 	&.icon-salience		{background-position: -480px -1360px;	&.selected {background-position: -560px -1360px;}}
+	&.icon-klout		{background-position: -640px -1360px;	&.selected {background-position: -720px -1360px;}}
 }
 
 .jcsdl-icon.input {
