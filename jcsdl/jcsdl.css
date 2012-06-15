@@ -139,6 +139,10 @@
     background: url("img/elements.png?14") no-repeat -140px -68px; }
   .jcsdl-mainview-action.jcsdl-add-filter {
     margin-right: 0; }
+  .jcsdl-mainview-action:hover {
+    color: #ff9933 !important; }
+    .jcsdl-mainview-action:hover.jcsdl-add-filter .jcsdl-picto {
+      background-position: -115px -89px; }
 
 /* main view mode (expanded / collapsed) */
 .jcsdl-mainview-mode {

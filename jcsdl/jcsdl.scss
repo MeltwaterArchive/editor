@@ -153,6 +153,12 @@ $otherIconsSprite : 'img/icons-sprite-other.png?2';
 	}
 
 	&.jcsdl-add-filter {margin-right: 0;}
+
+	&:hover {
+		color: $colorOrange !important;
+
+		&.jcsdl-add-filter .jcsdl-picto {background-position: -115px -89px;}
+	}
 }
 
 /* main view mode (expanded / collapsed) */
