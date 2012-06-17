@@ -125,6 +125,11 @@
 		$(window).resize(function(ev) {
 			self.adjust();
 		});
+
+		// when there's only one option visible then already select it
+		if (this.$carouselItems.filter(':visible').length == 1) {
+			this.$carouselItems.filter(':visible').trigger('jcsdlclick');
+		}
 	}
 
 	// carousel's prototype methods and vars
