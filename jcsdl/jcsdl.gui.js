@@ -1149,6 +1149,22 @@ JCSDLGui.prototype = {
 			}
 		});
 
+		/**
+		 * Resize the dropdown to match the original input when the window resizes.
+		 * @param  {Event} ev Window resize event.
+		 * @listener
+		 */
+		$(window).resize(function(ev) {
+			// do it only when dropdown actually visible
+			if (!$select.hasClass('active')) return;
+
+			$dropdown.css({
+				top : $select.offset().top + $select.outerHeight() - 1,
+				left : $select.offset().left,
+				width : $select.outerWidth() - 2
+			});
+		});
+
 		// if there's only one possible operator then automatically select it and hide it
 		if ($dropdown.find('.jcsdl-dropdown-option').length == 1) {
 			$dropdown.find('.jcsdl-dropdown-option:first').click();
