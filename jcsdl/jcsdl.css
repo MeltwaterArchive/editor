@@ -53,7 +53,7 @@
   display: block;
   height: 34px;
   width: 140px;
-  background: url("img/elements.png?15") no-repeat 0 -55px; }
+  background: url("img/elements.png?16") no-repeat 0 -55px; }
   .jcsdl-button.jcsdl-editor-cancel, .jcsdl-button.jcsdl-filter-cancel {
     width: 56px;
     background-position: 0 -89px; }
@@ -103,7 +103,7 @@
   -moz-background-clip: padding;
   -webkit-background-clip: padding-box;
   background-clip: padding-box;
-  background: url("img/elements.png?15") repeat-x center -240px; }
+  background: url("img/elements.png?16") repeat-x center -240px; }
   .jcsdl-error strong {
     color: red;
     font-weight: bold; }
@@ -136,7 +136,7 @@
     display: block;
     width: 14px;
     height: 14px;
-    background: url("img/elements.png?15") no-repeat -140px -68px; }
+    background: url("img/elements.png?16") no-repeat -140px -68px; }
   .jcsdl-mainview-action.jcsdl-add-filter {
     margin-right: 0; }
   .jcsdl-mainview-action:hover {
@@ -166,7 +166,7 @@
   display: block;
   width: 13px;
   height: 13px;
-  background: url("img/elements.png?15") no-repeat -140px -55px;
+  background: url("img/elements.png?16") no-repeat -140px -55px;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
   filter: alpha(opacity=30);
   -moz-opacity: 0.3;
@@ -325,7 +325,7 @@
   height: 29px;
   line-height: 29px;
   text-align: center;
-  background: transparent url("img/elements.png?15") no-repeat -56px -89px; }
+  background: transparent url("img/elements.png?16") no-repeat -56px -89px; }
   .jcsdl-carousel-scroll.right {
     float: right;
     background-position: -85px -89px; }
@@ -451,7 +451,7 @@
       -moz-background-clip: padding;
       -webkit-background-clip: padding-box;
       background-clip: padding-box;
-      background: url("img/elements.png?15") no-repeat 0 -278px; }
+      background: url("img/elements.png?16") no-repeat 0 -278px; }
     .jcsdl-filter-editor .jcsdl-operators-select:hover {
       background: #fafafa; }
       .jcsdl-filter-editor .jcsdl-operators-select:hover .jcsdl-dropdown-icon {
@@ -578,7 +578,7 @@
           position: absolute;
           right: 4px;
           top: 12px;
-          background: url("img/elements.png?15") no-repeat -169px -55px;
+          background: url("img/elements.png?16") no-repeat -169px -55px;
           -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
           filter: alpha(opacity=70);
           -moz-opacity: 0.7;
@@ -615,23 +615,48 @@
     height: 30px;
     overflow: hidden;
     text-indent: -9999px;
-    background: url("img/elements.png?15") no-repeat -57px -278px; }
+    background: url("img/elements.png?16") no-repeat -57px -278px; }
     .jcsdl-input-text .jcsdl-regex-tester-button:hover, .jcsdl-input-number .jcsdl-regex-tester-button:hover {
       -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=90)";
       filter: alpha(opacity=90);
       -moz-opacity: 0.9;
       -khtml-opacity: 0.9;
       opacity: 0.9; }
+    .jcsdl-input-text .jcsdl-regex-tester-button.active, .jcsdl-input-number .jcsdl-regex-tester-button.active {
+      background-position: -103px -278px;
+      -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=75)";
+      filter: alpha(opacity=75);
+      -moz-opacity: 0.75;
+      -khtml-opacity: 0.75;
+      opacity: 0.75; }
+      .jcsdl-input-text .jcsdl-regex-tester-button.active:hover, .jcsdl-input-number .jcsdl-regex-tester-button.active:hover {
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=75)";
+        filter: alpha(opacity=75);
+        -moz-opacity: 0.75;
+        -khtml-opacity: 0.75;
+        opacity: 0.75; }
   .jcsdl-input-text .jcsdl-regex-tester p, .jcsdl-input-number .jcsdl-regex-tester p {
     text-align: center;
     margin: 5px 30px;
     color: #888888; }
+  .jcsdl-input-text .jcsdl-regex-tester .jcsdl-regex-tester-input-wrap, .jcsdl-input-number .jcsdl-regex-tester .jcsdl-regex-tester-input-wrap {
+    position: relative; }
+  .jcsdl-input-text .jcsdl-regex-tester .jcsdl-regex-result, .jcsdl-input-number .jcsdl-regex-tester .jcsdl-regex-result {
+    position: absolute;
+    top: 5px;
+    right: 54px;
+    display: none;
+    width: 30px;
+    height: 30px;
+    overflow: hidden;
+    background: url("img/elements.png?16") no-repeat -57px -308px; }
+    .jcsdl-input-text .jcsdl-regex-tester .jcsdl-regex-result.ok, .jcsdl-input-number .jcsdl-regex-tester .jcsdl-regex-result.ok {
+      background-position: -57px -308px; }
+    .jcsdl-input-text .jcsdl-regex-tester .jcsdl-regex-result.err, .jcsdl-input-number .jcsdl-regex-tester .jcsdl-regex-result.err {
+      background-position: -87px -308px; }
   .jcsdl-input-text .jcsdl-regex-tester input, .jcsdl-input-number .jcsdl-regex-tester input {
-    margin: 5px 0; }
-    .jcsdl-input-text .jcsdl-regex-tester input.ok, .jcsdl-input-number .jcsdl-regex-tester input.ok {
-      border-color: green; }
-    .jcsdl-input-text .jcsdl-regex-tester input.err, .jcsdl-input-number .jcsdl-regex-tester input.err {
-      border-color: red; }
+    margin: 5px 0;
+    padding-right: 84px; }
 
 .jcsdl-input-text {
   margin-top: 20px; }
@@ -702,7 +727,7 @@
       display: block;
       width: 14px;
       height: 14px;
-      background: transparent url("img/elements.png?15") no-repeat -115px -89px;
+      background: transparent url("img/elements.png?16") no-repeat -115px -89px;
       -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
       filter: alpha(opacity=70);
       -moz-opacity: 0.7;
@@ -774,7 +799,7 @@
     margin-bottom: 7px;
     height: 12px;
     cursor: pointer;
-    background: transparent url("img/elements.png?15") repeat-x center -228px;
+    background: transparent url("img/elements.png?16") repeat-x center -228px;
     border: 0;
     -webkit-border-radius: 0px;
     -khtml-border-radius: 0px;
@@ -792,7 +817,7 @@
       width: 30px;
       height: 40px;
       cursor: pointer;
-      background: transparent url("img/elements.png?15") no-repeat -152px -83px;
+      background: transparent url("img/elements.png?16") no-repeat -152px -83px;
       border: 0;
       outline: none; }
   .jcsdl-input-slider .jcsdl-slider-bottom {
@@ -805,7 +830,7 @@
       width: 15px;
       height: 15px;
       float: left;
-      background: transparent url("img/elements.png?15") no-repeat 0 -213px; }
+      background: transparent url("img/elements.png?16") no-repeat 0 -213px; }
     .jcsdl-input-slider .jcsdl-slider-bottom .jcsdl-slider-bottom-right {
       float: right;
       background-position: -31px -213px; }
@@ -813,7 +838,7 @@
       display: block;
       height: 15px;
       margin: 0 15px;
-      background: transparent url("img/elements.png?15") repeat-x 0 -198px; }
+      background: transparent url("img/elements.png?16") repeat-x 0 -198px; }
 
 .jcsdl-map {
   text-align: center;
@@ -1557,7 +1582,7 @@
         margin: 18px 10px;
         width: 18px;
         height: 10px;
-        background: url("img/elements.png?15") no-repeat -39px -288px;
+        background: url("img/elements.png?16") no-repeat -39px -288px;
         -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
         filter: alpha(opacity=50);
         -moz-opacity: 0.5;

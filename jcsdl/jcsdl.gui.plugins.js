@@ -618,24 +618,37 @@
 
 		this.$btn = $('<a href="#" class="jcsdl-regex-tester-button">Test</a>').insertAfter(this.$el);
 		
-		this.$wrap = $('<div class="jcsdl-regex-tester"><p>If you want to test whether your regular expression correctly matches the desired strings, click the "Test" button and input example content in the shown fields.</p></div>').insertAfter(this.$el).hide();
+		this.$wrap = $('<div class="jcsdl-regex-tester"><p>If you want to test whether your regular expression correctly matches the desired strings, click the "Test" button and input example content in the shown field.</p></div>').insertAfter(this.$el).hide();
 		this.$fields = $();
+		this.$fieldsWraps = $();
+
 		for(var i = 1; i <= config.fields; i++) {
 			var $field = this.$el.clone().show().attr('placeholder', 'Test your expression against this field...');
-			$field.appendTo(this.$wrap);
+			var $fieldBtn = $('<a href="#" class="jcsdl-regex-tester-button" />');
+			var $fieldWrap = $('<div class="jcsdl-regex-tester-input-wrap" />').html($field).append($fieldBtn).append('<div class="jcsdl-regex-result" />');
+
+			$fieldWrap.prependTo(this.$wrap);
+
 			this.$fields = this.$fields.add($field);
+			this.$fieldsWraps = this.$fieldsWraps.add($fieldWrap);
+
+			$fieldBtn.bind('click touchstart', function(ev) {
+				ev.preventDefault();
+				ev.target.blur();
+
+				self.val = self.$el.val();
+				self.test($field);
+			});
 		}
 
 		this.$btn.bind('click touchstart', function(ev) {
 			ev.preventDefault();
 			ev.target.blur();
 
-			self.$fields.fadeIn();
-			self.val = self.$el.val();
-			self.test();
+			self.$fieldsWraps.fadeIn();
+			$(this).addClass('active');
 		});
 
-		/*
 		this.$el.bind('keyup change', function(ev) {
 			self.val = self.$el.val();
 			self.test();
@@ -644,7 +657,6 @@
 		this.$fields.bind('keyup', function(ev) {
 			self.test($(this));
 		});
-		*/
 
 		this.disable(); // disabled by default
 	};
@@ -661,9 +673,8 @@
 			this.exp = new RegExp(exp, 'i');
 
 			$fields.each(function(i, field) {
-				var $testField = $(field).removeClass('ok err');
-				var result = (self.exp.test($testField.val())) ? 'ok' : 'err';
-				$testField.addClass(result);
+				var result = (self.exp.test($(field).val())) ? 'ok' : 'err';
+				$(field).siblings('.jcsdl-regex-result').removeClass('ok err').addClass(result).fadeIn();
 			});
 		},
 		enable : function() {
@@ -676,7 +687,7 @@
 			this.$el.data('jcsdlRegExTesterEnabled', false);
 			this.$el.removeClass('jcsdl-regex-active');
 			this.$wrap.hide();
-			this.$fields.hide();
+			this.$fieldsWraps.hide();
 			this.$btn.hide();
 		},
 		setPartial : function() {
@@ -709,7 +720,7 @@
 		}
 
 		options = $.extend({}, {
-			fields : 2
+			fields : 1
 		}, options);
 
 		this.each(function() {get($(this));});

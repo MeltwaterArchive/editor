@@ -6,7 +6,7 @@ $colorBlackLight : #c6c6c9;
 $colorOrange : #ff9933;
 $borderColor : #dcdcdc;
 $borderColorInput : #c8d7de;
-$elementsSprite : 'img/elements.png?15';
+$elementsSprite : 'img/elements.png?16';
 $selectSprite : 'img/select.png?12';
 $stepBackground : 'img/step_background.png?5';
 $targetIconsSprite : 'img/icons-sprite-targets.png?11';
@@ -464,16 +464,29 @@ $otherIconsSprite : 'img/icons-sprite-other.png?2';
 		background: url($elementsSprite) no-repeat -57px -278px;
 
 		&:hover {@include opacity(0.9);}
+		&.active {
+			background-position: -103px -278px;
+			@include opacity(0.75);
+			&:hover {@include opacity(0.75);}
+		}
 	}
 
 	.jcsdl-regex-tester {
 		p {text-align: center; margin: 5px 30px; color: $colorLight;}
-		
-		input {
-			margin: 5px 0;
-			&.ok {border-color: green;}
-			&.err {border-color: red;}
+
+		.jcsdl-regex-tester-input-wrap {position: relative;}
+
+		.jcsdl-regex-result {
+			position: absolute; top: 5px; right: 54px;
+			display: none; width: 30px; height: 30px;
+			overflow: hidden;
+			background: url($elementsSprite) no-repeat -57px -308px;
+
+			&.ok {background-position: -57px -308px;}
+			&.err {background-position: -87px -308px;}
 		}
+		
+		input {margin: 5px 0; padding-right: 84px;}
 	}
 }
 .jcsdl-input-text {margin-top: 20px;}
