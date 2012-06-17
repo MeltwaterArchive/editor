@@ -197,7 +197,11 @@ var JCSDLGuiTemplates = {
 	// text input
 	valueInput_text : $([
 		'<div class="jcsdl-input-text">',
-			'<input type="text" placeholder="Type your desired value..." />',
+			'<input type="text" placeholder="Type your desired value..." class="orig" />',
+			'<div class="jcsdl-containsnear-distance">',
+				'<span>Distance:</span>',
+				'<input type="text" placeholder="e.g. 0" value="2" class="dist" />',
+			'</div>',
 		'</div>'
 	].join('')),
 

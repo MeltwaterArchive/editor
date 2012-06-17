@@ -489,7 +489,20 @@ $otherIconsSprite : 'img/icons-sprite-other.png?2';
 		input {margin: 5px 0; padding-right: 84px;}
 	}
 }
-.jcsdl-input-text {margin-top: 20px;}
+.jcsdl-input-text {
+	margin-top: 20px;
+
+	.jcsdl-containsnear-distance {
+		display: none; text-align: center; margin: 5px 0;
+
+		span {line-height: 30px;}
+		input {
+			display: inline; display: inline-block; width: 40px; height: 30px; 
+			margin: 0 10px;
+			text-align: center;
+		}
+	}
+}
 .jcsdl-input-number {
 	margin: 0 10px;
 	input {margin: 0 auto; width: 175px;}

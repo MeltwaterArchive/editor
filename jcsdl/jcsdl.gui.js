@@ -252,7 +252,7 @@ JCSDLGui.prototype = {
 			
 			// fill in the value (using the proper delegate)
 			var $valueInputView = this.$currentFilterView.find('.jcsdl-filter-value-input-field');
-			this.setValueForField($valueInputView, fieldInfo, filter.value);
+			this.setValueForField($valueInputView, fieldInfo, filter.value, filter.operator);
 
 			// set case sensitivity (if any)
 			if (filter.cs) {
@@ -570,7 +570,7 @@ JCSDLGui.prototype = {
 		var value = '';
 		if (operator !== 'exists') {
 			var $valueView = this.$currentFilterView.find('.jcsdl-filter-value-input-field');
-			value = this.getValueFromField($valueView, fieldInfo);
+			value = this.getValueFromField($valueView, fieldInfo, operator);
 			if (value.length == 0) {
 				this.showError('You need to specify a value!');
 				return;
@@ -1003,7 +1003,7 @@ JCSDLGui.prototype = {
 		$('.jcsdl-dropdown').remove();
 
 		$view.addClass('text');
-		var $input = $inputView.find('input:first');
+		var $input = $inputView.find('input.orig');
 		var $select = this.getTemplate('textOperatorsSelect');
 		var $dropdown = this.getTemplate('textOperatorsDropdown');
 
@@ -1117,7 +1117,7 @@ JCSDLGui.prototype = {
 			$dropdown.hide();
 
 			var name = $(this).data('name');
-			var operator = self.definition.operators[$(this).data('name')];
+			var operator = self.definition.operators[name];
 
 			$select.find('.jcsdl-operator-label').html(operator.label);
 			$select.data('operator', name);
@@ -1132,6 +1132,12 @@ JCSDLGui.prototype = {
 				if (field.cs) {
 					$csView.fadeIn(self.config.animate);
 				}
+			}
+
+			if (name == 'contains_near') {
+				$inputView.find('.jcsdl-containsnear-distance').fadeIn();
+			} else {
+				$inputView.find('.jcsdl-containsnear-distance').hide();
 			}
 
 			var tagAction = ($.inArray(name, inputConfig.arrayOperators) >= 0) ? 'enable' : 'disable';
@@ -1233,7 +1239,7 @@ JCSDLGui.prototype = {
 	 * @param {String} value String representation of the value to be set.
 	 * @return {Boolean}
 	 */
-	setValueForField : function($view, fieldInfo, value) {
+	setValueForField : function($view, fieldInfo, value, operator) {
 		var self = this;
 
 		var inputType = $view.data('inputType');
@@ -1255,12 +1261,12 @@ JCSDLGui.prototype = {
 						mapsCallback.apply(mapsGui.inputs, mapsCallbackArgs);
 
 						// and now when the maps are loaded, execute the setValue method of that input
-						self.inputs.exec(inputType, 'setValue', [$view, fieldInfo, value]);
+						self.inputs.exec(inputType, 'setValue', [$view, fieldInfo, value, operator]);
 					}, mapsGui.config.animate + 10); // make sure the map canvas is fully visible before loading them
 				}
 			};
 		} else {
-			this.inputs.exec(inputType, 'setValue', [$view, fieldInfo, value]);
+			this.inputs.exec(inputType, 'setValue', [$view, fieldInfo, value, operator]);
 		}
 		return true;
 	},
@@ -1270,10 +1276,10 @@ JCSDLGui.prototype = {
 	 * @param  {jQuery} $view Value input view.
 	 * @return {String}
 	 */
-	getValueFromField : function($view, fieldInfo) {
+	getValueFromField : function($view, fieldInfo, operator) {
 		var inputType = $view.data('inputType');
 		if (typeof(this.inputs[inputType]) == 'undefined') return '';
-		return this.inputs.exec(inputType, 'getValue', [$view, fieldInfo]);
+		return this.inputs.exec(inputType, 'getValue', [$view, fieldInfo, operator]);
 	},
 
 	/* ##########################

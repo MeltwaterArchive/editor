@@ -660,6 +660,19 @@
 
 .jcsdl-input-text {
   margin-top: 20px; }
+  .jcsdl-input-text .jcsdl-containsnear-distance {
+    display: none;
+    text-align: center;
+    margin: 5px 0; }
+    .jcsdl-input-text .jcsdl-containsnear-distance span {
+      line-height: 30px; }
+    .jcsdl-input-text .jcsdl-containsnear-distance input {
+      display: inline;
+      display: inline-block;
+      width: 40px;
+      height: 30px;
+      margin: 0 10px;
+      text-align: center; }
 
 .jcsdl-input-number {
   margin: 0 10px; }

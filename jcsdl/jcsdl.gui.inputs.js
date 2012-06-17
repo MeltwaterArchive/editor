@@ -31,20 +31,49 @@ JCSDLGuiInputs.prototype = {
 	text : {
 		init : function(info) {
 			var $view = this.getTemplate('valueInput_text'),
-				$input = $view.find('input');
+				$input = $view.find('input.orig');
 
 			$input.jcsdlTagInput();
 			$input.jcsdlRegExTester();
 
+			$view.find('input.dist').jcsdlNumberMask();
+
 			return $view;
 		},
 
-		setValue : function($view, info, val) {
-			$view.find('input[type=text]:first').val(val);
+		setValue : function($view, info, val, operator) {
+			if (operator == 'contains_near') {
+				val = val.split(':');
+
+				var dist = parseInt(val.pop());
+				$view.find('input.dist').val(dist);
+
+				val = val.join(':').replace(/\\:/g, ':');
+			}
+
+			$view.find('input.orig').val(val);
 		},
 
-		getValue : function($view, info) {
-			return $view.find('input[type=text]:first').val();
+		getValue : function($view, info, operator) {
+			var val = $view.find('input.orig').val();
+
+			if (operator == 'contains_near') {
+				val = val.replace(/:/g, '\\:') + ':' + parseInt($view.find('input.dist').val());
+			}
+
+			return val;
+		},
+
+		displayValue : function(info, val, filter) {
+			if (filter.operator == 'contains_near') {
+				val = val.split(':');
+				var dist = parseInt(val.pop());
+				val = val.join(':').truncate(50).escapeHtml();
+
+				return val + ' : ' + dist;
+			}
+
+			return val.truncate(50).escapeHtml();
 		}
 	},
 
@@ -70,11 +99,11 @@ JCSDLGuiInputs.prototype = {
 			return $view;
 		},
 
-		setValue : function($view, info, val) {
+		setValue : function($view, info, val, operator) {
 			$view.find('input[type=text]:first').val(val);
 		},
 
-		getValue : function($view, info) {
+		getValue : function($view, info, operator) {
 			return $view.find('input[type=text]:first').val();
 		},
 
@@ -128,14 +157,14 @@ JCSDLGuiInputs.prototype = {
 			return $view;
 		},
 
-		setValue : function($view, info, val) {
+		setValue : function($view, info, val, operator) {
 			var vals = val.split(',');
 			$.each(vals, function(i, v) {
 				$view.find('.jcsdl-input-select-option[data-value="' + v + '"]').addClass('selected');
 			});
 		},
 
-		getValue : function($view, info) {
+		getValue : function($view, info, operator) {
 			var vals = [];
 			$view.find('.jcsdl-input-select-option.selected').each(function(i, o) {
 				vals.push($(o).data('value'));
@@ -287,7 +316,7 @@ JCSDLGuiInputs.prototype = {
 			return $view;
 		},
 
-		setValue : function($view, info, val) {
+		setValue : function($view, info, val, operator) {
 			var opts = this.exec('slider', 'getOptions', [info]);
 
 			val = (val > opts.max)
@@ -300,7 +329,7 @@ JCSDLGuiInputs.prototype = {
 			$view.find('.jcsdl-slider-input').val(val);
 		},
 
-		getValue : function($view, info) {
+		getValue : function($view, info, operator) {
 			return this.exec('slider', 'parseValue', [info, $view.find('.jcsdl-slider-input').val()]);
 		},
 
@@ -492,7 +521,7 @@ JCSDLGuiInputs.prototype = {
 			});
 		},
 
-		setValue : function($view, info, val) {
+		setValue : function($view, info, val, operator) {
 			var self = this,
 				$geoView = $view.find('.jcsdl-input-geo');
 
@@ -525,7 +554,7 @@ JCSDLGuiInputs.prototype = {
 			}, this.gui.config.animate + 200); // make sure everything is properly loaded
 		},
 
-		getValue : function($view, info) {
+		getValue : function($view, info, operator) {
 			var rect = $view.find('.jcsdl-input-geo').data('rect');
 
 			// if no map then rect is not visible, so has no values
@@ -780,7 +809,7 @@ JCSDLGuiInputs.prototype = {
 			});
 		},
 
-		setValue : function($view, info, val) {
+		setValue : function($view, info, val, operator) {
 			var self = this;
 			var $geoView = $view.find('.jcsdl-input-geo');
 
@@ -820,7 +849,7 @@ JCSDLGuiInputs.prototype = {
 			}, this.gui.config.animate + 200); // make sure everything is properly loaded
 		},
 
-		getValue : function($view, info) {
+		getValue : function($view, info, operator) {
 			var circle = $view.find('.jcsdl-input-geo').data('circle');
 
 			// if no map then rect is not visible, so has no values
@@ -989,7 +1018,7 @@ JCSDLGuiInputs.prototype = {
 			});
 		},
 
-		setValue : function($view, info, val) {
+		setValue : function($view, info, val, operator) {
 			var self = this;
 			var $geoView = $view.find('.jcsdl-input-geo');
 
@@ -1017,7 +1046,7 @@ JCSDLGuiInputs.prototype = {
 			}, this.gui.config.animate + 200); // make sure everything is properly loaded
 		},
 
-		getValue : function($view, info) {
+		getValue : function($view, info, operator) {
 			var pth = $view.find('.jcsdl-input-geo').data('polygon').getPath(),
 				v = [];
 
