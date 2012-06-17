@@ -172,7 +172,7 @@ var JCSDLGuiTemplates = {
 		'<div class="jcsdl-dropdown-option">',
 			'<div class="jcsdl-dropdown-option-main">',
 				'<div class="jcsdl-icon operator" />',
-				'<a href="#" class="jcsdl-dropdown-details-trigger" />',
+				'<a href="#" class="jcsdl-dropdown-details-trigger"><span /></a>',
 				'<div class="jcsdl-dropdown-option-desc">',
 					'<div class="jcsdl-operator-label">',
 						'<span /> ',

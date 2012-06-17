@@ -1048,24 +1048,30 @@ JCSDLGui.prototype = {
 			ev.target.blur();
 			ev.stopPropagation();
 
-			$select.addClass('active');
+			// if already visible then hide it
+			if ($select.hasClass('active')) {
+				$dropdown.slideUp(self.config.animate);
+				$select.removeClass('active');
 
-			// update position of the dropdown and show it
-			$dropdown.css({
-				top : $select.offset().top + $select.outerHeight() - 1,
-				left : $select.offset().left,
-				width : $select.outerWidth() - 2
-			}).slideDown(self.config.animate);
+			} else {
+				// update position of the dropdown and show it
+				$dropdown.css({
+					top : $select.offset().top + $select.outerHeight() - 1,
+					left : $select.offset().left,
+					width : $select.outerWidth() - 2
+				}).slideDown(self.config.animate);
+				$select.addClass('active');
 
-			// hide on click out
-			$('body').bind('click.jcsdldropdown', function(ev) {
-				var $parent = $(ev.target).closest('.jcsdl-dropdown');
-				if ($parent == null || !$parent.is($dropdown)) {
-					$select.removeClass('active');
-					$dropdown.slideUp(self.config.animate);
-					$('body').unbind('click.jcsdldropdown');
-				}
-			});
+				// hide on click out
+				$('body').bind('click.jcsdldropdown', function(ev) {
+					var $parent = $(ev.target).closest('.jcsdl-dropdown');
+					if ($parent == null || !$parent.is($dropdown)) {
+						$select.removeClass('active');
+						$dropdown.slideUp(self.config.animate);
+						$('body').unbind('click.jcsdldropdown');
+					}
+				});
+			}
 		});
 
 		/**

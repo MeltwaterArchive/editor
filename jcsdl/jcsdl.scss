@@ -6,7 +6,7 @@ $colorBlackLight : #c6c6c9;
 $colorOrange : #ff9933;
 $borderColor : #dcdcdc;
 $borderColorInput : #c8d7de;
-$elementsSprite : 'img/elements.png?14';
+$elementsSprite : 'img/elements.png?15';
 $selectSprite : 'img/select.png?12';
 $stepBackground : 'img/step_background.png?5';
 $targetIconsSprite : 'img/icons-sprite-targets.png?11';
@@ -382,10 +382,14 @@ $otherIconsSprite : 'img/icons-sprite-other.png?2';
 			background: #fafafa;
 			.jcsdl-dropdown-icon {@include opacity(0.9);}
 		}
+		&:active .jcsdl-dropdown-icon {background-position: 0 -316px;}
 
 		&.active {
 			@include roundedCorner(3px, 3px, 0, 0);
-			.jcsdl-dropdown-icon {@include roundedCorner(0, 3px, 0, 0);}
+			.jcsdl-dropdown-icon {
+				background-position: 0 -316px;
+				@include roundedCorner(0, 3px, 0, 0);
+			}
 		}
 
 		&.has-cs {margin-right: 70px;}
@@ -849,12 +853,17 @@ $otherIconsSprite : 'img/icons-sprite-other.png?2';
 		}
 
 		.jcsdl-dropdown-details-trigger {
-			display: block; float: right; margin: 18px 10px;
-			width: 18px; height: 10px;
-			background: url($elementsSprite) no-repeat -39px -288px;
-			@include opacity(0.5);
+			display: block; float: right;
+			height: 46px; width: 38px;
 
-			&:hover {@include opacity(0.9);}
+			span {
+				display: block; margin: 18px 10px;
+				width: 18px; height: 10px;
+				background: url($elementsSprite) no-repeat -39px -288px;
+				@include opacity(0.5);
+			}
+
+			&:hover span {@include opacity(0.9);}
 		}
 
 		.jcsdl-dropdown-option-desc {margin-left: 56px; margin-right: 38px; padding: 10px 0;}
@@ -875,7 +884,7 @@ $otherIconsSprite : 'img/icons-sprite-other.png?2';
 		}
 
 		&.expanded {
-			.jcsdl-dropdown-details-trigger {background-position: -39px -278px; @include opacity(1);}
+			.jcsdl-dropdown-details-trigger span {background-position: -39px -278px; @include opacity(1);}
 		}
 
 		&:hover {background: #f8f8f8;}
