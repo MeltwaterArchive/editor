@@ -813,7 +813,8 @@
       background: transparent url("img/elements.png?14") repeat-x 0 -198px; }
 
 .jcsdl-map {
-  text-align: center; }
+  text-align: center;
+  position: relative; }
   .jcsdl-map .jcsdl-map-search {
     display: block;
     margin: 10px auto;
@@ -844,10 +845,25 @@
     text-align: center;
     line-height: 1.3em; }
   .jcsdl-map .jcsdl-clear-map {
-    color: #888888;
-    font-weight: normal; }
+    display: block;
+    width: 108px;
+    position: absolute;
+    top: 45px;
+    left: 50%;
+    margin-left: -60px;
+    z-index: 100;
+    background: #fff;
+    border: 1px solid #717b87;
+    font-size: 13px;
+    color: #000;
+    font-weight: bold;
+    padding: 1px 6px;
+    -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.4);
+    -moz-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.4);
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.4);
+    display: none; }
     .jcsdl-map .jcsdl-clear-map:hover {
-      color: #376491; }
+      color: #000; }
   .jcsdl-map .jcsdl-map-coordinates,
   .jcsdl-map .jcsdl-map-area {
     margin: 0 10px;

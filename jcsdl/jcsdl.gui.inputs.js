@@ -438,6 +438,7 @@ JCSDLGuiInputs.prototype = {
 				}
 
 				$view.find('.jcsdl-map-instructions').html(self.definition.inputs.geo_box.instructions[coords.length]);
+				$view.find('.jcsdl-clear-map').fadeIn();
 			});
 
 			/**
@@ -487,6 +488,7 @@ JCSDLGuiInputs.prototype = {
 				$view.find('.jcsdl-map-area span').html('0 km<sup>2</sup>');
 
 				$view.find('.jcsdl-map-instructions').html(self.definition.inputs.geo_box.instructions[0]);
+				$(this).hide();
 			});
 		},
 
@@ -518,6 +520,7 @@ JCSDLGuiInputs.prototype = {
 				self.exec('geo_box', 'updateInfo', [$geoView, rect]);
 
 				$view.find('.jcsdl-map-instructions').html(self.definition.inputs.geo_box.instructions[2]);
+				$view.find('.jcsdl-clear-map').fadeIn();
 				
 			}, this.gui.config.animate + 200); // make sure everything is properly loaded
 		},
@@ -718,6 +721,8 @@ JCSDLGuiInputs.prototype = {
 
 					$view.find('.jcsdl-map-instructions').html(self.definition.inputs.geo_radius.instructions[1]);
 				}
+
+				$view.find('.jcsdl-clear-map').fadeIn();
 			});
 
 			/**
@@ -771,6 +776,7 @@ JCSDLGuiInputs.prototype = {
 				$view.find('.jcsdl-map-area span').html('0 km<sup>2</sup>');
 
 				$view.find('.jcsdl-map-instructions').html(self.definition.inputs.geo_radius.instructions[0]);
+				$(this).hide();
 			});
 		},
 
@@ -809,6 +815,7 @@ JCSDLGuiInputs.prototype = {
 				self.exec('geo_radius', 'updateInfo', [$geoView, circle]);
 
 				$view.find('.jcsdl-map-instructions').html(self.definition.inputs.geo_radius.instructions[2]);
+				$view.find('.jcsdl-clear-map').fadeIn();
 				
 			}, this.gui.config.animate + 200); // make sure everything is properly loaded
 		},
@@ -921,6 +928,7 @@ JCSDLGuiInputs.prototype = {
 
 				// update info
 				self.exec('geo_polygon', 'updateInfo', [$view, polygon]);
+				$view.find('.jcsdl-clear-map').fadeIn();
 
 				// setup listeners for the marker
 				// after marker has moved, move the polygon tip as well
@@ -977,6 +985,7 @@ JCSDLGuiInputs.prototype = {
 				self.exec('geo_polygon', 'updateInfo', [$view, polygon]);
 
 				$view.find('.jcsdl-map-instructions').html(self.definition.inputs.geo_polygon.instructions[0]);
+				$(this).hide();
 			});
 		},
 
@@ -1003,6 +1012,7 @@ JCSDLGuiInputs.prototype = {
 				self.exec('geo_polygon', 'updateInfo', [$geoView, polygon]);
 
 				$view.find('.jcsdl-map-instructions').html(self.definition.inputs.geo_polygon.instructions[3]);
+				$view.find('.jcsdl-clear-map').fadeIn();
 				
 			}, this.gui.config.animate + 200); // make sure everything is properly loaded
 		},

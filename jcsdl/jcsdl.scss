@@ -588,7 +588,7 @@ $otherIconsSprite : 'img/icons-sprite-other.png?2';
 }
 
 .jcsdl-map {
-	text-align: center;
+	text-align: center; position: relative;
 
 	.jcsdl-map-search {
 		display: block; margin: 10px auto; width: 50%; padding: 5px;
@@ -607,8 +607,14 @@ $otherIconsSprite : 'img/icons-sprite-other.png?2';
 	}
 
 	.jcsdl-clear-map {
-		color: $colorLight; font-weight: normal;
-		&:hover {color: $color;}
+		display: block; width: 108px;
+		position: absolute; top: 45px; left: 50%; margin-left: -60px; z-index: 100;
+		background: #fff; border: 1px solid #717b87;
+		font-size: 13px; color: #000; font-weight: bold; padding: 1px 6px;
+		@include dropShadow(0, 2px, 4px, 0, 0.4);
+		display: none;
+
+		&:hover {color: #000;}
 	}
 
 	.jcsdl-map-coordinates,
