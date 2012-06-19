@@ -482,7 +482,9 @@
 		},
 
 		/* public functions */
-		update : function() {
+		update : function(space) {
+			var delimeter = (space) ? new RegExp(/[\s,]+/g) : this.delimeter;
+
 			// load from the current original value
 			var origVal = this.$original.val();
 			if (origVal.length == 0) return;
@@ -495,7 +497,7 @@
 
 			this.updating = true;
 
-			var values = origVal.split(this.delimeter);
+			var values = origVal.split(delimeter);
 			var fixedValues = [];
 			// but look for escaped items as well
 			$.each(values, function(i, val) {
@@ -589,10 +591,16 @@
 
 		if (typeof(options) == 'string') {
 			// call a public method
-			if ($.inArray(options, ['enable', 'disable', 'reposition', 'update']) >= 0) {
+			if ($.inArray(options, ['enable', 'disable', 'reposition', 'update', 'setDelimeter']) >= 0) {
+				var argmns = [];
+				$.each(arguments, function(i, arg) {
+					if (i == 0) return true;
+					argmns.push(arg);
+				});
+
 				this.each(function() {
 					var tagInput = get($(this));
-					tagInput[options].apply(tagInput, []);
+					tagInput[options].apply(tagInput, argmns);
 				});
 			}
 			return this;
@@ -910,13 +918,15 @@ var jcsdlMapsInit = function() {
 };
 
 $.extend(String.prototype, {
-	truncate : function(l, a) {
+	truncate : function(l, a, h) {
 		l = l || 72;
 		a = a || '...';
 		if (this.length <= l) return this.valueOf();
 
 		s = this.substr(0, l);
-		s = s.substr(0, s.lastIndexOf(' '));
+		if (!h) {
+			s = s.substr(0, s.lastIndexOf(' '));
+		}
 
 		return s + a;
 	},

@@ -68,12 +68,12 @@ JCSDLGuiInputs.prototype = {
 			if (filter.operator == 'contains_near') {
 				val = val.split(':');
 				var dist = parseInt(val.pop());
-				val = val.join(':').truncate(50).escapeHtml();
+				val = val.join(':').truncate(50, '...', true).escapeHtml();
 
 				return val + ' : ' + dist;
 			}
 
-			return val.truncate(50).escapeHtml();
+			return val.truncate(50, '...', true).escapeHtml();
 		}
 	},
 
