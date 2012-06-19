@@ -55,6 +55,11 @@ var JCSDLGui = function(el, cfg) {
 };
 
 JCSDLGui.prototype = {
+	jsonpCache : {
+		operators : {},
+		targets : {}
+	},
+
 	/*
 	 * INITIALIZE THE EDITOR
 	 */
@@ -757,14 +762,16 @@ JCSDLGui.prototype = {
 
 		// create a select option for every possible target
 		$.each(this.definition.targets, function(name, target) {
-			// maybe this target is hidden?
-			if ($.inArray(name, self.config.hideTargets) >= 0) return true; // continue
-
 			// delegate creation of the option to a function
 			var $targetView = self.createOptionForTarget(name, target);
 
 			// append the option to the select
 			$targetView.appendTo($targetSelect);
+
+			// maybe this target is hidden?
+			if ($.inArray(name, self.config.hideTargets) >= 0) {
+				$targetView.hide().addClass('hidden');
+			}
 		});
 
 		return $targetSelectView;
@@ -804,12 +811,15 @@ JCSDLGui.prototype = {
 		// add all possible selections
 		var $fieldSelect = $fieldView.find('.jcsdl-filter-target-field');
 		$.each(fields, function(name, field) {
+			var $fieldView = self.createOptionForField(name, field);
+			$fieldView.appendTo($fieldSelect);
+
 			// check if this field isn't hidden
+			var hidden = false;
 			var path = currentPath + '.' + name;
-			if ($.inArray(path, self.config.hideTargets) >= 0) return true; // continue
+			if ($.inArray(path, self.config.hideTargets) >= 0) hidden = true;
 
 			// sometimes the field target path is joined with a '-' - so check for these cases as well (e.g. digg.item)
-			var hidden = false;
 			var sectionPath = '';
 			path = path.split('-');
 			$.each(path, function(i, section) {
@@ -819,11 +829,9 @@ JCSDLGui.prototype = {
 					return true;
 				}
 			});
-			if (hidden) return true; // continue
-
-			// field not hidden, continue with adding it ;)
-			var $fieldView = self.createOptionForField(name, field);
-			$fieldView.appendTo($fieldSelect);
+			if (hidden) {
+				$fieldView.hide().addClass('hidden');
+			}
 		});
 
 		return $fieldView;
@@ -1101,7 +1109,34 @@ JCSDLGui.prototype = {
 		 * @listener
 		 */
 		$dropdown.find('.jcsdl-doc-url').click(function(ev) {
+			ev.preventDefault();
+			ev.target.blur();
 			ev.stopPropagation();
+
+			var name = $(this).data('operator');
+			var popup = $.jcsdlPopup({
+				title : $(this).data('title')
+			});
+
+			if (typeof(self.jsonpCache.operators[name]) == 'undefined') {
+				$.ajax({
+					url : $(this).data('jsonp'),
+					type : 'GET',
+					async : false,
+					jsonpCallback : 'jcsdlJSONP',
+					contentType : 'application/json',
+					dataType : 'jsonp',
+					success : function(data) {
+						popup.setContent(data.html);
+						popup.reposition();
+
+						self.jsonpCache.operators[name] = data.html;
+					}
+				});
+			} else {
+				popup.setContent(self.jsonpCache.operators[name]);
+				popup.reposition();
+			}
 		});
 
 		/**
@@ -1222,13 +1257,22 @@ JCSDLGui.prototype = {
 		$view.find('.jcsdl-icon').addClass('icon-' + name + ' operator-' + name + ' selected');
 		$view.find('.jcsdl-operator-label span').html(operator.label);
 		$view.find('.jcsdl-operator-desc').html(operator.description);
+
 		var $details = $view.find('.jcsdl-dropdown-option-details p');
 		if (operator.details.length > 0) {
 			$details.html(operator.details);
 		} else {
 			$details.remove();
 		}
-		$view.find('.jcsdl-dropdown-option-details a.jcsdl-doc-url').attr('href', operator.url).html(operator.url);
+
+		var $link = $view.find('.jcsdl-dropdown-option-details a.jcsdl-doc-url');
+		if (operator.jsonp) {
+			$link.data('jsonp', operator.jsonp);
+			$link.data('title', operator.label);
+			$link.data('operator', name);
+		} else {
+			$link.remove();
+		}
 
 		return $view;
 	},

@@ -531,6 +531,7 @@ var JCSDLDefinition = {
 			description : 'Filter for a sequence of characters that form a word or part of a word.',
 			details : '',
 			code : 'substr',
+			jsonp : 'http://datasift.neverblanddev.co.uk/jsonp/feed.php?operator=substr',
 			url : 'http://dev.datasift.com/docs/operators/substr'
 		},
 		contains_any : {
@@ -545,6 +546,7 @@ var JCSDLDefinition = {
 			description : 'Filter for two or more words that occur near to each other.',
 			details : '',
 			code : 'contains_near',
+			jsonp : 'http://datasift.neverblanddev.co.uk/jsonp/feed.php',
 			url : 'http://dev.datasift.com/docs/operators/containsnear'
 		},
 		different : {

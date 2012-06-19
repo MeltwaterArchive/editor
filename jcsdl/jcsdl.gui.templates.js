@@ -183,7 +183,7 @@ var JCSDLGuiTemplates = {
 			'</div>',
 			'<div class="jcsdl-dropdown-option-details">',
 				'<p />',
-				'<a href="#" class="jcsdl-doc-url" target="_blank" />',
+				'<a href="#" class="jcsdl-doc-url">Learn more</a>',
 			'</div>',
 		'</div>'
 	].join('')),

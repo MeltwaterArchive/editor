@@ -1,0 +1,41 @@
+<h3>Purpose</h3>
+<p>To filter for a sequence of characters that form a word or part of a word.</p>
+<h3>Case Sensitivity:</h3>
+<p>Not case sensitive. Add the cs keyword to create a case-sensitive filter with substr.
+<h3>Syntax:</h3>
+<p><code class="inline" style="font-family: monospace;"><span class="inline" style="font-family: monospace;">substr</span> <span style="font-style: italic;">string</span></code></p>
+<h3>Synonyms:</h3>
+<p>contains_substr</p>
+<h3>Examples:</h3>
+<p>1. Filter for a post that includes the string &quot;news&quot;. This stream:</p>
+<script src="http://widget.datasift.net/embed.js?stream=3221&amp;width=500" type="text/javascript">
+</script>
+<p>will match this target text:</p>
+<p>&nbsp; &nbsp; &quot;Newspapers report that only one person won the $100m lottery on Tuesday.&quot;</p>
+<p>and:</p>
+<p>&nbsp; &nbsp; &quot;The quarterback renews his contract this afternoon.&quot;</p>
+<p>2. Filter for a post that includes &quot;gator&quot;. This filter:</p>
+<script src="http://widget.datasift.net/embed.js?stream=11090&amp;width=500" type="text/javascript">
+</script>
+<p>matches any of these strings:</p>
+<p>&nbsp; &nbsp; &quot;The man only just escaped from the &#39;gator.&quot;</p>
+<p>&nbsp; &nbsp; &quot;The alligator slept on the riverbank.&quot;</p>
+<p>&nbsp; &nbsp; &quot;I always drink Gatorade when I cycle.&quot;</p>
+<p>3. Filter for a post that includes &quot;News&quot;. This filter:</p>
+<script src="http://widget.datasift.net/embed.js?stream=3222&amp;width=500" type="text/javascript">
+</script>
+<p>matches this target text:</p>
+<p>&nbsp; &nbsp; &quot;Newspapers report that only one person won the lottery on Tuesday.&quot;</p>
+<p>but will not match this target text:</p>
+<p>&nbsp; &nbsp; &quot;The quarterback renews his contract for next year.&quot;</p>
+<h3>Notes:</h3>
+<p>1. &nbsp;&nbsp;The <code class="inline" style="font-family: monospace;">substr</code>&nbsp;operator performs a loose match. There is no edge detection so if the sequence of characters occurs anywhere in the Tweet (including inside a URL) it will match. This stream:</p>
+<p><code class="inline" style="font-family: monospace;">&nbsp; &nbsp;interaction.contents substr &quot;101&quot;</code></p>
+<p>will match this target text:</p>
+<p>&nbsp; &nbsp; &quot;Take a look at this pic!!! bit.ly/AP101&quot;</p>
+<p>2. &nbsp;&nbsp;&nbsp;You can use the&nbsp;<code class="inline">substr</code>&nbsp;operator across words. This stream:</p>
+<p><code class="inline" style="font-family: monospace;">&nbsp; &nbsp;interaction.contents substr &quot;en en&quot;</code></p>
+<p>will match this target text:</p>
+<p>&nbsp; &nbsp; &quot;Ten entry points.&quot;</p>
+<p>If there are three spaces between &quot;Ten&quot; and &quot;entry&quot;, the filter must include three spaces:</p>
+<p><code class="inline" style="font-family: monospace;">&nbsp; &nbsp;interaction.contents substr &quot;en &nbsp;&nbsp;en&quot;</code></p>

@@ -734,6 +734,118 @@
 
 })(window.jQuery);
 
+(function($) {
+
+	var JCSDLPopup = function(config) {
+		var self = this;
+
+		this.config = $.extend({}, this.config, config);
+
+		this.$overlay = $('<div class="jcsdl-overlay" />').appendTo('body').hide();
+		this.$popup = $([
+			'<div class="jcsdl-popup">',
+				'<div class="jcsdl-popup-header">',
+					'<h4 />',
+					'<a href="#" class="jcsdl-popup-close">Close</a>',
+				'</div>',
+				'<div class="jcsdl-popup-content" />',
+			'</div>'
+		].join('')).appendTo('body').hide();
+
+		if (this.config.title) this.setTitle(this.config.title);
+		if (this.config.content) this.setContent(this.config.content);
+
+		this.$popup.css({
+			minWidth : this.config.minWidth,
+			maxWidth : this.config.maxWidth
+		});
+
+		this.setWidth(this.config.width);
+
+		if (this.config.autoshow) this.show();
+
+		/*
+		 * REGISTER LISTENERS
+		 */
+		this.$popup.find('.jcsdl-popup-close').click(function(ev) {
+			ev.preventDefault();
+			ev.target.blur();
+
+			self.close();
+		});
+
+		$(window).resize(function(ev) {
+			if (self.$popup.is(':visible')) {
+				self.reposition();
+			}
+		});
+	};
+
+	JCSDLPopup.prototype = {
+		$popup : $(),
+		$overlay : $(),
+		config : {
+			width : 700,
+			minWidth : 280,
+			maxWidth : '70%',
+			title : '',
+			content : '<div class="jcsdl-popup-loading"></div>',
+			autoshow : true,
+			overlay : true
+		},
+		getTitle : function() {
+			return this.$popup.find('.jcsdl-popup-header h4').html();
+		},
+		setTitle : function(title) {
+			this.$popup.find('.jcsdl-popup-header h4').html(title);
+			this.config.title = title;
+		},
+		getContent : function() {
+			return this.$popup.find('.jcsdl-popup-content');
+		},
+		setContent : function(content) {
+			this.$popup.find('.jcsdl-popup-content').html(content);
+			this.config.content = content;
+		},
+		setWidth : function(width) {
+			this.$popup.width(width);
+		},
+		reposition : function() {
+			this.$popup.css('position', 'absolute');
+
+			var leftPos = ($(window).width() - this.$popup.outerWidth()) / 2 + $(window).scrollLeft();
+			var topPos = ($(window).height() - this.$popup.outerHeight()) / 2 + $(window).scrollTop();
+			
+			if(topPos < 0) topPos = 0;
+			if(leftPos < 0) leftPos = 0;
+	
+			this.$popup.css({
+				left: leftPos +'px',
+				top: topPos +'px'
+			});
+		},
+		show : function() {
+			if (this.config.overlay) this.$overlay.show();
+			this.$popup.show();
+			this.reposition();
+		},
+		hide : function() {
+			this.$overlay.hide();
+			this.$popup.hide();
+		},
+		close : function() {
+			this.$overlay.remove();
+			this.$popup.remove();
+		}
+	};
+
+	$.jcsdlPopup = function(config) {
+		return new JCSDLPopup(config);
+	};
+
+
+})(window.jQuery);
+
 /*
  * A hack to load the Google Maps API asynchronously and call the appropriate callback.
  * All needs to be in global namespace.
