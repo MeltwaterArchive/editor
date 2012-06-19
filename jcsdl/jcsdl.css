@@ -1731,6 +1731,26 @@
   -khtml-opacity: 0.7;
   opacity: 0.7; }
 
+/* popup content styling */
+.jcsdl-popup-content .group-content {
+  clear: both; }
+.jcsdl-popup-content .field {
+  margin-bottom: 2em; }
+  .jcsdl-popup-content .field .field-label {
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: .5em; }
+.jcsdl-popup-content p, .jcsdl-popup-content applet, .jcsdl-popup-content object, .jcsdl-popup-content iframe, .jcsdl-popup-content blockquote, .jcsdl-popup-content pre, .jcsdl-popup-content abbr, .jcsdl-popup-content cite, .jcsdl-popup-content code, .jcsdl-popup-content q, .jcsdl-popup-content s, .jcsdl-popup-content small, .jcsdl-popup-content strike, .jcsdl-popup-content sub, .jcsdl-popup-content sup, .jcsdl-popup-content tt, .jcsdl-popup-content b, .jcsdl-popup-content u, .jcsdl-popup-content i, .jcsdl-popup-content center, .jcsdl-popup-content dl, .jcsdl-popup-content dt, .jcsdl-popup-content dd, .jcsdl-popup-content caption, .jcsdl-popup-content fieldset, .jcsdl-popup-content form, .jcsdl-popup-content label, .jcsdl-popup-content legend {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-size: 1em;
+  vertical-align: baseline;
+  font: inherit; }
+.jcsdl-popup-content p, .jcsdl-popup-content dl, .jcsdl-popup-content hr, .jcsdl-popup-content h1, .jcsdl-popup-content h2, .jcsdl-popup-content h3, .jcsdl-popup-content h4, .jcsdl-popup-content h5, .jcsdl-popup-content h6, .jcsdl-popup-content ol, .jcsdl-popup-content ul, .jcsdl-popup-content pre, .jcsdl-popup-content table, .jcsdl-popup-content address, .jcsdl-popup-content fieldset {
+  margin-bottom: .5em; }
+
 /* IE fixes */
 .jcsdl-container.msie .jcsdl-filter-value-input-operators .operator {
   text-indent: 0; }

@@ -950,6 +950,19 @@ $loader : 'img/loader.gif';
 	background: #fff; @include opacity(0.7);
 }
 
+/* popup content styling */
+.jcsdl-popup-content {
+	.group-content {clear: both;}
+	.field {
+		margin-bottom: 2em;
+
+		.field-label {font-weight: bold; font-size: 18px; margin-bottom: .5em;}
+	}
+	p, applet, object, iframe, blockquote, pre, abbr, cite, code, q, s, small, strike, sub, sup, tt, b, u, i, center, dl, dt, dd, caption, fieldset, form, label, legend {margin: 0; padding: 0; border: 0; outline: 0; font-size: 1em; vertical-align: baseline; font: inherit;}
+	p, dl, hr, h1, h2, h3, h4, h5, h6, ol, ul, pre, table, address, fieldset {margin-bottom: .5em;}
+
+}
+
 /* IE fixes */
 .jcsdl-container.msie {
 	.jcsdl-filter-value-input-operators .operator {text-indent: 0;}
