@@ -529,7 +529,6 @@ var JCSDLDefinition = {
 		substr : {
 			label : 'Substring',
 			description : 'Filter for a sequence of characters that form a word or part of a word.',
-			details : '',
 			code : 'substr',
 			jsonp : 'http://datasift.neverblanddev.co.uk/jsonp/feed.php?operator=substr',
 			url : 'http://dev.datasift.com/docs/operators/substr'
@@ -537,14 +536,12 @@ var JCSDLDefinition = {
 		contains_any : {
 			label : 'Contains words',
 			description : 'Filter for one or more string values from a list of strings.',
-			details : '',
 			code : 'contains_any',
 			url : 'http://dev.datasift.com/docs/operators/containsany'
 		},
 		contains_near : {
 			label : 'Contains words near',
 			description : 'Filter for two or more words that occur near to each other.',
-			details : '',
 			code : 'contains_near',
 			jsonp : 'http://datasift.neverblanddev.co.uk/jsonp/feed.php',
 			url : 'http://dev.datasift.com/docs/operators/containsnear'
@@ -552,56 +549,48 @@ var JCSDLDefinition = {
 		different : {
 			label : 'Different',
 			description : 'Not equal to...',
-			details : 'Check whether a string, int, or float is not equal to an argument.',
 			code : '!=',
 			url : 'http://dev.datasift.com/docs/operators/equals-and-not-equals'
 		},
 		equals : {
 			label : 'Equals',
 			description : 'Equal to...',
-			details : 'Check whether a string, int, or float is equal to an argument.',
 			code : '==',
 			url : 'http://dev.datasift.com/docs/operators/equals-and-not-equals'
 		},
 		'in' : {
 			label : 'In',
 			description : 'Filter for one or more values from a list.',
-			details : 'This operator provides a highly efficient way to filter input objects because it allows you to look for multiple values with one command.',
 			code : 'in',
 			url : 'http://dev.datasift.com/docs/operators/in'
 		},
 		greaterThan : {
 			label : '&gt;=',
 			description : 'Greater than...',
-			details : 'Filter for a comparative match with a number, a word, or a phrase.',
 			code : '>=',
 			url : 'http://dev.datasift.com/docs/operators/greater-and-less'
 		},
 		lowerThan : {
 			label : '&lt;=',
 			description : 'Lower than...',
-			details : 'Filter for a comparative match with a number, a word, or a phrase.',
 			code : '<=',
 			url : 'http://dev.datasift.com/docs/operators/greater-and-less'
 		},
 		exists : {
 			label : 'Exists',
 			description : 'Check whether a target is present.',
-			details : 'To filter based on the existence of a target in an input object. For example, does it include any geographical information about the author?',
 			code : 'exists',
 			url : 'http://dev.datasift.com/docs/operators/exists'
 		},
 		regex_partial : {
 			label : 'Partial Regex',
 			description : 'Filter for content by a regular expression that matches any part of the target.',
-			details : 'Filter for content that contains text represented in a regular expression. The text can appear anywhere within the target you select.<br /><br />For comparison, the <i>regex_exact</i> operator works when the regular expression exactly matches the entire content of the target you choose.',
 			code : 'regex_partial',
 			url : 'http://dev.datasift.com/docs/operators/regexpartial'
 		},
 		regex_exact : {
 			label : 'Exact Regex',
 			description : 'Filter for content by a regular expression that matches the entire target.',
-			details : 'Filter for content that contains text represented in a regular expression. The regular expression must match the entire content of the target you choose.<br /><br />For comparison, the <i>regex_partial</i> operator works when the regular expression matches text that appears anywhere within the target you select.',
 			code : 'regex_exact',
 			url : 'http://dev.datasift.com/docs/operators/regexexact'
 		},

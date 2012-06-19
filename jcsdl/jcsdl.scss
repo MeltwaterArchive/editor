@@ -882,18 +882,12 @@ $loader : 'img/loader.gif';
 		.jcsdl-dropdown-details-trigger {
 			display: block; float: right;
 			height: 46px; width: 38px;
+			line-height: 46px; font-size: 24px; font-weight: bold; color: #ccc; text-align: center;
 
-			span {
-				display: block; margin: 18px 10px;
-				width: 18px; height: 10px;
-				background: url($elementsSprite) no-repeat -39px -288px;
-				@include opacity(0.5);
-			}
-
-			&:hover span {@include opacity(0.9);}
+			&:hover {@include opacity(0.9);}
 		}
 
-		.jcsdl-dropdown-option-desc {margin-left: 56px; margin-right: 38px; padding: 10px 0;}
+		.jcsdl-dropdown-option-desc {margin-left: 56px; margin-right: 38px; padding: 5px 0;}
 
 		.jcsdl-operator-label {
 			margin-bottom: 3px; color: $colorBlack; line-height: 1.2em; font-weight: bold;
@@ -901,18 +895,6 @@ $loader : 'img/loader.gif';
 		}
 
 		.jcsdl-operator-desc {font-size: 0.9em; color: $colorLight; line-height: 1.2em;}
-
-		.jcsdl-dropdown-option-details {
-			display: none; border-top: 1px solid #eee;
-			padding: 10px 20px;
-
-			p {margin-top: 0; margin-bottom: 10px;}
-			a.jcsdl-doc-url {color: $color; font-weight: bold;}
-		}
-
-		&.expanded {
-			.jcsdl-dropdown-details-trigger span {background-position: -39px -278px; @include opacity(1);}
-		}
 
 		&:hover {background: #f8f8f8;}
 	}
@@ -949,7 +931,7 @@ $loader : 'img/loader.gif';
 	}
 
 	.jcsdl-popup-content {
-		display: block; padding: 10px; overflow: hidden;
+		display: block; padding: 10px; overflow: auto;
 		background: #fff;
 		border: 1px solid $borderColor; border-top: 0;
 		@include roundedCorner(0, 0, 3px, 3px);

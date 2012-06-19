@@ -1094,33 +1094,14 @@ JCSDLGui.prototype = {
 
 			var $option = $(this).closest('.jcsdl-dropdown-option');
 
-			if ($option.hasClass('expanded')) {
-				$option.removeClass('expanded');
-				$option.find('.jcsdl-dropdown-option-details').slideUp(self.config.animate);
-			} else {
-				$dropdown.find('.jcsdl-dropdown-option.expanded').removeClass('expanded').find('.jcsdl-dropdown-option-details').slideUp(self.config.animate);
-				$option.addClass('expanded').find('.jcsdl-dropdown-option-details').slideDown(self.config.animate);
-			}
-		});
-
-		/**
-		 * Stop propagation of click event when clicked on external doc link.
-		 * @param  {Event} ev Click event.
-		 * @listener
-		 */
-		$dropdown.find('.jcsdl-doc-url').click(function(ev) {
-			ev.preventDefault();
-			ev.target.blur();
-			ev.stopPropagation();
-
-			var name = $(this).data('operator');
+			var name = $option.data('name');
 			var popup = $.jcsdlPopup({
-				title : $(this).data('title')
+				title : $option.data('title')
 			});
 
 			if (typeof(self.jsonpCache.operators[name]) == 'undefined') {
 				$.ajax({
-					url : $(this).data('jsonp'),
+					url : $option.data('jsonp'),
 					type : 'GET',
 					async : false,
 					jsonpCallback : 'jcsdlJSONP',
@@ -1272,25 +1253,16 @@ JCSDLGui.prototype = {
 		if (typeof(operator) == 'undefined') return $();
 
 		var $view = this.getTemplate('textOperatorOption');
-		$view.data('name', name).addClass('operator-' + name);
+		$view.data('name', name).data('title', operator.label).addClass('operator-' + name);
 		$view.find('.jcsdl-icon').addClass('icon-' + name + ' operator-' + name + ' selected');
 		$view.find('.jcsdl-operator-label span').html(operator.label);
 		$view.find('.jcsdl-operator-desc').html(operator.description);
 
-		var $details = $view.find('.jcsdl-dropdown-option-details p');
-		if (operator.details.length > 0) {
-			$details.html(operator.details);
-		} else {
-			$details.remove();
-		}
-
-		var $link = $view.find('.jcsdl-dropdown-option-details a.jcsdl-doc-url');
 		if (operator.jsonp) {
-			$link.data('jsonp', operator.jsonp);
-			$link.data('title', operator.label);
-			$link.data('operator', name);
+			$view.data('jsonp', operator.jsonp);
 		} else {
-			$link.remove();
+			$view.find('.jcsdl-dropdown-details-trigger').remove();
+			$view.find('.jcsdl-operator-help').remove();
 		}
 
 		return $view;

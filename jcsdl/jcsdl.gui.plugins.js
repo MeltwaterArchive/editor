@@ -778,6 +778,7 @@
 		this.$popup.find('.jcsdl-popup-close').click(function(ev) {
 			ev.preventDefault();
 			ev.target.blur();
+			ev.stopPropagation();
 
 			self.close();
 		});
@@ -812,7 +813,14 @@
 			return this.$popup.find('.jcsdl-popup-content');
 		},
 		setContent : function(content) {
-			this.$popup.find('.jcsdl-popup-content').html(content);
+			var $content = $(content);
+			var $popupContent = this.$popup.find('.jcsdl-popup-content');
+			$popupContent.html('');
+
+			$content.each(function(i, el) {
+				$popupContent.append($(el));
+			});
+
 			this.config.content = content;
 		},
 		setWidth : function(width) {
@@ -820,6 +828,7 @@
 		},
 		reposition : function() {
 			this.$popup.css('position', 'absolute');
+			this.$popup.find('.jcsdl-popup-content').css('maxHeight', $(window).height() * 0.7);
 
 			var leftPos = ($(window).width() - this.$popup.outerWidth()) / 2 + $(window).scrollLeft();
 			var topPos = ($(window).height() - this.$popup.outerHeight()) / 2 + $(window).scrollTop();
