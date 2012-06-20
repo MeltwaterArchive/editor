@@ -1,4 +1,6 @@
 var JCSDLDefinition = {
+	name : 'datasift',
+	
 	// list of all possible targets and their fields and their types
 	targets : {
 
