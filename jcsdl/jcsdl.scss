@@ -6,6 +6,8 @@ $colorBlackLight : #c6c6c9;
 $colorOrange : #ff9933;
 $borderColor : #dcdcdc;
 $borderColorInput : #c8d7de;
+$fontFamily : "Helvetica Neue", "Helvetica", sans-serif;
+$fontSize : 13px;
 $elementsSprite : 'img/elements.png?17';
 $selectSprite : 'img/select.png?12';
 $stepBackground : 'img/step_background.png?5';
@@ -66,7 +68,7 @@ $loader : 'img/loader.gif';
  */
 .jcsdl-container {
 	overflow: hidden; position: relative;
-	font-size: 13px; font-family: "Helvetica Neue", "Helvetica", sans-serif; color: $colorLight;
+	font-size: $fontSize; font-family: $fontFamily; color: $colorLight;
 
 	/* building blocks */
 	a {color: $color; text-decoration: none;
@@ -866,8 +868,14 @@ $loader : 'img/loader.gif';
 	display: block; width: 250px; margin-bottom: 50px;
 	position: absolute; top: 10px; left: 10px; z-index: 10;
 	border: 1px solid $borderColor; border-top: 0;
+	font-size: $fontSize; font-family: $fontFamily; color: $colorLight;
 	@include roundedCorner(0, 0, 3px, 3px);
 	background: white;
+
+	/* building blocks */
+	a {color: $color; text-decoration: none;
+		&:hover {color: lighten($color, 5%);}
+	}
 
 	.jcsdl-dropdown-option {
 		display: block; overflow: hidden;
@@ -904,8 +912,14 @@ $loader : 'img/loader.gif';
 .jcsdl-popup {
 	display: block; overflow: hidden;
 	position: absolute; z-index: 100;
+	font-size: $fontSize; font-family: $fontFamily; color: $colorLight;
 	@include rounded(4px);
 	@include dropShadow(0, 0, 8px, 0, 0.8);
+
+	/* building blocks */
+	a {color: $color; text-decoration: none;
+		&:hover {color: lighten($color, 5%);}
+	}
 
 	.jcsdl-popup-header {
 		display: block; height: 39px; overflow: hidden; position: relative; padding: 0 10px;

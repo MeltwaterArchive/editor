@@ -1549,6 +1549,9 @@
   z-index: 10;
   border: 1px solid #dcdcdc;
   border-top: 0;
+  font-size: 13px;
+  font-family: "Helvetica Neue", "Helvetica", sans-serif;
+  color: #888888;
   -webkit-border-top-left-radius: 0;
   -webkit-border-top-right-radius: 0;
   -webkit-border-bottom-right-radius: 3px;
@@ -1564,7 +1567,13 @@
   -moz-background-clip: padding;
   -webkit-background-clip: padding-box;
   background-clip: padding-box;
-  background: white; }
+  background: white;
+  /* building blocks */ }
+  .jcsdl-dropdown a {
+    color: #376491;
+    text-decoration: none; }
+    .jcsdl-dropdown a:hover {
+      color: #3e71a3; }
   .jcsdl-dropdown .jcsdl-dropdown-option {
     display: block;
     overflow: hidden;
@@ -1625,6 +1634,9 @@
   overflow: hidden;
   position: absolute;
   z-index: 100;
+  font-size: 13px;
+  font-family: "Helvetica Neue", "Helvetica", sans-serif;
+  color: #888888;
   -webkit-border-radius: 4px;
   -khtml-border-radius: 4px;
   -moz-border-radius: 4px;
@@ -1636,7 +1648,13 @@
   background-clip: padding-box;
   -webkit-box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.8);
   -moz-box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.8);
-  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.8); }
+  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.8);
+  /* building blocks */ }
+  .jcsdl-popup a {
+    color: #376491;
+    text-decoration: none; }
+    .jcsdl-popup a:hover {
+      color: #3e71a3; }
   .jcsdl-popup .jcsdl-popup-header {
     display: block;
     height: 39px;
