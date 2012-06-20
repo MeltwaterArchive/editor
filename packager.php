@@ -7,13 +7,14 @@ $jsSuccess = Packager::js(array(
 	'jcsdl/lib/jquery.touchpunch.js',
 	'jcsdl/lib/jquery.tipsy.js',
 	'jcsdl/lib/jquery.simulate.js',
-	'jcsdl/jcsdl.definition.js',
 	'jcsdl/jcsdl.parser.js',
 	'jcsdl/jcsdl.gui.templates.js',
 	'jcsdl/jcsdl.gui.inputs.js',
 	'jcsdl/jcsdl.gui.plugins.js',
 	'jcsdl/jcsdl.gui.js'
 ), 'production/jcsdl/jcsdl.min.js');
+
+$copySuccess = Packager::copy('jcsdl/jcsdl.definition.js', 'production/jcsdl/jcsdl.definition.js');
 
 $cssSuccess = Packager::css(array(
 	'jcsdl/lib/jquery.ui.custom.min.css',

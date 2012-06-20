@@ -98,6 +98,28 @@ class Packager
 		return true;
 	}
 
+	public static function copy($file, $destination) {
+		echo 'Copying '. $file .' ... ';
+
+		$destinationDir = rtrim(dirname($destination), '/'). '/';
+		if (!file_exists($destinationDir)) {
+			echo 'FAIL! Cannot find destination directory: '. $destinationDir . NL;
+			return false;
+		}
+
+		if (!file_exists($file)) {
+			echo ' but it does not exist!' . NL;
+			return false;
+		}
+
+		copy($file, $destination);
+		echo ' -> '. $destination . NL;
+
+		echo NL;
+
+		return true;
+	}
+
 	/*
 	 * HELPERS
 	 */
