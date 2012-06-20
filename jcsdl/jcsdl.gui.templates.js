@@ -150,6 +150,7 @@ var JCSDLGuiTemplates = {
 	// value input container
 	valueInput : $([
 		'<div class="jcsdl-filter-value-input">',
+			'<div class="jcsdl-target-help"><a href="#" title="Learn more about this target">?</a></div>',
 			'<div class="jcsdl-filter-value-input-operators" />',
 			'<div class="jcsdl-filter-value-input-field" />',
 		'</div>'

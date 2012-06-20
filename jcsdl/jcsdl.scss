@@ -349,6 +349,16 @@ $loader : 'img/loader.gif';
 		.jcsdl-carousel-scroll {margin-top: 25px;}
 	}
 
+	.jcsdl-target-help {
+		margin: 0 20px; margin-bottom: 10px; overflow: hidden;
+		font-size: 24px; line-height: 1em; text-align: right;
+
+		a {
+			display: block; height: 24px; width: 30px; float: right;
+			color: #ccc; font-weight: bold;
+		}
+	}
+
 	.jcsdl-filter-value-input-operators {
 		margin: 10px auto; margin-top: 20px;
 		display: block; width: 75%;
@@ -493,8 +503,7 @@ $loader : 'img/loader.gif';
 	}
 }
 .jcsdl-input-text {
-	margin-top: 20px;
-
+	margin-top: 0;
 	.jcsdl-containsnear-distance {
 		display: none; text-align: center; margin: 5px 0;
 
@@ -507,7 +516,7 @@ $loader : 'img/loader.gif';
 	}
 }
 .jcsdl-input-number {
-	margin: 0 10px;
+	margin: 0 10px; margin-top: 0;
 	input {margin: 0 auto; width: 175px;}
 }
 

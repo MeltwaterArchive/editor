@@ -388,6 +388,20 @@
     padding-bottom: 40px; }
     .jcsdl-filter-editor .jcsdl-filter-target-field-input-wrap .jcsdl-carousel-scroll {
       margin-top: 25px; }
+  .jcsdl-filter-editor .jcsdl-target-help {
+    margin: 0 20px;
+    margin-bottom: 10px;
+    overflow: hidden;
+    font-size: 24px;
+    line-height: 1em;
+    text-align: right; }
+    .jcsdl-filter-editor .jcsdl-target-help a {
+      display: block;
+      height: 24px;
+      width: 30px;
+      float: right;
+      color: #ccc;
+      font-weight: bold; }
   .jcsdl-filter-editor .jcsdl-filter-value-input-operators {
     margin: 10px auto;
     margin-top: 20px;
@@ -659,7 +673,7 @@
     padding-right: 84px; }
 
 .jcsdl-input-text {
-  margin-top: 20px; }
+  margin-top: 0; }
   .jcsdl-input-text .jcsdl-containsnear-distance {
     display: none;
     text-align: center;
@@ -675,7 +689,8 @@
       text-align: center; }
 
 .jcsdl-input-number {
-  margin: 0 10px; }
+  margin: 0 10px;
+  margin-top: 0; }
   .jcsdl-input-number input {
     margin: 0 auto;
     width: 175px; }

@@ -919,6 +919,40 @@ JCSDLGui.prototype = {
 		var $valueView = this.getTemplate('valueInput');
 		if (typeof(this.inputs[inputType]) == 'undefined') return $valueView;
 
+		$valueView.find('.jcsdl-target-help a').tipsy({gravity:'s', offset:10}).click(function(ev) {
+			ev.preventDefault();
+			ev.target.blur();
+
+			var target = self.currentFilterTarget + '.' + self.currentFilterFieldsPath.join('.').replace(/-/g, '.');
+			var popup = $.jcsdlPopup({
+				title : target
+			});
+
+			popup.setContent('<p>' + target + '</p>');
+
+			/*
+			if (typeof(self.jsonpCache.targets[target]) == 'undefined') {
+				$.ajax({
+					url : $option.data('jsonp'),
+					type : 'GET',
+					async : false,
+					jsonpCallback : 'jcsdlJSONP',
+					contentType : 'application/json',
+					dataType : 'jsonp',
+					success : function(data) {
+						popup.setContent(data.html);
+						popup.reposition();
+
+						self.jsonpCache.operators[name] = data.html;
+					}
+				});
+			} else {
+				popup.setContent(self.jsonpCache.operators[name]);
+				popup.reposition();
+			}
+			 */
+		});
+
 		// create the input view by this input type's handler and add it to the value view container
 		var $inputView = this.inputs.exec(inputType, 'init', [field]);
 		var $input = $inputView.find('input:first');
