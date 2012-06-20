@@ -5,48 +5,62 @@
 
 	function JCSDLCarousel($el, options) {
 		var self = this;
-
 		this.select = options.select;
 
-		// link to various elements that are used by the carousel
+		/*
+		 * links to various elements that are used by the carousel
+		 */
 		this.$carousel = $el.find('.jcsdl-carousel');
 		this.$carouselWrap = this.$carousel.closest('.jcsdl-carousel-wrap');
-		
 		this.$carouselItems = this.$carousel.find('.jcsdl-carousel-item');
-		this.$exampleItem = this.$carouselItems.eq(0);
-
 		this.$scrollLeft = this.$carouselWrap.siblings('.jcsdl-carousel-scroll.left');
 		this.$scrollRight = this.$carouselWrap.siblings('.jcsdl-carousel-scroll.right');
 
-		// some other carousel data
-		this.itemsCount = this.$carouselItems.length;
-		this.itemWidth = this.$exampleItem.outerWidth(true);
-		this.itemMargin = parseInt(this.$exampleItem.css('marginRight'));
+		// count how many visible items are there
+		this.itemsCount = this.$carouselItems.filter(':visible').length;
+
+		/*
+		 * Assign all required dimensions based on an example item
+		 * make sure it's visible and when all is calculated hide it if it was hidden
+		 */
+		var $exampleItem = this.$carouselItems.eq(0),
+			hideExample = ($exampleItem.is(':visible')) ? false : true;
+
+		$exampleItem.show();
+
+		this.itemWidth = $exampleItem.outerWidth(true);
+		this.itemMargin = parseInt($exampleItem.css('marginRight'));
+
+		// set the wrap's dimensions
+		this.$carouselWrap.css({
+			maxWidth : this.calculateWrapWidth(),
+			height : $exampleItem.outerHeight(true)
+		});
+
+		// set the carousel's dimensions
+		this.$carousel.css({
+			position : 'relative',
+			width : this.itemWidth * this.itemsCount,
+			height : $exampleItem.outerHeight(true)
+		});
+
 		this.margin = this.calculateCenterMargin();
+
+		// if example item was hidden, then hide it again, no longer needed
+		if (hideExample) $exampleItem.hide();
 		
-		// select the item that is suppose to be selected (middle if there isn't any)
+		/*
+		 * select the item that is suppose to be selected (middle if there isn't any)
+		 */
 		var $selected = this.$carouselItems.filter('.selected');
-		this.selectedIndex = ($selected.length == 1) ? $selected.prevAll().length : Math.floor(this.itemsCount / 2);
+		this.selectedIndex = ($selected.length == 1) ? $selected.prevAll(':visible').length : Math.floor(this.itemsCount / 2);
 
 		// if even number of items then move by a half
 		if (this.itemsCount % 2 == 0) {
 			this.selectedIndex = this.selectedIndex - 0.5;
 		}
 
-		// style the wrap so nothing goes over the borders
-		this.$carouselWrap.css({
-			maxWidth : this.calculateWrapWidth(),
-			height : this.$exampleItem.outerHeight(true)
-		});
-
-		// prepare the carousel's css
-		this.$carousel.css({
-			position : 'relative',
-			left : this.calculateCurrentPosition(),
-			width : this.itemWidth * this.itemsCount,
-			height : this.$exampleItem.outerHeight(true)
-		});
-
+		// update the carousel's position
 		this.changePosition(0, !options.expand);
 
 		/*
@@ -94,7 +108,7 @@
 				if (moving) {
 					self.snapToSelection();
 				} else {
-					self.selectedIndex = $el.prevAll().length;
+					self.selectedIndex = $el.prevAll(':visible').length;
 					self.changePosition(options.speed);
 					moving = false;
 				}
@@ -106,6 +120,12 @@
 
 		// special click handler for loading an existing filter and calling all proper actions
 		this.$carouselItems.bind('jcsdlclick', function(ev) {
+			$(this).show(); // this target may have been hidden before
+			// update carousel's item count and the carousel width
+			self.itemsCount = self.$carouselItems.filter(':visible').length;
+			self.$carousel.css('width', self.itemWidth * self.itemsCount);
+
+			// click
 			$(this).trigger('mousedown').trigger('mouseup');
 		});
 
@@ -116,7 +136,7 @@
 
 			// but not for ie
 			if ($.browser.msie) {
-				self.selectedIndex = $(this).prevAll().length;
+				self.selectedIndex = $(this).prevAll(':visible').length;
 				self.changePosition(options.speed);
 			}
 		});
@@ -158,7 +178,7 @@
 		},
 		// get the currently selected item
 		getSelectedItem : function() {
-			return this.$carouselItems.eq(this.selectedIndex);
+			return this.$carouselItems.filter(':visible').eq(this.selectedIndex);
 		},
 
 		snapToSelection : function() {

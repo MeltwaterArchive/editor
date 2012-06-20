@@ -986,7 +986,7 @@ $loader : 'img/loader.gif';
 }
 
 .tipsy {
-	font-size: 1.1em; line-height: 1.5em;
+	font-size: $fontSize; font-family: $fontFamily; color: $colorLight; line-height: 1.5em;
 
 	.tipsy-inner {background-color: #fff; color: #000; border: 2px solid $colorOrange; @include rounded(5px); @include dropShadow(0, 0, 3px);}
 	.tipsy-arrow {

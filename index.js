@@ -80,6 +80,7 @@ $(function() {
 	var $currentStream = $();
 
 	var editEditor = new JCSDLGui('#jcsdl-edit', {
+		hideTargets : ['twitter', 'digg.item', 'digg.user.icon', 'facebook.author', 'newscred', 'facebook.og'],
 		save : function(code) {
 			// display the output
 			$('#jcsdl-edit-output').val(code);

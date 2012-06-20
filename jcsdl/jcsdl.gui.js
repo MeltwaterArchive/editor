@@ -767,11 +767,6 @@ JCSDLGui.prototype = {
 
 			// append the option to the select
 			$targetView.appendTo($targetSelect);
-
-			// maybe this target is hidden?
-			if ($.inArray(name, self.config.hideTargets) >= 0) {
-				$targetView.hide().addClass('hidden');
-			}
 		});
 
 		return $targetSelectView;
@@ -788,6 +783,12 @@ JCSDLGui.prototype = {
 		$option.data('name', name);
 		$option.data('target', target);
 		$option.addClass('target-' + name);
+
+		// maybe this target is hidden?
+		if ($.inArray(name, this.config.hideTargets) >= 0) {
+			$option.hide();
+		}
+
 		return $option;
 	},
 
@@ -808,30 +809,24 @@ JCSDLGui.prototype = {
 
 		var currentPath = this.currentFilterTarget + (this.currentFilterFieldsPath.length > 0 ? '.' + this.currentFilterFieldsPath.join('.') : '');
 
+		// maybe all fields here are hidden? check already here, so we don't need to for every field separately
+		var hidden = false;
+		var path = $.merge([this.currentFilterTarget],  this.currentFilterFieldsPath);
+		var cPath = '';
+		$.each(path, function(i, target) {
+			cPath = cPath + (i > 0 ? '.' : '') + target;
+			if ($.inArray(cPath, self.config.hideTargets) >= 0) {
+				hidden = true;
+				return true; // break and don't search anymore
+			}
+		});
+		console.log(path, cPath, hidden);
+
 		// add all possible selections
 		var $fieldSelect = $fieldView.find('.jcsdl-filter-target-field');
 		$.each(fields, function(name, field) {
-			var $fieldView = self.createOptionForField(name, field);
+			var $fieldView = self.createOptionForField(name, field, currentPath, hidden);
 			$fieldView.appendTo($fieldSelect);
-
-			// check if this field isn't hidden
-			var hidden = false;
-			var path = currentPath + '.' + name;
-			if ($.inArray(path, self.config.hideTargets) >= 0) hidden = true;
-
-			// sometimes the field target path is joined with a '-' - so check for these cases as well (e.g. digg.item)
-			var sectionPath = '';
-			path = path.split('-');
-			$.each(path, function(i, section) {
-				sectionPath += (i > 0 ? '.' : '') + section;
-				if ($.inArray(sectionPath, self.config.hideTargets) >= 0) {
-					hidden = true;
-					return true;
-				}
-			});
-			if (hidden) {
-				$fieldView.hide().addClass('hidden');
-			}
 		});
 
 		return $fieldView;
@@ -843,7 +838,8 @@ JCSDLGui.prototype = {
 	 * @param  {Object} fieldInfo Definition of the field from JCSDL definition.
 	 * @return {jQuery}
 	 */
-	createOptionForField : function(name, fieldInfo) {
+	createOptionForField : function(name, fieldInfo, parentPath, hidden) {
+		var self = this;
 		var $option = this.getTemplate('fieldOption');
 
 		$option.data('name', name);
@@ -851,6 +847,31 @@ JCSDLGui.prototype = {
 		$option.html(fieldInfo.name);
 		$option.addClass('icon-' + this.getIconForField(name, fieldInfo));
 		$option.addClass('field-' + name);
+
+		// check if this field isn't hidden
+		if (!hidden) {
+			var path = parentPath + '.' + name;
+			if ($.inArray(path, self.config.hideTargets) >= 0) {
+				hidden = true;
+			} else {
+				// sometimes the field target path is joined with a '-' - so check for these cases as well (e.g. digg.item)
+				path = path.split('-');
+				var sectionPath = '';
+				$.each(path, function(i, section) {
+					sectionPath += (i > 0 ? '.' : '') + section;
+					if ($.inArray(sectionPath, self.config.hideTargets) >= 0) {
+						hidden = true;
+						return true; // break already
+					}
+				});
+			}
+		}
+		
+		console.log(parentPath, name, hidden);
+
+		if (hidden) {
+			$option.hide();
+		}
 
 		return $option;
 	},

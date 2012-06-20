@@ -1776,7 +1776,9 @@
   width: 90%; }
 
 .tipsy {
-  font-size: 1.1em;
+  font-size: 13px;
+  font-family: "Helvetica Neue", "Helvetica", sans-serif;
+  color: #888888;
   line-height: 1.5em; }
   .tipsy .tipsy-inner {
     background-color: #fff;
