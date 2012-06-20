@@ -160,7 +160,7 @@ JCSDLGuiInputs.prototype = {
 		setValue : function($view, info, val, operator) {
 			var vals = val.split(',');
 			$.each(vals, function(i, v) {
-				$view.find('.jcsdl-input-select-option[data-value="' + v + '"]').addClass('selected');
+				$view.find('.jcsdl-input-select-option.option-' + v).addClass('selected');
 			});
 		},
 
@@ -225,7 +225,7 @@ JCSDLGuiInputs.prototype = {
 
 		createOptionView : function(val, lbl) {
 			var $v = this.getTemplate('valueInput_select_option')
-				.attr('data-value', val)
+				.data('value', val)
 				.addClass('option-' + val)
 				.attr('title', lbl);
 			$v.find('span').html(lbl);

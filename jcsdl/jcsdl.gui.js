@@ -269,7 +269,6 @@ JCSDLGui.prototype = {
 			var lastFilter = this.filters[this.filters.length - 1];
 			if (typeof(lastFilter) !== 'undefined') {
 				this.$currentFilterView.find('.jcsdl-filter-target .target-' + lastFilter.target + ':visible').trigger('jcsdlclick');
-				console.log(lastFilter.target);
 			}
 		}
 	},
@@ -678,7 +677,7 @@ JCSDLGui.prototype = {
 		// operator
 		var $operator = this.getTemplate('filterOperator');
 		$operator.addClass('operator-' + filter.operator + ' icon-' + filter.operator + ' selected')
-			.prop('title', this.definition.operators[filter.operator].description)
+			.attr('title', this.definition.operators[filter.operator].description)
 			.html(this.definition.operators[filter.operator].code.escapeHtml())
 			.tipsy({gravity:'s'});
 		$filterRow.find('.operator').html($operator);
@@ -687,7 +686,7 @@ JCSDLGui.prototype = {
 		if (filter.cs) {
 			var $cs = this.getTemplate('filterOperator');
 			$cs.addClass('operator-cs icon-cs selected')
-				.prop('title', 'Case Sensitive')
+				.attr('title', 'Case Sensitive')
 				.html('case sensitive')
 				.tipsy({gravity:'s'});
 			$filterRow.find('.jcsdl-filter-info.operator').append($cs);
@@ -1133,7 +1132,7 @@ JCSDLGui.prototype = {
 				// hide on click out
 				$('body').bind('click.jcsdldropdown', function(ev) {
 					var $parent = $(ev.target).closest('.jcsdl-dropdown');
-					if ($parent == null || !$parent.is($dropdown)) {
+					if ($parent == null || !$parent.is('.jcsdl-dropdown')) {
 						$select.removeClass('active');
 						$dropdown.slideUp(self.config.animate);
 						$('body').unbind('click.jcsdldropdown');
@@ -1297,7 +1296,7 @@ JCSDLGui.prototype = {
 		var $operatorView = this.getTemplate('operatorOption');
 		$operatorView.data('name', name)
 			.addClass('icon-' + name + ' operator-' + name)
-			.prop('title', operator.description)
+			.attr('title', operator.description)
 			.html(operator.label)
 			.tipsy({gravity:'s'});
 		return $operatorView;

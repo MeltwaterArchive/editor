@@ -43,7 +43,7 @@ $(function() {
 		$(this).addClass('active');
 
 		$('#content .tab-content').hide();
-		$('#tab-' + $(this).data('tab')).show();
+		$('#tab-' + $(this).attr('title')).show();
 	});
 
 	/*
@@ -99,7 +99,7 @@ $(function() {
 		}
 	});
 
-	$('#streams-list').on('click', '.edit', function(ev) {
+	$('#streams-list .edit').live('click', function(ev) {
 		ev.preventDefault();
 		ev.target.blur();
 
@@ -115,7 +115,7 @@ $(function() {
 		$('#jcsdl-edit-wrap').show();
 	});
 
-	$('#streams-list').on('click', '.source', function(ev) {
+	$('#streams-list .source').live('click', function(ev) {
 		ev.preventDefault();
 		ev.target.blur();
 

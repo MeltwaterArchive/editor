@@ -74,7 +74,7 @@
 			var $scroll = $(this);
 			if ($scroll.hasClass('inactive')) return;
 
-			var changeIndex = $scroll.is(self.$scrollLeft) ? -1 : 1;
+			var changeIndex = $scroll.is('.left') ? -1 : 1;
 
 			// fix the selected index
 			if (self.selectedIndex - Math.floor(self.selectedIndex) == 0.5) {
@@ -656,7 +656,7 @@
 		this.$fieldsWraps = $();
 
 		for(var i = 1; i <= config.fields; i++) {
-			var $field = this.$el.clone().show().attr('placeholder', 'Test your expression against this field...');
+			var $field = this.$el.clone().removeClass('orig').show().attr('placeholder', 'Test your expression against this field...');
 			var $fieldBtn = $('<a href="#" class="jcsdl-regex-tester-button" />');
 			var $fieldWrap = $('<div class="jcsdl-regex-tester-input-wrap" />').html($field).append($fieldBtn).append('<div class="jcsdl-regex-result" />');
 
