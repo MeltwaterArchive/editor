@@ -263,6 +263,14 @@ JCSDLGui.prototype = {
 			if (filter.cs) {
 				this.$currentFilterView.find('.jcsdl-operator-cs').click();
 			}
+
+		} else {
+			// if creating new one from scratch then look for previous filter and automatically select the same target (unless it's hidden) ;)
+			var lastFilter = this.filters[this.filters.length - 1];
+			if (typeof(lastFilter) !== 'undefined') {
+				this.$currentFilterView.find('.jcsdl-filter-target .target-' + lastFilter.target + ':visible').trigger('jcsdlclick');
+				console.log(lastFilter.target);
+			}
 		}
 	},
 
