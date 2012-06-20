@@ -820,7 +820,6 @@ JCSDLGui.prototype = {
 				return true; // break and don't search anymore
 			}
 		});
-		console.log(path, cPath, hidden);
 
 		// add all possible selections
 		var $fieldSelect = $fieldView.find('.jcsdl-filter-target-field');
@@ -866,8 +865,6 @@ JCSDLGui.prototype = {
 				});
 			}
 		}
-		
-		console.log(parentPath, name, hidden);
 
 		if (hidden) {
 			$option.hide();
