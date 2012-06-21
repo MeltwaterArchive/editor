@@ -120,7 +120,7 @@ JCSDLGui.prototype = {
 			var $item = $(this);
 
 			self.$filtersList.removeClass('expanded collapsed');
-			self.$filtersList.addClass($item.data('mode'));
+			self.$filtersList.addClass($item.attr('data-mode'));
 
 			self.$mainView.find('.jcsdl-mainview-mode .jcsdl-mainview-mode-option').removeClass('active');
 			$item.addClass('active');
