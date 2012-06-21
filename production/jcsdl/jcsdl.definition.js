@@ -545,7 +545,7 @@ var JCSDLDefinition = {
 			label : 'Contains words near',
 			description : 'Filter for two or more words that occur near to each other.',
 			code : 'contains_near',
-			jsonp : 'https://s3-us-west-2.amazonaws.com/datasifthelp/en/contains_near.html',
+			jsonp : 'https://s3-us-west-2.amazonaws.com/datasifthelp/en/contains_near.js',
 			url : 'http://dev.datasift.com/docs/operators/containsnear'
 		},
 		different : {
