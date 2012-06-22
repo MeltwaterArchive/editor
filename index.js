@@ -1,8 +1,8 @@
 var winSizes = [320, 480, 600, 800, 1000, 1200];
 var getWindowSize = function() {
-	var winWidth = $(window).width();
+	var winWidth = jQuery(window).width();
 	var windowSize = 320;
-	$.each(winSizes, function(i, size) {
+	jQuery.each(winSizes, function(i, size) {
 		if (winWidth >= size) {
 			windowSize = size;
 		}
@@ -11,10 +11,10 @@ var getWindowSize = function() {
 }
 
 var setWindowSize = function(size) {
-	size = ($.inArray(size, winSizes)) ? size : getWindowSize();
+	size = (jQuery.inArray(size, winSizes)) ? size : getWindowSize();
 
-	var $bd = $(document.body);
-	$.each(winSizes, function(i, winSize) {
+	var $bd = jQuery(document.body);
+	jQuery.each(winSizes, function(i, winSize) {
 		$bd.removeClass('width-' + winSize);
 	});
 
@@ -27,23 +27,23 @@ var adjustWindowSize = function() {
 }
 
 
-$(function() {
+jQuery(function() {
 
 	adjustWindowSize();
-	$(window).resize(function(ev) {
+	jQuery(window).resize(function(ev) {
 		adjustWindowSize();
 	});
 
 	// tabs
-	$('#tabs li a').click(function(ev) {
+	jQuery('#tabs li a').click(function(ev) {
 		ev.preventDefault();
 		ev.target.blur();
 
-		$('#tabs li a').removeClass('active');
-		$(this).addClass('active');
+		jQuery('#tabs li a').removeClass('active');
+		jQuery(this).addClass('active');
 
-		$('#content .tab-content').hide();
-		$('#tab-' + $(this).attr('title')).show();
+		jQuery('#content .tab-content').hide();
+		jQuery('#tab-' + jQuery(this).attr('title')).show();
 	});
 
 	/*
@@ -52,24 +52,24 @@ $(function() {
 	var createEditor = new JCSDLGui('#jcsdl-create', {
 		cancelButton : false,
 		save : function(code) {
-			$('#jcsdl-create-output').val(code);
+			jQuery('#jcsdl-create-output').val(code);
 
 			// read the title
-			var title = $('#stream-title').val();
+			var title = jQuery('#stream-title').val();
 			if (title.length == 0) {
 				alert('Stream title is required!');
 				return;
 			}
 
 			// insert to the edit stream tab
-			var $streamTemplate = $('#streams-list li:first').clone();
+			var $streamTemplate = jQuery('#streams-list li:first').clone();
 			$streamTemplate.find('h4').html(title);
 			$streamTemplate.find('.jcsdl-source').val(code);
 			$streamTemplate.find('.options .live').remove(); // impossible to see it live
-			$streamTemplate.appendTo($('#streams-list'));
+			$streamTemplate.appendTo(jQuery('#streams-list'));
 
 			// reset the editor
-			$('#stream-title').val('');
+			jQuery('#stream-title').val('');
 			this.reset();
 		}
 	});
@@ -77,55 +77,57 @@ $(function() {
 	/*
 	 * EDIT STREAM TAB
 	 */
-	var $currentStream = $();
+	var $currentStream = jQuery();
 
-	var editEditor = new JCSDLGui('#jcsdl-edit', {
+	jQuery('#jcsdl-edit').jcsdlGui({
+	//var editEditor = new JCSDLGui('#jcsdl-edit', {
 		hideTargets : ['twitter', 'digg.item', 'digg.user.icon', 'facebook.author', 'newscred', 'facebook.og'],
 		save : function(code) {
 			// display the output
-			$('#jcsdl-edit-output').val(code);
+			jQuery('#jcsdl-edit-output').val(code);
 
 			// and save it as well
 			$currentStream.find('.jcsdl-source').val(code);
 
 			// hide the editor and show the list
-			$('#streams-list').show();
-			$('#jcsdl-edit-wrap').hide();
+			jQuery('#streams-list').show();
+			jQuery('#jcsdl-edit-wrap').hide();
 		},
 		cancel : function() {
 			this.$container.fadeOut(this.config.animationSpeed, function() {
-				$('#streams-list').show();
+				jQuery('#streams-list').show();
 			});
 		}
 	});
 
-	$('#streams-list .edit').live('click', function(ev) {
+	jQuery('#streams-list .edit').live('click', function(ev) {
 		ev.preventDefault();
 		ev.target.blur();
 
-		$currentStream = $(this).closest('li');
+		$currentStream = jQuery(this).closest('li');
 		var code = $currentStream.find('.jcsdl-source').val();
-		editEditor.loadJCSDL(code);
+		//editEditor.loadJCSDL(code);
+		jQuery('#jcsdl-edit').jcsdlGui('loadJCSDL', code);
 
 		// clear the output as well
-		$('#jcsdl-edit-output').val('');
+		jQuery('#jcsdl-edit-output').val('');
 
 		// hide the list and show the editor
-		$('#streams-list').hide();
-		$('#jcsdl-edit-wrap').show();
+		jQuery('#streams-list').hide();
+		jQuery('#jcsdl-edit-wrap').show();
 	});
 
-	$('#streams-list .source').live('click', function(ev) {
+	jQuery('#streams-list .source').live('click', function(ev) {
 		ev.preventDefault();
 		ev.target.blur();
 
-		var code = $(this).closest('li').find('.jcsdl-source').val();
-		$('#jcsdl-edit-output').val(code);
+		var code = jQuery(this).closest('li').find('.jcsdl-source').val();
+		jQuery('#jcsdl-edit-output').val(code);
 	});
 
 	/*
 	 * STYLING SHORTCUT
 	 */
-	//$('#jcsdl-create .filter-add').click();
+	//jQuery('#jcsdl-create .filter-add').click();
 
 });

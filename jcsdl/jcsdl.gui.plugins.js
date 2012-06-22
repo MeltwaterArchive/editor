@@ -946,61 +946,65 @@ var jcsdlMapsInit = function() {
 	}
 };
 
-$.extend(String.prototype, {
-	truncate : function(l, a, h) {
-		l = l || 72;
-		a = a || '...';
-		if (this.length <= l) return this.valueOf();
+(function($) {
 
-		s = this.substr(0, l);
-		if (!h) {
-			s = s.substr(0, s.lastIndexOf(' '));
+	$.extend(String.prototype, {
+		truncate : function(l, a, h) {
+			l = l || 72;
+			a = a || '...';
+			if (this.length <= l) return this.valueOf();
+
+			s = this.substr(0, l);
+			if (!h) {
+				s = s.substr(0, s.lastIndexOf(' '));
+			}
+
+			return s + a;
+		},
+		escapeHtml : function() {
+			return this.replace(/&/g, '&amp;')
+				.replace(/</g, '&lt;')
+				.replace(/>/g, '&gt;')
+				.replace(/"/g, '&quot;');
+		},
+		unescapeHtml : function() {
+			return this.replace(/&amp;/g, '&')
+				.replace(/&lt;/g, '<')
+				.replace(/&gt;/g, '>')
+				.replace(/&quot;/g, '"');
+		},
+		escapeCsdl : function() {
+			return this.replace(/\\(?![,:]+)/g, '\\\\').replace(/"/g, '\\"');
+		},
+		unescapeCsdl : function() {
+			return this.replace(/\\"/g, '"').replace(/\\\\/g, '\\');
 		}
+	});
 
-		return s + a;
-	},
-	escapeHtml : function() {
-		return this.replace(/&/g, '&amp;')
-			.replace(/</g, '&lt;')
-			.replace(/>/g, '&gt;')
-			.replace(/"/g, '&quot;');
-	},
-	unescapeHtml : function() {
-		return this.replace(/&amp;/g, '&')
-			.replace(/&lt;/g, '<')
-			.replace(/&gt;/g, '>')
-			.replace(/&quot;/g, '"');
-	},
-	escapeCsdl : function() {
-		return this.replace(/\\(?![,:]+)/g, '\\\\').replace(/"/g, '\\"');
-	},
-	unescapeCsdl : function() {
-		return this.replace(/\\"/g, '"').replace(/\\\\/g, '\\');
-	}
-});
+	$.extend(Number.prototype, {
+		format : function(decimals, dec_point, thousands_sep) {
+		    // Strip all characters but numerical ones.
+		    var number = this.toString().replace(/[^0-9+\-Ee.]/g, '');
+		    var n = !isFinite(+number) ? 0 : +number,
+		        prec = !isFinite(+decimals) ? 0 : Math.abs(decimals),
+		        sep = (typeof thousands_sep === 'undefined') ? ',' : thousands_sep,
+		        dec = (typeof dec_point === 'undefined') ? '.' : dec_point,
+		        s = '',
+		        toFixedFix = function (n, prec) {
+		            var k = Math.pow(10, prec);
+		            return '' + Math.round(n * k) / k;
+		        };
+		    // Fix for IE parseFloat(0.55).toFixed(0) = 0;
+		    s = (prec ? toFixedFix(n, prec) : '' + Math.round(n)).split('.');
+		    if (s[0].length > 3) {
+		        s[0] = s[0].replace(/\B(?=(?:\d{3})+(?!\d))/g, sep);
+		    }
+		    if ((s[1] || '').length < prec) {
+		        s[1] = s[1] || '';
+		        s[1] += new Array(prec - s[1].length + 1).join('0');
+		    }
+		    return s.join(dec);
+		}
+	});
 
-$.extend(Number.prototype, {
-	format : function(decimals, dec_point, thousands_sep) {
-	    // Strip all characters but numerical ones.
-	    var number = this.toString().replace(/[^0-9+\-Ee.]/g, '');
-	    var n = !isFinite(+number) ? 0 : +number,
-	        prec = !isFinite(+decimals) ? 0 : Math.abs(decimals),
-	        sep = (typeof thousands_sep === 'undefined') ? ',' : thousands_sep,
-	        dec = (typeof dec_point === 'undefined') ? '.' : dec_point,
-	        s = '',
-	        toFixedFix = function (n, prec) {
-	            var k = Math.pow(10, prec);
-	            return '' + Math.round(n * k) / k;
-	        };
-	    // Fix for IE parseFloat(0.55).toFixed(0) = 0;
-	    s = (prec ? toFixedFix(n, prec) : '' + Math.round(n)).split('.');
-	    if (s[0].length > 3) {
-	        s[0] = s[0].replace(/\B(?=(?:\d{3})+(?!\d))/g, sep);
-	    }
-	    if ((s[1] || '').length < prec) {
-	        s[1] = s[1] || '';
-	        s[1] += new Array(prec - s[1].length + 1).join('0');
-	    }
-	    return s.join(dec);
-	}
-});
+})(window.jQuery);
