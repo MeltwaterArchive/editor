@@ -901,7 +901,7 @@ var loadGoogleMapsApi = function(currentGui, callback, callbackArgs) {
 	if (!jcsdlMapsLoaded) {
 		var incKey = (jcsdlMapsCurrentGui.config.googleMapsApiKey.length > 0) ? 'key=' + jcsdlMapsCurrentGui.config.googleMapsApiKey + '&' : '';
 		var incProtocol = (window.location.protocol == 'file:') ? 'http:' : ''; // if not loaded from file then allow for dynamic protocol
-		$('body').append('<script type="text/javascript" src="' + incProtocol + '//maps.googleapis.com/maps/api/js?' + incKey + 'libraries=places,geometry&sensor=false&callback=jcsdlMapsInit" />');
+		jQuery('body').append('<script type="text/javascript" src="' + incProtocol + '//maps.googleapis.com/maps/api/js?' + incKey + 'libraries=places,geometry&sensor=false&callback=jcsdlMapsInit" />');
 		jcsdlMapsLoaded = true;
 	} else {
 		jcsdlMapsInit();
