@@ -681,7 +681,7 @@
 			$operator.addClass('operator-' + filter.operator + ' icon-' + filter.operator + ' selected')
 				.attr('title', this.definition.operators[filter.operator].description)
 				.html(this.definition.operators[filter.operator].code.escapeHtml())
-				.tipsy({gravity:'s'});
+				.tipsy({gravity:'s',offset:9});
 			$filterRow.find('.operator').html($operator);
 
 			// case sensitive?
@@ -690,8 +690,9 @@
 				$cs.addClass('operator-cs icon-cs selected')
 					.attr('title', 'Case Sensitive')
 					.html('case sensitive')
-					.tipsy({gravity:'s'});
+					.tipsy({gravity:'s',offset:9});
 				$filterRow.find('.jcsdl-filter-info.operator').append($cs);
+				$cs.tipsy('show');
 			}
 
 			// value (but not for 'exists' operator)
@@ -1098,7 +1099,7 @@
 					ev.preventDefault();
 					ev.target.blur();
 					$(this).toggleClass('selected');
-				}).tipsy({gravity:'s'});
+				}).tipsy({gravity:'s',offset:9});
 
 				$csView.prependTo($view);
 				$select.addClass('has-cs');
@@ -1300,7 +1301,7 @@
 				.addClass('icon-' + name + ' operator-' + name)
 				.attr('title', operator.description)
 				.html(operator.label)
-				.tipsy({gravity:'s'});
+				.tipsy({gravity:'s',offset:9});
 			return $operatorView;
 		},
 

@@ -1817,7 +1817,8 @@
     height: 0 !important;
     border-width: 12px;
     border-style: solid;
-    border-color: #ff9933 transparent transparent transparent; }
+    border-color: #ff9933 transparent transparent transparent;
+    border-bottom: 0; }
   .tipsy.tipsy-s .tipsy-arrow {
     top: 100%;
     left: 50%;
