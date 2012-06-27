@@ -657,21 +657,12 @@
 
 		for(var i = 1; i <= config.fields; i++) {
 			var $field = this.$el.clone().removeClass('orig').show().attr('placeholder', 'Test your expression against this field...');
-			var $fieldBtn = $('<a href="#" class="jcsdl-regex-tester-button" />');
-			var $fieldWrap = $('<div class="jcsdl-regex-tester-input-wrap" />').html($field).append($fieldBtn).append('<div class="jcsdl-regex-result" />');
+			var $fieldWrap = $('<div class="jcsdl-regex-tester-input-wrap" />').html($field).append('<div class="jcsdl-regex-result" />');
 
 			$fieldWrap.prependTo(this.$wrap);
 
 			this.$fields = this.$fields.add($field);
 			this.$fieldsWraps = this.$fieldsWraps.add($fieldWrap);
-
-			$fieldBtn.bind('click touchstart', function(ev) {
-				ev.preventDefault();
-				ev.target.blur();
-
-				self.val = self.$el.val();
-				self.test($field);
-			});
 		}
 
 		this.$btn.bind('click touchstart', function(ev) {
@@ -706,6 +697,11 @@
 			this.exp = new RegExp(exp, 'i');
 
 			$fields.each(function(i, field) {
+				if ($(field).val().length == 0 || self.val.length == 0) {
+					$(field).siblings('.jcsdl-regex-result').hide();
+					return true;
+				}
+
 				var result = (self.exp.test($(field).val())) ? 'ok' : 'err';
 				$(field).siblings('.jcsdl-regex-result').removeClass('ok err').addClass(result).fadeIn();
 			});

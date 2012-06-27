@@ -657,8 +657,8 @@
     position: relative; }
   .jcsdl-input-text .jcsdl-regex-tester .jcsdl-regex-result, .jcsdl-input-number .jcsdl-regex-tester .jcsdl-regex-result {
     position: absolute;
-    top: 5px;
-    right: 54px;
+    top: 10px;
+    right: 10px;
     display: none;
     width: 30px;
     height: 30px;
@@ -670,7 +670,7 @@
       background-position: -87px -308px; }
   .jcsdl-input-text .jcsdl-regex-tester input, .jcsdl-input-number .jcsdl-regex-tester input {
     margin: 5px 0;
-    padding-right: 84px; }
+    padding-right: 54px; }
 
 .jcsdl-input-text {
   margin-top: 0; }
