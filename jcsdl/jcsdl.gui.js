@@ -857,7 +857,13 @@
 
 			// maybe this target is hidden?
 			if ($.inArray(name, this.config.hideTargets) >= 0) {
-				$option.hide();
+				// mark that it's suppose to be hidden
+				$option.addClass('jcsdl-option-hidden');
+
+				// but maybe it's selected, so dont hide it
+				if (!(this.currentFilterIndex >= 0) || !this.filters[this.currentFilterIndex] || (this.filters[this.currentFilterIndex].target !== name)) {
+					$option.hide();
+				}
 			}
 
 			return $option;
@@ -906,6 +912,8 @@
 		 * Creates a select option for the given field with the specified name.
 		 * @param  {String} name  Unique name of the field in the current target, matching one from JCSDL definition.
 		 * @param  {Object} fieldInfo Definition of the field from JCSDL definition.
+		 * @param  {Array} parentPath Path to the parent target.
+		 * @param  {Boolean} hidden Is this field option hidden?
 		 * @return {jQuery}
 		 */
 		createOptionForField : function(name, fieldInfo, parentPath, hidden) {
@@ -934,6 +942,21 @@
 							return true; // break already
 						}
 					});
+				}
+			}
+
+			// mark that its suppose to be hidden
+			if (hidden) {
+				$option.addClass('jcsdl-option-hidden');
+			}
+
+			// if it's suppose to be hidden just do one more check
+			// with the current filter, because maybe it isn't suppose to be hidden if it's selected
+			if (hidden && (this.currentFilterIndex >= 0) && this.filters[this.currentFilterIndex]) {
+				var cFilterPath = this.filters[this.currentFilterIndex].target + '.' + this.filters[this.currentFilterIndex].fieldPath.join('.').replace(/-/g, '.');
+				var cPath = parentPath + '.' + name;
+				if (cFilterPath == cPath) {
+					hidden = false;
 				}
 			}
 

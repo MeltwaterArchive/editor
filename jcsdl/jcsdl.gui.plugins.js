@@ -148,7 +148,7 @@
 
 		// when there's only one option visible then already select it
 		if (this.$carouselItems.filter(':visible').length == 1) {
-			this.$carouselItems.filter(':visible').trigger('jcsdlclick');
+			this.$carouselItems.filter(':not(.jcsdl-option-hidden):visible').trigger('jcsdlclick');
 		}
 	}
 
