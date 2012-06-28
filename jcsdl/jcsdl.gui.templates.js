@@ -149,10 +149,12 @@
 		// field select option
 		inputSelectOption : $('<a href="#" class="jcsdl-icon input jcsdl-carousel-item" />'),
 
+		// target help trigger
+		targetHelp : $('<a href="#" class="jcsdl-target-help">Learn More</a>'),
+
 		// value input container
 		valueInput : $([
 			'<div class="jcsdl-filter-value-input">',
-				'<div class="jcsdl-target-help"><a href="#" title="Learn more about this target">?</a></div>',
 				'<div class="jcsdl-filter-value-input-operators" />',
 				'<div class="jcsdl-filter-value-input-field" />',
 			'</div>'

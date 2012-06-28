@@ -53,7 +53,7 @@
   display: block;
   height: 34px;
   width: 140px;
-  background: url("img/elements.png?17") no-repeat 0 -55px; }
+  background: url("img/elements.png?18") no-repeat 0 -55px; }
   .jcsdl-button.jcsdl-editor-cancel, .jcsdl-button.jcsdl-filter-cancel {
     width: 56px;
     background-position: 0 -89px; }
@@ -103,7 +103,7 @@
   -moz-background-clip: padding;
   -webkit-background-clip: padding-box;
   background-clip: padding-box;
-  background: url("img/elements.png?17") repeat-x center -240px; }
+  background: url("img/elements.png?18") repeat-x center -240px; }
   .jcsdl-error strong {
     color: red;
     font-weight: bold; }
@@ -136,7 +136,7 @@
     display: block;
     width: 14px;
     height: 14px;
-    background: url("img/elements.png?17") no-repeat -140px -68px; }
+    background: url("img/elements.png?18") no-repeat -140px -68px; }
   .jcsdl-mainview-action.jcsdl-add-filter {
     margin-right: 0; }
   .jcsdl-mainview-action:hover {
@@ -166,7 +166,7 @@
   display: block;
   width: 13px;
   height: 13px;
-  background: url("img/elements.png?17") no-repeat -140px -55px;
+  background: url("img/elements.png?18") no-repeat -140px -55px;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
   filter: alpha(opacity=30);
   -moz-opacity: 0.3;
@@ -325,7 +325,7 @@
   height: 29px;
   line-height: 29px;
   text-align: center;
-  background: transparent url("img/elements.png?17") no-repeat -56px -89px; }
+  background: transparent url("img/elements.png?18") no-repeat -56px -89px; }
   .jcsdl-carousel-scroll.right {
     float: right;
     background-position: -85px -89px; }
@@ -348,6 +348,7 @@
   .jcsdl-filter-editor .jcsdl-step {
     overflow: hidden;
     text-align: center;
+    position: relative;
     /* various states of target selection */
     /* prompt selection */
     /* only target selected */
@@ -358,21 +359,37 @@
     .jcsdl-filter-editor .jcsdl-step.jcsdl-filter-step-value {
       padding-bottom: 20px; }
     .jcsdl-filter-editor .jcsdl-step .jcsdl-filter-target-wrap {
-      background: transparent url("img/select.png?12") no-repeat center -378px; }
+      background: transparent url("img/select.png?13") no-repeat center -378px; }
     .jcsdl-filter-editor .jcsdl-step.selected .jcsdl-filter-target-wrap {
       background-position: center -553px; }
     .jcsdl-filter-editor .jcsdl-step.selected.field-selected .jcsdl-filter-target-wrap {
       background-position: center 8px; }
     .jcsdl-filter-editor .jcsdl-step.selected .jcsdl-filter-target-field-wrap {
-      background: transparent url("img/select.png?12") no-repeat center -255px; }
+      background: transparent url("img/select.png?13") no-repeat center -255px; }
     .jcsdl-filter-editor .jcsdl-step.selected.field-selected .jcsdl-filter-target-field-wrap {
       background-position: center -165px; }
     .jcsdl-filter-editor .jcsdl-step.selected .jcsdl-filter-target-field-input-wrap {
-      background: transparent url("img/select.png?12") no-repeat center -255px; }
+      background: transparent url("img/select.png?13") no-repeat center -255px; }
     .jcsdl-filter-editor .jcsdl-step.selected.field-selected .jcsdl-filter-target-field-input-wrap {
       background-position: center -165px; }
     .jcsdl-filter-editor .jcsdl-step.selected {
       background: transparent url("img/step_background.png?5") no-repeat bottom center; }
+    .jcsdl-filter-editor .jcsdl-step .jcsdl-target-help {
+      position: absolute;
+      bottom: 3px;
+      left: 50%;
+      margin-left: -46px;
+      display: block;
+      height: 21px;
+      line-height: 21px;
+      width: 93px;
+      background: url("img/select.png?13") no-repeat -17px -862px;
+      text-align: center;
+      color: #fff;
+      font-weight: normal;
+      font-size: 11px; }
+      .jcsdl-filter-editor .jcsdl-step .jcsdl-target-help:hover {
+        text-decoration: underline; }
   .jcsdl-filter-editor .jcsdl-filter-target-wrap {
     height: 145px;
     padding-top: 30px; }
@@ -388,20 +405,6 @@
     padding-bottom: 40px; }
     .jcsdl-filter-editor .jcsdl-filter-target-field-input-wrap .jcsdl-carousel-scroll {
       margin-top: 25px; }
-  .jcsdl-filter-editor .jcsdl-target-help {
-    margin: 0 20px;
-    margin-bottom: 10px;
-    overflow: hidden;
-    font-size: 24px;
-    line-height: 1em;
-    text-align: right; }
-    .jcsdl-filter-editor .jcsdl-target-help a {
-      display: block;
-      height: 24px;
-      width: 30px;
-      float: right;
-      color: #ccc;
-      font-weight: bold; }
   .jcsdl-filter-editor .jcsdl-filter-value-input-operators {
     margin: 10px auto;
     margin-top: 20px;
@@ -465,7 +468,7 @@
       -moz-background-clip: padding;
       -webkit-background-clip: padding-box;
       background-clip: padding-box;
-      background: url("img/elements.png?17") no-repeat 0 -278px; }
+      background: url("img/elements.png?18") no-repeat 0 -278px; }
     .jcsdl-filter-editor .jcsdl-operators-select:hover {
       background: #fafafa; }
       .jcsdl-filter-editor .jcsdl-operators-select:hover .jcsdl-dropdown-icon {
@@ -592,7 +595,7 @@
           position: absolute;
           right: 4px;
           top: 12px;
-          background: url("img/elements.png?17") no-repeat -169px -55px;
+          background: url("img/elements.png?18") no-repeat -169px -55px;
           -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
           filter: alpha(opacity=70);
           -moz-opacity: 0.7;
@@ -629,7 +632,7 @@
     height: 30px;
     overflow: hidden;
     text-indent: -9999px;
-    background: url("img/elements.png?17") no-repeat -57px -278px; }
+    background: url("img/elements.png?18") no-repeat -57px -278px; }
     .jcsdl-input-text .jcsdl-regex-tester-button:hover, .jcsdl-input-number .jcsdl-regex-tester-button:hover {
       -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=90)";
       filter: alpha(opacity=90);
@@ -663,7 +666,7 @@
     width: 30px;
     height: 30px;
     overflow: hidden;
-    background: url("img/elements.png?17") no-repeat -57px -308px; }
+    background: url("img/elements.png?18") no-repeat -57px -308px; }
     .jcsdl-input-text .jcsdl-regex-tester .jcsdl-regex-result.ok, .jcsdl-input-number .jcsdl-regex-tester .jcsdl-regex-result.ok {
       background-position: -57px -308px; }
     .jcsdl-input-text .jcsdl-regex-tester .jcsdl-regex-result.err, .jcsdl-input-number .jcsdl-regex-tester .jcsdl-regex-result.err {
@@ -673,7 +676,7 @@
     padding-right: 54px; }
 
 .jcsdl-input-text {
-  margin-top: 0; }
+  margin-top: 20px; }
   .jcsdl-input-text .jcsdl-containsnear-distance {
     display: none;
     text-align: center;
@@ -689,8 +692,7 @@
       text-align: center; }
 
 .jcsdl-input-number {
-  margin: 0 10px;
-  margin-top: 0; }
+  margin: 0 10px; }
   .jcsdl-input-number input {
     margin: 0 auto;
     width: 175px; }
@@ -755,7 +757,7 @@
       display: block;
       width: 14px;
       height: 14px;
-      background: transparent url("img/elements.png?17") no-repeat -115px -89px;
+      background: transparent url("img/elements.png?18") no-repeat -115px -89px;
       -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
       filter: alpha(opacity=70);
       -moz-opacity: 0.7;
@@ -827,7 +829,7 @@
     margin-bottom: 7px;
     height: 12px;
     cursor: pointer;
-    background: transparent url("img/elements.png?17") repeat-x center -228px;
+    background: transparent url("img/elements.png?18") repeat-x center -228px;
     border: 0;
     -webkit-border-radius: 0px;
     -khtml-border-radius: 0px;
@@ -845,7 +847,7 @@
       width: 30px;
       height: 40px;
       cursor: pointer;
-      background: transparent url("img/elements.png?17") no-repeat -152px -83px;
+      background: transparent url("img/elements.png?18") no-repeat -152px -83px;
       border: 0;
       outline: none; }
   .jcsdl-input-slider .jcsdl-slider-bottom {
@@ -858,7 +860,7 @@
       width: 15px;
       height: 15px;
       float: left;
-      background: transparent url("img/elements.png?17") no-repeat 0 -213px; }
+      background: transparent url("img/elements.png?18") no-repeat 0 -213px; }
     .jcsdl-input-slider .jcsdl-slider-bottom .jcsdl-slider-bottom-right {
       float: right;
       background-position: -31px -213px; }
@@ -866,7 +868,7 @@
       display: block;
       height: 15px;
       margin: 0 15px;
-      background: transparent url("img/elements.png?17") repeat-x 0 -198px; }
+      background: transparent url("img/elements.png?18") repeat-x 0 -198px; }
 
 .jcsdl-map {
   text-align: center;
@@ -1616,7 +1618,7 @@
       width: 38px;
       overflow: hidden;
       text-indent: -9999px;
-      background: url("img/elements.png?17") no-repeat 0 -393px; }
+      background: url("img/elements.png?18") no-repeat 0 -393px; }
       .jcsdl-dropdown .jcsdl-dropdown-option .jcsdl-dropdown-details-trigger:hover {
         background-position: -38px -393px; }
     .jcsdl-dropdown .jcsdl-dropdown-option .jcsdl-dropdown-option-desc {
@@ -1670,7 +1672,7 @@
     overflow: hidden;
     position: relative;
     padding: 0 10px;
-    background: url("img/elements.png?17") repeat-x 0 -354px;
+    background: url("img/elements.png?18") repeat-x 0 -354px;
     border: 1px solid #1d3550;
     border-bottom: 0;
     -webkit-border-top-left-radius: 3px;
@@ -1705,7 +1707,7 @@
       height: 40px;
       overflow: hidden;
       text-indent: -9999px;
-      background: url("img/elements.png?17") no-repeat -118px -310px; }
+      background: url("img/elements.png?18") no-repeat -118px -310px; }
       .jcsdl-popup .jcsdl-popup-header .jcsdl-popup-close:hover {
         -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
         filter: alpha(opacity=70);

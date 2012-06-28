@@ -8,8 +8,8 @@ $borderColor : #dcdcdc;
 $borderColorInput : #c8d7de;
 $fontFamily : "Helvetica Neue", "Helvetica", sans-serif;
 $fontSize : 13px;
-$elementsSprite : 'img/elements.png?17';
-$selectSprite : 'img/select.png?12';
+$elementsSprite : 'img/elements.png?18';
+$selectSprite : 'img/select.png?13';
 $stepBackground : 'img/step_background.png?5';
 $targetIconsSprite : 'img/icons-sprite-targets.png?11';
 $fieldIconsSprite : 'img/icons-sprite-fields.png?10';
@@ -311,7 +311,7 @@ $loader : 'img/loader.gif';
 /* editor steps */
 .jcsdl-filter-editor {
 	.jcsdl-step {
-		overflow: hidden; text-align: center;
+		overflow: hidden; text-align: center; position: relative;
 
 		&.jcsdl-filter-step-value {padding-bottom: 20px;}
 
@@ -332,6 +332,15 @@ $loader : 'img/loader.gif';
 
 		/* when a step is selected it also has shadow underneath */
 		&.selected {background: transparent url($stepBackground) no-repeat bottom center;}
+
+		.jcsdl-target-help {
+			position: absolute; bottom: 3px; left: 50%; margin-left: -46px;
+			display: block; height: 21px; line-height: 21px; width: 93px;
+			background: url($selectSprite) no-repeat -17px -862px;
+			text-align: center; color: #fff; font-weight: normal; font-size: 11px;
+
+			&:hover {text-decoration: underline;}
+		}
 	}
 
 	.jcsdl-filter-target-wrap {
@@ -347,16 +356,6 @@ $loader : 'img/loader.gif';
 	.jcsdl-filter-target-field-input-wrap {
 		padding-top: 5px; padding-bottom: 40px;
 		.jcsdl-carousel-scroll {margin-top: 25px;}
-	}
-
-	.jcsdl-target-help {
-		margin: 0 20px; margin-bottom: 10px; overflow: hidden;
-		font-size: 24px; line-height: 1em; text-align: right;
-
-		a {
-			display: block; height: 24px; width: 30px; float: right;
-			color: #ccc; font-weight: bold;
-		}
 	}
 
 	.jcsdl-filter-value-input-operators {
@@ -503,7 +502,8 @@ $loader : 'img/loader.gif';
 	}
 }
 .jcsdl-input-text {
-	margin-top: 0;
+	margin-top: 20px;
+
 	.jcsdl-containsnear-distance {
 		display: none; text-align: center; margin: 5px 0;
 
@@ -516,7 +516,7 @@ $loader : 'img/loader.gif';
 	}
 }
 .jcsdl-input-number {
-	margin: 0 10px; margin-top: 0;
+	margin: 0 10px;
 	input {margin: 0 auto; width: 175px;}
 }
 

@@ -519,6 +519,9 @@
 			var fieldPosition = $fieldView.data('position');
 			this.currentFilterFieldsPath.splice(fieldPosition, this.currentFilterFieldsPath.length - fieldPosition);
 
+			// also remove the target help, just in case it was added before
+			$stepView.removeClass('selected-final').find('.jcsdl-target-help').remove();
+
 			var field = this.getFieldInfoAtCurrentPath(fieldName);
 			if (field == false) return;
 
@@ -547,6 +550,9 @@
 			// this is a "final" field, so now the user needs to input desired value(s)
 			var $valueView = this.createValueInputView(field);
 			this.addFilterStep('value', $valueView, (firstRemoved != 'value'));
+
+			// also, if this is final selection then show "Learn more" option
+			this.addTargetHelpToStep($stepView);
 		},
 
 		/**
@@ -560,9 +566,64 @@
 			var inputPosition = $inputView.data('position');
 			var firstRemoved = this.removeFilterStepsAfterPosition($inputView.closest('.jcsdl-step').data('number'));
 
+			// also remove the target help, just in case it was added before
+			$stepView.removeClass('selected-final').find('.jcsdl-target-help').remove();
+
 			// now the user needs to input desired value(s)
 			var $valueView = this.createValueInputView(this.getFieldInfoAtCurrentPath(), inputName);
 			this.addFilterStep('value', $valueView, (firstRemoved != 'value'));
+
+			// also, if this is final selection then show "Learn more" option
+			this.addTargetHelpToStep($stepView);
+		},
+
+		/**
+		 * Adds a target help trigger to the given step. It should be final step of the carousel.
+		 * @param {jQuery} $stepView
+		 */
+		addTargetHelpToStep : function($stepView) {
+			var self = this;
+
+			this.getTemplate('targetHelp').appendTo($stepView);
+
+			/**
+			 * Open target help popup on click.
+			 * @param  {Event} ev Click event.
+			 * @listener
+			 */
+			$stepView.find('.jcsdl-target-help').click(function(ev) {
+				ev.preventDefault();
+				ev.target.blur();
+
+				var target = self.currentFilterTarget + '.' + self.currentFilterFieldsPath.join('.').replace(/-/g, '.');
+				var popup = $.jcsdlPopup({
+					title : target
+				});
+
+				popup.setContent('<p>' + target + '</p>');
+
+				/*
+				if (typeof(self.jsonpCache.targets[target]) == 'undefined') {
+					$.ajax({
+						url : $option.data('jsonp'),
+						type : 'GET',
+						async : false,
+						jsonpCallback : 'jcsdlJSONP',
+						contentType : 'application/json',
+						dataType : 'jsonp',
+						success : function(data) {
+							popup.setContent(data.html);
+							popup.reposition();
+
+							self.jsonpCache.operators[name] = data.html;
+						}
+					});
+				} else {
+					popup.setContent(self.jsonpCache.operators[name]);
+					popup.reposition();
+				}
+				 */
+			});
 		},
 
 		/**
@@ -928,40 +989,6 @@
 
 			var $valueView = this.getTemplate('valueInput');
 			if (typeof(this.inputs[inputType]) == 'undefined') return $valueView;
-
-			$valueView.find('.jcsdl-target-help a').tipsy({gravity:'s', offset:10}).click(function(ev) {
-				ev.preventDefault();
-				ev.target.blur();
-
-				var target = self.currentFilterTarget + '.' + self.currentFilterFieldsPath.join('.').replace(/-/g, '.');
-				var popup = $.jcsdlPopup({
-					title : target
-				});
-
-				popup.setContent('<p>' + target + '</p>');
-
-				/*
-				if (typeof(self.jsonpCache.targets[target]) == 'undefined') {
-					$.ajax({
-						url : $option.data('jsonp'),
-						type : 'GET',
-						async : false,
-						jsonpCallback : 'jcsdlJSONP',
-						contentType : 'application/json',
-						dataType : 'jsonp',
-						success : function(data) {
-							popup.setContent(data.html);
-							popup.reposition();
-
-							self.jsonpCache.operators[name] = data.html;
-						}
-					});
-				} else {
-					popup.setContent(self.jsonpCache.operators[name]);
-					popup.reposition();
-				}
-				 */
-			});
 
 			// create the input view by this input type's handler and add it to the value view container
 			var $inputView = this.inputs.exec(inputType, 'init', [field]);
