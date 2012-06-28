@@ -898,10 +898,11 @@ $loader : 'img/loader.gif';
 
 		.jcsdl-dropdown-details-trigger {
 			display: block; float: right;
-			height: 46px; width: 38px;
-			line-height: 46px; font-size: 24px; font-weight: bold; color: #ccc; text-align: center;
+			height: 46px; width: 38px; overflow: hidden;
+			text-indent: -9999px;
+			background: url($elementsSprite) no-repeat 0 -393px;
 
-			&:hover {@include opacity(0.9);}
+			&:hover {background-position: -38px -393px;}
 		}
 
 		.jcsdl-dropdown-option-desc {margin-left: 56px; margin-right: 38px; padding: 5px 0;}

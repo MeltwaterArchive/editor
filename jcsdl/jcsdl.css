@@ -1614,17 +1614,11 @@
       float: right;
       height: 46px;
       width: 38px;
-      line-height: 46px;
-      font-size: 24px;
-      font-weight: bold;
-      color: #ccc;
-      text-align: center; }
+      overflow: hidden;
+      text-indent: -9999px;
+      background: url("img/elements.png?17") no-repeat 0 -393px; }
       .jcsdl-dropdown .jcsdl-dropdown-option .jcsdl-dropdown-details-trigger:hover {
-        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=90)";
-        filter: alpha(opacity=90);
-        -moz-opacity: 0.9;
-        -khtml-opacity: 0.9;
-        opacity: 0.9; }
+        background-position: -38px -393px; }
     .jcsdl-dropdown .jcsdl-dropdown-option .jcsdl-dropdown-option-desc {
       margin-left: 56px;
       margin-right: 38px;
