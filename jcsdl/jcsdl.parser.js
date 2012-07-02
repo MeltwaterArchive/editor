@@ -1,10 +1,10 @@
-(function($) {
+JCSDL.Loader.addComponent(function($) {
 
-	JCSDLParser = function(gui) {
+	JCSDL.Parser = function(gui) {
 		this.gui = gui;
 	};
 
-	JCSDLParser.prototype = {
+	JCSDL.Parser.prototype = {
 		v : '1.0',
 
 		/* ##########################
@@ -407,4 +407,4 @@
 
 	};
 
-})(window.jQuery);
+});

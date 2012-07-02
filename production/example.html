@@ -17,10 +17,14 @@
 
 <script type="text/javascript">
 	$(function() {
-		var editor = new JCSDLGui('#jcsdl', {
-			save : function(code) {
-				alert(code);
-			}
+
+		var editor = null;
+		JCSDL.onLoad(function() {
+			editor = new JCSDLGui('#jcsdl', {
+				save : function(code) {
+					alert(code);
+				}
+			});
 		});
 	});
 </script>

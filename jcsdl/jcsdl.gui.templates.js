@@ -1,6 +1,6 @@
-(function($) {
+JCSDL.Loader.addComponent(function($) {
 
-	JCSDLGuiTemplates = {
+	JCSDL.GUITemplates = {
 		// container of the whole thing
 		container : $('<div class="jcsdl-container" />'),
 
@@ -301,4 +301,4 @@
 
 	};
 
-})(window.jQuery);
+});

@@ -129,7 +129,8 @@
   display: block;
   overflow: hidden;
   line-height: 14px;
-  color: #376491; }
+  color: #376491;
+  font-weight: bold; }
   .jcsdl-mainview-action .jcsdl-picto {
     float: left;
     margin-right: 8px;

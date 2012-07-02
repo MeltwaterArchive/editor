@@ -8,7 +8,7 @@
  *  jquery.ui.widget.js
  *  jquery.ui.mouse.js
  */
-(function ($) {
+JCSDL.Loader.addComponent(function($) {
 
   // Detect touch support
   $.support.touch = 'ontouchend' in document;
@@ -157,4 +157,4 @@
     _mouseInit.call(self);
   };
 
-})(jQuery);
+});

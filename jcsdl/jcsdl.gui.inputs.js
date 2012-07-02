@@ -1,14 +1,14 @@
-(function($) {
+JCSDL.Loader.addComponent(function($) {
 
-	JCSDLGuiInputs = function(gui) {
+	JCSDL.GUIInputs = function(gui) {
 		this.gui = gui;
 		this.definition = gui.definition;
 	};
 
-	JCSDLGuiInputs.prototype = {
+	JCSDL.GUIInputs.prototype = {
 
 		/**
-		 * Execute the given method for value input type in the context of JCSDLGuiInputs object.
+		 * Execute the given method for value input type in the context of JCSDL.GUIInputs object.
 		 * @param  {String} t Value input type.
 		 * @param  {Method} m Method to be called.
 		 * @param  {Array} a Array of arguments.
@@ -1109,4 +1109,4 @@
 
 	};
 
-})(window.jQuery);
+});

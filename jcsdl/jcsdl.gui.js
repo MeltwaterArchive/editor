@@ -1,6 +1,6 @@
-(function($) {
+JCSDL.Loader.addComponent(function($) {
 
-	JCSDLGui = function(el, cfg) {
+	JCSDL.GUI = function(el, cfg) {
 		var $el = $(el); // ensure that the container element is a jQuery object
 		if ($el.length == 0) return false; // break if no such element in DOM
 		this.$el = $el.eq(0); // use only on the first matched element
@@ -32,11 +32,11 @@
 		/** @var {Object} Definition of JCSDL, that can be altered via config. */
 		this.definition = $.extend(true, JCSDLDefinition, this.config.definition);
 
-		/** @var {JCSDLParser} The actual JCSDL "parser". */
-		this.parser = new JCSDLParser(this);
+		/** @var {JCSDL.Parser} The actual JCSDL "parser". */
+		this.parser = new JCSDL.Parser(this);
 
-		/** @var {JCSDLGuiInputs} Input types and their handlers. */
-		this.inputs = new JCSDLGuiInputs(this);
+		/** @var {JCSDL.GUIInputs} Input types and their handlers. */
+		this.inputs = new JCSDL.GUIInputs(this);
 
 		// data
 		this.logic = 'AND';
@@ -56,7 +56,7 @@
 		this.init();
 	};
 
-	JCSDLGui.prototype = {
+	JCSDL.GUI.prototype = {
 		jsonpCache : {
 			operators : {},
 			targets : {}
@@ -1438,8 +1438,8 @@
 		 * @return {jQuery}
 		 */
 		getTemplate : function(name) {
-			if (typeof(JCSDLGuiTemplates[name]) !== 'undefined') {
-				return JCSDLGuiTemplates[name].clone();
+			if (typeof(JCSDL.GUITemplates[name]) !== 'undefined') {
+				return JCSDL.GUITemplates[name].clone();
 			}
 			
 			return $();
@@ -1483,13 +1483,13 @@
 
 	};
 
-	// register JCSDL Gui as a jQuery plugin as well
-	// the difference to using new JCSDLGui() is that it will return {jQuery} instead of the editor
+	// register JCSDL GUI as a jQuery plugin as well
+	// the difference to using new JCSDL.GUI() is that it will return {jQuery} instead of the editor
 	$.fn.jcsdlGui = function(options) {
 		function get($el) {
 			var gui = $el.data('jcsdlGui');
 			if (!gui) {
-				gui = new JCSDLGui($el, options);
+				gui = new JCSDL.GUI($el, options);
 				$el.data('jcsdlGui', gui);
 			}
 			return gui;
@@ -1516,4 +1516,9 @@
 		return this;
 	};
 
-})(window.jQuery);
+	// backward compatibility
+	JCSDLGui = function($el, o) {
+		return new JCSDL.GUI($el, o);
+	}
+
+});

@@ -1,9 +1,9 @@
 /**
  * JCSDL Filter carousel as a separate jQuery plugin for easy use.
  */
-(function($) {
+JCSDL.Loader.addComponent(function($) {
 
-	function JCSDLCarousel($el, options) {
+	var JCSDLCarousel = function($el, options) {
 		var self = this;
 		this.select = options.select;
 
@@ -250,12 +250,12 @@
 		this.each(function() {get($(this));});
 		return this;
 	};
-})(window.jQuery);
+});
 
 /**
  * JCSDL Number Mask to prevent inputting other characters than digits into number inputs.
  */
-(function($) {
+JCSDL.Loader.addComponent(function($) {
 
 	/**
 	 * @param  {Boolean} fl  Allow floats?
@@ -303,12 +303,12 @@
 
 		return this;
 	};
-})(window.jQuery);
+});
 
 /**
  * JCSDL Tag Input
  */
-(function($) {
+JCSDL.Loader.addComponent(function($) {
 
 	$.fn.jcsdlOrigVal = $.fn.val;
 	$.fn.val = function(value) {
@@ -343,7 +343,7 @@
 		return $self.jcsdlOrigVal();
 	};
 
-	function JCSDLTagInput($el, options) {
+	var JCSDLTagInput = function($el, options) {
 		var self = this;
 
 		this.delimeter = options.delimeter;
@@ -636,14 +636,14 @@
 		return this;
 	};
 
-})(window.jQuery);
+});
 
 /*
  * REGEXP Tester for JCSDL
  */
-(function($) {
+JCSDL.Loader.addComponent(function($) {
 
-	function JCSDLRegExTester($el, config) {
+	var JCSDLRegExTester = function($el, config) {
 		var self = this;
 
 		this.$el = $el;
@@ -756,9 +756,9 @@
 		return this;
 	}
 
-})(window.jQuery);
+});
 
-(function($) {
+JCSDL.Loader.addComponent(function($) {
 
 	var JCSDLPopup = function(config) {
 		var self = this;
@@ -877,7 +877,7 @@
 	};
 
 
-})(window.jQuery);
+});
 
 /*
  * A hack to load the Google Maps API asynchronously and call the appropriate callback.
@@ -942,7 +942,10 @@ var jcsdlMapsInit = function() {
 	}
 };
 
-(function($) {
+/*
+ * Extend some prototypes.
+ */
+JCSDL.Loader.addComponent(function($) {
 
 	$.extend(String.prototype, {
 		truncate : function(l, a, h) {
@@ -1003,4 +1006,4 @@ var jcsdlMapsInit = function() {
 		}
 	});
 
-})(window.jQuery);
+});

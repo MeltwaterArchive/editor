@@ -2,7 +2,7 @@
 require_once 'packager/Packager.php';
 
 $jsSuccess = Packager::js(array(
-	'jcsdl/jcsdl.jqueryloader.js',
+	'jcsdl/jcsdl.loader.js',
 	'jcsdl/lib/crypto.md5.min.js',
 	'jcsdl/lib/jquery.ui.custom.min.js',
 	'jcsdl/lib/jquery.touchpunch.js',

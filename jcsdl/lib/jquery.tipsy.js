@@ -3,7 +3,7 @@
 // (c) 2008-2010 jason frame [jason@onehackoranother.com]
 // releated under the MIT license
 
-(function($) {
+JCSDL.Loader.addComponent(function($) {
     
     function fixTitle($ele) {
         if ($ele.attr('title') || typeof($ele.attr('original-title')) != 'string') {
@@ -195,4 +195,4 @@
         return $(this).offset().left > ($(document).scrollLeft() + $(window).width() / 2) ? 'e' : 'w';
     };
     
-})(jQuery);
+});

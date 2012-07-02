@@ -7,7 +7,7 @@
  *
  */
 
-;(function($) {
+JCSDL.Loader.addComponent(function($) {
 
 $.fn.extend({
 	simulate: function(type, options) {
@@ -147,4 +147,4 @@ $.extend($.simulate, {
 	VK_DOWN: 40
 });
 
-})(jQuery);
+});

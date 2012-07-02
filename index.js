@@ -1,49 +1,49 @@
-var winSizes = [320, 480, 600, 800, 1000, 1200];
-var getWindowSize = function() {
-	var winWidth = jQuery(window).width();
-	var windowSize = 320;
-	jQuery.each(winSizes, function(i, size) {
-		if (winWidth >= size) {
-			windowSize = size;
-		}
-	});
-	return windowSize;
-}
+JCSDL.Loader.addComponent(function($) {
 
-var setWindowSize = function(size) {
-	size = (jQuery.inArray(size, winSizes)) ? size : getWindowSize();
+	var winSizes = [320, 480, 600, 800, 1000, 1200];
 
-	var $bd = jQuery(document.body);
-	jQuery.each(winSizes, function(i, winSize) {
-		$bd.removeClass('width-' + winSize);
-	});
+	var getWindowSize = function() {
+		var winWidth = $(window).width();
+		var windowSize = 320;
+		$.each(winSizes, function(i, size) {
+			if (winWidth >= size) {
+				windowSize = size;
+			}
+		});
+		return windowSize;
+	}
 
-	$bd.addClass('width-' + size);
-}
+	var setWindowSize = function(size) {
+		size = ($.inArray(size, winSizes)) ? size : getWindowSize();
 
-var adjustWindowSize = function() {
-	var size = getWindowSize();
-	setWindowSize(size);
-}
+		var $bd = $(document.body);
+		$.each(winSizes, function(i, winSize) {
+			$bd.removeClass('width-' + winSize);
+		});
 
+		$bd.addClass('width-' + size);
+	}
 
-jQuery(function() {
+	var adjustWindowSize = function() {
+		var size = getWindowSize();
+		setWindowSize(size);
+	}
 
 	adjustWindowSize();
-	jQuery(window).resize(function(ev) {
+	$(window).resize(function(ev) {
 		adjustWindowSize();
 	});
 
 	// tabs
-	jQuery('#tabs li a').click(function(ev) {
+	$('#tabs li a').click(function(ev) {
 		ev.preventDefault();
 		ev.target.blur();
 
-		jQuery('#tabs li a').removeClass('active');
-		jQuery(this).addClass('active');
+		$('#tabs li a').removeClass('active');
+		$(this).addClass('active');
 
-		jQuery('#content .tab-content').hide();
-		jQuery('#tab-' + jQuery(this).attr('title')).show();
+		$('#content .tab-content').hide();
+		$('#tab-' + $(this).attr('title')).show();
 	});
 
 	/*
@@ -52,24 +52,24 @@ jQuery(function() {
 	var createEditor = new JCSDLGui('#jcsdl-create', {
 		cancelButton : false,
 		save : function(code) {
-			jQuery('#jcsdl-create-output').val(code);
+			$('#jcsdl-create-output').val(code);
 
 			// read the title
-			var title = jQuery('#stream-title').val();
+			var title = $('#stream-title').val();
 			if (title.length == 0) {
 				alert('Stream title is required!');
 				return;
 			}
 
 			// insert to the edit stream tab
-			var $streamTemplate = jQuery('#streams-list li:first').clone();
+			var $streamTemplate = $('#streams-list li:first').clone();
 			$streamTemplate.find('h4').html(title);
 			$streamTemplate.find('.jcsdl-source').val(code);
 			$streamTemplate.find('.options .live').remove(); // impossible to see it live
-			$streamTemplate.appendTo(jQuery('#streams-list'));
+			$streamTemplate.appendTo($('#streams-list'));
 
 			// reset the editor
-			jQuery('#stream-title').val('');
+			$('#stream-title').val('');
 			this.reset();
 		}
 	});
@@ -77,57 +77,56 @@ jQuery(function() {
 	/*
 	 * EDIT STREAM TAB
 	 */
-	var $currentStream = jQuery();
+	var $currentStream = $();
 
-	jQuery('#jcsdl-edit').jcsdlGui({
-	//var editEditor = new JCSDLGui('#jcsdl-edit', {
-		hideTargets : ['twitter', 'digg.item', 'digg.user.icon', 'facebook.author', 'newscred', 'facebook.og'],
-		save : function(code) {
-			// display the output
-			jQuery('#jcsdl-edit-output').val(code);
+	//$('#jcsdl-edit').jcsdlGui({
+	var editEditor = null;
 
-			// and save it as well
-			$currentStream.find('.jcsdl-source').val(code);
+	JCSDL.onLoad(function() {
+		editEditor = new JCSDLGui('#jcsdl-edit', {
+			hideTargets : ['interaction', 'twitter', 'digg.item', 'digg.user.icon', 'facebook.author', 'newscred', 'facebook.og'],
+			save : function(code) {
+				// display the output
+				$('#jcsdl-edit-output').val(code);
 
-			// hide the editor and show the list
-			jQuery('#streams-list').show();
-			jQuery('#jcsdl-edit-wrap').hide();
-		},
-		cancel : function() {
-			this.$container.fadeOut(this.config.animationSpeed, function() {
-				jQuery('#streams-list').show();
-			});
-		}
+				// and save it as well
+				$currentStream.find('.jcsdl-source').val(code);
+
+				// hide the editor and show the list
+				$('#streams-list').show();
+				$('#jcsdl-edit-wrap').hide();
+			},
+			cancel : function() {
+				this.$container.fadeOut(this.config.animationSpeed, function() {
+					$('#streams-list').show();
+				});
+			}
+		});
 	});
 
-	jQuery('#streams-list .edit').live('click', function(ev) {
+	$('#streams-list .edit').live('click', function(ev) {
 		ev.preventDefault();
 		ev.target.blur();
 
-		$currentStream = jQuery(this).closest('li');
+		$currentStream = $(this).closest('li');
 		var code = $currentStream.find('.jcsdl-source').val();
-		//editEditor.loadJCSDL(code);
-		jQuery('#jcsdl-edit').jcsdlGui('loadJCSDL', code);
+		editEditor.loadJCSDL(code);
+		//$('#jcsdl-edit').jcsdlGui('loadJCSDL', code);
 
 		// clear the output as well
-		jQuery('#jcsdl-edit-output').val('');
+		$('#jcsdl-edit-output').val('');
 
 		// hide the list and show the editor
-		jQuery('#streams-list').hide();
-		jQuery('#jcsdl-edit-wrap').show();
+		$('#streams-list').hide();
+		$('#jcsdl-edit-wrap').show();
 	});
 
-	jQuery('#streams-list .source').live('click', function(ev) {
+	$('#streams-list .source').live('click', function(ev) {
 		ev.preventDefault();
 		ev.target.blur();
 
-		var code = jQuery(this).closest('li').find('.jcsdl-source').val();
-		jQuery('#jcsdl-edit-output').val(code);
+		var code = $(this).closest('li').find('.jcsdl-source').val();
+		$('#jcsdl-edit-output').val(code);
 	});
-
-	/*
-	 * STYLING SHORTCUT
-	 */
-	//jQuery('#jcsdl-create .filter-add').click();
 
 });
