@@ -12,7 +12,8 @@ $jsSuccess = Packager::js(array(
 	'jcsdl/jcsdl.gui.templates.js',
 	'jcsdl/jcsdl.gui.inputs.js',
 	'jcsdl/jcsdl.gui.plugins.js',
-	'jcsdl/jcsdl.gui.js'
+	'jcsdl/jcsdl.gui.js',
+	'jcsdl/jcsdl.loader.post.js'
 ), 'production/jcsdl/jcsdl.min.js');
 
 $copySuccess = Packager::copy('jcsdl/jcsdl.definition.js', 'production/jcsdl/jcsdl.definition.js');

@@ -1,4 +1,4 @@
-JCSDL.Loader.addComponent(function($) {
+$(function() {
 
 	var winSizes = [320, 480, 600, 800, 1000, 1200];
 

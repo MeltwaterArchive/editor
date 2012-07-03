@@ -8,6 +8,8 @@ JCSDL = {}; // register namespace
 		// array list of functions to be called when finished loadign
 		loaded : [],
 
+		isLoaded : false,
+
 		addComponent : function(f) {
 			if (typeof(f) == 'function') {
 				JCSDL.Loader.compnts.push(f);
@@ -27,6 +29,8 @@ JCSDL = {}; // register namespace
 			for (var i in JCSDL.Loader.loaded) {
 				JCSDL.Loader.loaded[i].apply(JCSDL, []);
 			}
+
+			JCSDL.Loader.isLoaded = true;
 		},
 
 		timeout : function(nc) {
@@ -43,18 +47,16 @@ JCSDL = {}; // register namespace
 	};
 
 	JCSDL.onLoad = function(f) {
-		JCSDL.Loader.addLoaded(f);
-	};
+		if (typeof(f) !== 'function') return false;
 
-	if (!window.jQuery) {
-		var h = document.getElementsByTagName('head'),
-			s = document.createElement('script');
-		s.src = 'https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js';
-		s.type = 'text/javascript';
-		h[0].appendChild(s);
-		JCSDL.Loader.timeout(true);
-	} else {
-		JCSDL.Loader.timeout();
-	}
+		// if editor already loaded then call immediately
+		if (JCSDL.Loader.isLoaded) {
+			f.apply(JCSDL, []);
+
+		// but normally add to queue
+		} else {
+			JCSDL.Loader.addLoaded(f);
+		}
+	};
 
 })();
