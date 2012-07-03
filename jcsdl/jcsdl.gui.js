@@ -613,8 +613,6 @@ JCSDL.Loader.addComponent(function($) {
 				});
 				var url = self.definition.targetHelpJsonpSource.replace(/\{target\}/g, target).replace(/\{fieldPath\}/g, path);
 
-				//popup.setContent('<p>' + url + '</p>');
-
 				if (typeof(self.jsonpCache.targets[cacheName]) == 'undefined') {
 					$.ajax({
 						url : url,
