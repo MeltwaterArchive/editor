@@ -613,6 +613,8 @@ var JCSDLDefinition = {
 		}
 	},
 
+	targetHelpJsonpSource : 'http://docdev.devcloud.acquia-sites.com/docs/targets/{target}/{target}-{fieldPath}',
+
 	// some additional config for some input types
 	inputs : {
 		text : {

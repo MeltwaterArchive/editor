@@ -390,13 +390,13 @@ JCSDL.Loader.addComponent(function($) {
 					if (typeof(field.fields[fieldName]) !== 'undefined') {
 						field = field.fields[fieldName];
 					} else {
-						self.error('Invalid path to a field a!', target, fieldPath, field);
+						self.error('Invalid path to a field (#1)!', target, fieldPath, field);
 						field = false;
 						return false; // break the $.each
 					}
 
 				} else {
-					self.error('Invalid path to a field b!', target, fieldPath, field);
+					self.error('Invalid path to a field (#2)!', target, fieldPath, field);
 					field = false;
 					return false; // break the $.each
 				}

@@ -595,17 +595,29 @@ JCSDL.Loader.addComponent(function($) {
 				ev.preventDefault();
 				ev.target.blur();
 
-				var target = self.currentFilterTarget + '.' + self.currentFilterFieldsPath.join('.').replace(/-/g, '.');
-				var popup = $.jcsdlPopup({
-					title : target
+				var info = self.getFieldInfoAtCurrentPath(),
+					target = self.currentFilterTarget,
+					targetInfo = self.parser.getTargetInfo(target);
+					path = self.currentFilterFieldsPath.join('-');
+
+				var title = targetInfo.name;
+				var cPath = [];
+				$.each(self.currentFilterFieldsPath, function(i, name) {
+					cPath.push(name);
+					title += ' &raquo; ' + self.parser.getFieldInfo(target, cPath).name;
 				});
+				var cacheName = target + '.' + path;
 
-				popup.setContent('<p>' + target + '</p>');
+				var popup = $.jcsdlPopup({
+					title : title
+				});
+				var url = self.definition.targetHelpJsonpSource.replace(/\{target\}/g, target).replace(/\{fieldPath\}/g, path);
 
-				/*
-				if (typeof(self.jsonpCache.targets[target]) == 'undefined') {
+				//popup.setContent('<p>' + url + '</p>');
+
+				if (typeof(self.jsonpCache.targets[cacheName]) == 'undefined') {
 					$.ajax({
-						url : $option.data('jsonp'),
+						url : url,
 						type : 'GET',
 						async : false,
 						jsonpCallback : 'jcsdlJSONP',
@@ -615,14 +627,16 @@ JCSDL.Loader.addComponent(function($) {
 							popup.setContent(data.html);
 							popup.reposition();
 
-							self.jsonpCache.operators[name] = data.html;
+							self.jsonpCache.targets[cacheName] = data.html;
+						},
+						error : function() {
+							popup.setContent('<p>error or timeout</p>');
 						}
 					});
 				} else {
-					popup.setContent(self.jsonpCache.operators[name]);
+					popup.setContent(self.jsonpCache.targets[cacheName]);
 					popup.reposition();
 				}
-				 */
 			});
 		},
 
