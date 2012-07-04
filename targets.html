@@ -1,0 +1,68 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+	<title>JCSDL Targets list</title>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+
+	<script type="text/javascript" src="jcsdl/jcsdl.definition.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			var targets = [];
+			function parseTargets(path, field, info) {
+				path += ((path.length > 0) ? '.' : '') + field;
+				if (typeof(info.fields) !== 'undefined') {
+					$.each(info.fields, function(name, data) {
+						parseTargets(path, name, data);
+					});
+				} else {
+					// this is final step then add full path to the targets list
+					targets.push(path.replace(/-/g, '.'));
+				}
+			}
+
+			$.each(JCSDLDefinition.targets, function(name, target) {
+				parseTargets('', name, target);
+			});
+
+			var $table = $('#targets tbody');
+			var $rowTpl = $([
+				'<tr>',
+					'<td class="i" />',
+					'<td class="target" />',
+					'<td class="url" />',
+					'<td class="available" />',
+				'</tr>'
+			].join(''));
+
+			$.each(targets, function(i, target) {
+				target = target.split('.');
+				var source = target.shift();
+				if (source == 'augmentation') {
+					source = target.shift();
+				}
+				var path = target.join('.');
+
+				var $row = $rowTpl.clone();
+				$row.find('.i').html(i + 1);
+				$row.find('.target').html(source + '.' + path);
+
+				var url = JCSDLDefinition.targetHelpJsonpSource.replace(/\{target\}/g, source).replace(/\{fieldPath\}/g, path.replace(/\./g, '-'));
+				$row.find('.url').html('<a href="' + url + '" target="_blank">' + url + '</a>');
+
+				$row.appendTo($table);
+			});
+		});
+	</script>
+</head>
+
+<body>
+
+<table id="targets">
+	<thead></thead>
+	<tbody></tbody>
+</table>
+
+</body>
+</html>
