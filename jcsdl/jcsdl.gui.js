@@ -28,6 +28,10 @@ JCSDL.Loader.addComponent(function($) {
 				self.$container.hide();
 			},
 			targetHelpUrl : function(target, fieldInfo) {
+				if (fieldInfo.helpUrl) {
+					return fieldInfo.helpUrl;
+				}
+				
 				target = target.replace(/\./g, '-');
 				return this.definition.targetHelpJsonpSource.replace(/\{target\}/g, target);
 			}
