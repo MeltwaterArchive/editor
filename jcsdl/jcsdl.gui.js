@@ -26,6 +26,10 @@ JCSDL.Loader.addComponent(function($) {
 			save : function(code) {},
 			cancel : function() {
 				self.$container.hide();
+			},
+			targetHelpUrl : function(target, fieldInfo) {
+				target = target.replace(/\./g, '-');
+				return this.definition.targetHelpJsonpSource.replace(/\{target\}/g, target);
 			}
 		}, cfg);
 
@@ -611,7 +615,8 @@ JCSDL.Loader.addComponent(function($) {
 				var popup = $.jcsdlPopup({
 					title : title
 				});
-				var url = self.definition.targetHelpJsonpSource.replace(/\{target\}/g, target).replace(/\{fieldPath\}/g, path);
+
+				var url = self.config.targetHelpUrl.apply(self, [cacheName.replace(/-/g, '.'), info]);
 
 				if (typeof(self.jsonpCache.targets[cacheName]) == 'undefined') {
 					$.ajax({
@@ -622,13 +627,20 @@ JCSDL.Loader.addComponent(function($) {
 						contentType : 'application/json',
 						dataType : 'jsonp',
 						success : function(data) {
+							if (!data || !data.html) {
+								popup.setContent('<p>No documentation available.</p>');
+								popup.reposition();
+								return;
+							}
+
 							popup.setContent(data.html);
 							popup.reposition();
 
 							self.jsonpCache.targets[cacheName] = data.html;
 						},
 						error : function() {
-							popup.setContent('<p>error or timeout</p>');
+							popup.setContent('<p>No documentation available.</p>');
+							popup.reposition();
 						}
 					});
 				} else {
