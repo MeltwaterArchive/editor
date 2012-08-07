@@ -1,0 +1,44 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <title>JCSDL Editor | Embedding</title>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="jcsdl/jcsdl.min.css" />
+  <script type="text/javascript" src="jcsdl/jcsdl.definition.js"></script>
+  <script type="text/javascript" src="jcsdl/jcsdl.min.js"></script>
+
+</head>
+
+<body>
+
+<div id="jcsdl"></div>
+
+<textarea id="jcsdl-code" style="width: 100%; height: 200px;" disabled="true">// JCSDL_MASTER b04591342ee71a2baa468d9d2a340ec8 AND
+// JCSDL_VERSION 1.0
+// JCSDL_START 0980a5f2ef935c4ed153bf975879eac0 twitter.text,contains_any,27-52
+twitter.text contains_any "obama, santorum, gingrich, romney, ronpaul, ron paul"
+// JCSDL_END
+AND
+// JCSDL_START f7c18a6fedd90c6b4d77acc14a3a8e5c interaction.type,in,21-29
+interaction.type in "twitter,facebook,digg,youtube"
+// JCSDL_END
+// JCSDL_MASTER_END</textarea>
+
+<script type="text/javascript">
+  var editor = new JCSDLGui($("#jcsdl"), {
+    save : function(code) {
+    // perform custom saving of the output code
+    // for example sending it in AJAX
+    }
+  });
+
+  //$('#load-jcsdl').click(function() {
+    var code = $('#jcsdl-code').val();
+    editor.loadJCSDL(code);
+  //});
+</script>
+
+</body>
+</html>

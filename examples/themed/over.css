@@ -1,0 +1,103 @@
+/*
+ * Override CSS for example
+ */
+h1 {
+  color: #f4eee0;
+}
+
+.jcsdl-container .jcsdl-mainview-action {
+  color: #f4eee0;
+}
+
+.jcsdl-mainview-action:hover {
+  color: #b32577 !important;
+}
+
+body a:hover {
+  color: #b32577;
+}
+
+.jcsdl-container {
+  color: #f4eee0;
+  font-family: "Arial Narrow", "Helvetica Neue","Helvetica",sans-serif;
+  font-size: 15px;
+}
+
+.jcsdl-container .jcsdl-filter-cancel {
+  color: #f4eee0;
+  font-weight: bold;
+}
+
+.jcsdl-container .jcsdl-label {
+  color: #f4eee0;
+}
+
+.jcsdl-container .jcsdl-header h3 {
+  color: #f4eee0;
+}
+
+body a {
+  color: #f4eee0;
+}
+
+body {
+  background-color: #8eafc0;
+}
+
+.jcsdl-input-text input, .jcsdl-input-text .jcsdl-tag-input, .jcsdl-input-number input, .jcsdl-input-number .jcsdl-tag-input {
+  background-clip: padding-box;
+  border-radius: 3px 3px 3px 3px;
+  color: #444444;
+  display: block;
+  font-size: 1.3em;
+  width: 100%;
+}
+
+body h1,h2,h3,h4,h5 {
+  color: #263344;
+}
+
+.jcsdl-icon.operator.selected {
+  border-color: #B32577;
+  opacity: 1;
+}
+
+.jcsdl-icon.operator {
+  border: 1px solid #8eafc0;
+  border-radius: 2px 2px 2px 2px;
+  height: 46px;
+  opacity: 0.45;
+  width: 46px;
+}
+
+.jcsdl-input-text input, .jcsdl-input-text .jcsdl-tag-input, .jcsdl-input-number input, .jcsdl-input-number .jcsdl-tag-input {
+  border: 1px solid #263344;
+  color: #263344;
+}
+
+.jcsdl-filter-editor .jcsdl-operators-select {
+  border: 1px solid #263344;
+}
+
+#logo {
+  background: url("img/elements.png") no-repeat;
+  height: 65px;
+  width: 100px; 
+}
+
+.jcsdl-filter-editor .jcsdl-operators-select .jcsdl-operator-label {
+  color: #263344;
+}
+
+.jcsdl-dropdown .jcsdl-dropdown-option .jcsdl-operator-desc {
+  color: #b32577;
+}
+
+.jcsdl-filters-list.expanded .jcsdl-filter .jcsdl-filter-info.value {
+  background-color: #8eafc0;
+
+}
+
+.jcsdl-input-select .jcsdl-input-select-option.selected {
+  border-color: #f4eee0;
+}
