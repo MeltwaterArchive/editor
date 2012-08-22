@@ -22,13 +22,15 @@ JCSDL = {}; // register namespace
 		},
 
 		load : function() {
-			for (var i in JCSDL.Loader.compnts) {
-				JCSDL.Loader.compnts[i].apply(JCSDL, [window.jQuery]);
-			}
+			var $ = window.jQuery;
 
-			for (var i in JCSDL.Loader.loaded) {
-				JCSDL.Loader.loaded[i].apply(JCSDL, []);
-			}
+			$.each(JCSDL.Loader.compnts, function() {
+				this.apply(JCSDL, [$]);
+			});
+			
+			$.each(JCSDL.Loader.loaded, function() {
+				this.apply(JCSDL, []);
+			});
 
 			JCSDL.Loader.isLoaded = true;
 		},

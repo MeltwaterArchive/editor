@@ -13,7 +13,8 @@ JCSDL.Loader.addComponent(function($) {
 		/** @var {Object} GUI config object. */
 		this.config = $.extend(true, {
 			animate : 200,
-			cancelButtton : true,
+			cancelButton : true,
+			saveButton : null,
 			googleMapsApiKey : '',
 			mapsOverlay : {
 				strokeWeight : 0,
@@ -23,10 +24,24 @@ JCSDL.Loader.addComponent(function($) {
 			mapsMarker : 'jcsdl/img/maps-marker.png',
 			hideTargets : [],
 			definition : {},
+
+			// event hooks
 			save : function(code) {},
 			cancel : function() {
 				self.$container.hide();
 			},
+			logicChange : function(logic) {},
+			viewModeChange : function(mode) {},
+			filterNew : function() {},
+			filterEdit : function(filter) {},
+			filterDelete : function(filter) {},
+			filterSave : function(filter) {},
+			filterCancel : function(filter) {},
+			targetSelect : function(target) {},
+			operatorSelect : function(operator) {},
+			caseSensitivityChange : function(on) {},
+
+			// grabbing target help url
 			targetHelpUrl : function(target, fieldInfo) {
 				if (fieldInfo.helpUrl) {
 					return fieldInfo.helpUrl;
@@ -98,9 +113,24 @@ JCSDL.Loader.addComponent(function($) {
 			this.$container.html(this.$mainView);
 			this.$el.html(this.$container);
 
+			this.$saveButton = this.$mainView.find('.jcsdl-editor-save');
+			this.$cancelButton = this.$mainView.find('.jcsdl-editor-cancel');
+
+			// is there a custom save button defined?
+			if (this.config.saveButton && (typeof(this.config.saveButton) == 'object' || typeof(this.config.saveButton) == 'string')) {
+				this.$saveButton.remove(); // remove the standard save button
+				this.$saveButton = $(this.config.saveButton); // replace it with the custom one (selector or jQuery object)
+			}
+
+			// is there a custom cancel button defined?
+			if (this.config.cancelButton && (typeof(this.config.cancelButton) == 'object' || typeof(this.config.cancelButton) == 'string')) {
+				this.$cancelButton.remove(); // remove the standard cancel button
+				this.$cancelButton = $(this.config.cancelButton); // replace it with the custom one (selector or jQuery object)
+			}
+
 			// hide the cancel button if so desired
 			if (!this.config.cancelButton) {
-				this.$mainView.find('.jcsdl-editor-cancel').hide();
+				this.$cancelButton.hide();
 			}
 
 			// add class for IE
@@ -117,6 +147,7 @@ JCSDL.Loader.addComponent(function($) {
 			 */
 			this.$mainView.find('.jcsdl-filters-logic input[name="logic"]').change(function(ev) {
 				self.logic = $(this).val();
+				self.trigger('logicChange', [self.logic]);
 			});
 
 			/**
@@ -127,13 +158,16 @@ JCSDL.Loader.addComponent(function($) {
 				ev.preventDefault();
 				ev.target.blur();
 
-				var $item = $(this);
+				var $item = $(this),
+					mode = $item.attr('data-mode');
 
 				self.$filtersList.removeClass('expanded collapsed');
-				self.$filtersList.addClass($item.attr('data-mode'));
+				self.$filtersList.addClass(mode);
 
 				self.$mainView.find('.jcsdl-mainview-mode .jcsdl-mainview-mode-option').removeClass('active');
 				$item.addClass('active');
+
+				self.trigger('viewModeChange', [mode]);
 			});
 
 			/**
@@ -149,24 +183,27 @@ JCSDL.Loader.addComponent(function($) {
 
 			/**
 			 * Handle output / returning of the resulting JCSDL upon clicking save.
+			 * Unbind first so that init() can be called many times without registering the listener multiple times
 			 * @param  {Event} ev Click Event.
 			 */
-			this.$mainView.find('.jcsdl-editor-save').bind('click.jcsdl touchstart', function(ev) {
+			this.$saveButton.unbind('.jcsdl').bind('click.jcsdl touchstart.jcsdl', function(ev) {
 				ev.preventDefault();
 				ev.target.blur();
 
-				self.returnJCSDL();
+				var code = self.returnJCSDL();
+				self.trigger('save', [code]);
 			});
 
 			/**
-			 * Handle pressing the cancel button,
+			 * Handle pressing the cancel button.
+			 * Unbind first so that init() can be called many times without registering the listener multiple times.
 			 * @param  {Event} ev Click Event.
 			 */
-			this.$mainView.find('.jcsdl-editor-cancel').bind('click.jcsdl touchstart', function(ev) {
+			this.$cancelButton.unbind('.jcsdl').bind('click.jcsdl touchstart.jcsdl', function(ev) {
 				ev.preventDefault();
 				ev.target.blur();
 
-				self.config.cancel.apply(self, []);
+				self.trigger('cancel');
 			});
 		},
 
@@ -205,15 +242,37 @@ JCSDL.Loader.addComponent(function($) {
 			});
 
 			// make the cancel button visible
-			this.$mainView.find('.jcsdl-editor-cancel').show();
+			if (this.config.cancelButton) {
+				this.$cancelButton.show();
+			}
 		},
 
 		/**
 		 * Returns the JCSDL by calling the 'save' function from the config.
 		 */
 		returnJCSDL : function() {
-			var code = this.parser.getJCSDLForFilters(this.filters, this.logic);
-			this.config.save.apply(this, [code]);
+			return this.parser.getJCSDLForFilters(this.filters, this.logic);
+		},
+
+		/**
+		 * Adjusts the editor size to the container (in case it's size has changed).
+		 */
+		adjust : function() {
+			this.$currentFilterStepsView.find('.jcsdl-step').jcsdlCarousel('adjust');
+		},
+
+		/**
+		 * Trigger an event handler defined in the config.
+		 * @param  {String} name Name of the event handler.
+		 * @param  {Array} args[optional] Arguments to pass to the handler.
+		 * @return {mixed} Whatever the handler returns.
+		 */
+		trigger : function(name, args) {
+			args = args || [];
+			if (typeof(this.config[name]) == 'function') {
+				return this.config[name].apply(this, args);
+			}
+			return null;
 		},
 
 		/* ##########################
@@ -274,7 +333,11 @@ JCSDL.Loader.addComponent(function($) {
 					this.$currentFilterView.find('.jcsdl-operator-cs').click();
 				}
 
+				self.trigger('filterEdit', [filter]);
+
 			} else {
+				self.trigger('filterNew');
+
 				// if creating new one from scratch then look for previous filter and automatically select the same target (unless it's hidden) ;)
 				var lastFilter = this.filters[this.filters.length - 1];
 				if (typeof(lastFilter) !== 'undefined') {
@@ -319,6 +382,7 @@ JCSDL.Loader.addComponent(function($) {
 				ev.preventDefault();
 				ev.target.blur();
 				self.hideFilterEditor();
+				self.trigger('filterCancel');
 			});
 		},
 
@@ -346,6 +410,9 @@ JCSDL.Loader.addComponent(function($) {
 		 * @param  {Number} index
 		 */
 		deleteFilter : function(index) {
+			var filter = this.filters[index];
+			this.trigger('filterDelete', [filter]);
+
 			// remove from the DOM
 			this.$filtersList.find('.jcsdl-filter').eq(index).remove();
 
@@ -462,7 +529,7 @@ JCSDL.Loader.addComponent(function($) {
 
 			// adjust all carousels because the document size might have changed (right scroll bar might have appeared, but that doesn't trigger window.resize event)
 			setTimeout(function() {
-				self.$currentFilterStepsView.find('.jcsdl-step').jcsdlCarousel('adjust');
+				self.adjust();
 			}, this.config.animate);
 
 			// add to the steps pool
@@ -514,6 +581,8 @@ JCSDL.Loader.addComponent(function($) {
 			// now need to select a field, so build the selection view
 			var $fieldView = this.createFieldSelectionView(this.definition.targets[targetName].fields);
 			this.addFilterStep('field', $fieldView, (firstRemoved != 'field'));
+
+			this.trigger('targetSelect', [targetName]);
 		},
 
 		/**
@@ -561,6 +630,8 @@ JCSDL.Loader.addComponent(function($) {
 
 			// also, if this is final selection then show "Learn more" option
 			this.addTargetHelpToStep($stepView);
+
+			this.trigger('targetSelect', [this.getCurrentPath()]);
 		},
 
 		/**
@@ -702,6 +773,8 @@ JCSDL.Loader.addComponent(function($) {
 			}
 
 			this.hideFilterEditor();
+
+			this.trigger('filterSave', [filter]);
 		},
 
 		/* ##########################
@@ -1096,12 +1169,13 @@ JCSDL.Loader.addComponent(function($) {
 				ev.preventDefault();
 				ev.target.blur();
 
-				var $operator = $(this);
+				var $operator = $(this),
+					opName = $operator.data('name');
 
 				$view.children().removeClass('selected');
 				$operator.addClass('selected');
 
-				if ($operator.data('name') == 'exists') {
+				if (opName == 'exists') {
 					$inputView.fadeOut(self.config.animate);
 				} else if (!$inputView.is(':visible')) {
 					$inputView.fadeIn(self.config.animate);
@@ -1109,11 +1183,11 @@ JCSDL.Loader.addComponent(function($) {
 
 				// for text or number input field enable/disable the tag input
 				if (inputType == 'number') {
-					var opName = $operator.data('name');
-
 					var tagAction = ($.inArray(opName, inputConfig.arrayOperators) >= 0) ? 'enable' : 'disable';
 					$input.jcsdlTagInput(tagAction);
 				}
+
+				self.trigger('operatorSelect', [opName]);
 			});
 
 			// if there's only one possible operator then automatically select it and hide it
@@ -1177,6 +1251,7 @@ JCSDL.Loader.addComponent(function($) {
 					ev.preventDefault();
 					ev.target.blur();
 					$(this).toggleClass('selected');
+					self.trigger('caseSensitivityChange', [$(this).is('.selected')]);
 				}).tipsy({gravity:'s',offset:9});
 
 				$csView.prependTo($view);
@@ -1328,6 +1403,8 @@ JCSDL.Loader.addComponent(function($) {
 					$input.jcsdlRegExTester('set' + regExSetting);
 					$input.jcsdlRegExTester('test');
 				}
+
+				self.trigger('operatorSelect', [name]);
 			});
 
 			/**
@@ -1491,6 +1568,14 @@ JCSDL.Loader.addComponent(function($) {
 		},
 
 		/**
+		 * Returns the current selected path in the filter editor.
+		 * @return {String}
+		 */
+		getCurrentPath : function() {
+			return this.currentFilterTarget + (this.currentFilterFieldsPath.length > 0 ? '.' : '') + this.currentFilterFieldsPath.join('.').replace(/-/g, '.');
+		},
+
+		/**
 		 * Given the field name and it's definition decide what the icon for this field is.
 		 * @param  {String} field     Name of the string.
 		 * @param  {Object} fieldInfo Field definition.
@@ -1525,7 +1610,7 @@ JCSDL.Loader.addComponent(function($) {
 
 		if (typeof(options) == 'string') {
 			// call a public method
-			if ($.inArray(options, ['loadJCSDL']) >= 0) {
+			if ($.inArray(options, ['loadJCSDL', 'adjust']) >= 0) {
 				var argmns = [];
 				$.each(arguments, function(i, arg) {
 					if (i == 0) return true;
