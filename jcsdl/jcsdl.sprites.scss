@@ -1,0 +1,101 @@
+/* override image paths */
+$elementsSprite : '/images/queryeditor/elements.png';
+$selectSprite : '/images/queryeditor/select.png';
+$stepBackground : '/images/queryeditor/step_background.png';
+$targetIconsSprite : '/images/queryeditor/icons-sprite-targets.png';
+$fieldIconsSprite : '/images/queryeditor/icons-sprite-fields.png';
+$operatorIconsSprite : '/images/queryeditor/icons-sprite-operators.png';
+$otherIconsSprite : '/images/queryeditor/icons-sprite-other.png';
+$loader : '/images/queryeditor/loader.gif';
+
+
+.jcsdl-button {background-image: url($elementsSprite);}
+.jcsdl-error {background-image: url($elementsSprite);}
+
+.jcsdl-mainview-action {
+	.jcsdl-picto {background-image: url($elementsSprite);}
+}
+.jcsdl-mainview-mode-option {background-image: url($elementsSprite);}
+.jcsdl-carousel-scroll {background-image: url($elementsSprite);}
+.jcsdl-filter-editor {
+	.jcsdl-step {
+		.jcsdl-filter-target-wrap {background-image: url($selectSprite);}
+
+		&.selected .jcsdl-filter-target-field-wrap {background-image: url($selectSprite);}
+
+		&.selected .jcsdl-filter-target-field-input-wrap {background-image: url($selectSprite);}
+
+		&.selected {background-image: url($stepBackground);}
+
+		.jcsdl-target-help {background-image: url($selectSprite);}
+	}
+
+	.jcsdl-operators-select {
+		.jcsdl-dropdown-icon {background-image: url($elementsSprite);}
+	}
+}
+
+/*
+ * FILTER EDITOR INPUT FIELDS
+ */
+.jcsdl-input-text, .jcsdl-input-number {
+	input, .jcsdl-tag-input {
+		&.jcsdl-tag-input {
+			.jcsdl-tag {
+				a.jcsdl-tag-remove {background-image: url($elementsSprite);}
+			}
+		}
+	}
+
+	.jcsdl-regex-tester-button {background-image: url($elementsSprite);}
+	.jcsdl-regex-tester {
+		.jcsdl-regex-result {background-image: url($elementsSprite);}
+	}
+}
+
+.jcsdl-input-slider {
+	.jcsdl-slider-controls {
+		.jcsdl-slider-minus, .jcsdl-slider-plus {
+			background-image: url($elementsSprite);
+		}
+	}
+
+	.jcsdl-slider-wrap {
+		.jcsdl-slider-icon {background-image: url($otherIconsSprite);}
+	}
+
+	.jcsdl-slider {
+		background-image: url($elementsSprite);
+
+		.ui-slider-handle {background-image: url($elementsSprite);}
+	}
+
+	.jcsdl-slider-bottom {
+		.jcsdl-slider-bottom-left, .jcsdl-slider-bottom-right {background-image: url($elementsSprite);}
+		.jcsdl-slider-bottom-line {background-image: url($elementsSprite);}
+	}
+}
+
+/*
+ * ICONS
+ */
+.jcsdl-icon.target {background-image: url($targetIconsSprite);}
+.jcsdl-icon.field {background-image: url($fieldIconsSprite);}
+.jcsdl-icon.input {background-image: url($otherIconsSprite);}
+.jcsdl-icon.operator {background-image: url($operatorIconsSprite);}
+
+.jcsdl-dropdown {
+	.jcsdl-dropdown-option {
+		.jcsdl-dropdown-details-trigger {background-image: url($elementsSprite);}
+	}
+}
+
+/* JCSDL Popup */
+.jcsdl-popup {
+	.jcsdl-popup-header {
+		background-image: url($elementsSprite);
+
+		.jcsdl-popup-close {background-image: url($elementsSprite);}
+	}
+	.jcsdl-popup-loading {background-image: url($loader);}
+} 
