@@ -28,8 +28,9 @@ JCSDL.Loader.addComponent(function($) {
 			// event hooks
 			save : function(code) {},
 			cancel : function() {
-				self.$container.hide();
+				this.hide();
 			},
+			invalidJCSDL : function(code) {},
 			logicChange : function(logic) {},
 			viewModeChange : function(mode) {},
 			filterNew : function() {},
@@ -225,6 +226,7 @@ JCSDL.Loader.addComponent(function($) {
 			var parsed = this.parser.parseJCSDL(code);
 			if (parsed === false) {
 				this.showError('Invalid JCSDL input!', code);
+				this.trigger('invalidJCSDL', [code]);
 				return;
 			}
 
@@ -259,6 +261,20 @@ JCSDL.Loader.addComponent(function($) {
 		 */
 		adjust : function() {
 			this.$currentFilterStepsView.find('.jcsdl-step').jcsdlCarousel('adjust');
+		},
+
+		/**
+		 * Hides the editor.
+		 */
+		hide : function() {
+			this.$container.hide();
+		},
+
+		/**
+		 * Shows the editor.
+		 */
+		show : function() {
+			this.$container.show();
 		},
 
 		/**
