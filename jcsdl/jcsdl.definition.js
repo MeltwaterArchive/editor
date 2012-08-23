@@ -557,7 +557,7 @@ var JCSDLDefinition = {
 	},
 
 	//targetHelpJsonpSource : 'http://dev.datasift.com/tooltip-endpoint/tooltip/retrieve?callback=jcsdlJSONP&id={target}',
-	targetHelpJsonpSource : 'http://doctest.devcloud.acquia-sites.com/docs/tooltip-endpoint/tooltip/retrieve?callback=jcsdlJSONP&id={target}',
+	targetHelpJsonpSource : 'http://doctest.devcloud.acquia-sites.com/tooltip-endpoint/tooltip/retrieve?callback=jcsdlJSONP&id={target}',
 
 	// some additional config for some input types
 	inputs : {
