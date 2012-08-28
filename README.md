@@ -14,6 +14,7 @@ Usage
 	    <link rel="stylesheet" type="text/css" href="../minified/jcsdl.min.css" />
 	    <script type="text/javascript" src="../minified/jcsdl.definition.js"></script>
 	    <script type="text/javascript" src="../minified/jcsdl.min.js"></script>
+	    <script type="text/javascript" src="index.js"></script>
 	</html>
 
     <body>
