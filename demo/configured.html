@@ -1,0 +1,68 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+	<title>DataSift Query Editor Demo | Configured</title>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="../minified/jcsdl.min.css" />
+	<script type="text/javascript" src="../minified/jcsdl.definition.js"></script>
+	<script type="text/javascript" src="../minified/jcsdl.min.js"></script>
+
+	<script type="text/javascript">
+		$(function() {
+			$('#jcsdl-edit').jcsdlGui({
+				save : function(code) {
+					$('#jcsdl-edit-output').val(code);
+				},
+
+				// really sloooow animation
+                animate : 2000,
+
+                // hide some targets
+                hideTargets : ['interaction', 'facebook', 'myspace', 'digg', '2channel', 'video', 'youtube', 'reddit', 'imdb', 'flickr', 'amazon', 'blog', 'board', 'dailymotion', 'newscred', 'topix', 'augmentation',
+                	'twitter.domains', 'twitter.in_reply_to_screen_name', 'twitter.links', 'twitter.mentions', 'twitter.source', 'twitter.text', 'twitter.place', 'twitter.retweet', 'twitter.retweeted',
+                	'twitter.user.description', 'twitter.user.followers_count', 'twitter.user.follower_ratio', 'twitter.user.friends_count', 'twitter.user.id', 'twitter.user.listed_count', 'twitter.user.location', 'twitter.user.name', 'twitter.user.screen_name', 'twitter.user.statuses_count', 'twitter.user.time_zone', 'twitter.user.url',
+            	],
+             
+             	// change definition of some fields
+                definition : {
+                	inputs : {
+                    	select : {
+                     		sets : {
+                        		language2 : {'nl': 'Hollands', 'de': 'Deutsch', 'hu': 'Magyar'}
+                    		}
+                    	}
+                   	},
+                  	targets : {
+                    	twitter : {
+                       		fields : {
+                         		user : {
+                           			fields : {
+                             			profile_age : {max : 100, 'default' : 40, step : 1},
+                             			lang : {optionsSet: 'language2'}
+                        			}
+                        		}
+                       		}
+                     	}
+                   	}
+                },
+                 
+                mapsOverlay : {
+                  strokeWeight : 1,
+                  fillColor : '#FF0000',
+                  fillOpacity : 0.3
+                }
+			});
+		});
+	</script>
+</head>
+
+<body>
+	<div id="jcsdl-edit"></div>
+
+	<h3>JCSDL Output:</h3>
+	<textarea id="jcsdl-edit-output" disabled="true" style="width: 90%; margin: 20px auto; display: block; height: 200px;"></textarea>
+</body>
+</html>
