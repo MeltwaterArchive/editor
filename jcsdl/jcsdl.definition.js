@@ -87,7 +87,6 @@ var JCSDLDefinition = {
 					name : 'Retweeted',
 					fields : {
 						id : {name: 'ID', type: 'string', cs: true, input: 'text', operators: ['exists', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-						mentions : {name: 'Mentions',  type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'substr', 'in']},
 						source : {name: 'Source',  type: 'string', cs: true, input: 'text', operators: ['exists', 'equals', 'substr', 'different', 'regex_partial', 'regex_exact']},
 						place : null, // look at the bottom of the file
 						user : null // look at the bottom of the file
