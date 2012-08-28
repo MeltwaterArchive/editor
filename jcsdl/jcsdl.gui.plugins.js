@@ -148,7 +148,8 @@ JCSDL.Loader.addComponent(function($) {
 
 		// when there's only one option visible then already select it
 		if (this.$carouselItems.filter(':visible').length == 1) {
-			this.$carouselItems.filter(':not(.jcsdl-option-hidden):visible').trigger('jcsdlclick');
+			// this is causing an infinite loop for some reason, therefore disabling it for the moment
+			//this.$carouselItems.filter(':not(.jcsdl-option-hidden):visible').trigger('jcsdlclick');
 		}
 	}
 
@@ -174,7 +175,7 @@ JCSDL.Loader.addComponent(function($) {
 
 			// deactivate scroll buttons if reached start/end
 			if (this.selectedIndex == 0) this.$scrollLeft.addClass('inactive');
-			if (this.selectedIndex + 1 == this.itemsCount) this.$scrollRight.addClass('inactive');
+			if (this.selectedIndex + 1 >= this.itemsCount) this.$scrollRight.addClass('inactive');
 		},
 		// get the currently selected item
 		getSelectedItem : function() {
@@ -192,6 +193,8 @@ JCSDL.Loader.addComponent(function($) {
 		// animate the carousel to its proper position
 		changePosition : function(speed, dontExpand) {
 			var self = this;
+			dontExpand = dontExpand || false;
+
 			this.$carousel.animate({
 				left : this.calculateCurrentPosition()
 			}, speed, function() {
@@ -202,7 +205,7 @@ JCSDL.Loader.addComponent(function($) {
 			this.toggleScrollButtons();
 
 			// and finally call the selectCallback method if any
-			if (!dontExpand && typeof(this.select) == 'function') {
+			if (!dontExpand && typeof(this.select) == 'function' && this.itemsCount > 0) {
 				this.select.apply(this.getSelectedItem());
 			}
 		},
