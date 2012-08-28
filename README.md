@@ -50,7 +50,7 @@ You can pass an object literal as the 2nd argument of the constructor (or 1st ar
     		// function to execute when user clicks the save button
     	},
 
-    	hideTargets : [], // array of targets to hide
+    	hideTargets : ['facebook'], // array of targets to hide
     	
     	cancelButton : true, // false if you want to hide the cancel button, selector or jQuery object if you want to use your own
     	saveButton : null, // false if you want to hide the save button, selector or jQuery object if you want to use your own
@@ -59,6 +59,7 @@ You can pass an object literal as the 2nd argument of the constructor (or 1st ar
     	mapsMarker : 'jcsdl/img/maps-marker.png', // path to the maps-marker.png if it doesn't work for you
 
     	// event hooks - functions called on various events happening in the editor
+    	// 'this' always refers to the editor instance
     	cancel : function() {
     		this.hide();
     	},
