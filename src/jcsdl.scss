@@ -71,7 +71,10 @@ $loader : 'img/loader.gif';
 	font-size: $fontSize; font-family: $fontFamily; color: $colorLight;
 
 	/* building blocks */
-	a {color: $color; text-decoration: none;
+	a {
+		color: $color; text-decoration: none;
+		-webkit-transition: none; -moz-transition: none; -o-transition: none; transition: none;
+		
 		&:hover {color: lighten($color, 5%);}
 	}
 }

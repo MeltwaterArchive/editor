@@ -12,7 +12,11 @@
   /* building blocks */ }
   .jcsdl-container a {
     color: #376491;
-    text-decoration: none; }
+    text-decoration: none;
+    -webkit-transition: none;
+    -moz-transition: none;
+    -o-transition: none;
+    transition: none; }
     .jcsdl-container a:hover {
       color: #3e71a3; }
 
