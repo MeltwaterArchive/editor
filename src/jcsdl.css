@@ -67,7 +67,7 @@
 .jcsdl-header {
   overflow: hidden;
   padding: 15px;
-  border-bottom: 1px dotted #dcdcdc; }
+  border-bottom: 1px dotted gainsboro; }
   .jcsdl-header h3 {
     float: left;
     margin: 0;
@@ -79,7 +79,7 @@
 .jcsdl-footer {
   overflow: hidden;
   padding: 15px;
-  border-top: 1px dotted #dcdcdc; }
+  border-top: 1px dotted gainsboro; }
   .jcsdl-footer .jcsdl-actions {
     float: left;
     overflow: hidden;
@@ -152,7 +152,7 @@
   margin-left: 15px;
   width: 130px;
   padding-left: 15px;
-  border-left: 1px dotted #dcdcdc; }
+  border-left: 1px dotted gainsboro; }
 
 .jcsdl-mainview-mode-options {
   overflow: hidden;
@@ -210,7 +210,7 @@
   position: relative;
   margin: 15px;
   padding: 5px;
-  border: 1px solid #dcdcdc;
+  border: 1px solid gainsboro;
   -webkit-border-radius: 3px;
   -khtml-border-radius: 3px;
   -moz-border-radius: 3px;
@@ -226,7 +226,7 @@
     right: 0;
     padding: 6px;
     background: #f7f7f7;
-    border: 1px solid #dcdcdc;
+    border: 1px solid gainsboro;
     border-top: 0;
     border-right: 0;
     -webkit-border-top-left-radius: 0;
@@ -265,7 +265,7 @@
   margin: 15px 10px; }
 .jcsdl-filters-list.expanded .jcsdl-filter .jcsdl-filter-operator {
   margin: 31px 0;
-  border-color: #dcdcdc; }
+  border-color: gainsboro; }
   .jcsdl-filters-list.expanded .jcsdl-filter .jcsdl-filter-operator.input-select {
     display: none; }
 .jcsdl-filters-list.expanded .jcsdl-filter .jcsdl-filter-info.operator {
@@ -430,7 +430,7 @@
     height: 38px;
     line-height: 37px;
     padding: 0 10px;
-    border: 1px solid #dcdcdc;
+    border: 1px solid gainsboro;
     -webkit-border-radius: 3px;
     -khtml-border-radius: 3px;
     -moz-border-radius: 3px;
@@ -548,7 +548,7 @@
     font-size: 1.3em;
     line-height: 1.5em;
     color: #444;
-    border: 1px solid #dcdcdc;
+    border: 1px solid gainsboro;
     -webkit-border-radius: 3px;
     -khtml-border-radius: 3px;
     -moz-border-radius: 3px;
@@ -786,7 +786,7 @@
       font-size: 24px;
       color: #1b1b1f;
       text-align: center;
-      border: 1px solid #dcdcdc;
+      border: 1px solid gainsboro;
       -webkit-border-radius: 3px;
       -khtml-border-radius: 3px;
       -moz-border-radius: 3px;
@@ -880,7 +880,7 @@
     width: 50%;
     padding: 5px;
     font-size: 15px;
-    border: 1px solid #dcdcdc;
+    border: 1px solid gainsboro;
     -webkit-border-radius: 3px;
     -khtml-border-radius: 3px;
     -moz-border-radius: 3px;
@@ -1565,7 +1565,7 @@
   top: 10px;
   left: 10px;
   z-index: 10;
-  border: 1px solid #dcdcdc;
+  border: 1px solid gainsboro;
   border-top: 0;
   font-size: 13px;
   font-family: "Helvetica Neue", "Helvetica", sans-serif;
@@ -1595,7 +1595,7 @@
   .jcsdl-dropdown .jcsdl-dropdown-option {
     display: block;
     overflow: hidden;
-    border-top: 1px solid #dcdcdc;
+    border-top: 1px solid gainsboro;
     cursor: pointer; }
     .jcsdl-dropdown .jcsdl-dropdown-option .jcsdl-icon {
       border: 0;
@@ -1722,8 +1722,9 @@
     padding: 10px;
     overflow: auto;
     background: #fff;
-    border: 1px solid #dcdcdc;
+    border: 1px solid gainsboro;
     border-top: 0;
+    text-align: left;
     -webkit-border-top-left-radius: 0;
     -webkit-border-top-right-radius: 0;
     -webkit-border-bottom-right-radius: 3px;
@@ -1739,6 +1740,8 @@
     -moz-background-clip: padding;
     -webkit-background-clip: padding-box;
     background-clip: padding-box; }
+    .jcsdl-popup .jcsdl-popup-content p {
+      text-align: left; }
   .jcsdl-popup .jcsdl-popup-loading {
     display: block;
     width: 32px;

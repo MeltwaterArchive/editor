@@ -958,7 +958,10 @@ $loader : 'img/loader.gif';
 		display: block; padding: 10px; overflow: auto;
 		background: #fff;
 		border: 1px solid $borderColor; border-top: 0;
+		text-align: left;
 		@include roundedCorner(0, 0, 3px, 3px);
+
+		p {text-align: left;}
 	}
 
 	.jcsdl-popup-loading {
