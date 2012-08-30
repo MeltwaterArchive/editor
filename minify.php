@@ -1,5 +1,5 @@
 <?php
-require_once 'lib/Packager/Packager.php';
+require_once 'bin/Packager/Packager.php';
 
 $jsSuccess = Packager::js(array(
 	'src/jcsdl.loader.js',
