@@ -707,6 +707,12 @@ JCSDL.Loader.addComponent(function($) {
 					title : title
 				});
 
+
+				// remove 'augmentation' part of the path from the target name
+				if (cacheName.split('.')[0] == 'augmentation') {
+					cacheName = cacheName.substr(13);
+				}
+
 				var url = self.config.targetHelpUrl.apply(self, [cacheName.replace(/-/g, '.'), info]);
 
 				if (typeof(self.jsonpCache.targets[cacheName]) == 'undefined') {
