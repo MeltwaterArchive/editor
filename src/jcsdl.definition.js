@@ -474,69 +474,67 @@ var JCSDLDefinition = {
 			label : 'Substring',
 			description : 'Filter for a sequence of characters that form a word or part of a word.',
 			code : 'substr',
-			jsonp : 'http://datasift.neverblanddev.co.uk/jsonp/feed.php?operator=substr',
-			url : 'http://dev.datasift.com/docs/operators/substr'
+			jsonp : 'http://dev.datasift.com/tooltip-endpoint/tooltip/retrieve?callback=jcsdlJSONP&id=substr'
 		},
 		contains_any : {
 			label : 'Contains words',
 			description : 'Filter for one or more string values from a list of strings.',
 			code : 'contains_any',
-			url : 'http://dev.datasift.com/docs/operators/containsany'
+			jsonp : 'http://dev.datasift.com/tooltip-endpoint/tooltip/retrieve?callback=jcsdlJSONP&id=contains_any'
 		},
 		contains_near : {
 			label : 'Contains words near',
 			description : 'Filter for two or more words that occur near to each other.',
 			code : 'contains_near',
-			jsonp : 'http://docdev.devcloud.acquia-sites.com/tooltip-endpoint/tooltip/retrieve?callback=jcsdlJSONP&id=contains_near',
-			url : 'http://dev.datasift.com/docs/operators/containsnear'
+			jsonp : 'http://dev.datasift.com/tooltip-endpoint/tooltip/retrieve?callback=jcsdlJSONP&id=contains_near'
 		},
 		different : {
 			label : 'Different',
 			description : 'Not equal to...',
 			code : '!=',
-			url : 'http://dev.datasift.com/docs/operators/equals-and-not-equals'
+			jsonp : 'http://dev.datasift.com/tooltip-endpoint/tooltip/retrieve?callback=jcsdlJSONP&id=not-equals'
 		},
 		equals : {
 			label : 'Equals',
 			description : 'Equal to...',
 			code : '==',
-			url : 'http://dev.datasift.com/docs/operators/equals-and-not-equals'
+			jsonp : 'http://dev.datasift.com/tooltip-endpoint/tooltip/retrieve?callback=jcsdlJSONP&id=equals'
 		},
 		'in' : {
 			label : 'In',
 			description : 'Filter for one or more values from a list.',
 			code : 'in',
-			url : 'http://dev.datasift.com/docs/operators/in'
+			jsonp : 'http://dev.datasift.com/tooltip-endpoint/tooltip/retrieve?callback=jcsdlJSONP&id=in'
 		},
 		greaterThan : {
 			label : '&gt;=',
 			description : 'Greater than...',
 			code : '>=',
-			url : 'http://dev.datasift.com/docs/operators/greater-and-less'
+			jsonp : 'http://dev.datasift.com/tooltip-endpoint/tooltip/retrieve?callback=jcsdlJSONP&id=greater'
 		},
 		lowerThan : {
 			label : '&lt;=',
 			description : 'Lower than...',
 			code : '<=',
-			url : 'http://dev.datasift.com/docs/operators/greater-and-less'
+			jsonp : 'http://dev.datasift.com/tooltip-endpoint/tooltip/retrieve?callback=jcsdlJSONP&id=less'
 		},
 		exists : {
 			label : 'Exists',
 			description : 'Check whether a target is present.',
 			code : 'exists',
-			url : 'http://dev.datasift.com/docs/operators/exists'
+			jsonp : 'http://dev.datasift.com/tooltip-endpoint/tooltip/retrieve?callback=jcsdlJSONP&id=exists'
 		},
 		regex_partial : {
 			label : 'Partial Regex',
 			description : 'Filter for content by a regular expression that matches any part of the target.',
 			code : 'regex_partial',
-			url : 'http://dev.datasift.com/docs/operators/regexpartial'
+			jsonp : 'http://dev.datasift.com/tooltip-endpoint/tooltip/retrieve?callback=jcsdlJSONP&id=regex_partial'
 		},
 		regex_exact : {
 			label : 'Exact Regex',
 			description : 'Filter for content by a regular expression that matches the entire target.',
 			code : 'regex_exact',
-			url : 'http://dev.datasift.com/docs/operators/regexexact'
+			jsonp : 'http://dev.datasift.com/tooltip-endpoint/tooltip/retrieve?callback=jcsdlJSONP&id=regex_exact'
 		},
 		geo_box : {
 			label : 'Geo Box',
