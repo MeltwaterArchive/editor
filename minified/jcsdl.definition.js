@@ -492,13 +492,13 @@ var JCSDLDefinition = {
 			label : 'Different',
 			description : 'Not equal to...',
 			code : '!=',
-			jsonp : 'http://dev.datasift.com/tooltip-endpoint/tooltip/retrieve?callback=jcsdlJSONP&id=not-equals'
+			jsonp : 'http://dev.datasift.com/tooltip-endpoint/tooltip/retrieve?callback=jcsdlJSONP&id=equals-and-not-equals'
 		},
 		equals : {
 			label : 'Equals',
 			description : 'Equal to...',
 			code : '==',
-			jsonp : 'http://dev.datasift.com/tooltip-endpoint/tooltip/retrieve?callback=jcsdlJSONP&id=equals'
+			jsonp : 'http://dev.datasift.com/tooltip-endpoint/tooltip/retrieve?callback=jcsdlJSONP&id=equals-and-not-equals'
 		},
 		'in' : {
 			label : 'In',
@@ -509,14 +509,12 @@ var JCSDLDefinition = {
 		greaterThan : {
 			label : '&gt;=',
 			description : 'Greater than...',
-			code : '>=',
-			jsonp : 'http://dev.datasift.com/tooltip-endpoint/tooltip/retrieve?callback=jcsdlJSONP&id=greater'
+			code : '>='
 		},
 		lowerThan : {
 			label : '&lt;=',
 			description : 'Lower than...',
 			code : '<=',
-			jsonp : 'http://dev.datasift.com/tooltip-endpoint/tooltip/retrieve?callback=jcsdlJSONP&id=less'
 		},
 		exists : {
 			label : 'Exists',
