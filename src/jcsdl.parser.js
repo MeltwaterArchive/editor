@@ -268,7 +268,7 @@ JCSDL.Loader.addComponent(function($) {
 		valueToCSDL : function(value, fieldInfo, operator) {
 			var parsedValue = '';
 			
-			if (fieldInfo.type == 'int') {
+			if (fieldInfo.type == 'int' || fieldInfo.type == 'float') {
 				if (operator !== 'in' && isNaN(value)) {
 					this.error('This field value is suppose to be a Number, String given.', value, fieldInfo);
 					return false;
