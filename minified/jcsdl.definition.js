@@ -131,7 +131,7 @@ var JCSDLDefinition = {
 			}
 		},
 
-		'2channel' : {
+		'2ch' : {
 			name : '2channel',
 			fields : {
 				'author-name' : {name: 'Author Name', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
