@@ -724,7 +724,7 @@ JCSDL.Loader.addComponent(function($) {
 						contentType : 'application/json',
 						dataType : 'jsonp',
 						success : function(data) {
-							if (!data || !data.html) {
+							if (!data || !data.html || !data.html.trim()) {
 								popup.setContent('<p>No documentation available.</p>');
 								popup.reposition();
 								return;
