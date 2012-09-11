@@ -701,7 +701,12 @@ JCSDL.Loader.addComponent(function($) {
 					cPath.push(name);
 					title += ' &raquo; ' + self.parser.getFieldInfo(target, cPath).name;
 				});
-				var cacheName = target + '.' + path;
+
+				// Copes with the differing path names in the Query editor
+				var cacheName = path;
+				if (target != 'augmentation') { // Augmentations don't live in an augmentation namespace
+					cacheName = target + '.' + cacheName;
+				}
 
 				var popup = $.jcsdlPopup({
 					title : title
