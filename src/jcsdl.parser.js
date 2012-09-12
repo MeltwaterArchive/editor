@@ -35,7 +35,7 @@ JCSDL.Loader.addComponent(function($) {
 			var filters = [];
 
 			// go over all the lines in iterations of 3 in order to read all the filters (one filter takes 3 lines)
-			while(lines.length > 0) {
+			while(lines.length > 1) {
 				var jcsdlDescription = lines.shift();
 				var csdl = lines.shift();
 				var jcsdlEnd = lines.shift();
