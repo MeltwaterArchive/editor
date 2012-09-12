@@ -101,3 +101,83 @@ body h1,h2,h3,h4,h5 {
 .jcsdl-input-select .jcsdl-input-select-option.selected {
   border-color: #f4eee0;
 }
+
+/* Sprites */
+
+/* override image paths */
+.jcsdl-button {
+  background-image: url("themed/jcsdl/img/elements.png"); }
+
+.jcsdl-error {
+  background-image: url("jcsdl/img/elements.png"); }
+
+.jcsdl-mainview-action .jcsdl-picto {
+  background-image: url("jcsdl/img/elements.png"); }
+
+.jcsdl-mainview-mode-option {
+  background-image: url("jcsdl/img/elements.png"); }
+
+.jcsdl-carousel-scroll {
+  background-image: url("jcsdl/img/elements.png"); }
+
+.jcsdl-filter-editor .jcsdl-step .jcsdl-filter-target-wrap {
+  background-image: url("jcsdl/img/select.png"); }
+.jcsdl-filter-editor .jcsdl-step.selected .jcsdl-filter-target-field-wrap {
+  background-image: url("jcsdl/img/select.png"); }
+.jcsdl-filter-editor .jcsdl-step.selected .jcsdl-filter-target-field-input-wrap {
+  background-image: url("img/select,png"); }
+.jcsdl-filter-editor .jcsdl-step.selected {
+  background-image: url("jcsdl/img/step_background.png"); }
+.jcsdl-filter-editor .jcsdl-step .jcsdl-target-help {
+  background-image: url("jcsdl/img/select.png"); }
+.jcsdl-filter-editor .jcsdl-operators-select .jcsdl-dropdown-icon {
+  background-image: url("jcsdl/img/elements.png"); }
+
+/*
+ * FILTER EDITOR INPUT FIELDS
+ */
+.jcsdl-input-text input.jcsdl-tag-input .jcsdl-tag a.jcsdl-tag-remove, .jcsdl-input-text .jcsdl-tag-input.jcsdl-tag-input .jcsdl-tag a.jcsdl-tag-remove, .jcsdl-input-number input.jcsdl-tag-input .jcsdl-tag a.jcsdl-tag-remove, .jcsdl-input-number .jcsdl-tag-input.jcsdl-tag-input .jcsdl-tag a.jcsdl-tag-remove {
+  background-image: url("jcsdl/img/elements.png"); }
+.jcsdl-input-text .jcsdl-regex-tester-button, .jcsdl-input-number .jcsdl-regex-tester-button {
+  background-image: url("jcsdl/img/elements.png"); }
+.jcsdl-input-text .jcsdl-regex-tester .jcsdl-regex-result, .jcsdl-input-number .jcsdl-regex-tester .jcsdl-regex-result {
+  background-image: url("jcsdl/img/elements.png"); }
+
+.jcsdl-input-slider .jcsdl-slider-controls .jcsdl-slider-minus, .jcsdl-input-slider .jcsdl-slider-controls .jcsdl-slider-plus {
+  background-image: url("jcsdl/img/elements.png"); }
+.jcsdl-input-slider .jcsdl-slider-wrap .jcsdl-slider-icon {
+  background-image: url("jcsdl/img/icons-sprite-other.png"); }
+.jcsdl-input-slider .jcsdl-slider {
+  background-image: url("jcsdl/img/elements.png"); }
+  .jcsdl-input-slider .jcsdl-slider .ui-slider-handle {
+    background-image: url("jcsdl/img/elements.png"); }
+.jcsdl-input-slider .jcsdl-slider-bottom .jcsdl-slider-bottom-left, .jcsdl-input-slider .jcsdl-slider-bottom .jcsdl-slider-bottom-right {
+  background-image: url("jcsdl/img/elements.png"); }
+.jcsdl-input-slider .jcsdl-slider-bottom .jcsdl-slider-bottom-line {
+  background-image: url("jcsdl/img/elements.png"); }
+
+/*
+ * ICONS
+ */
+.jcsdl-icon.target {
+  background-image: url("jcsdl/img/icons-sprite-targets.png"); }
+
+.jcsdl-icon.field {
+  background-image: url("jcsdl/img/icons-sprite-fields.png"); }
+
+.jcsdl-icon.input {
+  background-image: url("jcsdl/img/icons-sprite-other.png"); }
+
+.jcsdl-icon.operator {
+  background-image: url("jcsdl/img/icons-sprite-operators.png"); }
+
+.jcsdl-dropdown .jcsdl-dropdown-option .jcsdl-dropdown-details-trigger {
+  background-image: url("jcsdl/img/elements.png"); }
+
+/* JCSDL Popup */
+.jcsdl-popup .jcsdl-popup-header {
+  background-image: url("jcsdl/img/elements.png"); }
+  .jcsdl-popup .jcsdl-popup-header .jcsdl-popup-close {
+    background-image: url("jcsdl/img/elements.png"); }
+.jcsdl-popup .jcsdl-popup-loading {
+  background-image: url("jcsdl/img/loader.gif"); }
