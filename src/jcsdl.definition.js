@@ -442,7 +442,7 @@ var JCSDLDefinition = {
 						source : {name: 'Source', type: 'string', input: 'select', single: true, operators: ['equals'], operator: 'equals', options: {'twitter':'Twitter'}}
 					}
 				},
-				'language-tag' : {name: 'Language', icon: 'language', type: 'string', input: 'select', optionsSet: 'language', operators: ['equals', 'in', 'different'], operator: 'in'},
+				'language-tag' : {name: 'Language', icon: 'language', type: 'string', input: 'select', optionsSet: 'language', operators: ['in'], operator: 'in'},
 				'demographic-gender' : {name: 'Demographic', icon: 'demographic', type: 'string', input: 'select', single: true, options: {'male':'Male','mostly_male':'Mostly Male','mostly_female':'Mostly Female','female':'Female','unisex':'Unisex'}, operators: ['equals']},
 				salience : {
 					name : 'Salience',
