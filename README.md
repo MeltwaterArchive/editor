@@ -3,7 +3,7 @@ DataSift Query Editor
 
 DataSift Query Editor is a visual editor for the CSDL.
 
-More details here: (insert link to docs)
+More details here: http://dev.datasift.com/editor
 
 Usage
 ======
