@@ -1,6 +1,6 @@
-JCSDL = {}; // register namespace
+;JCSDL = {}; // register namespace
 
-(function() {
+(function(window, undefined) {
 
 	JCSDL.Loader = {
 		// array list of functions to be called when loading
@@ -11,12 +11,12 @@ JCSDL = {}; // register namespace
 		isLoaded : false,
 
 		addComponent : function(f) {
-			if (typeof(f) == 'function') {
+			if (typeof f == 'function') {
 				JCSDL.Loader.compnts.push(f);
 			}
 		},
 		addLoaded : function(f) {
-			if (typeof(f) == 'function') {
+			if (typeof f == 'function') {
 				JCSDL.Loader.loaded.push(f);
 			}
 		},
@@ -49,7 +49,7 @@ JCSDL = {}; // register namespace
 	};
 
 	JCSDL.onLoad = function(f) {
-		if (typeof(f) !== 'function') return false;
+		if (typeof f !== 'function') return false;
 
 		// if editor already loaded then call immediately
 		if (JCSDL.Loader.isLoaded) {
@@ -61,4 +61,4 @@ JCSDL = {}; // register namespace
 		}
 	};
 
-})();
+})(window);

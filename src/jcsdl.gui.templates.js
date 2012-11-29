@@ -1,6 +1,6 @@
-JCSDL.Loader.addComponent(function($) {
+;JCSDL.Loader.addComponent(function($, undefined) {
 
-	JCSDL.GUITemplates = {
+	this.GUITemplates = {
 		// container of the whole thing
 		container : $('<div class="jcsdl-container" />'),
 
@@ -9,31 +9,52 @@ JCSDL.Loader.addComponent(function($) {
 			'<div class="jcsdl-mainview">',
 
 				'<div class="jcsdl-header">',
-					'<h3>Filters</h3>',
-					'<div class="jcsdl-mainview-mode">',
-						'<div class="jcsdl-label">View as:</div>',
-						'<div class="jcsdl-bordered jcsdl-mainview-mode-options">',
-							'<a href="#" class="jcsdl-mainview-mode-option jcsdl-expanded active" data-mode="expanded"></a>',
-							'<a href="#" class="jcsdl-mainview-mode-option jcsdl-collapsed" data-mode="collapsed"></a>',
+					'<div class="jcsdl-row">',
+						'<h3>Filters</h3>',
+						'<div class="jcsdl-actions">',
+							'<a href="#" class="jcsdl-button jcsdl-elements-sprite jcsdl-editor-save">Save and Preview</a>',
+							'<a href="#" class="jcsdl-button jcsdl-elements-sprite jcsdl-editor-cancel">Cancel</a>',
 						'</div>',
 					'</div>',
-					'<div class="jcsdl-mainview-actions">',
-						'<a href="#" class="jcsdl-bordered jcsdl-mainview-action jcsdl-add-filter">',
-							'<div class="jcsdl-picto"></div>',
-							'Create New Filter',
-						'</a>',
-					'</div>',
-				'</div>',
 
-				'<div class="jcsdl-filters-logic">',
-					'<label class="jcsdl-filters-logic-option jcsdl-and">',
-						'<input type="radio" name="logic" value="AND" checked />',
-						'ALL of the following',
-					'</label>',
-					'<label class="jcsdl-filters-logic-option jcsdl-or">',
-						'<input type="radio" name="logic" value="OR" />',
-						'ANY of the following',
-					'</label>',
+					'<div class="jcsdl-advanced-container jcsdl-bordered" style="display: none;">',
+						'<div class="jcsdl-advanced-gui-container">',
+							'<ul class="jcsdl-advanced-gui" />',
+							'<a href="#" class="jcsdl-advanced-gui-arrow left off"><span class="jcsdl-elements-sprite" /></a>',
+							'<a href="#" class="jcsdl-advanced-gui-arrow right off"><span class="jcsdl-elements-sprite" /></a>',
+						'</div>',
+						'<div class="jcsdl-advanced-manual" style="display: none;">',
+							'<input type="text" name="advanced" placeholder="1&(2|3)..." />',
+						'</div>',
+					'</div>',
+
+					'<div class="jcsdl-row">',
+						'<div class="jcsdl-filters-logic">',
+							'<a href="#" class="jcsdl-bordered jcsdl-filters-logic-option jcsdl-and active disabled" data-logic="AND" data-text-long="ALL of the following" data-text-short="ALL">ALL of the following</a>',
+							'<a href="#" class="jcsdl-bordered jcsdl-filters-logic-option jcsdl-or disabled" data-logic="OR" data-text-long="ANY of the following" data-text-short="ANY">ANY of the following</a>',
+							'<a href="#" class="jcsdl-bordered jcsdl-filters-logic-option jcsdl-advanced disabled" data-logic="ADVANCED">',
+								'ADVANCED',
+								'<span class="jcsdl-logic-help" data-text-general="Use the advanced option to create logical expressions." data-text-gui="Drag and drop the tiles to create an advanced query." data-text-manual="Type a logical expression to create an advanced query.">?</span>',
+							'</a>',
+
+							'<a href="#" class="jcsdl-bordered jcsdl-filters-logic-option jcsdl-advanced-option jcsdl-advanced-add-brackets active">+ [ ]</a>',
+							'<a href="#" class="jcsdl-bordered jcsdl-filters-logic-option jcsdl-advanced-option jcsdl-advanced-manual-edit active" data-text-gui="Manual Edit" data-text-manual="Graphical Edit">Manual Edit</a>',
+						'</div>',
+
+						'<div class="jcsdl-mainview-actions">',
+							'<a href="#" class="jcsdl-bordered jcsdl-mainview-action jcsdl-add-filter">',
+								'<div class="jcsdl-picto jcsdl-elements-sprite"></div>',
+								'Create New Filter',
+							'</a>',
+						'</div>',
+						'<div class="jcsdl-mainview-mode">',
+							'<div class="jcsdl-label">View as:</div>',
+							'<div class="jcsdl-bordered jcsdl-mainview-mode-options">',
+								'<a href="#" class="jcsdl-mainview-mode-option jcsdl-elements-sprite jcsdl-expanded active" data-mode="expanded"></a>',
+								'<a href="#" class="jcsdl-mainview-mode-option jcsdl-elements-sprite jcsdl-collapsed" data-mode="collapsed"></a>',
+							'</div>',
+						'</div>',
+					'</div>',
 				'</div>',
 
 				'<div class="jcsdl-filters-list expanded">',
@@ -41,13 +62,13 @@ JCSDL.Loader.addComponent(function($) {
 
 				'<div class="jcsdl-footer">',
 					'<div class="jcsdl-actions">',
-						'<a href="#" class="jcsdl-button jcsdl-editor-save">Save and Preview</a>',
-						'<a href="#" class="jcsdl-button jcsdl-editor-cancel">Cancel</a>',
+						'<a href="#" class="jcsdl-button jcsdl-elements-sprite jcsdl-editor-save">Save and Preview</a>',
+						'<a href="#" class="jcsdl-button jcsdl-elements-sprite jcsdl-editor-cancel">Cancel</a>',
 					'</div>',
 
 					'<div class="jcsdl-mainview-actions">',
 						'<a href="#" class="jcsdl-bordered jcsdl-mainview-action jcsdl-add-filter">',
-							'<div class="jcsdl-picto"></div>',
+							'<div class="jcsdl-picto jcsdl-elements-sprite"></div>',
 							'Create New Filter',
 						'</a>',
 					'</div>',
@@ -59,6 +80,7 @@ JCSDL.Loader.addComponent(function($) {
 		filter : $([
 			'<div class="jcsdl-filter">',
 				'<div class="jcsdl-filter-description">',
+					'<div class="jcsdl-filter-info jcsdl-bordered id" />',
 					'<div class="jcsdl-filter-info target" />',
 					'<div class="jcsdl-filter-info field" />',
 					'<div class="jcsdl-filter-info operator" />',
@@ -83,11 +105,20 @@ JCSDL.Loader.addComponent(function($) {
 		filterValue : $('<div class="jcsdl-filter-value" />'),
 
 		error : $([
-			'<div class="jcsdl-error">',
+			'<div class="jcsdl-error jcsdl-elements-sprite">',
 				'<strong>Error:</strong>',
 				'<span />',
 			'</div>'
 		].join('')),
+
+		/* ##########################
+		 * LOGIC GUI EDITOR TOKENS
+		 * ########################## */
+		logicToken_operatorAnd : $('<div href="#" class="jcsdl-logic-token operator" data-token="&">AND</div>'),
+		logicToken_operatorOr : $('<div href="#" class="jcsdl-logic-token operator" data-token="|">OR</div>'),
+		logicToken_bracketOpen : $('<div href="#" class="jcsdl-logic-token bracket" data-token="(">[<a href="#" class="jcsdl-delete-token"><span class="jcsdl-elements-sprite"/ ></a></div>'),
+		logicToken_bracketClose : $('<div href="#" class="jcsdl-logic-token bracket" data-token=")">]<a href="#" class="jcsdl-delete-token"><span class="jcsdl-elements-sprite" /></a></div>'),
+		logicToken_filter : $('<div href="#" class="jcsdl-logic-token filter" data-token="#">#</div>'),
 
 		/* ##########################
 		 * SINGLE FILTER EDITOR
@@ -98,7 +129,7 @@ JCSDL.Loader.addComponent(function($) {
 				'<div class="jcsdl-steps">',
 				'</div>',
 				'<div class="jcsdl-footer">',
-					'<a href="#" class="jcsdl-button jcsdl-filter-save">Save and Preview</a>',
+					'<a href="#" class="jcsdl-button jcsdl-elements-sprite jcsdl-filter-save">Save and Preview</a>',
 					'<span style="display: none;">or</span> <a href="#" class="jcsdl-filter-cancel">cancel</a>',
 				'</div>',
 			'</div>'
@@ -110,8 +141,8 @@ JCSDL.Loader.addComponent(function($) {
 		// target select
 		target : $([
 			'<div class="jcsdl-filter-target-wrap">',
-				'<a href="#" class="jcsdl-carousel-scroll left"></a>',
-				'<a href="#" class="jcsdl-carousel-scroll right"></a>',
+				'<a href="#" class="jcsdl-carousel-scroll jcsdl-elements-sprite left"></a>',
+				'<a href="#" class="jcsdl-carousel-scroll jcsdl-elements-sprite right"></a>',
 				'<div class="jcsdl-carousel-wrap">',
 					'<div class="jcsdl-filter-target jcsdl-carousel" />',
 				'</div>',
@@ -124,8 +155,8 @@ JCSDL.Loader.addComponent(function($) {
 		// field select
 		field : $([
 			'<div class="jcsdl-filter-target-field-wrap">',
-				'<a href="#" class="jcsdl-carousel-scroll left"></a>',
-				'<a href="#" class="jcsdl-carousel-scroll right"></a>',
+				'<a href="#" class="jcsdl-carousel-scroll jcsdl-elements-sprite left"></a>',
+				'<a href="#" class="jcsdl-carousel-scroll jcsdl-elements-sprite right"></a>',
 				'<div class="jcsdl-carousel-wrap">',
 					'<div class="jcsdl-filter-target-field jcsdl-carousel" />',
 				'</div>',
@@ -138,8 +169,8 @@ JCSDL.Loader.addComponent(function($) {
 		// input select
 		inputSelect : $([
 			'<div class="jcsdl-filter-target-field-input-wrap">',
-				'<a href="#" class="jcsdl-carousel-scroll left"></a>',
-				'<a href="#" class="jcsdl-carousel-scroll right"></a>',
+				'<a href="#" class="jcsdl-carousel-scroll jcsdl-elements-sprite left"></a>',
+				'<a href="#" class="jcsdl-carousel-scroll jcsdl-elements-sprite right"></a>',
 				'<div class="jcsdl-carousel-wrap">',
 					'<div class="jcsdl-filter-target-field-input jcsdl-carousel" />',
 				'</div>',
@@ -167,7 +198,7 @@ JCSDL.Loader.addComponent(function($) {
 		textOperatorsSelect : $([
 			'<div class="jcsdl-operators-select">',
 				'<div class="jcsdl-operator-label" />',
-				'<div class="jcsdl-dropdown-icon" />',
+				'<div class="jcsdl-dropdown-icon jcsdl-elements-sprite" />',
 			'</div>'
 		].join('')),
 
@@ -176,7 +207,7 @@ JCSDL.Loader.addComponent(function($) {
 		textOperatorOption : $([
 			'<div class="jcsdl-dropdown-option">',
 				'<div class="jcsdl-icon operator" />',
-				'<a href="#" class="jcsdl-dropdown-details-trigger">?</a>',
+				'<a href="#" class="jcsdl-dropdown-details-trigger jcsdl-elements-sprite">?</a>',
 				'<div class="jcsdl-dropdown-option-desc">',
 					'<div class="jcsdl-operator-label">',
 						'<span /> ',
@@ -228,8 +259,8 @@ JCSDL.Loader.addComponent(function($) {
 		valueInput_slider : $([
 			'<div class="jcsdl-input-slider">',
 				'<div class="jcsdl-slider-controls">',
-					'<a href="#" class="jcsdl-slider-minus" />',
-					'<a href="#" class="jcsdl-slider-plus" />',
+					'<a href="#" class="jcsdl-slider-minus jcsdl-elements-sprite" />',
+					'<a href="#" class="jcsdl-slider-plus jcsdl-elements-sprite" />',
 					'<input type="text" name="value" class="jcsdl-slider-input" placeholder="0" />',
 				'</div>',
 				'<div class="jcsdl-slider-wrap">',
@@ -238,11 +269,11 @@ JCSDL.Loader.addComponent(function($) {
 					'<div class="jcsdl-slider-container">',
 						'<div class="jcsdl-slider-label min" />',
 						'<div class="jcsdl-slider-label max" />',
-						'<div class="jcsdl-slider" />',
+						'<div class="jcsdl-slider jcsdl-elements-sprite" />',
 						'<div class="jcsdl-slider-bottom">',
-							'<div class="jcsdl-slider-bottom-left" />',
-							'<div class="jcsdl-slider-bottom-right" />',
-							'<div class="jcsdl-slider-bottom-line" />',
+							'<div class="jcsdl-slider-bottom-left jcsdl-elements-sprite" />',
+							'<div class="jcsdl-slider-bottom-right jcsdl-elements-sprite" />',
+							'<div class="jcsdl-slider-bottom-line jcsdl-elements-sprite" />',
 						'</div>',
 					'</div>',
 				'</div>',

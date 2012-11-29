@@ -1,4 +1,4 @@
-(function() {
+;(function() {
 	if (!window.jQuery) {
 		var h = document.getElementsByTagName('head'),
 			s = document.createElement('script');

@@ -1,7 +1,7 @@
 /**
  * JCSDL Filter carousel as a separate jQuery plugin for easy use.
  */
-JCSDL.Loader.addComponent(function($) {
+;JCSDL.Loader.addComponent(function($, undefined) {
 
 	var JCSDLCarousel = function($el, options) {
 		var self = this;
@@ -258,7 +258,7 @@ JCSDL.Loader.addComponent(function($) {
 /**
  * JCSDL Number Mask to prevent inputting other characters than digits into number inputs.
  */
-JCSDL.Loader.addComponent(function($) {
+JCSDL.Loader.addComponent(function($, undefined) {
 
 	/**
 	 * @param  {Boolean} fl  Allow floats?
@@ -311,7 +311,7 @@ JCSDL.Loader.addComponent(function($) {
 /**
  * JCSDL Tag Input
  */
-JCSDL.Loader.addComponent(function($) {
+JCSDL.Loader.addComponent(function($, undefined) {
 
 	$.fn.jcsdlOrigVal = $.fn.val;
 	$.fn.val = function(value) {
@@ -322,7 +322,7 @@ JCSDL.Loader.addComponent(function($) {
 		// override only for JCSDL Tag Input field
 		if ($self.data('jcsdlTagInput')) {
 			// setting a value
-			if (typeof(value) !== 'undefined') {
+			if (value !== undefined) {
 				$self.jcsdlOrigVal(value);
 				$self.trigger('change');
 				return $self;
@@ -331,7 +331,7 @@ JCSDL.Loader.addComponent(function($) {
 
 			// reading a value
 			var values = $self.data('jcsdlTagValue');
-			if (typeof(values) !== 'undefined' && values.length > 0) {
+			if (values !== undefined && values.length > 0) {
 				return values.join(',') + $self.jcsdlOrigVal();
 			} else {
 				return $self.jcsdlOrigVal();
@@ -339,7 +339,7 @@ JCSDL.Loader.addComponent(function($) {
 			*/
 		}
 
-		if (typeof(value) !== 'undefined') {
+		if (value !== undefined) {
 			return $self.jcsdlOrigVal(value);
 		}
 
@@ -447,7 +447,7 @@ JCSDL.Loader.addComponent(function($) {
 		tagTpl : [
 			'<span class="jcsdl-tag">',
 				'<span />',
-				'<a href="#" class="jcsdl-tag-remove" title="Remove"></a>',
+				'<a href="#" class="jcsdl-tag-remove jcsdl-elements-sprite" title="Remove"></a>',
 			'</span>'
 		].join(''),
 
@@ -462,7 +462,7 @@ JCSDL.Loader.addComponent(function($) {
 		addTag : function(val) {
 			this.$input.val('');
 
-			if (typeof(val) == 'undefined' || val.length == 0) return;
+			if (val === undefined || val.length == 0) return;
 			var self = this;
 
 			var $tag = $(this.tagTpl);
@@ -524,7 +524,7 @@ JCSDL.Loader.addComponent(function($) {
 			var fixedValues = [];
 			// but look for escaped items as well
 			$.each(values, function(i, val) {
-				if (typeof(val) == 'undefined') return true; // continue
+				if (val === undefined) return true; // continue
 
 				if (val.charAt(val.length - 1) == '\\') {
 					val += self.delimeter + values[i + 1];
@@ -644,7 +644,7 @@ JCSDL.Loader.addComponent(function($) {
 /*
  * REGEXP Tester for JCSDL
  */
-JCSDL.Loader.addComponent(function($) {
+JCSDL.Loader.addComponent(function($, undefined) {
 
 	var JCSDLRegExTester = function($el, config) {
 		var self = this;
@@ -652,7 +652,7 @@ JCSDL.Loader.addComponent(function($) {
 		this.$el = $el;
 		this.exp = new RegExp();
 
-		this.$btn = $('<a href="#" class="jcsdl-regex-tester-button">Test</a>').insertAfter(this.$el);
+		this.$btn = $('<a href="#" class="jcsdl-regex-tester-button jcsdl-elements-sprite">Test</a>').insertAfter(this.$el);
 		
 		this.$wrap = $('<div class="jcsdl-regex-tester"><p>If you want to test whether your regular expression correctly matches the desired strings, click the "Test" button and input example content in the shown field.</p></div>').insertAfter(this.$el).hide();
 		this.$fields = $();
@@ -660,7 +660,7 @@ JCSDL.Loader.addComponent(function($) {
 
 		for(var i = 1; i <= config.fields; i++) {
 			var $field = this.$el.clone().removeClass('orig').show().attr('placeholder', 'Test your expression against this field...');
-			var $fieldWrap = $('<div class="jcsdl-regex-tester-input-wrap" />').html($field).append('<div class="jcsdl-regex-result" />');
+			var $fieldWrap = $('<div class="jcsdl-regex-tester-input-wrap" />').html($field).append('<div class="jcsdl-regex-result jcsdl-elements-sprite" />');
 
 			$fieldWrap.prependTo(this.$wrap);
 
@@ -693,7 +693,7 @@ JCSDL.Loader.addComponent(function($) {
 		val : '',
 		test : function($fields) {
 			var self = this;
-			var $fields = (typeof($fields) !== 'undefined') ? $fields : this.$fields;
+			var $fields = ($fields !== undefined) ? $fields : this.$fields;
 
 			var pattern = this.val.replace(/\//g, '\/');
 			var exp = (this.mode == 'partial') ? '' + pattern + '' : '^' + pattern + '$';
@@ -761,7 +761,7 @@ JCSDL.Loader.addComponent(function($) {
 
 });
 
-JCSDL.Loader.addComponent(function($) {
+JCSDL.Loader.addComponent(function($, undefined) {
 
 	var JCSDLPopup = function(config) {
 		var self = this;
@@ -771,9 +771,9 @@ JCSDL.Loader.addComponent(function($) {
 		this.$overlay = $('<div class="jcsdl-overlay" />').appendTo('body').hide();
 		this.$popup = $([
 			'<div class="jcsdl-popup">',
-				'<div class="jcsdl-popup-header">',
+				'<div class="jcsdl-popup-header jcsdl-elements-sprite">',
 					'<h4 />',
-					'<a href="#" class="jcsdl-popup-close">Close</a>',
+					'<a href="#" class="jcsdl-popup-close jcsdl-elements-sprite">Close</a>',
 				'</div>',
 				'<div class="jcsdl-popup-content" />',
 			'</div>'
@@ -882,6 +882,41 @@ JCSDL.Loader.addComponent(function($) {
 
 });
 
+JCSDL.Loader.addComponent(function($, undefined) {
+
+	/**
+	 * Scrolls the body/document to match the top of the element.
+
+	 * @param  {Number} s[optional] Speed of the animation. Default: 200.
+	 * @param  {Number} m[optional] Margin from the top. Default: 0.
+	 * @param  {Number} c[optional] Callback.
+	 * @return {jQuery}
+	 */
+	$.fn.animateIntoView = function(s, m, c) {
+		s = (s === undefined) ? 200 : s;
+		m = parseInt(m) || 0;
+		c = (typeof(c) == 'function') ? c : function() {};
+		var $t = $(this[0]);
+
+		// break if there's no such item!
+		if (!$t.length) return this;
+
+		// if visible then don't animate
+		var $b = $('body'),
+			$h = $('html'),
+			t = $t.offset().top,
+			vt = parseInt($b.scrollTop()),
+			vb = vt + $(window).height();
+		if (vt < t && t < vb) return this;
+
+		$b.add($h).animate({
+			scrollTop : t - m
+		}, s, c);
+
+		return this;
+	};
+});
+
 /*
  * A hack to load the Google Maps API asynchronously and call the appropriate callback.
  * All needs to be in global namespace.
@@ -948,7 +983,7 @@ var jcsdlMapsInit = function() {
 /*
  * Extend some prototypes.
  */
-JCSDL.Loader.addComponent(function($) {
+JCSDL.Loader.addComponent(function($, undefined) {
 
 	$.extend(String.prototype, {
 		truncate : function(l, a, h) {
@@ -962,6 +997,9 @@ JCSDL.Loader.addComponent(function($) {
 			}
 
 			return s + a;
+		},
+		isNumeric : function() {
+			return (!isNaN(parseInt(this.valueOf())));
 		},
 		escapeHtml : function() {
 			return this.replace(/&/g, '&amp;')
@@ -989,8 +1027,8 @@ JCSDL.Loader.addComponent(function($) {
 		    var number = this.toString().replace(/[^0-9+\-Ee.]/g, '');
 		    var n = !isFinite(+number) ? 0 : +number,
 		        prec = !isFinite(+decimals) ? 0 : Math.abs(decimals),
-		        sep = (typeof thousands_sep === 'undefined') ? ',' : thousands_sep,
-		        dec = (typeof dec_point === 'undefined') ? '.' : dec_point,
+		        sep = (thousands_sep === undefined) ? ',' : thousands_sep,
+		        dec = (dec_point === undefined) ? '.' : dec_point,
 		        s = '',
 		        toFixedFix = function (n, prec) {
 		            var k = Math.pow(10, prec);
