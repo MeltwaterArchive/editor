@@ -496,6 +496,17 @@
 				prev = token;
 			});
 
+			var missingFilters = [];
+			$.each(filterIds, function(i, id) {
+				if ($.inArray(id, filters) == -1) {
+					missingFilters.push(id);
+				}
+			});
+
+			if (missingFilters.length) {
+				throw new JCSDL.LogicValidationException('You haven\'t used some of the filters in your logical expression (with ID\'s: "' + missingFilters.join('", "') + '"). All filters need to be used!');
+			}
+
 			if (level !== 0) {
 				throw new JCSDL.LogicValidationException('You have\'t closed some parentheses!');
 			}
