@@ -1,4 +1,4 @@
-;JCSDL = {}; // register namespace
+JCSDL = {}; // register namespace
 
 (function(window, undefined) {
 

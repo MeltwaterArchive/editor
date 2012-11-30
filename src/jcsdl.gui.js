@@ -1,4 +1,4 @@
-;JCSDL.Loader.addComponent(function($, undefined) {
+JCSDL.Loader.addComponent(function($, undefined) {
 
 	/**
 	 * DataSift Query Editor (JCSDL).

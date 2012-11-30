@@ -1,4 +1,4 @@
-;JCSDL.Loader.addComponent(function($, undefined) {
+JCSDL.Loader.addComponent(function($, undefined) {
 
 	this.GUILogic = function(gui, logic) {
 		var self = this;

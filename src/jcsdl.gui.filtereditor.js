@@ -1,4 +1,4 @@
-;JCSDL.Loader.addComponent(function($, undefined) {
+JCSDL.Loader.addComponent(function($, undefined) {
 
 	/**
 	 * Single filter editor.

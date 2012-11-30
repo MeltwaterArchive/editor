@@ -1,7 +1,7 @@
 /**
  * JCSDL Filter carousel as a separate jQuery plugin for easy use.
  */
-;JCSDL.Loader.addComponent(function($, undefined) {
+JCSDL.Loader.addComponent(function($, undefined) {
 
 	var JCSDLCarousel = function($el, options) {
 		var self = this;

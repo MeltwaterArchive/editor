@@ -1,4 +1,4 @@
-;JCSDL.Loader.addComponent(function($, undefined) {
+JCSDL.Loader.addComponent(function($, undefined) {
 
 	/**
 	 * JCSDL Parser to be used with DataSift's Query Editor.
@@ -338,7 +338,7 @@
 				} else if (operator == 'in') {
 					value = value.split(',');
 					$.each(value, function(i, val) {
-						value[i] == parseInt(val);
+						value[i] = parseInt(val);
 					});
 					parsedValue = '[' + value.join(',') + ']';
 
