@@ -311,8 +311,8 @@ JCSDL.Loader.addComponent(function($, undefined) {
 			$gui.sortable({
 				cursor : 'move',
 				placeholder : 'jcsdl-token-ph',
-				containment : this.$editor,
-				appendTo : this.$editor,
+				containment : $view,
+				appendTo : $view,
 				helper : 'clone',
 				tolerance : 'intersect',
 				start : function(ev, ui) {
