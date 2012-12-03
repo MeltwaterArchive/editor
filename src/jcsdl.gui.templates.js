@@ -37,8 +37,8 @@ JCSDL.Loader.addComponent(function($, undefined) {
 								'<span class="jcsdl-logic-help" data-text-general="Use the advanced option to create logical expressions." data-text-gui="Drag and drop the tiles to create an advanced query." data-text-manual="Type a logical expression to create an advanced query.">?</span>',
 							'</a>',
 
-							'<a href="#" class="jcsdl-bordered jcsdl-filters-logic-option jcsdl-advanced-option jcsdl-advanced-add-brackets active">+ [ ]</a>',
-							'<a href="#" class="jcsdl-bordered jcsdl-filters-logic-option jcsdl-advanced-option jcsdl-advanced-manual-edit active" data-text-gui="Manual Edit" data-text-manual="Graphical Edit">Manual Edit</a>',
+							'<a href="#" class="jcsdl-bordered jcsdl-filters-logic-option jcsdl-advanced-option jcsdl-advanced-add-brackets">+ [ ]</a>',
+							'<a href="#" class="jcsdl-bordered jcsdl-filters-logic-option jcsdl-advanced-option jcsdl-advanced-manual-edit" data-text-gui="Manual Edit" data-text-manual="Graphical Edit">Manual Edit</a>',
 						'</div>',
 
 						'<div class="jcsdl-mainview-actions">',
