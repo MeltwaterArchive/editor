@@ -31,6 +31,8 @@ $imgSuccess = Packager::copyImg(array(
 	'src/img/elements@2x.png',
 	'src/img/icons-sprite-fields.png',
 	'src/img/icons-sprite-fields@2x.png',
+	'src/img/icons-sprite-fields-more.png',
+	'src/img/icons-sprite-fields-more@2x.png',
 	'src/img/icons-sprite-operators.png',
 	'src/img/icons-sprite-operators@2x.png',
 	'src/img/icons-sprite-other.png',
