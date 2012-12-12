@@ -135,6 +135,28 @@ $loader : 'img/loader.gif';
 	&:hover {@include opacity(0.9);}
 }
 
+a.jcsdl-btn {
+	display: block; overflow: hidden; padding: 8px; line-height: 14px;
+	float: left; margin-right: 8px;
+	border: 1px solid $borderColorInput; @include rounded(3px);
+	color: $color; font-weight: bold;
+
+	&.active {
+		border-color: $colorOrange;
+		color: $colorOrange;
+	}
+
+	&.disabled {
+		border-color: $borderColor !important;
+		color: $borderColorText !important;
+		@include opacity(0.65);
+	}
+
+	&:hover {
+		color: $colorOrange;
+	}
+}
+
 .jcsdl-header {
 	overflow: hidden;
 	padding: 15px; padding-bottom: 0;
@@ -193,11 +215,6 @@ $loader : 'img/loader.gif';
 }
 
 .jcsdl-mainview-action {
-	float: left; margin-right: 8px;
-	display: block; overflow: hidden;
-	line-height: 14px;
-	color: $color; font-weight: bold;
-
 	.jcsdl-picto {
 		float: left; margin-right: 8px;
 		display: block; width: 14px; height: 14px;
@@ -207,8 +224,6 @@ $loader : 'img/loader.gif';
 	&.jcsdl-add-filter {margin-right: 0;}
 
 	&:hover {
-		color: $colorOrange !important;
-
 		&.jcsdl-add-filter .jcsdl-picto {background-position: -115px -89px;}
 	}
 }
@@ -246,22 +261,6 @@ $loader : 'img/loader.gif';
 
 	&:before, &:after {content: ""; display: table;}
 	&:after {clear: both;}
-
-	.jcsdl-advanced-options {
-		float: right;
-		color: $colorLight;
-
-		span {float: left; margin: 0 4px;}
-
-		.jcsdl-logic-token {
-			width: 32px; height: 32px; line-height: 32px; margin: 0 4px;
-			font-size: 0.85em;
-
-			&.manual-edit {
-				width: auto; padding: 0 8px; margin-left: 15px; margin-right: 0;
-			}
-		}
-	}
 
 	li {list-style: none;}
 	.ui-sortable-helper {@include dropShadow(-2px, 2px, 4px, 0, 0.1); @include rounded(3px);}
@@ -392,21 +391,9 @@ $loader : 'img/loader.gif';
 }
 
 a.jcsdl-filters-logic-option {
-	margin-right: 8px;
 	padding: 8px 12px;
-	border: 1px solid $borderColor;
-	color: $borderColorText;
-
-	&.active {
-		border-color: $colorOrange;
-		color: $colorOrange;
-	}
 
 	&.disabled {
-		border-color: $borderColor;
-		color: $borderColorText;
-		@include opacity(0.65);
-
 		.jcsdl-logic-help {
 			color: $borderColorText;
 		}
@@ -417,7 +404,7 @@ a.jcsdl-filters-logic-option {
 
 .jcsdl-logic-help {
 	display: inline-block; width: 18px; height: 18px; line-height: 18px;
-	margin-left: 8px;
+	margin: -8px 0; margin-left: 8px;
 	border: 1px solid $borderColor; @include rounded(3px);
 	text-align: center; color: $borderColorText;
 }

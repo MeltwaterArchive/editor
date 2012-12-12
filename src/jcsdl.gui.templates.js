@@ -30,19 +30,19 @@ JCSDL.Loader.addComponent(function($, undefined) {
 
 					'<div class="jcsdl-row">',
 						'<div class="jcsdl-filters-logic">',
-							'<a href="#" class="jcsdl-bordered jcsdl-filters-logic-option jcsdl-and active disabled" data-logic="AND" data-text-long="ALL of the following" data-text-short="ALL">ALL of the following</a>',
-							'<a href="#" class="jcsdl-bordered jcsdl-filters-logic-option jcsdl-or disabled" data-logic="OR" data-text-long="ANY of the following" data-text-short="ANY">ANY of the following</a>',
-							'<a href="#" class="jcsdl-bordered jcsdl-filters-logic-option jcsdl-advanced disabled" data-logic="ADVANCED">',
+							'<a href="#" class="jcsdl-btn jcsdl-filters-logic-option jcsdl-and active disabled" data-logic="AND" data-text-long="ALL of the following" data-text-short="ALL">ALL of the following</a>',
+							'<a href="#" class="jcsdl-btn jcsdl-filters-logic-option jcsdl-or disabled" data-logic="OR" data-text-long="ANY of the following" data-text-short="ANY">ANY of the following</a>',
+							'<a href="#" class="jcsdl-btn jcsdl-filters-logic-option jcsdl-advanced disabled" data-logic="ADVANCED">',
 								'ADVANCED',
 								'<span class="jcsdl-logic-help" data-text-general="Use the advanced option to create logical expressions." data-text-gui="Drag and drop the tiles to create an advanced query." data-text-manual="Type a logical expression to create an advanced query.">?</span>',
 							'</a>',
 
-							'<a href="#" class="jcsdl-bordered jcsdl-filters-logic-option jcsdl-advanced-option jcsdl-advanced-add-brackets">+ [ ]</a>',
-							'<a href="#" class="jcsdl-bordered jcsdl-filters-logic-option jcsdl-advanced-option jcsdl-advanced-manual-edit" data-text-gui="Manual Edit" data-text-manual="Graphical Edit">Manual Edit</a>',
+							'<a href="#" class="jcsdl-btn jcsdl-filters-logic-option jcsdl-advanced-option jcsdl-advanced-add-brackets">+ [ ]</a>',
+							'<a href="#" class="jcsdl-btn jcsdl-filters-logic-option jcsdl-advanced-option jcsdl-advanced-manual-edit" data-text-gui="Manual Edit" data-text-manual="Graphical Edit">Manual Edit</a>',
 						'</div>',
 
 						'<div class="jcsdl-mainview-actions">',
-							'<a href="#" class="jcsdl-bordered jcsdl-mainview-action jcsdl-add-filter">',
+							'<a href="#" class="jcsdl-btn jcsdl-mainview-action jcsdl-add-filter">',
 								'<div class="jcsdl-picto jcsdl-elements-sprite"></div>',
 								'Create New Filter',
 							'</a>',
@@ -57,8 +57,7 @@ JCSDL.Loader.addComponent(function($, undefined) {
 					'</div>',
 				'</div>',
 
-				'<div class="jcsdl-filters-list expanded">',
-				'</div>',
+				'<div class="jcsdl-filters-list expanded" />',
 
 				'<div class="jcsdl-footer">',
 					'<div class="jcsdl-actions">',
