@@ -1376,12 +1376,17 @@ a.jcsdl-filters-logic-option {
   background-repeat: no-repeat;
   /* default icon set (original) */
   background-image: url("img/icons-sprite-fields.png?11");
-  /* additional icon set (demographics, bitly, wiki - dbw) */ }
+  /* additional icon set (demographics, bitly, wiki - dbw) */
+  /* additional icon set (links, opengraph, newscred - lon) */ }
   .jcsdl-icon.field.icon-twitter_activity, .jcsdl-icon.field.icon-location_by_country, .jcsdl-icon.field.icon-basic_demographics, .jcsdl-icon.field.icon-interests, .jcsdl-icon.field.icon-twitter_influence, .jcsdl-icon.field.icon-first_language, .jcsdl-icon.field.icon-number_of_accounts_followed, .jcsdl-icon.field.icon-professions, .jcsdl-icon.field.icon-usa, .jcsdl-icon.field.icon-city, .jcsdl-icon.field.icon-services_and_technologies, .jcsdl-icon.field.icon-large_accounts_followed, .jcsdl-icon.field.icon-twitter_settings, .jcsdl-icon.field.icon-older_than, .jcsdl-icon.field.icon-younger_than, .jcsdl-icon.field.icon-ms_clothes, .jcsdl-icon.field.icon-ms_shop, .jcsdl-icon.field.icon-ms_food, .jcsdl-icon.field.icon-useragent, .jcsdl-icon.field.icon-url_hash, .jcsdl-icon.field.icon-share_hash, .jcsdl-icon.field.icon-cname, .jcsdl-icon.field.icon-ref_url, .jcsdl-icon.field.icon-ref_domain, .jcsdl-icon.field.icon-country_code, .jcsdl-icon.field.icon-geo_region_code, .jcsdl-icon.field.icon-geo_region, .jcsdl-icon.field.icon-timezone, .jcsdl-icon.field.icon-contributions, .jcsdl-icon.field.icon-talkpage, .jcsdl-icon.field.icon-diff, .jcsdl-icon.field.icon-changetype, .jcsdl-icon.field.icon-changeadded, .jcsdl-icon.field.icon-changeremoved, .jcsdl-icon.field.icon-diff-from, .jcsdl-icon.field.icon-diff-to, .jcsdl-icon.field.icon-externallinks, .jcsdl-icon.field.icon-namespace, .jcsdl-icon.field.icon-namespacecode, .jcsdl-icon.field.icon-newlength, .jcsdl-icon.field.icon-oldlength, .jcsdl-icon.field.icon-pageid, .jcsdl-icon.field.icon-parentid, .jcsdl-icon.field.icon-relationship, .jcsdl-icon.field.icon-work-status {
     background-image: url("img/icons-sprite-fields-dbw.png"); }
+  .jcsdl-icon.field.icon-normalized_url, .jcsdl-icon.field.icon-hops, .jcsdl-icon.field.icon-http_code, .jcsdl-icon.field.icon-metatags, .jcsdl-icon.field.icon-charset, .jcsdl-icon.field.icon-newskeywords, .jcsdl-icon.field.icon-standout, .jcsdl-icon.field.icon-site_name, .jcsdl-icon.field.icon-email, .jcsdl-icon.field.icon-phone_number, .jcsdl-icon.field.icon-fax_number, .jcsdl-icon.field.icon-street_address, .jcsdl-icon.field.icon-locality, .jcsdl-icon.field.icon-postal_code, .jcsdl-icon.field.icon-activity, .jcsdl-icon.field.icon-sport, .jcsdl-icon.field.icon-bar, .jcsdl-icon.field.icon-company, .jcsdl-icon.field.icon-cafe, .jcsdl-icon.field.icon-hotel, .jcsdl-icon.field.icon-restaurant, .jcsdl-icon.field.icon-cause, .jcsdl-icon.field.icon-sports_league, .jcsdl-icon.field.icon-sports_team, .jcsdl-icon.field.icon-band, .jcsdl-icon.field.icon-government, .jcsdl-icon.field.icon-non_profit, .jcsdl-icon.field.icon-school, .jcsdl-icon.field.icon-university, .jcsdl-icon.field.icon-actor, .jcsdl-icon.field.icon-athlete, .jcsdl-icon.field.icon-author, .jcsdl-icon.field.icon-director, .jcsdl-icon.field.icon-musician, .jcsdl-icon.field.icon-politician, .jcsdl-icon.field.icon-public_figure, .jcsdl-icon.field.icon-landmark, .jcsdl-icon.field.icon-state_province, .jcsdl-icon.field.icon-album, .jcsdl-icon.field.icon-book, .jcsdl-icon.field.icon-drink, .jcsdl-icon.field.icon-food, .jcsdl-icon.field.icon-game, .jcsdl-icon.field.icon-movie, .jcsdl-icon.field.icon-product, .jcsdl-icon.field.icon-song, .jcsdl-icon.field.icon-tv_show, .jcsdl-icon.field.icon-blog, .jcsdl-icon.field.icon-website, .jcsdl-icon.field.icon-fulltext, .jcsdl-icon.field.icon-circulation, .jcsdl-icon.field.icon-company_type, .jcsdl-icon.field.icon-founded, .jcsdl-icon.field.icon-media_type, .jcsdl-icon.field.icon-source_name, .jcsdl-icon.field.icon-card, .jcsdl-icon.field.icon-site, .jcsdl-icon.field.icon-site_id, .jcsdl-icon.field.icon-creator, .jcsdl-icon.field.icon-creator_id, .jcsdl-icon.field.icon-image_width, .jcsdl-icon.field.icon-image_height, .jcsdl-icon.field.icon-twitter, .jcsdl-icon.field.icon-player_width, .jcsdl-icon.field.icon-player_height, .jcsdl-icon.field.icon-player_stream, .jcsdl-icon.field.icon-player_stream_content_type, .jcsdl-icon.field.icon-player, .jcsdl-icon.field.icon-mention_ids, .jcsdl-icon.field.icon-status, .jcsdl-icon.field.icon-user_verified, .jcsdl-icon.field.icon-confidence, .jcsdl-icon.field.icon-entities_name, .jcsdl-icon.field.icon-entities_type {
+    background-image: url("img/icons-sprite-fields-lon.png"); }
 
 .jcsdl-icon.field {
-  /* more */ }
+  /* dbw */
+  /* lon */
+  /* missing: region, keywords, name */ }
   .jcsdl-icon.field.icon-geo {
     background-position: 0 0; }
     .jcsdl-icon.field.icon-geo.selected {
@@ -1926,6 +1931,302 @@ a.jcsdl-filters-logic-option {
     background-position: -80px -720px; }
     .jcsdl-icon.field.icon-work-status.selected {
       background-position: 0 -720px; }
+  .jcsdl-icon.field.icon-normalized_url {
+    background-position: -110px -20px; }
+    .jcsdl-icon.field.icon-normalized_url.selected {
+      background-position: -30px -20px; }
+  .jcsdl-icon.field.icon-hops {
+    background-position: -270px -20px; }
+    .jcsdl-icon.field.icon-hops.selected {
+      background-position: -190px -20px; }
+  .jcsdl-icon.field.icon-http_code {
+    background-position: -430px -20px; }
+    .jcsdl-icon.field.icon-http_code.selected {
+      background-position: -350px -20px; }
+  .jcsdl-icon.field.icon-metatags {
+    background-position: -590px -20px; }
+    .jcsdl-icon.field.icon-metatags.selected {
+      background-position: -510px -20px; }
+  .jcsdl-icon.field.icon-charset {
+    background-position: -750px -20px; }
+    .jcsdl-icon.field.icon-charset.selected {
+      background-position: -670px -20px; }
+  .jcsdl-icon.field.icon-newskeywords {
+    background-position: -110px -100px; }
+    .jcsdl-icon.field.icon-newskeywords.selected {
+      background-position: -30px -100px; }
+  .jcsdl-icon.field.icon-standout {
+    background-position: -270px -100px; }
+    .jcsdl-icon.field.icon-standout.selected {
+      background-position: -190px -100px; }
+  .jcsdl-icon.field.icon-site_name {
+    background-position: -430px -100px; }
+    .jcsdl-icon.field.icon-site_name.selected {
+      background-position: -350px -100px; }
+  .jcsdl-icon.field.icon-email {
+    background-position: -590px -100px; }
+    .jcsdl-icon.field.icon-email.selected {
+      background-position: -510px -100px; }
+  .jcsdl-icon.field.icon-phone_number {
+    background-position: -750px -100px; }
+    .jcsdl-icon.field.icon-phone_number.selected {
+      background-position: -670px -100px; }
+  .jcsdl-icon.field.icon-fax_number {
+    background-position: -110px -180px; }
+    .jcsdl-icon.field.icon-fax_number.selected {
+      background-position: -30px -180px; }
+  .jcsdl-icon.field.icon-street_address {
+    background-position: -270px -180px; }
+    .jcsdl-icon.field.icon-street_address.selected {
+      background-position: -190px -180px; }
+  .jcsdl-icon.field.icon-locality {
+    background-position: -110px -340px; }
+    .jcsdl-icon.field.icon-locality.selected {
+      background-position: -30px -340px; }
+  .jcsdl-icon.field.icon-postal_code {
+    background-position: -270px -340px; }
+    .jcsdl-icon.field.icon-postal_code.selected {
+      background-position: -190px -340px; }
+  .jcsdl-icon.field.icon-activity {
+    background-position: -430px -340px; }
+    .jcsdl-icon.field.icon-activity.selected {
+      background-position: -350px -340px; }
+  .jcsdl-icon.field.icon-sport {
+    background-position: -590px -340px; }
+    .jcsdl-icon.field.icon-sport.selected {
+      background-position: -510px -340px; }
+  .jcsdl-icon.field.icon-bar {
+    background-position: -750px -340px; }
+    .jcsdl-icon.field.icon-bar.selected {
+      background-position: -670px -340px; }
+  .jcsdl-icon.field.icon-company {
+    background-position: -110px -420px; }
+    .jcsdl-icon.field.icon-company.selected {
+      background-position: -30px -420px; }
+  .jcsdl-icon.field.icon-cafe {
+    background-position: -270px -420px; }
+    .jcsdl-icon.field.icon-cafe.selected {
+      background-position: -190px -420px; }
+  .jcsdl-icon.field.icon-hotel {
+    background-position: -430px -420px; }
+    .jcsdl-icon.field.icon-hotel.selected {
+      background-position: -350px -420px; }
+  .jcsdl-icon.field.icon-restaurant {
+    background-position: -590px -420px; }
+    .jcsdl-icon.field.icon-restaurant.selected {
+      background-position: -510px -420px; }
+  .jcsdl-icon.field.icon-cause {
+    background-position: -750px -420px; }
+    .jcsdl-icon.field.icon-cause.selected {
+      background-position: -670px -420px; }
+  .jcsdl-icon.field.icon-sports_league {
+    background-position: -110px -500px; }
+    .jcsdl-icon.field.icon-sports_league.selected {
+      background-position: -30px -500px; }
+  .jcsdl-icon.field.icon-sports_team {
+    background-position: -270px -500px; }
+    .jcsdl-icon.field.icon-sports_team.selected {
+      background-position: -190px -500px; }
+  .jcsdl-icon.field.icon-band {
+    background-position: -430px -500px; }
+    .jcsdl-icon.field.icon-band.selected {
+      background-position: -350px -500px; }
+  .jcsdl-icon.field.icon-government {
+    background-position: -590px -500px; }
+    .jcsdl-icon.field.icon-government.selected {
+      background-position: -510px -500px; }
+  .jcsdl-icon.field.icon-non_profit {
+    background-position: -750px -500px; }
+    .jcsdl-icon.field.icon-non_profit.selected {
+      background-position: -670px -500px; }
+  .jcsdl-icon.field.icon-school {
+    background-position: -110px -580px; }
+    .jcsdl-icon.field.icon-school.selected {
+      background-position: -30px -580px; }
+  .jcsdl-icon.field.icon-university {
+    background-position: -270px -580px; }
+    .jcsdl-icon.field.icon-university.selected {
+      background-position: -190px -580px; }
+  .jcsdl-icon.field.icon-actor {
+    background-position: -430px -580px; }
+    .jcsdl-icon.field.icon-actor.selected {
+      background-position: -350px -580px; }
+  .jcsdl-icon.field.icon-athlete {
+    background-position: -590px -580px; }
+    .jcsdl-icon.field.icon-athlete.selected {
+      background-position: -510px -580px; }
+  .jcsdl-icon.field.icon-author {
+    background-position: -750px -580px; }
+    .jcsdl-icon.field.icon-author.selected {
+      background-position: -670px -580px; }
+  .jcsdl-icon.field.icon-director {
+    background-position: -110px -660px; }
+    .jcsdl-icon.field.icon-director.selected {
+      background-position: -30px -660px; }
+  .jcsdl-icon.field.icon-musician {
+    background-position: -270px -660px; }
+    .jcsdl-icon.field.icon-musician.selected {
+      background-position: -190px -660px; }
+  .jcsdl-icon.field.icon-politician {
+    background-position: -430px -660px; }
+    .jcsdl-icon.field.icon-politician.selected {
+      background-position: -350px -660px; }
+  .jcsdl-icon.field.icon-public_figure {
+    background-position: -590px -660px; }
+    .jcsdl-icon.field.icon-public_figure.selected {
+      background-position: -510px -660px; }
+  .jcsdl-icon.field.icon-landmark {
+    background-position: -750px -660px; }
+    .jcsdl-icon.field.icon-landmark.selected {
+      background-position: -670px -660px; }
+  .jcsdl-icon.field.icon-state_province {
+    background-position: -110px -740px; }
+    .jcsdl-icon.field.icon-state_province.selected {
+      background-position: -30px -740px; }
+  .jcsdl-icon.field.icon-album {
+    background-position: -270px -740px; }
+    .jcsdl-icon.field.icon-album.selected {
+      background-position: -190px -740px; }
+  .jcsdl-icon.field.icon-book {
+    background-position: -430px -740px; }
+    .jcsdl-icon.field.icon-book.selected {
+      background-position: -350px -740px; }
+  .jcsdl-icon.field.icon-drink {
+    background-position: -590px -740px; }
+    .jcsdl-icon.field.icon-drink.selected {
+      background-position: -510px -740px; }
+  .jcsdl-icon.field.icon-food {
+    background-position: -750px -740px; }
+    .jcsdl-icon.field.icon-food.selected {
+      background-position: -670px -740px; }
+  .jcsdl-icon.field.icon-game {
+    background-position: -110px -820px; }
+    .jcsdl-icon.field.icon-game.selected {
+      background-position: -30px -820px; }
+  .jcsdl-icon.field.icon-movie {
+    background-position: -270px -820px; }
+    .jcsdl-icon.field.icon-movie.selected {
+      background-position: -190px -820px; }
+  .jcsdl-icon.field.icon-product {
+    background-position: -430px -820px; }
+    .jcsdl-icon.field.icon-product.selected {
+      background-position: -350px -820px; }
+  .jcsdl-icon.field.icon-song {
+    background-position: -590px -820px; }
+    .jcsdl-icon.field.icon-song.selected {
+      background-position: -510px -820px; }
+  .jcsdl-icon.field.icon-tv_show {
+    background-position: -750px -820px; }
+    .jcsdl-icon.field.icon-tv_show.selected {
+      background-position: -670px -820px; }
+  .jcsdl-icon.field.icon-blog {
+    background-position: -110px -900px; }
+    .jcsdl-icon.field.icon-blog.selected {
+      background-position: -30px -900px; }
+  .jcsdl-icon.field.icon-website {
+    background-position: -270px -900px; }
+    .jcsdl-icon.field.icon-website.selected {
+      background-position: -190px -900px; }
+  .jcsdl-icon.field.icon-fulltext {
+    background-position: -110px -1060px; }
+    .jcsdl-icon.field.icon-fulltext.selected {
+      background-position: -30px -1060px; }
+  .jcsdl-icon.field.icon-circulation {
+    background-position: -270px -1060px; }
+    .jcsdl-icon.field.icon-circulation.selected {
+      background-position: -190px -1060px; }
+  .jcsdl-icon.field.icon-company_type {
+    background-position: -430px -1060px; }
+    .jcsdl-icon.field.icon-company_type.selected {
+      background-position: -350px -1060px; }
+  .jcsdl-icon.field.icon-founded {
+    background-position: -590px -1060px; }
+    .jcsdl-icon.field.icon-founded.selected {
+      background-position: -510px -1060px; }
+  .jcsdl-icon.field.icon-media_type {
+    background-position: -750px -1060px; }
+    .jcsdl-icon.field.icon-media_type.selected {
+      background-position: -670px -1060px; }
+  .jcsdl-icon.field.icon-source_name {
+    background-position: -110px -1220px; }
+    .jcsdl-icon.field.icon-source_name.selected {
+      background-position: -30px -1220px; }
+  .jcsdl-icon.field.icon-card {
+    background-position: -110px -1380px; }
+    .jcsdl-icon.field.icon-card.selected {
+      background-position: -30px -1380px; }
+  .jcsdl-icon.field.icon-site {
+    background-position: -270px -1380px; }
+    .jcsdl-icon.field.icon-site.selected {
+      background-position: -190px -1380px; }
+  .jcsdl-icon.field.icon-site_id {
+    background-position: -430px -1380px; }
+    .jcsdl-icon.field.icon-site_id.selected {
+      background-position: -350px -1380px; }
+  .jcsdl-icon.field.icon-creator {
+    background-position: -590px -1380px; }
+    .jcsdl-icon.field.icon-creator.selected {
+      background-position: -510px -1380px; }
+  .jcsdl-icon.field.icon-creator_id {
+    background-position: -750px -1380px; }
+    .jcsdl-icon.field.icon-creator_id.selected {
+      background-position: -670px -1380px; }
+  .jcsdl-icon.field.icon-image_width {
+    background-position: -110px -1460px; }
+    .jcsdl-icon.field.icon-image_width.selected {
+      background-position: -30px -1460px; }
+  .jcsdl-icon.field.icon-image_height {
+    background-position: -270px -1460px; }
+    .jcsdl-icon.field.icon-image_height.selected {
+      background-position: -190px -1460px; }
+  .jcsdl-icon.field.icon-twitter {
+    background-position: -430px -1460px; }
+    .jcsdl-icon.field.icon-twitter.selected {
+      background-position: -350px -1460px; }
+  .jcsdl-icon.field.icon-player_width {
+    background-position: -110px -1620px; }
+    .jcsdl-icon.field.icon-player_width.selected {
+      background-position: -30px -1620px; }
+  .jcsdl-icon.field.icon-player_height {
+    background-position: -270px -1620px; }
+    .jcsdl-icon.field.icon-player_height.selected {
+      background-position: -190px -1620px; }
+  .jcsdl-icon.field.icon-player_stream {
+    background-position: -430px -1620px; }
+    .jcsdl-icon.field.icon-player_stream.selected {
+      background-position: -350px -1620px; }
+  .jcsdl-icon.field.icon-player_stream_content_type {
+    background-position: -590px -1620px; }
+    .jcsdl-icon.field.icon-player_stream_content_type.selected {
+      background-position: -510px -1620px; }
+  .jcsdl-icon.field.icon-player {
+    background-position: -750px -1620px; }
+    .jcsdl-icon.field.icon-player.selected {
+      background-position: -670px -1620px; }
+  .jcsdl-icon.field.icon-mention_ids {
+    background-position: -110px -1780px; }
+    .jcsdl-icon.field.icon-mention_ids.selected {
+      background-position: -30px -1780px; }
+  .jcsdl-icon.field.icon-status {
+    background-position: -270px -1780px; }
+    .jcsdl-icon.field.icon-status.selected {
+      background-position: -190px -1780px; }
+  .jcsdl-icon.field.icon-user_verified {
+    background-position: -430px -1780px; }
+    .jcsdl-icon.field.icon-user_verified.selected {
+      background-position: -350px -1780px; }
+  .jcsdl-icon.field.icon-confidence {
+    background-position: -110px -1940px; }
+    .jcsdl-icon.field.icon-confidence.selected {
+      background-position: -30px -1940px; }
+  .jcsdl-icon.field.icon-entities_name {
+    background-position: -110px -2100px; }
+    .jcsdl-icon.field.icon-entities_name.selected {
+      background-position: -30px -2100px; }
+  .jcsdl-icon.field.icon-entities_type {
+    background-position: -270px -2100px; }
+    .jcsdl-icon.field.icon-entities_type.selected {
+      background-position: -190px -2100px; }
 
 .jcsdl-icon.input {
   background: url("img/icons-sprite-other.png?3") no-repeat 0 0; }
@@ -2403,11 +2704,19 @@ a.jcsdl-filters-logic-option {
     -ie-background-size: 800px 1440px;
     -o-background-size: 800px 1440px;
     -webkit-background-size: 800px 1440px;
-    background-size: 800px 1440px; }
+    background-size: 800px 1440px;
+    /* additional icon set (links, opengraph, newscred - lon) */ }
     .jcsdl-icon.field.icon-twitter_activity, .jcsdl-icon.field.icon-location_by_country, .jcsdl-icon.field.icon-basic_demographics, .jcsdl-icon.field.icon-interests, .jcsdl-icon.field.icon-twitter_influence, .jcsdl-icon.field.icon-first_language, .jcsdl-icon.field.icon-number_of_accounts_followed, .jcsdl-icon.field.icon-professions, .jcsdl-icon.field.icon-usa, .jcsdl-icon.field.icon-city, .jcsdl-icon.field.icon-services_and_technologies, .jcsdl-icon.field.icon-large_accounts_followed, .jcsdl-icon.field.icon-twitter_settings, .jcsdl-icon.field.icon-older_than, .jcsdl-icon.field.icon-younger_than, .jcsdl-icon.field.icon-ms_clothes, .jcsdl-icon.field.icon-ms_shop, .jcsdl-icon.field.icon-ms_food, .jcsdl-icon.field.icon-useragent, .jcsdl-icon.field.icon-url_hash, .jcsdl-icon.field.icon-share_hash, .jcsdl-icon.field.icon-cname, .jcsdl-icon.field.icon-ref_url, .jcsdl-icon.field.icon-ref_domain, .jcsdl-icon.field.icon-country_code, .jcsdl-icon.field.icon-geo_region_code, .jcsdl-icon.field.icon-geo_region, .jcsdl-icon.field.icon-timezone, .jcsdl-icon.field.icon-contributions, .jcsdl-icon.field.icon-talkpage, .jcsdl-icon.field.icon-diff, .jcsdl-icon.field.icon-changetype, .jcsdl-icon.field.icon-changeadded, .jcsdl-icon.field.icon-changeremoved, .jcsdl-icon.field.icon-diff-from, .jcsdl-icon.field.icon-diff-to, .jcsdl-icon.field.icon-externallinks, .jcsdl-icon.field.icon-namespace, .jcsdl-icon.field.icon-namespacecode, .jcsdl-icon.field.icon-newlength, .jcsdl-icon.field.icon-oldlength, .jcsdl-icon.field.icon-pageid, .jcsdl-icon.field.icon-parentid, .jcsdl-icon.field.icon-relationship, .jcsdl-icon.field.icon-work-status {
       background-image: url("img/icons-sprite-fields-dbw@2x.png");
       -moz-background-size: 801px 720px;
       -ie-background-size: 801px 720px;
       -o-background-size: 801px 720px;
       -webkit-background-size: 801px 720px;
-      background-size: 801px 720px; } }
+      background-size: 801px 720px; }
+    .jcsdl-icon.field.icon-normalized_url, .jcsdl-icon.field.icon-hops, .jcsdl-icon.field.icon-http_code, .jcsdl-icon.field.icon-metatags, .jcsdl-icon.field.icon-charset, .jcsdl-icon.field.icon-newskeywords, .jcsdl-icon.field.icon-standout, .jcsdl-icon.field.icon-site_name, .jcsdl-icon.field.icon-email, .jcsdl-icon.field.icon-phone_number, .jcsdl-icon.field.icon-fax_number, .jcsdl-icon.field.icon-street_address, .jcsdl-icon.field.icon-locality, .jcsdl-icon.field.icon-postal_code, .jcsdl-icon.field.icon-activity, .jcsdl-icon.field.icon-sport, .jcsdl-icon.field.icon-bar, .jcsdl-icon.field.icon-company, .jcsdl-icon.field.icon-cafe, .jcsdl-icon.field.icon-hotel, .jcsdl-icon.field.icon-restaurant, .jcsdl-icon.field.icon-cause, .jcsdl-icon.field.icon-sports_league, .jcsdl-icon.field.icon-sports_team, .jcsdl-icon.field.icon-band, .jcsdl-icon.field.icon-government, .jcsdl-icon.field.icon-non_profit, .jcsdl-icon.field.icon-school, .jcsdl-icon.field.icon-university, .jcsdl-icon.field.icon-actor, .jcsdl-icon.field.icon-athlete, .jcsdl-icon.field.icon-author, .jcsdl-icon.field.icon-director, .jcsdl-icon.field.icon-musician, .jcsdl-icon.field.icon-politician, .jcsdl-icon.field.icon-public_figure, .jcsdl-icon.field.icon-landmark, .jcsdl-icon.field.icon-state_province, .jcsdl-icon.field.icon-album, .jcsdl-icon.field.icon-book, .jcsdl-icon.field.icon-drink, .jcsdl-icon.field.icon-food, .jcsdl-icon.field.icon-game, .jcsdl-icon.field.icon-movie, .jcsdl-icon.field.icon-product, .jcsdl-icon.field.icon-song, .jcsdl-icon.field.icon-tv_show, .jcsdl-icon.field.icon-blog, .jcsdl-icon.field.icon-website, .jcsdl-icon.field.icon-fulltext, .jcsdl-icon.field.icon-circulation, .jcsdl-icon.field.icon-company_type, .jcsdl-icon.field.icon-founded, .jcsdl-icon.field.icon-media_type, .jcsdl-icon.field.icon-source_name, .jcsdl-icon.field.icon-card, .jcsdl-icon.field.icon-site, .jcsdl-icon.field.icon-site_id, .jcsdl-icon.field.icon-creator, .jcsdl-icon.field.icon-creator_id, .jcsdl-icon.field.icon-image_width, .jcsdl-icon.field.icon-image_height, .jcsdl-icon.field.icon-twitter, .jcsdl-icon.field.icon-player_width, .jcsdl-icon.field.icon-player_height, .jcsdl-icon.field.icon-player_stream, .jcsdl-icon.field.icon-player_stream_content_type, .jcsdl-icon.field.icon-player, .jcsdl-icon.field.icon-mention_ids, .jcsdl-icon.field.icon-status, .jcsdl-icon.field.icon-user_verified, .jcsdl-icon.field.icon-confidence, .jcsdl-icon.field.icon-entities_name, .jcsdl-icon.field.icon-entities_type {
+      background-image: url("img/icons-sprite-fields-lon@2x.png");
+      -moz-background-size: 855px 2210px;
+      -ie-background-size: 855px 2210px;
+      -o-background-size: 855px 2210px;
+      -webkit-background-size: 855px 2210px;
+      background-size: 855px 2210px; } }
