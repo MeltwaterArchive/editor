@@ -21,8 +21,8 @@ $targetIconsSprite : 'img/icons-sprite-targets.png?13';
 $targetIconsSpriteRetina : 'img/icons-sprite-targets@2x.png?1';
 $fieldIconsSprite : 'img/icons-sprite-fields.png?11';
 $fieldIconsSpriteRetina : 'img/icons-sprite-fields@2x.png';
-$moreFieldIconsSprite : 'img/icons-sprite-fields-more.png?12';
-$moreFieldIconsSpriteRetina : 'img/icons-sprite-fields-more@2x.png';
+$fieldDbwIconsSprite : 'img/icons-sprite-fields-dbw.png';
+$fieldDbwIconsSpriteRetina : 'img/icons-sprite-fields-dbw@2x.png';
 $operatorIconsSprite : 'img/icons-sprite-operators.png?5';
 $operatorIconsSpriteRetina : 'img/icons-sprite-operators@2x.png';
 $otherIconsSprite : 'img/icons-sprite-other.png?3';
@@ -960,7 +960,7 @@ a.jcsdl-filters-logic-option {
 	/* default icon set (original) */
 	background-image: url($fieldIconsSprite);
 
-	/* additional icon set (more) */
+	/* additional icon set (demographics, bitly, wiki - dbw) */
 	&.icon-twitter_activity,
 	&.icon-location_by_country,
 	&.icon-basic_demographics,
@@ -1006,7 +1006,7 @@ a.jcsdl-filters-logic-option {
 	&.icon-parentid,
 	&.icon-relationship,
 	&.icon-work-status {
-		background-image: url($moreFieldIconsSprite);
+		background-image: url($fieldDbwIconsSprite);
 	}
 }
 
@@ -1430,7 +1430,7 @@ a.jcsdl-filters-logic-option {
 		&.icon-parentid,
 		&.icon-relationship,
 		&.icon-work-status {
-			background-image: url($moreFieldIconsSpriteRetina);
+			background-image: url($fieldDbwIconsSpriteRetina);
 			@include backgroundSize(801px, 720px);
 		}
 	}
