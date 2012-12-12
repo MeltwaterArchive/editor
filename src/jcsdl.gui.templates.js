@@ -246,7 +246,7 @@ JCSDL.Loader.addComponent(function($, undefined) {
 
 		// select input option
 		valueInput_select_option : $([
-			'<a href="#" class="jcsdl-input-select-option">',
+			'<a href="#" class="jcsdl-btn jcsdl-input-select-option">',
 				'<span />',
 			'</a>'
 		].join('')),

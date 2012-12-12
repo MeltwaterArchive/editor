@@ -3,22 +3,22 @@
 /*
  * JCSDL EDITOR
  */
-.jcsdl-container {
+.jcsdl-container, .jcsdl-popup {
   overflow: hidden;
   position: relative;
   font-size: 13px;
   font-family: "Helvetica Neue", "Helvetica", sans-serif;
   color: #888888;
   /* building blocks */ }
-  .jcsdl-container a {
+  .jcsdl-container a, .jcsdl-popup a {
     color: #376491;
     text-decoration: none;
     -webkit-transition: color 0.2s ease-in-out;
     -moz-transition: color 0.2s ease-in-out;
     -o-transition: color 0.2s ease-in-out;
     transition: color 0.2s ease-in-out; }
-    .jcsdl-container a:hover {
-      color: #3e71a3; }
+    .jcsdl-container a:hover, .jcsdl-popup a:hover {
+      color: #ff9933; }
 
 .jcsdl-label {
   float: left;
@@ -1023,13 +1023,12 @@ a.jcsdl-filters-logic-option {
   text-align: center; }
   .jcsdl-input-select .jcsdl-input-select-option {
     margin: 10px;
+    float: none;
     display: inline-block;
     padding: 0 10px;
     height: 25px;
     line-height: 25px;
     font-size: 13px;
-    color: #4b4b4f;
-    border: 1px solid #c6c6c9;
     -webkit-border-radius: 2px;
     -khtml-border-radius: 2px;
     -moz-border-radius: 2px;
@@ -1054,7 +1053,7 @@ a.jcsdl-filters-logic-option {
       -khtml-opacity: 1;
       opacity: 1;
       border-color: #ff9933;
-      color: #376491; }
+      color: #ff9933; }
 
 .jcsdl-input-slider {
   margin: 10px 30px;
@@ -2191,12 +2190,8 @@ a.jcsdl-filters-logic-option {
 /* JCSDL Popup */
 .jcsdl-popup {
   display: block;
-  overflow: hidden;
   position: absolute;
   z-index: 100;
-  font-size: 13px;
-  font-family: "Helvetica Neue", "Helvetica", sans-serif;
-  color: #888888;
   -webkit-border-radius: 4px;
   -khtml-border-radius: 4px;
   -moz-border-radius: 4px;
@@ -2208,13 +2203,7 @@ a.jcsdl-filters-logic-option {
   background-clip: padding-box;
   -webkit-box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.8);
   -moz-box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.8);
-  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.8);
-  /* building blocks */ }
-  .jcsdl-popup a {
-    color: #376491;
-    text-decoration: none; }
-    .jcsdl-popup a:hover {
-      color: #3e71a3; }
+  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.8); }
   .jcsdl-popup .jcsdl-popup-header {
     display: block;
     height: 39px;

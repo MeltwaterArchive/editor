@@ -99,7 +99,7 @@ $loader : 'img/loader.gif';
 /*
  * JCSDL EDITOR
  */
-.jcsdl-container {
+.jcsdl-container, .jcsdl-popup {
 	overflow: hidden; position: relative;
 	font-size: $fontSize; font-family: $fontFamily; color: $colorLight;
 
@@ -108,7 +108,7 @@ $loader : 'img/loader.gif';
 		color: $color; text-decoration: none;
 		@include transition("color 0.2s ease-in-out");
 		
-		&:hover {color: lighten($color, 5%);}
+		&:hover {color: $colorOrange;}
 	}
 }
 
@@ -745,10 +745,9 @@ a.jcsdl-filters-logic-option {
 	text-align: center;
 
 	.jcsdl-input-select-option {
-		margin: 10px;
+		margin: 10px; float: none;
 		display: inline-block; padding: 0 10px; height: 25px; line-height: 25px;
-		font-size: 13px; color: $colorBlack;
-		border: 1px solid $colorBlackLight;
+		font-size: 13px;
 		@include rounded(2px);
 		@include opacity(0.75);
 
@@ -756,7 +755,7 @@ a.jcsdl-filters-logic-option {
 		zoom: 1;
 		*display: inline;
 
-		&.selected {@include opacity(1); border-color: $colorOrange; color: $color;}
+		&.selected {@include opacity(1); border-color: $colorOrange; color: $colorOrange;}
 	}
 }
 
@@ -1188,16 +1187,10 @@ a.jcsdl-filters-logic-option {
 
 /* JCSDL Popup */
 .jcsdl-popup {
-	display: block; overflow: hidden;
+	display: block;
 	position: absolute; z-index: 100;
-	font-size: $fontSize; font-family: $fontFamily; color: $colorLight;
 	@include rounded(4px);
 	@include dropShadow(0, 0, 8px, 0, 0.8);
-
-	/* building blocks */
-	a {color: $color; text-decoration: none;
-		&:hover {color: lighten($color, 5%);}
-	}
 
 	.jcsdl-popup-header {
 		display: block; height: 39px; overflow: hidden; position: relative; padding: 0 10px;
