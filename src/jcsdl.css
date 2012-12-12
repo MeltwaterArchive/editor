@@ -1371,8 +1371,16 @@ a.jcsdl-filters-logic-option {
     .jcsdl-icon.target.target-wikipedia.selected {
       background-position: -2200px -110px; }
 
+/* field icons sets */
 .jcsdl-icon.field {
-  background: url("img/icons-sprite-fields.png?11") no-repeat 0 0;
+  background-repeat: no-repeat;
+  /* default icon set (original) */
+  background-image: url("img/icons-sprite-fields.png?11");
+  /* additional icon set (more) */ }
+  .jcsdl-icon.field.icon-twitter_activity, .jcsdl-icon.field.icon-location_by_country, .jcsdl-icon.field.icon-basic_demographics, .jcsdl-icon.field.icon-interests, .jcsdl-icon.field.icon-twitter_influence, .jcsdl-icon.field.icon-first_language, .jcsdl-icon.field.icon-number_of_accounts_followed, .jcsdl-icon.field.icon-professions, .jcsdl-icon.field.icon-usa, .jcsdl-icon.field.icon-city, .jcsdl-icon.field.icon-services_and_technologies, .jcsdl-icon.field.icon-large_accounts_followed, .jcsdl-icon.field.icon-twitter_settings, .jcsdl-icon.field.icon-older_than, .jcsdl-icon.field.icon-younger_than, .jcsdl-icon.field.icon-ms_clothes, .jcsdl-icon.field.icon-ms_shop, .jcsdl-icon.field.icon-ms_food, .jcsdl-icon.field.icon-useragent, .jcsdl-icon.field.icon-url_hash, .jcsdl-icon.field.icon-share_hash, .jcsdl-icon.field.icon-cname, .jcsdl-icon.field.icon-ref_url, .jcsdl-icon.field.icon-ref_domain, .jcsdl-icon.field.icon-country_code, .jcsdl-icon.field.icon-geo_region_code, .jcsdl-icon.field.icon-geo_region, .jcsdl-icon.field.icon-timezone, .jcsdl-icon.field.icon-contributions, .jcsdl-icon.field.icon-talkpage, .jcsdl-icon.field.icon-diff, .jcsdl-icon.field.icon-changetype, .jcsdl-icon.field.icon-changeadded, .jcsdl-icon.field.icon-changeremoved, .jcsdl-icon.field.icon-diff-from, .jcsdl-icon.field.icon-diff-to, .jcsdl-icon.field.icon-externallinks, .jcsdl-icon.field.icon-namespace, .jcsdl-icon.field.icon-namespacecode, .jcsdl-icon.field.icon-newlength, .jcsdl-icon.field.icon-oldlength, .jcsdl-icon.field.icon-pageid, .jcsdl-icon.field.icon-parentid, .jcsdl-icon.field.icon-relationship, .jcsdl-icon.field.icon-work-status {
+    background-image: url("img/icons-sprite-fields-more.png?12"); }
+
+.jcsdl-icon.field {
   /* more */ }
   .jcsdl-icon.field.icon-geo {
     background-position: 0 0; }
@@ -1739,227 +1747,182 @@ a.jcsdl-filters-logic-option {
     .jcsdl-icon.field.icon-klout.selected {
       background-position: -720px -1360px; }
   .jcsdl-icon.field.icon-twitter_activity {
-    background-image: url("img/icons-sprite-fields-more.png?12");
     background-position: -80px 0; }
     .jcsdl-icon.field.icon-twitter_activity.selected {
       background-position: 0 0; }
   .jcsdl-icon.field.icon-location_by_country {
-    background-image: url("img/icons-sprite-fields-more.png?12");
     background-position: -240px 0; }
     .jcsdl-icon.field.icon-location_by_country.selected {
       background-position: -160px 0; }
   .jcsdl-icon.field.icon-basic_demographics {
-    background-image: url("img/icons-sprite-fields-more.png?12");
     background-position: -400px 0; }
     .jcsdl-icon.field.icon-basic_demographics.selected {
       background-position: -320px 0; }
   .jcsdl-icon.field.icon-interests {
-    background-image: url("img/icons-sprite-fields-more.png?12");
     background-position: -560px 0; }
     .jcsdl-icon.field.icon-interests.selected {
       background-position: -480px 0; }
   .jcsdl-icon.field.icon-twitter_influence {
-    background-image: url("img/icons-sprite-fields-more.png?12");
     background-position: -720px 0; }
     .jcsdl-icon.field.icon-twitter_influence.selected {
       background-position: -640px 0; }
   .jcsdl-icon.field.icon-first_language {
-    background-image: url("img/icons-sprite-fields-more.png?12");
     background-position: -80px -80px; }
     .jcsdl-icon.field.icon-first_language.selected {
       background-position: 0 -80px; }
   .jcsdl-icon.field.icon-number_of_accounts_followed {
-    background-image: url("img/icons-sprite-fields-more.png?12");
     background-position: -240px -80px; }
     .jcsdl-icon.field.icon-number_of_accounts_followed.selected {
       background-position: -160px -80px; }
   .jcsdl-icon.field.icon-professions {
-    background-image: url("img/icons-sprite-fields-more.png?12");
     background-position: -400px -80px; }
     .jcsdl-icon.field.icon-professions.selected {
       background-position: -320px -80px; }
   .jcsdl-icon.field.icon-usa {
-    background-image: url("img/icons-sprite-fields-more.png?12");
     background-position: -560px -80px; }
     .jcsdl-icon.field.icon-usa.selected {
       background-position: -480px -80px; }
   .jcsdl-icon.field.icon-city {
-    background-image: url("img/icons-sprite-fields-more.png?12");
     background-position: -720px -80px; }
     .jcsdl-icon.field.icon-city.selected {
       background-position: -640px -80px; }
   .jcsdl-icon.field.icon-services_and_technologies {
-    background-image: url("img/icons-sprite-fields-more.png?12");
     background-position: -80px -160px; }
     .jcsdl-icon.field.icon-services_and_technologies.selected {
       background-position: 0 -160px; }
   .jcsdl-icon.field.icon-large_accounts_followed {
-    background-image: url("img/icons-sprite-fields-more.png?12");
     background-position: -240px -160px; }
     .jcsdl-icon.field.icon-large_accounts_followed.selected {
       background-position: -160px -160px; }
   .jcsdl-icon.field.icon-twitter_settings {
-    background-image: url("img/icons-sprite-fields-more.png?12");
     background-position: -400px -160px; }
     .jcsdl-icon.field.icon-twitter_settings.selected {
       background-position: -320px -160px; }
   .jcsdl-icon.field.icon-older_than {
-    background-image: url("img/icons-sprite-fields-more.png?12");
     background-position: -560px -160px; }
     .jcsdl-icon.field.icon-older_than.selected {
       background-position: -480px -160px; }
   .jcsdl-icon.field.icon-younger_than {
-    background-image: url("img/icons-sprite-fields-more.png?12");
     background-position: -720px -160px; }
     .jcsdl-icon.field.icon-younger_than.selected {
       background-position: -640px -160px; }
   .jcsdl-icon.field.icon-ms_clothes {
-    background-image: url("img/icons-sprite-fields-more.png?12");
     background-position: -80px -240px; }
     .jcsdl-icon.field.icon-ms_clothes.selected {
       background-position: 0 -240px; }
   .jcsdl-icon.field.icon-ms_shop {
-    background-image: url("img/icons-sprite-fields-more.png?12");
     background-position: -240px -240px; }
     .jcsdl-icon.field.icon-ms_shop.selected {
       background-position: -160px -240px; }
   .jcsdl-icon.field.icon-ms_food {
-    background-image: url("img/icons-sprite-fields-more.png?12");
     background-position: -400px -240px; }
     .jcsdl-icon.field.icon-ms_food.selected {
       background-position: -320px -240px; }
   .jcsdl-icon.field.icon-useragent {
-    background-image: url("img/icons-sprite-fields-more.png?12");
     background-position: -560px -240px; }
     .jcsdl-icon.field.icon-useragent.selected {
       background-position: -480px -240px; }
   .jcsdl-icon.field.icon-url_hash {
-    background-image: url("img/icons-sprite-fields-more.png?12");
     background-position: -720px -240px; }
     .jcsdl-icon.field.icon-url_hash.selected {
       background-position: -640px -240px; }
   .jcsdl-icon.field.icon-share_hash {
-    background-image: url("img/icons-sprite-fields-more.png?12");
     background-position: -80px -320px; }
     .jcsdl-icon.field.icon-share_hash.selected {
       background-position: 0 -320px; }
   .jcsdl-icon.field.icon-cname {
-    background-image: url("img/icons-sprite-fields-more.png?12");
     background-position: -240px -320px; }
     .jcsdl-icon.field.icon-cname.selected {
       background-position: -160px -320px; }
   .jcsdl-icon.field.icon-ref_url {
-    background-image: url("img/icons-sprite-fields-more.png?12");
     background-position: -400px -320px; }
     .jcsdl-icon.field.icon-ref_url.selected {
       background-position: -320px -320px; }
   .jcsdl-icon.field.icon-ref_domain {
-    background-image: url("img/icons-sprite-fields-more.png?12");
     background-position: -560px -320px; }
     .jcsdl-icon.field.icon-ref_domain.selected {
       background-position: -480px -320px; }
   .jcsdl-icon.field.icon-country_code {
-    background-image: url("img/icons-sprite-fields-more.png?12");
     background-position: -80px -400px; }
     .jcsdl-icon.field.icon-country_code.selected {
       background-position: 0 -400px; }
   .jcsdl-icon.field.icon-geo_region_code {
-    background-image: url("img/icons-sprite-fields-more.png?12");
     background-position: -240px -400px; }
     .jcsdl-icon.field.icon-geo_region_code.selected {
       background-position: -160px -400px; }
   .jcsdl-icon.field.icon-geo_region {
-    background-image: url("img/icons-sprite-fields-more.png?12");
     background-position: -400px -400px; }
     .jcsdl-icon.field.icon-geo_region.selected {
       background-position: -320px -400px; }
   .jcsdl-icon.field.icon-timezone {
-    background-image: url("img/icons-sprite-fields-more.png?12");
     background-position: -560px -400px; }
     .jcsdl-icon.field.icon-timezone.selected {
       background-position: -480px -400px; }
   .jcsdl-icon.field.icon-contributions {
-    background-image: url("img/icons-sprite-fields-more.png?12");
     background-position: -720px -400px; }
     .jcsdl-icon.field.icon-contributions.selected {
       background-position: -640px -400px; }
   .jcsdl-icon.field.icon-talkpage {
-    background-image: url("img/icons-sprite-fields-more.png?12");
     background-position: -80px -480px; }
     .jcsdl-icon.field.icon-talkpage.selected {
       background-position: 0 -480px; }
   .jcsdl-icon.field.icon-diff {
-    background-image: url("img/icons-sprite-fields-more.png?12");
     background-position: -240px -480px; }
     .jcsdl-icon.field.icon-diff.selected {
       background-position: -160px -480px; }
   .jcsdl-icon.field.icon-changetype {
-    background-image: url("img/icons-sprite-fields-more.png?12");
     background-position: -400px -480px; }
     .jcsdl-icon.field.icon-changetype.selected {
       background-position: -320px -480px; }
   .jcsdl-icon.field.icon-changeadded {
-    background-image: url("img/icons-sprite-fields-more.png?12");
     background-position: -560px -480px; }
     .jcsdl-icon.field.icon-changeadded.selected {
       background-position: -480px -480px; }
   .jcsdl-icon.field.icon-changeremoved {
-    background-image: url("img/icons-sprite-fields-more.png?12");
     background-position: -720px -480px; }
     .jcsdl-icon.field.icon-changeremoved.selected {
       background-position: -640px -480px; }
   .jcsdl-icon.field.icon-diff-from {
-    background-image: url("img/icons-sprite-fields-more.png?12");
     background-position: -80px -560px; }
     .jcsdl-icon.field.icon-diff-from.selected {
       background-position: 0 -560px; }
   .jcsdl-icon.field.icon-diff-to {
-    background-image: url("img/icons-sprite-fields-more.png?12");
     background-position: -240px -560px; }
     .jcsdl-icon.field.icon-diff-to.selected {
       background-position: -160px -560px; }
   .jcsdl-icon.field.icon-externallinks {
-    background-image: url("img/icons-sprite-fields-more.png?12");
     background-position: -400px -560px; }
     .jcsdl-icon.field.icon-externallinks.selected {
       background-position: -320px -560px; }
   .jcsdl-icon.field.icon-namespace {
-    background-image: url("img/icons-sprite-fields-more.png?12");
     background-position: -560px -560px; }
     .jcsdl-icon.field.icon-namespace.selected {
       background-position: -480px -560px; }
   .jcsdl-icon.field.icon-namespacecode {
-    background-image: url("img/icons-sprite-fields-more.png?12");
     background-position: -720px -560px; }
     .jcsdl-icon.field.icon-namespacecode.selected {
       background-position: -640px -560px; }
   .jcsdl-icon.field.icon-newlength {
-    background-image: url("img/icons-sprite-fields-more.png?12");
     background-position: -80px -640px; }
     .jcsdl-icon.field.icon-newlength.selected {
       background-position: 0 -640px; }
   .jcsdl-icon.field.icon-oldlength {
-    background-image: url("img/icons-sprite-fields-more.png?12");
     background-position: -240px -640px; }
     .jcsdl-icon.field.icon-oldlength.selected {
       background-position: -160px -640px; }
   .jcsdl-icon.field.icon-pageid {
-    background-image: url("img/icons-sprite-fields-more.png?12");
     background-position: -400px -640px; }
     .jcsdl-icon.field.icon-pageid.selected {
       background-position: -320px -640px; }
   .jcsdl-icon.field.icon-parentid {
-    background-image: url("img/icons-sprite-fields-more.png?12");
     background-position: -560px -640px; }
     .jcsdl-icon.field.icon-parentid.selected {
       background-position: -480px -640px; }
   .jcsdl-icon.field.icon-relationship {
-    background-image: url("img/icons-sprite-fields-more.png?12");
     background-position: -720px -640px; }
     .jcsdl-icon.field.icon-relationship.selected {
       background-position: -640px -640px; }
   .jcsdl-icon.field.icon-work-status {
-    background-image: url("img/icons-sprite-fields-more.png?12");
     background-position: -80px -720px; }
     .jcsdl-icon.field.icon-work-status.selected {
       background-position: 0 -720px; }

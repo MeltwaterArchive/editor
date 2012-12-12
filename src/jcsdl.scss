@@ -953,147 +953,202 @@ a.jcsdl-filters-logic-option {
 	&.target-wikipedia	{background-position: -2200px 0;		&.selected {background-position: -2200px -110px;}}
 }
 
+/* field icons sets */
 .jcsdl-icon.field {
-	background: url($fieldIconsSprite) no-repeat 0 0;
+	background-repeat: no-repeat;
 
-	&.icon-geo			{background-position: 0 0; 				&.selected {background-position: -80px 0;}}
-	&.icon-link 		{background-position: -160px 0; 		&.selected {background-position: -240px 0;}}
-	&.icon-sample 		{background-position: -320px 0; 		&.selected {background-position: -400px 0;}}
-	&.icon-title 		{background-position: -480px 0; 		&.selected {background-position: -560px 0;}}
-	&.icon-content 		{background-position: -640px 0; 		&.selected {background-position: -720px 0;}}
-	&.icon-description 	{background-position: 0 -80px; 			&.selected {background-position: -80px -80px;}}
-	&.icon-source 		{background-position: -160px -80px; 	&.selected {background-position: -240px -80px;}}
-	&.icon-type 		{background-position: -320px -80px; 	&.selected {background-position: -400px -80px;}}
-	&.icon-avatar 		{background-position: -480px -80px; 	&.selected {background-position: -560px -80px;}}
-	&.icon-comment 		{background-position: -640px -80px;		&.selected {background-position: -720px -80px;}}
-	&.icon-comments-count {background-position: 0 -160px;		&.selected {background-position: -80px -160px;}}
+	/* default icon set (original) */
+	background-image: url($fieldIconsSprite);
+
+	/* additional icon set (more) */
+	&.icon-twitter_activity,
+	&.icon-location_by_country,
+	&.icon-basic_demographics,
+	&.icon-interests,
+	&.icon-twitter_influence,
+	&.icon-first_language,
+	&.icon-number_of_accounts_followed,
+	&.icon-professions,
+	&.icon-usa,
+	&.icon-city,
+	&.icon-services_and_technologies,
+	&.icon-large_accounts_followed,
+	&.icon-twitter_settings,
+	&.icon-older_than,
+	&.icon-younger_than,
+	&.icon-ms_clothes,
+	&.icon-ms_shop,
+	&.icon-ms_food,
+	&.icon-useragent,
+	&.icon-url_hash,
+	&.icon-share_hash,
+	&.icon-cname,
+	&.icon-ref_url,
+	&.icon-ref_domain,
+	&.icon-country_code,
+	&.icon-geo_region_code,
+	&.icon-geo_region,
+	&.icon-timezone,
+	&.icon-contributions,
+	&.icon-talkpage,
+	&.icon-diff,
+	&.icon-changetype,
+	&.icon-changeadded,
+	&.icon-changeremoved,
+	&.icon-diff-from,
+	&.icon-diff-to,
+	&.icon-externallinks,
+	&.icon-namespace,
+	&.icon-namespacecode,
+	&.icon-newlength,
+	&.icon-oldlength,
+	&.icon-pageid,
+	&.icon-parentid,
+	&.icon-relationship,
+	&.icon-work-status {
+		background-image: url($moreFieldIconsSprite);
+	}
+}
+
+.jcsdl-icon.field {
+	&.icon-geo					{background-position: 0 0; 				&.selected {background-position: -80px 0;}}
+	&.icon-link 				{background-position: -160px 0; 		&.selected {background-position: -240px 0;}}
+	&.icon-sample 				{background-position: -320px 0; 		&.selected {background-position: -400px 0;}}
+	&.icon-title 				{background-position: -480px 0; 		&.selected {background-position: -560px 0;}}
+	&.icon-content 				{background-position: -640px 0; 		&.selected {background-position: -720px 0;}}
+	&.icon-description 			{background-position: 0 -80px; 			&.selected {background-position: -80px -80px;}}
+	&.icon-source 				{background-position: -160px -80px; 	&.selected {background-position: -240px -80px;}}
+	&.icon-type 				{background-position: -320px -80px; 	&.selected {background-position: -400px -80px;}}
+	&.icon-avatar 				{background-position: -480px -80px; 	&.selected {background-position: -560px -80px;}}
+	&.icon-comment 				{background-position: -640px -80px;		&.selected {background-position: -720px -80px;}}
+	&.icon-comments-count 		{background-position: 0 -160px;			&.selected {background-position: -80px -160px;}}
 	&.icon-author-username, &.icon-username {background-position: -160px -160px; &.selected {background-position: -240px -160px;}}
-	&.icon-username 	{background-position: -160px -160px; 	&.selected {background-position: -240px -160px;}}
-	&.icon-user 		{background-position: -320px -160px;	&.selected {background-position: -400px -160px;}}
-	&.icon-fullname 	{background-position: -480px -160px;	&.selected {background-position: -560px -160px;}}
-	&.icon-registered	{background-position: -640px -160px;	&.selected {background-position: -720px -160px;}}
-	&.icon-user-description {background-position: 0 -240px;		&.selected {background-position: -80px -240px;}}
-	&.icon-followers_count	{background-position: -160px -240px;		&.selected {background-position: -240px -240px;}}
-	&.icon-follower_ratio	{background-position: -320px -240px;		&.selected {background-position: -400px -240px;}}
-	&.icon-friends_count	{background-position: -480px -240px;		&.selected {background-position: -560px -240px;}}
-	&.icon-location 	{background-position: -640px -240px;	&.selected {background-position: -720px -240px;}}
-	&.icon-screen_name	{background-position: 0 -320px;			&.selected {background-position: -80px -320px;}}
-	&.icon-domains, &.icon-domain 	{background-position: -160px -320px;	&.selected {background-position: -240px -320px;}}
-	&.icon-topic, &.icon-topics		{background-position: -320px -320px; 	&.selected {background-position: -400px -320px;}}
-	&.icon-language 	{background-position: -480px -320px; 	&.selected {background-position: -560px -320px;}}
-	&.icon-statuses_count {background-position: -640px -320px;	&.selected {background-position: -720px -320px;}}
-	&.icon-time_zone 	{background-position: 0 -400px;			&.selected {background-position: -80px -400px;}}
-	&.icon-placename 	{background-position: -160px -400px;	&.selected {background-position: -240px -400px;}}
-	&.icon-id 			{background-position: -320px -400px;	&.selected {background-position: -400px -400px;}}
-	&.icon-amplification {background-position: -480px -400px; 	&.selected {background-position: -560px -400px;}}
-	&.icon-listed_count {background-position: -640px -400px;	&.selected {background-position: -720px -400px;}}
-	&.icon-network 		{background-position: 0 -480px; 		&.selected {background-position: -80px -480px;}}
-	&.icon-score 		{background-position: -160px -480px; 	&.selected {background-position: -240px -480px;}}
-	&.icon-true_reach 	{background-position: -320px -480px; 	&.selected {background-position: -400px -480px;}}
-	&.icon-trends 		{background-position: -480px -480px; 	&.selected {background-position: -560px -480px;}}
-	&.icon-country_code {background-position: -640px -480px;	&.selected {background-position: -720px -480px;}}
-	&.icon-likes-ids	{background-position: 0 -560px;			&.selected {background-position: -80px -560px;}}
-	&.icon-likes-names	{background-position: -160px -560px;	&.selected {background-position: -240px -560px;}}
-	&.icon-to-ids		{background-position: -320px -560px;	&.selected {background-position: -400px -560px;}}
-	&.icon-to-names		{background-position: -480px -560px;	&.selected {background-position: -560px -560px;}}
-	&.icon-age 			{background-position: -640px -560px; 	&.selected {background-position: -720px -560px;}}
-	&.icon-category		{background-position: 0 -640px;			&.selected {background-position: -80px -640px;}}
-	&.icon-url 			{background-position: -160px -640px; 	&.selected {background-position: -240px -640px;}}
-	&.icon-retweet-count{background-position: -320px -640px; 	&.selected {background-position: -400px -640px;}}
-	&.icon-gender, &.icon-sex {background-position: -480px -640px; 	&.selected {background-position: -560px -640px;}}
-	&.icon-commentslink {background-position: -640px -640px; 	&.selected {background-position: -720px -640px;}}
-	&.icon-authors 		{background-position: 0 -720px; 		&.selected {background-position: -80px -720px;}}
-	&.icon-author-name 	{background-position: -160px -720px; 	&.selected {background-position: -240px -720px;}}
-	&.icon-duration		{background-position: -320px -720px; 	&.selected {background-position: -400px -720px;}}
-	&.icon-tags 		{background-position: -480px -720px; 	&.selected {background-position: -560px -720px;}}
-	&.icon-tweet 		{background-position: -640px -720px; 	&.selected {background-position: -720px -720px;}}
-	&.icon-post			{background-position: 0 -800px; 		&.selected {background-position: -80px -800px;}}
-	&.icon-place 		{background-position: -160px -800px; 	&.selected {background-position: -240px -800px;}}
-	&.icon-retweet 		{background-position: -320px -800px; 	&.selected {background-position: -400px -800px;}}
-	&.icon-retweeted 	{background-position: -480px -800px; 	&.selected {background-position: -560px -800px;}}
-	&.icon-mentions 	{background-position: -640px -800px; 	&.selected {background-position: -720px -800px;}}
-	&.icon-inreply 		{background-position: 0 -880px; 		&.selected {background-position: -80px -880px;}}
-	&.icon-count 		{background-position: -160px -880px; 	&.selected {background-position: -240px -880px;}}
-	&.icon-ratio 		{background-position: -320px -880px; 	&.selected {background-position: -400px -880px;}}
-	&.icon-user-id 		{background-position: -480px -880px; 	&.selected {background-position: -560px -880px;}}
-	&.icon-placeattrs 	{background-position: -640px -880px; 	&.selected {background-position: -720px -880px;}}
-	&.icon-country 		{background-position: 0 -960px; 		&.selected {background-position: -80px -960px;}}
-	&.icon-article 		{background-position: -160px -960px; 	&.selected {background-position: -240px -960px;}}
-	&.icon-video-caption{background-position: -320px -960px; 	&.selected {background-position: -400px -960px;}}
-	&.icon-video 		{background-position: -480px -960px; 	&.selected {background-position: -560px -960px;}}
-	&.icon-elapsed 		{background-position: -640px -960px; 	&.selected {background-position: -720px -960px;}}
-	&.icon-buries 		{background-position: 0 -1040px; 		&.selected {background-position: -80px -1040px;}}
-	&.icon-diggs 		{background-position: -160px -1040px; 	&.selected {background-position: -240px -1040px;}}
-	&.icon-status 		{background-position: -320px -1040px; 	&.selected {background-position: -400px -1040px;}}
-	&.icon-videolink 	{background-position: -480px -1040px; 	&.selected {background-position: -560px -1040px;}}
-	&.icon-thumbnail 	{background-position: -640px -1040px; 	&.selected {background-position: -720px -1040px;}}
-	&.icon-profileviews {background-position: 0 -1120px; 		&.selected {background-position: -80px -1120px;}}
-	&.icon-photos 		{background-position: -160px -1120px;	&.selected {background-position: -240px -1120px;}}
-	&.icon-image		{background-position: -320px -1120px; 	&.selected {background-position: -400px -1120px;}}
-	&.icon-verb 		{background-position: -480px -1120px; 	&.selected {background-position: -560px -1120px;}}
-	&.icon-application 	{background-position: -640px -1120px; 	&.selected {background-position: -720px -1120px;}}
-	&.icon-caption 		{background-position: 0 -1200px; 		&.selected {background-position: -80px -1200px;}}
-	&.icon-likes-count 	{background-position: -160px -1200px; 	&.selected {background-position: -240px -1200px;}}
-	&.icon-og-by 		{background-position: -320px -1200px; 	&.selected {background-position: -400px -1200px;}}
-	&.icon-opengraph 	{background-position: -480px -1200px;	&.selected {background-position: -560px -1200px;}}
-	&.icon-message 		{background-position: -640px -1200px; 	&.selected {background-position: -720px -1200px;}}
-	&.icon-attribution-link {background-position: 0 -1280px; 	&.selected {background-position: -80px -1280px;}}
-	&.icon-attribution-text {background-position: -160px -1280px; &.selected {background-position: -240px -1280px;}}
-	&.icon-thread		{background-position: -320px -1280px; 	&.selected {background-position: -400px -1280px;}}
-	&.icon-sentiment	{background-position: -480px -1280px; 	&.selected {background-position: -560px -1280px;}}
-	&.icon-contenttype	{background-position: -640px -1280px; 	&.selected {background-position: -720px -1280px;}}
-	&.icon-signature	{background-position: 0 -1360px; 		&.selected {background-position: -80px -1360px;}}
-	&.icon-links 		{background-position: -160px -1360px;	&.selected {background-position: -240px -1360px;}}
-	&.icon-demographic	{background-position: -320px -1360px;	&.selected {background-position: -400px -1360px;}}
-	&.icon-salience		{background-position: -480px -1360px;	&.selected {background-position: -560px -1360px;}}
-	&.icon-klout		{background-position: -640px -1360px;	&.selected {background-position: -720px -1360px;}}
+	&.icon-username 			{background-position: -160px -160px; 	&.selected {background-position: -240px -160px;}}
+	&.icon-user 				{background-position: -320px -160px;	&.selected {background-position: -400px -160px;}}
+	&.icon-fullname 			{background-position: -480px -160px;	&.selected {background-position: -560px -160px;}}
+	&.icon-registered			{background-position: -640px -160px;	&.selected {background-position: -720px -160px;}}
+	&.icon-user-description 	{background-position: 0 -240px;			&.selected {background-position: -80px -240px;}}
+	&.icon-followers_count		{background-position: -160px -240px;	&.selected {background-position: -240px -240px;}}
+	&.icon-follower_ratio		{background-position: -320px -240px;	&.selected {background-position: -400px -240px;}}
+	&.icon-friends_count		{background-position: -480px -240px;	&.selected {background-position: -560px -240px;}}
+	&.icon-location 			{background-position: -640px -240px;	&.selected {background-position: -720px -240px;}}
+	&.icon-screen_name			{background-position: 0 -320px;			&.selected {background-position: -80px -320px;}}
+	&.icon-domains, &.icon-domain 	{background-position: -160px -320px; &.selected {background-position: -240px -320px;}}
+	&.icon-topic, &.icon-topics		{background-position: -320px -320px; &.selected {background-position: -400px -320px;}}
+	&.icon-language 			{background-position: -480px -320px; 	&.selected {background-position: -560px -320px;}}
+	&.icon-statuses_count 		{background-position: -640px -320px;	&.selected {background-position: -720px -320px;}}
+	&.icon-time_zone 			{background-position: 0 -400px;			&.selected {background-position: -80px -400px;}}
+	&.icon-placename 			{background-position: -160px -400px;	&.selected {background-position: -240px -400px;}}
+	&.icon-id 					{background-position: -320px -400px;	&.selected {background-position: -400px -400px;}}
+	&.icon-amplification 		{background-position: -480px -400px; 	&.selected {background-position: -560px -400px;}}
+	&.icon-listed_count 		{background-position: -640px -400px;	&.selected {background-position: -720px -400px;}}
+	&.icon-network 				{background-position: 0 -480px; 		&.selected {background-position: -80px -480px;}}
+	&.icon-score 				{background-position: -160px -480px; 	&.selected {background-position: -240px -480px;}}
+	&.icon-true_reach 			{background-position: -320px -480px; 	&.selected {background-position: -400px -480px;}}
+	&.icon-trends 				{background-position: -480px -480px; 	&.selected {background-position: -560px -480px;}}
+	&.icon-country_code 		{background-position: -640px -480px;	&.selected {background-position: -720px -480px;}}
+	&.icon-likes-ids			{background-position: 0 -560px;			&.selected {background-position: -80px -560px;}}
+	&.icon-likes-names			{background-position: -160px -560px;	&.selected {background-position: -240px -560px;}}
+	&.icon-to-ids				{background-position: -320px -560px;	&.selected {background-position: -400px -560px;}}
+	&.icon-to-names				{background-position: -480px -560px;	&.selected {background-position: -560px -560px;}}
+	&.icon-age 					{background-position: -640px -560px; 	&.selected {background-position: -720px -560px;}}
+	&.icon-category				{background-position: 0 -640px;			&.selected {background-position: -80px -640px;}}
+	&.icon-url 					{background-position: -160px -640px; 	&.selected {background-position: -240px -640px;}}
+	&.icon-retweet-count		{background-position: -320px -640px; 	&.selected {background-position: -400px -640px;}}
+	&.icon-gender, &.icon-sex 	{background-position: -480px -640px; 	&.selected {background-position: -560px -640px;}}
+	&.icon-commentslink 		{background-position: -640px -640px; 	&.selected {background-position: -720px -640px;}}
+	&.icon-authors 				{background-position: 0 -720px; 		&.selected {background-position: -80px -720px;}}
+	&.icon-author-name 			{background-position: -160px -720px; 	&.selected {background-position: -240px -720px;}}
+	&.icon-duration				{background-position: -320px -720px; 	&.selected {background-position: -400px -720px;}}
+	&.icon-tags 				{background-position: -480px -720px; 	&.selected {background-position: -560px -720px;}}
+	&.icon-tweet 				{background-position: -640px -720px; 	&.selected {background-position: -720px -720px;}}
+	&.icon-post					{background-position: 0 -800px; 		&.selected {background-position: -80px -800px;}}
+	&.icon-place 				{background-position: -160px -800px; 	&.selected {background-position: -240px -800px;}}
+	&.icon-retweet 				{background-position: -320px -800px; 	&.selected {background-position: -400px -800px;}}
+	&.icon-retweeted 			{background-position: -480px -800px; 	&.selected {background-position: -560px -800px;}}
+	&.icon-mentions 			{background-position: -640px -800px; 	&.selected {background-position: -720px -800px;}}
+	&.icon-inreply 				{background-position: 0 -880px; 		&.selected {background-position: -80px -880px;}}
+	&.icon-count 				{background-position: -160px -880px; 	&.selected {background-position: -240px -880px;}}
+	&.icon-ratio 				{background-position: -320px -880px; 	&.selected {background-position: -400px -880px;}}
+	&.icon-user-id 				{background-position: -480px -880px; 	&.selected {background-position: -560px -880px;}}
+	&.icon-placeattrs 			{background-position: -640px -880px; 	&.selected {background-position: -720px -880px;}}
+	&.icon-country 				{background-position: 0 -960px; 		&.selected {background-position: -80px -960px;}}
+	&.icon-article 				{background-position: -160px -960px; 	&.selected {background-position: -240px -960px;}}
+	&.icon-video-caption		{background-position: -320px -960px; 	&.selected {background-position: -400px -960px;}}
+	&.icon-video 				{background-position: -480px -960px; 	&.selected {background-position: -560px -960px;}}
+	&.icon-elapsed 				{background-position: -640px -960px; 	&.selected {background-position: -720px -960px;}}
+	&.icon-buries 				{background-position: 0 -1040px; 		&.selected {background-position: -80px -1040px;}}
+	&.icon-diggs 				{background-position: -160px -1040px; 	&.selected {background-position: -240px -1040px;}}
+	&.icon-status 				{background-position: -320px -1040px; 	&.selected {background-position: -400px -1040px;}}
+	&.icon-videolink 			{background-position: -480px -1040px; 	&.selected {background-position: -560px -1040px;}}
+	&.icon-thumbnail 			{background-position: -640px -1040px; 	&.selected {background-position: -720px -1040px;}}
+	&.icon-profileviews 		{background-position: 0 -1120px; 		&.selected {background-position: -80px -1120px;}}
+	&.icon-photos 				{background-position: -160px -1120px;	&.selected {background-position: -240px -1120px;}}
+	&.icon-image				{background-position: -320px -1120px; 	&.selected {background-position: -400px -1120px;}}
+	&.icon-verb 				{background-position: -480px -1120px; 	&.selected {background-position: -560px -1120px;}}
+	&.icon-application 			{background-position: -640px -1120px; 	&.selected {background-position: -720px -1120px;}}
+	&.icon-caption 				{background-position: 0 -1200px; 		&.selected {background-position: -80px -1200px;}}
+	&.icon-likes-count 			{background-position: -160px -1200px; 	&.selected {background-position: -240px -1200px;}}
+	&.icon-og-by 				{background-position: -320px -1200px; 	&.selected {background-position: -400px -1200px;}}
+	&.icon-opengraph 			{background-position: -480px -1200px;	&.selected {background-position: -560px -1200px;}}
+	&.icon-message 				{background-position: -640px -1200px; 	&.selected {background-position: -720px -1200px;}}
+	&.icon-attribution-link 	{background-position: 0 -1280px; 		&.selected {background-position: -80px -1280px;}}
+	&.icon-attribution-text 	{background-position: -160px -1280px;	&.selected {background-position: -240px -1280px;}}
+	&.icon-thread				{background-position: -320px -1280px; 	&.selected {background-position: -400px -1280px;}}
+	&.icon-sentiment			{background-position: -480px -1280px; 	&.selected {background-position: -560px -1280px;}}
+	&.icon-contenttype			{background-position: -640px -1280px; 	&.selected {background-position: -720px -1280px;}}
+	&.icon-signature			{background-position: 0 -1360px; 		&.selected {background-position: -80px -1360px;}}
+	&.icon-links 				{background-position: -160px -1360px;	&.selected {background-position: -240px -1360px;}}
+	&.icon-demographic			{background-position: -320px -1360px;	&.selected {background-position: -400px -1360px;}}
+	&.icon-salience				{background-position: -480px -1360px;	&.selected {background-position: -560px -1360px;}}
+	&.icon-klout				{background-position: -640px -1360px;	&.selected {background-position: -720px -1360px;}}
 
 	/* more */
-	&.icon-twitter_activity		{background-image: url($moreFieldIconsSprite); background-position: -80px 0;			&.selected {background-position: 0 0;}}
-	&.icon-location_by_country	{background-image: url($moreFieldIconsSprite); background-position: -240px 0;			&.selected {background-position: -160px 0;}}
-	&.icon-basic_demographics	{background-image: url($moreFieldIconsSprite); background-position: -400px 0;			&.selected {background-position: -320px 0;}}
-	&.icon-interests			{background-image: url($moreFieldIconsSprite); background-position: -560px 0;			&.selected {background-position: -480px 0;}}
-	&.icon-twitter_influence	{background-image: url($moreFieldIconsSprite); background-position: -720px 0;			&.selected {background-position: -640px 0;}}
-	&.icon-first_language		{background-image: url($moreFieldIconsSprite); background-position: -80px -80px;		&.selected {background-position: 0 -80px;}}
-	&.icon-number_of_accounts_followed {background-image: url($moreFieldIconsSprite); background-position: -240px -80px;&.selected {background-position: -160px -80px;}}
-	&.icon-professions			{background-image: url($moreFieldIconsSprite); background-position: -400px -80px;		&.selected {background-position: -320px -80px;}}
-	&.icon-usa					{background-image: url($moreFieldIconsSprite); background-position: -560px -80px;		&.selected {background-position: -480px -80px;}}
-	&.icon-city 				{background-image: url($moreFieldIconsSprite); background-position: -720px -80px;		&.selected {background-position: -640px -80px;}}
-	&.icon-services_and_technologies {background-image: url($moreFieldIconsSprite); background-position: -80px -160px;	&.selected {background-position: 0 -160px;}}
-	&.icon-large_accounts_followed {background-image: url($moreFieldIconsSprite); background-position: -240px -160px;	&.selected {background-position: -160px -160px;}}
-	&.icon-twitter_settings		{background-image: url($moreFieldIconsSprite); background-position: -400px -160px;		&.selected {background-position: -320px -160px;}}
-	&.icon-older_than			{background-image: url($moreFieldIconsSprite); background-position: -560px -160px;		&.selected {background-position: -480px -160px;}}
-	&.icon-younger_than			{background-image: url($moreFieldIconsSprite); background-position: -720px -160px;		&.selected {background-position: -640px -160px;}}
-	&.icon-ms_clothes			{background-image: url($moreFieldIconsSprite); background-position: -80px -240px;		&.selected {background-position: 0 -240px;}}
-	&.icon-ms_shop				{background-image: url($moreFieldIconsSprite); background-position: -240px -240px;		&.selected {background-position: -160px -240px;}}
-	&.icon-ms_food 				{background-image: url($moreFieldIconsSprite); background-position: -400px -240px;		&.selected {background-position: -320px -240px;}}
-	&.icon-useragent 			{background-image: url($moreFieldIconsSprite); background-position: -560px -240px;		&.selected {background-position: -480px -240px;}}
-	&.icon-url_hash				{background-image: url($moreFieldIconsSprite); background-position: -720px -240px;		&.selected {background-position: -640px -240px;}}
-	&.icon-share_hash			{background-image: url($moreFieldIconsSprite); background-position: -80px -320px;		&.selected {background-position: 0 -320px;}}
-	&.icon-cname				{background-image: url($moreFieldIconsSprite); background-position: -240px -320px;		&.selected {background-position: -160px -320px;}}
-	&.icon-ref_url				{background-image: url($moreFieldIconsSprite); background-position: -400px -320px;		&.selected {background-position: -320px -320px;}}
-	&.icon-ref_domain			{background-image: url($moreFieldIconsSprite); background-position: -560px -320px;		&.selected {background-position: -480px -320px;}}
-	&.icon-country_code			{background-image: url($moreFieldIconsSprite); background-position: -80px -400px;		&.selected {background-position: 0 -400px;}}
-	&.icon-geo_region_code		{background-image: url($moreFieldIconsSprite); background-position: -240px -400px;		&.selected {background-position: -160px -400px;}}
-	&.icon-geo_region			{background-image: url($moreFieldIconsSprite); background-position: -400px -400px;		&.selected {background-position: -320px -400px;}}
-	&.icon-timezone				{background-image: url($moreFieldIconsSprite); background-position: -560px -400px;		&.selected {background-position: -480px -400px;}}
-	&.icon-contributions		{background-image: url($moreFieldIconsSprite); background-position: -720px -400px;		&.selected {background-position: -640px -400px;}}
-	&.icon-talkpage				{background-image: url($moreFieldIconsSprite); background-position: -80px -480px;		&.selected {background-position: 0 -480px;}}
-	&.icon-diff					{background-image: url($moreFieldIconsSprite); background-position: -240px -480px;		&.selected {background-position: -160px -480px;}}
-	&.icon-changetype			{background-image: url($moreFieldIconsSprite); background-position: -400px -480px;		&.selected {background-position: -320px -480px;}}
-	&.icon-changeadded			{background-image: url($moreFieldIconsSprite); background-position: -560px -480px;		&.selected {background-position: -480px -480px;}}
-	&.icon-changeremoved		{background-image: url($moreFieldIconsSprite); background-position: -720px -480px;		&.selected {background-position: -640px -480px;}}
-	&.icon-diff-from			{background-image: url($moreFieldIconsSprite); background-position: -80px -560px;		&.selected {background-position: 0 -560px;}}
-	&.icon-diff-to				{background-image: url($moreFieldIconsSprite); background-position: -240px -560px;		&.selected {background-position: -160px -560px;}}
-	&.icon-externallinks		{background-image: url($moreFieldIconsSprite); background-position: -400px -560px;		&.selected {background-position: -320px -560px;}}
-	&.icon-namespace			{background-image: url($moreFieldIconsSprite); background-position: -560px -560px;		&.selected {background-position: -480px -560px;}}
-	&.icon-namespacecode		{background-image: url($moreFieldIconsSprite); background-position: -720px -560px;		&.selected {background-position: -640px -560px;}}
-	&.icon-newlength			{background-image: url($moreFieldIconsSprite); background-position: -80px -640px;		&.selected {background-position: 0 -640px;}}
-	&.icon-oldlength			{background-image: url($moreFieldIconsSprite); background-position: -240px -640px;		&.selected {background-position: -160px -640px;}}
-	&.icon-pageid				{background-image: url($moreFieldIconsSprite); background-position: -400px -640px;		&.selected {background-position: -320px -640px;}}
-	&.icon-parentid				{background-image: url($moreFieldIconsSprite); background-position: -560px -640px;		&.selected {background-position: -480px -640px;}}
-	&.icon-relationship			{background-image: url($moreFieldIconsSprite); background-position: -720px -640px;		&.selected {background-position: -640px -640px;}}
-	&.icon-work-status			{background-image: url($moreFieldIconsSprite); background-position: -80px -720px;		&.selected {background-position: 0 -720px;}}
+	&.icon-twitter_activity		{background-position: -80px 0;			&.selected {background-position: 0 0;}}
+	&.icon-location_by_country	{background-position: -240px 0;			&.selected {background-position: -160px 0;}}
+	&.icon-basic_demographics	{background-position: -400px 0;			&.selected {background-position: -320px 0;}}
+	&.icon-interests			{background-position: -560px 0;			&.selected {background-position: -480px 0;}}
+	&.icon-twitter_influence	{background-position: -720px 0;			&.selected {background-position: -640px 0;}}
+	&.icon-first_language		{background-position: -80px -80px;		&.selected {background-position: 0 -80px;}}
+	&.icon-number_of_accounts_followed {background-position: -240px -80px; &.selected {background-position: -160px -80px;}}
+	&.icon-professions			{background-position: -400px -80px;		&.selected {background-position: -320px -80px;}}
+	&.icon-usa					{background-position: -560px -80px;		&.selected {background-position: -480px -80px;}}
+	&.icon-city 				{background-position: -720px -80px;		&.selected {background-position: -640px -80px;}}
+	&.icon-services_and_technologies {background-position: -80px -160px; &.selected {background-position: 0 -160px;}}
+	&.icon-large_accounts_followed {background-position: -240px -160px;	&.selected {background-position: -160px -160px;}}
+	&.icon-twitter_settings		{background-position: -400px -160px;	&.selected {background-position: -320px -160px;}}
+	&.icon-older_than			{background-position: -560px -160px;	&.selected {background-position: -480px -160px;}}
+	&.icon-younger_than			{background-position: -720px -160px;	&.selected {background-position: -640px -160px;}}
+	&.icon-ms_clothes			{background-position: -80px -240px;		&.selected {background-position: 0 -240px;}}
+	&.icon-ms_shop				{background-position: -240px -240px;	&.selected {background-position: -160px -240px;}}
+	&.icon-ms_food 				{background-position: -400px -240px;	&.selected {background-position: -320px -240px;}}
+	&.icon-useragent 			{background-position: -560px -240px;	&.selected {background-position: -480px -240px;}}
+	&.icon-url_hash				{background-position: -720px -240px;	&.selected {background-position: -640px -240px;}}
+	&.icon-share_hash			{background-position: -80px -320px;		&.selected {background-position: 0 -320px;}}
+	&.icon-cname				{background-position: -240px -320px;	&.selected {background-position: -160px -320px;}}
+	&.icon-ref_url				{background-position: -400px -320px;	&.selected {background-position: -320px -320px;}}
+	&.icon-ref_domain			{background-position: -560px -320px;	&.selected {background-position: -480px -320px;}}
+	&.icon-country_code			{background-position: -80px -400px;		&.selected {background-position: 0 -400px;}}
+	&.icon-geo_region_code		{background-position: -240px -400px;	&.selected {background-position: -160px -400px;}}
+	&.icon-geo_region			{background-position: -400px -400px;	&.selected {background-position: -320px -400px;}}
+	&.icon-timezone				{background-position: -560px -400px;	&.selected {background-position: -480px -400px;}}
+	&.icon-contributions		{background-position: -720px -400px;	&.selected {background-position: -640px -400px;}}
+	&.icon-talkpage				{background-position: -80px -480px;		&.selected {background-position: 0 -480px;}}
+	&.icon-diff					{background-position: -240px -480px;	&.selected {background-position: -160px -480px;}}
+	&.icon-changetype			{background-position: -400px -480px;	&.selected {background-position: -320px -480px;}}
+	&.icon-changeadded			{background-position: -560px -480px;	&.selected {background-position: -480px -480px;}}
+	&.icon-changeremoved		{background-position: -720px -480px;	&.selected {background-position: -640px -480px;}}
+	&.icon-diff-from			{background-position: -80px -560px;		&.selected {background-position: 0 -560px;}}
+	&.icon-diff-to				{background-position: -240px -560px;	&.selected {background-position: -160px -560px;}}
+	&.icon-externallinks		{background-position: -400px -560px;	&.selected {background-position: -320px -560px;}}
+	&.icon-namespace			{background-position: -560px -560px;	&.selected {background-position: -480px -560px;}}
+	&.icon-namespacecode		{background-position: -720px -560px;	&.selected {background-position: -640px -560px;}}
+	&.icon-newlength			{background-position: -80px -640px;		&.selected {background-position: 0 -640px;}}
+	&.icon-oldlength			{background-position: -240px -640px;	&.selected {background-position: -160px -640px;}}
+	&.icon-pageid				{background-position: -400px -640px;	&.selected {background-position: -320px -640px;}}
+	&.icon-parentid				{background-position: -560px -640px;	&.selected {background-position: -480px -640px;}}
+	&.icon-relationship			{background-position: -720px -640px;	&.selected {background-position: -640px -640px;}}
+	&.icon-work-status			{background-position: -80px -720px;		&.selected {background-position: 0 -720px;}}
 
 }
 
