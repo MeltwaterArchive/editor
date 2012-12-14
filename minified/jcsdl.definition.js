@@ -325,7 +325,7 @@ var JCSDLDefinition = {
 						domain : {name: 'Source Domain', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
 						link : {name: 'Link', type: 'string', input: 'text', operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
 						circulation : {name: 'Circulation', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-						name : {name: 'Name', icon: 'sourc_name', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+						name : {name: 'Name', icon: 'source_name', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
 						company_type : {name: 'Company Type', type: 'string', input: 'select', single: true, options: {'Private':'Private','Public':'Public','Cooperative':'Cooperative','Govt':'Government'}, operators: ['exists', 'equals', 'different']},
 						country : {name: 'Country', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
 						founded : {name: 'Founded', type: 'string', input: 'number', operators: ['exists', 'equals', 'different']},
@@ -626,10 +626,11 @@ var JCSDLDefinition = {
 					fields : {
 						twitter_activity : {name: 'Twitter Activity', type: 'string', input: 'select', single: true, options: {'> 5 tweets/day':'&gt 5 Tweets a Day','1-5 tweets/day':'1-5 Tweeks a Day','1-7 twts/week':'1-7 Tweets a Week','1-4 twts/month':'1-4 Tweets a Month','< 1 twt/month':'&lt; 1 Tweet a Month'}, operators: ['exists', 'equals']},
 						large_accounts_followed : {name: 'Large Accounts Followed', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact', 'in'], operator: 'in'},
+						'accounts-categories' : {name: 'Categories of Accounts Followed', icon: 'accounts_categories', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact', 'in'], operator: 'in'},
 						likes_and_interests : {name: 'Likes and Interests', icon: 'interests', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'regex_partial', 'regex_exact']},
 						'status-work': {name: 'Work Status', icon: 'work-status', type: 'string', input: 'select', single: true, options: {'Students':'Students','Unemployed':'Unemployed','Working':'Working','Retirees':'Retirees'}, operators: ['exists', 'equals']},
 						professions : {name: 'Professions', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact', 'in'], operator: 'in'},
-						services_and_technologies : {name: 'Services and Technologies', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact', 'in'], operator: 'in'},
+						services : {name: 'Services and Technologies', icon: 'services_and_technologies', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact', 'in'], operator: 'in'},
 						'main_street-dressed_by' : {name: 'Dressed By', icon: 'ms_clothes', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact', 'in'], operator: 'in'},
 						'main_street-shop_at' : {name: 'Shop At', icon: 'ms_shop', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact', 'in'], operator: 'in'},
 						'main_street-eat_and_drink_at' : {name: 'Eat and Drink At', icon: 'ms_food', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact', 'in'], operator: 'in'},
@@ -639,9 +640,9 @@ var JCSDLDefinition = {
 						sex: {name: 'Gender', type: 'string', input: 'select', single: true, options: {'male':'Male','female':'Female'}, operators: ['exists', 'equals']},
 						'age_range-start' : {name: 'Older Than', icon: 'older_than', type: 'int', input: 'slider', operators: ['exists', 'equals'], min: 0, max: 99, 'default': 25},
 						'age_range-end' : {name: 'Younger Than', icon: 'younger_than', type: 'int', input: 'slider', operators: ['exists', 'equals'], min: 0, max: 99, 'default': 25},
-						location_by_country : {name: 'Location by Country', icon: 'country', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-						location_by_us_state : {name: 'Location by US State', icon: 'usa', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
-						location_by_city : {name: 'Location by City', icon: 'city', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']}
+						'location-country' : {name: 'Location by Country', icon: 'country', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+						'location-us_state' : {name: 'Location by US State', icon: 'usa', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']},
+						'location-city' : {name: 'Location by City', icon: 'city', type: 'string', input: 'text', cs: true, operators: ['exists', 'equals', 'substr', 'contains_any', 'contains_near', 'different', 'regex_partial', 'regex_exact']}
 					}
 				},
 				salience : {

@@ -21,7 +21,7 @@ $targetIconsSprite : 'img/icons-sprite-targets.png?13';
 $targetIconsSpriteRetina : 'img/icons-sprite-targets@2x.png?1';
 $fieldIconsSprite : 'img/icons-sprite-fields.png?11';
 $fieldIconsSpriteRetina : 'img/icons-sprite-fields@2x.png';
-$fieldDbwIconsSprite : 'img/icons-sprite-fields-dbw.png';
+$fieldDbwIconsSprite : 'img/icons-sprite-fields-dbw.png?1';
 $fieldDbwIconsSpriteRetina : 'img/icons-sprite-fields-dbw@2x.png';
 $fieldLonIconsSprite : 'img/icons-sprite-fields-lon.png';
 $fieldLonIconsSpriteRetina : 'img/icons-sprite-fields-lon@2x.png';
@@ -1007,7 +1007,8 @@ a.jcsdl-filters-logic-option {
 	&.icon-pageid,
 	&.icon-parentid,
 	&.icon-relationship,
-	&.icon-work-status {
+	&.icon-work-status,
+	&.icon-accounts_categories {
 		background-image: url($fieldDbwIconsSprite);
 	}
 
@@ -1085,7 +1086,9 @@ a.jcsdl-filters-logic-option {
 	&.icon-user_verified,
 	&.icon-confidence,
 	&.icon-entities_name,
-	&.icon-entities_type {
+	&.icon-entities_type,
+	&.icon-region,
+	&.icon-keywords {
 		background-image: url($fieldLonIconsSprite);
 	}
 }
@@ -1229,6 +1232,7 @@ a.jcsdl-filters-logic-option {
 	&.icon-parentid				{background-position: -560px -640px;	&.selected {background-position: -480px -640px;}}
 	&.icon-relationship			{background-position: -720px -640px;	&.selected {background-position: -640px -640px;}}
 	&.icon-work-status			{background-position: -80px -720px;		&.selected {background-position: 0 -720px;}}
+	&.icon-accounts_categories	{background-position: -240px -720px; 	&.selected {background-position: -160px -720px;}}
 
 	/* lon */
 	&.icon-normalized_url		{background-position: -110px -20px;		&.selected {background-position: -30px -20px;}}
@@ -1305,8 +1309,8 @@ a.jcsdl-filters-logic-option {
 	&.icon-confidence			{background-position: -110px -1940px;	&.selected {background-position: -30px -1940px;}}
 	&.icon-entities_name		{background-position: -110px -2100px;	&.selected {background-position: -30px -2100px;}}
 	&.icon-entities_type		{background-position: -270px -2100px;	&.selected {background-position: -190px -2100px;}}
-
-/* missing: region, keywords, name */
+	&.icon-region 				{background-position: -110px -2260px; 	&.selected {background-position: -30px -2260px;}}
+	&.icon-keywords 			{background-position: -270px -2260px; 	&.selected {background-position: -190px -2260px;}}
 }
 
 .jcsdl-icon.input {
@@ -1458,8 +1462,8 @@ a.jcsdl-filters-logic-option {
 
 		.field-label {font-weight: bold; font-size: 18px; margin-bottom: .5em;}
 	}
-	p, applet, object, iframe, blockquote, pre, abbr, cite, code, q, s, small, strike, sub, sup, tt, b, u, i, center, dl, dt, dd, caption, fieldset, form, label, legend {margin: 0; padding: 0; border: 0; outline: 0; font-size: 1em; vertical-align: baseline; font: inherit;}
-	p, dl, hr, h1, h2, h3, h4, h5, h6, ol, ul, pre, table, address, fieldset {margin-bottom: .5em;}
+	p, iframe, blockquote, pre, abbr, cite, code, q, s, small, strike, sub, sup, tt, b, u, i, center, dl, dt, dd, caption, label, legend {margin: 0; padding: 0; border: 0; outline: 0; font-size: 1em; vertical-align: baseline; font: inherit;}
+	p, dl, hr, h1, h2, h3, h4, h5, h6, ol, ul, pre, table {margin-bottom: .5em;}
 
 }
 
@@ -1586,9 +1590,10 @@ a.jcsdl-filters-logic-option {
 		&.icon-pageid,
 		&.icon-parentid,
 		&.icon-relationship,
-		&.icon-work-status {
+		&.icon-work-status,
+		&.icon-accounts_categories {
 			background-image: url($fieldDbwIconsSpriteRetina);
-			@include backgroundSize(801px, 720px);
+			@include backgroundSize(801px, 800px);
 		}
 
 		/* additional icon set (links, opengraph, newscred - lon) */
@@ -1665,9 +1670,11 @@ a.jcsdl-filters-logic-option {
 		&.icon-user_verified,
 		&.icon-confidence,
 		&.icon-entities_name,
-		&.icon-entities_type {
+		&.icon-entities_type,
+		&.icon-region,
+		&.icon-keywords {
 			background-image: url($fieldLonIconsSpriteRetina);
-			@include backgroundSize(855px, 2210px);
+			@include backgroundSize(855px, 2365px);
 		}
 	}
 		
