@@ -1,20 +1,34 @@
 /* some theming variables */
 $color : #376491;
 $colorLight : #888;
+$colorExtraLight : #bebebf;
 $colorBlack : #4b4b4f;
 $colorBlackLight : #c6c6c9;
 $colorOrange : #ff9933;
+$colorRed : #d14c4c;
 $borderColor : #dcdcdc;
+$borderColorText : #d0d0d0;
 $borderColorInput : #c8d7de;
+$backgroundSmoked : #fafafa;
 $fontFamily : "Helvetica Neue", "Helvetica", sans-serif;
 $fontSize : 13px;
-$elementsSprite : 'img/elements.png?18';
-$selectSprite : 'img/select.png?13';
+$elementsSprite : 'img/elements.png?22';
+$elementsSpriteRetina : 'img/elements@2x.png?2';
+$selectSprite : 'img/select.png?14';
+$selectSpriteRetina : 'img/select@2x.png';
 $stepBackground : 'img/step_background.png?5';
-$targetIconsSprite : 'img/icons-sprite-targets.png?11';
+$targetIconsSprite : 'img/icons-sprite-targets.png?13';
+$targetIconsSpriteRetina : 'img/icons-sprite-targets@2x.png?1';
 $fieldIconsSprite : 'img/icons-sprite-fields.png?11';
-$operatorIconsSprite : 'img/icons-sprite-operators.png?4';
-$otherIconsSprite : 'img/icons-sprite-other.png?2';
+$fieldIconsSpriteRetina : 'img/icons-sprite-fields@2x.png';
+$fieldDbwIconsSprite : 'img/icons-sprite-fields-dbw.png?1';
+$fieldDbwIconsSpriteRetina : 'img/icons-sprite-fields-dbw@2x.png';
+$fieldLonIconsSprite : 'img/icons-sprite-fields-lon.png';
+$fieldLonIconsSpriteRetina : 'img/icons-sprite-fields-lon@2x.png';
+$operatorIconsSprite : 'img/icons-sprite-operators.png?5';
+$operatorIconsSpriteRetina : 'img/icons-sprite-operators@2x.png';
+$otherIconsSprite : 'img/icons-sprite-other.png?3';
+$otherIconsSpriteRetina : 'img/icons-sprite-other@2x.png';
 $loader : 'img/loader.gif';
 
 /* useful mixins */
@@ -63,19 +77,40 @@ $loader : 'img/loader.gif';
 	box-shadow: $x $y $blur $spread rgba(0, 0, 0, $opacity);
 }
 
+@mixin glow($color: #fff, $blur: 5px, $spread: 0, $opacity: 0.5) {
+	-webkit-box-shadow: 0 0 $blur $spread rgba($color, $opacity);
+	-moz-box-shadow: 0 0 $blur $spread rgba($color, $opacity);
+	box-shadow: 0 0 $blur $spread rgba($color, $opacity);
+}
+
+@mixin transition($transition: all 0.2s ease-in-out) {
+	-webkit-transition: #{$transition};
+	-moz-transition: #{$transition};
+	-o-transition: #{$transition};
+	transition: #{$transition};
+}
+
+@mixin backgroundSize($width: 100px, $height: 100px) {
+	-moz-background-size: $width $height;
+	-ie-background-size: $width $height;
+	-o-background-size: $width $height;
+	-webkit-background-size: $width $height;
+	background-size: $width $height;
+}
+
 /*
  * JCSDL EDITOR
  */
-.jcsdl-container {
+.jcsdl-container, .jcsdl-popup {
 	overflow: hidden; position: relative;
 	font-size: $fontSize; font-family: $fontFamily; color: $colorLight;
 
 	/* building blocks */
 	a {
 		color: $color; text-decoration: none;
-		-webkit-transition: none; -moz-transition: none; -o-transition: none; transition: none;
+		@include transition("color 0.2s ease-in-out");
 		
-		&:hover {color: lighten($color, 5%);}
+		&:hover {color: $colorOrange;}
 	}
 }
 
@@ -102,34 +137,68 @@ $loader : 'img/loader.gif';
 	&:hover {@include opacity(0.9);}
 }
 
+a.jcsdl-btn {
+	display: block; overflow: hidden; padding: 8px; line-height: 14px;
+	float: left; margin-right: 8px;
+	border: 1px solid $borderColorInput; @include rounded(3px);
+	color: $color; font-weight: bold;
+
+	&.active {
+		border-color: $colorOrange;
+		color: $colorOrange;
+	}
+
+	&.disabled {
+		border-color: $borderColor !important;
+		color: $borderColorText !important;
+		@include opacity(0.65);
+	}
+
+	&:hover {
+		color: $colorOrange;
+	}
+}
+
 .jcsdl-header {
 	overflow: hidden;
-	padding: 15px;
-	border-bottom: 1px dotted $borderColor;
+	padding: 15px; padding-bottom: 0;
 
 	h3 {
 		float: left; margin: 0;
 		line-height: 1em;
-		font-size: 1.8em; color: $color; font-weight: normal;
+		font-size: 2em; color: $color; font-weight: normal;
 	}
+
+	.jcsdl-actions {float: right;}
+	.jcsdl-editor-save {margin-right: 0;}
+	.jcsdl-editor-cancel {margin-left: 8px; margin-right: 0;}
+	.jcsdl-error {margin: 10px 0;}
 }
 
 .jcsdl-footer {
 	overflow: hidden;
-	padding: 15px;
-	border-top: 1px dotted $borderColor;
+	padding: 15px; padding-top: 0;
 
 	.jcsdl-actions {float: left; overflow: hidden; margin-bottom: 5px;}
 }
 
+.jcsdl-row {
+	width: auto; position: relative;
+	margin-bottom: 8px;
+	zoom: 1;
+
+	&:before, &:after {content: ""; display: table;}
+	&:after {clear: both;}
+}
+
 .jcsdl-error {
-	display: block; margin: 10px 20px;
+	display: block; margin: 10px 15px;
 	padding: 0 10px; height: 38px; line-height: 38px; overflow: hidden;
 	text-align: left;
 	border: 1px solid #fbd2d2; @include rounded(3px);
 	background: url($elementsSprite) repeat-x center -240px;
 
-	strong {color: red; font-weight: bold;}
+	strong {color: $colorRed; font-weight: bold;}
 	span {color: #222; margin-left: 5px;}
 }
 
@@ -138,6 +207,7 @@ $loader : 'img/loader.gif';
  */
 .jcsdl-mainview {
 	.jcsdl-header, .jcsdl-header h3 {line-height: 38px;}
+	.jcsdl-footer {display: none;}
 }
 
 /* main view actions (add new filter, add existing stream) */
@@ -147,11 +217,6 @@ $loader : 'img/loader.gif';
 }
 
 .jcsdl-mainview-action {
-	float: left; margin-right: 8px;
-	display: block; overflow: hidden;
-	line-height: 14px;
-	color: $color; font-weight: bold;
-
 	.jcsdl-picto {
 		float: left; margin-right: 8px;
 		display: block; width: 14px; height: 14px;
@@ -161,17 +226,14 @@ $loader : 'img/loader.gif';
 	&.jcsdl-add-filter {margin-right: 0;}
 
 	&:hover {
-		color: $colorOrange !important;
-
 		&.jcsdl-add-filter .jcsdl-picto {background-position: -115px -89px;}
 	}
 }
 
 /* main view mode (expanded / collapsed) */
 .jcsdl-mainview-mode {
-	overflow: hidden; float: right; margin-left: 15px;
-	width: 130px; padding-left: 15px;
-	border-left: 1px dotted $borderColor;
+	overflow: hidden; float: right; margin-right: 30px;
+	width: 130px;
 }
 
 .jcsdl-mainview-mode-options {
@@ -193,25 +255,166 @@ $loader : 'img/loader.gif';
 	&.active {@include opacity(1);}
 }
 
+/* advanced logic view */
+.jcsdl-advanced-container {
+	margin: 15px 0; position: relative;
+	background: $backgroundSmoked; border-color: $borderColor;
+	zoom: 1;
+
+	&:before, &:after {content: ""; display: table;}
+	&:after {clear: both;}
+
+	li {list-style: none;}
+	.ui-sortable-helper {@include dropShadow(-2px, 2px, 4px, 0, 0.1); @include rounded(3px);}
+}
+
+.jcsdl-advanced-gui-container {
+	display: block; width: 100%; height: 76px; box-sizing: border-box;
+	margin: 0; position: relative; overflow: hidden;
+
+	.jcsdl-advanced-gui-arrow {
+		display: block; height: 100%; width: 55px;
+		position: absolute; top: 0;
+		background: $backgroundSmoked;
+
+		span {
+			display: block; width: 12px; height: 18px;
+			position: absolute; top: 50%; margin-top: -9px;
+			background: transparent url($elementsSprite) no-repeat -74px -393px;
+			@include opacity(0.7);
+		}
+
+		&.left {
+			left: 0;
+			background: -moz-linear-gradient(left,  rgba(250,250,250,1) 50%, rgba(254,254,254,0) 100%); /* FF3.6+ */
+			background: -webkit-gradient(linear, left top, right top, color-stop(50%,rgba(250,250,250,1)), color-stop(100%,rgba(254,254,254,0))); /* Chrome,Safari4+ */
+			background: -webkit-linear-gradient(left,  rgba(250,250,250,1) 50%,rgba(254,254,254,0) 100%); /* Chrome10+,Safari5.1+ */
+			background: -o-linear-gradient(left,  rgba(250,250,250,1) 50%,rgba(254,254,254,0) 100%); /* Opera 11.10+ */
+			background: -ms-linear-gradient(left,  rgba(250,250,250,1) 50%,rgba(254,254,254,0) 100%); /* IE10+ */
+			background: linear-gradient(to right,  rgba(250,250,250,1) 50%,rgba(254,254,254,0) 100%); /* W3C */
+			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fafafa', endColorstr='#00fefefe',GradientType=1 ); /* IE6-9 */
+
+			span {left: 5px;}
+		}
+		&.right {
+			right: 0;
+			background: -moz-linear-gradient(left,  rgba(254,254,254,0) 0%, rgba(250,250,250,1) 50%); /* FF3.6+ */
+			background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(254,254,254,0)), color-stop(50%,rgba(250,250,250,1))); /* Chrome,Safari4+ */
+			background: -webkit-linear-gradient(left,  rgba(254,254,254,0) 0%,rgba(250,250,250,1) 50%); /* Chrome10+,Safari5.1+ */
+			background: -o-linear-gradient(left,  rgba(254,254,254,0) 0%,rgba(250,250,250,1) 50%); /* Opera 11.10+ */
+			background: -ms-linear-gradient(left,  rgba(254,254,254,0) 0%,rgba(250,250,250,1) 50%); /* IE10+ */
+			background: linear-gradient(to right,  rgba(254,254,254,0) 0%,rgba(250,250,250,1) 50%); /* W3C */
+			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00fefefe', endColorstr='#fafafa',GradientType=1 ); /* IE6-9 */
+
+			span {right: 5px; background-position: -86px -393px;}
+		}
+
+		&:hover {
+			span {@include opacity(1);}
+		}
+
+		&.off {display: none;}
+	}
+}
+
+.jcsdl-advanced-gui {
+	list-style: none; margin: 0; padding: 5px 0;
+	height: 66px; overflow: hidden;
+	position: absolute; top: 0; left: 0;
+
+	li {
+		float: left; display: block;
+		margin: 0 4px;
+
+		&.ui-sortable-helper {
+			@include dropShadow(-2px, 2px, 3px, 0, 0.1);
+		}
+
+		&.jcsdl-token-ph {
+			width: 64px; height: 64px;
+			margin: 0 4px;
+			background: transparent; border: 1px dashed $borderColor; @include rounded(3px);
+
+			&.bracket {width: 44px;}
+		}
+	}
+	.jcsdl-logic-token {cursor: move;}
+}
+
+.jcsdl-advanced-manual {
+	input {
+		display: block; width: 100%; height: 76px; box-sizing: border-box;
+		color: $color; font-size: 2.5em;
+		border: 0 !important; background: transparent; outline: none;
+	}
+}
+
+.jcsdl-logic-token {
+	display: block; width: 64px; height: 64px; line-height: 64px; padding: 0;
+	float: left; list-style-type: none; position: relative;
+	text-align: center; font-size: 2em; font-weight: bold; color: $colorLight;
+	background: white; border: 1px solid $borderColor; @include rounded(3px);
+
+	.jcsdl-delete-token {
+		display: block; position: absolute; top: -1px; right: -1px;
+		z-index: 5;
+		width: 10px; height: 11px;
+		background: #f9e7e7;
+		border: 1px solid $colorRed; @include rounded(2px);
+
+		span {
+			display: block; width: 5px; height: 5px;
+			margin: 3px 2px;
+			background: url($elementsSprite) no-repeat -149px -278px;
+		}
+	}
+
+	&.bracket {font-size: 2.25em; width: 44px;}
+	&.operator {color: $colorOrange; font-size: 1.2em;}
+	&.filter {
+		color: $color;
+		@include transition("color 0.2s ease-in-out, border-color 0.2s ease-in-out");
+
+		&:hover {
+			color: $colorOrange;
+			border-color: $colorOrange;
+		}
+	}
+
+	&.error {@include glow(red);}
+}
+
+.jcsdl-logic-token {color: $colorLight;}
+
 /* filters logic (AND/OR) */
 .jcsdl-filters-logic {
-	margin: 15px;
+	float: left;
 	text-align: left;
 }
 
-.jcsdl-filters-logic-option {
-	margin-right: 8px;
-	cursor: pointer;
+a.jcsdl-filters-logic-option {
+	padding: 8px 12px;
 
-	input {margin-right: 5px;}
+	&.disabled {
+		.jcsdl-logic-help {
+			color: $borderColorText;
+		}
+	}
 
-	&.jcsdl-or {margin-right: 0;}
+	&.jcsdl-advanced-option {display: none;}
+}
+
+.jcsdl-logic-help {
+	display: inline-block; width: 18px; height: 18px; line-height: 18px;
+	margin: -8px 0; margin-left: 8px;
+	border: 1px solid $borderColor; @include rounded(3px);
+	text-align: center; color: $borderColorText;
 }
 
 /* filters list */
 .jcsdl-filter {
 	overflow: hidden; position: relative; margin: 15px;
-	padding: 5px;
+	padding: 0 5px;
 	border: 1px solid $borderColor;
 	@include rounded(3px);
 
@@ -248,6 +451,14 @@ $loader : 'img/loader.gif';
 
 			&.input-select {display: none;}
 		}
+		.jcsdl-filter-info.id {
+			margin: 22px 10px; margin-right: 0;
+			padding: 0; width: 64px; height: 64px; line-height: 64px;
+			text-align: center; font-size: 26px; color: $colorBlackLight;
+			border-color: $borderColor;
+			@include transition("color 0.2s ease-in-out, border-color 0.2s ease-in-out");
+		}
+		.jcsdl-filter-info.target {margin: 0; margin-left: 5px;}
 		.jcsdl-filter-info.operator {margin: 0 5px; margin-right: -3px;}
 		.jcsdl-filter-info.value {
 			margin: 31px 0;
@@ -256,12 +467,18 @@ $loader : 'img/loader.gif';
 			background-color: white;
 		}
 
+		&.on {
+			.jcsdl-filter-info.id {color: $colorOrange; border-color: $colorOrange;}
+		}
+
 	}
 
 	&.collapsed .jcsdl-filter {
+		padding: 5px;
 
 		.jcsdl-filter-description {float: left;}
 
+		.jcsdl-filter-info.id {border: 0; padding: 0;}
 		.jcsdl-filter-info.value {border: 0; padding: 0;}
 
 		.jcsdl-filter-target,
@@ -394,7 +611,7 @@ $loader : 'img/loader.gif';
 		}
 
 		&:hover {
-			background: #fafafa;
+			background: $backgroundSmoked;
 			.jcsdl-dropdown-icon {@include opacity(0.9);}
 		}
 		&:active .jcsdl-dropdown-icon {background-position: 0 -316px;}
@@ -530,10 +747,9 @@ $loader : 'img/loader.gif';
 	text-align: center;
 
 	.jcsdl-input-select-option {
-		margin: 10px;
+		margin: 10px; float: none;
 		display: inline-block; padding: 0 10px; height: 25px; line-height: 25px;
-		font-size: 13px; color: $colorBlack;
-		border: 1px solid $colorBlackLight;
+		font-size: 13px;
 		@include rounded(2px);
 		@include opacity(0.75);
 
@@ -541,7 +757,7 @@ $loader : 'img/loader.gif';
 		zoom: 1;
 		*display: inline;
 
-		&.selected {@include opacity(1); border-color: $colorOrange; color: $color;}
+		&.selected {@include opacity(1); border-color: $colorOrange; color: $colorOrange;}
 	}
 }
 
@@ -735,102 +951,366 @@ $loader : 'img/loader.gif';
 	&.target-topix		{background-position: -1760px 0;		&.selected {background-position: -1760px -110px;}}
 	&.target-augmentation {background-position: -1870px 0;		&.selected {background-position: -1870px -110px;}}
 	&.target-2ch		{background-position: -1980px 0;		&.selected {background-position: -1980px -110px;}}
+	&.target-bitly		{background-position: -2090px 0;		&.selected {background-position: -2090px -110px;}}
+	&.target-wikipedia	{background-position: -2200px 0;		&.selected {background-position: -2200px -110px;}}
+}
+
+/* field icons sets */
+.jcsdl-icon.field {
+	background-repeat: no-repeat;
+
+	/* default icon set (original) */
+	background-image: url($fieldIconsSprite);
+
+	/* additional icon set (demographics, bitly, wiki - dbw) */
+	&.icon-twitter_activity,
+	&.icon-location_by_country,
+	&.icon-basic_demographics,
+	&.icon-interests,
+	&.icon-twitter_influence,
+	&.icon-first_language,
+	&.icon-number_of_accounts_followed,
+	&.icon-professions,
+	&.icon-usa,
+	&.icon-city,
+	&.icon-services_and_technologies,
+	&.icon-large_accounts_followed,
+	&.icon-twitter_settings,
+	&.icon-older_than,
+	&.icon-younger_than,
+	&.icon-ms_clothes,
+	&.icon-ms_shop,
+	&.icon-ms_food,
+	&.icon-useragent,
+	&.icon-url_hash,
+	&.icon-share_hash,
+	&.icon-cname,
+	&.icon-ref_url,
+	&.icon-ref_domain,
+	&.icon-country_code,
+	&.icon-geo_region_code,
+	&.icon-geo_region,
+	&.icon-timezone,
+	&.icon-contributions,
+	&.icon-talkpage,
+	&.icon-diff,
+	&.icon-changetype,
+	&.icon-changeadded,
+	&.icon-changeremoved,
+	&.icon-diff-from,
+	&.icon-diff-to,
+	&.icon-externallinks,
+	&.icon-namespace,
+	&.icon-namespacecode,
+	&.icon-newlength,
+	&.icon-oldlength,
+	&.icon-pageid,
+	&.icon-parentid,
+	&.icon-relationship,
+	&.icon-work-status,
+	&.icon-accounts_categories {
+		background-image: url($fieldDbwIconsSprite);
+	}
+
+	/* additional icon set (links, opengraph, newscred - lon) */
+	&.icon-normalized_url,
+	&.icon-hops,
+	&.icon-http_code,
+	&.icon-metatags,
+	&.icon-charset,
+	&.icon-newskeywords,
+	&.icon-standout,
+	&.icon-site_name,
+	&.icon-email,
+	&.icon-phone_number,
+	&.icon-fax_number,
+	&.icon-street_address,
+	&.icon-locality,
+	&.icon-postal_code,
+	&.icon-activity,
+	&.icon-sport,
+	&.icon-bar,
+	&.icon-company,
+	&.icon-cafe,
+	&.icon-hotel,
+	&.icon-restaurant,
+	&.icon-cause,
+	&.icon-sports_league,
+	&.icon-sports_team,
+	&.icon-band,
+	&.icon-government,
+	&.icon-non_profit,
+	&.icon-school,
+	&.icon-university,
+	&.icon-actor,
+	&.icon-athlete,
+	&.icon-author,
+	&.icon-director,
+	&.icon-musician,
+	&.icon-politician,
+	&.icon-public_figure,
+	&.icon-landmark,
+	&.icon-state_province,
+	&.icon-album,
+	&.icon-book,
+	&.icon-drink,
+	&.icon-food,
+	&.icon-game,
+	&.icon-movie,
+	&.icon-product,
+	&.icon-song,
+	&.icon-tv_show,
+	&.icon-blog,
+	&.icon-website,
+	&.icon-fulltext,
+	&.icon-circulation,
+	&.icon-company_type,
+	&.icon-founded,
+	&.icon-media_type,
+	&.icon-source_name,
+	&.icon-card,
+	&.icon-site,
+	&.icon-site_id,
+	&.icon-creator,
+	&.icon-creator_id,
+	&.icon-image_width,
+	&.icon-image_height,
+	&.icon-twitter,
+	&.icon-player_width,
+	&.icon-player_height,
+	&.icon-player_stream,
+	&.icon-player_stream_content_type,
+	&.icon-player,
+	&.icon-mention_ids,
+	&.icon-status,
+	&.icon-user_verified,
+	&.icon-confidence,
+	&.icon-entities_name,
+	&.icon-entities_type,
+	&.icon-region,
+	&.icon-keywords {
+		background-image: url($fieldLonIconsSprite);
+	}
 }
 
 .jcsdl-icon.field {
-	background: url($fieldIconsSprite) no-repeat 0 0;
-
-	&.icon-geo			{background-position: 0 0; 				&.selected {background-position: -80px 0;}}
-	&.icon-link 		{background-position: -160px 0; 		&.selected {background-position: -240px 0;}}
-	&.icon-sample 		{background-position: -320px 0; 		&.selected {background-position: -400px 0;}}
-	&.icon-title 		{background-position: -480px 0; 		&.selected {background-position: -560px 0;}}
-	&.icon-content 		{background-position: -640px 0; 		&.selected {background-position: -720px 0;}}
-	&.icon-description 	{background-position: 0 -80px; 			&.selected {background-position: -80px -80px;}}
-	&.icon-source 		{background-position: -160px -80px; 	&.selected {background-position: -240px -80px;}}
-	&.icon-type 		{background-position: -320px -80px; 	&.selected {background-position: -400px -80px;}}
-	&.icon-avatar 		{background-position: -480px -80px; 	&.selected {background-position: -560px -80px;}}
-	&.icon-comment 		{background-position: -640px -80px;		&.selected {background-position: -720px -80px;}}
-	&.icon-comments-count {background-position: 0 -160px;		&.selected {background-position: -80px -160px;}}
+	&.icon-geo					{background-position: 0 0; 				&.selected {background-position: -80px 0;}}
+	&.icon-link 				{background-position: -160px 0; 		&.selected {background-position: -240px 0;}}
+	&.icon-sample 				{background-position: -320px 0; 		&.selected {background-position: -400px 0;}}
+	&.icon-title 				{background-position: -480px 0; 		&.selected {background-position: -560px 0;}}
+	&.icon-content 				{background-position: -640px 0; 		&.selected {background-position: -720px 0;}}
+	&.icon-description 			{background-position: 0 -80px; 			&.selected {background-position: -80px -80px;}}
+	&.icon-source 				{background-position: -160px -80px; 	&.selected {background-position: -240px -80px;}}
+	&.icon-type 				{background-position: -320px -80px; 	&.selected {background-position: -400px -80px;}}
+	&.icon-avatar 				{background-position: -480px -80px; 	&.selected {background-position: -560px -80px;}}
+	&.icon-comment 				{background-position: -640px -80px;		&.selected {background-position: -720px -80px;}}
+	&.icon-comments-count 		{background-position: 0 -160px;			&.selected {background-position: -80px -160px;}}
 	&.icon-author-username, &.icon-username {background-position: -160px -160px; &.selected {background-position: -240px -160px;}}
-	&.icon-username 	{background-position: -160px -160px; 	&.selected {background-position: -240px -160px;}}
-	&.icon-user 		{background-position: -320px -160px;	&.selected {background-position: -400px -160px;}}
-	&.icon-fullname 	{background-position: -480px -160px;	&.selected {background-position: -560px -160px;}}
-	&.icon-registered	{background-position: -640px -160px;	&.selected {background-position: -720px -160px;}}
-	&.icon-user-description {background-position: 0 -240px;		&.selected {background-position: -80px -240px;}}
-	&.icon-followers_count	{background-position: -160px -240px;		&.selected {background-position: -240px -240px;}}
-	&.icon-follower_ratio	{background-position: -320px -240px;		&.selected {background-position: -400px -240px;}}
-	&.icon-friends_count	{background-position: -480px -240px;		&.selected {background-position: -560px -240px;}}
-	&.icon-location 	{background-position: -640px -240px;	&.selected {background-position: -720px -240px;}}
-	&.icon-screen_name	{background-position: 0 -320px;			&.selected {background-position: -80px -320px;}}
-	&.icon-domains, &.icon-domain 	{background-position: -160px -320px;	&.selected {background-position: -240px -320px;}}
-	&.icon-topic, &.icon-topics		{background-position: -320px -320px; 	&.selected {background-position: -400px -320px;}}
-	&.icon-language 	{background-position: -480px -320px; 	&.selected {background-position: -560px -320px;}}
-	&.icon-statuses_count {background-position: -640px -320px;	&.selected {background-position: -720px -320px;}}
-	&.icon-time_zone 	{background-position: 0 -400px;			&.selected {background-position: -80px -400px;}}
-	&.icon-placename 	{background-position: -160px -400px;	&.selected {background-position: -240px -400px;}}
-	&.icon-id 			{background-position: -320px -400px;	&.selected {background-position: -400px -400px;}}
-	&.icon-amplification {background-position: -480px -400px; 	&.selected {background-position: -560px -400px;}}
-	&.icon-listed_count {background-position: -640px -400px;	&.selected {background-position: -720px -400px;}}
-	&.icon-network 		{background-position: 0 -480px; 		&.selected {background-position: -80px -480px;}}
-	&.icon-score 		{background-position: -160px -480px; 	&.selected {background-position: -240px -480px;}}
-	&.icon-true_reach 	{background-position: -320px -480px; 	&.selected {background-position: -400px -480px;}}
-	&.icon-trends 		{background-position: -480px -480px; 	&.selected {background-position: -560px -480px;}}
-	&.icon-country_code {background-position: -640px -480px;	&.selected {background-position: -720px -480px;}}
-	&.icon-likes-ids	{background-position: 0 -560px;			&.selected {background-position: -80px -560px;}}
-	&.icon-likes-names	{background-position: -160px -560px;	&.selected {background-position: -240px -560px;}}
-	&.icon-to-ids		{background-position: -320px -560px;	&.selected {background-position: -400px -560px;}}
-	&.icon-to-names		{background-position: -480px -560px;	&.selected {background-position: -560px -560px;}}
-	&.icon-age 			{background-position: -640px -560px; 	&.selected {background-position: -720px -560px;}}
-	&.icon-category		{background-position: 0 -640px;			&.selected {background-position: -80px -640px;}}
-	&.icon-url 			{background-position: -160px -640px; 	&.selected {background-position: -240px -640px;}}
-	&.icon-retweet-count{background-position: -320px -640px; 	&.selected {background-position: -400px -640px;}}
-	&.icon-gender 		{background-position: -480px -640px; 	&.selected {background-position: -560px -640px;}}
-	&.icon-commentslink {background-position: -640px -640px; 	&.selected {background-position: -720px -640px;}}
-	&.icon-authors 		{background-position: 0 -720px; 		&.selected {background-position: -80px -720px;}}
-	&.icon-author-name 	{background-position: -160px -720px; 	&.selected {background-position: -240px -720px;}}
-	&.icon-duration		{background-position: -320px -720px; 	&.selected {background-position: -400px -720px;}}
-	&.icon-tags 		{background-position: -480px -720px; 	&.selected {background-position: -560px -720px;}}
-	&.icon-tweet 		{background-position: -640px -720px; 	&.selected {background-position: -720px -720px;}}
-	&.icon-post			{background-position: 0 -800px; 		&.selected {background-position: -80px -800px;}}
-	&.icon-place 		{background-position: -160px -800px; 	&.selected {background-position: -240px -800px;}}
-	&.icon-retweet 		{background-position: -320px -800px; 	&.selected {background-position: -400px -800px;}}
-	&.icon-retweeted 	{background-position: -480px -800px; 	&.selected {background-position: -560px -800px;}}
-	&.icon-mentions 	{background-position: -640px -800px; 	&.selected {background-position: -720px -800px;}}
-	&.icon-inreply 		{background-position: 0 -880px; 		&.selected {background-position: -80px -880px;}}
-	&.icon-count 		{background-position: -160px -880px; 	&.selected {background-position: -240px -880px;}}
-	&.icon-ratio 		{background-position: -320px -880px; 	&.selected {background-position: -400px -880px;}}
-	&.icon-user-id 		{background-position: -480px -880px; 	&.selected {background-position: -560px -880px;}}
-	&.icon-placeattrs 	{background-position: -640px -880px; 	&.selected {background-position: -720px -880px;}}
-	&.icon-country 		{background-position: 0 -960px; 		&.selected {background-position: -80px -960px;}}
-	&.icon-article 		{background-position: -160px -960px; 	&.selected {background-position: -240px -960px;}}
-	&.icon-video-caption{background-position: -320px -960px; 	&.selected {background-position: -400px -960px;}}
-	&.icon-video 		{background-position: -480px -960px; 	&.selected {background-position: -560px -960px;}}
-	&.icon-elapsed 		{background-position: -640px -960px; 	&.selected {background-position: -720px -960px;}}
-	&.icon-buries 		{background-position: 0 -1040px; 		&.selected {background-position: -80px -1040px;}}
-	&.icon-diggs 		{background-position: -160px -1040px; 	&.selected {background-position: -240px -1040px;}}
-	&.icon-status 		{background-position: -320px -1040px; 	&.selected {background-position: -400px -1040px;}}
-	&.icon-videolink 	{background-position: -480px -1040px; 	&.selected {background-position: -560px -1040px;}}
-	&.icon-thumbnail 	{background-position: -640px -1040px; 	&.selected {background-position: -720px -1040px;}}
-	&.icon-profileviews {background-position: 0 -1120px; 		&.selected {background-position: -80px -1120px;}}
-	&.icon-photos 		{background-position: -160px -1120px;	&.selected {background-position: -240px -1120px;}}
-	&.icon-image		{background-position: -320px -1120px; 	&.selected {background-position: -400px -1120px;}}
-	&.icon-verb 		{background-position: -480px -1120px; 	&.selected {background-position: -560px -1120px;}}
-	&.icon-application 	{background-position: -640px -1120px; 	&.selected {background-position: -720px -1120px;}}
-	&.icon-caption 		{background-position: 0 -1200px; 		&.selected {background-position: -80px -1200px;}}
-	&.icon-likes-count 	{background-position: -160px -1200px; 	&.selected {background-position: -240px -1200px;}}
-	&.icon-og-by 		{background-position: -320px -1200px; 	&.selected {background-position: -400px -1200px;}}
-	&.icon-opengraph 	{background-position: -480px -1200px;	&.selected {background-position: -560px -1200px;}}
-	&.icon-message 		{background-position: -640px -1200px; 	&.selected {background-position: -720px -1200px;}}
-	&.icon-attribution-link {background-position: 0 -1280px; 	&.selected {background-position: -80px -1280px;}}
-	&.icon-attribution-text {background-position: -160px -1280px; &.selected {background-position: -240px -1280px;}}
-	&.icon-thread		{background-position: -320px -1280px; 	&.selected {background-position: -400px -1280px;}}
-	&.icon-sentiment	{background-position: -480px -1280px; 	&.selected {background-position: -560px -1280px;}}
-	&.icon-contenttype	{background-position: -640px -1280px; 	&.selected {background-position: -720px -1280px;}}
-	&.icon-signature	{background-position: 0 -1360px; 		&.selected {background-position: -80px -1360px;}}
-	&.icon-links 		{background-position: -160px -1360px;	&.selected {background-position: -240px -1360px;}}
-	&.icon-demographic	{background-position: -320px -1360px;	&.selected {background-position: -400px -1360px;}}
-	&.icon-salience		{background-position: -480px -1360px;	&.selected {background-position: -560px -1360px;}}
-	&.icon-klout		{background-position: -640px -1360px;	&.selected {background-position: -720px -1360px;}}
+	&.icon-username 			{background-position: -160px -160px; 	&.selected {background-position: -240px -160px;}}
+	&.icon-user 				{background-position: -320px -160px;	&.selected {background-position: -400px -160px;}}
+	&.icon-fullname 			{background-position: -480px -160px;	&.selected {background-position: -560px -160px;}}
+	&.icon-registered			{background-position: -640px -160px;	&.selected {background-position: -720px -160px;}}
+	&.icon-user-description 	{background-position: 0 -240px;			&.selected {background-position: -80px -240px;}}
+	&.icon-followers_count		{background-position: -160px -240px;	&.selected {background-position: -240px -240px;}}
+	&.icon-follower_ratio		{background-position: -320px -240px;	&.selected {background-position: -400px -240px;}}
+	&.icon-friends_count		{background-position: -480px -240px;	&.selected {background-position: -560px -240px;}}
+	&.icon-location 			{background-position: -640px -240px;	&.selected {background-position: -720px -240px;}}
+	&.icon-screen_name			{background-position: 0 -320px;			&.selected {background-position: -80px -320px;}}
+	&.icon-domains, &.icon-domain 	{background-position: -160px -320px; &.selected {background-position: -240px -320px;}}
+	&.icon-topic, &.icon-topics		{background-position: -320px -320px; &.selected {background-position: -400px -320px;}}
+	&.icon-language 			{background-position: -480px -320px; 	&.selected {background-position: -560px -320px;}}
+	&.icon-statuses_count 		{background-position: -640px -320px;	&.selected {background-position: -720px -320px;}}
+	&.icon-time_zone 			{background-position: 0 -400px;			&.selected {background-position: -80px -400px;}}
+	&.icon-placename 			{background-position: -160px -400px;	&.selected {background-position: -240px -400px;}}
+	&.icon-id 					{background-position: -320px -400px;	&.selected {background-position: -400px -400px;}}
+	&.icon-amplification 		{background-position: -480px -400px; 	&.selected {background-position: -560px -400px;}}
+	&.icon-listed_count 		{background-position: -640px -400px;	&.selected {background-position: -720px -400px;}}
+	&.icon-network 				{background-position: 0 -480px; 		&.selected {background-position: -80px -480px;}}
+	&.icon-score 				{background-position: -160px -480px; 	&.selected {background-position: -240px -480px;}}
+	&.icon-true_reach 			{background-position: -320px -480px; 	&.selected {background-position: -400px -480px;}}
+	&.icon-trends 				{background-position: -480px -480px; 	&.selected {background-position: -560px -480px;}}
+	&.icon-country_code 		{background-position: -640px -480px;	&.selected {background-position: -720px -480px;}}
+	&.icon-likes-ids			{background-position: 0 -560px;			&.selected {background-position: -80px -560px;}}
+	&.icon-likes-names			{background-position: -160px -560px;	&.selected {background-position: -240px -560px;}}
+	&.icon-to-ids				{background-position: -320px -560px;	&.selected {background-position: -400px -560px;}}
+	&.icon-to-names				{background-position: -480px -560px;	&.selected {background-position: -560px -560px;}}
+	&.icon-age 					{background-position: -640px -560px; 	&.selected {background-position: -720px -560px;}}
+	&.icon-category				{background-position: 0 -640px;			&.selected {background-position: -80px -640px;}}
+	&.icon-url 					{background-position: -160px -640px; 	&.selected {background-position: -240px -640px;}}
+	&.icon-retweet-count		{background-position: -320px -640px; 	&.selected {background-position: -400px -640px;}}
+	&.icon-gender, &.icon-sex 	{background-position: -480px -640px; 	&.selected {background-position: -560px -640px;}}
+	&.icon-commentslink 		{background-position: -640px -640px; 	&.selected {background-position: -720px -640px;}}
+	&.icon-authors 				{background-position: 0 -720px; 		&.selected {background-position: -80px -720px;}}
+	&.icon-author-name 			{background-position: -160px -720px; 	&.selected {background-position: -240px -720px;}}
+	&.icon-duration				{background-position: -320px -720px; 	&.selected {background-position: -400px -720px;}}
+	&.icon-tags 				{background-position: -480px -720px; 	&.selected {background-position: -560px -720px;}}
+	&.icon-tweet 				{background-position: -640px -720px; 	&.selected {background-position: -720px -720px;}}
+	&.icon-post					{background-position: 0 -800px; 		&.selected {background-position: -80px -800px;}}
+	&.icon-place 				{background-position: -160px -800px; 	&.selected {background-position: -240px -800px;}}
+	&.icon-retweet 				{background-position: -320px -800px; 	&.selected {background-position: -400px -800px;}}
+	&.icon-retweeted 			{background-position: -480px -800px; 	&.selected {background-position: -560px -800px;}}
+	&.icon-mentions 			{background-position: -640px -800px; 	&.selected {background-position: -720px -800px;}}
+	&.icon-inreply 				{background-position: 0 -880px; 		&.selected {background-position: -80px -880px;}}
+	&.icon-count 				{background-position: -160px -880px; 	&.selected {background-position: -240px -880px;}}
+	&.icon-ratio 				{background-position: -320px -880px; 	&.selected {background-position: -400px -880px;}}
+	&.icon-user-id 				{background-position: -480px -880px; 	&.selected {background-position: -560px -880px;}}
+	&.icon-placeattrs 			{background-position: -640px -880px; 	&.selected {background-position: -720px -880px;}}
+	&.icon-country 				{background-position: 0 -960px; 		&.selected {background-position: -80px -960px;}}
+	&.icon-article 				{background-position: -160px -960px; 	&.selected {background-position: -240px -960px;}}
+	&.icon-video-caption		{background-position: -320px -960px; 	&.selected {background-position: -400px -960px;}}
+	&.icon-video 				{background-position: -480px -960px; 	&.selected {background-position: -560px -960px;}}
+	&.icon-elapsed 				{background-position: -640px -960px; 	&.selected {background-position: -720px -960px;}}
+	&.icon-buries 				{background-position: 0 -1040px; 		&.selected {background-position: -80px -1040px;}}
+	&.icon-diggs 				{background-position: -160px -1040px; 	&.selected {background-position: -240px -1040px;}}
+	&.icon-status 				{background-position: -320px -1040px; 	&.selected {background-position: -400px -1040px;}}
+	&.icon-videolink 			{background-position: -480px -1040px; 	&.selected {background-position: -560px -1040px;}}
+	&.icon-thumbnail 			{background-position: -640px -1040px; 	&.selected {background-position: -720px -1040px;}}
+	&.icon-profileviews 		{background-position: 0 -1120px; 		&.selected {background-position: -80px -1120px;}}
+	&.icon-photos 				{background-position: -160px -1120px;	&.selected {background-position: -240px -1120px;}}
+	&.icon-image				{background-position: -320px -1120px; 	&.selected {background-position: -400px -1120px;}}
+	&.icon-verb 				{background-position: -480px -1120px; 	&.selected {background-position: -560px -1120px;}}
+	&.icon-application 			{background-position: -640px -1120px; 	&.selected {background-position: -720px -1120px;}}
+	&.icon-caption 				{background-position: 0 -1200px; 		&.selected {background-position: -80px -1200px;}}
+	&.icon-likes-count 			{background-position: -160px -1200px; 	&.selected {background-position: -240px -1200px;}}
+	&.icon-og-by 				{background-position: -320px -1200px; 	&.selected {background-position: -400px -1200px;}}
+	&.icon-opengraph 			{background-position: -480px -1200px;	&.selected {background-position: -560px -1200px;}}
+	&.icon-message 				{background-position: -640px -1200px; 	&.selected {background-position: -720px -1200px;}}
+	&.icon-attribution-link 	{background-position: 0 -1280px; 		&.selected {background-position: -80px -1280px;}}
+	&.icon-attribution-text 	{background-position: -160px -1280px;	&.selected {background-position: -240px -1280px;}}
+	&.icon-thread				{background-position: -320px -1280px; 	&.selected {background-position: -400px -1280px;}}
+	&.icon-sentiment			{background-position: -480px -1280px; 	&.selected {background-position: -560px -1280px;}}
+	&.icon-contenttype			{background-position: -640px -1280px; 	&.selected {background-position: -720px -1280px;}}
+	&.icon-signature			{background-position: 0 -1360px; 		&.selected {background-position: -80px -1360px;}}
+	&.icon-links 				{background-position: -160px -1360px;	&.selected {background-position: -240px -1360px;}}
+	&.icon-demographic			{background-position: -320px -1360px;	&.selected {background-position: -400px -1360px;}}
+	&.icon-salience				{background-position: -480px -1360px;	&.selected {background-position: -560px -1360px;}}
+	&.icon-klout				{background-position: -640px -1360px;	&.selected {background-position: -720px -1360px;}}
+
+	/* dbw */
+	&.icon-twitter_activity		{background-position: -80px 0;			&.selected {background-position: 0 0;}}
+	&.icon-location_by_country	{background-position: -240px 0;			&.selected {background-position: -160px 0;}}
+	&.icon-basic_demographics	{background-position: -400px 0;			&.selected {background-position: -320px 0;}}
+	&.icon-interests			{background-position: -560px 0;			&.selected {background-position: -480px 0;}}
+	&.icon-twitter_influence	{background-position: -720px 0;			&.selected {background-position: -640px 0;}}
+	&.icon-first_language		{background-position: -80px -80px;		&.selected {background-position: 0 -80px;}}
+	&.icon-number_of_accounts_followed {background-position: -240px -80px; &.selected {background-position: -160px -80px;}}
+	&.icon-professions			{background-position: -400px -80px;		&.selected {background-position: -320px -80px;}}
+	&.icon-usa					{background-position: -560px -80px;		&.selected {background-position: -480px -80px;}}
+	&.icon-city 				{background-position: -720px -80px;		&.selected {background-position: -640px -80px;}}
+	&.icon-services_and_technologies {background-position: -80px -160px; &.selected {background-position: 0 -160px;}}
+	&.icon-large_accounts_followed {background-position: -240px -160px;	&.selected {background-position: -160px -160px;}}
+	&.icon-twitter_settings		{background-position: -400px -160px;	&.selected {background-position: -320px -160px;}}
+	&.icon-older_than			{background-position: -560px -160px;	&.selected {background-position: -480px -160px;}}
+	&.icon-younger_than			{background-position: -720px -160px;	&.selected {background-position: -640px -160px;}}
+	&.icon-ms_clothes			{background-position: -80px -240px;		&.selected {background-position: 0 -240px;}}
+	&.icon-ms_shop				{background-position: -240px -240px;	&.selected {background-position: -160px -240px;}}
+	&.icon-ms_food 				{background-position: -400px -240px;	&.selected {background-position: -320px -240px;}}
+	&.icon-useragent 			{background-position: -560px -240px;	&.selected {background-position: -480px -240px;}}
+	&.icon-url_hash				{background-position: -720px -240px;	&.selected {background-position: -640px -240px;}}
+	&.icon-share_hash			{background-position: -80px -320px;		&.selected {background-position: 0 -320px;}}
+	&.icon-cname				{background-position: -240px -320px;	&.selected {background-position: -160px -320px;}}
+	&.icon-ref_url				{background-position: -400px -320px;	&.selected {background-position: -320px -320px;}}
+	&.icon-ref_domain			{background-position: -560px -320px;	&.selected {background-position: -480px -320px;}}
+	&.icon-country_code			{background-position: -80px -400px;		&.selected {background-position: 0 -400px;}}
+	&.icon-geo_region_code		{background-position: -240px -400px;	&.selected {background-position: -160px -400px;}}
+	&.icon-geo_region			{background-position: -400px -400px;	&.selected {background-position: -320px -400px;}}
+	&.icon-timezone				{background-position: -560px -400px;	&.selected {background-position: -480px -400px;}}
+	&.icon-contributions		{background-position: -720px -400px;	&.selected {background-position: -640px -400px;}}
+	&.icon-talkpage				{background-position: -80px -480px;		&.selected {background-position: 0 -480px;}}
+	&.icon-diff					{background-position: -240px -480px;	&.selected {background-position: -160px -480px;}}
+	&.icon-changetype			{background-position: -400px -480px;	&.selected {background-position: -320px -480px;}}
+	&.icon-changeadded			{background-position: -560px -480px;	&.selected {background-position: -480px -480px;}}
+	&.icon-changeremoved		{background-position: -720px -480px;	&.selected {background-position: -640px -480px;}}
+	&.icon-diff-from			{background-position: -80px -560px;		&.selected {background-position: 0 -560px;}}
+	&.icon-diff-to				{background-position: -240px -560px;	&.selected {background-position: -160px -560px;}}
+	&.icon-externallinks		{background-position: -400px -560px;	&.selected {background-position: -320px -560px;}}
+	&.icon-namespace			{background-position: -560px -560px;	&.selected {background-position: -480px -560px;}}
+	&.icon-namespacecode		{background-position: -720px -560px;	&.selected {background-position: -640px -560px;}}
+	&.icon-newlength			{background-position: -80px -640px;		&.selected {background-position: 0 -640px;}}
+	&.icon-oldlength			{background-position: -240px -640px;	&.selected {background-position: -160px -640px;}}
+	&.icon-pageid				{background-position: -400px -640px;	&.selected {background-position: -320px -640px;}}
+	&.icon-parentid				{background-position: -560px -640px;	&.selected {background-position: -480px -640px;}}
+	&.icon-relationship			{background-position: -720px -640px;	&.selected {background-position: -640px -640px;}}
+	&.icon-work-status			{background-position: -80px -720px;		&.selected {background-position: 0 -720px;}}
+	&.icon-accounts_categories	{background-position: -240px -720px; 	&.selected {background-position: -160px -720px;}}
+
+	/* lon */
+	&.icon-normalized_url		{background-position: -110px -20px;		&.selected {background-position: -30px -20px;}}
+	&.icon-hops					{background-position: -270px -20px;		&.selected {background-position: -190px -20px;}}
+	&.icon-http_code			{background-position: -430px -20px;		&.selected {background-position: -350px -20px;}}
+	&.icon-metatags				{background-position: -590px -20px;		&.selected {background-position: -510px -20px;}}
+	&.icon-charset				{background-position: -750px -20px;		&.selected {background-position: -670px -20px;}}
+	&.icon-newskeywords			{background-position: -110px -100px;	&.selected {background-position: -30px -100px;}}
+	&.icon-standout				{background-position: -270px -100px;	&.selected {background-position: -190px -100px;}}
+	&.icon-site_name			{background-position: -430px -100px;	&.selected {background-position: -350px -100px;}}
+	&.icon-email				{background-position: -590px -100px;	&.selected {background-position: -510px -100px;}}
+	&.icon-phone_number			{background-position: -750px -100px;	&.selected {background-position: -670px -100px;}}
+	&.icon-fax_number			{background-position: -110px -180px;	&.selected {background-position: -30px -180px;}}
+	&.icon-street_address		{background-position: -270px -180px;	&.selected {background-position: -190px -180px;}}
+	&.icon-locality				{background-position: -110px -340px;	&.selected {background-position: -30px -340px;}}
+	&.icon-postal_code			{background-position: -270px -340px;	&.selected {background-position: -190px -340px;}}
+	&.icon-activity				{background-position: -430px -340px;	&.selected {background-position: -350px -340px;}}
+	&.icon-sport				{background-position: -590px -340px;	&.selected {background-position: -510px -340px;}}
+	&.icon-bar					{background-position: -750px -340px;	&.selected {background-position: -670px -340px;}}
+	&.icon-company				{background-position: -110px -420px;	&.selected {background-position: -30px -420px;}}
+	&.icon-cafe					{background-position: -270px -420px;	&.selected {background-position: -190px -420px;}}
+	&.icon-hotel				{background-position: -430px -420px;	&.selected {background-position: -350px -420px;}}
+	&.icon-restaurant			{background-position: -590px -420px;	&.selected {background-position: -510px -420px;}}
+	&.icon-cause				{background-position: -750px -420px;	&.selected {background-position: -670px -420px;}}
+	&.icon-sports_league		{background-position: -110px -500px;	&.selected {background-position: -30px -500px;}}
+	&.icon-sports_team			{background-position: -270px -500px;	&.selected {background-position: -190px -500px;}}
+	&.icon-band					{background-position: -430px -500px;	&.selected {background-position: -350px -500px;}}
+	&.icon-government			{background-position: -590px -500px;	&.selected {background-position: -510px -500px;}}
+	&.icon-non_profit			{background-position: -750px -500px;	&.selected {background-position: -670px -500px;}}
+	&.icon-school				{background-position: -110px -580px;	&.selected {background-position: -30px -580px;}}
+	&.icon-university			{background-position: -270px -580px;	&.selected {background-position: -190px -580px;}}
+	&.icon-actor				{background-position: -430px -580px;	&.selected {background-position: -350px -580px;}}
+	&.icon-athlete				{background-position: -590px -580px;	&.selected {background-position: -510px -580px;}}
+	&.icon-author				{background-position: -750px -580px;	&.selected {background-position: -670px -580px;}}
+	&.icon-director				{background-position: -110px -660px;	&.selected {background-position: -30px -660px;}}
+	&.icon-musician				{background-position: -270px -660px;	&.selected {background-position: -190px -660px;}}
+	&.icon-politician			{background-position: -430px -660px;	&.selected {background-position: -350px -660px;}}
+	&.icon-public_figure		{background-position: -590px -660px;	&.selected {background-position: -510px -660px;}}
+	&.icon-landmark				{background-position: -750px -660px;	&.selected {background-position: -670px -660px;}}
+	&.icon-state_province		{background-position: -110px -740px;	&.selected {background-position: -30px -740px;}}
+	&.icon-album				{background-position: -270px -740px;	&.selected {background-position: -190px -740px;}}
+	&.icon-book					{background-position: -430px -740px;	&.selected {background-position: -350px -740px;}}
+	&.icon-drink				{background-position: -590px -740px;	&.selected {background-position: -510px -740px;}}
+	&.icon-food					{background-position: -750px -740px;	&.selected {background-position: -670px -740px;}}
+	&.icon-game					{background-position: -110px -820px;	&.selected {background-position: -30px -820px;}}
+	&.icon-movie				{background-position: -270px -820px;	&.selected {background-position: -190px -820px;}}
+	&.icon-product				{background-position: -430px -820px;	&.selected {background-position: -350px -820px;}}
+	&.icon-song					{background-position: -590px -820px;	&.selected {background-position: -510px -820px;}}
+	&.icon-tv_show				{background-position: -750px -820px;	&.selected {background-position: -670px -820px;}}
+	&.icon-blog					{background-position: -110px -900px;	&.selected {background-position: -30px -900px;}}
+	&.icon-website				{background-position: -270px -900px;	&.selected {background-position: -190px -900px;}}
+	&.icon-fulltext				{background-position: -110px -1060px;	&.selected {background-position: -30px -1060px;}}
+	&.icon-circulation			{background-position: -270px -1060px;	&.selected {background-position: -190px -1060px;}}
+	&.icon-company_type			{background-position: -430px -1060px;	&.selected {background-position: -350px -1060px;}}
+	&.icon-founded				{background-position: -590px -1060px;	&.selected {background-position: -510px -1060px;}}
+	&.icon-media_type			{background-position: -750px -1060px;	&.selected {background-position: -670px -1060px;}}
+	&.icon-source_name			{background-position: -110px -1220px;	&.selected {background-position: -30px -1220px;}}
+	&.icon-card					{background-position: -110px -1380px;	&.selected {background-position: -30px -1380px;}}
+	&.icon-site					{background-position: -270px -1380px;	&.selected {background-position: -190px -1380px;}}
+	&.icon-site_id				{background-position: -430px -1380px;	&.selected {background-position: -350px -1380px;}}
+	&.icon-creator				{background-position: -590px -1380px;	&.selected {background-position: -510px -1380px;}}
+	&.icon-creator_id			{background-position: -750px -1380px;	&.selected {background-position: -670px -1380px;}}
+	&.icon-image_width			{background-position: -110px -1460px;	&.selected {background-position: -30px -1460px;}}
+	&.icon-image_height			{background-position: -270px -1460px;	&.selected {background-position: -190px -1460px;}}
+	&.icon-twitter				{background-position: -430px -1460px;	&.selected {background-position: -350px -1460px;}}
+	&.icon-player_width			{background-position: -110px -1620px;	&.selected {background-position: -30px -1620px;}}
+	&.icon-player_height		{background-position: -270px -1620px;	&.selected {background-position: -190px -1620px;}}
+	&.icon-player_stream		{background-position: -430px -1620px;	&.selected {background-position: -350px -1620px;}}
+	&.icon-player_stream_content_type {background-position: -590px -1620px;	&.selected {background-position: -510px -1620px;}}
+	&.icon-player				{background-position: -750px -1620px;	&.selected {background-position: -670px -1620px;}}
+	&.icon-mention_ids			{background-position: -110px -1780px;	&.selected {background-position: -30px -1780px;}}
+	&.icon-status				{background-position: -270px -1780px;	&.selected {background-position: -190px -1780px;}}
+	&.icon-user_verified		{background-position: -430px -1780px;	&.selected {background-position: -350px -1780px;}}
+	&.icon-confidence			{background-position: -110px -1940px;	&.selected {background-position: -30px -1940px;}}
+	&.icon-entities_name		{background-position: -110px -2100px;	&.selected {background-position: -30px -2100px;}}
+	&.icon-entities_type		{background-position: -270px -2100px;	&.selected {background-position: -190px -2100px;}}
+	&.icon-region 				{background-position: -110px -2260px; 	&.selected {background-position: -30px -2260px;}}
+	&.icon-keywords 			{background-position: -270px -2260px; 	&.selected {background-position: -190px -2260px;}}
 }
 
 .jcsdl-icon.input {
@@ -923,16 +1403,10 @@ $loader : 'img/loader.gif';
 
 /* JCSDL Popup */
 .jcsdl-popup {
-	display: block; overflow: hidden;
+	display: block;
 	position: absolute; z-index: 100;
-	font-size: $fontSize; font-family: $fontFamily; color: $colorLight;
 	@include rounded(4px);
 	@include dropShadow(0, 0, 8px, 0, 0.8);
-
-	/* building blocks */
-	a {color: $color; text-decoration: none;
-		&:hover {color: lighten($color, 5%);}
-	}
 
 	.jcsdl-popup-header {
 		display: block; height: 39px; overflow: hidden; position: relative; padding: 0 10px;
@@ -988,8 +1462,8 @@ $loader : 'img/loader.gif';
 
 		.field-label {font-weight: bold; font-size: 18px; margin-bottom: .5em;}
 	}
-	p, applet, object, iframe, blockquote, pre, abbr, cite, code, q, s, small, strike, sub, sup, tt, b, u, i, center, dl, dt, dd, caption, fieldset, form, label, legend {margin: 0; padding: 0; border: 0; outline: 0; font-size: 1em; vertical-align: baseline; font: inherit;}
-	p, dl, hr, h1, h2, h3, h4, h5, h6, ol, ul, pre, table, address, fieldset {margin-bottom: .5em;}
+	p, iframe, blockquote, pre, abbr, cite, code, q, s, small, strike, sub, sup, tt, b, u, i, center, dl, dt, dd, caption, label, legend {margin: 0; padding: 0; border: 0; outline: 0; font-size: 1em; vertical-align: baseline; font: inherit;}
+	p, dl, hr, h1, h2, h3, h4, h5, h6, ol, ul, pre, table {margin-bottom: .5em;}
 
 }
 
@@ -1012,5 +1486,196 @@ $loader : 'img/loader.gif';
 		border-color: $colorOrange transparent transparent transparent;
 		border-bottom: 0;
 	}
-	&.tipsy-s .tipsy-arrow {top: 100%; left: 50%; bottom: auto; margin-top: -5px; margin-left: -8px;}
+	&.tipsy-s .tipsy-arrow {top: 100%; left: 50%; bottom: auto; margin-top: -5px; margin-left: -13px;}
+}
+
+/* retina elements sprite */
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+	only screen and (-o-min-device-pixel-ratio: 3/2),
+	only screen and (min--moz-device-pixel-ratio: 1.5),
+	only screen and (min-device-pixel-ratio: 1.5) {
+
+	.jcsdl-elements-sprite {
+		background-image: url($elementsSpriteRetina);
+		@include backgroundSize(181px, 500px);
+	}
+
+	.jcsdl-step {
+		.jcsdl-filter-target-wrap {
+			background-image: url($selectSpriteRetina);
+			@include backgroundSize(127px, 900px);
+		}
+		
+		&.selected .jcsdl-filter-target-field-wrap {
+			background-image: url($selectSpriteRetina);
+			@include backgroundSize(127px, 900px);
+		}
+		
+		&.selected .jcsdl-filter-target-field-input-wrap {
+			background-image: url($selectSpriteRetina);
+			@include backgroundSize(127px, 900px);
+		}
+
+		.jcsdl-target-help {
+			background-image: url($selectSpriteRetina);
+			@include backgroundSize(127px, 900px);
+		}
+	}
+
+	.jcsdl-slider-icon {
+		background-image: url($otherIconsSpriteRetina);
+		@include backgroundSize(160px, 880px);
+	}
+
+	.jcsdl-icon.target {
+		background-image: url($targetIconsSpriteRetina);
+		@include backgroundSize(2472px, 220px);
+	}
+
+	.jcsdl-icon.operator {
+		background-image: url($operatorIconsSpriteRetina);
+		@include backgroundSize(184px, 368px);
+	}
+
+	.jcsdl-icon.input {
+		background-image: url($otherIconsSpriteRetina);
+		@include backgroundSize(160px, 880px);
+	}
+
+	.jcsdl-icon.field {
+		background-image: url($fieldIconsSpriteRetina);
+		@include backgroundSize(800px, 1440px);
+
+		&.icon-twitter_activity,
+		&.icon-location_by_country,
+		&.icon-basic_demographics,
+		&.icon-interests,
+		&.icon-twitter_influence,
+		&.icon-first_language,
+		&.icon-number_of_accounts_followed,
+		&.icon-professions,
+		&.icon-usa,
+		&.icon-city,
+		&.icon-services_and_technologies,
+		&.icon-large_accounts_followed,
+		&.icon-twitter_settings,
+		&.icon-older_than,
+		&.icon-younger_than,
+		&.icon-ms_clothes,
+		&.icon-ms_shop,
+		&.icon-ms_food,
+		&.icon-useragent,
+		&.icon-url_hash,
+		&.icon-share_hash,
+		&.icon-cname,
+		&.icon-ref_url,
+		&.icon-ref_domain,
+		&.icon-country_code,
+		&.icon-geo_region_code,
+		&.icon-geo_region,
+		&.icon-timezone,
+		&.icon-contributions,
+		&.icon-talkpage,
+		&.icon-diff,
+		&.icon-changetype,
+		&.icon-changeadded,
+		&.icon-changeremoved,
+		&.icon-diff-from,
+		&.icon-diff-to,
+		&.icon-externallinks,
+		&.icon-namespace,
+		&.icon-namespacecode,
+		&.icon-newlength,
+		&.icon-oldlength,
+		&.icon-pageid,
+		&.icon-parentid,
+		&.icon-relationship,
+		&.icon-work-status,
+		&.icon-accounts_categories {
+			background-image: url($fieldDbwIconsSpriteRetina);
+			@include backgroundSize(801px, 800px);
+		}
+
+		/* additional icon set (links, opengraph, newscred - lon) */
+		&.icon-normalized_url,
+		&.icon-hops,
+		&.icon-http_code,
+		&.icon-metatags,
+		&.icon-charset,
+		&.icon-newskeywords,
+		&.icon-standout,
+		&.icon-site_name,
+		&.icon-email,
+		&.icon-phone_number,
+		&.icon-fax_number,
+		&.icon-street_address,
+		&.icon-locality,
+		&.icon-postal_code,
+		&.icon-activity,
+		&.icon-sport,
+		&.icon-bar,
+		&.icon-company,
+		&.icon-cafe,
+		&.icon-hotel,
+		&.icon-restaurant,
+		&.icon-cause,
+		&.icon-sports_league,
+		&.icon-sports_team,
+		&.icon-band,
+		&.icon-government,
+		&.icon-non_profit,
+		&.icon-school,
+		&.icon-university,
+		&.icon-actor,
+		&.icon-athlete,
+		&.icon-author,
+		&.icon-director,
+		&.icon-musician,
+		&.icon-politician,
+		&.icon-public_figure,
+		&.icon-landmark,
+		&.icon-state_province,
+		&.icon-album,
+		&.icon-book,
+		&.icon-drink,
+		&.icon-food,
+		&.icon-game,
+		&.icon-movie,
+		&.icon-product,
+		&.icon-song,
+		&.icon-tv_show,
+		&.icon-blog,
+		&.icon-website,
+		&.icon-fulltext,
+		&.icon-circulation,
+		&.icon-company_type,
+		&.icon-founded,
+		&.icon-media_type,
+		&.icon-source_name,
+		&.icon-card,
+		&.icon-site,
+		&.icon-site_id,
+		&.icon-creator,
+		&.icon-creator_id,
+		&.icon-image_width,
+		&.icon-image_height,
+		&.icon-twitter,
+		&.icon-player_width,
+		&.icon-player_height,
+		&.icon-player_stream,
+		&.icon-player_stream_content_type,
+		&.icon-player,
+		&.icon-mention_ids,
+		&.icon-status,
+		&.icon-user_verified,
+		&.icon-confidence,
+		&.icon-entities_name,
+		&.icon-entities_type,
+		&.icon-region,
+		&.icon-keywords {
+			background-image: url($fieldLonIconsSpriteRetina);
+			@include backgroundSize(855px, 2365px);
+		}
+	}
+		
 }
