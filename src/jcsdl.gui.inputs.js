@@ -1,14 +1,21 @@
-JCSDL.Loader.addComponent(function($) {
+JCSDL.Loader.addComponent(function($, undefined) {
 
-	JCSDL.GUIInputs = function(gui) {
+	/**
+	 * Class that holds methods for various input types.
+	 * 
+	 * @param {JCSDL.GUI} gui GUI instance to which this filter editor belongs.
+	 */
+	this.GUIInputs = function(gui) {
 		this.gui = gui;
 		this.definition = gui.definition;
+		this.getTemplate = gui.getTemplate;
 	};
 
-	JCSDL.GUIInputs.prototype = {
+	this.GUIInputs.prototype = {
 
 		/**
 		 * Execute the given method for value input type in the context of JCSDL.GUIInputs object.
+		 * 
 		 * @param  {String} t Value input type.
 		 * @param  {Method} m Method to be called.
 		 * @param  {Array} a Array of arguments.
@@ -16,15 +23,6 @@ JCSDL.Loader.addComponent(function($) {
 		 */
 		exec : function(t, m, a) {
 			return this[t][m].apply(this, a);
-		},
-
-		/**
-		 * Returns the specified template as jQuery object.
-		 * @param  {String} n Template name.
-		 * @return {jQuery}
-		 */
-		getTemplate : function(n) {
-			return this.gui.getTemplate(n);
 		},
 
 		/*
@@ -188,7 +186,7 @@ JCSDL.Loader.addComponent(function($) {
 				// only show maximum of 5 selected options
 				var show = vals.slice(0, 5);
 				$.each(show, function(i, v) {
-					if (typeof(opts[v]) == 'undefined') return true;
+					if (opts[v] === undefined) return true;
 
 					self.exec('select', 'createOptionView', [v, opts[v]])
 						.addClass('selected')
@@ -204,6 +202,7 @@ JCSDL.Loader.addComponent(function($) {
 
 				/**
 				 * Turn off clicking of the options.
+				 * 
 				 * @param  {Event} ev
 				 * @listener
 				 */
@@ -217,9 +216,9 @@ JCSDL.Loader.addComponent(function($) {
 
 			getOptionsSet : function(info) {
 				var opts = {};
-				if (typeof(info.options) !== 'undefined') {
+				if (info.options !== undefined) {
 					opts = info.options;
-				} else if ((typeof(info.optionsSet) !== 'undefined') && (typeof(this.definition.inputs.select.sets[info.optionsSet]) !== 'undefined')) {
+				} else if ((info.optionsSet !== undefined) && (this.definition.inputs.select.sets[info.optionsSet] !== undefined)) {
 					opts = this.definition.inputs.select.sets[info.optionsSet];
 				}
 				return opts;
@@ -266,6 +265,7 @@ JCSDL.Loader.addComponent(function($) {
 
 				/**
 				 * Mask the input as a number field and update the slider when the value was changed in the input.
+				 * 
 				 * @param  {Event} ev
 				 * @listener
 				 */
@@ -279,6 +279,7 @@ JCSDL.Loader.addComponent(function($) {
 
 				/**
 				 * Changes the value of the slider by incrementing or decrementing.
+				 * 
 				 * @param  {jQuery} $view     Full slider input view.
 				 * @param  {Object} info
 				 * @param  {Number} step      
@@ -296,6 +297,7 @@ JCSDL.Loader.addComponent(function($) {
 				/**
 				 * Make the plus and minus signs clickable. They should change the slider value.
 				 * Using mousedown and mouseup events so the mouse button can be hold to change the value.
+				 * 
 				 * @param  {Event} ev
 				 * @listener
 				 */
@@ -373,7 +375,7 @@ JCSDL.Loader.addComponent(function($) {
 				google.maps.event.addListener(ac, 'place_changed', function() {
 					var place = ac.getPlace();
 
-					if (typeof(place.geometry) == 'undefined') {
+					if (place.geometry === undefined) {
 						// choose the first visible suggestion (if any)
 						if ($('.pac-container .pac-item').length > 0) {
 							$ac.trigger('focus');
@@ -449,6 +451,7 @@ JCSDL.Loader.addComponent(function($) {
 
 				/**
 				 * Listen for clicks on the map and adjust the rectangle to it.
+				 * 
 				 * @param  {Event} ev Google Maps Event.
 				 * @listener
 				 */
@@ -474,6 +477,7 @@ JCSDL.Loader.addComponent(function($) {
 
 				/**
 				 * When a marker is dragged to a different position then redraw the rectangle.
+				 * 
 				 * @listener
 				 */
 				google.maps.event.addListener(markers[0], 'position_changed', function() {
@@ -488,6 +492,7 @@ JCSDL.Loader.addComponent(function($) {
 
 				/**
 				 * When a marker is dragged to a different position then redraw the rectangle.
+				 * 
 				 * @listener
 				 */
 				google.maps.event.addListener(markers[1], 'position_changed', function() {
@@ -500,6 +505,7 @@ JCSDL.Loader.addComponent(function($) {
 
 				/**
 				 * Remove the rectangle and all values from the map.
+				 * 
 				 * @param  {Event} ev
 				 * @listener
 				 */
@@ -576,6 +582,7 @@ JCSDL.Loader.addComponent(function($) {
 
 			/**
 			 * Draws the rectangle using the given coords.
+			 * 
 			 * @return {Boolean} Success or not.
 			 */
 			drawRectangle : function(map, rect, coords) {
@@ -590,6 +597,7 @@ JCSDL.Loader.addComponent(function($) {
 
 			/**
 			 * Draws rectangle using the given bounds.
+			 * 
 			 * @param  {google.maps.Map} map Map on which to draw the rectangle.
 			 * @param  {google.maps.Rectangle} rect The rectangle to be drawn.
 			 * @param  {google.maps.LatLngBounds} bounds Bounds to be drawn with.
@@ -601,6 +609,7 @@ JCSDL.Loader.addComponent(function($) {
 
 			/**
 			 * Gets coordinates for all four corners of the rectangle based on its bounds.
+			 * 
 			 * @param  {google.maps.LatLngBounds} bounds
 			 * @return {Object}
 			 */
@@ -615,6 +624,7 @@ JCSDL.Loader.addComponent(function($) {
 
 			/**
 			 * Gets coordinates for all four corners of the rectangle based on it raw coordinates of NW and SE points.
+			 * 
 			 * @param  {Array} nw Array where at index 0 is latitude for NW corner, and at index 1 its longitude.
 			 * @param  {Array} se Array where at index 0 is latitude for SE corner, and at index 1 its longitude.
 			 * @return {Object}
@@ -659,6 +669,7 @@ JCSDL.Loader.addComponent(function($) {
 
 			/**
 			 * Updates the marked area information (coordinates and size).
+			 * 
 			 * @param  {jQuery} $view The value input view.
 			 * @param  {google.maps.Rectangle} rect Rectangle marking.
 			 */
@@ -722,6 +733,7 @@ JCSDL.Loader.addComponent(function($) {
 
 				/**
 				 * Listen for clicks on the map and adjust the circle to it.
+				 * 
 				 * @param  {Event} ev Google Maps Event.
 				 * @listener
 				 */
@@ -758,6 +770,7 @@ JCSDL.Loader.addComponent(function($) {
 
 				/**
 				 * When the center marker is dragged to a different position then redraw the circle.
+				 * 
 				 * @listener
 				 */
 				google.maps.event.addListener(centerMarker, 'position_changed', function() {
@@ -765,7 +778,7 @@ JCSDL.Loader.addComponent(function($) {
 					var oldCenter = circle.getCenter();
 					circle.setCenter(center);
 
-					if (typeof(oldCenter) !== 'undefined') {
+					if (oldCenter !== undefined) {
 						// move the radius marker as well, to fit new center
 						// so first calculate the lat and lng differences
 						var latDiff = center.lat() - oldCenter.lat();
@@ -780,11 +793,12 @@ JCSDL.Loader.addComponent(function($) {
 
 				/**
 				 * When the radius marker is dragged to a different position then redraw the circle.
+				 * 
 				 * @listener
 				 */
 				google.maps.event.addListener(radiusMarker, 'position_changed', function() {
 					var center = circle.getCenter();
-					if (typeof(center) !== 'undefined') {
+					if (center !== undefined) {
 						circle.setRadius(google.maps.geometry.spherical.computeDistanceBetween(circle.getCenter(), this.getPosition()));
 						self.exec('geo_radius', 'updateInfo', [$view, circle]);
 					}
@@ -792,6 +806,7 @@ JCSDL.Loader.addComponent(function($) {
 
 				/**
 				 * Remove the circle and all values from the map.
+				 * 
 				 * @param  {Event} ev
 				 * @listener
 				 */
@@ -871,6 +886,7 @@ JCSDL.Loader.addComponent(function($) {
 
 			/**
 			 * Updates the area information with calculated information on how big the marked area is.
+			 * 
 			 * @param  {jQuery} $view The value input view.
 			 * @param  {google.maps.Circle} circle Circle marking.
 			 */
@@ -924,6 +940,7 @@ JCSDL.Loader.addComponent(function($) {
 
 				/**
 				 * Listen for clicks on the map and create new polygon points.
+				 * 
 				 * @param  {Event} ev Google Maps Event.
 				 * @listener
 				 */
@@ -933,6 +950,7 @@ JCSDL.Loader.addComponent(function($) {
 
 				/**
 				 * Listen for new items added in the polygon path and create corresponding markers.
+				 * 
 				 * @param  {Integer} i Index of the new point.
 				 * @listener
 				 */
@@ -987,6 +1005,7 @@ JCSDL.Loader.addComponent(function($) {
 
 				/**
 				 * A tip of the polygon has moved, update corresponding marker.
+				 * 
 				 * @param  {[type]} i [description]
 				 * @return {[type]}   [description]
 				 */
@@ -1000,6 +1019,7 @@ JCSDL.Loader.addComponent(function($) {
 
 				/**
 				 * Remove the polygon and all values from the map.
+				 * 
 				 * @param  {Event} ev
 				 * @listener
 				 */
@@ -1086,6 +1106,7 @@ JCSDL.Loader.addComponent(function($) {
 
 			/**
 			 * Updates the area information with calculated information on how big the marked area is.
+			 * 
 			 * @param  {jQuery} $view The value input view.
 			 * @param  {google.maps.Polygon} polygon Polygon marking.
 			 */
