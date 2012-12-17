@@ -557,6 +557,7 @@ a.jcsdl-filters-logic-option {
   .jcsdl-filters-list.expanded .jcsdl-filter .jcsdl-filter-operator.input-select {
     display: none; }
 .jcsdl-filters-list.expanded .jcsdl-filter .jcsdl-filter-info.id {
+  display: none;
   margin: 22px 10px;
   margin-right: 0;
   padding: 0;
@@ -592,6 +593,7 @@ a.jcsdl-filters-logic-option {
   .jcsdl-filters-list.collapsed .jcsdl-filter .jcsdl-filter-description {
     float: left; }
   .jcsdl-filters-list.collapsed .jcsdl-filter .jcsdl-filter-info.id {
+    display: none;
     border: 0;
     padding: 0; }
   .jcsdl-filters-list.collapsed .jcsdl-filter .jcsdl-filter-info.value {
@@ -621,6 +623,9 @@ a.jcsdl-filters-logic-option {
     padding: 0;
     background: transparent;
     border: 0; }
+
+.jcsdl-advanced-on .jcsdl-filters-list .jcsdl-filter .jcsdl-filter-info.id {
+  display: block; }
 
 /*
  * FILTER EDITOR VIEW

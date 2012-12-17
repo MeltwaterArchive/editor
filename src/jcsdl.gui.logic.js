@@ -206,6 +206,8 @@ JCSDL.Loader.addComponent(function($, undefined) {
 			this.$editor.show();
 			this.adjustGui();
 			this.$editor.hide().slideDown(this.config.animate);
+
+			this.gui.$mainView.addClass('jcsdl-advanced-on');
 		},
 
 		/**
@@ -213,6 +215,7 @@ JCSDL.Loader.addComponent(function($, undefined) {
 		 */
 		hideEditor : function() {
 			this.$editor.slideUp(this.config.animate);
+			this.gui.$mainView.removeClass('jcsdl-advanced-on');
 		},
 
 		/**
