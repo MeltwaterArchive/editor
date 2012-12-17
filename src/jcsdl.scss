@@ -452,6 +452,7 @@ a.jcsdl-filters-logic-option {
 			&.input-select {display: none;}
 		}
 		.jcsdl-filter-info.id {
+			display: none;
 			margin: 22px 10px; margin-right: 0;
 			padding: 0; width: 64px; height: 64px; line-height: 64px;
 			text-align: center; font-size: 26px; color: $colorBlackLight;
@@ -478,7 +479,7 @@ a.jcsdl-filters-logic-option {
 
 		.jcsdl-filter-description {float: left;}
 
-		.jcsdl-filter-info.id {border: 0; padding: 0;}
+		.jcsdl-filter-info.id {display: none; border: 0; padding: 0;}
 		.jcsdl-filter-info.value {border: 0; padding: 0;}
 
 		.jcsdl-filter-target,
@@ -502,6 +503,8 @@ a.jcsdl-filters-logic-option {
 
 	}
 }
+
+.jcsdl-advanced-on .jcsdl-filters-list .jcsdl-filter .jcsdl-filter-info.id {display: block;}
 
 /*
  * FILTER EDITOR VIEW
