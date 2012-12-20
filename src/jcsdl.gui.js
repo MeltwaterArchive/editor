@@ -39,7 +39,6 @@ JCSDL.Loader.addComponent(function($, undefined) {
 				this.hide();
 			},
 			invalidJCSDL : function(code) {},
-			logicChange : function(logic) {},
 			viewModeChange : function(mode) {},
 			filterNew : function() {},
 			filterEdit : function(filter) {},
@@ -49,6 +48,19 @@ JCSDL.Loader.addComponent(function($, undefined) {
 			targetSelect : function(target) {},
 			operatorSelect : function(operator) {},
 			caseSensitivityChange : function(on) {},
+
+			// logic event hooks
+			logicChange : function(logic) {},
+			logicError : function(error) {},
+			advancedLogicChange : function(expression) {},
+			manualLogic : function() {},
+			manualLogicChange : function(expression) {},
+			graphicalLogic : function() {},
+			graphicalLogicChange : function(expression) {},
+			graphicalLogicTokenMove : function(expression) {},
+			parenthesisAdd : function(expression) {},
+			parenthesisDelete : function(expression) {},
+			logicOperatorSwitch : function(expression) {},
 
 			// grabbing target help url
 			targetHelpUrl : function(target, fieldInfo) {
@@ -236,7 +248,7 @@ JCSDL.Loader.addComponent(function($, undefined) {
 					this.logic.toggleButtons();
 				}
 
-				this.logic.setLogic(parsed.logic);
+				this.logic.setLogic(parsed.logic, true);
 
 			} catch(e) {
 				var errorCode = (e instanceof JCSDL.ValidationException) ? e.code : code;
