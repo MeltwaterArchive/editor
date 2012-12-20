@@ -132,6 +132,8 @@ JCSDL.Loader.addComponent(function($, undefined) {
 				// update the GUI
 				self.setGuiString();
 
+				self.trigger('graphicalLogic');
+
 			} else {
 				// cannot switch until given expression is valid
 				try {
@@ -154,6 +156,8 @@ JCSDL.Loader.addComponent(function($, undefined) {
 
 				// deactivate brackets inserting button
 				self.$insertBracketsButton.addClass('disabled');
+
+				self.trigger('manualLogic');
 
 			}
 		});
@@ -244,16 +248,23 @@ JCSDL.Loader.addComponent(function($, undefined) {
 			// clear all previous errors
 			this.clearErrors();
 
-			var message = (error instanceof JCSDL.LogicValidationException) ? error.message : error;
+			var message = (error instanceof JCSDL.LogicValidationException) ? error.message : error,
+				$error = this.getTemplate('error');
 
-			var $error = this.getTemplate('error');
 			$error.find('span').html(message);
+			$error.insertAfter(this.$editor)
+				.show();
 
-			$error.insertAfter(this.$editor);
-			$error.show();
+			if (!silent) {
+				this.trigger('logicError', [error]);
+			}
 
-			if (!silent && console !== undefined) {
-				console.error(error, arguments);
+			if (!silent) {
+				this.trigger('logicError', [error]);
+				
+				if (console !== undefined) {
+					console.error(error, arguments);
+				}
 			}
 
 			// if validation exception then also highlight invalid token in the gui (if it's active)
@@ -365,6 +376,12 @@ JCSDL.Loader.addComponent(function($, undefined) {
 
 					setTimeout(function() {
 						self.updateFromGui();
+
+						// trigger a change
+						var str = self.getGuiString();
+						self.trigger('graphicalLogicTokenMove', [str]);
+						self.trigger('graphicalLogicChange', [str]);
+						self.trigger('advancedLogicChange', [str]);
 					}, 100);
 				}
 			});
@@ -390,6 +407,11 @@ JCSDL.Loader.addComponent(function($, undefined) {
 
 				self.addGuiToken(')', true, true);
 				self.updateFromGui();
+
+				var str = self.getGuiString();
+				self.trigger('parenthesisAdd', [str]);
+				self.trigger('graphicalLogicChange', [str]);
+				self.trigger('advancedLogicChange', [str]);
 			});
 
 			/**
@@ -586,8 +608,19 @@ JCSDL.Loader.addComponent(function($, undefined) {
 				// toggle logical operator
 				if ($token.data('token') == '&') {
 					$token.data('token', '|').html('OR');
+					self.trigger('logicOperatorSwitch', ['OR']);
+
+					var str = self.getGuiString();
+					self.trigger('graphicalLogicChange', [str]);
+					self.trigger('advancedLogicChange', [str]);
+
 				} else if ($token.data('token') == '|') {
 					$token.data('token', '&').html('AND');
+					self.trigger('logicOperatorSwitch', ['AND']);
+
+					var str = self.getGuiString();
+					self.trigger('graphicalLogicChange', [str]);
+					self.trigger('advancedLogicChange', [str]);
 				}
 
 				self.updateFromGui();
@@ -600,6 +633,11 @@ JCSDL.Loader.addComponent(function($, undefined) {
 				ev.stopPropagation(true);
 
 				self.deleteGuiToken($token);
+
+				var str = self.getGuiString();
+				self.trigger('parenthesisDelete', [str]);
+				self.trigger('graphicalLogicChange', [str]);
+				self.trigger('advancedLogicChange', [str]);
 			});
 
 			/**
@@ -655,6 +693,10 @@ JCSDL.Loader.addComponent(function($, undefined) {
 
 			// update the logic string
 			this.updateFromGui();
+
+			var str = self.getGuiString();
+			self.trigger('graphicalLogicChange', [str]);
+			self.trigger('advancedLogicChange', [str]);
 		},
 
 		/**
@@ -864,6 +906,11 @@ JCSDL.Loader.addComponent(function($, undefined) {
 				clearTimeout(updateTimeout);
 				updateTimeout = setTimeout(function() {
 					var str = $input.val();
+
+					if (self.logicString !== str) {
+						self.trigger('manualLogicChange', [str]);
+						self.trigger('advancedLogicChange', [str]);
+					}
 
 					try {
 						if (self.validate(str)) {
