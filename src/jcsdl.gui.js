@@ -248,7 +248,7 @@ JCSDL.Loader.addComponent(function($, undefined) {
 					this.logic.toggleButtons();
 				}
 
-				this.logic.setLogic(parsed.logic);
+				this.logic.setLogic(parsed.logic, true);
 
 			} catch(e) {
 				var errorCode = (e instanceof JCSDL.ValidationException) ? e.code : code;

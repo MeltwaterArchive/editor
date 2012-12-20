@@ -41,36 +41,10 @@ JCSDL.Loader.addComponent(function($, undefined) {
 			// ignore when disabled or already active
 			if ($el.is('.disabled') || $el.is('.active')) return false;
 
-			self.$logicOptions.removeClass('active');
-			$el.addClass('active');
-
+			var old = self.logic;
 			self.logic = $el.data('logic');
-			self.trigger('logicChange', [self.logic]);
 
-			if (self.logic == self.ADVANCED) {
-				self.showEditor();
-
-				// display short text on the other logic options
-				self.$logicOptions.not('.jcsdl-advanced').each(function() {
-					var $el = $(this);
-					$el.html($el.data('textShort'));
-				});
-
-				// display advanced options
-				self.$advancedOptions.fadeIn(self.config.animate);
-			} else {
-				self.clearErrors();
-				self.hideEditor();
-
-				// display long text on the other logic options
-				self.$logicOptions.not('.jcsdl-advanced').each(function() {
-					var $el = $(this);
-					$el.html($el.data('textLong'));
-				});
-
-				// hide advanced options
-				self.$advancedOptions.hide();
-			}
+			self.didSetLogic(old, false);
 		});
 
 		/**
@@ -164,7 +138,7 @@ JCSDL.Loader.addComponent(function($, undefined) {
 
 		// final setup
 		try {
-			this.setLogic(logic);
+			this.setLogic(logic, true);
 		} catch(e) {
 			this.showError(e, true);
 		}
@@ -1011,12 +985,13 @@ JCSDL.Loader.addComponent(function($, undefined) {
 		 * Sets the logic.
 		 * 
 		 * @param {String} logic
+		 * @param {Boolean} silent[optional] Should this not trigger an event? For internal use. Default: false.
 		 */
-		setLogic : function(logic) {
-			this.logic = ($.inArray(logic, [this.AND, this.OR]) > -1) ? logic : this.ADVANCED;
+		setLogic : function(logic, silent) {
+			silent = silent || false;
 
-			// mark the logic
-			this.$logicOptions.filter('[data-logic="' + this.logic + '"]').click();
+			var oldLogic = this.logic;
+			this.logic = ($.inArray(logic, [this.AND, this.OR]) > -1) ? logic : this.ADVANCED;
 
 			// set the logic string
 			var logicString = '';
@@ -1038,6 +1013,9 @@ JCSDL.Loader.addComponent(function($, undefined) {
 
 			// finally set the logic string
 			this.setLogicString(logicString);
+
+			// delegate the rest somewhere else
+			this.didSetLogic(oldLogic, silent);
 		},
 
 		/**
@@ -1075,6 +1053,10 @@ JCSDL.Loader.addComponent(function($, undefined) {
 			// if there wasn't any previous string logic then only append add filter ID
 			var logicString = (this.logicString.length) ? this.logicString + logic + filterId : filterId;
 
+			this.trigger('manualLogicChange', [logicString]);
+			this.trigger('graphicalLogicChange', [logicString]);
+			this.trigger('advancedLogicChange', [logicString]);
+
 			this.setLogicString(logicString);
 		},
 
@@ -1085,6 +1067,54 @@ JCSDL.Loader.addComponent(function($, undefined) {
 		 */
 		getLogicString : function() {
 			return (this.logic == this.ADVANCED) ? this.logicString : this.logic;
+		},
+
+		/* ##########################
+		 * INTERNAL EVENT HANDLERS
+		 * ########################## */
+		/**
+		 * Called when logic was set either programattically or via clicking on logic option button.
+		 * 
+		 * @param  {String} old Logic name that was before.
+		 * @param  {Boolean} silent[optional] Should this not trigger an event? For internal use. Default: false.
+		 */
+		didSetLogic : function(old, silent) {
+			old = old || '';
+			silent = silent || false;
+
+			// mark the appropriate logic option button
+			this.$logicOptions.removeClass('active')
+				.filter('[data-logic="' + this.logic + '"]').addClass('active');
+
+			if (this.logic == this.ADVANCED) {
+				this.showEditor();
+
+				// display short text on the other logic options
+				this.$logicOptions.not('.jcsdl-advanced').each(function() {
+					var $el = $(this);
+					$el.html($el.data('textShort'));
+				});
+
+				// display advanced options
+				this.$advancedOptions.fadeIn(this.config.animate);
+			} else {
+				this.clearErrors();
+				this.hideEditor();
+
+				// display long text on the other logic options
+				this.$logicOptions.not('.jcsdl-advanced').each(function() {
+					var $el = $(this);
+					$el.html($el.data('textLong'));
+				});
+
+				// hide advanced options
+				this.$advancedOptions.hide();
+			}
+
+			// if not silent and if actually changed then trigger logic event
+			if (!silent && this.logic !== old) {
+				this.trigger('logicChange', [this.logic]);
+			}
 		}
 	};
 
