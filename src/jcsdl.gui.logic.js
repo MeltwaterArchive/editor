@@ -41,36 +41,10 @@ JCSDL.Loader.addComponent(function($, undefined) {
 			// ignore when disabled or already active
 			if ($el.is('.disabled') || $el.is('.active')) return false;
 
-			self.$logicOptions.removeClass('active');
-			$el.addClass('active');
-
+			var old = self.logic;
 			self.logic = $el.data('logic');
-			self.trigger('logicChange', [self.logic]);
 
-			if (self.logic == self.ADVANCED) {
-				self.showEditor();
-
-				// display short text on the other logic options
-				self.$logicOptions.not('.jcsdl-advanced').each(function() {
-					var $el = $(this);
-					$el.html($el.data('textShort'));
-				});
-
-				// display advanced options
-				self.$advancedOptions.fadeIn(self.config.animate);
-			} else {
-				self.clearErrors();
-				self.hideEditor();
-
-				// display long text on the other logic options
-				self.$logicOptions.not('.jcsdl-advanced').each(function() {
-					var $el = $(this);
-					$el.html($el.data('textLong'));
-				});
-
-				// hide advanced options
-				self.$advancedOptions.hide();
-			}
+			self.didSetLogic(old, false);
 		});
 
 		/**
@@ -132,6 +106,8 @@ JCSDL.Loader.addComponent(function($, undefined) {
 				// update the GUI
 				self.setGuiString();
 
+				self.trigger('graphicalLogic');
+
 			} else {
 				// cannot switch until given expression is valid
 				try {
@@ -155,12 +131,14 @@ JCSDL.Loader.addComponent(function($, undefined) {
 				// deactivate brackets inserting button
 				self.$insertBracketsButton.addClass('disabled');
 
+				self.trigger('manualLogic');
+
 			}
 		});
 
 		// final setup
 		try {
-			this.setLogic(logic);
+			this.setLogic(logic, true);
 		} catch(e) {
 			this.showError(e, true);
 		}
@@ -244,16 +222,23 @@ JCSDL.Loader.addComponent(function($, undefined) {
 			// clear all previous errors
 			this.clearErrors();
 
-			var message = (error instanceof JCSDL.LogicValidationException) ? error.message : error;
+			var message = (error instanceof JCSDL.LogicValidationException) ? error.message : error,
+				$error = this.getTemplate('error');
 
-			var $error = this.getTemplate('error');
 			$error.find('span').html(message);
+			$error.insertAfter(this.$editor)
+				.show();
 
-			$error.insertAfter(this.$editor);
-			$error.show();
+			if (!silent) {
+				this.trigger('logicError', [error]);
+			}
 
-			if (!silent && console !== undefined) {
-				console.error(error, arguments);
+			if (!silent) {
+				this.trigger('logicError', [error]);
+				
+				if (console !== undefined) {
+					console.error(error, arguments);
+				}
 			}
 
 			// if validation exception then also highlight invalid token in the gui (if it's active)
@@ -365,6 +350,12 @@ JCSDL.Loader.addComponent(function($, undefined) {
 
 					setTimeout(function() {
 						self.updateFromGui();
+
+						// trigger a change
+						var str = self.getGuiString();
+						self.trigger('graphicalLogicTokenMove', [str]);
+						self.trigger('graphicalLogicChange', [str]);
+						self.trigger('advancedLogicChange', [str]);
 					}, 100);
 				}
 			});
@@ -390,6 +381,11 @@ JCSDL.Loader.addComponent(function($, undefined) {
 
 				self.addGuiToken(')', true, true);
 				self.updateFromGui();
+
+				var str = self.getGuiString();
+				self.trigger('parenthesisAdd', [str]);
+				self.trigger('graphicalLogicChange', [str]);
+				self.trigger('advancedLogicChange', [str]);
 			});
 
 			/**
@@ -586,8 +582,19 @@ JCSDL.Loader.addComponent(function($, undefined) {
 				// toggle logical operator
 				if ($token.data('token') == '&') {
 					$token.data('token', '|').html('OR');
+					self.trigger('logicOperatorSwitch', ['OR']);
+
+					var str = self.getGuiString();
+					self.trigger('graphicalLogicChange', [str]);
+					self.trigger('advancedLogicChange', [str]);
+
 				} else if ($token.data('token') == '|') {
 					$token.data('token', '&').html('AND');
+					self.trigger('logicOperatorSwitch', ['AND']);
+
+					var str = self.getGuiString();
+					self.trigger('graphicalLogicChange', [str]);
+					self.trigger('advancedLogicChange', [str]);
 				}
 
 				self.updateFromGui();
@@ -600,6 +607,11 @@ JCSDL.Loader.addComponent(function($, undefined) {
 				ev.stopPropagation(true);
 
 				self.deleteGuiToken($token);
+
+				var str = self.getGuiString();
+				self.trigger('parenthesisDelete', [str]);
+				self.trigger('graphicalLogicChange', [str]);
+				self.trigger('advancedLogicChange', [str]);
 			});
 
 			/**
@@ -655,6 +667,10 @@ JCSDL.Loader.addComponent(function($, undefined) {
 
 			// update the logic string
 			this.updateFromGui();
+
+			var str = self.getGuiString();
+			self.trigger('graphicalLogicChange', [str]);
+			self.trigger('advancedLogicChange', [str]);
 		},
 
 		/**
@@ -865,6 +881,11 @@ JCSDL.Loader.addComponent(function($, undefined) {
 				updateTimeout = setTimeout(function() {
 					var str = $input.val();
 
+					if (self.logicString !== str) {
+						self.trigger('manualLogicChange', [str]);
+						self.trigger('advancedLogicChange', [str]);
+					}
+
 					try {
 						if (self.validate(str)) {
 							self.clearErrors();
@@ -964,12 +985,13 @@ JCSDL.Loader.addComponent(function($, undefined) {
 		 * Sets the logic.
 		 * 
 		 * @param {String} logic
+		 * @param {Boolean} silent[optional] Should this not trigger an event? For internal use. Default: false.
 		 */
-		setLogic : function(logic) {
-			this.logic = ($.inArray(logic, [this.AND, this.OR]) > -1) ? logic : this.ADVANCED;
+		setLogic : function(logic, silent) {
+			silent = silent || false;
 
-			// mark the logic
-			this.$logicOptions.filter('[data-logic="' + this.logic + '"]').click();
+			var oldLogic = this.logic;
+			this.logic = ($.inArray(logic, [this.AND, this.OR]) > -1) ? logic : this.ADVANCED;
 
 			// set the logic string
 			var logicString = '';
@@ -991,6 +1013,9 @@ JCSDL.Loader.addComponent(function($, undefined) {
 
 			// finally set the logic string
 			this.setLogicString(logicString);
+
+			// delegate the rest somewhere else
+			this.didSetLogic(oldLogic, silent);
 		},
 
 		/**
@@ -1028,6 +1053,10 @@ JCSDL.Loader.addComponent(function($, undefined) {
 			// if there wasn't any previous string logic then only append add filter ID
 			var logicString = (this.logicString.length) ? this.logicString + logic + filterId : filterId;
 
+			this.trigger('manualLogicChange', [logicString]);
+			this.trigger('graphicalLogicChange', [logicString]);
+			this.trigger('advancedLogicChange', [logicString]);
+
 			this.setLogicString(logicString);
 		},
 
@@ -1038,6 +1067,54 @@ JCSDL.Loader.addComponent(function($, undefined) {
 		 */
 		getLogicString : function() {
 			return (this.logic == this.ADVANCED) ? this.logicString : this.logic;
+		},
+
+		/* ##########################
+		 * INTERNAL EVENT HANDLERS
+		 * ########################## */
+		/**
+		 * Called when logic was set either programattically or via clicking on logic option button.
+		 * 
+		 * @param  {String} old Logic name that was before.
+		 * @param  {Boolean} silent[optional] Should this not trigger an event? For internal use. Default: false.
+		 */
+		didSetLogic : function(old, silent) {
+			old = old || '';
+			silent = silent || false;
+
+			// mark the appropriate logic option button
+			this.$logicOptions.removeClass('active')
+				.filter('[data-logic="' + this.logic + '"]').addClass('active');
+
+			if (this.logic == this.ADVANCED) {
+				this.showEditor();
+
+				// display short text on the other logic options
+				this.$logicOptions.not('.jcsdl-advanced').each(function() {
+					var $el = $(this);
+					$el.html($el.data('textShort'));
+				});
+
+				// display advanced options
+				this.$advancedOptions.fadeIn(this.config.animate);
+			} else {
+				this.clearErrors();
+				this.hideEditor();
+
+				// display long text on the other logic options
+				this.$logicOptions.not('.jcsdl-advanced').each(function() {
+					var $el = $(this);
+					$el.html($el.data('textLong'));
+				});
+
+				// hide advanced options
+				this.$advancedOptions.hide();
+			}
+
+			// if not silent and if actually changed then trigger logic event
+			if (!silent && this.logic !== old) {
+				this.trigger('logicChange', [this.logic]);
+			}
 		}
 	};
 
