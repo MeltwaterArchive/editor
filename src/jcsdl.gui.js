@@ -33,6 +33,7 @@ JCSDL.Loader.addComponent(function($, undefined) {
 			definition : {},
 
 			// event hooks
+			change : function() {},
 			save : function(code) {},
 			saveError : function(error) {},
 			cancel : function() {
@@ -99,6 +100,12 @@ JCSDL.Loader.addComponent(function($, undefined) {
 	};
 
 	this.GUI.prototype = {
+		/**
+		 * List of events that also trigger change event.
+		 * @type {Array}
+		 */
+		changeEvents : ['filterNew', 'filterDelete', 'filterSave', 'logicChange', 'advancedLogicChange'],
+
 		/*
 		 * INITIALIZE THE EDITOR
 		 */
@@ -324,6 +331,11 @@ JCSDL.Loader.addComponent(function($, undefined) {
 			if (typeof(this.config[name]) == 'function') {
 				return this.config[name].apply(this, data);
 			}
+
+			if ($.inArray(name, this.changeEvents) > -1) {
+				this.trigger('change');
+			}
+
 			return null;
 		},
 
