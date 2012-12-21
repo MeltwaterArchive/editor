@@ -60,20 +60,35 @@ You can pass an object literal as the 2nd argument of the constructor (or 1st ar
 
     	// event hooks - functions called on various events happening in the editor
     	// 'this' always refers to the editor instance
-    	cancel : function() {
-    		this.hide();
-    	},
-    	invalidJCSDL : function(code) {},
-    	logicChange : function(logic) {},
-    	viewModeChange : function(mode) {},
-    	filterNew : function() {},
-    	filterEdit : function(filter) {},
-    	filterDelete : function(filter) {},
-    	filterSave : function(filter) {},
-    	filterCancel : function(filter) {},
-    	targetSelect : function(target) {},
-    	operatorSelect : function(operator) {},
-    	caseSensitivityChange : function(on) {}
+    	change : function() {},
+        save : function(code) {},
+        saveError : function(error) {},
+        cancel : function() {
+            this.hide();
+        },
+        invalidJCSDL : function(code) {},
+        viewModeChange : function(mode) {},
+        filterNew : function() {},
+        filterEdit : function(filter) {},
+        filterDelete : function(filter) {},
+        filterSave : function(filter) {},
+        filterCancel : function(filter) {},
+        targetSelect : function(target) {},
+        operatorSelect : function(operator) {},
+        caseSensitivityChange : function(on) {},
+
+        // logic event hooks
+        logicChange : function(logic) {},
+        logicError : function(error) {},
+        advancedLogicChange : function(expression) {},
+        manualLogic : function() {},
+        manualLogicChange : function(expression) {},
+        graphicalLogic : function() {},
+        graphicalLogicChange : function(expression) {},
+        graphicalLogicTokenMove : function(expression) {},
+        parenthesisAdd : function(expression) {},
+        parenthesisDelete : function(expression) {},
+        logicOperatorSwitch : function(expression) {},
     }
 
 
