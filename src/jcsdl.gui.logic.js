@@ -360,9 +360,9 @@ JCSDL.Loader.addComponent(function($, undefined) {
 				}
 			});
 
-			// hack to make horizontal sortable working smoothly
-			$gui.data('sortable').floating = true;
-			$gui.data('uiSortable').floating = true;
+			// hack to make horizontal sortable working smoothly (with a fix for older jQuery UI version)
+			($gui.data('sortable') || {}).floating = true;
+			($gui.data('uiSortable') || {}).floating = true;
 
 			/*
 			 * REGISTER LISTENERS
