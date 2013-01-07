@@ -66,7 +66,7 @@ JCSDL.Loader.addComponent(function($, undefined) {
 					'</div>',
 
 					'<div class="jcsdl-mainview-actions">',
-						'<a href="#" class="jcsdl-bordered jcsdl-mainview-action jcsdl-add-filter">',
+						'<a href="#" class="jcsdl-btn jcsdl-mainview-action jcsdl-add-filter">',
 							'<div class="jcsdl-picto jcsdl-elements-sprite"></div>',
 							'Create New Filter',
 						'</a>',
