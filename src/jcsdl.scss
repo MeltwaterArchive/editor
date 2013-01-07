@@ -101,6 +101,11 @@ $loader : 'img/loader.gif';
 /*
  * JCSDL EDITOR
  */
+/* jcsdl-container reset */
+.jcsdl-container {
+	ul, li {margin: 0; padding: 0;}
+}
+
 .jcsdl-container, .jcsdl-popup {
 	overflow: hidden; position: relative;
 	font-size: $fontSize; font-family: $fontFamily; color: $colorLight;
@@ -110,10 +115,9 @@ $loader : 'img/loader.gif';
 		color: $color; text-decoration: none;
 		@include transition("color 0.2s ease-in-out");
 		
-		&:hover {color: $colorOrange;}
+		&:hover {color: $colorOrange; text-decoration: none;}
 	}
 }
-
 
 .jcsdl-label {float: left; font-size: 1em; color: $colorLight; font-weight: normal;}
 .jcsdl-bordered {padding: 8px; border: 1px solid $borderColorInput; @include rounded(3px);}
@@ -137,7 +141,7 @@ $loader : 'img/loader.gif';
 	&:hover {@include opacity(0.9);}
 }
 
-a.jcsdl-btn {
+.jcsdl-container a.jcsdl-btn {
 	display: block; overflow: hidden; padding: 8px; line-height: 14px;
 	float: left; margin-right: 8px;
 	border: 1px solid $borderColorInput; @include rounded(3px);
@@ -232,8 +236,8 @@ a.jcsdl-btn {
 
 /* main view mode (expanded / collapsed) */
 .jcsdl-mainview-mode {
-	overflow: hidden; float: right; margin-right: 30px;
-	width: 130px;
+	overflow: hidden; float: right; margin-right: 15px;
+	width: 110px;
 }
 
 .jcsdl-mainview-mode-options {
@@ -425,14 +429,18 @@ a.jcsdl-filters-logic-option {
 		border: 1px solid $borderColor; border-top: 0; border-right: 0;
 		@include roundedCorner(0, 0, 0, 3px);
 
-		a, span {margin: 0 2px;}
+		a, span {margin: 0 2px; font-weight: bold;}
 	}
 }
 
 .jcsdl-filter-description {overflow: hidden;}
 
 .jcsdl-filter-info {
-	float: left; margin: 0 10px;
+	&.id,
+	&.target,
+	&.field,
+	&.operator,
+	&.value {float: left; margin: 0 10px;}
 
 	&.target,
 	&.input,
