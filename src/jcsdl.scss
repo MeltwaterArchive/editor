@@ -106,18 +106,20 @@ $loader : 'img/loader.gif';
 	ul, li {margin: 0; padding: 0;}
 }
 
-.jcsdl-container, .jcsdl-popup {
-	overflow: hidden; position: relative;
-	font-size: $fontSize; font-family: $fontFamily; color: $colorLight;
+/*@media all {*/
+	.jcsdl-container, .jcsdl-popup {
+		overflow: hidden; position: relative;
+		font-size: $fontSize; font-family: $fontFamily; color: $colorLight;
 
-	/* building blocks */
-	a {
-		color: $color; text-decoration: none;
-		@include transition("color 0.2s ease-in-out");
-		
-		&:hover {color: $colorOrange; text-decoration: none;}
+		/* building blocks */
+		a {
+			color: $color; text-decoration: none;
+			@include transition("color 0.2s ease-in-out");
+			
+			&:hover {color: $colorOrange; text-decoration: none;}
+		}
 	}
-}
+/*}*/
 
 .jcsdl-label {float: left; font-size: 1em; color: $colorLight; font-weight: normal;}
 .jcsdl-bordered {padding: 8px; border: 1px solid $borderColorInput; @include rounded(3px);}
@@ -227,7 +229,7 @@ $loader : 'img/loader.gif';
 		background: url($elementsSprite) no-repeat -140px -68px;
 	}
 
-	&.jcsdl-add-filter {margin-right: 0;}
+	&.jcsdl-add-filter.jcsdl-btn {margin-right: 0;}
 
 	&:hover {
 		&.jcsdl-add-filter .jcsdl-picto {background-position: -115px -89px;}
@@ -757,7 +759,7 @@ a.jcsdl-filters-logic-option {
 	margin: 0 30px;
 	text-align: center;
 
-	.jcsdl-input-select-option {
+	.jcsdl-input-select-option.jcsdl-btn {
 		margin: 10px; float: none;
 		display: inline-block; padding: 0 10px; height: 25px; line-height: 25px;
 		font-size: 13px;
@@ -969,6 +971,8 @@ a.jcsdl-filters-logic-option {
 /* field icons sets */
 .jcsdl-icon.field {
 	background-repeat: no-repeat;
+	margin: 0; margin-right: 20px;
+	padding: 0;
 
 	/* default icon set (original) */
 	background-image: url($fieldIconsSprite);
