@@ -3,6 +3,11 @@
 /*
  * JCSDL EDITOR
  */
+/* jcsdl-container reset */
+.jcsdl-container ul, .jcsdl-container li {
+  margin: 0;
+  padding: 0; }
+
 .jcsdl-container, .jcsdl-popup {
   overflow: hidden;
   position: relative;
@@ -18,7 +23,8 @@
     -o-transition: color 0.2s ease-in-out;
     transition: color 0.2s ease-in-out; }
     .jcsdl-container a:hover, .jcsdl-popup a:hover {
-      color: #ff9933; }
+      color: #ff9933;
+      text-decoration: none; }
 
 .jcsdl-label {
   float: left;
@@ -68,7 +74,7 @@
     -khtml-opacity: 0.9;
     opacity: 0.9; }
 
-a.jcsdl-btn {
+.jcsdl-container a.jcsdl-btn {
   display: block;
   overflow: hidden;
   padding: 8px;
@@ -87,10 +93,10 @@ a.jcsdl-btn {
   background-clip: padding-box;
   color: #376491;
   font-weight: bold; }
-  a.jcsdl-btn.active {
+  .jcsdl-container a.jcsdl-btn.active {
     border-color: #ff9933;
     color: #ff9933; }
-  a.jcsdl-btn.disabled {
+  .jcsdl-container a.jcsdl-btn.disabled {
     border-color: gainsboro !important;
     color: #d0d0d0 !important;
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=65)";
@@ -98,7 +104,7 @@ a.jcsdl-btn {
     -moz-opacity: 0.65;
     -khtml-opacity: 0.65;
     opacity: 0.65; }
-  a.jcsdl-btn:hover {
+  .jcsdl-container a.jcsdl-btn:hover {
     color: #ff9933; }
 
 .jcsdl-header {
@@ -198,8 +204,8 @@ a.jcsdl-btn {
 .jcsdl-mainview-mode {
   overflow: hidden;
   float: right;
-  margin-right: 30px;
-  width: 130px; }
+  margin-right: 15px;
+  width: 110px; }
 
 .jcsdl-mainview-mode-options {
   overflow: hidden;
@@ -533,16 +539,17 @@ a.jcsdl-filters-logic-option {
     -webkit-background-clip: padding-box;
     background-clip: padding-box; }
     .jcsdl-filter .jcsdl-filter-options a, .jcsdl-filter .jcsdl-filter-options span {
-      margin: 0 2px; }
+      margin: 0 2px;
+      font-weight: bold; }
 
 .jcsdl-filter-description {
   overflow: hidden; }
 
-.jcsdl-filter-info {
+.jcsdl-filter-info.id, .jcsdl-filter-info.target, .jcsdl-filter-info.field, .jcsdl-filter-info.operator, .jcsdl-filter-info.value {
   float: left;
   margin: 0 10px; }
-  .jcsdl-filter-info.target, .jcsdl-filter-info.input, .jcsdl-filter-info.operator {
-    font-weight: bold; }
+.jcsdl-filter-info.target, .jcsdl-filter-info.input, .jcsdl-filter-info.operator {
+  font-weight: bold; }
 
 /* expanded / collapsed filters list */
 .jcsdl-filters-list.expanded .jcsdl-filter .jcsdl-filter-target {
