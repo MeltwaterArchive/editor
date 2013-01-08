@@ -33,6 +33,7 @@ JCSDL.Loader.addComponent(function($, undefined) {
 
 			// remove the version line
 			var versionLine = lines.shift(),
+				version = versionLine.split(' ')[2],
 				// get the logic
 				logic = masterLine.split(' ')[3],
 				// get the filters from the code
@@ -63,7 +64,7 @@ JCSDL.Loader.addComponent(function($, undefined) {
 				}
 
 				// parse the JCSDL filter code to a filter object
-				var filter = this.filterFromJCSDL(jcsdlCode, csdl, filterId);
+				var filter = this.filterFromJCSDL(jcsdlCode, csdl, filterId, version);
 
 				// add the filter object to the list of filters
 				filters.push(filter);
@@ -81,9 +82,16 @@ JCSDL.Loader.addComponent(function($, undefined) {
 		 * @param  {String} jcsdlCode JCSDL Code / part of the JCSDL comment.
 		 * @param  {String} csdl      The CSDL code related to this filter.
 		 * @param  {Number} filterId  ID of the filter (for reference in advanced logic builder).
+		 * @param  {Number} version[optional]   Version number of the JCSDL being parsed. Default: current version.
 		 * @return {Object}
 		 */
-		filterFromJCSDL : function(jcsdlCode, csdl, filterId) {
+		filterFromJCSDL : function(jcsdlCode, csdl, filterId, version) {
+			version = version || this.v;
+
+			if (version !== this.v) {
+				jcsdlCode = this.applyFilterJCSDLTransformers(jcsdlCode, version);
+			}
+
 			jcsdlCode = jcsdlCode.split(',');
 
 			var fieldPath = jcsdlCode.shift().split('.'),
@@ -612,8 +620,67 @@ JCSDL.Loader.addComponent(function($, undefined) {
 			});
 
 			return field;
-		}
+		},
 
+		/* ##########################
+		 * TRANSFORMERS
+		 * ########################## */
+		/**
+		 * Transformers are sets of functions that update outdated JCSDL code to the current version.
+		 * They should be applied starting from the JCSDL's version and in proper order going from there.
+		 * Use applyXXXXJcsdlTransformers() functions to transform specific areas of the JCSDL code.
+		 * 
+		 * @type {Array}
+		 */
+		transformers : [
+			{
+				from: '1.0',
+				to : '2.0',
+
+				/**
+				 * Transforms the JCSDL filter definition from version 1.0 to 2.0.
+				 * The only change was renaming of language-tag target.
+				 * 
+				 * @param  {String} jcsdlCode JCSDL code describing the filter
+				 * @return {String} Updated JCSDL code describing the filter.
+				 */
+				filter : function(jcsdlCode) {
+					var jcsdlInfo = jcsdlCode.split(',');
+
+					// language-tag is now a different target
+					if (jcsdlInfo[0] === 'augmentation.language-tag') {
+						jcsdlInfo[0] = 'augmentation.language.tag';
+					}
+
+					return jcsdlInfo.join(',');
+				}
+			}
+		],
+
+		/**
+		 * Applies all transformers for filter definitions.
+		 * 
+		 * @param  {String} jcsdlCode JCSDL code describing the filter.
+		 * @param  {String} version   Version tag of the JCSDL code to be transformed.
+		 * @return {String} Updated JCSDL code describing the filter.
+		 */
+		applyFilterJCSDLTransformers : function(jcsdlCode, version) {
+			// has the starting transformer been found?
+			var foundStart = false,
+				transformedJcsdlCode = jcsdlCode;
+
+			$.each(this.transformers, function(i, transformer) {
+				if (foundStart || transformer.from === version) {
+					foundStart = true;
+
+					if (typeof transformer.filter === 'function') {
+						transformedJcsdlCode = transformer.filter(jcsdlCode);
+					}
+				}
+			});
+
+			return transformedJcsdlCode;
+		}
 	};
 
 	/**
