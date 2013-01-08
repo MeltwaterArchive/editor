@@ -615,7 +615,7 @@ var JCSDLDefinition = {
 				language : {
 					name : 'Language',
 					fields : {
-						tag : {name: 'Language', icon: 'fullname', type: 'string', input: 'select', optionsSet: 'language', operators: ['in'], operator: 'in'},
+						tag : {name: 'Language', icon: 'language_name', type: 'string', input: 'select', optionsSet: 'language', operators: ['in'], operator: 'in'},
 						confidence : {name: 'Confidence', type: 'int', input: 'slider', min: 0, max: 100, 'default': 50, operators: ['equals', 'greaterThan', 'lowerThan']}
 					}
 				},
