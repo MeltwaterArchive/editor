@@ -1,183 +1,226 @@
-/*
- * Override CSS for example
- */
-h1 {
-  color: #f4eee0;
-}
-
-.jcsdl-container .jcsdl-mainview-action {
-  color: #f4eee0;
-}
-
-.jcsdl-mainview-action:hover {
-  color: #b32577 !important;
-}
-
-body a:hover {
-  color: #b32577;
-}
-
-.jcsdl-container {
-  color: #f4eee0;
-  font-family: "Arial Narrow", "Helvetica Neue","Helvetica",sans-serif;
-  font-size: 15px;
-}
-
-.jcsdl-container .jcsdl-filter-cancel {
-  color: #f4eee0;
-  font-weight: bold;
-}
-
-.jcsdl-container .jcsdl-label {
-  color: #f4eee0;
-}
-
-.jcsdl-container .jcsdl-header h3 {
-  color: #f4eee0;
-}
-
-body a {
-  color: #f4eee0;
-}
-
+/* Setting the body size the same as the demo whilst styling */
+/* Basics */
 body {
-  background-color: #8eafc0;
+  background: #f6f6f5;
 }
-
-.jcsdl-input-text input, .jcsdl-input-text .jcsdl-tag-input, .jcsdl-input-number input, .jcsdl-input-number .jcsdl-tag-input {
-  background-clip: padding-box;
-  border-radius: 3px 3px 3px 3px;
-  color: #444444;
-  display: block;
-  font-size: 1.3em;
-  width: 100%;
+.jcsdl-container a,
+.jcsdl-logic-help {
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
 }
-
-body h1,h2,h3,h4,h5 {
-  color: #263344;
+.jcsdl-steps a {
+  -webkit-transition: none;
+  -moz-transition: none;
+  -o-transition: none;
+  transition: none;
 }
-
-.jcsdl-icon.operator.selected {
-  border-color: #B32577;
-  opacity: 1;
+/* Header */
+.jcsdl-header {
+  background: #fff;
+  border: 1px solid #ddd;
+  padding-bottom: 5px;
 }
-
-.jcsdl-icon.operator {
-  border: 1px solid #8eafc0;
-  border-radius: 2px 2px 2px 2px;
-  height: 46px;
-  opacity: 0.45;
-  width: 46px;
+.jcsdl-header h3 {
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #388cb8;
+  font-size: 26px;
 }
-
-.jcsdl-input-text input, .jcsdl-input-text .jcsdl-tag-input, .jcsdl-input-number input, .jcsdl-input-number .jcsdl-tag-input {
-  border: 1px solid #263344;
-  color: #263344;
+.jcsdl-header .jcsdl-editor-cancel {
+  margin-left: 10px;
+  margin-bottom: 8px;
 }
-
-.jcsdl-filter-editor .jcsdl-operators-select {
-  border: 1px solid #263344;
+.jcsdl-mainview-mode {
+  display: none;
 }
-
-#logo {
-  background: url("img/elements.png") no-repeat;
-  height: 65px;
-  width: 100px; 
+.jcsdl-container a.jcsdl-btn {
+  border-color: #ccc;
+  color: #ccc;
+  border-radius: 0;
+  border: 2px solid #ccc;
+  background: #f6f6f5;
+  font-size: 11px;
 }
-
-.jcsdl-filter-editor .jcsdl-operators-select .jcsdl-operator-label {
-  color: #263344;
+.jcsdl-container a.jcsdl-btn:hover {
+  border-color: #777;
+  color: #777;
 }
-
-.jcsdl-dropdown .jcsdl-dropdown-option .jcsdl-operator-desc {
-  color: #b32577;
+.jcsdl-container a.jcsdl-btn:hover .jcsdl-logic-help {
+  border-color: #777;
+  color: #777;
 }
-
-.jcsdl-filters-list.expanded .jcsdl-filter .jcsdl-filter-info.value {
-  background-color: #8eafc0;
-
+.jcsdl-container a.jcsdl-btn.active {
+  border-color: #388cb8;
+  color: #388cb8;
+  background: #deeaf1;
 }
-
-.jcsdl-input-select .jcsdl-input-select-option.selected {
-  border-color: #f4eee0;
+.jcsdl-container a.jcsdl-btn.active .jcsdl-logic-help {
+  border-color: #388cb8;
+  color: #388cb8;
 }
-
-/* Sprites */
-
-/* override image paths */
+.jcsdl-container a.jcsdl-btn.disabled {
+  background: #f6f6f5;
+}
+.jcsdl-container a.jcsdl-btn.jcsdl-add-filter {
+  color: #388cb8;
+}
+.jcsdl-container a.jcsdl-btn.jcsdl-add-filter:hover {
+  border-color: #388cb8;
+  color: #388cb8;
+  background: #deeaf1;
+}
+.jcsdl-container a.jcsdl-btn.jcsdl-add-filter:hover .jcsdl-picto {
+  background-position: -140px -68px !important;
+}
 .jcsdl-button {
-  background-image: url("themed/jcsdl/img/elements.png"); }
-
-.jcsdl-error {
-  background-image: url("jcsdl/img/elements.png"); }
-
-.jcsdl-mainview-action .jcsdl-picto {
-  background-image: url("jcsdl/img/elements.png"); }
-
-.jcsdl-mainview-mode-option {
-  background-image: url("jcsdl/img/elements.png"); }
-
+  background: #388cb8;
+  text-indent: 0;
+  text-align: center;
+  font-weight: bold;
+  text-transform: uppercase;
+  width: auto;
+  height: auto;
+  padding: 0 16px;
+  color: #fff !important;
+}
+.jcsdl-button:hover {
+  background: #222;
+}
+.jcsdl-button.jcsdl-editor-cancel {
+  background: #f6f6f5;
+  color: #aaa !important;
+}
+.jcsdl-button.jcsdl-editor-cancel:hover {
+  background: #aaa;
+  color: #fff !important;
+}
+/* Editor */
+.jcsdl-advanced-container {
+  border: none;
+  border-radius: 0;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+}
+.jcsdl-advanced-gui {
+  height: 68px;
+}
+.jcsdl-logic-token {
+  border: 2px solid #ddd;
+  border-radius: 0;
+}
+.jcsdl-logic-token.filter {
+  color: #555;
+}
+.jcsdl-logic-token.filter:hover {
+  color: #388cb8;
+  border-color: #388cb8;
+}
+.jcsdl-logic-token.operator {
+  color: #ccc;
+}
+.jcsdl-filter-info.id {
+  border: 2px solid #ddd;
+  border-radius: 0;
+}
+.jcsdl-filters-list.expanded .jcsdl-filter.on .jcsdl-filter-info.id {
+  color: #388cb8;
+  border-color: #388cb8;
+}
+/* Filters */
+.jcsdl-filters-list {
+  margin-top: 15px;
+  padding: 0;
+}
+.jcsdl-filter {
+  background: #fff;
+  margin: 15px 0 0;
+  border: 1px solid #ddd;
+  border-radius: 0;
+}
+.jcsdl-filter .jcsdl-filter-options {
+  border: 0;
+  background: 0;
+  top: 10px;
+}
+.jcsdl-filter .jcsdl-filter-options span {
+  display: none;
+}
+.jcsdl-filter .jcsdl-filter-options a {
+  border-color: #ccc;
+  color: #ccc;
+  border-radius: 0;
+  border: 2px solid #ccc;
+  background: #f6f6f5;
+  font-size: 11px;
+  padding: 6px 12px;
+  margin: 0 4px;
+}
+.jcsdl-filter .jcsdl-filter-options a:hover {
+  border-color: #777;
+  color: #777;
+}
+.jcsdl-filter .jcsdl-filter-options a.delete:hover {
+  border-color: #E86161;
+  color: #E86161;
+}
+.jcsdl-tag-field input {
+  background: #f6f6f5;
+  margin-left: 10px !important;
+}
+.jcsdl-filter-save {
+  width: 140px;
+}
 .jcsdl-carousel-scroll {
-  background-image: url("jcsdl/img/elements.png"); }
-
-.jcsdl-filter-editor .jcsdl-step .jcsdl-filter-target-wrap {
-  background-image: url("jcsdl/img/select.png"); }
+  background: transparent url("../themed/jcsdl/img/elements.png?22") no-repeat -56px -89px;
+}
 .jcsdl-filter-editor .jcsdl-step.selected .jcsdl-filter-target-field-wrap {
-  background-image: url("jcsdl/img/select.png"); }
-.jcsdl-filter-editor .jcsdl-step.selected .jcsdl-filter-target-field-input-wrap {
-  background-image: url("img/select,png"); }
-.jcsdl-filter-editor .jcsdl-step.selected {
-  background-image: url("jcsdl/img/step_background.png"); }
+  background: transparent url("../themed/jcsdl/img/select.png?14") no-repeat center -255px;
+}
+.jcsdl-filter-editor .jcsdl-step .jcsdl-filter-target-wrap {
+  background: transparent url("../themed/jcsdl/img/select.png?14") no-repeat center -378px;
+}
 .jcsdl-filter-editor .jcsdl-step .jcsdl-target-help {
-  background-image: url("jcsdl/img/select.png"); }
-.jcsdl-filter-editor .jcsdl-operators-select .jcsdl-dropdown-icon {
-  background-image: url("jcsdl/img/elements.png"); }
-
-/*
- * FILTER EDITOR INPUT FIELDS
- */
-.jcsdl-input-text input.jcsdl-tag-input .jcsdl-tag a.jcsdl-tag-remove, .jcsdl-input-text .jcsdl-tag-input.jcsdl-tag-input .jcsdl-tag a.jcsdl-tag-remove, .jcsdl-input-number input.jcsdl-tag-input .jcsdl-tag a.jcsdl-tag-remove, .jcsdl-input-number .jcsdl-tag-input.jcsdl-tag-input .jcsdl-tag a.jcsdl-tag-remove {
-  background-image: url("jcsdl/img/elements.png"); }
-.jcsdl-input-text .jcsdl-regex-tester-button, .jcsdl-input-number .jcsdl-regex-tester-button {
-  background-image: url("jcsdl/img/elements.png"); }
-.jcsdl-input-text .jcsdl-regex-tester .jcsdl-regex-result, .jcsdl-input-number .jcsdl-regex-tester .jcsdl-regex-result {
-  background-image: url("jcsdl/img/elements.png"); }
-
-.jcsdl-input-slider .jcsdl-slider-controls .jcsdl-slider-minus, .jcsdl-input-slider .jcsdl-slider-controls .jcsdl-slider-plus {
-  background-image: url("jcsdl/img/elements.png"); }
-.jcsdl-input-slider .jcsdl-slider-wrap .jcsdl-slider-icon {
-  background-image: url("jcsdl/img/icons-sprite-other.png"); }
-.jcsdl-input-slider .jcsdl-slider {
-  background-image: url("jcsdl/img/elements.png"); }
-  .jcsdl-input-slider .jcsdl-slider .ui-slider-handle {
-    background-image: url("jcsdl/img/elements.png"); }
-.jcsdl-input-slider .jcsdl-slider-bottom .jcsdl-slider-bottom-left, .jcsdl-input-slider .jcsdl-slider-bottom .jcsdl-slider-bottom-right {
-  background-image: url("jcsdl/img/elements.png"); }
-.jcsdl-input-slider .jcsdl-slider-bottom .jcsdl-slider-bottom-line {
-  background-image: url("jcsdl/img/elements.png"); }
-
-/*
- * ICONS
- */
-.jcsdl-icon.target {
-  background-image: url("jcsdl/img/icons-sprite-targets.png"); }
-
-.jcsdl-icon.field {
-  background-image: url("jcsdl/img/icons-sprite-fields.png"); }
-
-.jcsdl-icon.input {
-  background-image: url("jcsdl/img/icons-sprite-other.png"); }
-
-.jcsdl-icon.operator {
-  background-image: url("jcsdl/img/icons-sprite-operators.png"); }
-
-.jcsdl-dropdown .jcsdl-dropdown-option .jcsdl-dropdown-details-trigger {
-  background-image: url("jcsdl/img/elements.png"); }
-
-/* JCSDL Popup */
-.jcsdl-popup .jcsdl-popup-header {
-  background-image: url("jcsdl/img/elements.png"); }
-  .jcsdl-popup .jcsdl-popup-header .jcsdl-popup-close {
-    background-image: url("jcsdl/img/elements.png"); }
-.jcsdl-popup .jcsdl-popup-loading {
-  background-image: url("jcsdl/img/loader.gif"); }
+  background: url("../themed/jcsdl/img/select.png?14") no-repeat -17px -862px;
+}
+.jcsdl-filter-editor .jcsdl-step.selected .jcsdl-filter-target-field-input-wrap {
+  background: transparent url("../themed/jcsdl/img/select.png?14") no-repeat center -255px;
+}
+.jcsdl-filter-editor .jcsdl-step.selected {
+  background: transparent url("../themed/jcsdl/img/step_background_.png?5") no-repeat bottom center;
+}
+.jcsdl-icon.operator.selected {
+  border-color: #388cb8;
+}
+.tipsy .tipsy-arrow {
+  border-color: #388cb8 transparent transparent transparent;
+}
+.tipsy .tipsy-inner {
+  border-color: #388cb8;
+}
+/* Footer */
+.jcsdl-footer {
+  margin-top: 15px;
+  border: 1px solid #ddd;
+  background: #fff;
+  padding: 15px 15px 10px;
+}
+.jcsdl-footer .jcsdl-button {
+  padding: 12px 16px;
+}
+/* Output */
+h3 {
+  font-family: "Helvetica Neue", "Helvetica", sans-serif;
+  text-align: center;
+  font-weight: normal;
+  font-size: 15px;
+  margin-top: 40px;
+  color: #aaa;
+}
+#jcsdl-edit-output {
+  border: 1px solid #ddd;
+  background: #fff;
+  padding: 30px;
+  width: 60% !important;
+}

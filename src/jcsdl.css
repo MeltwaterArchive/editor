@@ -1392,7 +1392,7 @@ a.jcsdl-filters-logic-option {
   margin-right: 20px;
   padding: 0;
   /* default icon set (original) */
-  background-image: url("img/icons-sprite-fields.png?11");
+  background-image: url("img/icons-sprite-fields.png?12");
   /* additional icon set (demographics, bitly, wiki - dbw) */
   /* additional icon set (links, opengraph, newscred - lon) */ }
   .jcsdl-icon.field.icon-twitter_activity, .jcsdl-icon.field.icon-location_by_country, .jcsdl-icon.field.icon-basic_demographics, .jcsdl-icon.field.icon-interests, .jcsdl-icon.field.icon-twitter_influence, .jcsdl-icon.field.icon-first_language, .jcsdl-icon.field.icon-number_of_accounts_followed, .jcsdl-icon.field.icon-professions, .jcsdl-icon.field.icon-usa, .jcsdl-icon.field.icon-city, .jcsdl-icon.field.icon-services_and_technologies, .jcsdl-icon.field.icon-large_accounts_followed, .jcsdl-icon.field.icon-twitter_settings, .jcsdl-icon.field.icon-older_than, .jcsdl-icon.field.icon-younger_than, .jcsdl-icon.field.icon-ms_clothes, .jcsdl-icon.field.icon-ms_shop, .jcsdl-icon.field.icon-ms_food, .jcsdl-icon.field.icon-useragent, .jcsdl-icon.field.icon-url_hash, .jcsdl-icon.field.icon-share_hash, .jcsdl-icon.field.icon-cname, .jcsdl-icon.field.icon-ref_url, .jcsdl-icon.field.icon-ref_domain, .jcsdl-icon.field.icon-country_code, .jcsdl-icon.field.icon-geo_region_code, .jcsdl-icon.field.icon-geo_region, .jcsdl-icon.field.icon-timezone, .jcsdl-icon.field.icon-contributions, .jcsdl-icon.field.icon-talkpage, .jcsdl-icon.field.icon-diff, .jcsdl-icon.field.icon-changetype, .jcsdl-icon.field.icon-changeadded, .jcsdl-icon.field.icon-changeremoved, .jcsdl-icon.field.icon-diff-from, .jcsdl-icon.field.icon-diff-to, .jcsdl-icon.field.icon-externallinks, .jcsdl-icon.field.icon-namespace, .jcsdl-icon.field.icon-namespacecode, .jcsdl-icon.field.icon-newlength, .jcsdl-icon.field.icon-oldlength, .jcsdl-icon.field.icon-pageid, .jcsdl-icon.field.icon-parentid, .jcsdl-icon.field.icon-relationship, .jcsdl-icon.field.icon-work-status, .jcsdl-icon.field.icon-accounts_categories {
@@ -1767,6 +1767,10 @@ a.jcsdl-filters-logic-option {
     background-position: -640px -1360px; }
     .jcsdl-icon.field.icon-klout.selected {
       background-position: -720px -1360px; }
+  .jcsdl-icon.field.icon-language_name {
+    background-position: 0 -1440px; }
+    .jcsdl-icon.field.icon-language_name.selected {
+      background-position: -80px -1440px; }
   .jcsdl-icon.field.icon-twitter_activity {
     background-position: -80px 0; }
     .jcsdl-icon.field.icon-twitter_activity.selected {
@@ -2727,7 +2731,7 @@ a.jcsdl-filters-logic-option {
     background-size: 160px 880px; }
 
   .jcsdl-icon.field {
-    background-image: url("img/icons-sprite-fields@2x.png");
+    background-image: url("img/icons-sprite-fields@2x.png?1");
     -moz-background-size: 800px 1440px;
     -ie-background-size: 800px 1440px;
     -o-background-size: 800px 1440px;
