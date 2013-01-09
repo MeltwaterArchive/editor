@@ -19,8 +19,8 @@ $selectSpriteRetina : 'img/select@2x.png';
 $stepBackground : 'img/step_background.png?5';
 $targetIconsSprite : 'img/icons-sprite-targets.png?13';
 $targetIconsSpriteRetina : 'img/icons-sprite-targets@2x.png?1';
-$fieldIconsSprite : 'img/icons-sprite-fields.png?11';
-$fieldIconsSpriteRetina : 'img/icons-sprite-fields@2x.png';
+$fieldIconsSprite : 'img/icons-sprite-fields.png?12';
+$fieldIconsSpriteRetina : 'img/icons-sprite-fields@2x.png?1';
 $fieldDbwIconsSprite : 'img/icons-sprite-fields-dbw.png?1';
 $fieldDbwIconsSpriteRetina : 'img/icons-sprite-fields-dbw@2x.png';
 $fieldLonIconsSprite : 'img/icons-sprite-fields-lon.png';
@@ -1200,6 +1200,7 @@ a.jcsdl-filters-logic-option {
 	&.icon-demographic			{background-position: -320px -1360px;	&.selected {background-position: -400px -1360px;}}
 	&.icon-salience				{background-position: -480px -1360px;	&.selected {background-position: -560px -1360px;}}
 	&.icon-klout				{background-position: -640px -1360px;	&.selected {background-position: -720px -1360px;}}
+	&.icon-language_name		{background-position: 0 -1440px; 		&.selected {background-position: -80px -1440px;}}
 
 	/* dbw */
 	&.icon-twitter_activity		{background-position: -80px 0;			&.selected {background-position: 0 0;}}
