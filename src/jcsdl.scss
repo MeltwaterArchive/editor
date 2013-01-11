@@ -106,20 +106,18 @@ $loader : 'img/loader.gif';
 	ul, li {margin: 0; padding: 0;}
 }
 
-/*@media all {*/
-	.jcsdl-container, .jcsdl-popup {
-		overflow: hidden; position: relative;
-		font-size: $fontSize; font-family: $fontFamily; color: $colorLight;
+.jcsdl-container, .jcsdl-popup {
+	overflow: hidden; position: relative;
+	font-size: $fontSize; font-family: $fontFamily; color: $colorLight;
 
-		/* building blocks */
-		a {
-			color: $color; text-decoration: none;
-			@include transition("color 0.2s ease-in-out");
-			
-			&:hover {color: $colorOrange; text-decoration: none;}
-		}
+	/* building blocks */
+	a {
+		color: $color; text-decoration: none;
+		@include transition("color 0.2s ease-in-out");
+		
+		&:hover {color: $colorOrange; text-decoration: none;}
 	}
-/*}*/
+}
 
 .jcsdl-label {float: left; font-size: 1em; color: $colorLight; font-weight: normal;}
 .jcsdl-bordered {padding: 8px; border: 1px solid $borderColorInput; @include rounded(3px);}
@@ -275,7 +273,7 @@ $loader : 'img/loader.gif';
 }
 
 .jcsdl-advanced-gui-container {
-	display: block; width: 100%; height: 76px; box-sizing: border-box;
+	display: block; width: 100%; height: 66px; box-sizing: border-box;
 	margin: 0; position: relative; overflow: hidden;
 
 	.jcsdl-advanced-gui-arrow {
@@ -387,7 +385,7 @@ $loader : 'img/loader.gif';
 		}
 	}
 
-	&.error {@include glow(red);}
+	&.jcsdl-logic-error {@include glow(red);}
 }
 
 .jcsdl-logic-token {color: $colorLight;}

@@ -248,7 +248,7 @@ JCSDL.Loader.addComponent(function($, undefined) {
 						not('.jcsdl-token-ph')
 							.eq(error.index)
 								.find('.jcsdl-logic-token')
-									.addClass('error');
+									.addClass('jcsdl-logic-error');
 					this.scrollGuiToToken($token);
 				}
 			}
@@ -272,7 +272,7 @@ JCSDL.Loader.addComponent(function($, undefined) {
 		 */
 		clearErrors : function() {
 			this.gui.clearErrors();
-			this.$gui.find('.error').removeClass('error');
+			this.$gui.find('.jcsdl-logic-error').removeClass('jcsdl-logic-error');
 		},
 
 		/* ##########################
@@ -774,7 +774,7 @@ JCSDL.Loader.addComponent(function($, undefined) {
 			this.$gui.children().each(function() {
 				width += parseInt($(this).outerWidth(true));
 			});
-			this.$gui.width(width);
+			this.$gui.width(width).css('minWidth', parseInt(this.$gui.parent().width() * 0.9, 10));
 
 			clearTimeout(this._adjustGuiTimeout);
 			this._adjustGuiTimeout = setTimeout(function() {
