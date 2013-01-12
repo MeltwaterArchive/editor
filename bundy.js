@@ -1,7 +1,6 @@
-<?php
-require_once 'bin/Packager.php';
+var bundy = require('bundy');
 
-$jsSuccess = Packager::js(array(
+bundy.js([
 	'src/jcsdl.loader.js',
 	'src/lib/crypto.md5.min.js',
 	'src/lib/jquery.ui.custom.min.js',
@@ -16,17 +15,17 @@ $jsSuccess = Packager::js(array(
 	'src/jcsdl.gui.logic.js',
 	'src/jcsdl.gui.js',
 	'src/jcsdl.loader.post.js'
-), 'minified/jcsdl.min.js');
+], 'minified/jcsdl.min.js');
 
-$copySuccess = Packager::copy('src/jcsdl.definition.js', 'minified/jcsdl.definition.js');
+bundy.copy('src/jcsdl.definition.js', 'minified/jcsdl.definition.js');
 
-$cssSuccess = Packager::css(array(
+bundy.css([
 	'src/lib/jquery.ui.custom.min.css',
 	'src/lib/jquery.tipsy.css',
 	'src/jcsdl.css'
-), 'minified/jcsdl.min.css');
+], 'minified/jcsdl.min.css');
 
-$imgSuccess = Packager::copyImg(array(
+bundy.copy([
 	'src/img/elements.png',
 	'src/img/elements@2x.png',
 	'src/img/icons-sprite-fields.png',
@@ -47,4 +46,6 @@ $imgSuccess = Packager::copyImg(array(
 	'src/img/select.png',
 	'src/img/select@2x.png',
 	'src/img/step_background.png'
-), 'minified/img/');
+], 'minified/img/');
+
+bundy.build();
