@@ -92,11 +92,15 @@ You can pass an object literal as the 2nd argument of the constructor (or 1st ar
     }
 
 
-Development
+Contributing
 ======
 
-To "build" (minify JS, CSS, copy appropriate files) just do the following in shell:
+The editor uses [Bundy](https://github.com/michaldudek/Bundy) to build minified version. Install it using NPM:
 
-	$ php minify.php
+    $ npm install bundy
 
-This will minify all required JavaScripts and styles from `src/` and put it into `minified/`.
+And then run `bundy.js`:
+
+    $ node bundy.js
+
+This will minify all JavaScript and CSS files and copy image files and place them inside `minified/` directory.
