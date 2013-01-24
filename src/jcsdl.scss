@@ -1558,7 +1558,7 @@ a.jcsdl-filters-logic-option {
 
 	.jcsdl-icon.field {
 		background-image: url($fieldIconsSpriteRetina);
-		@include backgroundSize(800px, 1440px);
+		@include backgroundSize(800px, 1520px);
 
 		&.icon-twitter_activity,
 		&.icon-location_by_country,
