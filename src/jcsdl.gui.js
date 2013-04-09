@@ -149,9 +149,11 @@ JCSDL.Loader.addComponent(function($, undefined) {
 			}
 
 			// add class for IE
-			if ($.browser.msie) {
-				this.$container.addClass('msie');
-			}
+            var match = /(msie) ([\w.]+)/.exec(navigator.userAgent.toLowerCase()) || [];
+            if (match[1] !== undefined && match[1] === 'msie') {
+                this.$container.addClass('msie');
+                $('html').addClass('msie');
+            }
 
 			// initiate the advanced logic handler with default 'and' logic
 			this.logic = new JCSDL.GUILogic(this, JCSDL.GUILogic.prototype.AND);
