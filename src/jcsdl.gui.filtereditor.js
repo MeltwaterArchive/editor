@@ -741,7 +741,7 @@ JCSDL.Loader.addComponent(function($, undefined) {
 				if (allowedOperators.length > 0 && ($.inArray(operator, allowedOperators) == -1)) return true;
 
 				var $operatorView = self.createOperatorOptionView(operator);
-				if ($.browser.msie) {
+				if ($('html').is('.msie')) {
 					$operatorView.html('&nbsp;');
 				}
 				$view.append($operatorView);
