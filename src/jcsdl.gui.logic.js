@@ -631,7 +631,8 @@ JCSDL.Loader.addComponent(function($, undefined) {
 		deleteGuiFilterToken : function(filterId) {
 			filterId = parseInt(filterId); // ensure {Number}
 
-			var $filter = $(),
+			var self = this,
+                $filter = $(),
 				$operator = $();
 
 			// find this filter's token

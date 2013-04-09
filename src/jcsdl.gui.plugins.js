@@ -135,7 +135,7 @@ JCSDL.Loader.addComponent(function($, undefined) {
 			ev.target.blur();
 
 			// but not for ie
-			if ($.browser.msie) {
+			if ($('html').is('.msie')) {
 				self.selectedIndex = $(this).prevAll(':visible').length;
 				self.changePosition(options.speed);
 			}

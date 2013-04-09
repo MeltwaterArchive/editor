@@ -92,7 +92,7 @@ $.extend($.simulate.prototype, {
 			evt = document.createEventObject();
 			$.extend(evt, e);
 		}
-		if ($.browser.msie || $.browser.opera) {
+		if ($('html').is('.msie')) {
 			evt.keyCode = (e.charCode > 0) ? e.charCode : e.keyCode;
 			evt.charCode = undefined;
 		}
