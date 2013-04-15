@@ -38,6 +38,7 @@ JCSDL.Loader.addComponent(function($, undefined) {
 							'</a>',
 
 							'<a href="#" class="jcsdl-btn jcsdl-filters-logic-option jcsdl-advanced-option jcsdl-advanced-add-brackets">+ [ ]</a>',
+                            '<a href="#" class="jcsdl-btn jcsdl-filters-logic-option jcsdl-advanced-option jcsdl-advanced-add-not">+ NOT</a>',
 							'<a href="#" class="jcsdl-btn jcsdl-filters-logic-option jcsdl-advanced-option jcsdl-advanced-manual-edit" data-text-gui="Manual Edit" data-text-manual="Graphical Edit">Manual Edit</a>',
 						'</div>',
 
@@ -115,7 +116,8 @@ JCSDL.Loader.addComponent(function($, undefined) {
 		 * ########################## */
 		logicToken_operatorAnd : $('<div href="#" class="jcsdl-logic-token operator" data-token="&">AND</div>'),
 		logicToken_operatorOr : $('<div href="#" class="jcsdl-logic-token operator" data-token="|">OR</div>'),
-		logicToken_bracketOpen : $('<div href="#" class="jcsdl-logic-token bracket" data-token="(">[<a href="#" class="jcsdl-delete-token"><span class="jcsdl-elements-sprite"/ ></a></div>'),
+        logicToken_operatorNot : $('<div href="#" class="jcsdl-logic-token operator" data-token="!">NOT<a href="#" class="jcsdl-delete-token"><span class="jcsdl-elements-sprite" /></a></div>'),
+		logicToken_bracketOpen : $('<div href="#" class="jcsdl-logic-token bracket" data-token="(">[<a href="#" class="jcsdl-delete-token"><span class="jcsdl-elements-sprite" /></a></div>'),
 		logicToken_bracketClose : $('<div href="#" class="jcsdl-logic-token bracket" data-token=")">]<a href="#" class="jcsdl-delete-token"><span class="jcsdl-elements-sprite" /></a></div>'),
 		logicToken_filter : $('<div href="#" class="jcsdl-logic-token filter" data-token="#">#</div>'),
 

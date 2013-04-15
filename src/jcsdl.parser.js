@@ -177,6 +177,10 @@ JCSDL.Loader.addComponent(function($, undefined) {
 						// if token is a logical operator then push it to the logic line
 						logicLine += (token == '|') ? ' OR ' : ' AND ';
 
+                    } else if (token === '!') {
+                        // if token is a logical operator NOT then push it to the logic line
+                        logicLine += ' NOT ';
+
 					} else {
 						// if anything else (only parenthesis left) then just add it to the logic line as well
 						logicLine += token;
@@ -440,8 +444,8 @@ JCSDL.Loader.addComponent(function($, undefined) {
 				throw new JCSDL.LogicValidationException('Logical query cannot start with logical operator "' + tokens[0] + '"!', 0);
 			}
 
-			// cannot end with & or |
-			if ($.inArray(tokens[tokens.length - 1], ['&', '|']) >= 0) {
+			// cannot end with & or | OR !
+			if ($.inArray(tokens[tokens.length - 1], ['&', '|', '!']) >= 0) {
 				throw new JCSDL.LogicValidationException('Logical query cannot end with logical operator "' + tokens[tokens.length - 1] + '"!', tokens.length - 1);
 			}
 
@@ -464,19 +468,25 @@ JCSDL.Loader.addComponent(function($, undefined) {
 				if (token == ')' && prev == '(') throw new JCSDL.LogicValidationException('You cannot use closing parenthesis ")" right after an opening parenthesis "("!', i);
 
 				// cannot close bracket immediately after a logical operator
-				if (token == ')' && $.inArray(prev, ['&', '|']) >= 0) throw new JCSDL.LogicValidationException('You cannot use closing parenthesis ")" right after a logical operator!', i);
+				if (token == ')' && $.inArray(prev, ['&', '|', '!']) >= 0) throw new JCSDL.LogicValidationException('You cannot use closing parenthesis ")" right after a logical operator!', i);
 
 				// cannot use logical sign "&" or "|" right after opening a bracket
-				if ($.inArray(token, ['&', '|']) >= 0 && prev == '(') throw new JCSDL.LogicValidationException('You cannot use logical operator "' + token + '" right after opening brackets!', i);
+				if ($.inArray(token, ['&', '|']) >= 0 && prev == '(') throw new JCSDL.LogicValidationException('You cannot use logical operator "' + token + '" ("' + (token === '&' ? 'AND' : 'OR') + ') right after opening brackets!', i);
 
 				// cannot open a bracket right after a filter number
-				if (token == '(' && typeof prev == 'number') throw new JCSDL.LogicValidationException('You cannot open a parenthesis right after filter ID! You need to use a logical operator "&" or "|"!', i);
+				if (token == '(' && typeof prev == 'number') throw new JCSDL.LogicValidationException('You cannot open a parenthesis right after filter ID! You need to use a logical operator "&" ("AND") or "|" ("OR")!', i);
 
 				// cannot use a filter ID right after closing a bracket
-				if (typeof token == 'number' && prev == ')') throw new JCSDL.LogicValidationException('You cannot use filter ID right after closing a parenthesis! You need to use a logical operator "&" or "|"!', i);
+				if (typeof token == 'number' && prev == ')') throw new JCSDL.LogicValidationException('You cannot use filter ID right after closing a parenthesis! You need to use a logical operator "&" ("AND") or "|" ("OR")!', i);
 
 				// there can't be two logical operators next to each other
 				if ($.inArray(token, ['&', '|']) >= 0 && $.inArray(prev, ['&', '|']) >= 0) throw new JCSDL.LogicValidationException('You cannot use two logical operators next to each other!', i);
+
+                // logical operator "&" or "|" cannot be after logical operator "!"
+                if ($.inArray(token, ['&', '|']) >= 0 && prev === '!') throw new JCSDL.LogicValidationException('You cannot use logical operator "!" ("NOT") in front of other logical operators!', i - 1);
+
+                // cannot use two "!!" ("NOT NOT") in a row
+                if (token === '!' && prev === '!') throw new JCSDL.LogicValidationException('You cannot use two logical operators "!" ("NOT") right after each other!', i);
 
 				// if a number then it's a filter ID then add it to the list of filters
 				if (typeof token == 'number') {
