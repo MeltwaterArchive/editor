@@ -17,6 +17,7 @@ JCSDL.Loader.addComponent(function($, undefined) {
 		this.$logicOptions = gui.$mainView.find('.jcsdl-filters-logic .jcsdl-filters-logic-option:not(.jcsdl-advanced-option)');
 		this.$advancedOptions = gui.$mainView.find('.jcsdl-filters-logic .jcsdl-filters-logic-option.jcsdl-advanced-option');
 		this.$insertBracketsButton = this.$advancedOptions.filter('.jcsdl-advanced-add-brackets');
+        this.$insertNotOperatorButton = this.$advancedOptions.filter('.jcsdl-advanced-add-not');
 		this.$editor = gui.$mainView.find('.jcsdl-advanced-container');
 
 		this.$guiContainer = this.initGui(this.$editor.find('.jcsdl-advanced-gui-container'));
@@ -102,6 +103,7 @@ JCSDL.Loader.addComponent(function($, undefined) {
 
 				// activate brackets inserting button
 				self.$insertBracketsButton.removeClass('disabled');
+                self.$insertNotOperatorButton.removeClass('disabled');
 
 				// update the GUI
 				self.setGuiString();
@@ -130,6 +132,7 @@ JCSDL.Loader.addComponent(function($, undefined) {
 
 				// deactivate brackets inserting button
 				self.$insertBracketsButton.addClass('disabled');
+                self.$insertNotOperatorButton.addClass('disabled');
 
 				self.trigger('manualLogic');
 
@@ -388,6 +391,25 @@ JCSDL.Loader.addComponent(function($, undefined) {
 				self.trigger('advancedLogicChange', [str]);
 			});
 
+            /**
+             * Insert NOT operator to the GUI editor.
+             */
+            this.$insertNotOperatorButton.click(function(ev) {
+                ev.preventDefault();
+                ev.target.blur();
+
+                // ignore when disabled
+                if ($(this).is('.disabled')) return false;
+
+                self.addGuiToken('!', true, true);
+                self.updateFromGui();
+
+                var str = self.getGuiString();
+                self.trigger('notOperatorAdd', [str]);
+                self.trigger('graphicalLogicChange', [str]);
+                self.trigger('advancedLogicChange', [str]);
+            });
+
 			/**
 			 * Start scrolling on mousedown or touchstart events.
 			 */
@@ -500,6 +522,7 @@ JCSDL.Loader.addComponent(function($, undefined) {
 			')' : 'bracketClose',
 			'&' : 'operatorAnd',
 			'|' : 'operatorOr',
+            '!' : 'operatorNot',
 			'filter' : 'filter'
 		},
 
@@ -530,7 +553,8 @@ JCSDL.Loader.addComponent(function($, undefined) {
 				$token.html(token);
 			}
 
-			var $li = $('<li class="jcsdl-logic-token-wrap" />').html($token).appendTo(this.$gui);
+            // add ! operator to the front, otherwise to the end of expression
+			var $li = $('<li class="jcsdl-logic-token-wrap" />').html($token)[token === '!' && manual ? 'prependTo' : 'appendTo'](this.$gui);
 			this.$gui.width(this.$gui.width() + $li.outerWidth(true));
 
 			// if adding a parenthesis (closing one) also add the opening one in appropriate place
@@ -608,8 +632,10 @@ JCSDL.Loader.addComponent(function($, undefined) {
 
 				self.deleteGuiToken($token);
 
-				var str = self.getGuiString();
-				self.trigger('parenthesisDelete', [str]);
+				var str = self.getGuiString(),
+                    eventName = ($token.data('token') === '!') ? 'notOperatorDelete' : 'parenthesisDelete';
+
+				self.trigger(eventName, [str]);
 				self.trigger('graphicalLogicChange', [str]);
 				self.trigger('advancedLogicChange', [str]);
 			});
@@ -686,8 +712,8 @@ JCSDL.Loader.addComponent(function($, undefined) {
 			// make sure that $token is the token itself
 			var $token = $li.find('.jcsdl-logic-token');
 
-			// cannot delete operators
-			if ($token.is('.operator')) return false;
+			// cannot delete AND and OR operators (but can NOT operator)
+			if ($token.is('.operator') && $token.data('token') !== '!') return false;
 
 			// if this is a filter then check if this filter exists and if so block deleting of it
 			if ($token.is('.filter')) {
@@ -932,6 +958,8 @@ JCSDL.Loader.addComponent(function($, undefined) {
 					|| (k == 55 && s)
 					// allow |
 					|| (k == 220 && s)
+                    // allow !
+                    || (k == 49 && s)
 				) {
 					return;
 				} else {
