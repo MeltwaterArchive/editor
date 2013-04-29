@@ -1,0 +1,14 @@
+{
+  "name": "jcsdl",
+  "version": "2.1.0",
+  "main": [
+    "./minified/jcsdl.definition.js",
+    "./minified/jcsdl.min.js",
+    "./minified/jcsdl.min.css"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "components"
+  ]
+}
