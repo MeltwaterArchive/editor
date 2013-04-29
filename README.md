@@ -1,9 +1,16 @@
-DataSift Query Editor
+DataSift Visual Query Editor
 ======
 
-DataSift Query Editor is a visual editor for the CSDL.
+DataSift Visual Query Editor is a visual editor for the CSDL.
 
 More details here: http://dev.datasift.com/editor
+
+Installation
+======
+
+The VQB is available on [Bower](https://github.com/bower/bower):
+
+```bower install jcsdl```
 
 Usage
 ======

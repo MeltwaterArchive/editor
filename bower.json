@@ -1,6 +1,6 @@
 {
   "name": "jcsdl",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "main": [
     "./minified/jcsdl.definition.js",
     "./minified/jcsdl.min.js",
