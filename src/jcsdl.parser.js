@@ -10,7 +10,7 @@ JCSDL.Loader.addComponent(function($, undefined) {
 	};
 
 	this.Parser.prototype = {
-		v : '2.0',
+		v : '2.1',
 
 		/* ##########################
 		 * Loading JCSDL
