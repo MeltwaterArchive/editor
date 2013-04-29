@@ -9,6 +9,10 @@
   "ignore": [
     "**/.*",
     "node_modules",
-    "components"
-  ]
+    "components",
+    "demo",
+    "src",
+    "bundy.js"
+  ],
+  "license": "MIT"
 }
