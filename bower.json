@@ -1,6 +1,6 @@
 {
   "name": "jcsdl",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "main": [
     "./minified/jcsdl.definition.js",
     "./minified/jcsdl.min.js",
@@ -14,5 +14,6 @@
     "src",
     "bundy.js"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "keywords": ["mediasift", "datasift", "csdl", "visual query builder", "jcsdl"]
 }
