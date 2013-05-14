@@ -832,7 +832,9 @@ JCSDL.Loader.addComponent(function($, undefined) {
 			return this.$popup.find('.jcsdl-popup-content');
 		},
 		setContent : function(content) {
-			var $content = $($.trim(content));
+            // make sure it's an HTML string for jQuery 1.9
+            content = $.trim(content);
+            var $content = (typeof content === 'string' && content.charAt(0) !== '<') ? $('<p>' + content + '</p>') : $(content);
 			var $popupContent = this.$popup.find('.jcsdl-popup-content');
 			$popupContent.html('');
 
