@@ -12,8 +12,9 @@ JCSDL.Loader.addComponent(function($, undefined) {
 					'<div class="jcsdl-row">',
 						'<h3>Filters</h3>',
 						'<div class="jcsdl-actions">',
+                            '<a href="#" class="jcsdl-button jcsdl-elements-sprite jcsdl-editor-cancel">Cancel</a>',
+                            '<a href="#" class="jcsdl-button jcsdl-elements-sprite jcsdl-editor-preview">Preview CSDL</a>',
 							'<a href="#" class="jcsdl-button jcsdl-elements-sprite jcsdl-editor-save">Save and Preview</a>',
-							'<a href="#" class="jcsdl-button jcsdl-elements-sprite jcsdl-editor-cancel">Cancel</a>',
 						'</div>',
 					'</div>',
 
@@ -63,6 +64,7 @@ JCSDL.Loader.addComponent(function($, undefined) {
 				'<div class="jcsdl-footer">',
 					'<div class="jcsdl-actions">',
 						'<a href="#" class="jcsdl-button jcsdl-elements-sprite jcsdl-editor-save">Save and Preview</a>',
+                        '<a href="#" class="jcsdl-button jcsdl-elements-sprite jcsdl-editor-preview">Preview CSDL</a>',
 						'<a href="#" class="jcsdl-button jcsdl-elements-sprite jcsdl-editor-cancel">Cancel</a>',
 					'</div>',
 

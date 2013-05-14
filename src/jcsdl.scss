@@ -12,8 +12,8 @@ $borderColorInput : #c8d7de;
 $backgroundSmoked : #fafafa;
 $fontFamily : "Helvetica Neue", "Helvetica", sans-serif;
 $fontSize : 13px;
-$elementsSprite : 'img/elements.png?22';
-$elementsSpriteRetina : 'img/elements@2x.png?2';
+$elementsSprite : 'img/elements.png?23';
+$elementsSpriteRetina : 'img/elements@2x.png?3';
 $selectSprite : 'img/select.png?14';
 $selectSpriteRetina : 'img/select@2x.png';
 $stepBackground : 'img/step_background.png?5';
@@ -137,6 +137,7 @@ $loader : 'img/loader.gif';
 
 	&.jcsdl-editor-save, &.jcsdl-filter-save {}
 	&.jcsdl-editor-cancel, &.jcsdl-filter-cancel {width: 56px; background-position: 0 -89px;}
+    &.jcsdl-editor-preview {width: 96px; background-position: 0 -436px;}
 
 	&:hover {@include opacity(0.9);}
 }
@@ -175,7 +176,6 @@ $loader : 'img/loader.gif';
 
 	.jcsdl-actions {float: right;}
 	.jcsdl-editor-save {margin-right: 0;}
-	.jcsdl-editor-cancel {margin-left: 8px; margin-right: 0;}
 	.jcsdl-error {margin: 10px 0;}
 }
 

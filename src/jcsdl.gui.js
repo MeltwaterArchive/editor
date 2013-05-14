@@ -129,6 +129,7 @@ JCSDL.Loader.addComponent(function($, undefined) {
 			this.$el.html(this.$container);
 
 			this.$saveButton = this.$mainView.find('.jcsdl-editor-save');
+            this.$previewButton = this.$mainView.find('.jcsdl-editor-preview');
 			this.$cancelButton = this.$mainView.find('.jcsdl-editor-cancel');
 
 			// is there a custom save button defined?
@@ -214,6 +215,25 @@ JCSDL.Loader.addComponent(function($, undefined) {
 					self.trigger('saveError', [message]);
 				}
 			});
+
+            /**
+             * Show CSDL preview in a popup.
+             *
+             * @param  {Event} ev Click Event.
+             */
+            this.$previewButton.unbind('.jcsdl').bind('click.jcsdl touchstart.jcsdl', function(ev) {
+                ev.preventDefault();
+                ev.target.blur();
+
+                try {
+                    $.jcsdlPopup({
+                        title : 'CSDL Preview',
+                        content : '<pre class="jcsdl-code">' + self.returnJCSDL() + '</pre>'
+                    });
+                } catch(e) {
+                    self.showError(e);
+                }
+            });
 
 			/**
 			 * Handle pressing the cancel button.
