@@ -240,7 +240,7 @@ JCSDL.Loader.addComponent(function($, undefined) {
 
                     $.jcsdlPopup({
                         title : 'CSDL Preview',
-                        content : '<pre class="jcsdl-code">' + code + '</pre>'
+                        content : self.highlightCSDL(code)
                     });
                 } catch(e) {
                     self.showError(e);
@@ -708,6 +708,71 @@ JCSDL.Loader.addComponent(function($, undefined) {
 			on = (on === undefined) ? true : false;
 			this.$filtersList.find('.filter-' + filterId)[on ? 'addClass' : 'removeClass']('on');
 		},
+
+        /**
+         * Syntax highlight CSDL code.
+         * 
+         * @param  {String} code CSDL code.
+         * @return {String}
+         */
+        highlightCSDL : function(code) {
+            var self = this,
+                lines = code.split("\n"),
+                highlighted = [];
+
+            // make use of the fact that we know the structure of the code perfectly,
+            // so no need for advanced regexes to match strings outside of quotes (for operators, etc)
+            $.each(lines, function(i, line) {
+                line = $.trim(line);
+
+                // match all strings in quotes (they are values)
+                line = line.replace(/"[^"]+"/gi, function(match) {
+                    return '<span class="jcsdl-code-string">' + match + '</span>';
+                });
+
+                var elements = line.split(' ');
+
+                // it can be either a logic line or a target line
+                // logic lines start with (, ), AND, OR, NOT
+                if ($.inArray(elements[0].charAt(0), ['(', ')']) !== -1 || $.inArray(elements[0], ['AND', 'OR', 'NOT']) !== -1) {
+                    // match logical operators AND, OR
+                    line = line.replace(/AND|OR/gi, function(match) {
+                        return '<span class="jcsdl-code-logical-operator">' + match + '</span>';
+                    });
+
+                    // match NOT operator
+                    line = line.replace(/NOT/gi, function(match) {
+                        return '<span class="jcsdl-code-logical-operator-not">' + match + '</span>';
+                    });
+
+                    // match parentheses
+                    line = line.replace(/\(|\)/gi, function(match) {
+                        return '<span class="jcsdl-code-parenthesis">' + match + '</span>';
+                    });
+
+                    highlighted.push(line);
+
+                    // parsed so continue
+                    return true;
+                }
+
+                // this is a target line
+                elements[0] = '<span class="jcsdl-code-target">' + elements[0] + '</span>';
+                elements[1] = '<span class="jcsdl-code-operator">' + elements[1] + '</span>';
+
+                var newline = elements.join(' ');
+
+                // match all numbers (as numbers can only be values)
+                newline = newline.replace(/[0-9]*\.?[0-9]+/gi, function(match) {
+                    return '<span class="jcsdl-code-number">' + match + '</span>';
+                });
+
+                highlighted.push(newline);
+            });
+
+            // join the highlighted lines by <br>
+            return '<code class="jcsdl-code">' + highlighted.join('<br>') + '</code>';
+        },
 
 		/* ##########################
 		 * SETTERS AND GETTERS

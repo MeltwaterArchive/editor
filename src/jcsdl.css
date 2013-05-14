@@ -2615,6 +2615,22 @@ a.jcsdl-filters-logic-option {
 .jcsdl-popup-content p, .jcsdl-popup-content dl, .jcsdl-popup-content hr, .jcsdl-popup-content h1, .jcsdl-popup-content h2, .jcsdl-popup-content h3, .jcsdl-popup-content h4, .jcsdl-popup-content h5, .jcsdl-popup-content h6, .jcsdl-popup-content ol, .jcsdl-popup-content ul, .jcsdl-popup-content pre, .jcsdl-popup-content table {
   margin-bottom: .5em; }
 
+/* CSDL syntax highlighting */
+code.jcsdl-code {
+  font-family: Courier, monospace; }
+  code.jcsdl-code .jcsdl-code-parenthesis {
+    font-weight: bold; }
+  code.jcsdl-code .jcsdl-code-logical-operator {
+    color: #e90; }
+  code.jcsdl-code .jcsdl-code-logical-operator-not {
+    color: #e70; }
+  code.jcsdl-code .jcsdl-code-target {
+    color: #905; }
+  code.jcsdl-code .jcsdl-code-string {
+    color: #690; }
+  code.jcsdl-code .jcsdl-code-number {
+    color: #07a; }
+
 /* IE fixes */
 .jcsdl-container.msie .jcsdl-filter-value-input-operators .operator {
   text-indent: 0; }
