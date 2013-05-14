@@ -226,13 +226,27 @@ JCSDL.Loader.addComponent(function($, undefined) {
                 ev.target.blur();
 
                 try {
+                    var codeLines = self.returnJCSDL().split("\n"),
+                        clearLines = [];
+
+                    // remove comment lines
+                    $.each(codeLines, function(i, line) {
+                        if (line.substr(0, 2) !== '//') {
+                            clearLines.push(line);
+                        }
+                    });
+
+                    var code = clearLines.join("\n");
+
                     $.jcsdlPopup({
                         title : 'CSDL Preview',
-                        content : '<pre class="jcsdl-code">' + self.returnJCSDL() + '</pre>'
+                        content : '<pre class="jcsdl-code">' + code + '</pre>'
                     });
                 } catch(e) {
                     self.showError(e);
                 }
+
+                return false;
             });
 
 			/**
