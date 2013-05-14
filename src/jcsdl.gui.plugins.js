@@ -832,7 +832,7 @@ JCSDL.Loader.addComponent(function($, undefined) {
 			return this.$popup.find('.jcsdl-popup-content');
 		},
 		setContent : function(content) {
-			var $content = $(content);
+			var $content = $($.trim(content));
 			var $popupContent = this.$popup.find('.jcsdl-popup-content');
 			$popupContent.html('');
 
