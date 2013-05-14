@@ -28,7 +28,8 @@ JCSDL.Loader.addComponent(function($, undefined) {
 				fillColor : '#7585dd',
 				fillOpacity : 0.5
 			},
-			mapsMarker : 'jcsdl/img/maps-marker.png',
+			mapsMarker : null,
+            zeroClipboard : null,
 			hideTargets : [],
 			definition : {},
 
@@ -159,6 +160,26 @@ JCSDL.Loader.addComponent(function($, undefined) {
 			// initiate the advanced logic handler with default 'and' logic
 			this.logic = new JCSDL.GUILogic(this, JCSDL.GUILogic.prototype.AND);
 
+            /*
+             * ASSETS URL
+             */
+            var elementsSpriteUrl = this.$mainView.find('.jcsdl-elements-sprite:first').css('background-image').replace(/url\((\'|\")?/, '').replace(/(\'|\")?\)$/, ''),
+                elementsSpriteLink = document.createElement('a');
+            elementsSpriteLink.href = elementsSpriteUrl;
+            var assetsUrl = elementsSpriteLink.pathname.split('/');
+            assetsUrl.pop(); // remove "elements.png"
+            assetsUrl.pop(); // remove "img"
+            this.assetsUrl = assetsUrl.join('/') + '/';
+
+            // now apply the assets url to maps marker and zeroclipboard if necessary
+            if (!this.config.mapsMarker) {
+                this.config.mapsMarker = this.assetsUrl + 'img/maps-marker.png';
+            }
+
+            if (!this.config.zeroClipboard) {
+                this.config.zeroClipboard = this.assetsUrl + 'swf/ZeroClipboard.swf';
+            }
+
 			/*
 			 * REGISTER LISTENERS
 			 */
@@ -236,12 +257,29 @@ JCSDL.Loader.addComponent(function($, undefined) {
                         }
                     });
 
-                    var code = clearLines.join("\n");
+                    var code = clearLines.join("\n"),
+                        id = 'jcsdl-copy-to-clipboard-' + (Math.floor(Math.random() * 10000));
 
                     $.jcsdlPopup({
                         title : 'CSDL Preview',
-                        content : self.highlightCSDL(code)
+                        content : [
+                            '<p>' + self.highlightCSDL(code) + '</p>',
+                            '<a href="#" id="' + id + '" class="jcsdl-btn jcsdl-copy-to-clipboard">Copy to Clipboard</a>'
+                        ].join('')
                     });
+
+                    var copyButtonTransitionTimeout,
+                        $copyButton = $('#' + id).zclip({
+                            path: self.config.zeroClipboard,
+                            copy : code,
+                            afterCopy : function() {
+                                clearTimeout(copyButtonTransitionTimeout);
+                                $copyButton.addClass('copied').html('Copied!');
+                                setTimeout(function() {
+                                    $copyButton.removeClass('copied').html('Copy to Clipboard');
+                                }, 3000);
+                            }
+                        });
                 } catch(e) {
                     self.showError(e);
                 }
@@ -850,6 +888,6 @@ JCSDL.Loader.addComponent(function($, undefined) {
 	// backward compatibility
 	JCSDLGui = function($el, o) {
 		return new JCSDL.GUI($el, o);
-	}
+	};
 
 });

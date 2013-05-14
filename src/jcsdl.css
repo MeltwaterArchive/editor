@@ -77,7 +77,7 @@
     -khtml-opacity: 0.9;
     opacity: 0.9; }
 
-.jcsdl-container a.jcsdl-btn {
+.jcsdl-container a.jcsdl-btn, .jcsdl-popup a.jcsdl-btn {
   display: block;
   overflow: hidden;
   padding: 8px;
@@ -96,10 +96,10 @@
   background-clip: padding-box;
   color: #376491;
   font-weight: bold; }
-  .jcsdl-container a.jcsdl-btn.active {
+  .jcsdl-container a.jcsdl-btn.active, .jcsdl-popup a.jcsdl-btn.active {
     border-color: #ff9933;
     color: #ff9933; }
-  .jcsdl-container a.jcsdl-btn.disabled {
+  .jcsdl-container a.jcsdl-btn.disabled, .jcsdl-popup a.jcsdl-btn.disabled {
     border-color: gainsboro !important;
     color: #d0d0d0 !important;
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=65)";
@@ -107,7 +107,7 @@
     -moz-opacity: 0.65;
     -khtml-opacity: 0.65;
     opacity: 0.65; }
-  .jcsdl-container a.jcsdl-btn:hover {
+  .jcsdl-container a.jcsdl-btn:hover, .jcsdl-popup a.jcsdl-btn:hover {
     color: #ff9933; }
 
 .jcsdl-header {
@@ -2614,6 +2614,22 @@ a.jcsdl-filters-logic-option {
   font: inherit; }
 .jcsdl-popup-content p, .jcsdl-popup-content dl, .jcsdl-popup-content hr, .jcsdl-popup-content h1, .jcsdl-popup-content h2, .jcsdl-popup-content h3, .jcsdl-popup-content h4, .jcsdl-popup-content h5, .jcsdl-popup-content h6, .jcsdl-popup-content ol, .jcsdl-popup-content ul, .jcsdl-popup-content pre, .jcsdl-popup-content table {
   margin-bottom: .5em; }
+.jcsdl-popup-content .jcsdl-copy-to-clipboard {
+  position: absolute;
+  top: 4px;
+  right: 60px;
+  width: 132px;
+  text-align: center;
+  background: #f5f5f5;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out; }
+  .jcsdl-popup-content .jcsdl-copy-to-clipboard.copied {
+    border-color: #ff9933;
+    color: #ff9933; }
+  .jcsdl-popup-content .jcsdl-copy-to-clipboard.hover {
+    color: #ff9933; }
 
 /* CSDL syntax highlighting */
 code.jcsdl-code {

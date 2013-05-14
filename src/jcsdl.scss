@@ -142,26 +142,28 @@ $loader : 'img/loader.gif';
 	&:hover {@include opacity(0.9);}
 }
 
-.jcsdl-container a.jcsdl-btn {
-	display: block; overflow: hidden; padding: 8px; line-height: 14px;
-	float: left; margin-right: 8px;
-	border: 1px solid $borderColorInput; @include rounded(3px);
-	color: $color; font-weight: bold;
+.jcsdl-container, .jcsdl-popup {
+    a.jcsdl-btn {
+    	display: block; overflow: hidden; padding: 8px; line-height: 14px;
+    	float: left; margin-right: 8px;
+    	border: 1px solid $borderColorInput; @include rounded(3px);
+    	color: $color; font-weight: bold;
 
-	&.active {
-		border-color: $colorOrange;
-		color: $colorOrange;
-	}
+    	&.active {
+    		border-color: $colorOrange;
+    		color: $colorOrange;
+    	}
 
-	&.disabled {
-		border-color: $borderColor !important;
-		color: $borderColorText !important;
-		@include opacity(0.65);
-	}
+    	&.disabled {
+    		border-color: $borderColor !important;
+    		color: $borderColorText !important;
+    		@include opacity(0.65);
+    	}
 
-	&:hover {
-		color: $colorOrange;
-	}
+    	&:hover {
+    		color: $colorOrange;
+    	}
+    }
 }
 
 .jcsdl-header {
@@ -1478,6 +1480,25 @@ a.jcsdl-filters-logic-option {
 	}
 	p, iframe, blockquote, pre, abbr, cite, code, q, s, small, strike, sub, sup, tt, b, u, i, center, dl, dt, dd, caption, label, legend {margin: 0; padding: 0; border: 0; outline: 0; font-size: 1em; vertical-align: baseline; font: inherit;}
 	p, dl, hr, h1, h2, h3, h4, h5, h6, ol, ul, pre, table {margin-bottom: .5em;}
+
+    .jcsdl-copy-to-clipboard {
+        position: absolute;
+        top: 4px;
+        right: 60px;
+        width: 132px;
+        text-align: center;
+        background: #f5f5f5;
+        @include transition("all 0.2s ease-in-out");
+
+        &.copied {
+            border-color: $colorOrange;
+            color: $colorOrange;
+        }
+
+        &.hover {
+            color: $colorOrange;
+        }
+    }
 
 }
 
