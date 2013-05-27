@@ -1507,12 +1507,12 @@ code.jcsdl-code {
     font-family: Courier, monospace;
 
     .jcsdl-code-parenthesis {font-weight: bold;}
-    .jcsdl-code-logical-operator {color: #e90;}
-    .jcsdl-code-logical-operator-not {color: #e70;}
-    .jcsdl-code-target {color: #905;}
-    .jcsdl-code-operator {}
-    .jcsdl-code-string {color: #690;}
-    .jcsdl-code-number {color: #07a;}
+    .jcsdl-code-logical-operator {color: red;}
+    .jcsdl-code-logical-operator-not {color: red;}
+    .jcsdl-code-target {color: blue;}
+    .jcsdl-code-operator {color: red;}
+    .jcsdl-code-string {color: green;}
+    .jcsdl-code-number {color: green;}
 }
 
 /* IE fixes */

@@ -2637,15 +2637,17 @@ code.jcsdl-code {
   code.jcsdl-code .jcsdl-code-parenthesis {
     font-weight: bold; }
   code.jcsdl-code .jcsdl-code-logical-operator {
-    color: #e90; }
+    color: red; }
   code.jcsdl-code .jcsdl-code-logical-operator-not {
-    color: #e70; }
+    color: red; }
   code.jcsdl-code .jcsdl-code-target {
-    color: #905; }
+    color: blue; }
+  code.jcsdl-code .jcsdl-code-operator {
+    color: red; }
   code.jcsdl-code .jcsdl-code-string {
-    color: #690; }
+    color: green; }
   code.jcsdl-code .jcsdl-code-number {
-    color: #07a; }
+    color: green; }
 
 /* IE fixes */
 .jcsdl-container.msie .jcsdl-filter-value-input-operators .operator {
