@@ -12,8 +12,8 @@ $borderColorInput : #c8d7de;
 $backgroundSmoked : #fafafa;
 $fontFamily : "Helvetica Neue", "Helvetica", sans-serif;
 $fontSize : 13px;
-$elementsSprite : 'img/elements.png?24';
-$elementsSpriteRetina : 'img/elements@2x.png?4';
+$elementsSprite : 'img/elements.png?25';
+$elementsSpriteRetina : 'img/elements@2x.png?5';
 $selectSprite : 'img/select.png?14';
 $selectSpriteRetina : 'img/select@2x.png';
 $stepBackground : 'img/step_background.png?5';
@@ -230,6 +230,13 @@ $loader : 'img/loader.gif';
 	}
 
 	&.jcsdl-add-filter.jcsdl-btn {margin-right: 0;}
+
+    &.jcsdl-editor-preview {
+        .jcsdl-picto {
+            margin: 0;
+            background-position: -115px -105px;
+        }
+    }
 
 	&:hover {
 		&.jcsdl-add-filter .jcsdl-picto {background-position: -115px -89px;}
