@@ -202,12 +202,14 @@
   background-position: -115px -105px; }
 .jcsdl-mainview-action:hover.jcsdl-add-filter .jcsdl-picto {
   background-position: -115px -89px; }
+.jcsdl-mainview-action:hover.jcsdl-editor-preview .jcsdl-picto {
+  background-position: -129px -105px; }
 
 /* main view mode (expanded / collapsed) */
 .jcsdl-mainview-mode {
   overflow: hidden;
   float: right;
-  margin-right: 15px;
+  margin-right: 8px;
   width: 110px; }
 
 .jcsdl-mainview-mode-options {
