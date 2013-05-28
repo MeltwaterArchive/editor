@@ -264,7 +264,7 @@ JCSDL.Loader.addComponent(function($, undefined) {
                         title : 'CSDL Preview',
                         content : [
                             '<p>' + self.highlightCSDL(code) + '</p>',
-                            '<a href="#" id="' + id + '" class="jcsdl-btn jcsdl-copy-to-clipboard">Copy to Clipboard</a>'
+                            '<a href="#" id="' + id + '" class="jcsdl-btn jcsdl-copy-to-clipboard"><i class="jcsdl-picto jcsdl-elements-sprite"></i></a>'
                         ].join('')
                     });
 
@@ -274,9 +274,9 @@ JCSDL.Loader.addComponent(function($, undefined) {
                             copy : code,
                             afterCopy : function() {
                                 clearTimeout(copyButtonTransitionTimeout);
-                                $copyButton.addClass('copied').html('Copied!');
+                                $copyButton.addClass('copied');
                                 setTimeout(function() {
-                                    $copyButton.removeClass('copied').html('Copy to Clipboard');
+                                    $copyButton.removeClass('copied');
                                 }, 3000);
                             }
                         });

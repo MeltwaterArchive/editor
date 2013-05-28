@@ -2621,20 +2621,34 @@ a.jcsdl-filters-logic-option {
   margin-bottom: .5em; }
 .jcsdl-popup-content .jcsdl-copy-to-clipboard {
   position: absolute;
-  top: 4px;
-  right: 60px;
-  width: 132px;
+  top: 41px;
+  right: -5px;
+  width: 14px;
   text-align: center;
   background: #f5f5f5;
+  opacity: 0;
   -webkit-transition: all 0.2s ease-in-out;
   -moz-transition: all 0.2s ease-in-out;
   -o-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out; }
+  .jcsdl-popup-content .jcsdl-copy-to-clipboard .jcsdl-picto {
+    display: inline-block;
+    overflow: hidden;
+    margin-right: 8px;
+    width: 14px;
+    height: 14px;
+    background: url("img/elements.png?25") no-repeat -103px -394px; }
   .jcsdl-popup-content .jcsdl-copy-to-clipboard.copied {
     border-color: #ff9933;
     color: #ff9933; }
+    .jcsdl-popup-content .jcsdl-copy-to-clipboard.copied .jcsdl-picto {
+      background-position: -118px -394px; }
   .jcsdl-popup-content .jcsdl-copy-to-clipboard.hover {
     color: #ff9933; }
+    .jcsdl-popup-content .jcsdl-copy-to-clipboard.hover .jcsdl-picto {
+      background-position: -118px -394px; }
+.jcsdl-popup-content:hover .jcsdl-copy-to-clipboard {
+  opacity: 1; }
 
 /* CSDL syntax highlighting */
 code.jcsdl-code {

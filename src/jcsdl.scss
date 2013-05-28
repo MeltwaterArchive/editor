@@ -1493,23 +1493,46 @@ a.jcsdl-filters-logic-option {
 
     .jcsdl-copy-to-clipboard {
         position: absolute;
-        top: 4px;
-        right: 60px;
-        width: 132px;
+        top: 41px;
+        right: -5px;
+        width: 14px;
         text-align: center;
         background: #f5f5f5;
+        opacity: 0;
         @include transition("all 0.2s ease-in-out");
+
+        .jcsdl-picto {
+            display: inline-block;
+            overflow: hidden;
+            margin-right: 8px;
+            width: 14px;
+            height: 14px;
+            background: url($elementsSprite) no-repeat -103px -394px;
+        }
 
         &.copied {
             border-color: $colorOrange;
             color: $colorOrange;
+
+            .jcsdl-picto {
+                background-position: -118px -394px;
+            }
         }
 
         &.hover {
             color: $colorOrange;
+
+            .jcsdl-picto {
+                background-position: -118px -394px;
+            }
         }
     }
 
+    &:hover {
+        .jcsdl-copy-to-clipboard {
+            opacity: 1;
+        }
+    }
 }
 
 /* CSDL syntax highlighting */
