@@ -3,7 +3,7 @@ JCSDL.Loader.addComponent(function($, undefined) {
 	/**
 	 * DataSift Query Editor (JCSDL).
 	 * This is the main class of JCSDL/Query Editor. It bootstraps everything together.
-	 * 
+	 *
 	 * @param {mixed} el Element on which the query editor should be initialized. Can be a jQuery selector, jQuery object or a DOM object.
 	 * @param {Object} cfg[optional] Custom configuration of the editor.
 	 */
@@ -68,7 +68,7 @@ JCSDL.Loader.addComponent(function($, undefined) {
 				if (fieldInfo.helpUrl) {
 					return fieldInfo.helpUrl;
 				}
-				
+
 				target = target.replace(/\./g, '-');
 				return this.definition.targetHelpJsonpSource.replace(/\{target\}/g, target);
 			}
@@ -163,7 +163,7 @@ JCSDL.Loader.addComponent(function($, undefined) {
 			 */
 			/**
 			 * Switch between expanded and collapsed view mode of filters list.
-			 * 
+			 *
 			 * @param  {Event} ev
 			 */
 			this.$mainView.find('.jcsdl-mainview-mode .jcsdl-mainview-mode-option').bind('click touchstart', function(ev) {
@@ -184,7 +184,7 @@ JCSDL.Loader.addComponent(function($, undefined) {
 
 			/**
 			 * Show filter editor to create a new one from scratch upon clicking 'Add filter'.
-			 * 
+			 *
 			 * @param  {Event} ev Click Event.
 			 */
 			this.$mainView.find('.jcsdl-add-filter').bind('click touchstart', function(ev) {
@@ -197,7 +197,7 @@ JCSDL.Loader.addComponent(function($, undefined) {
 			/**
 			 * Handle output / returning of the resulting JCSDL upon clicking save.
 			 * Unbind first so that init() can be called many times without registering the listener multiple times
-			 * 
+			 *
 			 * @param  {Event} ev Click Event.
 			 */
 			this.$saveButton.unbind('.jcsdl').bind('click.jcsdl touchstart.jcsdl', function(ev) {
@@ -218,7 +218,7 @@ JCSDL.Loader.addComponent(function($, undefined) {
 			/**
 			 * Handle pressing the cancel button.
 			 * Unbind first so that init() can be called many times without registering the listener multiple times.
-			 * 
+			 *
 			 * @param  {Event} ev Click Event.
 			 */
 			this.$cancelButton.unbind('.jcsdl').bind('click.jcsdl touchstart.jcsdl', function(ev) {
@@ -238,7 +238,7 @@ JCSDL.Loader.addComponent(function($, undefined) {
 
 		/**
 		 * Loads the given JCSDL string and builds the whole editor based on it.
-		 * 
+		 *
 		 * @param  {String} code JCSDL string.
 		 */
 		loadJCSDL : function(code) {
@@ -267,7 +267,7 @@ JCSDL.Loader.addComponent(function($, undefined) {
 
 				return false;
 			}
-			
+
 			// display the filters
 			// add each filter to the list
 			$.each(this.filters, function(i, filter) {
@@ -320,7 +320,7 @@ JCSDL.Loader.addComponent(function($, undefined) {
 
 		/**
 		 * Trigger an event handler defined in the config.
-		 * 
+		 *
 		 * @param  {String} name Name of the event handler.
 		 * @param  {Array} data[optional] Arguments to pass to the handler.
 		 * @return {mixed} Whatever the handler returns.
@@ -329,7 +329,7 @@ JCSDL.Loader.addComponent(function($, undefined) {
 			data = data || [];
 
 			this.$el.trigger(name.toLowerCase(), data);
-			
+
 			if (typeof(this.config[name]) == 'function') {
 				return this.config[name].apply(this, data);
 			}
@@ -395,7 +395,7 @@ JCSDL.Loader.addComponent(function($, undefined) {
 
 		/**
 		 * Handle submission of a filter.
-		 * 
+		 *
 		 * @param  {Object} filterInfo Filter info object returned from the editor.
 		 */
 		didSubmitFilter : function(filterInfo) {
@@ -417,7 +417,7 @@ JCSDL.Loader.addComponent(function($, undefined) {
 				// we were editing, so let's replace it
 				this.$filtersList.find('.jcsdl-filter.filter-' + filter.id).replaceWith($filterRow);
 				this.filters[this.currentFilterIndex] = filter;
-				
+
 			} else {
 				// we were adding a filter, so simply add it to the list
 				$filterRow.appendTo(this.$filtersList);
@@ -447,12 +447,11 @@ JCSDL.Loader.addComponent(function($, undefined) {
 
 		/**
 		 * Removes the filter at the given index.
-		 * 
+		 *
 		 * @param  {Number} index
 		 */
 		deleteFilter : function(index) {
 			var filter = this.filters[index];
-			this.trigger('filterDelete', [filter]);
 
 			// remove from the DOM
 			this.$filtersList.find('.jcsdl-filter.filter-' + filter.id).remove();
@@ -462,6 +461,8 @@ JCSDL.Loader.addComponent(function($, undefined) {
 
 			// remove this filter from the logic editor as well
 			this.logic.deleteGuiFilterToken(filter.id);
+
+			this.trigger('filterDelete', [filter]);
 
 			// hide footer if there are no more filters
 			if (!this.filters.length) {
@@ -473,13 +474,13 @@ JCSDL.Loader.addComponent(function($, undefined) {
 				this.logic.toggleButtons(false);
 			}
 		},
-	
+
 		/* ##########################
 		 * VIEW FACTORIES
 		 * ########################## */
 		/**
 		 * Shows an error.
-		 * 
+		 *
 		 * @param  {mixed} error Error message to be displayed ({String}) or {JCSDL.LogicValidationException}.
 		 * @param  {String} code    Code that caused the error.
 		 */
@@ -519,7 +520,7 @@ JCSDL.Loader.addComponent(function($, undefined) {
 
 		/**
 		 * Creates a filter row element for the specified filter.
-		 * 
+		 *
 		 * @param  {Object} filter Filter object.
 		 * @return {jQuery}
 		 */
@@ -537,7 +538,7 @@ JCSDL.Loader.addComponent(function($, undefined) {
 
 			// target
 			var targetInfo = this.parser.getTargetInfo(filter.target),
-				$target = this.getTemplate('filterTarget')				
+				$target = this.getTemplate('filterTarget')
 					.addClass('selected target-' + filter.target)
 					.html(targetInfo.name);
 
@@ -619,7 +620,7 @@ JCSDL.Loader.addComponent(function($, undefined) {
 			 */
 			/**
 			 * Shows the filter editor for the clicked filter.
-			 * 
+			 *
 			 * @param  {Event} ev Click Event.
 			 */
 			$filterRow.find('.edit').bind('click touchstart', function(ev) {
@@ -631,7 +632,7 @@ JCSDL.Loader.addComponent(function($, undefined) {
 
 			/**
 			 * Delete the filter when clicked on delete option.
-			 * 
+			 *
 			 * @param  {Event} ev Click Event.
 			 */
 			$filterRow.find('.delete').bind('click touchstart', function(ev) {
@@ -649,7 +650,7 @@ JCSDL.Loader.addComponent(function($, undefined) {
 		 * ########################## */
 		/**
 		 * Creates a unique filter ID.
-		 * 
+		 *
 		 * @return {Number}
 		 */
 		createFilterId : function() {
@@ -666,7 +667,7 @@ JCSDL.Loader.addComponent(function($, undefined) {
 
 		/**
 		 * Highlights a filter based on the given ID.
-		 * 
+		 *
 		 * @param  {Number} filterId Filter ID.
 		 * @param  {Boolean} on[optional] True to highlight, false to unhighlight. Default: true.
 		 */
@@ -680,7 +681,7 @@ JCSDL.Loader.addComponent(function($, undefined) {
 		 * ########################## */
 		/**
 		 * Returns a template (jQuery object) of the given name.
-		 * 
+		 *
 		 * @param  {String} name Name of the template to fetch.
 		 * @return {jQuery}
 		 */
@@ -688,13 +689,13 @@ JCSDL.Loader.addComponent(function($, undefined) {
 			if (JCSDL.GUITemplates[name] !== undefined) {
 				return JCSDL.GUITemplates[name].clone();
 			}
-			
+
 			return $();
 		},
 
 		/**
 		 * Given the field name and it's definition decide what the icon for this field is.
-		 * 
+		 *
 		 * @param  {String} field     Name of the string.
 		 * @param  {Object} fieldInfo Field definition.
 		 * @return {String}
@@ -705,7 +706,7 @@ JCSDL.Loader.addComponent(function($, undefined) {
 
 		/**
 		 * Returns the filter index of the filter to which the given DOM representation belongs.
-		 * 
+		 *
 		 * @param  {jQuery} $filterRow
 		 * @return {Number}
 		 */
