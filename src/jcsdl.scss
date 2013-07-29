@@ -12,8 +12,8 @@ $borderColorInput : #c8d7de;
 $backgroundSmoked : #fafafa;
 $fontFamily : "Helvetica Neue", "Helvetica", sans-serif;
 $fontSize : 13px;
-$elementsSprite : 'img/elements.png?22';
-$elementsSpriteRetina : 'img/elements@2x.png?2';
+$elementsSprite : 'img/elements.png?25';
+$elementsSpriteRetina : 'img/elements@2x.png?5';
 $selectSprite : 'img/select.png?14';
 $selectSpriteRetina : 'img/select@2x.png';
 $stepBackground : 'img/step_background.png?5';
@@ -137,30 +137,33 @@ $loader : 'img/loader.gif';
 
 	&.jcsdl-editor-save, &.jcsdl-filter-save {}
 	&.jcsdl-editor-cancel, &.jcsdl-filter-cancel {width: 56px; background-position: 0 -89px;}
+    &.jcsdl-editor-preview {width: 34px; background-position: 0 -436px;}
 
 	&:hover {@include opacity(0.9);}
 }
 
-.jcsdl-container a.jcsdl-btn {
-	display: block; overflow: hidden; padding: 8px; line-height: 14px;
-	float: left; margin-right: 8px;
-	border: 1px solid $borderColorInput; @include rounded(3px);
-	color: $color; font-weight: bold;
+.jcsdl-container, .jcsdl-popup {
+    a.jcsdl-btn {
+    	display: block; overflow: hidden; padding: 8px; line-height: 14px;
+    	float: left; margin-right: 8px;
+    	border: 1px solid $borderColorInput; @include rounded(3px);
+    	color: $color; font-weight: bold;
 
-	&.active {
-		border-color: $colorOrange;
-		color: $colorOrange;
-	}
+    	&.active {
+    		border-color: $colorOrange;
+    		color: $colorOrange;
+    	}
 
-	&.disabled {
-		border-color: $borderColor !important;
-		color: $borderColorText !important;
-		@include opacity(0.65);
-	}
+    	&.disabled {
+    		border-color: $borderColor !important;
+    		color: $borderColorText !important;
+    		@include opacity(0.65);
+    	}
 
-	&:hover {
-		color: $colorOrange;
-	}
+    	&:hover {
+    		color: $colorOrange;
+    	}
+    }
 }
 
 .jcsdl-header {
@@ -175,7 +178,6 @@ $loader : 'img/loader.gif';
 
 	.jcsdl-actions {float: right;}
 	.jcsdl-editor-save {margin-right: 0;}
-	.jcsdl-editor-cancel {margin-left: 8px; margin-right: 0;}
 	.jcsdl-error {margin: 10px 0;}
 }
 
@@ -229,14 +231,24 @@ $loader : 'img/loader.gif';
 
 	&.jcsdl-add-filter.jcsdl-btn {margin-right: 0;}
 
+    &.jcsdl-editor-preview {
+        .jcsdl-picto {
+            margin: 0;
+            background-position: -115px -105px;
+        }
+    }
+
 	&:hover {
 		&.jcsdl-add-filter .jcsdl-picto {background-position: -115px -89px;}
+        &.jcsdl-editor-preview .jcsdl-picto {background-position: -129px -105px;}
 	}
 }
 
 /* main view mode (expanded / collapsed) */
 .jcsdl-mainview-mode {
-	overflow: hidden; float: right; margin-right: 15px;
+	overflow: hidden;
+    float: right;
+    margin-right: 8px;
 	width: 110px;
 }
 
@@ -1479,6 +1491,61 @@ a.jcsdl-filters-logic-option {
 	p, iframe, blockquote, pre, abbr, cite, code, q, s, small, strike, sub, sup, tt, b, u, i, center, dl, dt, dd, caption, label, legend {margin: 0; padding: 0; border: 0; outline: 0; font-size: 1em; vertical-align: baseline; font: inherit;}
 	p, dl, hr, h1, h2, h3, h4, h5, h6, ol, ul, pre, table {margin-bottom: .5em;}
 
+    .jcsdl-copy-to-clipboard {
+        position: absolute;
+        top: 41px;
+        right: -5px;
+        width: 14px;
+        text-align: center;
+        background: #f5f5f5;
+        opacity: 0;
+        @include transition("all 0.2s ease-in-out");
+
+        .jcsdl-picto {
+            display: inline-block;
+            overflow: hidden;
+            margin-right: 8px;
+            width: 14px;
+            height: 14px;
+            background: url($elementsSprite) no-repeat -103px -394px;
+        }
+
+        &.copied {
+            border-color: $colorOrange;
+            color: $colorOrange;
+
+            .jcsdl-picto {
+                background-position: -118px -394px;
+            }
+        }
+
+        &.hover {
+            color: $colorOrange;
+
+            .jcsdl-picto {
+                background-position: -118px -394px;
+            }
+        }
+    }
+
+    &:hover {
+        .jcsdl-copy-to-clipboard {
+            opacity: 1;
+        }
+    }
+}
+
+/* CSDL syntax highlighting */
+code.jcsdl-code {
+    font-family: Courier, monospace;
+
+    .jcsdl-code-parenthesis {font-weight: bold;}
+    .jcsdl-code-logical-operator {color: red;}
+    .jcsdl-code-logical-operator-not {color: red;}
+    .jcsdl-code-target {color: blue;}
+    .jcsdl-code-operator {color: red;}
+    .jcsdl-code-string {color: green;}
+    .jcsdl-code-number {color: green;}
 }
 
 /* IE fixes */

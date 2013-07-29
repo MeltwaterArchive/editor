@@ -763,7 +763,9 @@ JCSDL.Loader.addComponent(function($, undefined) {
 
 JCSDL.Loader.addComponent(function($, undefined) {
 
-	var JCSDLPopup = function(config) {
+    var $win = $(window);
+
+    var JCSDLPopup = function(config) {
 		var self = this;
 
 		this.config = $.extend({}, this.config, config);
@@ -848,14 +850,11 @@ JCSDL.Loader.addComponent(function($, undefined) {
 			this.$popup.width(width);
 		},
 		reposition : function() {
-			this.$popup.css('position', 'absolute');
-			this.$popup.find('.jcsdl-popup-content').css('maxHeight', $(window).height() * 0.7);
+			this.$popup.css('position', 'fixed');
+			this.$popup.find('.jcsdl-popup-content').css('maxHeight', $win.height() * 0.7);
 
-			var leftPos = ($(window).width() - this.$popup.outerWidth()) / 2 + $(window).scrollLeft();
-			var topPos = ($(window).height() - this.$popup.outerHeight()) / 2 + $(window).scrollTop();
-			
-			if(topPos < 0) topPos = 0;
-			if(leftPos < 0) leftPos = 0;
+			var leftPos = Math.max(0, ($win.width() - this.$popup.outerWidth()) / 2),
+			    topPos = Math.max(0, ($win.height() - this.$popup.outerHeight()) / 2);
 	
 			this.$popup.css({
 				left: leftPos +'px',

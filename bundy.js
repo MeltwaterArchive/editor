@@ -7,6 +7,7 @@ bundy.js([
 	'src/lib/jquery.touchpunch.js',
 	'src/lib/jquery.tipsy.js',
 	'src/lib/jquery.simulate.js',
+    'src/lib/jquery.zclip.js',
 	'src/jcsdl.parser.js',
 	'src/jcsdl.gui.templates.js',
 	'src/jcsdl.gui.inputs.js',
@@ -47,5 +48,7 @@ bundy.copy([
 	'src/img/select@2x.png',
 	'src/img/step_background.png'
 ], 'minified/img/');
+
+bundy.copy('src/swf/ZeroClipboard.swf', 'minified/swf/ZeroClipboard.swf');
 
 bundy.build();

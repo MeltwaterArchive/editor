@@ -28,7 +28,8 @@ JCSDL.Loader.addComponent(function($, undefined) {
 				fillColor : '#7585dd',
 				fillOpacity : 0.5
 			},
-			mapsMarker : 'jcsdl/img/maps-marker.png',
+			mapsMarker : null,
+            zeroClipboard : null,
 			hideTargets : [],
 			definition : {},
 
@@ -129,6 +130,7 @@ JCSDL.Loader.addComponent(function($, undefined) {
 			this.$el.html(this.$container);
 
 			this.$saveButton = this.$mainView.find('.jcsdl-editor-save');
+            this.$previewButton = this.$mainView.find('.jcsdl-editor-preview');
 			this.$cancelButton = this.$mainView.find('.jcsdl-editor-cancel');
 
 			// is there a custom save button defined?
@@ -157,6 +159,26 @@ JCSDL.Loader.addComponent(function($, undefined) {
 
 			// initiate the advanced logic handler with default 'and' logic
 			this.logic = new JCSDL.GUILogic(this, JCSDL.GUILogic.prototype.AND);
+
+            /*
+             * ASSETS URL
+             */
+            var elementsSpriteUrl = this.$mainView.find('.jcsdl-elements-sprite:first').css('background-image').replace(/url\((\'|\")?/, '').replace(/(\'|\")?\)$/, ''),
+                elementsSpriteLink = document.createElement('a');
+            elementsSpriteLink.href = elementsSpriteUrl;
+            var assetsUrl = elementsSpriteLink.pathname.split('/');
+            assetsUrl.pop(); // remove "elements.png"
+            assetsUrl.pop(); // remove "img"
+            this.assetsUrl = assetsUrl.join('/') + '/';
+
+            // now apply the assets url to maps marker and zeroclipboard if necessary
+            if (!this.config.mapsMarker) {
+                this.config.mapsMarker = this.assetsUrl + 'img/maps-marker.png';
+            }
+
+            if (!this.config.zeroClipboard) {
+                this.config.zeroClipboard = this.assetsUrl + 'swf/ZeroClipboard.swf';
+            }
 
 			/*
 			 * REGISTER LISTENERS
@@ -214,6 +236,56 @@ JCSDL.Loader.addComponent(function($, undefined) {
 					self.trigger('saveError', [message]);
 				}
 			});
+
+            /**
+             * Show CSDL preview in a popup.
+             *
+             * @param  {Event} ev Click Event.
+             */
+            this.$previewButton.unbind('.jcsdl').bind('click.jcsdl touchstart.jcsdl', function(ev) {
+                ev.preventDefault();
+                ev.target.blur();
+
+                try {
+                    var codeLines = self.returnJCSDL().split("\n"),
+                        clearLines = [];
+
+                    // remove comment lines
+                    $.each(codeLines, function(i, line) {
+                        if (line.substr(0, 2) !== '//') {
+                            clearLines.push(line);
+                        }
+                    });
+
+                    var code = clearLines.join("\n"),
+                        id = 'jcsdl-copy-to-clipboard-' + (Math.floor(Math.random() * 10000));
+
+                    $.jcsdlPopup({
+                        title : 'CSDL Preview',
+                        content : [
+                            '<p>' + self.highlightCSDL(code) + '</p>',
+                            '<a href="#" id="' + id + '" class="jcsdl-btn jcsdl-copy-to-clipboard"><i class="jcsdl-picto jcsdl-elements-sprite"></i></a>'
+                        ].join('')
+                    });
+
+                    var copyButtonTransitionTimeout,
+                        $copyButton = $('#' + id).zclip({
+                            path: self.config.zeroClipboard,
+                            copy : code,
+                            afterCopy : function() {
+                                clearTimeout(copyButtonTransitionTimeout);
+                                $copyButton.addClass('copied');
+                                setTimeout(function() {
+                                    $copyButton.removeClass('copied');
+                                }, 3000);
+                            }
+                        });
+                } catch(e) {
+                    self.showError(e);
+                }
+
+                return false;
+            });
 
 			/**
 			 * Handle pressing the cancel button.
@@ -676,6 +748,71 @@ JCSDL.Loader.addComponent(function($, undefined) {
 			this.$filtersList.find('.filter-' + filterId)[on ? 'addClass' : 'removeClass']('on');
 		},
 
+        /**
+         * Syntax highlight CSDL code.
+         * 
+         * @param  {String} code CSDL code.
+         * @return {String}
+         */
+        highlightCSDL : function(code) {
+            var self = this,
+                lines = code.split("\n"),
+                highlighted = [];
+
+            // make use of the fact that we know the structure of the code perfectly,
+            // so no need for advanced regexes to match strings outside of quotes (for operators, etc)
+            $.each(lines, function(i, line) {
+                line = $.trim(line);
+
+                // match all strings in quotes (they are values)
+                line = line.replace(/"[^"]+"/gi, function(match) {
+                    return '<span class="jcsdl-code-string">' + match + '</span>';
+                });
+
+                var elements = line.split(' ');
+
+                // it can be either a logic line or a target line
+                // logic lines start with (, ), AND, OR, NOT
+                if ($.inArray(elements[0].charAt(0), ['(', ')']) !== -1 || $.inArray(elements[0], ['AND', 'OR', 'NOT']) !== -1) {
+                    // match logical operators AND, OR
+                    line = line.replace(/AND|OR/gi, function(match) {
+                        return '<span class="jcsdl-code-logical-operator">' + match + '</span>';
+                    });
+
+                    // match NOT operator
+                    line = line.replace(/NOT/gi, function(match) {
+                        return '<span class="jcsdl-code-logical-operator-not">' + match + '</span>';
+                    });
+
+                    // match parentheses
+                    line = line.replace(/\(|\)/gi, function(match) {
+                        return '<span class="jcsdl-code-parenthesis">' + match + '</span>';
+                    });
+
+                    highlighted.push(line);
+
+                    // parsed so continue
+                    return true;
+                }
+
+                // this is a target line
+                elements[0] = '<span class="jcsdl-code-target">' + elements[0] + '</span>';
+                elements[1] = '<span class="jcsdl-code-operator">' + elements[1] + '</span>';
+
+                var newline = elements.join(' ');
+
+                // match all numbers (as numbers can only be values)
+                newline = newline.replace(/[0-9]*\.?[0-9]+/gi, function(match) {
+                    return '<span class="jcsdl-code-number">' + match + '</span>';
+                });
+
+                highlighted.push(newline);
+            });
+
+            // join the highlighted lines by <br>
+            return '<code class="jcsdl-code">' + highlighted.join('<br>') + '</code>';
+        },
+
 		/* ##########################
 		 * SETTERS AND GETTERS
 		 * ########################## */
@@ -752,6 +889,6 @@ JCSDL.Loader.addComponent(function($, undefined) {
 	// backward compatibility
 	JCSDLGui = function($el, o) {
 		return new JCSDL.GUI($el, o);
-	}
+	};
 
 });

@@ -63,10 +63,13 @@
   display: block;
   height: 34px;
   width: 140px;
-  background: url("img/elements.png?22") no-repeat 0 -55px; }
+  background: url("img/elements.png?25") no-repeat 0 -55px; }
   .jcsdl-button.jcsdl-editor-cancel, .jcsdl-button.jcsdl-filter-cancel {
     width: 56px;
     background-position: 0 -89px; }
+  .jcsdl-button.jcsdl-editor-preview {
+    width: 34px;
+    background-position: 0 -436px; }
   .jcsdl-button:hover {
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=90)";
     filter: alpha(opacity=90);
@@ -74,7 +77,7 @@
     -khtml-opacity: 0.9;
     opacity: 0.9; }
 
-.jcsdl-container a.jcsdl-btn {
+.jcsdl-container a.jcsdl-btn, .jcsdl-popup a.jcsdl-btn {
   display: block;
   overflow: hidden;
   padding: 8px;
@@ -93,10 +96,10 @@
   background-clip: padding-box;
   color: #376491;
   font-weight: bold; }
-  .jcsdl-container a.jcsdl-btn.active {
+  .jcsdl-container a.jcsdl-btn.active, .jcsdl-popup a.jcsdl-btn.active {
     border-color: #ff9933;
     color: #ff9933; }
-  .jcsdl-container a.jcsdl-btn.disabled {
+  .jcsdl-container a.jcsdl-btn.disabled, .jcsdl-popup a.jcsdl-btn.disabled {
     border-color: gainsboro !important;
     color: #d0d0d0 !important;
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=65)";
@@ -104,7 +107,7 @@
     -moz-opacity: 0.65;
     -khtml-opacity: 0.65;
     opacity: 0.65; }
-  .jcsdl-container a.jcsdl-btn:hover {
+  .jcsdl-container a.jcsdl-btn:hover, .jcsdl-popup a.jcsdl-btn:hover {
     color: #ff9933; }
 
 .jcsdl-header {
@@ -121,9 +124,6 @@
   .jcsdl-header .jcsdl-actions {
     float: right; }
   .jcsdl-header .jcsdl-editor-save {
-    margin-right: 0; }
-  .jcsdl-header .jcsdl-editor-cancel {
-    margin-left: 8px;
     margin-right: 0; }
   .jcsdl-header .jcsdl-error {
     margin: 10px 0; }
@@ -166,7 +166,7 @@
   -moz-background-clip: padding;
   -webkit-background-clip: padding-box;
   background-clip: padding-box;
-  background: url("img/elements.png?22") repeat-x center -240px; }
+  background: url("img/elements.png?25") repeat-x center -240px; }
   .jcsdl-error strong {
     color: #d14c4c;
     font-weight: bold; }
@@ -194,17 +194,22 @@
   display: block;
   width: 14px;
   height: 14px;
-  background: url("img/elements.png?22") no-repeat -140px -68px; }
+  background: url("img/elements.png?25") no-repeat -140px -68px; }
 .jcsdl-mainview-action.jcsdl-add-filter.jcsdl-btn {
   margin-right: 0; }
+.jcsdl-mainview-action.jcsdl-editor-preview .jcsdl-picto {
+  margin: 0;
+  background-position: -115px -105px; }
 .jcsdl-mainview-action:hover.jcsdl-add-filter .jcsdl-picto {
   background-position: -115px -89px; }
+.jcsdl-mainview-action:hover.jcsdl-editor-preview .jcsdl-picto {
+  background-position: -129px -105px; }
 
 /* main view mode (expanded / collapsed) */
 .jcsdl-mainview-mode {
   overflow: hidden;
   float: right;
-  margin-right: 15px;
+  margin-right: 8px;
   width: 110px; }
 
 .jcsdl-mainview-mode-options {
@@ -220,7 +225,7 @@
   display: block;
   width: 13px;
   height: 13px;
-  background: url("img/elements.png?22") no-repeat -140px -55px;
+  background: url("img/elements.png?25") no-repeat -140px -55px;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
   filter: alpha(opacity=30);
   -moz-opacity: 0.3;
@@ -294,7 +299,7 @@
       position: absolute;
       top: 50%;
       margin-top: -9px;
-      background: transparent url("img/elements.png?22") no-repeat -74px -393px;
+      background: transparent url("img/elements.png?25") no-repeat -74px -393px;
       -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
       filter: alpha(opacity=70);
       -moz-opacity: 0.7;
@@ -442,7 +447,7 @@
       width: 5px;
       height: 5px;
       margin: 3px 2px;
-      background: url("img/elements.png?22") no-repeat -149px -278px; }
+      background: url("img/elements.png?25") no-repeat -149px -278px; }
   .jcsdl-logic-token.bracket {
     font-size: 2.25em;
     width: 44px; }
@@ -652,7 +657,7 @@ a.jcsdl-filters-logic-option {
   height: 29px;
   line-height: 29px;
   text-align: center;
-  background: transparent url("img/elements.png?22") no-repeat -56px -89px; }
+  background: transparent url("img/elements.png?25") no-repeat -56px -89px; }
   .jcsdl-carousel-scroll.right {
     float: right;
     background-position: -85px -89px; }
@@ -795,7 +800,7 @@ a.jcsdl-filters-logic-option {
       -moz-background-clip: padding;
       -webkit-background-clip: padding-box;
       background-clip: padding-box;
-      background: url("img/elements.png?22") no-repeat 0 -278px; }
+      background: url("img/elements.png?25") no-repeat 0 -278px; }
     .jcsdl-filter-editor .jcsdl-operators-select:hover {
       background: #fafafa; }
       .jcsdl-filter-editor .jcsdl-operators-select:hover .jcsdl-dropdown-icon {
@@ -922,7 +927,7 @@ a.jcsdl-filters-logic-option {
           position: absolute;
           right: 4px;
           top: 12px;
-          background: url("img/elements.png?22") no-repeat -169px -55px;
+          background: url("img/elements.png?25") no-repeat -169px -55px;
           -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
           filter: alpha(opacity=70);
           -moz-opacity: 0.7;
@@ -959,7 +964,7 @@ a.jcsdl-filters-logic-option {
     height: 30px;
     overflow: hidden;
     text-indent: -9999px;
-    background: url("img/elements.png?22") no-repeat -57px -278px; }
+    background: url("img/elements.png?25") no-repeat -57px -278px; }
     .jcsdl-input-text .jcsdl-regex-tester-button:hover, .jcsdl-input-number .jcsdl-regex-tester-button:hover {
       -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=90)";
       filter: alpha(opacity=90);
@@ -993,7 +998,7 @@ a.jcsdl-filters-logic-option {
     width: 30px;
     height: 30px;
     overflow: hidden;
-    background: url("img/elements.png?22") no-repeat -57px -308px; }
+    background: url("img/elements.png?25") no-repeat -57px -308px; }
     .jcsdl-input-text .jcsdl-regex-tester .jcsdl-regex-result.ok, .jcsdl-input-number .jcsdl-regex-tester .jcsdl-regex-result.ok {
       background-position: -57px -308px; }
     .jcsdl-input-text .jcsdl-regex-tester .jcsdl-regex-result.err, .jcsdl-input-number .jcsdl-regex-tester .jcsdl-regex-result.err {
@@ -1083,7 +1088,7 @@ a.jcsdl-filters-logic-option {
       display: block;
       width: 14px;
       height: 14px;
-      background: transparent url("img/elements.png?22") no-repeat -115px -89px;
+      background: transparent url("img/elements.png?25") no-repeat -115px -89px;
       -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
       filter: alpha(opacity=70);
       -moz-opacity: 0.7;
@@ -1155,7 +1160,7 @@ a.jcsdl-filters-logic-option {
     margin-bottom: 7px;
     height: 12px;
     cursor: pointer;
-    background: transparent url("img/elements.png?22") repeat-x center -228px;
+    background: transparent url("img/elements.png?25") repeat-x center -228px;
     border: 0;
     -webkit-border-radius: 0px;
     -khtml-border-radius: 0px;
@@ -1173,7 +1178,7 @@ a.jcsdl-filters-logic-option {
       width: 30px;
       height: 40px;
       cursor: pointer;
-      background: transparent url("img/elements.png?22") no-repeat -152px -83px;
+      background: transparent url("img/elements.png?25") no-repeat -152px -83px;
       border: 0;
       outline: none; }
   .jcsdl-input-slider .jcsdl-slider-bottom {
@@ -1186,7 +1191,7 @@ a.jcsdl-filters-logic-option {
       width: 15px;
       height: 15px;
       float: left;
-      background: transparent url("img/elements.png?22") no-repeat 0 -213px; }
+      background: transparent url("img/elements.png?25") no-repeat 0 -213px; }
     .jcsdl-input-slider .jcsdl-slider-bottom .jcsdl-slider-bottom-right {
       float: right;
       background-position: -31px -213px; }
@@ -1194,7 +1199,7 @@ a.jcsdl-filters-logic-option {
       display: block;
       height: 15px;
       margin: 0 15px;
-      background: transparent url("img/elements.png?22") repeat-x 0 -198px; }
+      background: transparent url("img/elements.png?25") repeat-x 0 -198px; }
 
 .jcsdl-map {
   text-align: center;
@@ -2460,7 +2465,7 @@ a.jcsdl-filters-logic-option {
       width: 38px;
       overflow: hidden;
       text-indent: -9999px;
-      background: url("img/elements.png?22") no-repeat 0 -393px; }
+      background: url("img/elements.png?25") no-repeat 0 -393px; }
       .jcsdl-dropdown .jcsdl-dropdown-option .jcsdl-dropdown-details-trigger:hover {
         background-position: -38px -393px; }
     .jcsdl-dropdown .jcsdl-dropdown-option .jcsdl-dropdown-option-desc {
@@ -2504,7 +2509,7 @@ a.jcsdl-filters-logic-option {
     overflow: hidden;
     position: relative;
     padding: 0 10px;
-    background: url("img/elements.png?22") repeat-x 0 -354px;
+    background: url("img/elements.png?25") repeat-x 0 -354px;
     border: 1px solid #1d3550;
     border-bottom: 0;
     -webkit-border-top-left-radius: 3px;
@@ -2539,7 +2544,7 @@ a.jcsdl-filters-logic-option {
       height: 40px;
       overflow: hidden;
       text-indent: -9999px;
-      background: url("img/elements.png?22") no-repeat -118px -310px; }
+      background: url("img/elements.png?25") no-repeat -118px -310px; }
       .jcsdl-popup .jcsdl-popup-header .jcsdl-popup-close:hover {
         -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
         filter: alpha(opacity=70);
@@ -2614,6 +2619,54 @@ a.jcsdl-filters-logic-option {
   font: inherit; }
 .jcsdl-popup-content p, .jcsdl-popup-content dl, .jcsdl-popup-content hr, .jcsdl-popup-content h1, .jcsdl-popup-content h2, .jcsdl-popup-content h3, .jcsdl-popup-content h4, .jcsdl-popup-content h5, .jcsdl-popup-content h6, .jcsdl-popup-content ol, .jcsdl-popup-content ul, .jcsdl-popup-content pre, .jcsdl-popup-content table {
   margin-bottom: .5em; }
+.jcsdl-popup-content .jcsdl-copy-to-clipboard {
+  position: absolute;
+  top: 41px;
+  right: -5px;
+  width: 14px;
+  text-align: center;
+  background: #f5f5f5;
+  opacity: 0;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out; }
+  .jcsdl-popup-content .jcsdl-copy-to-clipboard .jcsdl-picto {
+    display: inline-block;
+    overflow: hidden;
+    margin-right: 8px;
+    width: 14px;
+    height: 14px;
+    background: url("img/elements.png?25") no-repeat -103px -394px; }
+  .jcsdl-popup-content .jcsdl-copy-to-clipboard.copied {
+    border-color: #ff9933;
+    color: #ff9933; }
+    .jcsdl-popup-content .jcsdl-copy-to-clipboard.copied .jcsdl-picto {
+      background-position: -118px -394px; }
+  .jcsdl-popup-content .jcsdl-copy-to-clipboard.hover {
+    color: #ff9933; }
+    .jcsdl-popup-content .jcsdl-copy-to-clipboard.hover .jcsdl-picto {
+      background-position: -118px -394px; }
+.jcsdl-popup-content:hover .jcsdl-copy-to-clipboard {
+  opacity: 1; }
+
+/* CSDL syntax highlighting */
+code.jcsdl-code {
+  font-family: Courier, monospace; }
+  code.jcsdl-code .jcsdl-code-parenthesis {
+    font-weight: bold; }
+  code.jcsdl-code .jcsdl-code-logical-operator {
+    color: red; }
+  code.jcsdl-code .jcsdl-code-logical-operator-not {
+    color: red; }
+  code.jcsdl-code .jcsdl-code-target {
+    color: blue; }
+  code.jcsdl-code .jcsdl-code-operator {
+    color: red; }
+  code.jcsdl-code .jcsdl-code-string {
+    color: green; }
+  code.jcsdl-code .jcsdl-code-number {
+    color: green; }
 
 /* IE fixes */
 .jcsdl-container.msie .jcsdl-filter-value-input-operators .operator {
@@ -2660,7 +2713,7 @@ a.jcsdl-filters-logic-option {
 /* retina elements sprite */
 @media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 3 / 2), only screen and (min--moz-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5) {
   .jcsdl-elements-sprite {
-    background-image: url("img/elements@2x.png?2");
+    background-image: url("img/elements@2x.png?5");
     -moz-background-size: 181px 500px;
     -ie-background-size: 181px 500px;
     -o-background-size: 181px 500px;
