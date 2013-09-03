@@ -17,14 +17,24 @@ $elementsSpriteRetina : 'img/elements@2x.png?5';
 $selectSprite : 'img/select.png?14';
 $selectSpriteRetina : 'img/select@2x.png';
 $stepBackground : 'img/step_background.png?5';
-$targetIconsSprite : 'img/icons-sprite-targets.png?13';
-$targetIconsSpriteRetina : 'img/icons-sprite-targets@2x.png?1';
+$targetIconsSprite : 'img/icons-sprite-targets.png?15';
+$targetIconsSpriteRetina : 'img/icons-sprite-targets@2x.png?3';
 $fieldIconsSprite : 'img/icons-sprite-fields.png?12';
 $fieldIconsSpriteRetina : 'img/icons-sprite-fields@2x.png?1';
 $fieldDbwIconsSprite : 'img/icons-sprite-fields-dbw.png?1';
 $fieldDbwIconsSpriteRetina : 'img/icons-sprite-fields-dbw@2x.png';
 $fieldLonIconsSprite : 'img/icons-sprite-fields-lon.png';
 $fieldLonIconsSpriteRetina : 'img/icons-sprite-fields-lon@2x.png';
+$fieldTumblrIconsSprite : 'img/icons-sprite-fields-tumblr.png?2';
+$fieldTumblrIconsSpriteRetina : 'img/icons-sprite-fields-tumblr@2x.png?2';
+$fieldGooglePlusIconsSprite : 'img/icons-sprite-fields-googleplus.png?1';
+$fieldGooglePlusIconsSpriteRetina : 'img/icons-sprite-fields-googleplus@2x.png?1';
+$fieldInstagramIconsSprite : 'img/icons-sprite-fields-instagram.png?1';
+$fieldInstagramIconsSpriteRetina : 'img/icons-sprite-fields-instagram@2x.png?1';
+$fieldYammerIconsSprite : 'img/icons-sprite-fields-yammer.png?1';
+$fieldYammerIconsSpriteRetina : 'img/icons-sprite-fields-yammer@2x.png?1';
+$fieldFBPagesIconsSprite : 'img/icons-sprite-fields-fbpages.png?1';
+$fieldFBPagesIconsSpriteRetina : 'img/icons-sprite-fields-fbpages@2x.png?1';
 $operatorIconsSprite : 'img/icons-sprite-operators.png?5';
 $operatorIconsSpriteRetina : 'img/icons-sprite-operators@2x.png';
 $otherIconsSprite : 'img/icons-sprite-other.png?3';
@@ -33,69 +43,69 @@ $loader : 'img/loader.gif';
 
 /* useful mixins */
 @mixin rounded($radius: 5px) {
-	-webkit-border-radius: $radius;
-	-khtml-border-radius: $radius;
-	-moz-border-radius: $radius;
-	-ms-border-radius: $radius;
-	-o-border-radius: $radius;
-	border-radius: $radius;
-	-moz-background-clip: padding;
-	-webkit-background-clip: padding-box;
-	background-clip: padding-box; 
+    -webkit-border-radius: $radius;
+    -khtml-border-radius: $radius;
+    -moz-border-radius: $radius;
+    -ms-border-radius: $radius;
+    -o-border-radius: $radius;
+    border-radius: $radius;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box; 
 }
 
 @mixin roundedCorner($topLeft: 0, $topRight: 0, $bottomRight: 0, $bottomLeft: 0) {
-	-webkit-border-top-left-radius: $topLeft;
-	-webkit-border-top-right-radius: $topRight;
-	-webkit-border-bottom-right-radius: $bottomRight;
-	-webkit-border-bottom-left-radius: $bottomLeft;
-	-moz-border-radius-topleft: $topLeft;
-	-moz-border-radius-topright: $topRight;
-	-moz-border-radius-bottomright: $bottomRight;
-	-moz-border-radius-bottomleft: $bottomLeft;
-	border-top-left-radius: $topLeft;
-	border-top-right-radius: $topRight;
-	border-bottom-right-radius: $bottomRight;
-	border-bottom-left-radius: $bottomLeft;
-	-moz-background-clip: padding;
-	-webkit-background-clip: padding-box;
-	background-clip: padding-box;
+    -webkit-border-top-left-radius: $topLeft;
+    -webkit-border-top-right-radius: $topRight;
+    -webkit-border-bottom-right-radius: $bottomRight;
+    -webkit-border-bottom-left-radius: $bottomLeft;
+    -moz-border-radius-topleft: $topLeft;
+    -moz-border-radius-topright: $topRight;
+    -moz-border-radius-bottomright: $bottomRight;
+    -moz-border-radius-bottomleft: $bottomLeft;
+    border-top-left-radius: $topLeft;
+    border-top-right-radius: $topRight;
+    border-bottom-right-radius: $bottomRight;
+    border-bottom-left-radius: $bottomLeft;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
 }
 
 @mixin opacity($opacity: 0.5) {
-	$msOpacity : $opacity * 100;
-	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=" + $msOpacity + ")";
-	filter: alpha(opacity=$msOpacity);
-	-moz-opacity: $opacity;
-	-khtml-opacity: $opacity;
-	opacity: $opacity;
+    $msOpacity : $opacity * 100;
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=" + $msOpacity + ")";
+    filter: alpha(opacity=$msOpacity);
+    -moz-opacity: $opacity;
+    -khtml-opacity: $opacity;
+    opacity: $opacity;
 }
 
 @mixin dropShadow($x: 0, $y: 0, $blur: 5px, $spread: 0, $opacity: 0.5) {
-	-webkit-box-shadow: $x $y $blur $spread rgba(0, 0, 0, $opacity);
-	-moz-box-shadow: $x $y $blur $spread rgba(0, 0, 0, $opacity);
-	box-shadow: $x $y $blur $spread rgba(0, 0, 0, $opacity);
+    -webkit-box-shadow: $x $y $blur $spread rgba(0, 0, 0, $opacity);
+    -moz-box-shadow: $x $y $blur $spread rgba(0, 0, 0, $opacity);
+    box-shadow: $x $y $blur $spread rgba(0, 0, 0, $opacity);
 }
 
 @mixin glow($color: #fff, $blur: 5px, $spread: 0, $opacity: 0.5) {
-	-webkit-box-shadow: 0 0 $blur $spread rgba($color, $opacity);
-	-moz-box-shadow: 0 0 $blur $spread rgba($color, $opacity);
-	box-shadow: 0 0 $blur $spread rgba($color, $opacity);
+    -webkit-box-shadow: 0 0 $blur $spread rgba($color, $opacity);
+    -moz-box-shadow: 0 0 $blur $spread rgba($color, $opacity);
+    box-shadow: 0 0 $blur $spread rgba($color, $opacity);
 }
 
 @mixin transition($transition: all 0.2s ease-in-out) {
-	-webkit-transition: #{$transition};
-	-moz-transition: #{$transition};
-	-o-transition: #{$transition};
-	transition: #{$transition};
+    -webkit-transition: #{$transition};
+    -moz-transition: #{$transition};
+    -o-transition: #{$transition};
+    transition: #{$transition};
 }
 
 @mixin backgroundSize($width: 100px, $height: 100px) {
-	-moz-background-size: $width $height;
-	-ie-background-size: $width $height;
-	-o-background-size: $width $height;
-	-webkit-background-size: $width $height;
-	background-size: $width $height;
+    -moz-background-size: $width $height;
+    -ie-background-size: $width $height;
+    -o-background-size: $width $height;
+    -webkit-background-size: $width $height;
+    background-size: $width $height;
 }
 
 /*
@@ -103,133 +113,133 @@ $loader : 'img/loader.gif';
  */
 /* jcsdl-container reset */
 .jcsdl-container {
-	ul, li {margin: 0; padding: 0;}
+    ul, li {margin: 0; padding: 0;}
 }
 
 .jcsdl-container, .jcsdl-popup {
-	overflow: hidden; position: relative;
-	font-size: $fontSize; font-family: $fontFamily; color: $colorLight;
+    overflow: hidden; position: relative;
+    font-size: $fontSize; font-family: $fontFamily; color: $colorLight;
 
-	/* building blocks */
-	a {
-		color: $color; text-decoration: none;
-		@include transition("color 0.2s ease-in-out");
-		
-		&:hover {color: $colorOrange; text-decoration: none;}
-	}
+    /* building blocks */
+    a {
+        color: $color; text-decoration: none;
+        @include transition("color 0.2s ease-in-out");
+        
+        &:hover {color: $colorOrange; text-decoration: none;}
+    }
 }
 
 .jcsdl-label {float: left; font-size: 1em; color: $colorLight; font-weight: normal;}
 .jcsdl-bordered {padding: 8px; border: 1px solid $borderColorInput; @include rounded(3px);}
 
 .jcsdl-icon {
-	float: left; margin: 0; margin-right: 20px;
-	display: block; width: 80px; height: 80px;
-	overflow: hidden;
-	text-indent: -9999px;
+    float: left; margin: 0; margin-right: 20px;
+    display: block; width: 80px; height: 80px;
+    overflow: hidden;
+    text-indent: -9999px;
 }
 
 .jcsdl-button {
-	float: left; margin-right: 8px;
-	overflow: hidden; text-indent: -9999px;
-	display: block; height: 34px; width: 140px;
-	background: url($elementsSprite) no-repeat 0 -55px;
+    float: left; margin-right: 8px;
+    overflow: hidden; text-indent: -9999px;
+    display: block; height: 34px; width: 140px;
+    background: url($elementsSprite) no-repeat 0 -55px;
 
-	&.jcsdl-editor-save, &.jcsdl-filter-save {}
-	&.jcsdl-editor-cancel, &.jcsdl-filter-cancel {width: 56px; background-position: 0 -89px;}
+    &.jcsdl-editor-save, &.jcsdl-filter-save {}
+    &.jcsdl-editor-cancel, &.jcsdl-filter-cancel {width: 56px; background-position: 0 -89px;}
     &.jcsdl-editor-preview {width: 34px; background-position: 0 -436px;}
 
-	&:hover {@include opacity(0.9);}
+    &:hover {@include opacity(0.9);}
 }
 
 .jcsdl-container, .jcsdl-popup {
     a.jcsdl-btn {
-    	display: block; overflow: hidden; padding: 8px; line-height: 14px;
-    	float: left; margin-right: 8px;
-    	border: 1px solid $borderColorInput; @include rounded(3px);
-    	color: $color; font-weight: bold;
+        display: block; overflow: hidden; padding: 8px; line-height: 14px;
+        float: left; margin-right: 8px;
+        border: 1px solid $borderColorInput; @include rounded(3px);
+        color: $color; font-weight: bold;
 
-    	&.active {
-    		border-color: $colorOrange;
-    		color: $colorOrange;
-    	}
+        &.active {
+            border-color: $colorOrange;
+            color: $colorOrange;
+        }
 
-    	&.disabled {
-    		border-color: $borderColor !important;
-    		color: $borderColorText !important;
-    		@include opacity(0.65);
-    	}
+        &.disabled {
+            border-color: $borderColor !important;
+            color: $borderColorText !important;
+            @include opacity(0.65);
+        }
 
-    	&:hover {
-    		color: $colorOrange;
-    	}
+        &:hover {
+            color: $colorOrange;
+        }
     }
 }
 
 .jcsdl-header {
-	overflow: hidden;
-	padding: 15px; padding-bottom: 0;
+    overflow: hidden;
+    padding: 15px; padding-bottom: 0;
 
-	h3 {
-		float: left; margin: 0;
-		line-height: 1em;
-		font-size: 2em; color: $color; font-weight: normal;
-	}
+    h3 {
+        float: left; margin: 0;
+        line-height: 1em;
+        font-size: 2em; color: $color; font-weight: normal;
+    }
 
-	.jcsdl-actions {float: right;}
-	.jcsdl-editor-save {margin-right: 0;}
-	.jcsdl-error {margin: 10px 0;}
+    .jcsdl-actions {float: right;}
+    .jcsdl-editor-save {margin-right: 0;}
+    .jcsdl-error {margin: 10px 0;}
 }
 
 .jcsdl-footer {
-	overflow: hidden;
-	padding: 15px; padding-top: 0;
+    overflow: hidden;
+    padding: 15px; padding-top: 0;
 
-	.jcsdl-actions {float: left; overflow: hidden; margin-bottom: 5px;}
+    .jcsdl-actions {float: left; overflow: hidden; margin-bottom: 5px;}
 }
 
 .jcsdl-row {
-	width: auto; position: relative;
-	margin-bottom: 8px;
-	zoom: 1;
+    width: auto; position: relative;
+    margin-bottom: 8px;
+    zoom: 1;
 
-	&:before, &:after {content: ""; display: table;}
-	&:after {clear: both;}
+    &:before, &:after {content: ""; display: table;}
+    &:after {clear: both;}
 }
 
 .jcsdl-error {
-	display: block; margin: 10px 15px;
-	padding: 0 10px; height: 38px; line-height: 38px; overflow: hidden;
-	text-align: left;
-	border: 1px solid #fbd2d2; @include rounded(3px);
-	background: url($elementsSprite) repeat-x center -240px;
+    display: block; margin: 10px 15px;
+    padding: 0 10px; height: 38px; line-height: 38px; overflow: hidden;
+    text-align: left;
+    border: 1px solid #fbd2d2; @include rounded(3px);
+    background: url($elementsSprite) repeat-x center -240px;
 
-	strong {color: $colorRed; font-weight: bold;}
-	span {color: #222; margin-left: 5px;}
+    strong {color: $colorRed; font-weight: bold;}
+    span {color: #222; margin-left: 5px;}
 }
 
 /*
  * MAIN VIEW
  */
 .jcsdl-mainview {
-	.jcsdl-header, .jcsdl-header h3 {line-height: 38px;}
-	.jcsdl-footer {display: none;}
+    .jcsdl-header, .jcsdl-header h3 {line-height: 38px;}
+    .jcsdl-footer {display: none;}
 }
 
 /* main view actions (add new filter, add existing stream) */
 .jcsdl-mainview-actions {
-	overflow: hidden;
-	float: right; margin-top: 2px;
+    overflow: hidden;
+    float: right; margin-top: 2px;
 }
 
 .jcsdl-mainview-action {
-	.jcsdl-picto {
-		float: left; margin-right: 8px;
-		display: block; width: 14px; height: 14px;
-		background: url($elementsSprite) no-repeat -140px -68px;
-	}
+    .jcsdl-picto {
+        float: left; margin-right: 8px;
+        display: block; width: 14px; height: 14px;
+        background: url($elementsSprite) no-repeat -140px -68px;
+    }
 
-	&.jcsdl-add-filter.jcsdl-btn {margin-right: 0;}
+    &.jcsdl-add-filter.jcsdl-btn {margin-right: 0;}
 
     &.jcsdl-editor-preview {
         .jcsdl-picto {
@@ -238,290 +248,290 @@ $loader : 'img/loader.gif';
         }
     }
 
-	&:hover {
-		&.jcsdl-add-filter .jcsdl-picto {background-position: -115px -89px;}
+    &:hover {
+        &.jcsdl-add-filter .jcsdl-picto {background-position: -115px -89px;}
         &.jcsdl-editor-preview .jcsdl-picto {background-position: -129px -105px;}
-	}
+    }
 }
 
 /* main view mode (expanded / collapsed) */
 .jcsdl-mainview-mode {
-	overflow: hidden;
+    overflow: hidden;
     float: right;
     margin-right: 8px;
-	width: 110px;
+    width: 110px;
 }
 
 .jcsdl-mainview-mode-options {
-	overflow: hidden;
-	float: right; margin-left: 8px; margin-top: 2px;
-	height: 14px;
+    overflow: hidden;
+    float: right; margin-left: 8px; margin-top: 2px;
+    height: 14px;
 }
 
 .jcsdl-mainview-mode-option {
-	float: left; margin-right: 8px;
-	display: block; width: 13px; height: 13px;
-	background: url($elementsSprite) no-repeat -140px -55px;
-	@include opacity(0.3);
+    float: left; margin-right: 8px;
+    display: block; width: 13px; height: 13px;
+    background: url($elementsSprite) no-repeat -140px -55px;
+    @include opacity(0.3);
 
-	&.jcsdl-expanded {background-position: -156px -55px;}
-	&.jcsdl-collapsed {background-position: -140px -55px; margin-right: 0;}
+    &.jcsdl-expanded {background-position: -156px -55px;}
+    &.jcsdl-collapsed {background-position: -140px -55px; margin-right: 0;}
 
-	&:hover {@include opacity(0.5);}
-	&.active {@include opacity(1);}
+    &:hover {@include opacity(0.5);}
+    &.active {@include opacity(1);}
 }
 
 /* advanced logic view */
 .jcsdl-advanced-container {
-	margin: 15px 0; position: relative;
-	background: $backgroundSmoked; border-color: $borderColor;
-	zoom: 1;
+    margin: 15px 0; position: relative;
+    background: $backgroundSmoked; border-color: $borderColor;
+    zoom: 1;
 
-	&:before, &:after {content: ""; display: table;}
-	&:after {clear: both;}
+    &:before, &:after {content: ""; display: table;}
+    &:after {clear: both;}
 
-	li {list-style: none;}
-	.ui-sortable-helper {@include dropShadow(-2px, 2px, 4px, 0, 0.1); @include rounded(3px);}
+    li {list-style: none;}
+    .ui-sortable-helper {@include dropShadow(-2px, 2px, 4px, 0, 0.1); @include rounded(3px);}
 }
 
 .jcsdl-advanced-gui-container {
-	display: block; width: 100%; height: 66px; box-sizing: border-box;
-	margin: 0; position: relative; overflow: hidden;
+    display: block; width: 100%; height: 66px; box-sizing: border-box;
+    margin: 0; position: relative; overflow: hidden;
 
-	.jcsdl-advanced-gui-arrow {
-		display: block; height: 100%; width: 55px;
-		position: absolute; top: 0;
-		background: $backgroundSmoked;
+    .jcsdl-advanced-gui-arrow {
+        display: block; height: 100%; width: 55px;
+        position: absolute; top: 0;
+        background: $backgroundSmoked;
 
-		span {
-			display: block; width: 12px; height: 18px;
-			position: absolute; top: 50%; margin-top: -9px;
-			background: transparent url($elementsSprite) no-repeat -74px -393px;
-			@include opacity(0.7);
-		}
+        span {
+            display: block; width: 12px; height: 18px;
+            position: absolute; top: 50%; margin-top: -9px;
+            background: transparent url($elementsSprite) no-repeat -74px -393px;
+            @include opacity(0.7);
+        }
 
-		&.left {
-			left: 0;
-			background: -moz-linear-gradient(left,  rgba(250,250,250,1) 50%, rgba(254,254,254,0) 100%); /* FF3.6+ */
-			background: -webkit-gradient(linear, left top, right top, color-stop(50%,rgba(250,250,250,1)), color-stop(100%,rgba(254,254,254,0))); /* Chrome,Safari4+ */
-			background: -webkit-linear-gradient(left,  rgba(250,250,250,1) 50%,rgba(254,254,254,0) 100%); /* Chrome10+,Safari5.1+ */
-			background: -o-linear-gradient(left,  rgba(250,250,250,1) 50%,rgba(254,254,254,0) 100%); /* Opera 11.10+ */
-			background: -ms-linear-gradient(left,  rgba(250,250,250,1) 50%,rgba(254,254,254,0) 100%); /* IE10+ */
-			background: linear-gradient(to right,  rgba(250,250,250,1) 50%,rgba(254,254,254,0) 100%); /* W3C */
-			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fafafa', endColorstr='#00fefefe',GradientType=1 ); /* IE6-9 */
+        &.left {
+            left: 0;
+            background: -moz-linear-gradient(left,  rgba(250,250,250,1) 50%, rgba(254,254,254,0) 100%); /* FF3.6+ */
+            background: -webkit-gradient(linear, left top, right top, color-stop(50%,rgba(250,250,250,1)), color-stop(100%,rgba(254,254,254,0))); /* Chrome,Safari4+ */
+            background: -webkit-linear-gradient(left,  rgba(250,250,250,1) 50%,rgba(254,254,254,0) 100%); /* Chrome10+,Safari5.1+ */
+            background: -o-linear-gradient(left,  rgba(250,250,250,1) 50%,rgba(254,254,254,0) 100%); /* Opera 11.10+ */
+            background: -ms-linear-gradient(left,  rgba(250,250,250,1) 50%,rgba(254,254,254,0) 100%); /* IE10+ */
+            background: linear-gradient(to right,  rgba(250,250,250,1) 50%,rgba(254,254,254,0) 100%); /* W3C */
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fafafa', endColorstr='#00fefefe',GradientType=1 ); /* IE6-9 */
 
-			span {left: 5px;}
-		}
-		&.right {
-			right: 0;
-			background: -moz-linear-gradient(left,  rgba(254,254,254,0) 0%, rgba(250,250,250,1) 50%); /* FF3.6+ */
-			background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(254,254,254,0)), color-stop(50%,rgba(250,250,250,1))); /* Chrome,Safari4+ */
-			background: -webkit-linear-gradient(left,  rgba(254,254,254,0) 0%,rgba(250,250,250,1) 50%); /* Chrome10+,Safari5.1+ */
-			background: -o-linear-gradient(left,  rgba(254,254,254,0) 0%,rgba(250,250,250,1) 50%); /* Opera 11.10+ */
-			background: -ms-linear-gradient(left,  rgba(254,254,254,0) 0%,rgba(250,250,250,1) 50%); /* IE10+ */
-			background: linear-gradient(to right,  rgba(254,254,254,0) 0%,rgba(250,250,250,1) 50%); /* W3C */
-			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00fefefe', endColorstr='#fafafa',GradientType=1 ); /* IE6-9 */
+            span {left: 5px;}
+        }
+        &.right {
+            right: 0;
+            background: -moz-linear-gradient(left,  rgba(254,254,254,0) 0%, rgba(250,250,250,1) 50%); /* FF3.6+ */
+            background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(254,254,254,0)), color-stop(50%,rgba(250,250,250,1))); /* Chrome,Safari4+ */
+            background: -webkit-linear-gradient(left,  rgba(254,254,254,0) 0%,rgba(250,250,250,1) 50%); /* Chrome10+,Safari5.1+ */
+            background: -o-linear-gradient(left,  rgba(254,254,254,0) 0%,rgba(250,250,250,1) 50%); /* Opera 11.10+ */
+            background: -ms-linear-gradient(left,  rgba(254,254,254,0) 0%,rgba(250,250,250,1) 50%); /* IE10+ */
+            background: linear-gradient(to right,  rgba(254,254,254,0) 0%,rgba(250,250,250,1) 50%); /* W3C */
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00fefefe', endColorstr='#fafafa',GradientType=1 ); /* IE6-9 */
 
-			span {right: 5px; background-position: -86px -393px;}
-		}
+            span {right: 5px; background-position: -86px -393px;}
+        }
 
-		&:hover {
-			span {@include opacity(1);}
-		}
+        &:hover {
+            span {@include opacity(1);}
+        }
 
-		&.off {display: none;}
-	}
+        &.off {display: none;}
+    }
 }
 
 .jcsdl-advanced-gui {
-	list-style: none; margin: 0; padding: 5px 0;
-	height: 66px; overflow: hidden;
-	position: absolute; top: 0; left: 0;
+    list-style: none; margin: 0; padding: 5px 0;
+    height: 66px; overflow: hidden;
+    position: absolute; top: 0; left: 0;
 
-	li {
-		float: left; display: block;
-		margin: 0 4px;
+    li {
+        float: left; display: block;
+        margin: 0 4px;
 
-		&.ui-sortable-helper {
-			@include dropShadow(-2px, 2px, 3px, 0, 0.1);
-		}
+        &.ui-sortable-helper {
+            @include dropShadow(-2px, 2px, 3px, 0, 0.1);
+        }
 
-		&.jcsdl-token-ph {
-			width: 64px; height: 64px;
-			margin: 0 4px;
-			background: transparent; border: 1px dashed $borderColor; @include rounded(3px);
+        &.jcsdl-token-ph {
+            width: 64px; height: 64px;
+            margin: 0 4px;
+            background: transparent; border: 1px dashed $borderColor; @include rounded(3px);
 
-			&.bracket {width: 44px;}
-		}
-	}
-	.jcsdl-logic-token {cursor: move;}
+            &.bracket {width: 44px;}
+        }
+    }
+    .jcsdl-logic-token {cursor: move;}
 }
 
 .jcsdl-advanced-manual {
-	input {
-		display: block; width: 100%; height: 66px; box-sizing: border-box;
-		color: $color; font-size: 2.5em;
-		border: 0 !important; background: transparent; outline: none;
-	}
+    input {
+        display: block; width: 100%; height: 66px; box-sizing: border-box;
+        color: $color; font-size: 2.5em;
+        border: 0 !important; background: transparent; outline: none;
+    }
 }
 
 .jcsdl-logic-token {
-	display: block; width: 64px; height: 64px; line-height: 64px; padding: 0;
-	float: left; list-style-type: none; position: relative;
-	text-align: center; font-size: 2em; font-weight: bold; color: $colorLight;
-	background: white; border: 1px solid $borderColor; @include rounded(3px);
+    display: block; width: 64px; height: 64px; line-height: 64px; padding: 0;
+    float: left; list-style-type: none; position: relative;
+    text-align: center; font-size: 2em; font-weight: bold; color: $colorLight;
+    background: white; border: 1px solid $borderColor; @include rounded(3px);
 
-	.jcsdl-delete-token {
-		display: block; position: absolute; top: -1px; right: -1px;
-		z-index: 5;
-		width: 10px; height: 11px;
-		background: #f9e7e7;
-		border: 1px solid $colorRed; @include rounded(2px);
+    .jcsdl-delete-token {
+        display: block; position: absolute; top: -1px; right: -1px;
+        z-index: 5;
+        width: 10px; height: 11px;
+        background: #f9e7e7;
+        border: 1px solid $colorRed; @include rounded(2px);
 
-		span {
-			display: block; width: 5px; height: 5px;
-			margin: 3px 2px;
-			background: url($elementsSprite) no-repeat -149px -278px;
-		}
-	}
+        span {
+            display: block; width: 5px; height: 5px;
+            margin: 3px 2px;
+            background: url($elementsSprite) no-repeat -149px -278px;
+        }
+    }
 
-	&.bracket {font-size: 2.25em; width: 44px;}
-	&.operator {color: $colorOrange; font-size: 1.2em;}
-	&.filter {
-		color: $color;
-		@include transition("color 0.2s ease-in-out, border-color 0.2s ease-in-out");
+    &.bracket {font-size: 2.25em; width: 44px;}
+    &.operator {color: $colorOrange; font-size: 1.2em;}
+    &.filter {
+        color: $color;
+        @include transition("color 0.2s ease-in-out, border-color 0.2s ease-in-out");
 
-		&:hover {
-			color: $colorOrange;
-			border-color: $colorOrange;
-		}
-	}
+        &:hover {
+            color: $colorOrange;
+            border-color: $colorOrange;
+        }
+    }
 
-	&.jcsdl-logic-error {@include glow(red);}
+    &.jcsdl-logic-error {@include glow(red);}
 }
 
 .jcsdl-logic-token {color: $colorLight;}
 
 /* filters logic (AND/OR) */
 .jcsdl-filters-logic {
-	float: left;
-	text-align: left;
+    float: left;
+    text-align: left;
 }
 
 a.jcsdl-filters-logic-option {
-	padding: 8px 12px;
+    padding: 8px 12px;
 
-	&.disabled {
-		.jcsdl-logic-help {
-			color: $borderColorText;
-		}
-	}
+    &.disabled {
+        .jcsdl-logic-help {
+            color: $borderColorText;
+        }
+    }
 
-	&.jcsdl-advanced-option {display: none;}
+    &.jcsdl-advanced-option {display: none;}
 }
 
 .jcsdl-logic-help {
-	display: inline-block; width: 18px; height: 18px; line-height: 18px;
-	margin: -8px 0; margin-left: 8px;
-	border: 1px solid $borderColor; @include rounded(3px);
-	text-align: center; color: $borderColorText;
+    display: inline-block; width: 18px; height: 18px; line-height: 18px;
+    margin: -8px 0; margin-left: 8px;
+    border: 1px solid $borderColor; @include rounded(3px);
+    text-align: center; color: $borderColorText;
 }
 
 /* filters list */
 .jcsdl-filter {
-	overflow: hidden; position: relative; margin: 15px;
-	padding: 0 5px;
-	border: 1px solid $borderColor;
-	@include rounded(3px);
+    overflow: hidden; position: relative; margin: 15px;
+    padding: 0 5px;
+    border: 1px solid $borderColor;
+    @include rounded(3px);
 
-	.jcsdl-filter-options {
-		position: absolute; top: 0; right: 0;
-		padding: 6px;
-		background: #f7f7f7;
-		border: 1px solid $borderColor; border-top: 0; border-right: 0;
-		@include roundedCorner(0, 0, 0, 3px);
+    .jcsdl-filter-options {
+        position: absolute; top: 0; right: 0;
+        padding: 6px;
+        background: #f7f7f7;
+        border: 1px solid $borderColor; border-top: 0; border-right: 0;
+        @include roundedCorner(0, 0, 0, 3px);
 
-		a, span {margin: 0 2px; font-weight: bold;}
-	}
+        a, span {margin: 0 2px; font-weight: bold;}
+    }
 }
 
 .jcsdl-filter-description {overflow: hidden;}
 
 .jcsdl-filter-info {
-	&.id,
-	&.target,
-	&.field,
-	&.operator,
-	&.value {float: left; margin: 0 10px;}
+    &.id,
+    &.target,
+    &.field,
+    &.operator,
+    &.value {float: left; margin: 0 10px;}
 
-	&.target,
-	&.input,
-	&.operator {font-weight: bold;}
+    &.target,
+    &.input,
+    &.operator {font-weight: bold;}
 }
 
 /* expanded / collapsed filters list */
 .jcsdl-filters-list {
-	&.expanded .jcsdl-filter {
+    &.expanded .jcsdl-filter {
 
-		.jcsdl-filter-target {margin: 0;}
-		.jcsdl-filter-field {margin: 15px 10px;}
-		.jcsdl-filter-field-input {margin: 15px 10px;}
-		.jcsdl-filter-operator {
-			margin: 31px 0; border-color: $borderColor;
+        .jcsdl-filter-target {margin: 0;}
+        .jcsdl-filter-field {margin: 15px 10px;}
+        .jcsdl-filter-field-input {margin: 15px 10px;}
+        .jcsdl-filter-operator {
+            margin: 31px 0; border-color: $borderColor;
 
-			&.input-select {display: none;}
-		}
-		.jcsdl-filter-info.id {
-			display: none;
-			margin: 22px 10px; margin-right: 0;
-			padding: 0; width: 64px; height: 64px; line-height: 64px;
-			text-align: center; font-size: 26px; color: $colorBlackLight;
-			border-color: $borderColor;
-			@include transition("color 0.2s ease-in-out, border-color 0.2s ease-in-out");
-		}
-		.jcsdl-filter-info.target {margin: 0; margin-left: 5px;}
-		.jcsdl-filter-info.operator {margin: 0 5px; margin-right: -3px;}
-		.jcsdl-filter-info.value {
-			margin: 31px 0;
-			padding: 0 8px; height: 46px; line-height: 46px;
-			font-size: 1.2em;
-			background-color: white;
-		}
+            &.input-select {display: none;}
+        }
+        .jcsdl-filter-info.id {
+            display: none;
+            margin: 22px 10px; margin-right: 0;
+            padding: 0; width: 64px; height: 64px; line-height: 64px;
+            text-align: center; font-size: 26px; color: $colorBlackLight;
+            border-color: $borderColor;
+            @include transition("color 0.2s ease-in-out, border-color 0.2s ease-in-out");
+        }
+        .jcsdl-filter-info.target {margin: 0; margin-left: 5px;}
+        .jcsdl-filter-info.operator {margin: 0 5px; margin-right: -3px;}
+        .jcsdl-filter-info.value {
+            margin: 31px 0;
+            padding: 0 8px; height: 46px; line-height: 46px;
+            font-size: 1.2em;
+            background-color: white;
+        }
 
-		&.on {
-			.jcsdl-filter-info.id {color: $colorOrange; border-color: $colorOrange;}
-		}
+        &.on {
+            .jcsdl-filter-info.id {color: $colorOrange; border-color: $colorOrange;}
+        }
 
-	}
+    }
 
-	&.collapsed .jcsdl-filter {
-		padding: 5px;
+    &.collapsed .jcsdl-filter {
+        padding: 5px;
 
-		.jcsdl-filter-description {float: left;}
+        .jcsdl-filter-description {float: left;}
 
-		.jcsdl-filter-info.id {display: none; border: 0; padding: 0;}
-		.jcsdl-filter-info.value {border: 0; padding: 0;}
+        .jcsdl-filter-info.id {display: none; border: 0; padding: 0;}
+        .jcsdl-filter-info.value {border: 0; padding: 0;}
 
-		.jcsdl-filter-target,
-		.jcsdl-filter-field,
-		.jcsdl-filter-field-input,
-		.jcsdl-filter-operator,
-		.jcsdl-filter-value {
-			float: none; margin: 0;
-			display: inline; width: auto; height: auto;
-			text-indent: 0;
-			background: none; line-height: 20px;
-		}
-		.jcsdl-filter-field {margin: 0 10px;}
-		.jcsdl-filter-operator {font-weight: bold; border: 0 !important;}
+        .jcsdl-filter-target,
+        .jcsdl-filter-field,
+        .jcsdl-filter-field-input,
+        .jcsdl-filter-operator,
+        .jcsdl-filter-value {
+            float: none; margin: 0;
+            display: inline; width: auto; height: auto;
+            text-indent: 0;
+            background: none; line-height: 20px;
+        }
+        .jcsdl-filter-field {margin: 0 10px;}
+        .jcsdl-filter-operator {font-weight: bold; border: 0 !important;}
 
-		.jcsdl-filter-options {
-			position: relative; float: right;
-			padding: 0;
-			background: transparent; border: 0;
-		}
+        .jcsdl-filter-options {
+            position: relative; float: right;
+            padding: 0;
+            background: transparent; border: 0;
+        }
 
-	}
+    }
 }
 
 .jcsdl-advanced-on .jcsdl-filters-list .jcsdl-filter .jcsdl-filter-info.id {display: block;}
@@ -531,133 +541,133 @@ a.jcsdl-filters-logic-option {
  */
 /* JCSDL Carousel */
 .jcsdl-carousel-wrap {
-	overflow: hidden; position: relative;
-	margin: 0 auto;
-	text-align: left;
+    overflow: hidden; position: relative;
+    margin: 0 auto;
+    text-align: left;
 }
 
 .jcsdl-carousel-scroll {
-	float: left; margin: 0 10px;
-	display: block; width: 29px; height: 29px;
-	line-height: 29px; text-align: center;
-	background: transparent url($elementsSprite) no-repeat -56px -89px;
+    float: left; margin: 0 10px;
+    display: block; width: 29px; height: 29px;
+    line-height: 29px; text-align: center;
+    background: transparent url($elementsSprite) no-repeat -56px -89px;
 
-	&.right {
-		float: right;
-		background-position: -85px -89px;
-	}
+    &.right {
+        float: right;
+        background-position: -85px -89px;
+    }
 
-	&:hover {@include opacity(0.6);}
-	&.inactive {@include opacity(0.3);}
+    &:hover {@include opacity(0.6);}
+    &.inactive {@include opacity(0.3);}
 }
 
 /* editor steps */
 .jcsdl-filter-editor {
-	.jcsdl-step {
-		overflow: hidden; text-align: center; position: relative;
+    .jcsdl-step {
+        overflow: hidden; text-align: center; position: relative;
 
-		&.jcsdl-filter-step-value {padding-bottom: 20px;}
+        &.jcsdl-filter-step-value {padding-bottom: 20px;}
 
-		/* various states of target selection */
-		.jcsdl-filter-target-wrap {background: transparent url($selectSprite) no-repeat center -378px;} /* prompt selection */
-		&.selected .jcsdl-filter-target-wrap {background-position: center -553px;} /* only target selected */
-		&.selected.field-selected .jcsdl-filter-target-wrap {background-position: center 8px;} /* a field has been selected */
+        /* various states of target selection */
+        .jcsdl-filter-target-wrap {background: transparent url($selectSprite) no-repeat center -378px;} /* prompt selection */
+        &.selected .jcsdl-filter-target-wrap {background-position: center -553px;} /* only target selected */
+        &.selected.field-selected .jcsdl-filter-target-wrap {background-position: center 8px;} /* a field has been selected */
 
-		/* various states of field selection */
-		.jcsdl-filter-target-field-wrap {}
-		&.selected .jcsdl-filter-target-field-wrap {background: transparent url($selectSprite) no-repeat center -255px;}
-		&.selected.field-selected .jcsdl-filter-target-field-wrap {background-position: center -165px;}
+        /* various states of field selection */
+        .jcsdl-filter-target-field-wrap {}
+        &.selected .jcsdl-filter-target-field-wrap {background: transparent url($selectSprite) no-repeat center -255px;}
+        &.selected.field-selected .jcsdl-filter-target-field-wrap {background-position: center -165px;}
 
-		/* various states of field selection */
-		.jcsdl-filter-target-field-input-wrap {}
-		&.selected .jcsdl-filter-target-field-input-wrap {background: transparent url($selectSprite) no-repeat center -255px;}
-		&.selected.field-selected .jcsdl-filter-target-field-input-wrap {background-position: center -165px;}
+        /* various states of field selection */
+        .jcsdl-filter-target-field-input-wrap {}
+        &.selected .jcsdl-filter-target-field-input-wrap {background: transparent url($selectSprite) no-repeat center -255px;}
+        &.selected.field-selected .jcsdl-filter-target-field-input-wrap {background-position: center -165px;}
 
-		/* when a step is selected it also has shadow underneath */
-		&.selected {background: transparent url($stepBackground) no-repeat bottom center;}
+        /* when a step is selected it also has shadow underneath */
+        &.selected {background: transparent url($stepBackground) no-repeat bottom center;}
 
-		.jcsdl-target-help {
-			position: absolute; bottom: 3px; left: 50%; margin-left: -47px;
-			display: block; height: 21px; line-height: 21px; width: 94px;
-			background: url($selectSprite) no-repeat -17px -862px;
-			text-align: center; color: #fff; font-weight: normal; font-size: 11px;
+        .jcsdl-target-help {
+            position: absolute; bottom: 3px; left: 50%; margin-left: -47px;
+            display: block; height: 21px; line-height: 21px; width: 94px;
+            background: url($selectSprite) no-repeat -17px -862px;
+            text-align: center; color: #fff; font-weight: normal; font-size: 11px;
 
-			&:hover {text-decoration: underline;}
-		}
-	}
+            &:hover {text-decoration: underline;}
+        }
+    }
 
-	.jcsdl-filter-target-wrap {
-		height: 145px; padding-top: 30px;
-		.jcsdl-carousel-scroll {margin-top: 40px;}
-	}
+    .jcsdl-filter-target-wrap {
+        height: 145px; padding-top: 30px;
+        .jcsdl-carousel-scroll {margin-top: 40px;}
+    }
 
-	.jcsdl-filter-target-field-wrap {
-		padding-top: 5px; padding-bottom: 40px;
-		.jcsdl-carousel-scroll {margin-top: 25px;}
-	}
+    .jcsdl-filter-target-field-wrap {
+        padding-top: 5px; padding-bottom: 40px;
+        .jcsdl-carousel-scroll {margin-top: 25px;}
+    }
 
-	.jcsdl-filter-target-field-input-wrap {
-		padding-top: 5px; padding-bottom: 40px;
-		.jcsdl-carousel-scroll {margin-top: 25px;}
-	}
+    .jcsdl-filter-target-field-input-wrap {
+        padding-top: 5px; padding-bottom: 40px;
+        .jcsdl-carousel-scroll {margin-top: 25px;}
+    }
 
-	.jcsdl-filter-value-input-operators {
-		margin: 10px auto; margin-top: 20px;
-		display: block; width: 75%;
-		text-align: center;
+    .jcsdl-filter-value-input-operators {
+        margin: 10px auto; margin-top: 20px;
+        display: block; width: 75%;
+        text-align: center;
 
-		.jcsdl-icon.operator {
-			float: none; margin: 5px; display: inline-block;
-			/* ie 7 */
-			zoom: 1; *display: inline;
-		}
+        .jcsdl-icon.operator {
+            float: none; margin: 5px; display: inline-block;
+            /* ie 7 */
+            zoom: 1; *display: inline;
+        }
 
-		&.text {margin-top: 10px; width: auto; text-align: left;}
-	}
+        &.text {margin-top: 10px; width: auto; text-align: left;}
+    }
 
-	.jcsdl-operators-select {
-		display: block; position: relative;
-		margin: 0 20px;
-		height: 38px; line-height: 37px;
-		padding: 0 10px;
-		border: 1px solid $borderColor; @include rounded(3px);
-		cursor: pointer;
+    .jcsdl-operators-select {
+        display: block; position: relative;
+        margin: 0 20px;
+        height: 38px; line-height: 37px;
+        padding: 0 10px;
+        border: 1px solid $borderColor; @include rounded(3px);
+        cursor: pointer;
 
-		.jcsdl-operator-label {font-weight: bold; color: $color; font-size: 15px;}
+        .jcsdl-operator-label {font-weight: bold; color: $color; font-size: 15px;}
 
-		.jcsdl-dropdown-icon {
-			display: block; width: 39px; height: 38px;
-			position: absolute; top: -1px; right: -1px;
-			overflow: hidden;
-			border: 1px solid $color; @include roundedCorner(0, 3px, 3px, 0);
-			background: url($elementsSprite) no-repeat 0 -278px;
-		}
+        .jcsdl-dropdown-icon {
+            display: block; width: 39px; height: 38px;
+            position: absolute; top: -1px; right: -1px;
+            overflow: hidden;
+            border: 1px solid $color; @include roundedCorner(0, 3px, 3px, 0);
+            background: url($elementsSprite) no-repeat 0 -278px;
+        }
 
-		&:hover {
-			background: $backgroundSmoked;
-			.jcsdl-dropdown-icon {@include opacity(0.9);}
-		}
-		&:active .jcsdl-dropdown-icon {background-position: 0 -316px;}
+        &:hover {
+            background: $backgroundSmoked;
+            .jcsdl-dropdown-icon {@include opacity(0.9);}
+        }
+        &:active .jcsdl-dropdown-icon {background-position: 0 -316px;}
 
-		&.active {
-			@include roundedCorner(3px, 3px, 0, 0);
-			.jcsdl-dropdown-icon {
-				background-position: 0 -316px;
-				@include roundedCorner(0, 3px, 0, 0);
-			}
-		}
+        &.active {
+            @include roundedCorner(3px, 3px, 0, 0);
+            .jcsdl-dropdown-icon {
+                background-position: 0 -316px;
+                @include roundedCorner(0, 3px, 0, 0);
+            }
+        }
 
-		&.has-cs {margin-right: 70px;}
-	}
+        &.has-cs {margin-right: 70px;}
+    }
 
-	/* filter editor footer */
-	.jcsdl-footer {text-align: center;}
+    /* filter editor footer */
+    .jcsdl-footer {text-align: center;}
 }
 
 .jcsdl-filter-save {
-	float: none; margin: 10px auto;
-	width: 181px; height: 55px;
-	background-position: 0 0;
+    float: none; margin: 10px auto;
+    width: 181px; height: 55px;
+    background-position: 0 0;
 }
 
 .jcsdl-filter-cancel {color: $colorLight; font-weight: normal;}
@@ -666,285 +676,285 @@ a.jcsdl-filters-logic-option {
  * FILTER EDITOR INPUT FIELDS
  */
 .jcsdl-input-text, .jcsdl-input-number {
-	display: block; margin: 0 20px; position: relative;
+    display: block; margin: 0 20px; position: relative;
 
-	input, .jcsdl-tag-input {
-		display: block; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;
-		padding: 5px 10px; width: 100%; height: 40px;
-		font-size: 1.3em; line-height: 1.5em; color: #444;
-		border: 1px solid $borderColor; @include rounded(3px);
+    input, .jcsdl-tag-input {
+        display: block; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;
+        padding: 5px 10px; width: 100%; height: 40px;
+        font-size: 1.3em; line-height: 1.5em; color: #444;
+        border: 1px solid $borderColor; @include rounded(3px);
 
-		&.jcsdl-tag-input {
-			height: auto; min-height: 40px; overflow: hidden; position: relative;
-			font-size: 1em;
-			padding: 0;
+        &.jcsdl-tag-input {
+            height: auto; min-height: 40px; overflow: hidden; position: relative;
+            font-size: 1em;
+            padding: 0;
 
-			.jcsdl-tag {
-				display: block; float: left; margin: 3px; position: relative;
-				padding: 0 5px; height: 32px; line-height: 32px; padding-right: 16px;
-				font-size: 1.1em; color: $color; font-weight: bold;
-				border: 1px solid $borderColorInput; @include rounded(2px);
-				background: lighten($color, 80%);
+            .jcsdl-tag {
+                display: block; float: left; margin: 3px; position: relative;
+                padding: 0 5px; height: 32px; line-height: 32px; padding-right: 16px;
+                font-size: 1.1em; color: $color; font-weight: bold;
+                border: 1px solid $borderColorInput; @include rounded(2px);
+                background: lighten($color, 80%);
 
-				a.jcsdl-tag-remove {
-					display: block; width: 8px; height: 8px; overflow: hidden;
-					position: absolute; right: 4px; top: 12px;
-					background: url($elementsSprite) no-repeat -169px -55px;
-					@include opacity(0.7);
+                a.jcsdl-tag-remove {
+                    display: block; width: 8px; height: 8px; overflow: hidden;
+                    position: absolute; right: 4px; top: 12px;
+                    background: url($elementsSprite) no-repeat -169px -55px;
+                    @include opacity(0.7);
 
-					&:hover {@include opacity(1);}
-				}
-			}
+                    &:hover {@include opacity(1);}
+                }
+            }
 
-			.jcsdl-tag-field {
-				float: left;
+            .jcsdl-tag-field {
+                float: left;
 
-				input, .jcsdl-tag-field-helper {
-					box-sizing: content-box; -moz-box-sizing: content-box; -webkit-box-sizing: content-box;
-					padding: 0; margin: 3px; height: 34px; line-height: 34px; min-width: 230px;
-					font-size: 17px !important;
-					border: 0; outline: 0;
-				}
-			}
-		}
+                input, .jcsdl-tag-field-helper {
+                    box-sizing: content-box; -moz-box-sizing: content-box; -webkit-box-sizing: content-box;
+                    padding: 0; margin: 3px; height: 34px; line-height: 34px; min-width: 230px;
+                    font-size: 17px !important;
+                    border: 0; outline: 0;
+                }
+            }
+        }
 
-		&.jcsdl-regex-active {padding-right: 54px;}
-	}
+        &.jcsdl-regex-active {padding-right: 54px;}
+    }
 
-	/* regex tester */
-	.jcsdl-regex-tester-button {
-		position: absolute; top: 5px; right: 5px;
-		display: block; width: 46px; height: 30px;
-		overflow: hidden; text-indent: -9999px;
-		background: url($elementsSprite) no-repeat -57px -278px;
+    /* regex tester */
+    .jcsdl-regex-tester-button {
+        position: absolute; top: 5px; right: 5px;
+        display: block; width: 46px; height: 30px;
+        overflow: hidden; text-indent: -9999px;
+        background: url($elementsSprite) no-repeat -57px -278px;
 
-		&:hover {@include opacity(0.9);}
-		&.active {
-			background-position: -103px -278px;
-			@include opacity(0.75);
-			&:hover {@include opacity(0.75);}
-		}
-	}
+        &:hover {@include opacity(0.9);}
+        &.active {
+            background-position: -103px -278px;
+            @include opacity(0.75);
+            &:hover {@include opacity(0.75);}
+        }
+    }
 
-	.jcsdl-regex-tester {
-		p {text-align: center; margin: 5px 30px; color: $colorLight;}
+    .jcsdl-regex-tester {
+        p {text-align: center; margin: 5px 30px; color: $colorLight;}
 
-		.jcsdl-regex-tester-input-wrap {position: relative;}
+        .jcsdl-regex-tester-input-wrap {position: relative;}
 
-		.jcsdl-regex-result {
-			position: absolute; top: 10px; right: 10px;
-			display: none; width: 30px; height: 30px;
-			overflow: hidden;
-			background: url($elementsSprite) no-repeat -57px -308px;
+        .jcsdl-regex-result {
+            position: absolute; top: 10px; right: 10px;
+            display: none; width: 30px; height: 30px;
+            overflow: hidden;
+            background: url($elementsSprite) no-repeat -57px -308px;
 
-			&.ok {background-position: -57px -308px;}
-			&.err {background-position: -87px -308px;}
-		}
-		
-		input {margin: 5px 0; padding-right: 54px;}
-	}
+            &.ok {background-position: -57px -308px;}
+            &.err {background-position: -87px -308px;}
+        }
+        
+        input {margin: 5px 0; padding-right: 54px;}
+    }
 }
 .jcsdl-input-text {
-	margin-top: 20px;
+    margin-top: 20px;
 
-	.jcsdl-containsnear-distance {
-		display: none; text-align: center; margin: 5px 0;
+    .jcsdl-containsnear-distance {
+        display: none; text-align: center; margin: 5px 0;
 
-		span {line-height: 30px;}
-		input {
-			display: inline; display: inline-block; width: 40px; height: 30px; 
-			margin: 0 10px;
-			text-align: center;
-		}
-	}
+        span {line-height: 30px;}
+        input {
+            display: inline; display: inline-block; width: 40px; height: 30px; 
+            margin: 0 10px;
+            text-align: center;
+        }
+    }
 }
 .jcsdl-input-number {
-	margin: 0 10px;
-	input {margin: 0 auto; width: 175px;}
+    margin: 0 10px;
+    input {margin: 0 auto; width: 175px;}
 }
 
 .jcsdl-operator-cs {float: right !important; cursor: pointer; margin: 0 !important; margin-right: 20px !important;}
 
 .jcsdl-input-select {
-	margin: 0 30px;
-	text-align: center;
+    margin: 0 30px;
+    text-align: center;
 
-	.jcsdl-input-select-option.jcsdl-btn {
-		margin: 10px; float: none;
-		display: inline-block; padding: 0 10px; height: 25px; line-height: 25px;
-		font-size: 13px;
-		@include rounded(2px);
-		@include opacity(0.75);
+    .jcsdl-input-select-option.jcsdl-btn {
+        margin: 10px; float: none;
+        display: inline-block; padding: 0 10px; height: 25px; line-height: 25px;
+        font-size: 13px;
+        @include rounded(2px);
+        @include opacity(0.75);
 
-		/* ie7 */
-		zoom: 1;
-		*display: inline;
+        /* ie7 */
+        zoom: 1;
+        *display: inline;
 
-		&.selected {@include opacity(1); border-color: $colorOrange; color: $colorOrange;}
-	}
+        &.selected {@include opacity(1); border-color: $colorOrange; color: $colorOrange;}
+    }
 }
 
 .jcsdl-input-slider {
-	margin: 10px 30px; margin-bottom: 0;
-	text-align: center;
+    margin: 10px 30px; margin-bottom: 0;
+    text-align: center;
 
-	.jcsdl-slider-controls {
-		margin: 0 auto;
-		width: 200px; padding: 5px 0; overflow: hidden;
+    .jcsdl-slider-controls {
+        margin: 0 auto;
+        width: 200px; padding: 5px 0; overflow: hidden;
 
-		.jcsdl-slider-minus, .jcsdl-slider-plus {
-			float: right; margin: 13px 10px; overflow: hidden;
-			display: block; width: 14px; height: 14px;
-			background: transparent url($elementsSprite) no-repeat -115px -89px;
-			@include opacity(0.7);
-			-webkit-touch-callout: none; /* prevent callout menu on iOS */
+        .jcsdl-slider-minus, .jcsdl-slider-plus {
+            float: right; margin: 13px 10px; overflow: hidden;
+            display: block; width: 14px; height: 14px;
+            background: transparent url($elementsSprite) no-repeat -115px -89px;
+            @include opacity(0.7);
+            -webkit-touch-callout: none; /* prevent callout menu on iOS */
 
-			&:active {position: relative; top: 1px;}
-			&:hover {@include opacity(1);}
-		}
-		.jcsdl-slider-minus {float: left; background-position: -129px -89px;}
+            &:active {position: relative; top: 1px;}
+            &:hover {@include opacity(1);}
+        }
+        .jcsdl-slider-minus {float: left; background-position: -129px -89px;}
 
-		.jcsdl-slider-input {
-			display: block; margin: 0 auto;
-			padding: 5px; width: 110px;
-			font-size: 24px; color: #1b1b1f; text-align: center;
-			border: 1px solid $borderColor;
-			@include rounded(3px);
-		}
-	}
+        .jcsdl-slider-input {
+            display: block; margin: 0 auto;
+            padding: 5px; width: 110px;
+            font-size: 24px; color: #1b1b1f; text-align: center;
+            border: 1px solid $borderColor;
+            @include rounded(3px);
+        }
+    }
 
-	.jcsdl-slider-wrap {
-		display: block; overflow: hidden; position: relative;
-		min-height: 65px;
+    .jcsdl-slider-wrap {
+        display: block; overflow: hidden; position: relative;
+        min-height: 65px;
 
-		.jcsdl-slider-icon {
-			display: none; float: left; margin: 0 10px;
-			width: 80px; height: 80px;
-			background: url($otherIconsSprite) no-repeat 0 0;
+        .jcsdl-slider-icon {
+            display: none; float: left; margin: 0 10px;
+            width: 80px; height: 80px;
+            background: url($otherIconsSprite) no-repeat 0 0;
 
-			&.max {float: right;}
-		}
-	}
+            &.max {float: right;}
+        }
+    }
 
-	.jcsdl-slider-container {position: relative; padding-top: 12px;}
+    .jcsdl-slider-container {position: relative; padding-top: 12px;}
 
-	.jcsdl-slider-label {
-		position: absolute; top: 0; left: 5px;
-		text-align: left;
-		color: #444; font-size: 0.9em;
+    .jcsdl-slider-label {
+        position: absolute; top: 0; left: 5px;
+        text-align: left;
+        color: #444; font-size: 0.9em;
 
-		&.max {right: 5px; left: auto; text-align: right;}
-	}
+        &.max {right: 5px; left: auto; text-align: right;}
+    }
 
-	.jcsdl-slider {
-		display: block; margin: 10px 15px; margin-bottom: 7px;
-		height: 12px;
-		cursor: pointer;
-		background: transparent url($elementsSprite) repeat-x center -228px;
-		border: 0; @include rounded(0px);
+    .jcsdl-slider {
+        display: block; margin: 10px 15px; margin-bottom: 7px;
+        height: 12px;
+        cursor: pointer;
+        background: transparent url($elementsSprite) repeat-x center -228px;
+        border: 0; @include rounded(0px);
 
-		.ui-slider-handle {
-			top: 0; margin-left: -1em;
-			display: block; width: 30px; height: 40px;
-			cursor: pointer;
-			background: transparent url($elementsSprite) no-repeat -152px -83px;
-			border: 0;
-			outline: none;
-		}
-	}
+        .ui-slider-handle {
+            top: 0; margin-left: -1em;
+            display: block; width: 30px; height: 40px;
+            cursor: pointer;
+            background: transparent url($elementsSprite) no-repeat -152px -83px;
+            border: 0;
+            outline: none;
+        }
+    }
 
-	.jcsdl-slider-bottom {
-		display: block; overflow: hidden; margin: 0 8px;
-		height: 15px;
+    .jcsdl-slider-bottom {
+        display: block; overflow: hidden; margin: 0 8px;
+        height: 15px;
 
-		.jcsdl-slider-bottom-left, .jcsdl-slider-bottom-right {
-			display: block; width: 15px; height: 15px;
-			float: left;
-			background: transparent url($elementsSprite) no-repeat 0 -213px;
-		}
-		.jcsdl-slider-bottom-right {float: right; background-position: -31px -213px;}
+        .jcsdl-slider-bottom-left, .jcsdl-slider-bottom-right {
+            display: block; width: 15px; height: 15px;
+            float: left;
+            background: transparent url($elementsSprite) no-repeat 0 -213px;
+        }
+        .jcsdl-slider-bottom-right {float: right; background-position: -31px -213px;}
 
-		.jcsdl-slider-bottom-line {
-			display: block; height: 15px; margin: 0 15px;
-			background: transparent url($elementsSprite) repeat-x 0 -198px;
-		}
-	}
+        .jcsdl-slider-bottom-line {
+            display: block; height: 15px; margin: 0 15px;
+            background: transparent url($elementsSprite) repeat-x 0 -198px;
+        }
+    }
 }
 
 .jcsdl-map {
-	text-align: center; position: relative;
+    text-align: center; position: relative;
 
-	.jcsdl-map-search {
-		display: block; margin: 10px auto; width: 50%; padding: 5px;
-		font-size: 15px;
-		border: 1px solid $borderColor; @include rounded(3px);
-	}
+    .jcsdl-map-search {
+        display: block; margin: 10px auto; width: 50%; padding: 5px;
+        font-size: 15px;
+        border: 1px solid $borderColor; @include rounded(3px);
+    }
 
-	.jcsdl-map-canvas {
-		display: block; margin: 10px auto;
-		min-width: 320px; max-width: 600px; width: 90%; height: 350px;
-	}
+    .jcsdl-map-canvas {
+        display: block; margin: 10px auto;
+        min-width: 320px; max-width: 600px; width: 90%; height: 350px;
+    }
 
-	.jcsdl-map-instructions {
-		display: block; margin: 0 auto; width: 70%;
-		text-align: center; line-height: 1.3em;
-	}
+    .jcsdl-map-instructions {
+        display: block; margin: 0 auto; width: 70%;
+        text-align: center; line-height: 1.3em;
+    }
 
-	.jcsdl-clear-map {
-		display: block; width: 108px;
-		position: absolute; top: 45px; left: 50%; margin-left: -60px; z-index: 100;
-		background: #fff; border: 1px solid #717b87;
-		font-size: 13px; color: #000; font-weight: bold; padding: 1px 6px;
-		@include dropShadow(0, 2px, 4px, 0, 0.4);
-		display: none;
+    .jcsdl-clear-map {
+        display: block; width: 108px;
+        position: absolute; top: 45px; left: 50%; margin-left: -60px; z-index: 100;
+        background: #fff; border: 1px solid #717b87;
+        font-size: 13px; color: #000; font-weight: bold; padding: 1px 6px;
+        @include dropShadow(0, 2px, 4px, 0, 0.4);
+        display: none;
 
-		&:hover {color: #000;}
-	}
+        &:hover {color: #000;}
+    }
 
-	.jcsdl-map-coordinates,
-	.jcsdl-map-area {
-		margin: 0 10px; text-align: center;
-		span {margin-left: 10px;}
-	}
+    .jcsdl-map-coordinates,
+    .jcsdl-map-area {
+        margin: 0 10px; text-align: center;
+        span {margin-left: 10px;}
+    }
 
-	.jcsdl-map-coordinates {
-		label {clear: both;}
-		ul {
-			margin: 0; padding: 0;
-			li {display: inline; margin: 5px;}
-		}
-	}
+    .jcsdl-map-coordinates {
+        label {clear: both;}
+        ul {
+            margin: 0; padding: 0;
+            li {display: inline; margin: 5px;}
+        }
+    }
 
-	.jcsdl-map-area {}
+    .jcsdl-map-area {}
 }
 
 /* filter editor input fields overrides for the filters list view */
 /* expanded view */
 .jcsdl-filter-info.value {
-	&.input-select {
-		padding: 0; border: 0;
+    &.input-select {
+        padding: 0; border: 0;
 
-		.jcsdl-input-select {
-			margin: 0;
+        .jcsdl-input-select {
+            margin: 0;
 
-			.jcsdl-input-select-option {margin: 3px 5px;}
-			.jcsdl-input-select-more {font-size: 13px; line-height: 25px;}
-		}
-	}
+            .jcsdl-input-select-option {margin: 3px 5px;}
+            .jcsdl-input-select-more {font-size: 13px; line-height: 25px;}
+        }
+    }
 }
 /* collapsed view overrides */
 .jcsdl-filters-list.collapsed .jcsdl-filter-info.value {
-	&.input-select {
-		.jcsdl-input-select {
-			.jcsdl-input-select-option {
-				display: inline; height: auto; line-height: 1em; padding: 0;
-				color: $colorLight; font-weight: normal;
-				background: none; border: 0;
+    &.input-select {
+        .jcsdl-input-select {
+            .jcsdl-input-select-option {
+                display: inline; height: auto; line-height: 1em; padding: 0;
+                color: $colorLight; font-weight: normal;
+                background: none; border: 0;
 
-				span {top: 0 !important;}
-			}
-		}
-	}
+                span {top: 0 !important;}
+            }
+        }
+    }
 }
 
 
@@ -952,544 +962,805 @@ a.jcsdl-filters-logic-option {
  * ICONS
  */
 .jcsdl-icon.target {
-	width: 110px; height: 110px; margin-right: 35px;
-	background: url($targetIconsSprite) no-repeat 0 0;
+    width: 110px; height: 110px; margin-right: 35px;
+    background: url($targetIconsSprite) no-repeat 0 0;
 
-	&.target-interaction {background-position: 0 0; 			&.selected {background-position: 0 -110px;}}
-	&.target-facebook	{background-position: -110px 0; 		&.selected {background-position: -110px -110px;}}
-	&.target-twitter 	{background-position: -220px 0; 		&.selected {background-position: -220px -110px;}}
-	&.target-digg 		{background-position: -330px 0; 		&.selected {background-position: -330px -110px;}}
-	&.target-myspace 	{background-position: -440px 0; 		&.selected {background-position: -440px -110px;}}
-	&.target-klout 		{background-position: -550px 0; 		&.selected {background-position: -550px -110px;}}
-	&.target-amazon		{background-position: -660px 0;			&.selected {background-position: -660px -110px;}}
-	&.target-youtube	{background-position: -770px 0;			&.selected {background-position: -770px -110px;}}
-	&.target-flickr		{background-position: -880px 0;			&.selected {background-position: -880px -110px;}}
-	&.target-blog		{background-position: -990px 0;			&.selected {background-position: -990px -110px;}}
-	&.target-video		{background-position: -1100px 0;		&.selected {background-position: -1100px -110px;}}
-	&.target-reddit		{background-position: -1210px 0;		&.selected {background-position: -1210px -110px;}}
-	&.target-imdb		{background-position: -1320px 0;		&.selected {background-position: -1320px -110px;}}
-	&.target-dailymotion{background-position: -1430px 0;		&.selected {background-position: -1430px -110px;}}
-	&.target-newscred	{background-position: -1540px 0;		&.selected {background-position: -1540px -110px;}}
-	&.target-board		{background-position: -1650px 0;		&.selected {background-position: -1650px -110px;}}
-	&.target-topix		{background-position: -1760px 0;		&.selected {background-position: -1760px -110px;}}
-	&.target-augmentation {background-position: -1870px 0;		&.selected {background-position: -1870px -110px;}}
-	&.target-2ch		{background-position: -1980px 0;		&.selected {background-position: -1980px -110px;}}
-	&.target-bitly		{background-position: -2090px 0;		&.selected {background-position: -2090px -110px;}}
-	&.target-wikipedia	{background-position: -2200px 0;		&.selected {background-position: -2200px -110px;}}
+    &.target-interaction {background-position: 0 0;             &.selected {background-position: 0 -110px;}}
+    &.target-facebook   {background-position: -110px 0;         &.selected {background-position: -110px -110px;}}
+    &.target-twitter    {background-position: -220px 0;         &.selected {background-position: -220px -110px;}}
+    &.target-digg       {background-position: -330px 0;         &.selected {background-position: -330px -110px;}}
+    &.target-myspace    {background-position: -440px 0;         &.selected {background-position: -440px -110px;}}
+    &.target-klout      {background-position: -550px 0;         &.selected {background-position: -550px -110px;}}
+    &.target-amazon     {background-position: -660px 0;         &.selected {background-position: -660px -110px;}}
+    &.target-youtube    {background-position: -770px 0;         &.selected {background-position: -770px -110px;}}
+    &.target-flickr     {background-position: -880px 0;         &.selected {background-position: -880px -110px;}}
+    &.target-blog       {background-position: -990px 0;         &.selected {background-position: -990px -110px;}}
+    &.target-video      {background-position: -1100px 0;        &.selected {background-position: -1100px -110px;}}
+    &.target-reddit     {background-position: -1210px 0;        &.selected {background-position: -1210px -110px;}}
+    &.target-imdb       {background-position: -1320px 0;        &.selected {background-position: -1320px -110px;}}
+    &.target-dailymotion{background-position: -1430px 0;        &.selected {background-position: -1430px -110px;}}
+    &.target-newscred   {background-position: -1540px 0;        &.selected {background-position: -1540px -110px;}}
+    &.target-board      {background-position: -1650px 0;        &.selected {background-position: -1650px -110px;}}
+    &.target-topix      {background-position: -1760px 0;        &.selected {background-position: -1760px -110px;}}
+    &.target-augmentation {background-position: -1870px 0;      &.selected {background-position: -1870px -110px;}}
+    &.target-2ch        {background-position: -1980px 0;        &.selected {background-position: -1980px -110px;}}
+    &.target-bitly      {background-position: -2090px 0;        &.selected {background-position: -2090px -110px;}}
+    &.target-wikipedia  {background-position: -2200px 0;        &.selected {background-position: -2200px -110px;}}
+    /*&.target-unknown     {background-position: -2310px 0;        &.selected {background-position: -2310px -110px;}}*/
+    &.target-tumblr     {background-position: -2420px 0;        &.selected {background-position: -2420px -110px;}}
+    &.target-googleplus {background-position: -2530px 0;        &.selected {background-position: -2530px -110px;}}
+    &.target-instagram  {background-position: -2640px 0;        &.selected {background-position: -2640px -110px;}}
+    &.target-yammer     {background-position: -2750px 0;        &.selected {background-position: -2750px -110px;}}
 }
 
 /* field icons sets */
 .jcsdl-icon.field {
-	background-repeat: no-repeat;
-	margin: 0; margin-right: 20px;
-	padding: 0;
+    background-repeat: no-repeat;
+    margin: 0; margin-right: 20px;
+    padding: 0;
 
-	/* default icon set (original) */
-	background-image: url($fieldIconsSprite);
+    /* default icon set (original) */
+    background-image: url($fieldIconsSprite);
 
-	/* additional icon set (demographics, bitly, wiki - dbw) */
-	&.icon-twitter_activity,
-	&.icon-location_by_country,
-	&.icon-basic_demographics,
-	&.icon-interests,
-	&.icon-twitter_influence,
-	&.icon-first_language,
-	&.icon-number_of_accounts_followed,
-	&.icon-professions,
-	&.icon-usa,
-	&.icon-city,
-	&.icon-services_and_technologies,
-	&.icon-large_accounts_followed,
-	&.icon-twitter_settings,
-	&.icon-older_than,
-	&.icon-younger_than,
-	&.icon-ms_clothes,
-	&.icon-ms_shop,
-	&.icon-ms_food,
-	&.icon-useragent,
-	&.icon-url_hash,
-	&.icon-share_hash,
-	&.icon-cname,
-	&.icon-ref_url,
-	&.icon-ref_domain,
-	&.icon-country_code,
-	&.icon-geo_region_code,
-	&.icon-geo_region,
-	&.icon-timezone,
-	&.icon-contributions,
-	&.icon-talkpage,
-	&.icon-diff,
-	&.icon-changetype,
-	&.icon-changeadded,
-	&.icon-changeremoved,
-	&.icon-diff-from,
-	&.icon-diff-to,
-	&.icon-externallinks,
-	&.icon-namespace,
-	&.icon-namespacecode,
-	&.icon-newlength,
-	&.icon-oldlength,
-	&.icon-pageid,
-	&.icon-parentid,
-	&.icon-relationship,
-	&.icon-work-status,
-	&.icon-accounts_categories {
-		background-image: url($fieldDbwIconsSprite);
-	}
+    /* additional icon set (demographics, bitly, wiki - dbw) */
+    &.icon-twitter_activity,
+    &.icon-location_by_country,
+    &.icon-basic_demographics,
+    &.icon-interests,
+    &.icon-twitter_influence,
+    &.icon-first_language,
+    &.icon-number_of_accounts_followed,
+    &.icon-professions,
+    &.icon-usa,
+    &.icon-city,
+    &.icon-services_and_technologies,
+    &.icon-large_accounts_followed,
+    &.icon-twitter_settings,
+    &.icon-older_than,
+    &.icon-younger_than,
+    &.icon-ms_clothes,
+    &.icon-ms_shop,
+    &.icon-ms_food,
+    &.icon-useragent,
+    &.icon-url_hash,
+    &.icon-share_hash,
+    &.icon-cname,
+    &.icon-ref_url,
+    &.icon-ref_domain,
+    &.icon-country_code,
+    &.icon-geo_region_code,
+    &.icon-geo_region,
+    &.icon-timezone,
+    &.icon-contributions,
+    &.icon-talkpage,
+    &.icon-diff,
+    &.icon-changetype,
+    &.icon-changeadded,
+    &.icon-changeremoved,
+    &.icon-diff-from,
+    &.icon-diff-to,
+    &.icon-externallinks,
+    &.icon-namespace,
+    &.icon-namespacecode,
+    &.icon-newlength,
+    &.icon-oldlength,
+    &.icon-pageid,
+    &.icon-parentid,
+    &.icon-relationship,
+    &.icon-work-status,
+    &.icon-accounts_categories {
+        background-image: url($fieldDbwIconsSprite);
+    }
 
-	/* additional icon set (links, opengraph, newscred - lon) */
-	&.icon-normalized_url,
-	&.icon-hops,
-	&.icon-http_code,
-	&.icon-metatags,
-	&.icon-charset,
-	&.icon-newskeywords,
-	&.icon-standout,
-	&.icon-site_name,
-	&.icon-email,
-	&.icon-phone_number,
-	&.icon-fax_number,
-	&.icon-street_address,
-	&.icon-locality,
-	&.icon-postal_code,
-	&.icon-activity,
-	&.icon-sport,
-	&.icon-bar,
-	&.icon-company,
-	&.icon-cafe,
-	&.icon-hotel,
-	&.icon-restaurant,
-	&.icon-cause,
-	&.icon-sports_league,
-	&.icon-sports_team,
-	&.icon-band,
-	&.icon-government,
-	&.icon-non_profit,
-	&.icon-school,
-	&.icon-university,
-	&.icon-actor,
-	&.icon-athlete,
-	&.icon-author,
-	&.icon-director,
-	&.icon-musician,
-	&.icon-politician,
-	&.icon-public_figure,
-	&.icon-landmark,
-	&.icon-state_province,
-	&.icon-album,
-	&.icon-book,
-	&.icon-drink,
-	&.icon-food,
-	&.icon-game,
-	&.icon-movie,
-	&.icon-product,
-	&.icon-song,
-	&.icon-tv_show,
-	&.icon-blog,
-	&.icon-website,
-	&.icon-fulltext,
-	&.icon-circulation,
-	&.icon-company_type,
-	&.icon-founded,
-	&.icon-media_type,
-	&.icon-source_name,
-	&.icon-card,
-	&.icon-site,
-	&.icon-site_id,
-	&.icon-creator,
-	&.icon-creator_id,
-	&.icon-image_width,
-	&.icon-image_height,
-	&.icon-twitter,
-	&.icon-player_width,
-	&.icon-player_height,
-	&.icon-player_stream,
-	&.icon-player_stream_content_type,
-	&.icon-player,
-	&.icon-mention_ids,
-	&.icon-status,
-	&.icon-user_verified,
-	&.icon-confidence,
-	&.icon-entities_name,
-	&.icon-entities_type,
-	&.icon-region,
-	&.icon-keywords {
-		background-image: url($fieldLonIconsSprite);
-	}
+    /* additional icon set (links, opengraph, newscred - lon) */
+    &.icon-normalized_url,
+    &.icon-hops,
+    &.icon-http_code,
+    &.icon-metatags,
+    &.icon-charset,
+    &.icon-newskeywords,
+    &.icon-standout,
+    &.icon-site_name,
+    &.icon-email,
+    &.icon-phone_number,
+    &.icon-fax_number,
+    &.icon-street_address,
+    &.icon-locality,
+    &.icon-postal_code,
+    &.icon-activity,
+    &.icon-sport,
+    &.icon-bar,
+    &.icon-company,
+    &.icon-cafe,
+    &.icon-hotel,
+    &.icon-restaurant,
+    &.icon-cause,
+    &.icon-sports_league,
+    &.icon-sports_team,
+    &.icon-band,
+    &.icon-government,
+    &.icon-non_profit,
+    &.icon-school,
+    &.icon-university,
+    &.icon-actor,
+    &.icon-athlete,
+    &.icon-author,
+    &.icon-director,
+    &.icon-musician,
+    &.icon-politician,
+    &.icon-public_figure,
+    &.icon-landmark,
+    &.icon-state_province,
+    &.icon-album,
+    &.icon-book,
+    &.icon-drink,
+    &.icon-food,
+    &.icon-game,
+    &.icon-movie,
+    &.icon-product,
+    &.icon-song,
+    &.icon-tv_show,
+    &.icon-blog,
+    &.icon-website,
+    &.icon-fulltext,
+    &.icon-circulation,
+    &.icon-company_type,
+    &.icon-founded,
+    &.icon-media_type,
+    &.icon-source_name,
+    &.icon-card,
+    &.icon-site,
+    &.icon-site_id,
+    &.icon-creator,
+    &.icon-creator_id,
+    &.icon-image_width,
+    &.icon-image_height,
+    &.icon-twitter,
+    &.icon-player_width,
+    &.icon-player_height,
+    &.icon-player_stream,
+    &.icon-player_stream_content_type,
+    &.icon-player,
+    &.icon-mention_ids,
+    &.icon-status,
+    &.icon-user_verified,
+    &.icon-confidence,
+    &.icon-entities_name,
+    &.icon-entities_type,
+    &.icon-region,
+    &.icon-keywords {
+        background-image: url($fieldLonIconsSprite);
+    }
+
+    &.icon-tumblractivity,
+    &.icon-tumblrtype,
+    &.icon-state,
+    &.icon-source-blogid,
+    &.icon-dest-blogid,
+    &.icon-dest-postid,
+    &.icon-root-blogid,
+    &.icon-root-postid,
+    &.icon-blogid,
+    &.icon-blog_name,
+    &.icon-tumblrtitle,
+    &.icon-body,
+    &.icon-format,
+    &.icon-post_url,
+    &.icon-slug,
+    &.icon-text,
+    &.icon-source_html,
+    &.icon-source_url,
+    &.icon-source_title,
+    /*&.icon-tags             {background-position: -640px -240px;    &.selected {background-position: -720px -240px;}}*/
+    &.icon-note_count,
+    &.icon-question,
+    &.icon-answer,
+    &.icon-asking_name,
+    &.icon-asking_url,
+    &.icon-video_url,
+    &.icon-duration,
+    &.icon-artist,
+    &.icon-track_name,
+    &.icon-album,
+    &.icon-plays,
+    &.icon-audio_url,
+    &.icon-link,
+    &.icon-description,
+    &.icon-caption,
+    &.icon-meta-url,
+    &.icon-meta-type,
+    &.icon-meta-description,
+    &.icon-likes_local,
+    &.icon-likes_global,
+    &.icon-reblogged_global,
+    &.icon-from-id,
+    &.icon-from-url,
+    &.icon-from-name,
+    &.icon-from-title,
+    &.icon-root-id,
+    &.icon-root-url,
+    &.icon-root-name,
+    &.icon-root-title,
+    &.icon-meta,
+    &.icon-reblogged {
+        background-image: url($fieldTumblrIconsSprite);
+    }
+
+    &.icon-actor-id,
+    &.icon-actor-display_name,
+    &.icon-actor-url,
+    &.icon-object,
+    &.icon-attachment,
+    &.icon-in_reply_to-id,
+    &.icon-in_reply_to-url,
+    &.icon-provider_title {
+        background-image: url($fieldGooglePlusIconsSprite);
+    }
+
+    &.icon-filter,
+    &.icon-low_resolution,
+    &.icon-standard_resolution,
+    &.icon-width,
+    &.icon-height,
+    &.icon-caption_from,
+    &.icon-from,
+    &.icon-location-id,
+    &.icon-location-name,
+    &.icon-users_in_photo,
+    &.icon-attribution-name,
+    &.icon-attribution-website,
+    &.icon-bio,
+    &.icon-media {
+        background-image: url($fieldInstagramIconsSprite);
+    }
+
+    &.icon-message_type,
+    &.icon-direct_message,
+    &.icon-privacy,
+    &.icon-sender_type,
+    &.icon-client_type,
+    &.icon-content_excerpt,
+    &.icon-rich,
+    &.icon-plain,
+    &.icon-parsed,
+    &.icon-thread,
+    &.icon-shares,
+    &.icon-updates,
+    &.icon-group,
+    &.icon-office365_url,
+    &.icon-sender,
+    &.icon-followers,
+    &.icon-following,
+    &.icon-job_title,
+    &.icon-web_url {
+        background-image: url($fieldYammerIconsSprite);
+    }
+
+    &.icon-comment-id,
+    &.icon-from-category,
+    &.icon-from-id,
+    &.icon-from-name,
+    &.icon-link,
+    &.icon-message,
+    &.icon-name,
+    &.icon-object_id,
+    &.icon-page_category,
+    &.icon-page_id,
+    &.icon-page_link,
+    &.icon-page_name,
+    &.icon-page_username,
+    &.icon-post_id,
+    &.icon-post_content,
+    &.icon-post_link,
+    &.icon-post_type,
+    &.icon-story,
+    &.icon-picture,
+    &.icon-application-id,
+    &.icon-application-name,
+    &.icon-page {
+        background-image: url($fieldFBPagesIconsSprite);
+    }
 }
 
 .jcsdl-icon.field {
-	&.icon-geo					{background-position: 0 0; 				&.selected {background-position: -80px 0;}}
-	&.icon-link 				{background-position: -160px 0; 		&.selected {background-position: -240px 0;}}
-	&.icon-sample 				{background-position: -320px 0; 		&.selected {background-position: -400px 0;}}
-	&.icon-title 				{background-position: -480px 0; 		&.selected {background-position: -560px 0;}}
-	&.icon-content 				{background-position: -640px 0; 		&.selected {background-position: -720px 0;}}
-	&.icon-description 			{background-position: 0 -80px; 			&.selected {background-position: -80px -80px;}}
-	&.icon-source 				{background-position: -160px -80px; 	&.selected {background-position: -240px -80px;}}
-	&.icon-type 				{background-position: -320px -80px; 	&.selected {background-position: -400px -80px;}}
-	&.icon-avatar 				{background-position: -480px -80px; 	&.selected {background-position: -560px -80px;}}
-	&.icon-comment 				{background-position: -640px -80px;		&.selected {background-position: -720px -80px;}}
-	&.icon-comments-count 		{background-position: 0 -160px;			&.selected {background-position: -80px -160px;}}
-	&.icon-author-username, &.icon-username {background-position: -160px -160px; &.selected {background-position: -240px -160px;}}
-	&.icon-username 			{background-position: -160px -160px; 	&.selected {background-position: -240px -160px;}}
-	&.icon-user 				{background-position: -320px -160px;	&.selected {background-position: -400px -160px;}}
-	&.icon-fullname 			{background-position: -480px -160px;	&.selected {background-position: -560px -160px;}}
-	&.icon-registered			{background-position: -640px -160px;	&.selected {background-position: -720px -160px;}}
-	&.icon-user-description 	{background-position: 0 -240px;			&.selected {background-position: -80px -240px;}}
-	&.icon-followers_count		{background-position: -160px -240px;	&.selected {background-position: -240px -240px;}}
-	&.icon-follower_ratio		{background-position: -320px -240px;	&.selected {background-position: -400px -240px;}}
-	&.icon-friends_count		{background-position: -480px -240px;	&.selected {background-position: -560px -240px;}}
-	&.icon-location 			{background-position: -640px -240px;	&.selected {background-position: -720px -240px;}}
-	&.icon-screen_name			{background-position: 0 -320px;			&.selected {background-position: -80px -320px;}}
-	&.icon-domains, &.icon-domain 	{background-position: -160px -320px; &.selected {background-position: -240px -320px;}}
-	&.icon-topic, &.icon-topics		{background-position: -320px -320px; &.selected {background-position: -400px -320px;}}
-	&.icon-language 			{background-position: -480px -320px; 	&.selected {background-position: -560px -320px;}}
-	&.icon-statuses_count 		{background-position: -640px -320px;	&.selected {background-position: -720px -320px;}}
-	&.icon-time_zone 			{background-position: 0 -400px;			&.selected {background-position: -80px -400px;}}
-	&.icon-placename 			{background-position: -160px -400px;	&.selected {background-position: -240px -400px;}}
-	&.icon-id 					{background-position: -320px -400px;	&.selected {background-position: -400px -400px;}}
-	&.icon-amplification 		{background-position: -480px -400px; 	&.selected {background-position: -560px -400px;}}
-	&.icon-listed_count 		{background-position: -640px -400px;	&.selected {background-position: -720px -400px;}}
-	&.icon-network 				{background-position: 0 -480px; 		&.selected {background-position: -80px -480px;}}
-	&.icon-score 				{background-position: -160px -480px; 	&.selected {background-position: -240px -480px;}}
-	&.icon-true_reach 			{background-position: -320px -480px; 	&.selected {background-position: -400px -480px;}}
-	&.icon-trends 				{background-position: -480px -480px; 	&.selected {background-position: -560px -480px;}}
-	&.icon-country_code 		{background-position: -640px -480px;	&.selected {background-position: -720px -480px;}}
-	&.icon-likes-ids			{background-position: 0 -560px;			&.selected {background-position: -80px -560px;}}
-	&.icon-likes-names			{background-position: -160px -560px;	&.selected {background-position: -240px -560px;}}
-	&.icon-to-ids				{background-position: -320px -560px;	&.selected {background-position: -400px -560px;}}
-	&.icon-to-names				{background-position: -480px -560px;	&.selected {background-position: -560px -560px;}}
-	&.icon-age 					{background-position: -640px -560px; 	&.selected {background-position: -720px -560px;}}
-	&.icon-category				{background-position: 0 -640px;			&.selected {background-position: -80px -640px;}}
-	&.icon-url 					{background-position: -160px -640px; 	&.selected {background-position: -240px -640px;}}
-	&.icon-retweet-count		{background-position: -320px -640px; 	&.selected {background-position: -400px -640px;}}
-	&.icon-gender, &.icon-sex 	{background-position: -480px -640px; 	&.selected {background-position: -560px -640px;}}
-	&.icon-commentslink 		{background-position: -640px -640px; 	&.selected {background-position: -720px -640px;}}
-	&.icon-authors 				{background-position: 0 -720px; 		&.selected {background-position: -80px -720px;}}
-	&.icon-author-name 			{background-position: -160px -720px; 	&.selected {background-position: -240px -720px;}}
-	&.icon-duration				{background-position: -320px -720px; 	&.selected {background-position: -400px -720px;}}
-	&.icon-tags 				{background-position: -480px -720px; 	&.selected {background-position: -560px -720px;}}
-	&.icon-tweet 				{background-position: -640px -720px; 	&.selected {background-position: -720px -720px;}}
-	&.icon-post					{background-position: 0 -800px; 		&.selected {background-position: -80px -800px;}}
-	&.icon-place 				{background-position: -160px -800px; 	&.selected {background-position: -240px -800px;}}
-	&.icon-retweet 				{background-position: -320px -800px; 	&.selected {background-position: -400px -800px;}}
-	&.icon-retweeted 			{background-position: -480px -800px; 	&.selected {background-position: -560px -800px;}}
-	&.icon-mentions 			{background-position: -640px -800px; 	&.selected {background-position: -720px -800px;}}
-	&.icon-inreply 				{background-position: 0 -880px; 		&.selected {background-position: -80px -880px;}}
-	&.icon-count 				{background-position: -160px -880px; 	&.selected {background-position: -240px -880px;}}
-	&.icon-ratio 				{background-position: -320px -880px; 	&.selected {background-position: -400px -880px;}}
-	&.icon-user-id 				{background-position: -480px -880px; 	&.selected {background-position: -560px -880px;}}
-	&.icon-placeattrs 			{background-position: -640px -880px; 	&.selected {background-position: -720px -880px;}}
-	&.icon-country 				{background-position: 0 -960px; 		&.selected {background-position: -80px -960px;}}
-	&.icon-article 				{background-position: -160px -960px; 	&.selected {background-position: -240px -960px;}}
-	&.icon-video-caption		{background-position: -320px -960px; 	&.selected {background-position: -400px -960px;}}
-	&.icon-video 				{background-position: -480px -960px; 	&.selected {background-position: -560px -960px;}}
-	&.icon-elapsed 				{background-position: -640px -960px; 	&.selected {background-position: -720px -960px;}}
-	&.icon-buries 				{background-position: 0 -1040px; 		&.selected {background-position: -80px -1040px;}}
-	&.icon-diggs 				{background-position: -160px -1040px; 	&.selected {background-position: -240px -1040px;}}
-	&.icon-status 				{background-position: -320px -1040px; 	&.selected {background-position: -400px -1040px;}}
-	&.icon-videolink 			{background-position: -480px -1040px; 	&.selected {background-position: -560px -1040px;}}
-	&.icon-thumbnail 			{background-position: -640px -1040px; 	&.selected {background-position: -720px -1040px;}}
-	&.icon-profileviews 		{background-position: 0 -1120px; 		&.selected {background-position: -80px -1120px;}}
-	&.icon-photos 				{background-position: -160px -1120px;	&.selected {background-position: -240px -1120px;}}
-	&.icon-image				{background-position: -320px -1120px; 	&.selected {background-position: -400px -1120px;}}
-	&.icon-verb 				{background-position: -480px -1120px; 	&.selected {background-position: -560px -1120px;}}
-	&.icon-application 			{background-position: -640px -1120px; 	&.selected {background-position: -720px -1120px;}}
-	&.icon-caption 				{background-position: 0 -1200px; 		&.selected {background-position: -80px -1200px;}}
-	&.icon-likes-count 			{background-position: -160px -1200px; 	&.selected {background-position: -240px -1200px;}}
-	&.icon-og-by 				{background-position: -320px -1200px; 	&.selected {background-position: -400px -1200px;}}
-	&.icon-opengraph 			{background-position: -480px -1200px;	&.selected {background-position: -560px -1200px;}}
-	&.icon-message 				{background-position: -640px -1200px; 	&.selected {background-position: -720px -1200px;}}
-	&.icon-attribution-link 	{background-position: 0 -1280px; 		&.selected {background-position: -80px -1280px;}}
-	&.icon-attribution-text 	{background-position: -160px -1280px;	&.selected {background-position: -240px -1280px;}}
-	&.icon-thread				{background-position: -320px -1280px; 	&.selected {background-position: -400px -1280px;}}
-	&.icon-sentiment			{background-position: -480px -1280px; 	&.selected {background-position: -560px -1280px;}}
-	&.icon-contenttype			{background-position: -640px -1280px; 	&.selected {background-position: -720px -1280px;}}
-	&.icon-signature			{background-position: 0 -1360px; 		&.selected {background-position: -80px -1360px;}}
-	&.icon-links 				{background-position: -160px -1360px;	&.selected {background-position: -240px -1360px;}}
-	&.icon-demographic			{background-position: -320px -1360px;	&.selected {background-position: -400px -1360px;}}
-	&.icon-salience				{background-position: -480px -1360px;	&.selected {background-position: -560px -1360px;}}
-	&.icon-klout				{background-position: -640px -1360px;	&.selected {background-position: -720px -1360px;}}
-	&.icon-language_name		{background-position: 0 -1440px; 		&.selected {background-position: -80px -1440px;}}
+    &.icon-geo                  {background-position: 0 0;              &.selected {background-position: -80px 0;}}
+    &.icon-link                 {background-position: -160px 0;         &.selected {background-position: -240px 0;}}
+    &.icon-sample               {background-position: -320px 0;         &.selected {background-position: -400px 0;}}
+    &.icon-title                {background-position: -480px 0;         &.selected {background-position: -560px 0;}}
+    &.icon-content              {background-position: -640px 0;         &.selected {background-position: -720px 0;}}
+    &.icon-description          {background-position: 0 -80px;          &.selected {background-position: -80px -80px;}}
+    &.icon-source               {background-position: -160px -80px;     &.selected {background-position: -240px -80px;}}
+    &.icon-type                 {background-position: -320px -80px;     &.selected {background-position: -400px -80px;}}
+    &.icon-avatar               {background-position: -480px -80px;     &.selected {background-position: -560px -80px;}}
+    &.icon-comment              {background-position: -640px -80px;     &.selected {background-position: -720px -80px;}}
+    &.icon-comments-count       {background-position: 0 -160px;         &.selected {background-position: -80px -160px;}}
+    &.icon-author-username      {background-position: -160px -160px;    &.selected {background-position: -240px -160px;}}
+    &.icon-username             {background-position: -160px -160px;    &.selected {background-position: -240px -160px;}}
+    &.icon-user                 {background-position: -320px -160px;    &.selected {background-position: -400px -160px;}}
+    &.icon-fullname             {background-position: -480px -160px;    &.selected {background-position: -560px -160px;}}
+    &.icon-registered           {background-position: -640px -160px;    &.selected {background-position: -720px -160px;}}
+    &.icon-user-description     {background-position: 0 -240px;         &.selected {background-position: -80px -240px;}}
+    &.icon-followers_count      {background-position: -160px -240px;    &.selected {background-position: -240px -240px;}}
+    &.icon-follower_ratio       {background-position: -320px -240px;    &.selected {background-position: -400px -240px;}}
+    &.icon-friends_count        {background-position: -480px -240px;    &.selected {background-position: -560px -240px;}}
+    &.icon-location             {background-position: -640px -240px;    &.selected {background-position: -720px -240px;}}
+    &.icon-screen_name          {background-position: 0 -320px;         &.selected {background-position: -80px -320px;}}
+    &.icon-domains, &.icon-domain   {background-position: -160px -320px; &.selected {background-position: -240px -320px;}}
+    &.icon-topic, &.icon-topics     {background-position: -320px -320px; &.selected {background-position: -400px -320px;}}
+    &.icon-language             {background-position: -480px -320px;    &.selected {background-position: -560px -320px;}}
+    &.icon-statuses_count       {background-position: -640px -320px;    &.selected {background-position: -720px -320px;}}
+    &.icon-time_zone            {background-position: 0 -400px;         &.selected {background-position: -80px -400px;}}
+    &.icon-placename            {background-position: -160px -400px;    &.selected {background-position: -240px -400px;}}
+    &.icon-id                   {background-position: -320px -400px;    &.selected {background-position: -400px -400px;}}
+    &.icon-amplification        {background-position: -480px -400px;    &.selected {background-position: -560px -400px;}}
+    &.icon-listed_count         {background-position: -640px -400px;    &.selected {background-position: -720px -400px;}}
+    &.icon-network              {background-position: 0 -480px;         &.selected {background-position: -80px -480px;}}
+    &.icon-score                {background-position: -160px -480px;    &.selected {background-position: -240px -480px;}}
+    &.icon-true_reach           {background-position: -320px -480px;    &.selected {background-position: -400px -480px;}}
+    &.icon-trends               {background-position: -480px -480px;    &.selected {background-position: -560px -480px;}}
+    &.icon-country_code         {background-position: -640px -480px;    &.selected {background-position: -720px -480px;}}
+    &.icon-likes-ids            {background-position: 0 -560px;         &.selected {background-position: -80px -560px;}}
+    &.icon-likes-names          {background-position: -160px -560px;    &.selected {background-position: -240px -560px;}}
+    &.icon-to-ids               {background-position: -320px -560px;    &.selected {background-position: -400px -560px;}}
+    &.icon-to-names             {background-position: -480px -560px;    &.selected {background-position: -560px -560px;}}
+    &.icon-age                  {background-position: -640px -560px;    &.selected {background-position: -720px -560px;}}
+    &.icon-category             {background-position: 0 -640px;         &.selected {background-position: -80px -640px;}}
+    &.icon-url                  {background-position: -160px -640px;    &.selected {background-position: -240px -640px;}}
+    &.icon-retweet-count        {background-position: -320px -640px;    &.selected {background-position: -400px -640px;}}
+    &.icon-gender, &.icon-sex   {background-position: -480px -640px;    &.selected {background-position: -560px -640px;}}
+    &.icon-commentslink         {background-position: -640px -640px;    &.selected {background-position: -720px -640px;}}
+    &.icon-authors              {background-position: 0 -720px;         &.selected {background-position: -80px -720px;}}
+    &.icon-author-name          {background-position: -160px -720px;    &.selected {background-position: -240px -720px;}}
+    &.icon-duration             {background-position: -320px -720px;    &.selected {background-position: -400px -720px;}}
+    &.icon-tags                 {background-position: -480px -720px;    &.selected {background-position: -560px -720px;}}
+    &.icon-tweet                {background-position: -640px -720px;    &.selected {background-position: -720px -720px;}}
+    &.icon-post                 {background-position: 0 -800px;         &.selected {background-position: -80px -800px;}}
+    &.icon-place                {background-position: -160px -800px;    &.selected {background-position: -240px -800px;}}
+    &.icon-retweet              {background-position: -320px -800px;    &.selected {background-position: -400px -800px;}}
+    &.icon-retweeted            {background-position: -480px -800px;    &.selected {background-position: -560px -800px;}}
+    &.icon-mentions             {background-position: -640px -800px;    &.selected {background-position: -720px -800px;}}
+    &.icon-inreply              {background-position: 0 -880px;         &.selected {background-position: -80px -880px;}}
+    &.icon-count                {background-position: -160px -880px;    &.selected {background-position: -240px -880px;}}
+    &.icon-ratio                {background-position: -320px -880px;    &.selected {background-position: -400px -880px;}}
+    &.icon-user-id              {background-position: -480px -880px;    &.selected {background-position: -560px -880px;}}
+    &.icon-placeattrs           {background-position: -640px -880px;    &.selected {background-position: -720px -880px;}}
+    &.icon-country              {background-position: 0 -960px;         &.selected {background-position: -80px -960px;}}
+    &.icon-article              {background-position: -160px -960px;    &.selected {background-position: -240px -960px;}}
+    &.icon-video-caption        {background-position: -320px -960px;    &.selected {background-position: -400px -960px;}}
+    &.icon-video                {background-position: -480px -960px;    &.selected {background-position: -560px -960px;}}
+    &.icon-elapsed              {background-position: -640px -960px;    &.selected {background-position: -720px -960px;}}
+    &.icon-buries               {background-position: 0 -1040px;        &.selected {background-position: -80px -1040px;}}
+    &.icon-diggs                {background-position: -160px -1040px;   &.selected {background-position: -240px -1040px;}}
+    &.icon-status               {background-position: -320px -1040px;   &.selected {background-position: -400px -1040px;}}
+    &.icon-videolink            {background-position: -480px -1040px;   &.selected {background-position: -560px -1040px;}}
+    &.icon-thumbnail            {background-position: -640px -1040px;   &.selected {background-position: -720px -1040px;}}
+    &.icon-profileviews         {background-position: 0 -1120px;        &.selected {background-position: -80px -1120px;}}
+    &.icon-photos               {background-position: -160px -1120px;   &.selected {background-position: -240px -1120px;}}
+    &.icon-image                {background-position: -320px -1120px;   &.selected {background-position: -400px -1120px;}}
+    &.icon-verb                 {background-position: -480px -1120px;   &.selected {background-position: -560px -1120px;}}
+    &.icon-application          {background-position: -640px -1120px;   &.selected {background-position: -720px -1120px;}}
+    &.icon-caption              {background-position: 0 -1200px;        &.selected {background-position: -80px -1200px;}}
+    &.icon-likes-count          {background-position: -160px -1200px;   &.selected {background-position: -240px -1200px;}}
+    &.icon-og-by                {background-position: -320px -1200px;   &.selected {background-position: -400px -1200px;}}
+    &.icon-opengraph            {background-position: -480px -1200px;   &.selected {background-position: -560px -1200px;}}
+    &.icon-message              {background-position: -640px -1200px;   &.selected {background-position: -720px -1200px;}}
+    &.icon-attribution-link     {background-position: 0 -1280px;        &.selected {background-position: -80px -1280px;}}
+    &.icon-attribution-text     {background-position: -160px -1280px;   &.selected {background-position: -240px -1280px;}}
+    &.icon-thread               {background-position: -320px -1280px;   &.selected {background-position: -400px -1280px;}}
+    &.icon-sentiment            {background-position: -480px -1280px;   &.selected {background-position: -560px -1280px;}}
+    &.icon-contenttype          {background-position: -640px -1280px;   &.selected {background-position: -720px -1280px;}}
+    &.icon-signature            {background-position: 0 -1360px;        &.selected {background-position: -80px -1360px;}}
+    &.icon-links                {background-position: -160px -1360px;   &.selected {background-position: -240px -1360px;}}
+    &.icon-demographic          {background-position: -320px -1360px;   &.selected {background-position: -400px -1360px;}}
+    &.icon-salience             {background-position: -480px -1360px;   &.selected {background-position: -560px -1360px;}}
+    &.icon-klout                {background-position: -640px -1360px;   &.selected {background-position: -720px -1360px;}}
+    &.icon-language_name        {background-position: 0 -1440px;        &.selected {background-position: -80px -1440px;}}
 
-	/* dbw */
-	&.icon-twitter_activity		{background-position: -80px 0;			&.selected {background-position: 0 0;}}
-	&.icon-location_by_country	{background-position: -240px 0;			&.selected {background-position: -160px 0;}}
-	&.icon-basic_demographics	{background-position: -400px 0;			&.selected {background-position: -320px 0;}}
-	&.icon-interests			{background-position: -560px 0;			&.selected {background-position: -480px 0;}}
-	&.icon-twitter_influence	{background-position: -720px 0;			&.selected {background-position: -640px 0;}}
-	&.icon-first_language		{background-position: -80px -80px;		&.selected {background-position: 0 -80px;}}
-	&.icon-number_of_accounts_followed {background-position: -240px -80px; &.selected {background-position: -160px -80px;}}
-	&.icon-professions			{background-position: -400px -80px;		&.selected {background-position: -320px -80px;}}
-	&.icon-usa					{background-position: -560px -80px;		&.selected {background-position: -480px -80px;}}
-	&.icon-city 				{background-position: -720px -80px;		&.selected {background-position: -640px -80px;}}
-	&.icon-services_and_technologies {background-position: -80px -160px; &.selected {background-position: 0 -160px;}}
-	&.icon-large_accounts_followed {background-position: -240px -160px;	&.selected {background-position: -160px -160px;}}
-	&.icon-twitter_settings		{background-position: -400px -160px;	&.selected {background-position: -320px -160px;}}
-	&.icon-older_than			{background-position: -560px -160px;	&.selected {background-position: -480px -160px;}}
-	&.icon-younger_than			{background-position: -720px -160px;	&.selected {background-position: -640px -160px;}}
-	&.icon-ms_clothes			{background-position: -80px -240px;		&.selected {background-position: 0 -240px;}}
-	&.icon-ms_shop				{background-position: -240px -240px;	&.selected {background-position: -160px -240px;}}
-	&.icon-ms_food 				{background-position: -400px -240px;	&.selected {background-position: -320px -240px;}}
-	&.icon-useragent 			{background-position: -560px -240px;	&.selected {background-position: -480px -240px;}}
-	&.icon-url_hash				{background-position: -720px -240px;	&.selected {background-position: -640px -240px;}}
-	&.icon-share_hash			{background-position: -80px -320px;		&.selected {background-position: 0 -320px;}}
-	&.icon-cname				{background-position: -240px -320px;	&.selected {background-position: -160px -320px;}}
-	&.icon-ref_url				{background-position: -400px -320px;	&.selected {background-position: -320px -320px;}}
-	&.icon-ref_domain			{background-position: -560px -320px;	&.selected {background-position: -480px -320px;}}
-	&.icon-country_code			{background-position: -80px -400px;		&.selected {background-position: 0 -400px;}}
-	&.icon-geo_region_code		{background-position: -240px -400px;	&.selected {background-position: -160px -400px;}}
-	&.icon-geo_region			{background-position: -400px -400px;	&.selected {background-position: -320px -400px;}}
-	&.icon-timezone				{background-position: -560px -400px;	&.selected {background-position: -480px -400px;}}
-	&.icon-contributions		{background-position: -720px -400px;	&.selected {background-position: -640px -400px;}}
-	&.icon-talkpage				{background-position: -80px -480px;		&.selected {background-position: 0 -480px;}}
-	&.icon-diff					{background-position: -240px -480px;	&.selected {background-position: -160px -480px;}}
-	&.icon-changetype			{background-position: -400px -480px;	&.selected {background-position: -320px -480px;}}
-	&.icon-changeadded			{background-position: -560px -480px;	&.selected {background-position: -480px -480px;}}
-	&.icon-changeremoved		{background-position: -720px -480px;	&.selected {background-position: -640px -480px;}}
-	&.icon-diff-from			{background-position: -80px -560px;		&.selected {background-position: 0 -560px;}}
-	&.icon-diff-to				{background-position: -240px -560px;	&.selected {background-position: -160px -560px;}}
-	&.icon-externallinks		{background-position: -400px -560px;	&.selected {background-position: -320px -560px;}}
-	&.icon-namespace			{background-position: -560px -560px;	&.selected {background-position: -480px -560px;}}
-	&.icon-namespacecode		{background-position: -720px -560px;	&.selected {background-position: -640px -560px;}}
-	&.icon-newlength			{background-position: -80px -640px;		&.selected {background-position: 0 -640px;}}
-	&.icon-oldlength			{background-position: -240px -640px;	&.selected {background-position: -160px -640px;}}
-	&.icon-pageid				{background-position: -400px -640px;	&.selected {background-position: -320px -640px;}}
-	&.icon-parentid				{background-position: -560px -640px;	&.selected {background-position: -480px -640px;}}
-	&.icon-relationship			{background-position: -720px -640px;	&.selected {background-position: -640px -640px;}}
-	&.icon-work-status			{background-position: -80px -720px;		&.selected {background-position: 0 -720px;}}
-	&.icon-accounts_categories	{background-position: -240px -720px; 	&.selected {background-position: -160px -720px;}}
+    /* dbw */
+    &.icon-twitter_activity     {background-position: -80px 0;          &.selected {background-position: 0 0;}}
+    &.icon-location_by_country  {background-position: -240px 0;         &.selected {background-position: -160px 0;}}
+    &.icon-basic_demographics   {background-position: -400px 0;         &.selected {background-position: -320px 0;}}
+    &.icon-interests            {background-position: -560px 0;         &.selected {background-position: -480px 0;}}
+    &.icon-twitter_influence    {background-position: -720px 0;         &.selected {background-position: -640px 0;}}
+    &.icon-first_language       {background-position: -80px -80px;      &.selected {background-position: 0 -80px;}}
+    &.icon-number_of_accounts_followed {background-position: -240px -80px; &.selected {background-position: -160px -80px;}}
+    &.icon-professions          {background-position: -400px -80px;     &.selected {background-position: -320px -80px;}}
+    &.icon-usa                  {background-position: -560px -80px;     &.selected {background-position: -480px -80px;}}
+    &.icon-city                 {background-position: -720px -80px;     &.selected {background-position: -640px -80px;}}
+    &.icon-services_and_technologies {background-position: -80px -160px; &.selected {background-position: 0 -160px;}}
+    &.icon-large_accounts_followed {background-position: -240px -160px; &.selected {background-position: -160px -160px;}}
+    &.icon-twitter_settings     {background-position: -400px -160px;    &.selected {background-position: -320px -160px;}}
+    &.icon-older_than           {background-position: -560px -160px;    &.selected {background-position: -480px -160px;}}
+    &.icon-younger_than         {background-position: -720px -160px;    &.selected {background-position: -640px -160px;}}
+    &.icon-ms_clothes           {background-position: -80px -240px;     &.selected {background-position: 0 -240px;}}
+    &.icon-ms_shop              {background-position: -240px -240px;    &.selected {background-position: -160px -240px;}}
+    &.icon-ms_food              {background-position: -400px -240px;    &.selected {background-position: -320px -240px;}}
+    &.icon-useragent            {background-position: -560px -240px;    &.selected {background-position: -480px -240px;}}
+    &.icon-url_hash             {background-position: -720px -240px;    &.selected {background-position: -640px -240px;}}
+    &.icon-share_hash           {background-position: -80px -320px;     &.selected {background-position: 0 -320px;}}
+    &.icon-cname                {background-position: -240px -320px;    &.selected {background-position: -160px -320px;}}
+    &.icon-ref_url              {background-position: -400px -320px;    &.selected {background-position: -320px -320px;}}
+    &.icon-ref_domain           {background-position: -560px -320px;    &.selected {background-position: -480px -320px;}}
+    &.icon-country_code         {background-position: -80px -400px;     &.selected {background-position: 0 -400px;}}
+    &.icon-geo_region_code      {background-position: -240px -400px;    &.selected {background-position: -160px -400px;}}
+    &.icon-geo_region           {background-position: -400px -400px;    &.selected {background-position: -320px -400px;}}
+    &.icon-timezone             {background-position: -560px -400px;    &.selected {background-position: -480px -400px;}}
+    &.icon-contributions        {background-position: -720px -400px;    &.selected {background-position: -640px -400px;}}
+    &.icon-talkpage             {background-position: -80px -480px;     &.selected {background-position: 0 -480px;}}
+    &.icon-diff                 {background-position: -240px -480px;    &.selected {background-position: -160px -480px;}}
+    &.icon-changetype           {background-position: -400px -480px;    &.selected {background-position: -320px -480px;}}
+    &.icon-changeadded          {background-position: -560px -480px;    &.selected {background-position: -480px -480px;}}
+    &.icon-changeremoved        {background-position: -720px -480px;    &.selected {background-position: -640px -480px;}}
+    &.icon-diff-from            {background-position: -80px -560px;     &.selected {background-position: 0 -560px;}}
+    &.icon-diff-to              {background-position: -240px -560px;    &.selected {background-position: -160px -560px;}}
+    &.icon-externallinks        {background-position: -400px -560px;    &.selected {background-position: -320px -560px;}}
+    &.icon-namespace            {background-position: -560px -560px;    &.selected {background-position: -480px -560px;}}
+    &.icon-namespacecode        {background-position: -720px -560px;    &.selected {background-position: -640px -560px;}}
+    &.icon-newlength            {background-position: -80px -640px;     &.selected {background-position: 0 -640px;}}
+    &.icon-oldlength            {background-position: -240px -640px;    &.selected {background-position: -160px -640px;}}
+    &.icon-pageid               {background-position: -400px -640px;    &.selected {background-position: -320px -640px;}}
+    &.icon-parentid             {background-position: -560px -640px;    &.selected {background-position: -480px -640px;}}
+    &.icon-relationship         {background-position: -720px -640px;    &.selected {background-position: -640px -640px;}}
+    &.icon-work-status          {background-position: -80px -720px;     &.selected {background-position: 0 -720px;}}
+    &.icon-accounts_categories  {background-position: -240px -720px;    &.selected {background-position: -160px -720px;}}
 
-	/* lon */
-	&.icon-normalized_url		{background-position: -110px -20px;		&.selected {background-position: -30px -20px;}}
-	&.icon-hops					{background-position: -270px -20px;		&.selected {background-position: -190px -20px;}}
-	&.icon-http_code			{background-position: -430px -20px;		&.selected {background-position: -350px -20px;}}
-	&.icon-metatags				{background-position: -590px -20px;		&.selected {background-position: -510px -20px;}}
-	&.icon-charset				{background-position: -750px -20px;		&.selected {background-position: -670px -20px;}}
-	&.icon-newskeywords			{background-position: -110px -100px;	&.selected {background-position: -30px -100px;}}
-	&.icon-standout				{background-position: -270px -100px;	&.selected {background-position: -190px -100px;}}
-	&.icon-site_name			{background-position: -430px -100px;	&.selected {background-position: -350px -100px;}}
-	&.icon-email				{background-position: -590px -100px;	&.selected {background-position: -510px -100px;}}
-	&.icon-phone_number			{background-position: -750px -100px;	&.selected {background-position: -670px -100px;}}
-	&.icon-fax_number			{background-position: -110px -180px;	&.selected {background-position: -30px -180px;}}
-	&.icon-street_address		{background-position: -270px -180px;	&.selected {background-position: -190px -180px;}}
-	&.icon-locality				{background-position: -110px -340px;	&.selected {background-position: -30px -340px;}}
-	&.icon-postal_code			{background-position: -270px -340px;	&.selected {background-position: -190px -340px;}}
-	&.icon-activity				{background-position: -430px -340px;	&.selected {background-position: -350px -340px;}}
-	&.icon-sport				{background-position: -590px -340px;	&.selected {background-position: -510px -340px;}}
-	&.icon-bar					{background-position: -750px -340px;	&.selected {background-position: -670px -340px;}}
-	&.icon-company				{background-position: -110px -420px;	&.selected {background-position: -30px -420px;}}
-	&.icon-cafe					{background-position: -270px -420px;	&.selected {background-position: -190px -420px;}}
-	&.icon-hotel				{background-position: -430px -420px;	&.selected {background-position: -350px -420px;}}
-	&.icon-restaurant			{background-position: -590px -420px;	&.selected {background-position: -510px -420px;}}
-	&.icon-cause				{background-position: -750px -420px;	&.selected {background-position: -670px -420px;}}
-	&.icon-sports_league		{background-position: -110px -500px;	&.selected {background-position: -30px -500px;}}
-	&.icon-sports_team			{background-position: -270px -500px;	&.selected {background-position: -190px -500px;}}
-	&.icon-band					{background-position: -430px -500px;	&.selected {background-position: -350px -500px;}}
-	&.icon-government			{background-position: -590px -500px;	&.selected {background-position: -510px -500px;}}
-	&.icon-non_profit			{background-position: -750px -500px;	&.selected {background-position: -670px -500px;}}
-	&.icon-school				{background-position: -110px -580px;	&.selected {background-position: -30px -580px;}}
-	&.icon-university			{background-position: -270px -580px;	&.selected {background-position: -190px -580px;}}
-	&.icon-actor				{background-position: -430px -580px;	&.selected {background-position: -350px -580px;}}
-	&.icon-athlete				{background-position: -590px -580px;	&.selected {background-position: -510px -580px;}}
-	&.icon-author				{background-position: -750px -580px;	&.selected {background-position: -670px -580px;}}
-	&.icon-director				{background-position: -110px -660px;	&.selected {background-position: -30px -660px;}}
-	&.icon-musician				{background-position: -270px -660px;	&.selected {background-position: -190px -660px;}}
-	&.icon-politician			{background-position: -430px -660px;	&.selected {background-position: -350px -660px;}}
-	&.icon-public_figure		{background-position: -590px -660px;	&.selected {background-position: -510px -660px;}}
-	&.icon-landmark				{background-position: -750px -660px;	&.selected {background-position: -670px -660px;}}
-	&.icon-state_province		{background-position: -110px -740px;	&.selected {background-position: -30px -740px;}}
-	&.icon-album				{background-position: -270px -740px;	&.selected {background-position: -190px -740px;}}
-	&.icon-book					{background-position: -430px -740px;	&.selected {background-position: -350px -740px;}}
-	&.icon-drink				{background-position: -590px -740px;	&.selected {background-position: -510px -740px;}}
-	&.icon-food					{background-position: -750px -740px;	&.selected {background-position: -670px -740px;}}
-	&.icon-game					{background-position: -110px -820px;	&.selected {background-position: -30px -820px;}}
-	&.icon-movie				{background-position: -270px -820px;	&.selected {background-position: -190px -820px;}}
-	&.icon-product				{background-position: -430px -820px;	&.selected {background-position: -350px -820px;}}
-	&.icon-song					{background-position: -590px -820px;	&.selected {background-position: -510px -820px;}}
-	&.icon-tv_show				{background-position: -750px -820px;	&.selected {background-position: -670px -820px;}}
-	&.icon-blog					{background-position: -110px -900px;	&.selected {background-position: -30px -900px;}}
-	&.icon-website				{background-position: -270px -900px;	&.selected {background-position: -190px -900px;}}
-	&.icon-fulltext				{background-position: -110px -1060px;	&.selected {background-position: -30px -1060px;}}
-	&.icon-circulation			{background-position: -270px -1060px;	&.selected {background-position: -190px -1060px;}}
-	&.icon-company_type			{background-position: -430px -1060px;	&.selected {background-position: -350px -1060px;}}
-	&.icon-founded				{background-position: -590px -1060px;	&.selected {background-position: -510px -1060px;}}
-	&.icon-media_type			{background-position: -750px -1060px;	&.selected {background-position: -670px -1060px;}}
-	&.icon-source_name			{background-position: -110px -1220px;	&.selected {background-position: -30px -1220px;}}
-	&.icon-card					{background-position: -110px -1380px;	&.selected {background-position: -30px -1380px;}}
-	&.icon-site					{background-position: -270px -1380px;	&.selected {background-position: -190px -1380px;}}
-	&.icon-site_id				{background-position: -430px -1380px;	&.selected {background-position: -350px -1380px;}}
-	&.icon-creator				{background-position: -590px -1380px;	&.selected {background-position: -510px -1380px;}}
-	&.icon-creator_id			{background-position: -750px -1380px;	&.selected {background-position: -670px -1380px;}}
-	&.icon-image_width			{background-position: -110px -1460px;	&.selected {background-position: -30px -1460px;}}
-	&.icon-image_height			{background-position: -270px -1460px;	&.selected {background-position: -190px -1460px;}}
-	&.icon-twitter				{background-position: -430px -1460px;	&.selected {background-position: -350px -1460px;}}
-	&.icon-player_width			{background-position: -110px -1620px;	&.selected {background-position: -30px -1620px;}}
-	&.icon-player_height		{background-position: -270px -1620px;	&.selected {background-position: -190px -1620px;}}
-	&.icon-player_stream		{background-position: -430px -1620px;	&.selected {background-position: -350px -1620px;}}
-	&.icon-player_stream_content_type {background-position: -590px -1620px;	&.selected {background-position: -510px -1620px;}}
-	&.icon-player				{background-position: -750px -1620px;	&.selected {background-position: -670px -1620px;}}
-	&.icon-mention_ids			{background-position: -110px -1780px;	&.selected {background-position: -30px -1780px;}}
-	&.icon-status				{background-position: -270px -1780px;	&.selected {background-position: -190px -1780px;}}
-	&.icon-user_verified		{background-position: -430px -1780px;	&.selected {background-position: -350px -1780px;}}
-	&.icon-confidence			{background-position: -110px -1940px;	&.selected {background-position: -30px -1940px;}}
-	&.icon-entities_name		{background-position: -110px -2100px;	&.selected {background-position: -30px -2100px;}}
-	&.icon-entities_type		{background-position: -270px -2100px;	&.selected {background-position: -190px -2100px;}}
-	&.icon-region 				{background-position: -110px -2260px; 	&.selected {background-position: -30px -2260px;}}
-	&.icon-keywords 			{background-position: -270px -2260px; 	&.selected {background-position: -190px -2260px;}}
+    /* lon */
+    &.icon-normalized_url       {background-position: -110px -20px;     &.selected {background-position: -30px -20px;}}
+    &.icon-hops                 {background-position: -270px -20px;     &.selected {background-position: -190px -20px;}}
+    &.icon-http_code            {background-position: -430px -20px;     &.selected {background-position: -350px -20px;}}
+    &.icon-metatags             {background-position: -590px -20px;     &.selected {background-position: -510px -20px;}}
+    &.icon-charset              {background-position: -750px -20px;     &.selected {background-position: -670px -20px;}}
+    &.icon-newskeywords         {background-position: -110px -100px;    &.selected {background-position: -30px -100px;}}
+    &.icon-standout             {background-position: -270px -100px;    &.selected {background-position: -190px -100px;}}
+    &.icon-site_name            {background-position: -430px -100px;    &.selected {background-position: -350px -100px;}}
+    &.icon-email                {background-position: -590px -100px;    &.selected {background-position: -510px -100px;}}
+    &.icon-phone_number         {background-position: -750px -100px;    &.selected {background-position: -670px -100px;}}
+    &.icon-fax_number           {background-position: -110px -180px;    &.selected {background-position: -30px -180px;}}
+    &.icon-street_address       {background-position: -270px -180px;    &.selected {background-position: -190px -180px;}}
+    &.icon-locality             {background-position: -110px -340px;    &.selected {background-position: -30px -340px;}}
+    &.icon-postal_code          {background-position: -270px -340px;    &.selected {background-position: -190px -340px;}}
+    &.icon-activity             {background-position: -430px -340px;    &.selected {background-position: -350px -340px;}}
+    &.icon-sport                {background-position: -590px -340px;    &.selected {background-position: -510px -340px;}}
+    &.icon-bar                  {background-position: -750px -340px;    &.selected {background-position: -670px -340px;}}
+    &.icon-company              {background-position: -110px -420px;    &.selected {background-position: -30px -420px;}}
+    &.icon-cafe                 {background-position: -270px -420px;    &.selected {background-position: -190px -420px;}}
+    &.icon-hotel                {background-position: -430px -420px;    &.selected {background-position: -350px -420px;}}
+    &.icon-restaurant           {background-position: -590px -420px;    &.selected {background-position: -510px -420px;}}
+    &.icon-cause                {background-position: -750px -420px;    &.selected {background-position: -670px -420px;}}
+    &.icon-sports_league        {background-position: -110px -500px;    &.selected {background-position: -30px -500px;}}
+    &.icon-sports_team          {background-position: -270px -500px;    &.selected {background-position: -190px -500px;}}
+    &.icon-band                 {background-position: -430px -500px;    &.selected {background-position: -350px -500px;}}
+    &.icon-government           {background-position: -590px -500px;    &.selected {background-position: -510px -500px;}}
+    &.icon-non_profit           {background-position: -750px -500px;    &.selected {background-position: -670px -500px;}}
+    &.icon-school               {background-position: -110px -580px;    &.selected {background-position: -30px -580px;}}
+    &.icon-university           {background-position: -270px -580px;    &.selected {background-position: -190px -580px;}}
+    &.icon-actor                {background-position: -430px -580px;    &.selected {background-position: -350px -580px;}}
+    &.icon-athlete              {background-position: -590px -580px;    &.selected {background-position: -510px -580px;}}
+    &.icon-author               {background-position: -750px -580px;    &.selected {background-position: -670px -580px;}}
+    &.icon-director             {background-position: -110px -660px;    &.selected {background-position: -30px -660px;}}
+    &.icon-musician             {background-position: -270px -660px;    &.selected {background-position: -190px -660px;}}
+    &.icon-politician           {background-position: -430px -660px;    &.selected {background-position: -350px -660px;}}
+    &.icon-public_figure        {background-position: -590px -660px;    &.selected {background-position: -510px -660px;}}
+    &.icon-landmark             {background-position: -750px -660px;    &.selected {background-position: -670px -660px;}}
+    &.icon-state_province       {background-position: -110px -740px;    &.selected {background-position: -30px -740px;}}
+    &.icon-album                {background-position: -270px -740px;    &.selected {background-position: -190px -740px;}}
+    &.icon-book                 {background-position: -430px -740px;    &.selected {background-position: -350px -740px;}}
+    &.icon-drink                {background-position: -590px -740px;    &.selected {background-position: -510px -740px;}}
+    &.icon-food                 {background-position: -750px -740px;    &.selected {background-position: -670px -740px;}}
+    &.icon-game                 {background-position: -110px -820px;    &.selected {background-position: -30px -820px;}}
+    &.icon-movie                {background-position: -270px -820px;    &.selected {background-position: -190px -820px;}}
+    &.icon-product              {background-position: -430px -820px;    &.selected {background-position: -350px -820px;}}
+    &.icon-song                 {background-position: -590px -820px;    &.selected {background-position: -510px -820px;}}
+    &.icon-tv_show              {background-position: -750px -820px;    &.selected {background-position: -670px -820px;}}
+    &.icon-blog                 {background-position: -110px -900px;    &.selected {background-position: -30px -900px;}}
+    &.icon-website              {background-position: -270px -900px;    &.selected {background-position: -190px -900px;}}
+    &.icon-fulltext             {background-position: -110px -1060px;   &.selected {background-position: -30px -1060px;}}
+    &.icon-circulation          {background-position: -270px -1060px;   &.selected {background-position: -190px -1060px;}}
+    &.icon-company_type         {background-position: -430px -1060px;   &.selected {background-position: -350px -1060px;}}
+    &.icon-founded              {background-position: -590px -1060px;   &.selected {background-position: -510px -1060px;}}
+    &.icon-media_type           {background-position: -750px -1060px;   &.selected {background-position: -670px -1060px;}}
+    &.icon-source_name          {background-position: -110px -1220px;   &.selected {background-position: -30px -1220px;}}
+    &.icon-card                 {background-position: -110px -1380px;   &.selected {background-position: -30px -1380px;}}
+    &.icon-site                 {background-position: -270px -1380px;   &.selected {background-position: -190px -1380px;}}
+    &.icon-site_id              {background-position: -430px -1380px;   &.selected {background-position: -350px -1380px;}}
+    &.icon-creator              {background-position: -590px -1380px;   &.selected {background-position: -510px -1380px;}}
+    &.icon-creator_id           {background-position: -750px -1380px;   &.selected {background-position: -670px -1380px;}}
+    &.icon-image_width          {background-position: -110px -1460px;   &.selected {background-position: -30px -1460px;}}
+    &.icon-image_height         {background-position: -270px -1460px;   &.selected {background-position: -190px -1460px;}}
+    &.icon-twitter              {background-position: -430px -1460px;   &.selected {background-position: -350px -1460px;}}
+    &.icon-player_width         {background-position: -110px -1620px;   &.selected {background-position: -30px -1620px;}}
+    &.icon-player_height        {background-position: -270px -1620px;   &.selected {background-position: -190px -1620px;}}
+    &.icon-player_stream        {background-position: -430px -1620px;   &.selected {background-position: -350px -1620px;}}
+    &.icon-player_stream_content_type {background-position: -590px -1620px; &.selected {background-position: -510px -1620px;}}
+    &.icon-player               {background-position: -750px -1620px;   &.selected {background-position: -670px -1620px;}}
+    &.icon-mention_ids          {background-position: -110px -1780px;   &.selected {background-position: -30px -1780px;}}
+    &.icon-status               {background-position: -270px -1780px;   &.selected {background-position: -190px -1780px;}}
+    &.icon-user_verified        {background-position: -430px -1780px;   &.selected {background-position: -350px -1780px;}}
+    &.icon-confidence           {background-position: -110px -1940px;   &.selected {background-position: -30px -1940px;}}
+    &.icon-entities_name        {background-position: -110px -2100px;   &.selected {background-position: -30px -2100px;}}
+    &.icon-entities_type        {background-position: -270px -2100px;   &.selected {background-position: -190px -2100px;}}
+    &.icon-region               {background-position: -110px -2260px;   &.selected {background-position: -30px -2260px;}}
+    &.icon-keywords             {background-position: -270px -2260px;   &.selected {background-position: -190px -2260px;}}
+
+    /* tumblr */
+    &.icon-tumblractivity       {background-position: 0 0;              &.selected {background-position: -80px 0;}}
+    &.icon-tumblrtype           {background-position: -160px 0;         &.selected {background-position: -240px 0;}}
+    &.icon-state                {background-position: -320px 0;         &.selected {background-position: -400px 0;}}
+    &.icon-source-blogid        {background-position: -480px 0;         &.selected {background-position: -560px 0;}}
+    &.icon-dest-blogid          {background-position: -640px 0;         &.selected {background-position: -720px 0;}}
+    &.icon-dest-postid          {background-position: 0 -80px;          &.selected {background-position: -80px -80px;}}
+    &.icon-root-blogid          {background-position: -160px -80px;     &.selected {background-position: -240px -80px;}}
+    &.icon-root-postid          {background-position: -320px -80px;     &.selected {background-position: -400px -80px;}}
+    &.icon-blogid               {background-position: -480px -80px;     &.selected {background-position: -560px -80px;}}
+    &.icon-blog_name            {background-position: -640px -80px;     &.selected {background-position: -720px -80px;}}
+    &.icon-tumblrtitle          {background-position: 0 -160px;         &.selected {background-position: -80px -160px;}}
+    &.icon-body                 {background-position: -160px -160px;    &.selected {background-position: -240px -160px;}}
+    &.icon-format               {background-position: -320px -160px;    &.selected {background-position: -400px -160px;}}
+    &.icon-post_url             {background-position: -480px -160px;    &.selected {background-position: -560px -160px;}}
+    &.icon-slug                 {background-position: -640px -160px;    &.selected {background-position: -720px -160px;}}
+    &.icon-text                 {background-position: 0 -240px;         &.selected {background-position: -80px -240px;}}
+    &.icon-source_html          {background-position: -160px -240px;    &.selected {background-position: -240px -240px;}}
+    &.icon-source_url           {background-position: -320px -240px;    &.selected {background-position: -400px -240px;}}
+    &.icon-source_title         {background-position: -480px -240px;    &.selected {background-position: -560px -240px;}}
+    /*&.icon-tags               {background-position: -640px -240px;    &.selected {background-position: -720px -240px;}}*/
+    &.icon-note_count           {background-position: 0 -320px;         &.selected {background-position: -80px -320px;}}
+    &.icon-question             {background-position: -160px -320px;    &.selected {background-position: -240px -320px;}}
+    &.icon-answer               {background-position: -320px -320px;    &.selected {background-position: -400px -320px;}}
+    &.icon-asking_name          {background-position: -480px -320px;    &.selected {background-position: -560px -320px;}}
+    &.icon-asking_url           {background-position: -640px -320px;    &.selected {background-position: -720px -320px;}}
+    &.icon-video_url            {background-position: 0 -400px;         &.selected {background-position: -80px -400px;}}
+    &.icon-duration             {background-position: -160px -400px;    &.selected {background-position: -240px -400px;}}
+    &.icon-artist               {background-position: -320px -400px;    &.selected {background-position: -400px -400px;}}
+    &.icon-track_name           {background-position: -480px -400px;    &.selected {background-position: -560px -400px;}}
+    &.icon-album                {background-position: -640px -400px;    &.selected {background-position: -720px -400px;}}
+    &.icon-plays                {background-position: 0 -480px;         &.selected {background-position: -80px -480px;}}
+    &.icon-audio_url            {background-position: -160px -480px;    &.selected {background-position: -240px -480px;}}
+    &.icon-link                 {background-position: -320px -480px;    &.selected {background-position: -400px -480px;}}
+    &.icon-description          {background-position: -480px -480px;    &.selected {background-position: -560px -480px;}}
+    &.icon-caption              {background-position: -640px -480px;    &.selected {background-position: -720px -480px;}}
+    &.icon-meta-url             {background-position: 0 -560px;         &.selected {background-position: -80px -560px;}}
+    &.icon-meta-type            {background-position: -160px -560px;    &.selected {background-position: -240px -560px;}}
+    &.icon-meta-description     {background-position: -320px -560px;    &.selected {background-position: -400px -560px;}}
+    &.icon-likes_local          {background-position: -480px -560px;    &.selected {background-position: -560px -560px;}}
+    &.icon-likes_global         {background-position: -640px -560px;    &.selected {background-position: -720px -560px;}}
+    &.icon-reblogged_global     {background-position: 0 -640px;         &.selected {background-position: -80px -640px;}}
+    &.icon-from-id              {background-position: -160px -640px;    &.selected {background-position: -240px -640px;}}
+    &.icon-from-url             {background-position: -320px -640px;    &.selected {background-position: -400px -640px;}}
+    &.icon-from-name            {background-position: -480px -640px;    &.selected {background-position: -560px -640px;}}
+    &.icon-from-title           {background-position: -640px -640px;    &.selected {background-position: -720px -640px;}}
+    &.icon-root-id              {background-position: 0 -720px;         &.selected {background-position: -80px -720px;}}
+    &.icon-root-url             {background-position: -160px -720px;    &.selected {background-position: -240px -720px;}}
+    &.icon-root-name            {background-position: -320px -720px;    &.selected {background-position: -400px -720px;}}
+    &.icon-root-title           {background-position: -480px -720px;    &.selected {background-position: -560px -720px;}}
+    &.icon-meta                 {background-position: -640px -720px;    &.selected {background-position: -720px -720px;}}
+    &.icon-reblogged            {background-position: 0 -800px;         &.selected {background-position: -80px -800px;}}
+
+    /* google plus */
+    &.icon-actor-id             {background-position: 0 0;              &.selected {background-position: -80px 0;}}
+    &.icon-actor-display_name   {background-position: -160px 0;         &.selected {background-position: -240px 0;}}
+    &.icon-actor-url            {background-position: -320px 0;         &.selected {background-position: -400px 0;}}
+    &.icon-object               {background-position: -480px 0;         &.selected {background-position: -560px 0;}}
+    &.icon-attachment           {background-position: -640px 0;         &.selected {background-position: -720px 0;}}
+    &.icon-in_reply_to-id       {background-position: 0 -80px;          &.selected {background-position: -80px -80px;}}
+    &.icon-in_reply_to-url      {background-position: -160px -80px;     &.selected {background-position: -240px -80px;}}
+    &.icon-provider_title       {background-position: -320px -80px;     &.selected {background-position: -400px -80px;}}
+
+    /* instagram */
+    &.icon-filter               {background-position: 0 0;              &.selected {background-position: -80px 0;}}
+    &.icon-low_resolution       {background-position: -160px 0;         &.selected {background-position: -240px 0;}}
+    &.icon-standard_resolution  {background-position: -320px 0;         &.selected {background-position: -400px 0;}}
+    &.icon-width                {background-position: -480px 0;         &.selected {background-position: -560px 0;}}
+    &.icon-height               {background-position: -640px 0;         &.selected {background-position: -720px 0;}}
+    &.icon-caption_from         {background-position: 0 -80px;          &.selected {background-position: -80px -80px;}}
+    &.icon-from                 {background-position: -160px -80px;     &.selected {background-position: -240px -80px;}}
+    &.icon-location-id          {background-position: -320px -80px;     &.selected {background-position: -400px -80px;}}
+    &.icon-location-name        {background-position: -480px -80px;     &.selected {background-position: -560px -80px;}}
+    &.icon-users_in_photo       {background-position: -640px -80px;     &.selected {background-position: -720px -80px;}}
+    &.icon-attribution-name     {background-position: 0 -160px;         &.selected {background-position: -80px -160px;}}
+    &.icon-attribution-website  {background-position: -160px -160px;    &.selected {background-position: -240px -160px;}}
+    &.icon-bio                  {background-position: -320px -160px;    &.selected {background-position: -400px -160px;}}
+    &.icon-media                {background-position: -480px -160px;    &.selected {background-position: -560px -160px;}}
+
+    /* yammer */
+    &.icon-message_type         {background-position: 0 0;              &.selected {background-position: -80px 0;}}
+    &.icon-direct_message       {background-position: -160px 0;         &.selected {background-position: -240px 0;}}
+    &.icon-privacy              {background-position: -320px 0;         &.selected {background-position: -400px 0;}}
+    &.icon-sender_type          {background-position: -480px 0;         &.selected {background-position: -560px 0;}}
+    &.icon-client_type          {background-position: -640px 0;         &.selected {background-position: -720px 0;}}
+    &.icon-content_excerpt      {background-position: 0 -80px;          &.selected {background-position: -80px -80px;}}
+    &.icon-rich                 {background-position: -160px -80px;     &.selected {background-position: -240px -80px;}}
+    &.icon-parsed               {background-position: -320px -80px;     &.selected {background-position: -400px -80px;}}
+    &.icon-plain                {background-position: -480px -80px;     &.selected {background-position: -560px -80px;}}
+    &.icon-thread               {background-position: -640px -80px;     &.selected {background-position: -720px -80px;}}
+    &.icon-shares               {background-position: 0 -160px;         &.selected {background-position: -80px -160px;}}
+    &.icon-updates              {background-position: -160px -160px;    &.selected {background-position: -240px -160px;}}
+    &.icon-group                {background-position: -320px -160px;    &.selected {background-position: -400px -160px;}}
+    &.icon-office365_url        {background-position: -480px -160px;    &.selected {background-position: -560px -160px;}}
+    &.icon-sender               {background-position: -640px -160px;    &.selected {background-position: -720px -160px;}}
+    &.icon-followers            {background-position: 0 -240px;         &.selected {background-position: -80px -240px;}}
+    &.icon-following            {background-position: -160px -240px;    &.selected {background-position: -240px -240px;}}
+    &.icon-job_title            {background-position: -320px -240px;    &.selected {background-position: -400px -240px;}}
+    &.icon-web_url              {background-position: -480px -240px;    &.selected {background-position: -560px -240px;}}
+
+    /* facebook pages */
+    &.icon-comment-id           {background-position: 0 0;              &.selected {background-position: -80px 0;}}
+    &.icon-from-category        {background-position: -160px 0;         &.selected {background-position: -240px 0;}}
+    &.icon-from-id              {background-position: -320px 0;         &.selected {background-position: -400px 0;}}
+    &.icon-from-name            {background-position: -480px 0;         &.selected {background-position: -560px 0;}}
+    /*&.icon-id                 {background-position: -640px 0;         &.selected {background-position: -720px 0;}}*/
+    &.icon-link                 {background-position: 0 -80px;          &.selected {background-position: -80px -80px;}}
+    &.icon-message              {background-position: -160px -80px;     &.selected {background-position: -240px -80px;}}
+    &.icon-name                 {background-position: -320px -80px;     &.selected {background-position: -400px -80px;}}
+    &.icon-object_id            {background-position: -480px -80px;     &.selected {background-position: -560px -80px;}}
+    &.icon-page_category        {background-position: -640px -80px;     &.selected {background-position: -720px -80px;}}
+    &.icon-page_id              {background-position: 0 -160px;         &.selected {background-position: -80px -160px;}}
+    &.icon-page_link            {background-position: -160px -160px;    &.selected {background-position: -240px -160px;}}
+    &.icon-page_name            {background-position: -320px -160px;    &.selected {background-position: -400px -160px;}}
+    &.icon-page_username        {background-position: -480px -160px;    &.selected {background-position: -560px -160px;}}
+    &.icon-post_id              {background-position: -640px -160px;    &.selected {background-position: -720px -160px;}}
+    &.icon-post_content         {background-position: 0 -240px;         &.selected {background-position: -80px -240px;}}
+    &.icon-post_link            {background-position: -160px -240px;    &.selected {background-position: -240px -240px;}}
+    &.icon-post_type            {background-position: -320px -240px;    &.selected {background-position: -400px -240px;}}
+    /*&.icon-type               {background-position: -480px -240px;    &.selected {background-position: -560px -240px;}}*/
+    &.icon-story                {background-position: -640px -240px;    &.selected {background-position: -720px -240px;}}
+    &.icon-picture              {background-position: 0 -320px;         &.selected {background-position: -80px -320px;}}
+    /*&.icon-source             {background-position: -160px -320px;    &.selected {background-position: -240px -320px;}}*/
+    &.icon-application-id       {background-position: -320px -320px;    &.selected {background-position: -400px -320px;}}
+    &.icon-application-name     {background-position: -480px -320px;    &.selected {background-position: -560px -320px;}}
+    &.icon-page                 {background-position: -640px -320px;    &.selected {background-position: -720px -320px;}}
 }
 
 .jcsdl-icon.input {
-	background: url($otherIconsSprite) no-repeat 0 0;
+    background: url($otherIconsSprite) no-repeat 0 0;
 
-	&.icon-geo_radius 	{background-position: 0 -400px; 		&.selected {background-position: -80px -400px;}}
-	&.icon-geo_polygon 	{background-position: 0 -480px; 		&.selected {background-position: -80px -480px;}}
-	&.icon-geo_box 		{background-position: 0 -560px; 		&.selected {background-position: -80px -560px;}}
-	&.icon-geo_text 	{background-position: 0 80px; 			&.selected {background-position: -80px 80px;}}
+    &.icon-geo_radius   {background-position: 0 -400px;         &.selected {background-position: -80px -400px;}}
+    &.icon-geo_polygon  {background-position: 0 -480px;         &.selected {background-position: -80px -480px;}}
+    &.icon-geo_box      {background-position: 0 -560px;         &.selected {background-position: -80px -560px;}}
+    &.icon-geo_text     {background-position: 0 80px;           &.selected {background-position: -80px 80px;}}
 }
 
 .jcsdl-icon.operator {
-	width: 46px; height: 46px;
-	background: url($operatorIconsSprite) no-repeat 0 0;
-	border: 1px solid $colorBlackLight; @include rounded(2px);
-	@include opacity(0.75);
+    width: 46px; height: 46px;
+    background: url($operatorIconsSprite) no-repeat 0 0;
+    border: 1px solid $colorBlackLight; @include rounded(2px);
+    @include opacity(0.75);
 
-	&.icon-contains 	{background-position: 0 0;				&.selected {background-position: 0 -184px;}}
-	&.icon-substr 		{background-position: -46px 0;			&.selected {background-position: -46px -184px;}}
-	&.icon-contains_any {background-position: -92px 0;			&.selected {background-position: -92px -184px;}}
-	&.icon-contains_near{background-position: -138px 0;			&.selected {background-position: -138px -184px;}}
-	&.icon-exists 		{background-position: 0 -46px;			&.selected {background-position: 0 -230px;}}
-	&.icon-different 	{background-position: -46px -46px;		&.selected {background-position: -46px -230px;}}
-	&.icon-equals 		{background-position: -92px -46px;		&.selected {background-position: -92px -230px;}}
-	&.icon-in 			{background-position: -138px -46px;		&.selected {background-position: -138px -230px;}}
-	&.icon-greaterThan 	{background-position: 0 -92px;			&.selected {background-position: 0 -276px;}}
-	&.icon-lowerThan 	{background-position: -46px -92px;		&.selected {background-position: -46px -276px;}}
-	&.icon-regex_partial{background-position: -92px -92px;		&.selected {background-position: -92px -276px;}}
-	&.icon-regex_exact 	{background-position: -138px -92px;		&.selected {background-position: -138px -276px;}}
-	&.icon-cs {
-		width: 38px; height: 38px;
-		background-position: -4px -142px;			&.selected {background-position: -4px -326px;}
-	}
+    &.icon-contains     {background-position: 0 0;              &.selected {background-position: 0 -184px;}}
+    &.icon-substr       {background-position: -46px 0;          &.selected {background-position: -46px -184px;}}
+    &.icon-contains_any {background-position: -92px 0;          &.selected {background-position: -92px -184px;}}
+    &.icon-contains_near{background-position: -138px 0;         &.selected {background-position: -138px -184px;}}
+    &.icon-exists       {background-position: 0 -46px;          &.selected {background-position: 0 -230px;}}
+    &.icon-different    {background-position: -46px -46px;      &.selected {background-position: -46px -230px;}}
+    &.icon-equals       {background-position: -92px -46px;      &.selected {background-position: -92px -230px;}}
+    &.icon-in           {background-position: -138px -46px;     &.selected {background-position: -138px -230px;}}
+    &.icon-greaterThan  {background-position: 0 -92px;          &.selected {background-position: 0 -276px;}}
+    &.icon-lowerThan    {background-position: -46px -92px;      &.selected {background-position: -46px -276px;}}
+    &.icon-regex_partial{background-position: -92px -92px;      &.selected {background-position: -92px -276px;}}
+    &.icon-regex_exact  {background-position: -138px -92px;     &.selected {background-position: -138px -276px;}}
+    &.icon-cs {
+        width: 38px; height: 38px;
+        background-position: -4px -142px;           &.selected {background-position: -4px -326px;}
+    }
 
-	&:hover {@include opacity(0.7);}
-	&.selected {@include opacity(1); border-color: $colorOrange;}
+    &:hover {@include opacity(0.7);}
+    &.selected {@include opacity(1); border-color: $colorOrange;}
 }
 
 /* overrides for the list view */
 .jcsdl-filter-info .jcsdl-icon.operator {
-	width: 46px; height: 46px; @include roundedCorner(2px, 0, 0, 2px);
+    width: 46px; height: 46px; @include roundedCorner(2px, 0, 0, 2px);
 
-	&.icon-cs {@include rounded(0); border-left: 0; background-position: 0 -138px;		&.selected {background-position: 0 -322px;}}
+    &.icon-cs {@include rounded(0); border-left: 0; background-position: 0 -138px;      &.selected {background-position: 0 -322px;}}
 }
 
 .jcsdl-dropdown {
-	display: block; width: 250px; margin-bottom: 50px;
-	position: absolute; top: 10px; left: 10px; z-index: 10;
-	border: 1px solid $borderColor; border-top: 0;
-	font-size: $fontSize; font-family: $fontFamily; color: $colorLight;
-	@include roundedCorner(0, 0, 3px, 3px);
-	background: white;
+    display: block; width: 250px; margin-bottom: 50px;
+    position: absolute; top: 10px; left: 10px; z-index: 10;
+    border: 1px solid $borderColor; border-top: 0;
+    font-size: $fontSize; font-family: $fontFamily; color: $colorLight;
+    @include roundedCorner(0, 0, 3px, 3px);
+    background: white;
 
-	/* building blocks */
-	a {color: $color; text-decoration: none;
-		&:hover {color: lighten($color, 5%);}
-	}
+    /* building blocks */
+    a {color: $color; text-decoration: none;
+        &:hover {color: lighten($color, 5%);}
+    }
 
-	.jcsdl-dropdown-option {
-		display: block; overflow: hidden;
-		border-top: 1px solid $borderColor;
-		cursor: pointer;
+    .jcsdl-dropdown-option {
+        display: block; overflow: hidden;
+        border-top: 1px solid $borderColor;
+        cursor: pointer;
 
-		.jcsdl-icon {
-			border: 0; margin: 0; margin-left: 5px; @include opacity(1);
-			&:hover {@include opacity(1);}
-		}
+        .jcsdl-icon {
+            border: 0; margin: 0; margin-left: 5px; @include opacity(1);
+            &:hover {@include opacity(1);}
+        }
 
-		.jcsdl-dropdown-details-trigger {
-			display: block; float: right;
-			height: 46px; width: 38px; overflow: hidden;
-			text-indent: -9999px;
-			background: url($elementsSprite) no-repeat 0 -393px;
+        .jcsdl-dropdown-details-trigger {
+            display: block; float: right;
+            height: 46px; width: 38px; overflow: hidden;
+            text-indent: -9999px;
+            background: url($elementsSprite) no-repeat 0 -393px;
 
-			&:hover {background-position: -38px -393px;}
-		}
+            &:hover {background-position: -38px -393px;}
+        }
 
-		.jcsdl-dropdown-option-desc {margin-left: 56px; margin-right: 38px; padding: 5px 0;}
+        .jcsdl-dropdown-option-desc {margin-left: 56px; margin-right: 38px; padding: 5px 0;}
 
-		.jcsdl-operator-label {
-			margin-bottom: 3px; color: $colorBlack; line-height: 1.2em; font-weight: bold;
-			a {color: $color;}
-		}
+        .jcsdl-operator-label {
+            margin-bottom: 3px; color: $colorBlack; line-height: 1.2em; font-weight: bold;
+            a {color: $color;}
+        }
 
-		.jcsdl-operator-desc {font-size: 0.9em; color: $colorLight; line-height: 1.2em;}
+        .jcsdl-operator-desc {font-size: 0.9em; color: $colorLight; line-height: 1.2em;}
 
-		&:hover {background: #f8f8f8;}
-	}
+        &:hover {background: #f8f8f8;}
+    }
 }
 
 /* JCSDL Popup */
 .jcsdl-popup {
-	display: block;
-	position: absolute; z-index: 100;
-	@include rounded(4px);
-	@include dropShadow(0, 0, 8px, 0, 0.8);
+    display: block;
+    position: absolute; z-index: 100;
+    @include rounded(4px);
+    @include dropShadow(0, 0, 8px, 0, 0.8);
 
-	.jcsdl-popup-header {
-		display: block; height: 39px; overflow: hidden; position: relative; padding: 0 10px;
-		background: url($elementsSprite) repeat-x 0 -354px;
-		border: 1px solid #1d3550; border-bottom: 0;
-		@include roundedCorner(3px, 3px, 0, 0);
+    .jcsdl-popup-header {
+        display: block; height: 39px; overflow: hidden; position: relative; padding: 0 10px;
+        background: url($elementsSprite) repeat-x 0 -354px;
+        border: 1px solid #1d3550; border-bottom: 0;
+        @include roundedCorner(3px, 3px, 0, 0);
 
-		h4 {
-			margin: 0; overflow: hidden;
-			height: 39px; line-height: 39px;
-			font-size: 1.1em; font-weight: bold; color: #fff;
-		}
+        h4 {
+            margin: 0; overflow: hidden;
+            height: 39px; line-height: 39px;
+            font-size: 1.1em; font-weight: bold; color: #fff;
+        }
 
-		.jcsdl-popup-close {
-			position: absolute; top: 0; right: 0;
-			display: block; width: 30px; height: 40px; overflow: hidden;
-			text-indent: -9999px;
-			background: url($elementsSprite) no-repeat -118px -310px;
+        .jcsdl-popup-close {
+            position: absolute; top: 0; right: 0;
+            display: block; width: 30px; height: 40px; overflow: hidden;
+            text-indent: -9999px;
+            background: url($elementsSprite) no-repeat -118px -310px;
 
-			&:hover {@include opacity(0.7);}
-			&:active {top: 1px;}
-		}
-	}
+            &:hover {@include opacity(0.7);}
+            &:active {top: 1px;}
+        }
+    }
 
-	.jcsdl-popup-content {
-		display: block; padding: 10px; overflow: auto;
-		background: #fff;
-		border: 1px solid $borderColor; border-top: 0;
-		text-align: left;
-		@include roundedCorner(0, 0, 3px, 3px);
+    .jcsdl-popup-content {
+        display: block; padding: 10px; overflow: auto;
+        background: #fff;
+        border: 1px solid $borderColor; border-top: 0;
+        text-align: left;
+        @include roundedCorner(0, 0, 3px, 3px);
 
-		p {text-align: left;}
-	}
+        p {text-align: left;}
+    }
 
-	.jcsdl-popup-loading {
-		display: block; width: 32px; height: 32px; overflow: hidden;
-		margin: 10px auto;
-		background: url($loader) no-repeat 0 0;
-	}
+    .jcsdl-popup-loading {
+        display: block; width: 32px; height: 32px; overflow: hidden;
+        margin: 10px auto;
+        background: url($loader) no-repeat 0 0;
+    }
 }
 
 .jcsdl-overlay {
-	position: fixed; top: 0; left: 0; z-index: 100;
-	width: 100%; height: 100%;
-	background: #fff; @include opacity(0.7);
+    position: fixed; top: 0; left: 0; z-index: 100;
+    width: 100%; height: 100%;
+    background: #fff; @include opacity(0.7);
 }
 
 /* popup content styling */
 .jcsdl-popup-content {
-	.group-content {clear: both;}
-	.field {
-		margin-bottom: 2em;
+    .group-content {clear: both;}
+    .field {
+        margin-bottom: 2em;
 
-		.field-label {font-weight: bold; font-size: 18px; margin-bottom: .5em;}
-	}
-	p, iframe, blockquote, pre, abbr, cite, code, q, s, small, strike, sub, sup, tt, b, u, i, center, dl, dt, dd, caption, label, legend {margin: 0; padding: 0; border: 0; outline: 0; font-size: 1em; vertical-align: baseline; font: inherit;}
-	p, dl, hr, h1, h2, h3, h4, h5, h6, ol, ul, pre, table {margin-bottom: .5em;}
+        .field-label {font-weight: bold; font-size: 18px; margin-bottom: .5em;}
+    }
+    p, iframe, blockquote, pre, abbr, cite, code, q, s, small, strike, sub, sup, tt, b, u, i, center, dl, dt, dd, caption, label, legend {margin: 0; padding: 0; border: 0; outline: 0; font-size: 1em; vertical-align: baseline; font: inherit;}
+    p, dl, hr, h1, h2, h3, h4, h5, h6, ol, ul, pre, table {margin-bottom: .5em;}
 
     .jcsdl-copy-to-clipboard {
         position: absolute;
@@ -1550,213 +1821,346 @@ code.jcsdl-code {
 
 /* IE fixes */
 .jcsdl-container.msie {
-	.jcsdl-filter-value-input-operators .operator {text-indent: 0;}
-	.jcsdl-input-text, .jcsdl-input-number {
-		input, .jcsdl-tag-input {width: 90%;}
-	}
+    .jcsdl-filter-value-input-operators .operator {text-indent: 0;}
+    .jcsdl-input-text, .jcsdl-input-number {
+        input, .jcsdl-tag-input {width: 90%;}
+    }
 }
 
 .tipsy {
-	font-size: $fontSize; font-family: $fontFamily; color: $colorLight; line-height: 1.5em;
+    font-size: $fontSize; font-family: $fontFamily; color: $colorLight; line-height: 1.5em;
 
-	.tipsy-inner {background-color: #fff; color: #000; border: 2px solid $colorOrange; @include rounded(5px); @include dropShadow(0, 0, 3px);}
-	.tipsy-arrow {
-		background: none;
-		width: 0 !important; height: 0 !important;
-		border-width: 12px; border-style: solid;
-		border-color: $colorOrange transparent transparent transparent;
-		border-bottom: 0;
-	}
-	&.tipsy-s .tipsy-arrow {top: 100%; left: 50%; bottom: auto; margin-top: -5px; margin-left: -13px;}
+    .tipsy-inner {background-color: #fff; color: #000; border: 2px solid $colorOrange; @include rounded(5px); @include dropShadow(0, 0, 3px);}
+    .tipsy-arrow {
+        background: none;
+        width: 0 !important; height: 0 !important;
+        border-width: 12px; border-style: solid;
+        border-color: $colorOrange transparent transparent transparent;
+        border-bottom: 0;
+    }
+    &.tipsy-s .tipsy-arrow {top: 100%; left: 50%; bottom: auto; margin-top: -5px; margin-left: -13px;}
 }
 
 /* retina elements sprite */
 @media only screen and (-webkit-min-device-pixel-ratio: 1.5),
-	only screen and (-o-min-device-pixel-ratio: 3/2),
-	only screen and (min--moz-device-pixel-ratio: 1.5),
-	only screen and (min-device-pixel-ratio: 1.5) {
+    only screen and (-o-min-device-pixel-ratio: 3/2),
+    only screen and (min--moz-device-pixel-ratio: 1.5),
+    only screen and (min-device-pixel-ratio: 1.5) {
 
-	.jcsdl-elements-sprite {
-		background-image: url($elementsSpriteRetina);
-		@include backgroundSize(181px, 500px);
-	}
+    .jcsdl-elements-sprite {
+        background-image: url($elementsSpriteRetina);
+        @include backgroundSize(181px, 500px);
+    }
 
-	.jcsdl-step {
-		.jcsdl-filter-target-wrap {
-			background-image: url($selectSpriteRetina);
-			@include backgroundSize(127px, 900px);
-		}
-		
-		&.selected .jcsdl-filter-target-field-wrap {
-			background-image: url($selectSpriteRetina);
-			@include backgroundSize(127px, 900px);
-		}
-		
-		&.selected .jcsdl-filter-target-field-input-wrap {
-			background-image: url($selectSpriteRetina);
-			@include backgroundSize(127px, 900px);
-		}
+    .jcsdl-step {
+        .jcsdl-filter-target-wrap {
+            background-image: url($selectSpriteRetina);
+            @include backgroundSize(127px, 900px);
+        }
+        
+        &.selected .jcsdl-filter-target-field-wrap {
+            background-image: url($selectSpriteRetina);
+            @include backgroundSize(127px, 900px);
+        }
+        
+        &.selected .jcsdl-filter-target-field-input-wrap {
+            background-image: url($selectSpriteRetina);
+            @include backgroundSize(127px, 900px);
+        }
 
-		.jcsdl-target-help {
-			background-image: url($selectSpriteRetina);
-			@include backgroundSize(127px, 900px);
-		}
-	}
+        .jcsdl-target-help {
+            background-image: url($selectSpriteRetina);
+            @include backgroundSize(127px, 900px);
+        }
+    }
 
-	.jcsdl-slider-icon {
-		background-image: url($otherIconsSpriteRetina);
-		@include backgroundSize(160px, 880px);
-	}
+    .jcsdl-slider-icon {
+        background-image: url($otherIconsSpriteRetina);
+        @include backgroundSize(160px, 880px);
+    }
 
-	.jcsdl-icon.target {
-		background-image: url($targetIconsSpriteRetina);
-		@include backgroundSize(2472px, 220px);
-	}
+    .jcsdl-icon.target {
+        background-image: url($targetIconsSpriteRetina);
+        @include backgroundSize(2860px, 220px);
+    }
 
-	.jcsdl-icon.operator {
-		background-image: url($operatorIconsSpriteRetina);
-		@include backgroundSize(184px, 368px);
-	}
+    .jcsdl-icon.operator {
+        background-image: url($operatorIconsSpriteRetina);
+        @include backgroundSize(184px, 368px);
+    }
 
-	.jcsdl-icon.input {
-		background-image: url($otherIconsSpriteRetina);
-		@include backgroundSize(160px, 880px);
-	}
+    .jcsdl-icon.input {
+        background-image: url($otherIconsSpriteRetina);
+        @include backgroundSize(160px, 880px);
+    }
 
-	.jcsdl-icon.field {
-		background-image: url($fieldIconsSpriteRetina);
-		@include backgroundSize(800px, 1520px);
+    .jcsdl-icon.field {
+        background-image: url($fieldIconsSpriteRetina);
+        @include backgroundSize(800px, 1520px);
 
-		&.icon-twitter_activity,
-		&.icon-location_by_country,
-		&.icon-basic_demographics,
-		&.icon-interests,
-		&.icon-twitter_influence,
-		&.icon-first_language,
-		&.icon-number_of_accounts_followed,
-		&.icon-professions,
-		&.icon-usa,
-		&.icon-city,
-		&.icon-services_and_technologies,
-		&.icon-large_accounts_followed,
-		&.icon-twitter_settings,
-		&.icon-older_than,
-		&.icon-younger_than,
-		&.icon-ms_clothes,
-		&.icon-ms_shop,
-		&.icon-ms_food,
-		&.icon-useragent,
-		&.icon-url_hash,
-		&.icon-share_hash,
-		&.icon-cname,
-		&.icon-ref_url,
-		&.icon-ref_domain,
-		&.icon-country_code,
-		&.icon-geo_region_code,
-		&.icon-geo_region,
-		&.icon-timezone,
-		&.icon-contributions,
-		&.icon-talkpage,
-		&.icon-diff,
-		&.icon-changetype,
-		&.icon-changeadded,
-		&.icon-changeremoved,
-		&.icon-diff-from,
-		&.icon-diff-to,
-		&.icon-externallinks,
-		&.icon-namespace,
-		&.icon-namespacecode,
-		&.icon-newlength,
-		&.icon-oldlength,
-		&.icon-pageid,
-		&.icon-parentid,
-		&.icon-relationship,
-		&.icon-work-status,
-		&.icon-accounts_categories {
-			background-image: url($fieldDbwIconsSpriteRetina);
-			@include backgroundSize(801px, 800px);
-		}
+        &.icon-twitter_activity,
+        &.icon-location_by_country,
+        &.icon-basic_demographics,
+        &.icon-interests,
+        &.icon-twitter_influence,
+        &.icon-first_language,
+        &.icon-number_of_accounts_followed,
+        &.icon-professions,
+        &.icon-usa,
+        &.icon-city,
+        &.icon-services_and_technologies,
+        &.icon-large_accounts_followed,
+        &.icon-twitter_settings,
+        &.icon-older_than,
+        &.icon-younger_than,
+        &.icon-ms_clothes,
+        &.icon-ms_shop,
+        &.icon-ms_food,
+        &.icon-useragent,
+        &.icon-url_hash,
+        &.icon-share_hash,
+        &.icon-cname,
+        &.icon-ref_url,
+        &.icon-ref_domain,
+        &.icon-country_code,
+        &.icon-geo_region_code,
+        &.icon-geo_region,
+        &.icon-timezone,
+        &.icon-contributions,
+        &.icon-talkpage,
+        &.icon-diff,
+        &.icon-changetype,
+        &.icon-changeadded,
+        &.icon-changeremoved,
+        &.icon-diff-from,
+        &.icon-diff-to,
+        &.icon-externallinks,
+        &.icon-namespace,
+        &.icon-namespacecode,
+        &.icon-newlength,
+        &.icon-oldlength,
+        &.icon-pageid,
+        &.icon-parentid,
+        &.icon-relationship,
+        &.icon-work-status,
+        &.icon-accounts_categories {
+            background-image: url($fieldDbwIconsSpriteRetina);
+            @include backgroundSize(801px, 800px);
+        }
 
-		/* additional icon set (links, opengraph, newscred - lon) */
-		&.icon-normalized_url,
-		&.icon-hops,
-		&.icon-http_code,
-		&.icon-metatags,
-		&.icon-charset,
-		&.icon-newskeywords,
-		&.icon-standout,
-		&.icon-site_name,
-		&.icon-email,
-		&.icon-phone_number,
-		&.icon-fax_number,
-		&.icon-street_address,
-		&.icon-locality,
-		&.icon-postal_code,
-		&.icon-activity,
-		&.icon-sport,
-		&.icon-bar,
-		&.icon-company,
-		&.icon-cafe,
-		&.icon-hotel,
-		&.icon-restaurant,
-		&.icon-cause,
-		&.icon-sports_league,
-		&.icon-sports_team,
-		&.icon-band,
-		&.icon-government,
-		&.icon-non_profit,
-		&.icon-school,
-		&.icon-university,
-		&.icon-actor,
-		&.icon-athlete,
-		&.icon-author,
-		&.icon-director,
-		&.icon-musician,
-		&.icon-politician,
-		&.icon-public_figure,
-		&.icon-landmark,
-		&.icon-state_province,
-		&.icon-album,
-		&.icon-book,
-		&.icon-drink,
-		&.icon-food,
-		&.icon-game,
-		&.icon-movie,
-		&.icon-product,
-		&.icon-song,
-		&.icon-tv_show,
-		&.icon-blog,
-		&.icon-website,
-		&.icon-fulltext,
-		&.icon-circulation,
-		&.icon-company_type,
-		&.icon-founded,
-		&.icon-media_type,
-		&.icon-source_name,
-		&.icon-card,
-		&.icon-site,
-		&.icon-site_id,
-		&.icon-creator,
-		&.icon-creator_id,
-		&.icon-image_width,
-		&.icon-image_height,
-		&.icon-twitter,
-		&.icon-player_width,
-		&.icon-player_height,
-		&.icon-player_stream,
-		&.icon-player_stream_content_type,
-		&.icon-player,
-		&.icon-mention_ids,
-		&.icon-status,
-		&.icon-user_verified,
-		&.icon-confidence,
-		&.icon-entities_name,
-		&.icon-entities_type,
-		&.icon-region,
-		&.icon-keywords {
-			background-image: url($fieldLonIconsSpriteRetina);
-			@include backgroundSize(855px, 2365px);
-		}
-	}
-		
+        /* additional icon set (links, opengraph, newscred - lon) */
+        &.icon-normalized_url,
+        &.icon-hops,
+        &.icon-http_code,
+        &.icon-metatags,
+        &.icon-charset,
+        &.icon-newskeywords,
+        &.icon-standout,
+        &.icon-site_name,
+        &.icon-email,
+        &.icon-phone_number,
+        &.icon-fax_number,
+        &.icon-street_address,
+        &.icon-locality,
+        &.icon-postal_code,
+        &.icon-activity,
+        &.icon-sport,
+        &.icon-bar,
+        &.icon-company,
+        &.icon-cafe,
+        &.icon-hotel,
+        &.icon-restaurant,
+        &.icon-cause,
+        &.icon-sports_league,
+        &.icon-sports_team,
+        &.icon-band,
+        &.icon-government,
+        &.icon-non_profit,
+        &.icon-school,
+        &.icon-university,
+        &.icon-actor,
+        &.icon-athlete,
+        &.icon-author,
+        &.icon-director,
+        &.icon-musician,
+        &.icon-politician,
+        &.icon-public_figure,
+        &.icon-landmark,
+        &.icon-state_province,
+        &.icon-album,
+        &.icon-book,
+        &.icon-drink,
+        &.icon-food,
+        &.icon-game,
+        &.icon-movie,
+        &.icon-product,
+        &.icon-song,
+        &.icon-tv_show,
+        &.icon-blog,
+        &.icon-website,
+        &.icon-fulltext,
+        &.icon-circulation,
+        &.icon-company_type,
+        &.icon-founded,
+        &.icon-media_type,
+        &.icon-source_name,
+        &.icon-card,
+        &.icon-site,
+        &.icon-site_id,
+        &.icon-creator,
+        &.icon-creator_id,
+        &.icon-image_width,
+        &.icon-image_height,
+        &.icon-twitter,
+        &.icon-player_width,
+        &.icon-player_height,
+        &.icon-player_stream,
+        &.icon-player_stream_content_type,
+        &.icon-player,
+        &.icon-mention_ids,
+        &.icon-status,
+        &.icon-user_verified,
+        &.icon-confidence,
+        &.icon-entities_name,
+        &.icon-entities_type,
+        &.icon-region,
+        &.icon-keywords {
+            background-image: url($fieldLonIconsSpriteRetina);
+            @include backgroundSize(855px, 2365px);
+        }
+
+        &.icon-tumblractivity,
+        &.icon-tumblrtype,
+        &.icon-state,
+        &.icon-source-blogid,
+        &.icon-dest-blogid,
+        &.icon-dest-postid,
+        &.icon-root-blogid,
+        &.icon-root-postid,
+        &.icon-blogid,
+        &.icon-blog_name,
+        &.icon-tumblrtitle,
+        &.icon-body,
+        &.icon-format,
+        &.icon-post_url,
+        &.icon-slug,
+        &.icon-text,
+        &.icon-source_html,
+        &.icon-source_url,
+        &.icon-source_title,
+        &.icon-note_count,
+        &.icon-question,
+        &.icon-answer,
+        &.icon-asking_name,
+        &.icon-asking_url,
+        &.icon-video_url,
+        &.icon-duration,
+        &.icon-artist,
+        &.icon-track_name,
+        &.icon-album,
+        &.icon-plays,
+        &.icon-audio_url,
+        &.icon-link,
+        &.icon-description,
+        &.icon-caption,
+        &.icon-meta-url,
+        &.icon-meta-type,
+        &.icon-meta-description,
+        &.icon-likes_local,
+        &.icon-likes_global,
+        &.icon-reblogged_global,
+        &.icon-from-id,
+        &.icon-from-url,
+        &.icon-from-name,
+        &.icon-from-title,
+        &.icon-root-id,
+        &.icon-root-url,
+        &.icon-root-name,
+        &.icon-root-title,
+        &.icon-meta,
+        &.icon-reblogged {
+            background-image: url($fieldTumblrIconsSpriteRetina);
+            @include backgroundSize(800px, 880px);
+        }
+
+        &.icon-actor-id,
+        &.icon-actor-display_name,
+        &.icon-actor-url,
+        &.icon-object,
+        &.icon-attachment,
+        &.icon-in_reply_to-id,
+        &.icon-in_reply_to-url,
+        &.icon-provider_title {
+            background-image: url($fieldGooglePlusIconsSpriteRetina);
+            @include backgroundSize(800px, 160px);
+        }
+
+        &.icon-filter,
+        &.icon-low_resolution,
+        &.icon-standard_resolution,
+        &.icon-width,
+        &.icon-height,
+        &.icon-caption_from,
+        &.icon-from,
+        &.icon-location-id,
+        &.icon-location-name,
+        &.icon-users_in_photo,
+        &.icon-attribution-name,
+        &.icon-attribution-website,
+        &.icon-bio,
+        &.icon-media {
+            background-image: url($fieldInstagramIconsSpriteRetina);
+            @include backgroundSize(800px, 240px);
+        }
+
+        &.icon-message_type,
+        &.icon-direct_message,
+        &.icon-privacy,
+        &.icon-sender_type,
+        &.icon-client_type,
+        &.icon-content_excerpt,
+        &.icon-rich,
+        &.icon-plain,
+        &.icon-parsed,
+        &.icon-thread,
+        &.icon-shares,
+        &.icon-updates,
+        &.icon-group,
+        &.icon-office365_url,
+        &.icon-sender,
+        &.icon-followers,
+        &.icon-following,
+        &.icon-job_title,
+        &.icon-web_url {
+            background-image: url($fieldYammerIconsSpriteRetina);
+            @include backgroundSize(800px, 320px);
+        }
+
+        &.icon-comment-id,
+        &.icon-from-category,
+        &.icon-from-id,
+        &.icon-from-name,
+        &.icon-link,
+        &.icon-message,
+        &.icon-name,
+        &.icon-object_id,
+        &.icon-page_category,
+        &.icon-page_id,
+        &.icon-page_link,
+        &.icon-page_name,
+        &.icon-page_username,
+        &.icon-post_id,
+        &.icon-post_content,
+        &.icon-post_link,
+        &.icon-post_type,
+        &.icon-story,
+        &.icon-picture,
+        &.icon-application-id,
+        &.icon-application-name,
+        &.icon-page {
+            background-image: url($fieldFBPagesIconsSpriteRetina);
+            @include backgroundSize(800px, 400px);
+        }
+    }
+        
 }
