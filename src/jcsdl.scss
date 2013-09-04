@@ -17,8 +17,8 @@ $elementsSpriteRetina : 'img/elements@2x.png?5';
 $selectSprite : 'img/select.png?14';
 $selectSpriteRetina : 'img/select@2x.png';
 $stepBackground : 'img/step_background.png?5';
-$targetIconsSprite : 'img/icons-sprite-targets.png?15';
-$targetIconsSpriteRetina : 'img/icons-sprite-targets@2x.png?3';
+$targetIconsSprite : 'img/icons-sprite-targets.png?16';
+$targetIconsSpriteRetina : 'img/icons-sprite-targets@2x.png?4';
 $fieldIconsSprite : 'img/icons-sprite-fields.png?12';
 $fieldIconsSpriteRetina : 'img/icons-sprite-fields@2x.png?1';
 $fieldDbwIconsSprite : 'img/icons-sprite-fields-dbw.png?1';
@@ -29,12 +29,12 @@ $fieldTumblrIconsSprite : 'img/icons-sprite-fields-tumblr.png?2';
 $fieldTumblrIconsSpriteRetina : 'img/icons-sprite-fields-tumblr@2x.png?2';
 $fieldGooglePlusIconsSprite : 'img/icons-sprite-fields-googleplus.png?1';
 $fieldGooglePlusIconsSpriteRetina : 'img/icons-sprite-fields-googleplus@2x.png?1';
-$fieldInstagramIconsSprite : 'img/icons-sprite-fields-instagram.png?1';
-$fieldInstagramIconsSpriteRetina : 'img/icons-sprite-fields-instagram@2x.png?1';
-$fieldYammerIconsSprite : 'img/icons-sprite-fields-yammer.png?1';
-$fieldYammerIconsSpriteRetina : 'img/icons-sprite-fields-yammer@2x.png?1';
-$fieldFBPagesIconsSprite : 'img/icons-sprite-fields-fbpages.png?1';
-$fieldFBPagesIconsSpriteRetina : 'img/icons-sprite-fields-fbpages@2x.png?1';
+$fieldInstagramIconsSprite : 'img/icons-sprite-fields-instagram.png?2';
+$fieldInstagramIconsSpriteRetina : 'img/icons-sprite-fields-instagram@2x.png?2';
+$fieldYammerIconsSprite : 'img/icons-sprite-fields-yammer.png?2';
+$fieldYammerIconsSpriteRetina : 'img/icons-sprite-fields-yammer@2x.png?2';
+$fieldFBPagesIconsSprite : 'img/icons-sprite-fields-fbpages.png?3';
+$fieldFBPagesIconsSpriteRetina : 'img/icons-sprite-fields-fbpages@2x.png?3';
 $operatorIconsSprite : 'img/icons-sprite-operators.png?5';
 $operatorIconsSpriteRetina : 'img/icons-sprite-operators@2x.png';
 $otherIconsSprite : 'img/icons-sprite-other.png?3';
@@ -991,6 +991,7 @@ a.jcsdl-filters-logic-option {
     &.target-googleplus {background-position: -2530px 0;        &.selected {background-position: -2530px -110px;}}
     &.target-instagram  {background-position: -2640px 0;        &.selected {background-position: -2640px -110px;}}
     &.target-yammer     {background-position: -2750px 0;        &.selected {background-position: -2750px -110px;}}
+    &.target-facebook_page {background-position: -2860px 0;     &.selected {background-position: -2860px -110px;}}
 }
 
 /* field icons sets */
@@ -1881,7 +1882,7 @@ code.jcsdl-code {
 
     .jcsdl-icon.target {
         background-image: url($targetIconsSpriteRetina);
-        @include backgroundSize(2860px, 220px);
+        @include backgroundSize(2970px, 220px);
     }
 
     .jcsdl-icon.operator {

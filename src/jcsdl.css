@@ -1302,7 +1302,7 @@ a.jcsdl-filters-logic-option {
   width: 110px;
   height: 110px;
   margin-right: 35px;
-  background: url("img/icons-sprite-targets.png?15") no-repeat 0 0;
+  background: url("img/icons-sprite-targets.png?16") no-repeat 0 0;
   /*&.target-unknown     {background-position: -2310px 0;        &.selected {background-position: -2310px -110px;}}*/ }
   .jcsdl-icon.target.target-interaction {
     background-position: 0 0; }
@@ -1404,6 +1404,10 @@ a.jcsdl-filters-logic-option {
     background-position: -2750px 0; }
     .jcsdl-icon.target.target-yammer.selected {
       background-position: -2750px -110px; }
+  .jcsdl-icon.target.target-facebook_page {
+    background-position: -2860px 0; }
+    .jcsdl-icon.target.target-facebook_page.selected {
+      background-position: -2860px -110px; }
 
 /* field icons sets */
 .jcsdl-icon.field {
@@ -1424,11 +1428,11 @@ a.jcsdl-filters-logic-option {
   .jcsdl-icon.field.icon-actor-id, .jcsdl-icon.field.icon-actor-display_name, .jcsdl-icon.field.icon-actor-url, .jcsdl-icon.field.icon-object, .jcsdl-icon.field.icon-attachment, .jcsdl-icon.field.icon-in_reply_to-id, .jcsdl-icon.field.icon-in_reply_to-url, .jcsdl-icon.field.icon-provider_title {
     background-image: url("img/icons-sprite-fields-googleplus.png?1"); }
   .jcsdl-icon.field.icon-filter, .jcsdl-icon.field.icon-low_resolution, .jcsdl-icon.field.icon-standard_resolution, .jcsdl-icon.field.icon-width, .jcsdl-icon.field.icon-height, .jcsdl-icon.field.icon-caption_from, .jcsdl-icon.field.icon-from, .jcsdl-icon.field.icon-location-id, .jcsdl-icon.field.icon-location-name, .jcsdl-icon.field.icon-users_in_photo, .jcsdl-icon.field.icon-attribution-name, .jcsdl-icon.field.icon-attribution-website, .jcsdl-icon.field.icon-bio, .jcsdl-icon.field.icon-media {
-    background-image: url("img/icons-sprite-fields-instagram.png?1"); }
+    background-image: url("img/icons-sprite-fields-instagram.png?2"); }
   .jcsdl-icon.field.icon-message_type, .jcsdl-icon.field.icon-direct_message, .jcsdl-icon.field.icon-privacy, .jcsdl-icon.field.icon-sender_type, .jcsdl-icon.field.icon-client_type, .jcsdl-icon.field.icon-content_excerpt, .jcsdl-icon.field.icon-rich, .jcsdl-icon.field.icon-plain, .jcsdl-icon.field.icon-parsed, .jcsdl-icon.field.icon-thread, .jcsdl-icon.field.icon-shares, .jcsdl-icon.field.icon-updates, .jcsdl-icon.field.icon-group, .jcsdl-icon.field.icon-office365_url, .jcsdl-icon.field.icon-sender, .jcsdl-icon.field.icon-followers, .jcsdl-icon.field.icon-following, .jcsdl-icon.field.icon-job_title, .jcsdl-icon.field.icon-web_url {
-    background-image: url("img/icons-sprite-fields-yammer.png?1"); }
+    background-image: url("img/icons-sprite-fields-yammer.png?2"); }
   .jcsdl-icon.field.icon-comment-id, .jcsdl-icon.field.icon-from-category, .jcsdl-icon.field.icon-from-id, .jcsdl-icon.field.icon-from-name, .jcsdl-icon.field.icon-link, .jcsdl-icon.field.icon-message, .jcsdl-icon.field.icon-name, .jcsdl-icon.field.icon-object_id, .jcsdl-icon.field.icon-page_category, .jcsdl-icon.field.icon-page_id, .jcsdl-icon.field.icon-page_link, .jcsdl-icon.field.icon-page_name, .jcsdl-icon.field.icon-page_username, .jcsdl-icon.field.icon-post_id, .jcsdl-icon.field.icon-post_content, .jcsdl-icon.field.icon-post_link, .jcsdl-icon.field.icon-post_type, .jcsdl-icon.field.icon-story, .jcsdl-icon.field.icon-picture, .jcsdl-icon.field.icon-application-id, .jcsdl-icon.field.icon-application-name, .jcsdl-icon.field.icon-page {
-    background-image: url("img/icons-sprite-fields-fbpages.png?1"); }
+    background-image: url("img/icons-sprite-fields-fbpages.png?3"); }
 
 .jcsdl-icon.field {
   /* dbw */
@@ -3246,12 +3250,12 @@ code.jcsdl-code {
     background-size: 160px 880px; }
 
   .jcsdl-icon.target {
-    background-image: url("img/icons-sprite-targets@2x.png?3");
-    -moz-background-size: 2860px 220px;
-    -ie-background-size: 2860px 220px;
-    -o-background-size: 2860px 220px;
-    -webkit-background-size: 2860px 220px;
-    background-size: 2860px 220px; }
+    background-image: url("img/icons-sprite-targets@2x.png?4");
+    -moz-background-size: 2970px 220px;
+    -ie-background-size: 2970px 220px;
+    -o-background-size: 2970px 220px;
+    -webkit-background-size: 2970px 220px;
+    background-size: 2970px 220px; }
 
   .jcsdl-icon.operator {
     background-image: url("img/icons-sprite-operators@2x.png");
@@ -3306,21 +3310,21 @@ code.jcsdl-code {
       -webkit-background-size: 800px 160px;
       background-size: 800px 160px; }
     .jcsdl-icon.field.icon-filter, .jcsdl-icon.field.icon-low_resolution, .jcsdl-icon.field.icon-standard_resolution, .jcsdl-icon.field.icon-width, .jcsdl-icon.field.icon-height, .jcsdl-icon.field.icon-caption_from, .jcsdl-icon.field.icon-from, .jcsdl-icon.field.icon-location-id, .jcsdl-icon.field.icon-location-name, .jcsdl-icon.field.icon-users_in_photo, .jcsdl-icon.field.icon-attribution-name, .jcsdl-icon.field.icon-attribution-website, .jcsdl-icon.field.icon-bio, .jcsdl-icon.field.icon-media {
-      background-image: url("img/icons-sprite-fields-instagram@2x.png?1");
+      background-image: url("img/icons-sprite-fields-instagram@2x.png?2");
       -moz-background-size: 800px 240px;
       -ie-background-size: 800px 240px;
       -o-background-size: 800px 240px;
       -webkit-background-size: 800px 240px;
       background-size: 800px 240px; }
     .jcsdl-icon.field.icon-message_type, .jcsdl-icon.field.icon-direct_message, .jcsdl-icon.field.icon-privacy, .jcsdl-icon.field.icon-sender_type, .jcsdl-icon.field.icon-client_type, .jcsdl-icon.field.icon-content_excerpt, .jcsdl-icon.field.icon-rich, .jcsdl-icon.field.icon-plain, .jcsdl-icon.field.icon-parsed, .jcsdl-icon.field.icon-thread, .jcsdl-icon.field.icon-shares, .jcsdl-icon.field.icon-updates, .jcsdl-icon.field.icon-group, .jcsdl-icon.field.icon-office365_url, .jcsdl-icon.field.icon-sender, .jcsdl-icon.field.icon-followers, .jcsdl-icon.field.icon-following, .jcsdl-icon.field.icon-job_title, .jcsdl-icon.field.icon-web_url {
-      background-image: url("img/icons-sprite-fields-yammer@2x.png?1");
+      background-image: url("img/icons-sprite-fields-yammer@2x.png?2");
       -moz-background-size: 800px 320px;
       -ie-background-size: 800px 320px;
       -o-background-size: 800px 320px;
       -webkit-background-size: 800px 320px;
       background-size: 800px 320px; }
     .jcsdl-icon.field.icon-comment-id, .jcsdl-icon.field.icon-from-category, .jcsdl-icon.field.icon-from-id, .jcsdl-icon.field.icon-from-name, .jcsdl-icon.field.icon-link, .jcsdl-icon.field.icon-message, .jcsdl-icon.field.icon-name, .jcsdl-icon.field.icon-object_id, .jcsdl-icon.field.icon-page_category, .jcsdl-icon.field.icon-page_id, .jcsdl-icon.field.icon-page_link, .jcsdl-icon.field.icon-page_name, .jcsdl-icon.field.icon-page_username, .jcsdl-icon.field.icon-post_id, .jcsdl-icon.field.icon-post_content, .jcsdl-icon.field.icon-post_link, .jcsdl-icon.field.icon-post_type, .jcsdl-icon.field.icon-story, .jcsdl-icon.field.icon-picture, .jcsdl-icon.field.icon-application-id, .jcsdl-icon.field.icon-application-name, .jcsdl-icon.field.icon-page {
-      background-image: url("img/icons-sprite-fields-fbpages@2x.png?1");
+      background-image: url("img/icons-sprite-fields-fbpages@2x.png?3");
       -moz-background-size: 800px 400px;
       -ie-background-size: 800px 400px;
       -o-background-size: 800px 400px;
