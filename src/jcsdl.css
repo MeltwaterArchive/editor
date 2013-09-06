@@ -4,6 +4,8 @@
  * JCSDL EDITOR
  */
 /* jcsdl-container reset */
+.jcsdl-container * {
+  box-sizing: content-box; }
 .jcsdl-container ul, .jcsdl-container li {
   margin: 0;
   padding: 0; }

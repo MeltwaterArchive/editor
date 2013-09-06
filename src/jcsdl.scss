@@ -113,6 +113,10 @@ $loader : 'img/loader.gif';
  */
 /* jcsdl-container reset */
 .jcsdl-container {
+    * {
+        box-sizing: content-box;
+    }
+    
     ul, li {margin: 0; padding: 0;}
 }
 
