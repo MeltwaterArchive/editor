@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Visual Query Builder | DataSift</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="minified/jcsdl.min.css" />
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+    <script type="text/javascript" src="minified/jcsdl.definition.js"></script>
+    <script type="text/javascript" src="minified/jcsdl.min.js"></script>
+
+    <script type="text/javascript">
+        $(function() {
+            var vqb = new JCSDLGui('#vqb');
+
+            $('#load').click(function() {
+                vqb.loadJCSDL($('#source').val());
+                return false;
+            });
+        });
+    </script>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="row">
+            <textarea id="source" class="form-control" rows="10" style="margin: 20px 0;">// JCSDL_MASTER c46c6f5e9bf8e27467238a0d7f47d876 AND
+// JCSDL_VERSION 2.1
+// JCSDL_START 1d4292a06f3a0fd35a8bbccb32f34c37 augmentation.demographic.location-city,contains_any,40-11 1
+demographic.location.city contains_any "Los Angeles"
+// JCSDL_END
+AND
+// JCSDL_START e71764977f28a41ea3cc71a5834586e4 augmentation.salience.content.entities-type,contains_any,45-11 2
+salience.content.entities.type contains_any "Los Angeles"
+// JCSDL_END
+AND
+// JCSDL_START 4b4514579f46bd3a0f02d9ceef4e8e7a interaction.content,contains_any,34-38 3
+interaction.content contains_any "DWTS,dancingabc,dancing with the stars"
+// JCSDL_END
+// JCSDL_MASTER_END</textarea>
+            <button type="button" class="btn btn-primary" id="load">Load Into Query Builder</button>
+        </div>
+
+        <div class="row">
+            <div id="vqb"></div>
+        </div>
+    </div>
+
+</body>
+</html>
