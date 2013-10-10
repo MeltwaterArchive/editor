@@ -539,7 +539,7 @@ JCSDL.Loader.addComponent(function($, undefined) {
 				.addClass('target-' + name);
 
 			// maybe this target is hidden?
-			if ($.inArray(name, this.config.hideTargets) >= 0) {
+			if (!this.isTargetVisible(name)) {
 				// mark that it's suppose to be hidden
 				$option.addClass('jcsdl-option-hidden');
 
@@ -574,7 +574,7 @@ JCSDL.Loader.addComponent(function($, undefined) {
 			// maybe all fields here are hidden? check already here, so we don't need to for every field separately
 			$.each(path, function(i, target) {
 				cPath = cPath + (i > 0 ? '.' : '') + target;
-				if ($.inArray(cPath, self.config.hideTargets) >= 0) {
+				if (!self.isTargetVisible(cPath)) {
 					hidden = true;
 					return true; // break and don't search anymore
 				}
@@ -611,7 +611,7 @@ JCSDL.Loader.addComponent(function($, undefined) {
 			// check if this field isn't hidden
 			if (!hidden) {
 				var path = parentPath + '.' + name;
-				if ($.inArray(path, self.config.hideTargets) >= 0) {
+                if (!this.isTargetVisible(path)) {
 					hidden = true;
 				} else {
 					// sometimes the field target path is joined with a '-' - so check for these cases as well (e.g. digg.item)
@@ -619,7 +619,7 @@ JCSDL.Loader.addComponent(function($, undefined) {
 					var sectionPath = '';
 					$.each(path, function(i, section) {
 						sectionPath += (i > 0 ? '.' : '') + section;
-						if ($.inArray(sectionPath, self.config.hideTargets) >= 0) {
+                        if (!self.isTargetVisible(sectionPath)) {
 							hidden = true;
 							return true; // break already
 						}
@@ -1219,7 +1219,56 @@ JCSDL.Loader.addComponent(function($, undefined) {
 		 */
 		getCurrentPath : function() {
 			return this.target + (this.path.length > 0 ? '.' : '') + this.path.join('.').replace(/-/g, '.');
-		}
+		},
+
+        /**
+         * Checks whether the given target is enabled (based on 'hideTargets' and 'showTargets' option).
+         *
+         * If there are any entries in 'showTargets' then a target to be visible needs to be in there.
+         * Otherwise if the target is in 'hideTargets' then it will be hidden.
+         * Otherwise it will be displayed.
+         * 
+         * @param  {String}  name Target name (can be a part of the name).
+         * @return {Boolean}
+         */
+        isTargetVisible : function(name) {
+            // for some reason sometimes can be undefined
+            if (!name) {
+                return false;
+            }
+
+            var showTargets = this.config.showTargets;
+
+            if (showTargets.length) {
+                // check for the specific target
+                if ($.inArray(name, showTargets) >= 0) {
+                    return true;
+                }
+
+                // specific target not found, but let's see if any of the parents of this target is marked as visible
+                var namePath = name.split('.');
+                while(namePath.length) {
+                    if ($.inArray(namePath.join('.'), showTargets) >= 0) {
+                        return true;
+                    }
+
+                    namePath.pop();
+                }
+
+                // if still no luck then search the other way around
+                // check if any children of this target are marked as visible
+                var nameAsParent = name + '.';
+                for (var i = 0; i < showTargets.length; i++) {
+                    if (showTargets[i].indexOf(nameAsParent) === 0) {
+                        return true;
+                    }
+                }
+
+                return false;
+            }
+
+            return $.inArray(name, this.config.hideTargets) === -1;
+        }
 
 	};
 

@@ -31,6 +31,7 @@ JCSDL.Loader.addComponent(function($, undefined) {
 			mapsMarker : null,
             zeroClipboard : null,
 			hideTargets : [],
+            showTargets : [],
 			definition : {},
 
 			// event hooks
