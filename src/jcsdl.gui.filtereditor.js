@@ -1,3 +1,4 @@
+/*global JCSDL, jcsdlMapsCurrentCallback, jcsdlMapsCurrentCallbackArgs, jcsdlMapsCurrentGui*/
 JCSDL.Loader.addComponent(function($, undefined) {
 
 	/**
@@ -109,7 +110,9 @@ JCSDL.Loader.addComponent(function($, undefined) {
 			this.filter = filter;
 
 			// if no filter or invalid filter then break
-			if (filter === undefined || !filter || filter.target === undefined) return false;
+			if (filter === undefined || !filter || filter.target === undefined) {
+                return false;
+            }
 
 			var fieldInfo = this.parser.getFieldInfo(filter.target, filter.fieldPath);
 
@@ -127,7 +130,7 @@ JCSDL.Loader.addComponent(function($, undefined) {
 			}
 
 			// select operator
-			if (fieldInfo.input == 'text') {
+			if (fieldInfo.input === 'text') {
 				$('.jcsdl-dropdown .jcsdl-dropdown-option.operator-' + filter.operator).click();
 			} else {
 				this.$view.find('.jcsdl-filter-value-input-operators .operator-' + filter.operator).click();
@@ -154,8 +157,8 @@ JCSDL.Loader.addComponent(function($, undefined) {
 		 * @param {Boolean} slide[optional] Should the displaying of the step be a slide down animate (true) or a fade in (false). Default: true.
 		 */
 		addFilterStep : function(stepName, $view, slide) {
+            slide = (slide === undefined) ? true : slide;
 			var self = this,
-				slide = (slide === undefined) ? true : slide,
 				$stepView = this.getTemplate('step'),
 				stepNumber = this.steps.length;
 
@@ -169,7 +172,7 @@ JCSDL.Loader.addComponent(function($, undefined) {
 				.appendTo(this.$steps);
 
 			// if target or field select then initiate the carousel on it
-			if (stepName == 'target') {
+			if (stepName === 'target') {
 				$stepView.jcsdlCarousel({
 					select : function() {
 						var $item = $(this);
@@ -186,7 +189,7 @@ JCSDL.Loader.addComponent(function($, undefined) {
 					}
 				});
 			}
-			if (stepName == 'field') {
+			if (stepName === 'field') {
 				$stepView.jcsdlCarousel({
 					select : function() {
 						var $item = $(this);
@@ -210,7 +213,7 @@ JCSDL.Loader.addComponent(function($, undefined) {
 					}
 				});
 			}
-			if (stepName == 'input') {
+			if (stepName === 'input') {
 				$stepView.jcsdlCarousel({
 					select : function() {
 						var $item = $(this);
@@ -231,7 +234,7 @@ JCSDL.Loader.addComponent(function($, undefined) {
 					}
 				});
 			}
-			if (stepName == 'value') {
+			if (stepName === 'value') {
 				// show the submit button
 				this.$view.find('.jcsdl-filter-save').fadeIn(this.config.animate);
 				this.$view.find('.jcsdl-footer span').show();
@@ -241,7 +244,7 @@ JCSDL.Loader.addComponent(function($, undefined) {
 			if (slide) {
 				$stepView.hide().slideDown(this.config.animate);
 			} else {
-				if (stepName == 'field') {
+				if (stepName === 'field') {
 					$stepView.find('.jcsdl-filter-target-field').hide().fadeIn(this.config.animate);
 				} else {
 					$stepView.hide().fadeIn(this.config.animate);
@@ -266,9 +269,10 @@ JCSDL.Loader.addComponent(function($, undefined) {
 		 */
 		removeFilterStepsAfterPosition : function(position) {
 			// mark the step that stays that no longer any fields are selected
-			var $theStep = this.$steps.find('.jcsdl-step').eq(position)
-					.removeClass('field-selected'),
-				steps = this.steps.splice(position + 1, this.steps.length - position),
+            this.$steps.find('.jcsdl-step').eq(position)
+                    .removeClass('field-selected');
+
+			var steps = this.steps.splice(position + 1, this.steps.length - position),
 				firstName = '';
 
 			// most definetely hide the submit button
@@ -278,7 +282,7 @@ JCSDL.Loader.addComponent(function($, undefined) {
 			$.each(steps, function(i, step) {
 				var $step = $(step);
 
-				if (i == 0) {
+				if (!i) {
 					firstName = $step.data('name');
 				}
 				$step.remove();
@@ -293,7 +297,9 @@ JCSDL.Loader.addComponent(function($, undefined) {
 		 * @param  {String} targetName Name of the selected target.
 		 */
 		didSelectTarget : function(targetName) {
-			if (this.definition.targets[targetName] === undefined) return false;
+			if (this.definition.targets[targetName] === undefined) {
+                return false;
+            }
 
 			this.target = targetName;
 			this.path = [];
@@ -303,7 +309,7 @@ JCSDL.Loader.addComponent(function($, undefined) {
 
 			// now need to select a field, so build the selection view
 			var $fieldView = this.createFieldSelectionView(this.definition.targets[targetName].fields);
-			this.addFilterStep('field', $fieldView, (firstRemoved != 'field'));
+			this.addFilterStep('field', $fieldView, (firstRemoved !== 'field'));
 
 			this.trigger('targetSelect', [targetName]);
 		},
@@ -317,14 +323,17 @@ JCSDL.Loader.addComponent(function($, undefined) {
 		 */
 		didSelectField : function(fieldName, $fieldView, $stepView) {
 			// remove any steps that are farther then this one, just in case
-			var fieldPosition = $fieldView.data('position');
+			var fieldPosition = $fieldView.data('position'),
+                slide;
 			this.path.splice(fieldPosition, this.path.length - fieldPosition);
 
 			// also remove the target help, just in case it was added before
 			$stepView.removeClass('selected-final').find('.jcsdl-target-help').remove();
 
 			var field = this.getFieldInfoAtCurrentPath(fieldName);
-			if (field == false) return;
+			if (field === false) {
+                return;
+            }
 
 			// from DOM as well
 			var firstRemoved = this.removeFilterStepsAfterPosition($fieldView.closest('.jcsdl-step').data('number'));
@@ -334,8 +343,8 @@ JCSDL.Loader.addComponent(function($, undefined) {
 
 			// if this fields has some more subfields then add them now
 			if (field.fields !== undefined) {
-				var $fieldView = this.createFieldSelectionView(field.fields),
-					slide = (firstRemoved != 'field');
+                $fieldView = this.createFieldSelectionView(field.fields);
+				slide = (firstRemoved !== 'field');
 
 				this.addFilterStep('field', $fieldView, slide);
 				return;
@@ -343,8 +352,8 @@ JCSDL.Loader.addComponent(function($, undefined) {
 
 			// if this fields has multiple possible input fields then add a step to choose one
 			if (typeof(field.input) !== 'string') {
-				var $inputView = this.createInputSelectionView(field.input),
-					slide = (firstRemoved != 'input');
+                slide = (firstRemoved !== 'input');
+				var $inputView = this.createInputSelectionView(field.input);
 
 				this.addFilterStep('input', $inputView, slide);
 				return;
@@ -352,7 +361,7 @@ JCSDL.Loader.addComponent(function($, undefined) {
 
 			// this is a "final" field, so now the user needs to input desired value(s)
 			var $valueView = this.createValueInputView(field);
-			this.addFilterStep('value', $valueView, (firstRemoved != 'value'));
+			this.addFilterStep('value', $valueView, (firstRemoved !== 'value'));
 
 			// also, if this is final selection then show "Learn more" option
 			this.addTargetHelpToStep($stepView);
@@ -369,15 +378,14 @@ JCSDL.Loader.addComponent(function($, undefined) {
 		 */
 		didSelectInput : function(inputName, $inputView, $stepView) {
 			// remove any steps that are farther then this one, just in case
-			var inputPosition = $inputView.data('position'),
-				firstRemoved = this.removeFilterStepsAfterPosition($inputView.closest('.jcsdl-step').data('number'));
+			var firstRemoved = this.removeFilterStepsAfterPosition($inputView.closest('.jcsdl-step').data('number'));
 
 			// also remove the target help, just in case it was added before
 			$stepView.removeClass('selected-final').find('.jcsdl-target-help').remove();
 
 			// now the user needs to input desired value(s)
 			var $valueView = this.createValueInputView(this.getFieldInfoAtCurrentPath(), inputName);
-			this.addFilterStep('value', $valueView, (firstRemoved != 'value'));
+			this.addFilterStep('value', $valueView, (firstRemoved !== 'value'));
 
 			// also, if this is final selection then show "Learn more" option
 			this.addTargetHelpToStep($stepView);
@@ -404,7 +412,7 @@ JCSDL.Loader.addComponent(function($, undefined) {
 
 				var info = self.getFieldInfoAtCurrentPath(),
 					target = self.target,
-					targetInfo = self.parser.getTargetInfo(target);
+					targetInfo = self.parser.getTargetInfo(target),
 					path = self.path.join('-'),
 					title = targetInfo.name,
 					cPath = [];
@@ -416,7 +424,7 @@ JCSDL.Loader.addComponent(function($, undefined) {
 
 				// Copes with the differing path names in the Query editor
 				var cacheName = path;
-				if (target != 'augmentation') { // Augmentations don't live in an augmentation namespace
+				if (target !== 'augmentation') { // Augmentations don't live in an augmentation namespace
 					cacheName = target + '.' + cacheName;
 				}
 
@@ -487,8 +495,8 @@ JCSDL.Loader.addComponent(function($, undefined) {
 			$error.prependTo(this.$view.find('.jcsdl-footer'))
 				.hide().fadeIn();
 
-			if (console !== undefined) {
-				console.error(message, arguments);
+			if (window.console !== undefined) {
+				window.console.error(message, arguments);
 			}
 		},
 
@@ -638,7 +646,7 @@ JCSDL.Loader.addComponent(function($, undefined) {
 				var cFilterPath = this.filter.target + '.' + this.filter.fieldPath.join('.').replace(/-/g, '.'),
 					cPath = parentPath + '.' + name;
 
-				if (cFilterPath == cPath) {
+				if (cFilterPath === cPath) {
 					hidden = false;
 				}
 			}
@@ -696,21 +704,21 @@ JCSDL.Loader.addComponent(function($, undefined) {
 		 */
 		createValueInputView : function(field, inputType) {
 			inputType = inputType || field.input;
-			var self = this,
-				$valueView = this.getTemplate('valueInput');
+			var $valueView = this.getTemplate('valueInput');
 
-			if (this.inputs[inputType] === undefined) return $valueView;
+			if (this.inputs[inputType] === undefined) {
+                return $valueView;
+            }
 
 			// create the input view by this input type's handler and add it to the value view container
 			var $inputView = this.inputs.exec(inputType, 'init', [field]),
-				$input = $inputView.find('input:first'),
 				$valueInput = $valueView.find('.jcsdl-filter-value-input-field')
 					.data('inputType', inputType)
 					.html($inputView),
 				$operatorsListView = $valueView.find('.jcsdl-filter-value-input-operators');
 
 			// create a list of possible operators
-			if (inputType == 'text') {
+			if (inputType === 'text') {
 				this.createTextOperatorsSelectView($operatorsListView, field, inputType, $valueInput);
 			} else {
 				this.createOperatorsSelectView($operatorsListView, field, inputType, $valueInput);
@@ -738,7 +746,9 @@ JCSDL.Loader.addComponent(function($, undefined) {
 
 			$.each(field.operators, function(i, operator) {
 				// if a list of allowed operators is defined and this operator is not on it, then continue to the next one
-				if (allowedOperators.length > 0 && ($.inArray(operator, allowedOperators) == -1)) return true;
+				if (allowedOperators.length > 0 && ($.inArray(operator, allowedOperators) === -1)) {
+                    return true;
+                }
 
 				var $operatorView = self.createOperatorOptionView(operator);
 				if ($('html').is('.msie')) {
@@ -764,14 +774,14 @@ JCSDL.Loader.addComponent(function($, undefined) {
 				$view.children().removeClass('selected');
 				$operator.addClass('selected');
 
-				if (opName == 'exists') {
+				if (opName === 'exists') {
 					$inputView.fadeOut(self.config.animate);
 				} else if (!$inputView.is(':visible')) {
 					$inputView.fadeIn(self.config.animate);
 				}
 
 				// for text or number input field enable/disable the tag input
-				if (inputType == 'number') {
+				if (inputType === 'number') {
 					var tagAction = ($.inArray(opName, inputConfig.arrayOperators) >= 0) ? 'enable' : 'disable';
 					$input.jcsdlTagInput(tagAction);
 				}
@@ -780,7 +790,7 @@ JCSDL.Loader.addComponent(function($, undefined) {
 			});
 
 			// if there's only one possible operator then automatically select it and hide it
-			if ($view.children().length == 1) {
+			if ($view.children().length === 1) {
 				$view.children().eq(0).click();
 				$view.children().hide();
 			} else {
@@ -825,7 +835,9 @@ JCSDL.Loader.addComponent(function($, undefined) {
 
 			$.each(field.operators, function(i, operator) {
 				// if a list of allowed operators is defined and this operator is not on it, then continue to the next one
-				if (allowedOperators.length > 0 && ($.inArray(operator, allowedOperators) == -1)) return true;
+				if (allowedOperators.length > 0 && ($.inArray(operator, allowedOperators) === -1)) {
+                    return true;
+                }
 
 				var $operatorView = self.createTextOperatorOptionView(operator);
 				$dropdown.append($operatorView);
@@ -879,7 +891,7 @@ JCSDL.Loader.addComponent(function($, undefined) {
 					// hide on click out
 					$('body').bind('click.jcsdldropdown', function(ev) {
 						var $parent = $(ev.target).closest('.jcsdl-dropdown');
-						if ($parent == null || !$parent.is('.jcsdl-dropdown')) {
+						if ($parent === null || !$parent.is('.jcsdl-dropdown')) {
 							$select.removeClass('active');
 							$dropdown.slideUp(self.config.animate);
 							$('body').unbind('click.jcsdldropdown');
@@ -951,7 +963,7 @@ JCSDL.Loader.addComponent(function($, undefined) {
 				$select.data('operator', name)
 					.find('.jcsdl-operator-label').html(operator.label);
 
-				if (name == 'exists') {
+				if (name === 'exists') {
 					$inputView.fadeOut(self.config.animate);
 					if (field.cs) {
 						$csView.fadeOut(self.config.animate);
@@ -963,12 +975,12 @@ JCSDL.Loader.addComponent(function($, undefined) {
 					}
 				}
 
-				if (name == 'contains_near') {
+				if (name === 'contains_near') {
 					$inputView.find('.jcsdl-containsnear-distance').fadeIn();
 
 					// dont allow space
 					$inputView.find('.jcsdl-tag-field input').bind('keydown.nospace', function(ev) {
-						if (ev.which == 32) {
+						if (ev.which === 32) {
 							ev.preventDefault();
 							return;
 						}
@@ -990,14 +1002,14 @@ JCSDL.Loader.addComponent(function($, undefined) {
 
 				var tagAction = ($.inArray(name, inputConfig.arrayOperators) >= 0) ? 'enable' : 'disable';
 				$input.jcsdlTagInput(tagAction);
-				if (tagAction == 'enable') {
+				if (tagAction === 'enable') {
 					$input.jcsdlTagInput('update');
 				}
 
 				var regExAction = ($.inArray(name, ['regex_partial', 'regex_exact']) >= 0) ? 'enable' : 'disable';
 				$input.jcsdlRegExTester(regExAction);
-				if (regExAction == 'enable') {
-					var regExSetting = (name == 'regex_partial') ? 'Partial' : 'Exact';
+				if (regExAction === 'enable') {
+					var regExSetting = (name === 'regex_partial') ? 'Partial' : 'Exact';
 					$input.jcsdlRegExTester('set' + regExSetting);
 					$input.jcsdlRegExTester('test');
 				}
@@ -1011,9 +1023,11 @@ JCSDL.Loader.addComponent(function($, undefined) {
 			 * @param  {Event} ev Window resize event.
 			 * @listener
 			 */
-			$(window).resize(function(ev) {
+			$(window).resize(function() {
 				// do it only when dropdown actually visible
-				if (!$select.hasClass('active')) return;
+				if (!$select.hasClass('active')) {
+                    return;
+                }
 
 				$dropdown.css({
 					top : $select.offset().top + $select.outerHeight() - 1,
@@ -1023,7 +1037,7 @@ JCSDL.Loader.addComponent(function($, undefined) {
 			});
 
 			// if there's only one possible operator then automatically select it and hide it
-			if ($dropdown.find('.jcsdl-dropdown-option').length == 1) {
+			if ($dropdown.find('.jcsdl-dropdown-option').length === 1) {
 				$dropdown.find('.jcsdl-dropdown-option:first').click();
 			} else {
 				var preselect = (field.operator !== undefined) ? field.operator : inputConfig.operator,
@@ -1049,7 +1063,9 @@ JCSDL.Loader.addComponent(function($, undefined) {
 		 */
 		createOperatorOptionView : function(name) {
 			var operator = this.definition.operators[name];
-			if (operator === undefined) return $(); // return empty jquery object if no such operator defined
+			if (operator === undefined) {
+                return $(); // return empty jquery object if no such operator defined
+            }
 
 			var $operatorView = this.getTemplate('operatorOption')
 				.data('name', name)
@@ -1068,7 +1084,9 @@ JCSDL.Loader.addComponent(function($, undefined) {
 		 */
 		createTextOperatorOptionView : function(name) {
 			var operator = this.definition.operators[name];
-			if (operator === undefined) return $();
+			if (operator === undefined) {
+                return $();
+            }
 
 			var $view = this.getTemplate('textOperatorOption')
 				.data('name', name)
@@ -1100,7 +1118,9 @@ JCSDL.Loader.addComponent(function($, undefined) {
 			var self = this,
 				inputType = $view.data('inputType');
 
-			if (this.inputs[inputType] === undefined) return false;
+			if (this.inputs[inputType] === undefined) {
+                return false;
+            }
 
 			// for these 3 field types we need a delayed set value and an additional function to be called
 			if ($.inArray(inputType, ['geo_box', 'geo_radius', 'geo_polygon']) >= 0) {
@@ -1136,7 +1156,9 @@ JCSDL.Loader.addComponent(function($, undefined) {
 		 */
 		getValueFromField : function($view, fieldInfo, operator) {
 			var inputType = $view.data('inputType');
-			if (this.inputs[inputType] === undefined) return '';
+			if (this.inputs[inputType] === undefined) {
+                return '';
+            }
 			return this.inputs.exec(inputType, 'getValue', [$view, fieldInfo, operator]);
 		},
 
@@ -1161,7 +1183,7 @@ JCSDL.Loader.addComponent(function($, undefined) {
 			var fieldInfo = this.getFieldInfoAtCurrentPath();
 
 			// read the operator
-			var operator = (fieldInfo.input == 'text')
+			var operator = (fieldInfo.input === 'text')
 					? this.$view.find('.jcsdl-filter-value-input-operators .jcsdl-operators-select').data('operator')
 					: this.$view.find('.jcsdl-filter-value-input-operators .operator.selected').data('name');
 			if (operator === undefined) {
@@ -1174,7 +1196,7 @@ JCSDL.Loader.addComponent(function($, undefined) {
 			if (operator !== 'exists') {
 				var $valueView = this.$view.find('.jcsdl-filter-value-input-field');
 				value = this.getValueFromField($valueView, fieldInfo, operator);
-				if (value.length == 0) {
+				if (!value.length) {
 					this.showError('You need to specify a value!');
 					return;
 				}
@@ -1204,7 +1226,7 @@ JCSDL.Loader.addComponent(function($, undefined) {
 			var fieldsPath = this.path.slice(0); // copy the array instead of referencing it
 
 			// if specified a following field then include it in the path
-			if (typeof(newFieldName) == 'string') {
+			if (typeof newFieldName === 'string') {
 				fieldsPath.push(newFieldName);
 			}
 
