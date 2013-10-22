@@ -151,7 +151,6 @@ $loader : 'img/loader.gif';
 
     &.jcsdl-editor-save, &.jcsdl-filter-save {}
     &.jcsdl-editor-cancel, &.jcsdl-filter-cancel {width: 56px; background-position: 0 -89px;}
-    &.jcsdl-editor-preview {width: 34px; background-position: 0 -436px;}
 
     &:hover {@include opacity(0.9);}
 }

@@ -69,9 +69,6 @@
   .jcsdl-button.jcsdl-editor-cancel, .jcsdl-button.jcsdl-filter-cancel {
     width: 56px;
     background-position: 0 -89px; }
-  .jcsdl-button.jcsdl-editor-preview {
-    width: 34px;
-    background-position: 0 -436px; }
   .jcsdl-button:hover {
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=90)";
     filter: alpha(opacity=90);
