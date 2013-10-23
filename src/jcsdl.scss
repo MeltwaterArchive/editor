@@ -12,8 +12,8 @@ $borderColorInput : #c8d7de;
 $backgroundSmoked : #fafafa;
 $fontFamily : "Helvetica Neue", "Helvetica", sans-serif;
 $fontSize : 13px;
-$elementsSprite : 'img/elements.png?25';
-$elementsSpriteRetina : 'img/elements@2x.png?5';
+$elementsSprite : 'img/elements.png?26';
+$elementsSpriteRetina : 'img/elements@2x.png?6';
 $selectSprite : 'img/select.png?14';
 $selectSpriteRetina : 'img/select@2x.png';
 $stepBackground : 'img/step_background.png?5';
@@ -108,13 +108,19 @@ $loader : 'img/loader.gif';
     background-size: $width $height;
 }
 
+@mixin boxSizing($sizing: border-box) {
+    -moz-box-sizing: $sizing;
+    -webkit-box-sizing: $sizing;
+    box-sizing: $sizing;
+}
+
 /*
  * JCSDL EDITOR
  */
 /* jcsdl-container reset */
 .jcsdl-container {
     * {
-        box-sizing: content-box;
+        @include boxSizing(content-box);
     }
     
     ul, li {margin: 0; padding: 0;}
@@ -298,7 +304,7 @@ $loader : 'img/loader.gif';
 }
 
 .jcsdl-advanced-gui-container {
-    display: block; width: 100%; height: 66px; box-sizing: border-box;
+    display: block; width: 100%; height: 66px; @include boxSizing();
     margin: 0; position: relative; overflow: hidden;
 
     .jcsdl-advanced-gui-arrow {
@@ -372,7 +378,7 @@ $loader : 'img/loader.gif';
 
 .jcsdl-advanced-manual {
     input {
-        display: block; width: 100%; height: 66px; box-sizing: border-box;
+        display: block; width: 100%; height: 66px; @include boxSizing();
         color: $color; font-size: 2.5em;
         border: 0 !important; background: transparent; outline: none;
     }
@@ -566,6 +572,107 @@ a.jcsdl-filters-logic-option {
 
 /* editor steps */
 .jcsdl-filter-editor {
+    .jcsdl-search {
+        display: block;
+        @include boxSizing();
+        position: relative;
+        width: 400px;
+
+        input {
+            display: inline-block;
+            @include boxSizing();
+            width: 400px;
+            height: 36px;
+            line-height: 36px;
+            background: white;
+            border: 1px solid $borderColor;
+            @include transition();
+            padding: 0 10px;
+            font-size: 13px;
+            color: #222;
+            outline: none;
+            z-index: 99999;
+        }
+
+        .jcsdl-search-arrow {
+            display: block;
+            width: 26px;
+            height: 24px;
+            position: absolute;
+            top: 6px;
+            right: 0;
+            background: url($elementsSprite) no-repeat -70px -408px;
+            @include opacity(0.8);
+
+            &:hover {
+                @include opacity(1);
+            }
+        }
+
+        .jcsdl-search-results {
+            display: none;
+            @include boxSizing();
+            position: absolute;
+            top: 36px;
+            left: 0;
+            width: 400px;
+            border: 1px solid #c0c0c0;
+            border-top: 0;
+            z-index: 99998;
+            background: white;
+            max-height: 296px;
+            overflow-y: auto;
+            margin: 0;
+            -webkit-margin-before: 0;
+            -webkit-margin-after: 0;
+            @include dropShadow(3px, 3px, 8px, 0px, 0.12);
+
+            li {
+                display: block;
+                padding: 0 10px;
+                color: #222;
+                line-height: 36px;
+                height: 36px;
+                text-align: left;
+                cursor: pointer;
+                border-bottom: 1px solid $borderColor;
+
+                .jcsdl-icon {
+                    display: inline-block;
+                    margin-right: 10px;
+                    width: 33px;
+                    height: 33px;
+                    @include backgroundSize(891px, 66px);
+                }
+
+                .jcsdl-search-item-name {
+                    display: inline-block;
+                    max-width: 330px;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                }
+
+                &:hover {
+                    color: #49648e;
+                }
+
+                &.jcsdl-selected {
+                    color: #49648e;
+                }
+            }
+        }
+
+        &.jcsdl-active {
+            input {
+                border-top-color: #c0c0c0;
+                border-left-color: #c0c0c0;
+                border-right-color: #c0c0c0;
+            }
+        }
+    }
+
+
     .jcsdl-step {
         overflow: hidden; text-align: center; position: relative;
 
@@ -682,7 +789,7 @@ a.jcsdl-filters-logic-option {
     display: block; margin: 0 20px; position: relative;
 
     input, .jcsdl-tag-input {
-        display: block; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;
+        display: block; @include boxSizing();
         padding: 5px 10px; width: 100%; height: 40px;
         font-size: 1.3em; line-height: 1.5em; color: #444;
         border: 1px solid $borderColor; @include rounded(3px);
@@ -713,7 +820,7 @@ a.jcsdl-filters-logic-option {
                 float: left;
 
                 input, .jcsdl-tag-field-helper {
-                    box-sizing: content-box; -moz-box-sizing: content-box; -webkit-box-sizing: content-box;
+                    @include boxSizing(content-box);
                     padding: 0; margin: 3px; height: 34px; line-height: 34px; min-width: 230px;
                     font-size: 17px !important;
                     border: 0; outline: 0;
@@ -995,6 +1102,68 @@ a.jcsdl-filters-logic-option {
     &.target-instagram  {background-position: -2640px 0;        &.selected {background-position: -2640px -110px;}}
     &.target-yammer     {background-position: -2750px 0;        &.selected {background-position: -2750px -110px;}}
     &.target-facebook_page {background-position: -2860px 0;     &.selected {background-position: -2860px -110px;}}
+}
+
+.jcsdl-search-results li {
+    .jcsdl-icon.target {
+        &.target-interaction {background-position: 0 0;             &.selected {background-position: 0 -33px;}}
+        &.target-facebook   {background-position: -33px 0;         &.selected {background-position: -33px -33px;}}
+        &.target-twitter    {background-position: -66px 0;         &.selected {background-position: -66px -33px;}}
+        &.target-digg       {background-position: -99px 0;         &.selected {background-position: -99px -33px;}}
+        &.target-myspace    {background-position: -132px 0;         &.selected {background-position: -132px -33px;}}
+        &.target-klout      {background-position: -165px 0;         &.selected {background-position: -165px -33px;}}
+        &.target-amazon     {background-position: -198px 0;         &.selected {background-position: -198px -33px;}}
+        &.target-youtube    {background-position: -231px 0;         &.selected {background-position: -231px -33px;}}
+        &.target-flickr     {background-position: -264px 0;         &.selected {background-position: -264px -33px;}}
+        &.target-blog       {background-position: -297px 0;         &.selected {background-position: -297px -33px;}}
+        &.target-video      {background-position: -330px 0;        &.selected {background-position: -330px -33px;}}
+        &.target-reddit     {background-position: -363px 0;        &.selected {background-position: -363px -33px;}}
+        &.target-imdb       {background-position: -396px 0;        &.selected {background-position: -396px -33px;}}
+        &.target-dailymotion{background-position: -429px 0;        &.selected {background-position: -429px -33px;}}
+        &.target-newscred   {background-position: -462px 0;        &.selected {background-position: -462px -33px;}}
+        &.target-board      {background-position: -495px 0;        &.selected {background-position: -495px -33px;}}
+        &.target-topix      {background-position: -528px 0;        &.selected {background-position: -528px -33px;}}
+        &.target-augmentation {background-position: -561px 0;      &.selected {background-position: -561px -33px;}}
+        &.target-2ch        {background-position: -594px 0;        &.selected {background-position: -594px -33px;}}
+        &.target-bitly      {background-position: -627px 0;        &.selected {background-position: -627px -33px;}}
+        &.target-wikipedia  {background-position: -660px 0;        &.selected {background-position: -660px -33px;}}
+        /*&.target-unknown     {background-position: -693px 0;        &.selected {background-position: -693px -33px;}}*/
+        &.target-tumblr     {background-position: -726px 0;        &.selected {background-position: -726px -33px;}}
+        &.target-googleplus {background-position: -759px 0;        &.selected {background-position: -759px -33px;}}
+        &.target-instagram  {background-position: -792px 0;        &.selected {background-position: -792px -33px;}}
+        &.target-yammer     {background-position: -825px 0;        &.selected {background-position: -825px -33px;}}
+        &.target-facebook_page {background-position: -858px 0;     &.selected {background-position: -858px -33px;}}
+    }
+
+    &.jcsdl-selected .jcsdl-icon.target {
+        &.target-interaction {background-position: 0 -33px;}
+        &.target-facebook   {background-position: -33px -33px;}
+        &.target-twitter    {background-position: -66px -33px;}
+        &.target-digg       {background-position: -99px -33px;}
+        &.target-myspace    {background-position: -132px -33px;}
+        &.target-klout      {background-position: -165px -33px;}
+        &.target-amazon     {background-position: -198px -33px;}
+        &.target-youtube    {background-position: -231px -33px;}
+        &.target-flickr     {background-position: -264px -33px;}
+        &.target-blog       {background-position: -297px -33px;}
+        &.target-video      {background-position: -330px -33px;}
+        &.target-reddit     {background-position: -363px -33px;}
+        &.target-imdb       {background-position: -396px -33px;}
+        &.target-dailymotion{background-position: -429px -33px;}
+        &.target-newscred   {background-position: -462px -33px;}
+        &.target-board      {background-position: -495px -33px;}
+        &.target-topix      {background-position: -528px -33px;}
+        &.target-augmentation {background-position: -561px -33px;}
+        &.target-2ch        {background-position: -594px -33px;}
+        &.target-bitly      {background-position: -627px -33px;}
+        &.target-wikipedia  {background-position: -660px -33px;}
+        /*&.target-unknown     {background-position: -693px -33px;}*/
+        &.target-tumblr     {background-position: -726px -33px;}
+        &.target-googleplus {background-position: -759px -33px;}
+        &.target-instagram  {background-position: -792px -33px;}
+        &.target-yammer     {background-position: -825px -33px;}
+        &.target-facebook_page {background-position: -858px -33px;}
+    }
 }
 
 /* field icons sets */

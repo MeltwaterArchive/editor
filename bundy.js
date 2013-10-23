@@ -3,6 +3,7 @@ var bundy = require('bundy');
 bundy.js([
     'src/jcsdl.loader.js',
     'src/lib/crypto.md5.min.js',
+    'src/lib/jquery.appendix.js',
     'src/lib/jquery.ui.custom.min.js',
     'src/lib/jquery.touchpunch.js',
     'src/lib/jquery.tipsy.js',

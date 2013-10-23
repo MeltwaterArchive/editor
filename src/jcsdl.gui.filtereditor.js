@@ -1,6 +1,22 @@
 /*global JCSDL, jcsdlMapsCurrentCallback, jcsdlMapsCurrentCallbackArgs, jcsdlMapsCurrentGui*/
 JCSDL.Loader.addComponent(function($, undefined) {
 
+    /* define some static private vars */
+    var
+
+    /** @type {Object} A map of keys used for better readability. */
+    KEYS = {
+        BACKSPACE : 8,
+        TAB : 9,
+        DELETE : 46,
+        ENTER : 13,
+        ESC : 27,
+        UP : 38,
+        DOWN : 40,
+        LEFT : 37,
+        RIGHT : 39
+    };
+
 	/**
 	 * Single filter editor.
 	 * 
@@ -42,6 +58,9 @@ JCSDL.Loader.addComponent(function($, undefined) {
 		// prepare the filter editor
 		this.$view = this.getTemplate('filterEditor');
 		this.$steps = this.$view.find('.jcsdl-steps');
+        this.$search = this.$view.find('.jcsdl-search');
+        this.$searchInput = this.$view.find('.jcsdl-search input');
+        this.$searchResults = this.$view.find('.jcsdl-search-results');
 
 		// now we need to display the editor in order for all plugins to be properly sized
 		this.$view.appendTo($appendTo).show();
@@ -52,6 +71,9 @@ JCSDL.Loader.addComponent(function($, undefined) {
 		// hide the save button until all steps haven't been gone through
 		this.$view.find('.jcsdl-filter-save').hide();
 		this.$view.find('.jcsdl-footer span').hide();
+
+        // generate flat map of targets for searching
+        this.populateSearch();
 
 		/*
 		 * REGISTER LISTENERS
@@ -80,6 +102,102 @@ JCSDL.Loader.addComponent(function($, undefined) {
 			self.gui.hideFilterEditor();
 			self.trigger('filterCancel');
 		});
+
+        /*
+         * SEARCH EVENTS
+         */
+        /**
+         * Show the search results dropdown when focused in the search input.
+         */
+        this.$searchInput.focus(function() {
+            self.$search.addClass('jcsdl-active');
+            self.$searchResults.show();
+        });
+
+        /**
+         * Hide the search results dropdown when blurred the search input.
+         */
+        this.$searchInput.blur(function() {
+            self.$searchResults.fadeOut(200);
+            self.$search.removeClass('jcsdl-active');
+        });
+
+        /**
+         * Select the chosen target when pressed ENTER.
+         */
+        this.$searchInput.keypress(function(ev) {
+            if (ev.which === KEYS.ENTER) {
+                var $current = self.$searchResults.find('li.jcsdl-selected');
+                if ($current.length) {
+                    self.selectTarget($current.data('target'));
+                }
+                return false;
+            }
+        });
+
+        /**
+         * Perform live search when typing or cancel and clear on ESCAPE.
+         */
+        this.$searchInput.bind('keyup', function(ev) {
+            // when pressed ESCAPE then reset the search
+            if (ev.which === KEYS.ESC) {
+                self.$searchInput.val('').blur();
+                self.$searchResults.children().show();
+                return;
+            }
+
+            if (ev.which === KEYS.UP || ev.which === KEYS.DOWN) {
+                ev.preventDefault();
+                return;
+            }
+
+            var search = $.trim(self.$searchInput.val()),
+                regexPattern = new RegExp('(^|\\s)(' + search + '|' + search.replace(/\s/g, '.') + ')', 'i'),
+                highlightRegexPattern = new RegExp('(^|\\s)(' + search.replace(/\s/g, '|') + ')', 'gi');
+
+            self.$searchResults.children().quickEach(function() {
+                if (regexPattern.test(this.data('name')) || regexPattern.test(this.data('target'))) {
+                    this.show()
+                        .find('span').html(this.data('fullname').replace(highlightRegexPattern, '$1<strong>$2</strong>'));
+                } else {
+                    this.hide();
+                }
+            });
+        });
+
+        /**
+         * Navigate up and down when pressing arrow keys.
+         */
+        this.$searchInput.bind('keydown', function(ev) {
+            // break if not up arrow or down arrow or enter
+            if ($.inArray(ev.which, [KEYS.UP, KEYS.DOWN]) === -1) {
+                return;
+            }
+
+            ev.preventDefault();
+
+            // find the crucial items
+            var $current = self.$searchResults.find('li.jcsdl-selected').removeClass('jcsdl-selected'),
+                $next = ($current.length && $current.nextAll('li:visible:first').length) ? $current.nextAll('li:visible:first') : self.$searchResults.find('li:visible:first'),
+                $prev = ($current.length && $current.prevAll('li:visible:first').length) ? $current.prevAll('li:visible:first') : self.$searchResults.find('li:visible:last');
+            
+            if (ev.which === KEYS.UP) {
+                $current = $prev.addClass('jcsdl-selected');
+            } else if (ev.which === KEYS.DOWN) {
+                $current = $next.addClass('jcsdl-selected');
+            }
+
+            // scroll the dropdown to the new selected item
+            $current.scrollIntoView(self.$searchResults);
+        });
+
+        /**
+         * Display the search results dropdown when clicked on the arrow.
+         */
+        this.$view.find('.jcsdl-search-arrow').click(function() {
+            self.$searchInput.focus();
+            return false;
+        });
 
 		// finally load a filter if any specified
 		this.loadFilter(filter);
@@ -114,17 +232,11 @@ JCSDL.Loader.addComponent(function($, undefined) {
                 return false;
             }
 
+            this.selectTarget(filter.target + '.' + filter.fieldPath.join('.'));
+
 			var fieldInfo = this.parser.getFieldInfo(filter.target, filter.fieldPath);
 
-			this.$view.find('.jcsdl-filter-target .target-' + filter.target).trigger('jcsdlclick');
-
-			// select all fields and subfields
-			$.each(filter.fieldPath, function(i, field) {
-				var $fieldView = self.$view.find('.jcsdl-filter-target-field:last');
-				$fieldView.find('.field-' + field).trigger('jcsdlclick');
-			});
-
-			// also select which field based on operator
+			// also select which field input based on operator
 			if (typeof(fieldInfo.input) !== 'string') {
 				this.$view.find('.jcsdl-filter-target-field-input .input-' + filter.operator).trigger('jcsdlclick');
 			}
@@ -145,6 +257,25 @@ JCSDL.Loader.addComponent(function($, undefined) {
 				this.$view.find('.jcsdl-operator-cs').click();
 			}
 		},
+
+        /**
+         * Select the given target in the target selector carousel.
+         * 
+         * @param  {String} target Target name.
+         */
+        selectTarget : function(target) {
+            var self = this,
+                targetPath = target.split('.'),
+                source = targetPath.shift();
+
+            this.$view.find('.jcsdl-filter-target .target-' + source).trigger('jcsdlclick');
+
+            // select all fields and subfields
+            $.each(targetPath, function(i, field) {
+                var $fieldView = self.$view.find('.jcsdl-filter-target-field:last');
+                $fieldView.find('.field-' + field).trigger('jcsdlclick');
+            });
+        },
 
 		/* ##########################
 		 * FILTER EDITOR STEPS
@@ -1161,6 +1292,50 @@ JCSDL.Loader.addComponent(function($, undefined) {
             }
 			return this.inputs.exec(inputType, 'getValue', [$view, fieldInfo, operator]);
 		},
+
+        /* ##########################
+         * SEARCH
+         * ########################## */
+        /**
+         * Populate search results dropdown from defined targets.
+         */
+        populateSearch : function() {
+            var self = this,
+                flatten = function(name, definition, targetPath, namePath) {
+                    targetPath = targetPath.length ? targetPath + '.' + name : name;
+                    namePath = namePath.length ? namePath + '|' + definition.name : definition.name;
+
+                    // break already for targets that shouldn't be visible
+                    if (!self.isTargetVisible(targetPath)) {
+                        return;
+                    }
+
+                    if (definition.fields !== undefined) {
+                        $.each(definition.fields, function(key, val) {
+                            flatten(key, val, targetPath, namePath);
+                        });
+                        return;
+                    }
+
+                    var $item = self.getTemplate('filterEditor_searchItem');
+                    $item.data('name', namePath.replace(/\|/g, ' '))
+                        .data('fullname', namePath.replace(/\|/g, ' &raquo; '))
+                        .data('target', targetPath)
+                        .find('span').html($item.data('fullname'));
+                    $item.find('.jcsdl-icon').addClass('target-' + targetPath.split('.')[0]);
+
+                    $item.click(function() {
+                        self.selectTarget(targetPath);
+                        return false;
+                    });
+
+                    $item.appendTo(self.$searchResults);
+                };
+
+            $.each(this.definition.targets, function(name, source) {
+                flatten(name, source, '', '');
+            });
+        },
 
 		/* ##########################
 		 * SETTERS AND GETTERS

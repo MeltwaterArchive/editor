@@ -130,6 +130,11 @@ JCSDL.Loader.addComponent(function($, undefined) {
 		// filter editor container
 		filterEditor : $([
 			'<div class="jcsdl-filter-editor">',
+                '<div class="jcsdl-search">',
+                    '<input type="text" placeholder="Search for a target...">',
+                    '<a href="#" class="jcsdl-search-arrow jcsdl-elements-sprite"></a>',
+                    '<ul class="jcsdl-search-results" />',
+                '</div>',
 				'<div class="jcsdl-steps">',
 				'</div>',
 				'<div class="jcsdl-footer">',
@@ -138,6 +143,13 @@ JCSDL.Loader.addComponent(function($, undefined) {
 				'</div>',
 			'</div>'
 		].join('')),
+
+        filterEditor_searchItem : $([
+            '<li>',
+                '<div class="jcsdl-icon target" />',
+                '<span class="jcsdl-search-item-name" />',
+            '</li>'
+        ].join('')),
 
 		// step container, all steps should be wrapped with this so it's easy to remove them when necessary
 		step : $('<div class="jcsdl-step" />'),
