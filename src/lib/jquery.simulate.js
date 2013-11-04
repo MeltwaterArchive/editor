@@ -7,7 +7,7 @@
  *
  */
 
-JCSDL.Loader.addComponent(function($) {
+JCSDLTargets.Loader.addComponent(function($) {
 
 $.fn.extend({
 	simulate: function(type, options) {

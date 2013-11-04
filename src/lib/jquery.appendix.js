@@ -1,4 +1,4 @@
-/*! jQuery Appendix - v0.8.4-jcsdl
+/*! jQuery Appendix - v0.8.4-jcsdlTargets
 * A small set of functions appended to jQuery that make your life even easier.
 *
 * https://github.com/michaldudek/jQuery-Appendix
@@ -7,7 +7,7 @@
 * MIT License, https://github.com/michaldudek/jQuery-Appendix/blob/master/LICENSE.md
 */
 
-JCSDL.Loader.addComponent(function($) {
+JCSDLTargets.Loader.addComponent(function($) {
 
 /*global jQuery, Math*/
 (function($, window, document, Math, undefined) {

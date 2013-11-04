@@ -1,5 +1,5 @@
-var JCSDLDefinition = {
-    name : 'datasift',
+var JCSDLTargetsDefinition = {
+    name : 'datasift-targets',
 
     // list of all possible targets and their fields and their types
     targets : {
@@ -969,151 +969,11 @@ var JCSDLDefinition = {
 
     },
 
-    // some additional definition of the possible operators
-    operators : {
-        substr : {
-            label : 'Substring',
-            description : 'Filter for a sequence of characters that form a word or part of a word.',
-            code : 'substr',
-            jsonp : 'http://dev.datasift.com/tooltip-endpoint/tooltip/retrieve?callback=jcsdlJSONP&id=substr'
-        },
-        contains_any : {
-            label : 'Contains words',
-            description : 'Filter for one or more string values from a list of strings.',
-            code : 'contains_any',
-            jsonp : 'http://dev.datasift.com/tooltip-endpoint/tooltip/retrieve?callback=jcsdlJSONP&id=contains_any'
-        },
-        contains_near : {
-            label : 'Contains words near',
-            description : 'Filter for two or more words that occur near to each other.',
-            code : 'contains_near',
-            jsonp : 'http://dev.datasift.com/tooltip-endpoint/tooltip/retrieve?callback=jcsdlJSONP&id=contains_near'
-        },
-        different : {
-            label : 'Different',
-            description : 'Not equal to...',
-            code : '!=',
-            jsonp : 'http://dev.datasift.com/tooltip-endpoint/tooltip/retrieve?callback=jcsdlJSONP&id=equals-and-not-equals'
-        },
-        equals : {
-            label : 'Equals',
-            description : 'Equal to...',
-            code : '==',
-            jsonp : 'http://dev.datasift.com/tooltip-endpoint/tooltip/retrieve?callback=jcsdlJSONP&id=equals-and-not-equals'
-        },
-        'in' : {
-            label : 'In',
-            description : 'Filter for one or more values from a list.',
-            code : 'in',
-            jsonp : 'http://dev.datasift.com/tooltip-endpoint/tooltip/retrieve?callback=jcsdlJSONP&id=in'
-        },
-        greaterThan : {
-            label : '&gt;=',
-            description : 'Greater than...',
-            code : '>='
-        },
-        lowerThan : {
-            label : '&lt;=',
-            description : 'Lower than...',
-            code : '<=',
-        },
-        exists : {
-            label : 'Exists',
-            description : 'Check whether a target is present.',
-            code : 'exists',
-            jsonp : 'http://dev.datasift.com/tooltip-endpoint/tooltip/retrieve?callback=jcsdlJSONP&id=exists'
-        },
-        regex_partial : {
-            label : 'Partial Regex',
-            description : 'Filter for content by a regular expression that matches any part of the target.',
-            code : 'regex_partial',
-            jsonp : 'http://dev.datasift.com/tooltip-endpoint/tooltip/retrieve?callback=jcsdlJSONP&id=regex_partial'
-        },
-        regex_exact : {
-            label : 'Exact Regex',
-            description : 'Filter for content by a regular expression that matches the entire target.',
-            code : 'regex_exact',
-            jsonp : 'http://dev.datasift.com/tooltip-endpoint/tooltip/retrieve?callback=jcsdlJSONP&id=regex_exact'
-        },
-        geo_box : {
-            label : 'Geo Box',
-            description : 'Filter for content originating from geographical locations within a bounding box.',
-            code : 'geo_box'
-        },
-        geo_radius : {
-            label : 'Geo Radius',
-            description : 'Filter for posts originating inside a circle.',
-            code : 'geo_radius'
-        },
-        geo_polygon : {
-            label : 'Geo Polygon',
-            description : 'Filter for content originating from geographical locations defined by a polygon with up to 32 vertices.',
-            code : 'geo_polygon'
-        }
-    },
 
-    targetHelpJsonpSource : 'http://dev.datasift.com/tooltip-endpoint/tooltip/retrieve?callback=jcsdlJSONP&id={target}',
-    //targetHelpJsonpSource : 'http://doctest.devcloud.acquia-sites.com/tooltip-endpoint/tooltip/retrieve?callback=jcsdlJSONP&id={target}',
-
-    // some additional config for some input types
-    inputs : {
-        text : {
-            // list of operators for which the input field is a "tag" input field
-            arrayOperators : ['contains_any', 'contains_near', 'in'],
-            operator : 'contains_any'
-        },
-        number : {
-            arrayOperators : ['in'],
-            operator : 'equals'
-        },
-        select : {
-            operator : 'in',
-            sets : {
-                language : {'af': 'Afrikaans', 'ar': 'Arabic', 'bg': 'Bulgarian', 'zh': 'Chinese', 'cs': 'Czech', 'da': 'Danish', 'nl': 'Dutch', 'en': 'English', 'et': 'Estonian', 'fi': 'Finnish', 'fr': 'French', 'de': 'German', 'el': 'Greek', 'he': 'Hebrew', 'hu': 'Hungarian', 'is': 'Icelandic', 'it': 'Italian', 'ja': 'Japanese', 'ko': 'Korean', 'la': 'Latin', 'lt': 'Lithuanian', 'lv': 'Latvian', 'no': 'Norwegian', 'pl': 'Polish', 'pt': 'Portuguese', 'ro': 'Romanian', 'ru': 'Russian', 'es': 'Spanish', 'sv': 'Swedish', 'tl': 'Tagalog', 'tr': 'Turkish'},
-                salienceTopics : {'Advertising':'Advertising','Agriculture':'Agriculture','Art':'Art','Automotive':'Automotive','Aviation':'Aviation','Banking':'Banking','Beverages':'Beverages','Biotechnology':'Biotechnology','Business':'Business','Crime':'Crime','Disasters':'Disasters','Economics':'Economics','Education':'Education','Elections':'Elections','Energy':'Energy','Fashion':'Fashion','Food':'Food','Hardware':'Hardware','Health':'Health','Hotels':'Hotels','Intellectual Property':'Intellectual Property','Investing':'Investing','Labor':'Labor','Law':'Law','Marriage':'Marriage','Mobile Devices':'Mobile Devices','Politics':'Politics','Real Estate':'Real Estate','Renewable Energy':'Renewable Energy','Robotics':'Robotics','Science':'Science','Social Media':'Social Media','Software and Internet':'Software and Internet','Space':'Space','Sports':'Sports','Technology':'Technology','Traditional':'Traditional','Travel':'Travel','Video Games':'Video Games','War':'War','Weather':'Weather'},
-                newscredCategories : {'Africa':'Africa', 'Asia':'Asia', 'Business':'Business', 'Entertainment':'Entertainment', 'Environment':'Environment', 'Europe':'Europe', 'Health':'Health', 'Lifestyle':'Lifestyle', 'Other':'Other', 'Politics':'Politics', 'Regional':'Regional', 'Sports':'Sports', 'Technology':'Technology', 'Travel':'Travel', 'U.K.':'U.K.', 'U.S.':'U.S.', 'World':'World'}
-            }
-        },
-        slider : {
-            operator : 'greaterThan',
-            min : 0,
-            max : 100,
-            step : 1,
-            'default': 50,
-            displayFormat : function(v) {return v;}
-        },
-        geo : {
-
-        },
-        geo_box : {
-            operators : ['geo_box'],
-            instructions : [
-                'Click on the map to mark first corner of the box.',
-                'Now click on the map to mark the second corner of the box.',
-                'You can drag the markers around to change the box coordinates.'
-            ]
-        },
-        geo_radius : {
-            operators : ['geo_radius'],
-            instructions : [
-                'Click on the map to mark the center of the selection.',
-                'Click again to set the radius.',
-                'You can drag the markers around to move the center of the circle or the radius.'
-            ]
-        },
-        geo_polygon : {
-            operators : ['geo_polygon'],
-            instructions : [
-                'Click on the map to mark first tip of the polygon selection.',
-                'Click on the map to mark the second tip of the polygon.',
-                'Click on the map to mark the third tip and close the shape.',
-                'Click on the map to add new markers or drag them around. Double-click a marker to remove it.'
-            ]
-        }
-    }
+    targetHelpJsonpSource : 'http://dev.datasift.com/tooltip-endpoint/tooltip/retrieve?callback=jcsdlJSONP&id={target}'
 
 };
 
-JCSDLDefinition.targets.twitter.fields.retweet.fields.user = JCSDLDefinition.targets.twitter.fields.user;
-JCSDLDefinition.targets.twitter.fields.retweeted.fields.place = JCSDLDefinition.targets.twitter.fields.place;
-JCSDLDefinition.targets.twitter.fields.retweeted.fields.user = JCSDLDefinition.targets.twitter.fields.user;
+JCSDLTargetsDefinition.targets.twitter.fields.retweet.fields.user = JCSDLTargetsDefinition.targets.twitter.fields.user;
+JCSDLTargetsDefinition.targets.twitter.fields.retweeted.fields.place = JCSDLTargetsDefinition.targets.twitter.fields.place;
+JCSDLTargetsDefinition.targets.twitter.fields.retweeted.fields.user = JCSDLTargetsDefinition.targets.twitter.fields.user;

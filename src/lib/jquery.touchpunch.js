@@ -8,7 +8,7 @@
  *  jquery.ui.widget.js
  *  jquery.ui.mouse.js
  */
-JCSDL.Loader.addComponent(function($) {
+JCSDLTargets.Loader.addComponent(function($) {
 
   // Detect touch support
   $.support.touch = 'ontouchend' in document;

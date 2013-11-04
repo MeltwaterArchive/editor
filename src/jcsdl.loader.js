@@ -1,8 +1,8 @@
-JCSDL = {}; // register namespace
+window.JCSDLTargets = {}; // register namespace
 
 (function(window, undefined) {
 
-	JCSDL.Loader = {
+	JCSDLTargets.Loader = {
 		// array list of functions to be called when loading
 		compnts : [],
 		// array list of functions to be called when finished loadign
@@ -12,27 +12,27 @@ JCSDL = {}; // register namespace
 
 		addComponent : function(f) {
 			if (typeof f == 'function') {
-				JCSDL.Loader.compnts.push(f);
+				JCSDLTargets.Loader.compnts.push(f);
 			}
 		},
 		addLoaded : function(f) {
 			if (typeof f == 'function') {
-				JCSDL.Loader.loaded.push(f);
+				JCSDLTargets.Loader.loaded.push(f);
 			}
 		},
 
 		load : function() {
 			var $ = window.jQuery;
 
-			$.each(JCSDL.Loader.compnts, function() {
-				this.apply(JCSDL, [$]);
+			$.each(JCSDLTargets.Loader.compnts, function() {
+				this.apply(JCSDLTargets, [$]);
 			});
 			
-			$.each(JCSDL.Loader.loaded, function() {
-				this.apply(JCSDL, []);
+			$.each(JCSDLTargets.Loader.loaded, function() {
+				this.apply(JCSDLTargets, []);
 			});
 
-			JCSDL.Loader.isLoaded = true;
+			JCSDLTargets.Loader.isLoaded = true;
 		},
 
 		timeout : function(nc) {
@@ -40,24 +40,24 @@ JCSDL = {}; // register namespace
 				if (window.jQuery) {
 					if (nc) window.jQuery.noConflict();
 
-					JCSDL.Loader.load();
+					JCSDLTargets.Loader.load();
 				} else {
-					JCSDL.Loader.timeout();
+					JCSDLTargets.Loader.timeout();
 				}
 			}, 100);
 		}
 	};
 
-	JCSDL.onLoad = function(f) {
+	JCSDLTargets.onLoad = function(f) {
 		if (typeof f !== 'function') return false;
 
 		// if editor already loaded then call immediately
-		if (JCSDL.Loader.isLoaded) {
-			f.apply(JCSDL, []);
+		if (JCSDLTargets.Loader.isLoaded) {
+			f.apply(JCSDLTargets, []);
 
 		// but normally add to queue
 		} else {
-			JCSDL.Loader.addLoaded(f);
+			JCSDLTargets.Loader.addLoaded(f);
 		}
 	};
 
