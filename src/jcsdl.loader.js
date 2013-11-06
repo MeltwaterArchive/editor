@@ -1,6 +1,9 @@
-JCSDL = {}; // register namespace
-
 (function(window, undefined) {
+    "use strict";
+    
+    var JCSDL = window.JCSDL = {}; // register namespace
+
+    JCSDL.version = '2.3.1';
 
 	JCSDL.Loader = {
 		// array list of functions to be called when loading
@@ -11,12 +14,12 @@ JCSDL = {}; // register namespace
 		isLoaded : false,
 
 		addComponent : function(f) {
-			if (typeof f == 'function') {
+			if (typeof f === 'function') {
 				JCSDL.Loader.compnts.push(f);
 			}
 		},
 		addLoaded : function(f) {
-			if (typeof f == 'function') {
+			if (typeof f === 'function') {
 				JCSDL.Loader.loaded.push(f);
 			}
 		},
@@ -38,7 +41,9 @@ JCSDL = {}; // register namespace
 		timeout : function(nc) {
 			setTimeout(function() {
 				if (window.jQuery) {
-					if (nc) window.jQuery.noConflict();
+					if (nc) {
+                        window.jQuery.noConflict();
+                    }
 
 					JCSDL.Loader.load();
 				} else {
@@ -49,7 +54,9 @@ JCSDL = {}; // register namespace
 	};
 
 	JCSDL.onLoad = function(f) {
-		if (typeof f !== 'function') return false;
+		if (typeof f !== 'function') {
+            return false;
+        }
 
 		// if editor already loaded then call immediately
 		if (JCSDL.Loader.isLoaded) {

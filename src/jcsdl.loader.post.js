@@ -1,4 +1,7 @@
-(function() {
+/*global JCSDL*/
+(function(JCSDL, window, document, undefined) {
+    "use strict";
+
 	if (!window.jQuery) {
 		var h = document.getElementsByTagName('head'),
 			s = document.createElement('script');
@@ -9,4 +12,4 @@
 	} else {
 		JCSDL.Loader.load();
 	}
-})();
+})(JCSDL, window, document);

@@ -10,7 +10,7 @@ bundy.js([
     'src/lib/jquery.touchpunch.js',
     'src/lib/jquery.tipsy.js',
     'src/lib/jquery.simulate.js',
-    'src/lib/jquery.zclip.js',
+    'src/lib/ZeroClipboard.js',
     'src/jcsdl.parser.js',
     'src/jcsdl.gui.templates.js',
     'src/jcsdl.gui.inputs.js',

@@ -1,3 +1,4 @@
+/*global JCSDL, jQuery, ZeroClipboard*/
 JCSDL.Loader.addComponent(function($, undefined) {
 
 	/**
@@ -273,17 +274,22 @@ JCSDL.Loader.addComponent(function($, undefined) {
                     });
 
                     var copyButtonTransitionTimeout,
-                        $copyButton = $('#' + id).zclip({
-                            path: self.config.zeroClipboard,
-                            copy : code,
-                            afterCopy : function() {
-                                clearTimeout(copyButtonTransitionTimeout);
-                                $copyButton.addClass('copied');
-                                setTimeout(function() {
-                                    $copyButton.removeClass('copied');
-                                }, 3000);
-                            }
+                        $copyButton = $('#' + id).attr('data-clipboard-text', code),
+                        copyClip = new ZeroClipboard($copyButton[0], {
+                            moviePath: self.config.zeroClipboard
                         });
+
+                    $copyButton.click(function() {
+                        return false;
+                    });
+
+                    copyClip.on('complete', function() {
+                        clearTimeout(copyButtonTransitionTimeout);
+                        $copyButton.addClass('copied');
+                        setTimeout(function() {
+                            $copyButton.removeClass('copied');
+                        }, 3000);
+                    });
                 } catch(e) {
                     self.showError(e);
                 }

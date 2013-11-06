@@ -1,4 +1,4 @@
-/*global JCSDL, Math, FileReader*/
+/*global JCSDL, Math, FileReader, ZeroClipboard*/
 JCSDL.Loader.addComponent(function($, undefined) {
     "use strict";
 
@@ -755,18 +755,25 @@ JCSDL.Loader.addComponent(function($, undefined) {
                 /**
                  * Make the copy to clipboard button working.
                  */
-                self.$copyBtn.zclip({
-                    path : JCSDL.zeroClipboard,
-                    copy : function() {
-                        return self.getValue();
-                    },
-                    afterCopy : function() {
-                        clearTimeout(copyButtonTransitionTimeout);
-                        self.$copyBtn.find('span').html('Copied');
-                        copyButtonTransitionTimeout = setTimeout(function() {
-                            self.$copyBtn.find('span').html('Copy to Clipboard');
-                        }, 3000);
-                    }
+                var copyClip = new ZeroClipboard(self.$copyBtn[0], {
+                    moviePath: JCSDL.zeroClipboard
+                });
+
+                self.$copyBtn.click(function() {
+                    return false;
+                });
+
+                copyClip.on('complete', function() {
+                    clearTimeout(copyButtonTransitionTimeout);
+                    copyClip.setText(null);
+                    self.$copyBtn.find('span').html('Copied');
+                    copyButtonTransitionTimeout = setTimeout(function() {
+                        self.$copyBtn.find('span').html('Copy to Clipboard');
+                    }, 3000);
+                });
+
+                copyClip.on('dataRequested', function() {
+                    copyClip.setText(self.getValue());
                 });
             }, 100);
         },
