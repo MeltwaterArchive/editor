@@ -1110,31 +1110,31 @@ JCSDL.Loader.addComponent(function($, undefined) {
 					$inputView.find('.jcsdl-containsnear-distance').fadeIn();
 
 					// dont allow space
-					$inputView.find('.jcsdl-tag-field input').bind('keydown.nospace', function(ev) {
+					$inputView.find('.jcsdl-list-add-input').bind('keydown.nospace', function(ev) {
 						if (ev.which === 32) {
 							ev.preventDefault();
 							return;
 						}
 					});
 
-					$input.jcsdlTagInput('update', true);
+					//$input.jcsdlListEditor('update', true);
 					$input.data('split', true);
 
 				} else {
 					$inputView.find('.jcsdl-containsnear-distance').hide();
 					
 					// allow space again
-					$inputView.find('.jcsdl-tag-field input').unbind('keydown.nospace');
+					$inputView.find('.jcsdl-list-add-input').unbind('keydown.nospace');
 					if ($input.data('split')) {
-						$input.jcsdlTagInput('update');
+						//$input.jcsdlListEditor('update');
 						$input.data('split', false);
 					}
 				}
 
 				var tagAction = ($.inArray(name, inputConfig.arrayOperators) >= 0) ? 'enable' : 'disable';
-				$input.jcsdlTagInput(tagAction);
+				$input.jcsdlListEditor(tagAction);
 				if (tagAction === 'enable') {
-					$input.jcsdlTagInput('update');
+					$input.jcsdlListEditor('update');
 				}
 
 				var regExAction = ($.inArray(name, ['regex_partial', 'regex_exact']) >= 0) ? 'enable' : 'disable';

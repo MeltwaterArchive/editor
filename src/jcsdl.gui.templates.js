@@ -344,7 +344,97 @@ JCSDL.Loader.addComponent(function($, undefined) {
 
 		valueInput_geopolygon_coordinates : $([
 			'<ul />'
-		].join(''))
+		].join('')),
+
+        /* ##########################
+         * LIST EDITOR
+         * ########################## */
+        listEditor : [
+            '<div class="jcsdl-list jcsdl-row">',
+                '<div class="jcsdl-list-bar jcsdl-row">',
+                    '<a href="#" class="jcsdl-btn jcsdl-edit jcsdl-active" data-list-mode="edit"><i class="jcsdl-picto" /></a>',
+                    '<a href="#" class="jcsdl-btn jcsdl-move" data-list-mode="move"><i class="jcsdl-picto" /></a>',
+                    '<a href="#" class="jcsdl-btn jcsdl-delete" data-list-mode="delete"><i class="jcsdl-picto" /></a>',
+                    '<a href="#" class="jcsdl-btn jcsdl-import" data-import><i class="jcsdl-picto" />Import</a>',
+                    '<a href="#" class="jcsdl-btn jcsdl-sort-az" data-sort><i class="jcsdl-picto" />Sort A-Z</a>',
+                    '<a href="#" class="jcsdl-btn jcsdl-copy" data-copy><i class="jcsdl-picto" /><span>Copy to Clipboard</span></a>',
+                    '<input type="text" name="search" placeholder="Search..." class="jcsdl-list-search">',
+                '</div>',
+                '<div class="jcsdl-list-container jcsdl-row">',
+                    '<div class="jcsdl-list-cta jcsdl-row" data-list-cta>',
+                        'The first step in creating a list is to add or import data. To get going, look for the <strong>Import</strong> button above this message.',
+                    '</div>',
+                    '<div class="jcsdl-list-info" data-list-info style="display: none;">',
+                        '<strong>Current List (<span data-counter>0</span> elements)</strong><br />',
+                        '<span data-mode-info="move" style="display: none;"><strong>Did you know</strong> you can re-order items in this list simply by dragging them into new position?</span>',
+                        '<span data-mode-info="delete" style="display: none;"><strong>Did you know</strong> you can click on an item to remove it from the list?</span>',
+                        '<span data-mode-info="edit"><strong>Did you know</strong> you can click on an item to edit it?</span>',
+                    '</div>',
+                    '<ol class="jcsdl-list-elements clearfix">',
+                        '<li class="jcsdl-list-add" data-add-item>',
+                            '<input type="text" name="item" class="jcsdl-list-add-input" placeholder="Add to list..." />',
+                        '</li>',
+                    '</ol>',
+                '</div>',
+            '</div>'
+        ].join(''),
+
+        listElement : [
+            '<li class="jcsdl-list-item" data-handle data-item data-value="{value}">',
+                '<div class="jcsdl-list-item-mode-bar" />',
+                '<span class="jcsdl-list-item-label">{value}</span>',
+                '<input class="jcsdl-list-item-input" type="text" placeholder="Enter a value..." value="{value}">',
+            '</li>'
+        ].join(''),
+
+        listEditor_import : [
+            '<div class="jcsdl-import-view jcsdl-row">',
+                '<div class="jcsdl-row" data-step-one>',
+                    '<h4>Paste the contents of your CSV below:</h4>',
+                    '<textarea name="import" class="jcsdl-import-input" placeholder="Paste your data here..."></textarea>',
+                '</div>',
+                '<div class="jcsdl-row">',
+                    '<label><input type="checkbox" name="replace" value="1"> Replace the current list?</label>',
+                '</div>',
+                '<div class="jcsdl-row jcsdl-import-buttons">',
+                    '<a href="#" class="jcsdl-btn" data-import-csv>Import</a>',
+                    '<a href="#" class="jcsdl-btn" data-import-cancel>Cancel</a>',
+                '</div>',
+            '</div>'
+        ].join(''),
+
+        listEditor_import_error : '<div class="jcsdl-import-error" data-csv-error>{error}</div>',
+
+        listEditor_import_file : [
+            '<div class="jcsdl-draganddrop" data-import-file>',
+                '<input type="file" name="csvfile" style="display: none;">',
+                '<p>Drag and drop a CSV file here</p>',
+                '<a href="#" class="jcsdl-btn" data-select-file>Select File</a>',
+            '</div>'
+        ].join(''),
+
+        listEditor_import_table : [
+            '<div class="jcsdl-row" data-step-two>',
+                '<h4>Select column(s) to add</h4>',
+                '<p data-info>The values in the columns you select will be inserted into a list according to their order. If you\'d like to re-order these items in the next step you can.</p>',
+                '<div class="jcsdl-table-container">',
+                    '<table>',
+                        '<thead>',
+                            '<tr />',
+                        '</thead>',
+                        '<tbody />',
+                        '<tfoot />',
+                    '</table>',
+                '</div>',
+                '<div class="jcsdl-row">',
+                    '<label><input type="checkbox" name="ignoreheaders" value="1" checked="checked"> First row is table header</label>',
+                '</div>',
+            '</div>'
+        ].join(''),
+
+        listEditor_import_tableHeader : '<th><input type="checkbox" name="column" value="{i}"></th>',
+
+        listEditor_import_tableFooter : '<tr><td colspan="{width}">{more} more rows found</td></tr>'
 
 	};
 

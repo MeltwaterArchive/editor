@@ -31,6 +31,71 @@ JCSDL.Loader.addComponent(function($) {
         string : {
 
             /**
+             * Parses the string looking for variables to insert from the given set of variables.
+             * Ie. looks for occurrences of {$foo} or {bar} and replaces them with values found
+             * under 'foo' and 'bar' keys of the passed object.
+             *
+             * @param {String} str String to have the variables injected.
+             * @param {Object} variables[optional] Object containing variables to be injected.
+             * @return {String}
+             */
+            parseVariables : function(str, variables) {
+                variables = variables || {};
+
+                return str.replace(/\{(\$?[\w\d]+)\}/gi, function(match, key) {
+                    var dollar = (key.substr(0, 1) === '$'); // has dollar sign?
+                    if (dollar) {
+                        key = key.substr(1);
+                    }
+
+                    if (variables[key] === null) {
+                        return '';
+                    }
+
+                    if (variables[key] !== undefined) {
+                        return variables[key];
+                    }
+
+                    if (!dollar) {
+                        return '{' + key + '}';
+                    }
+
+                    return '';
+                });
+            },
+
+            /**
+             * Generate a random string of a given length.
+             *
+             * @param {Number} length[optional] Length of the string. Default: 16
+             * @param {Boolean} capitals[optional] Should the string include capital letters? Default: true
+             * @param {Boolean} punctuation[optional] Should the string include special characters like punctuation? Default: false
+             * @return {String}
+             */
+            random : function(length, capitals, punctuation) {
+                length = length || 16;
+                capitals = !(!capitals || false);
+                punctuation = punctuation || false;
+
+                var str = '',
+                    chars = '1234567890abcdefghijkmnopqrstuvwxyz';
+
+                if (capitals) {
+                    chars += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+                }
+
+                if (punctuation) {
+                    chars += '?!.,;:^#@&';
+                }
+
+                for (var i = 1; i <= length; i++) {
+                    str = str + chars.charAt(Math.floor(Math.random() * (chars.length - 1)));
+                }
+
+                return str;
+            },
+
+            /**
              * Trims the string of spaces or the given charlist.
              * This method is taked from PHP.JS project (phpjs.org)
              *
@@ -90,6 +155,32 @@ JCSDL.Loader.addComponent(function($) {
                 var res = str.substr(0, length);
 
                 return res.substr(0, res.lastIndexOf(' ')) + suffix;
+            },
+
+            /**
+             * Escapes HTML from the string.
+             *
+             * @param {String} str String to be HTML-escaped.
+             * @return {String}
+             */
+            escapeHtml : function(str) {
+                return str.replace(/&/g, '&amp;')
+                    .replace(/</g, '&lt;')
+                    .replace(/>/g, '&gt;')
+                    .replace(/"/g, '&quot;');
+            },
+
+            /**
+             * Unescapes HTML from the string.
+             *
+             * @param {String} str String to be HTML-unescaped.
+             * @return {String}
+             */
+            unescapeHtml : function(str) {
+                return str.replace(/&amp;/g, '&')
+                    .replace(/&lt;/g, '<')
+                    .replace(/&gt;/g, '>')
+                    .replace(/&quot;/g, '"');
             }
 
         }

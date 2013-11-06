@@ -33,7 +33,7 @@ JCSDL.Loader.addComponent(function($, undefined) {
 				var $view = this.getTemplate('valueInput_text'),
 					$input = $view.find('input.orig');
 
-				$input.jcsdlTagInput();
+				$input.jcsdlListEditor();
 				$input.jcsdlRegExTester();
 
 				$view.find('input.dist').jcsdlNumberMask();

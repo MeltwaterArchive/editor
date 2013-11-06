@@ -1,5 +1,5 @@
 /* some theming variables */
-$color : #376491;
+$color : #4a7a92;
 $colorLight : #888;
 $colorExtraLight : #bebebf;
 $colorBlack : #4b4b4f;
@@ -40,6 +40,7 @@ $operatorIconsSpriteRetina : 'img/icons-sprite-operators@2x.png';
 $otherIconsSprite : 'img/icons-sprite-other.png?3';
 $otherIconsSpriteRetina : 'img/icons-sprite-other@2x.png';
 $loader : 'img/loader.gif';
+$listIcons : 'img/list-icons.png';
 
 /* useful mixins */
 @mixin rounded($radius: 5px) {
@@ -137,6 +138,10 @@ $loader : 'img/loader.gif';
         
         &:hover {color: $colorOrange; text-decoration: none;}
     }
+
+    .clearfix:before, .clearfix:after { content:""; display:table; }
+    .clearfix:after { clear: both; }
+    .clearfix { zoom: 1; }
 }
 
 .jcsdl-label {float: left; font-size: 1em; color: $colorLight; font-weight: normal;}
@@ -881,6 +886,344 @@ a.jcsdl-filters-logic-option {
 .jcsdl-input-number {
     margin: 0 10px;
     input {margin: 0 auto; width: 175px;}
+}
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - LIST EDITOR */
+.jcsdl-container .jcsdl-list {
+    * {
+        box-sizing: border-box;
+    }
+
+    .jcsdl-list-bar {
+        display: block;
+        height: 32px;
+        text-align: center;
+    }
+
+    .jcsdl-btn {
+        display: inline-block;
+        float: none;
+
+        .jcsdl-picto {
+            display: inline-block;
+            background: url($listIcons) no-repeat -2px -6px;
+            @include backgroundSize(40px, 182px);
+            width: 14px;
+            height: 14px;
+            float: left;
+            margin-right: 5px;
+        }
+
+        &.jcsdl-edit {
+            .jcsdl-picto {background-position: -3px -110px; margin-right: 0;}
+            &:hover, &.jcsdl-active {
+                .jcsdl-picto {background-position: -23px -110px;}
+            }
+        }
+        &.jcsdl-move {
+            .jcsdl-picto {background-position: -3px -136px; margin-right: 0;}
+           &:hover, &.jcsdl-active {
+                .jcsdl-picto {background-position: -23px -136px;}
+            }
+        }
+        &.jcsdl-delete {
+            .jcsdl-picto {background-position: -3px -162px; margin-right: 0;}
+            &:hover, &.jcsdl-active {
+                .jcsdl-picto {background-position: -23px -162px;}
+            }
+        }
+        &.jcsdl-import {
+            .jcsdl-picto {background-position: -3px -84px;}
+            &:hover .jcsdl-picto {background-position: -23px -84px;}
+        }
+        &.jcsdl-sort-az {
+            .jcsdl-picto {background-position: -3px -32px;}
+            &:hover .jcsdl-picto {background-position: -23px -32px;}
+        }
+        &.jcsdl-copy {
+            .jcsdl-picto {background-position: -3px -58px;}
+            &:hover .jcsdl-picto {background-position: -23px -58px;}
+        }
+    }
+
+    .jcsdl-list-search {
+        display: inline-block;
+        height: 32px;
+        width: 200px;
+        margin: 0 2px;
+        margin-top: -2em;
+        line-height: 18px;
+        padding: 4px 6px;
+        font-size: 13px;
+        color: $colorLight;
+        background: white;
+        vertical-align: middle;
+        border: 1px solid $borderColor;
+        @include rounded(3px);
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    }
+
+    .jcsdl-list-cta {
+        margin-top: 10px;
+        border: 1px solid $colorOrange;
+        border-left-width: 3px;
+        padding: 10px;
+        background: lighten($colorOrange, 35%);
+    }
+
+    .jcsdl-list-container {
+        overflow: auto;
+        margin-bottom: 0;
+    }
+
+    .jcsdl-list-elements {
+        list-style: none;
+        display: block;
+        padding-left: 0;
+        margin-bottom: 0;
+        max-height: 310px;
+        overflow: auto;
+
+        input {
+            display: inline-block;
+            margin: 0;
+            line-height: 18px;
+            padding: 4px 6px;
+            font-size: 13px;
+            background: white;
+            border: 1px solid $borderColor;
+            vertical-align: middle;
+            @include rounded(2px);
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0);
+            cursor: pointer;
+
+            &.jcsdl-list-add-input {
+                width: 100%;
+            }
+        }
+    }
+
+    .jcsdl-list-add {
+        display: block;
+        float: left;
+        margin: 6px;
+        margin-left: 0;
+        margin-right: 9px;
+        padding-right: 15px;
+        border-right: 1px solid $borderColor;
+        width: 200px;
+    }
+
+    .jcsdl-list-item {
+        display: block;
+        height: 40px;
+        line-height: 30px;
+        position: relative;
+        margin: 6px 3px;
+        float: left;
+        background: $backgroundSmoked;
+        border: 1px solid $borderColor;
+        padding: 5px 11px;
+        @include rounded(2px);
+        overflow: hidden;
+
+        .jcsdl-list-item-input {
+            display: none;
+            height: 30px;
+        }
+
+        .jcsdl-list-item-label {
+            display: inline-block;
+            max-width: 150px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .jcsdl-list-item-mode-bar {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: transparent;
+        }
+
+        &:hover {
+            box-shadow: inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.05);
+        }
+
+        &.jcsdl-list-active {
+            padding: 3px 5px;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.05);
+
+            .jcsdl-list-item-label {
+                display: none;
+            }
+
+            .jcsdl-list-item-input {
+                display: inline-block;
+                padding: 11px 5px;
+                max-width: 200px;
+            }
+        }
+    }
+
+    .jcsdl-mode-edit .jcsdl-list-item {
+        cursor: text;
+
+        .jcsdl-list-item-mode-bar {
+            display: none;
+        }
+    }
+
+    .jcsdl-mode-delete {
+        .jcsdl-list-item {
+            cursor: pointer;
+        }
+
+        .jcsdl-list-item-mode-bar {
+            display: block;
+            background: red;
+        }
+    }
+
+    .jcsdl-mode-move {
+        .jcsdl-list-item {
+            cursor: move;
+        }
+
+        .jcsdl-list-item-mode-bar {
+            display: block;
+            background: $color;
+        }
+    }
+
+    .sortable-placeholder {
+        display: block;
+        position: relative;
+        margin: 6px 3px;
+        float: left;
+        width: 100px;
+        height: 40px;
+        border: 1px dashed $borderColor;
+        @include rounded(2px);
+    }
+}
+
+.jcsdl-popup .jcsdl-import-view {
+    box-sizing: border-box;
+    overflow: auto;
+
+    * {
+        box-sizing: border-box;
+    }
+
+    .jcsdl-btn {
+        display: inline-block;
+        float: none;
+    }
+
+    h4 {
+        margin-top: 0;
+    }
+
+    label {
+        margin: 5px 0;
+    }
+
+    .jcsdl-draganddrop {
+        border: 2px dashed $borderColor;
+        padding: 20px;
+        margin-bottom: 20px;
+        text-align: center;
+        @include transition(all 0.14s ease-out);
+
+        p {
+            margin: 0;
+            margin-bottom: 14px;
+            text-align: center;
+        }
+
+        &.over {
+            border-color: transparent;
+            box-shadow: 0 0 8px rgba(82, 168, 236, 0.6);
+        }
+    }
+
+    .jcsdl-import-buttons {
+        margin-bottom: 0;
+        text-align: center;
+    }
+
+    textarea {
+        display: inline-block;
+        height: 100px;
+        width: 100%;
+        line-height: 18px;
+        padding: 4px 6px;
+        font-size: 14px;
+        background: white;
+        border: 1px solid $borderColor;
+        @include rounded(2px);
+        margin-bottom: 15px;
+    }
+
+    .jcsdl-import-error {
+        color: red;
+        text-align: center;
+    }
+
+    .jcsdl-table-container {
+        max-width: 670px;
+        max-height: 330px;
+        overflow: auto;
+        margin: 0 auto;
+    }
+
+    table {
+        width: 100%;
+        margin: 0;
+        margin-bottom: 10px;
+        border-collapse: collapse;
+        border-spacing: 0;
+        border: 1px solid $borderColor;
+
+        td {
+            padding: 5px 10px;
+        }
+
+        tr.ignored {
+            td {
+                text-decoration: line-through;
+                color: $borderColor;
+            }
+        }
+
+        thead {
+            th {
+                background: $borderColor;
+                padding: 5px 10px;
+                text-align: center;
+            }
+
+            &.csdl-error th {
+                background: #fdd;
+            }
+        }
+
+        td, th {border: 1px solid $borderColor;}
+        tr:first-child th {border-top: 0;}
+        tr:last-child td {border-bottom: 0;}
+        tr td:first-child, tr th:first-child {border-left: 0;}
+        tr td:last-child, tr th:last-child {border-right: 0;}
+
+        tfoot tr td {
+            text-align: center;
+            font-size: 0.8em;
+        }
+    }
 }
 
 .jcsdl-operator-cs {float: right !important; cursor: pointer; margin: 0 !important; margin-right: 20px !important;}

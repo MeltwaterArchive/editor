@@ -9,141 +9,17 @@
  * Date: Wed Jun 01, 2011
  */
 
-(function(window, undefined) {
+/*global JCSDL*/
+(function(JCSDL, window, undefined) {
 
 JCSDL.Loader.addComponent(function($) {
 
-    $.fn.zclip = function (params) {
-
-        if (typeof params == "object" && !params.length) {
-
-            var settings = $.extend({
-
-                path: 'ZeroClipboard.swf',
-                copy: null,
-                beforeCopy: null,
-                afterCopy: null,
-                clickAfter: true,
-                setHandCursor: true,
-                setCSSEffects: true
-
-            }, params);
-			
-
-            return this.each(function () {
-
-                var o = $(this);
-
-                if (o.is(':visible') && (typeof settings.copy == 'string' || $.isFunction(settings.copy))) {
-
-                    ZeroClipboard.setMoviePath(settings.path);
-                    var clip = new ZeroClipboard.Client();
-                    
-                    if($.isFunction(settings.copy)){
-                    	o.bind('zClip_copy',settings.copy);
-                    }
-                    if($.isFunction(settings.beforeCopy)){
-                    	o.bind('zClip_beforeCopy',settings.beforeCopy);
-                    }
-                    if($.isFunction(settings.afterCopy)){
-                    	o.bind('zClip_afterCopy',settings.afterCopy);
-                    }                    
-
-                    clip.setHandCursor(settings.setHandCursor);
-                    clip.setCSSEffects(settings.setCSSEffects);
-                    clip.addEventListener('mouseOver', function (client) {
-                        o.trigger('mouseenter');
-                    });
-                    clip.addEventListener('mouseOut', function (client) {
-                        o.trigger('mouseleave');
-                    });
-                    clip.addEventListener('mouseDown', function (client) {
-
-                        o.trigger('mousedown');
-                        
-			if(!$.isFunction(settings.copy)){
-			   clip.setText(settings.copy);
-			} else {
-			   clip.setText(o.triggerHandler('zClip_copy'));
-			}                        
-                        
-                        if ($.isFunction(settings.beforeCopy)) {
-                            console.log('before copy');
-                            o.trigger('zClip_beforeCopy');                            
-                        }
-
-                    });
-
-                    clip.addEventListener('complete', function (client, text) {
-
-                        if ($.isFunction(settings.afterCopy)) {
-                            
-                            o.trigger('zClip_afterCopy');
-
-                        } else {
-                            if (text.length > 500) {
-                                text = text.substr(0, 500) + "...\n\n(" + (text.length - 500) + " characters not shown)";
-                            }
-							
-			    o.removeClass('hover');
-                            alert("Copied text to clipboard:\n\n " + text);
-                        }
-
-                        if (settings.clickAfter) {
-                            o.trigger('click');
-                        }
-
-                    });
-
-					
-                    clip.glue(o[0], o.parent()[0]);
-					
-		    $(window).bind('load resize',function(){clip.reposition();});
-					
-
-                }
-
-            });
-
-        } else if (typeof params == "string") {
-
-            return this.each(function () {
-
-                var o = $(this);
-
-                params = params.toLowerCase();
-                var zclipId = o.data('zclipId');
-                var clipElm = $('#' + zclipId + '.zclip');
-
-                if (params == "remove") {
-
-                    clipElm.remove();
-                    o.removeClass('active hover');
-
-                } else if (params == "hide") {
-
-                    clipElm.hide();
-                    o.removeClass('active hover');
-
-                } else if (params == "show") {
-
-                    clipElm.show();
-
-                }
-
-            });
-
-        }
-
-    }
-
-
-
-// ZeroClipboard
-// Simple Set Clipboard System
-// Author: Joseph Huckaby
-if (window.ZeroClipboard === undefined) {
-    window.ZeroClipboard = {
+    // ZeroClipboard
+    // Simple Set Clipboard System
+    // Author: Joseph Huckaby
+    // 
+    // JCSDL Private Version (so it doesn't clash with any existing on embedding page)
+    var ZeroClipboard = {
 
         version: "1.0.7",
         clients: {},
@@ -195,7 +71,7 @@ if (window.ZeroClipboard === undefined) {
         },
 
         dispatch: function (id, eventName, args) {
-            // receive event from flash movie, send to client		
+            // receive event from flash movie, send to client       
             var client = this.clients[id];
             if (client) {
                 client.receiveEvent(eventName, args);
@@ -217,7 +93,7 @@ if (window.ZeroClipboard === undefined) {
             };
 
             if (obj && (obj != stopObj)) {
-    			info.left += obj.offsetLeft;
+                info.left += obj.offsetLeft;
                 info.top += obj.offsetTop;
             }
 
@@ -240,7 +116,7 @@ if (window.ZeroClipboard === undefined) {
         }
     };
 
-    window.ZeroClipboard.Client.prototype = {
+    ZeroClipboard.Client.prototype = {
 
         id: 0,
         // unique ID for us
@@ -486,8 +362,136 @@ if (window.ZeroClipboard === undefined) {
             } // user defined handler for event
         }
     };
-}
+
+    if (window.ZeroClipboard === undefined) {
+        window.ZeroClipboard = ZeroClipboard;
+    }
+
+
+    $.fn.zclip = function (params) {
+
+        if (typeof params == "object" && !params.length) {
+
+            var settings = $.extend({
+
+                path: 'ZeroClipboard.swf',
+                copy: null,
+                beforeCopy: null,
+                afterCopy: null,
+                clickAfter: true,
+                setHandCursor: true,
+                setCSSEffects: true
+
+            }, params);
+            
+
+            return this.each(function () {
+
+                var o = $(this);
+
+                if (o.is(':visible') && (typeof settings.copy == 'string' || $.isFunction(settings.copy))) {
+
+                    ZeroClipboard.setMoviePath(settings.path);
+                    var clip = new ZeroClipboard.Client();
+                    
+                    if($.isFunction(settings.copy)){
+                        o.bind('zClip_copy',settings.copy);
+                    }
+                    if($.isFunction(settings.beforeCopy)){
+                        o.bind('zClip_beforeCopy',settings.beforeCopy);
+                    }
+                    if($.isFunction(settings.afterCopy)){
+                        o.bind('zClip_afterCopy',settings.afterCopy);
+                    }                    
+
+                    clip.setHandCursor(settings.setHandCursor);
+                    clip.setCSSEffects(settings.setCSSEffects);
+                    clip.addEventListener('mouseOver', function (client) {
+                        o.trigger('mouseenter');
+                    });
+                    clip.addEventListener('mouseOut', function (client) {
+                        o.trigger('mouseleave');
+                    });
+                    clip.addEventListener('mouseDown', function (client) {
+
+                        o.trigger('mousedown');
+                        
+            if(!$.isFunction(settings.copy)){
+               clip.setText(settings.copy);
+            } else {
+               clip.setText(o.triggerHandler('zClip_copy'));
+            }                        
+                        
+                        if ($.isFunction(settings.beforeCopy)) {
+                            console.log('before copy');
+                            o.trigger('zClip_beforeCopy');                            
+                        }
+
+                    });
+
+                    clip.addEventListener('complete', function (client, text) {
+
+                        if ($.isFunction(settings.afterCopy)) {
+                            
+                            o.trigger('zClip_afterCopy');
+
+                        } else {
+                            if (text.length > 500) {
+                                text = text.substr(0, 500) + "...\n\n(" + (text.length - 500) + " characters not shown)";
+                            }
+                            
+                o.removeClass('hover');
+                            alert("Copied text to clipboard:\n\n " + text);
+                        }
+
+                        if (settings.clickAfter) {
+                            o.trigger('click');
+                        }
+
+                    });
+
+                    
+                    clip.glue(o[0], o.parent()[0]);
+                    
+            $(window).bind('load resize',function(){clip.reposition();});
+                    
+
+                }
+
+            });
+
+        } else if (typeof params == "string") {
+
+            return this.each(function () {
+
+                var o = $(this);
+
+                params = params.toLowerCase();
+                var zclipId = o.data('zclipId');
+                var clipElm = $('#' + zclipId + '.zclip');
+
+                if (params == "remove") {
+
+                    clipElm.remove();
+                    o.removeClass('active hover');
+
+                } else if (params == "hide") {
+
+                    clipElm.hide();
+                    o.removeClass('active hover');
+
+                } else if (params == "show") {
+
+                    clipElm.show();
+
+                }
+
+            });
+
+        }
+
+    };
 
 });
 
-})(window);
+})(JCSDL, window);

@@ -181,6 +181,9 @@ JCSDL.Loader.addComponent(function($, undefined) {
                 this.config.zeroClipboard = this.assetsUrl + 'swf/ZeroClipboard.swf';
             }
 
+            // move it to global namespace as well
+            JCSDL.zeroClipboard = this.config.zeroClipboard;
+
 			/*
 			 * REGISTER LISTENERS
 			 */

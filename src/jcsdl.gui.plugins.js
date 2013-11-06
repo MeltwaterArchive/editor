@@ -319,8 +319,8 @@ JCSDL.Loader.addComponent(function($, undefined) {
 
 		var $self = $(this[0]);
 
-		// override only for JCSDL Tag Input field
-		if ($self.data('jcsdlTagInput')) {
+		// override only for JCSDL Tag Input or JCSDL List Editor fields
+		if ($self.data('jcsdlTagInput') || $self.data('jcsdlListEditor')) {
 			// setting a value
 			if (value !== undefined) {
 				$self.jcsdlOrigVal(value);
@@ -835,7 +835,10 @@ JCSDL.Loader.addComponent(function($, undefined) {
 		},
 		setContent : function(content) {
             // make sure it's an HTML string for jQuery 1.9
-            content = $.trim(content);
+            if (typeof content === 'string') {
+                content = $.trim(content);
+            }
+            
             var $content = (typeof content === 'string' && content.charAt(0) !== '<') ? $('<p>' + content + '</p>') : $(content);
 			var $popupContent = this.$popup.find('.jcsdl-popup-content');
 			$popupContent.html('');
