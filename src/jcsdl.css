@@ -3338,7 +3338,7 @@ a.jcsdl-filters-logic-option {
 .jcsdl-icon.operator {
   width: 46px;
   height: 46px;
-  background: url("img/icons-sprite-operators.png?5") no-repeat 0 0;
+  background: url("img/icons-sprite-operators.png?6") no-repeat 0 0;
   border: 1px solid #c6c6c9;
   -webkit-border-radius: 2px;
   -khtml-border-radius: 2px;
@@ -3408,6 +3408,18 @@ a.jcsdl-filters-logic-option {
     background-position: -4px -142px; }
     .jcsdl-icon.operator.icon-cs.selected {
       background-position: -4px -326px; }
+  .jcsdl-icon.operator.icon-wildcard {
+    background-position: -46px -142px; }
+    .jcsdl-icon.operator.icon-wildcard.selected {
+      background-position: -46px -326px; }
+  .jcsdl-icon.operator.icon-all {
+    background-position: -92px -142px; }
+    .jcsdl-icon.operator.icon-all.selected {
+      background-position: -92px -326px; }
+  .jcsdl-icon.operator.icon-url_in {
+    background-position: -138px -142px; }
+    .jcsdl-icon.operator.icon-url_in.selected {
+      background-position: -138px -326px; }
   .jcsdl-icon.operator:hover {
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
     filter: alpha(opacity=70);
@@ -3819,7 +3831,7 @@ code.jcsdl-code {
     background-size: 2970px 220px; }
 
   .jcsdl-icon.operator {
-    background-image: url("img/icons-sprite-operators@2x.png");
+    background-image: url("img/icons-sprite-operators@2x.png?6");
     -moz-background-size: 184px 368px;
     -ie-background-size: 184px 368px;
     -o-background-size: 184px 368px;

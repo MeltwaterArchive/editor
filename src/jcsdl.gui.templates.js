@@ -1,4 +1,6 @@
+/*global JCSDL*/
 JCSDL.Loader.addComponent(function($, undefined) {
+    "use strict";
 
 	this.GUITemplates = {
 		// container of the whole thing
@@ -139,7 +141,7 @@ JCSDL.Loader.addComponent(function($, undefined) {
 				'</div>',
 				'<div class="jcsdl-footer">',
 					'<a href="#" class="jcsdl-button jcsdl-elements-sprite jcsdl-filter-save">Save and Preview</a>',
-					'<span style="display: none;">or</span> <a href="#" class="jcsdl-filter-cancel">cancel</a>',
+					'<span style="display: none;">or </span> <a href="#" class="jcsdl-filter-cancel">cancel</a>',
 				'</div>',
 			'</div>'
 		].join('')),

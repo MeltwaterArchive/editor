@@ -35,8 +35,8 @@ $fieldYammerIconsSprite : 'img/icons-sprite-fields-yammer.png?2';
 $fieldYammerIconsSpriteRetina : 'img/icons-sprite-fields-yammer@2x.png?2';
 $fieldFBPagesIconsSprite : 'img/icons-sprite-fields-fbpages.png?3';
 $fieldFBPagesIconsSpriteRetina : 'img/icons-sprite-fields-fbpages@2x.png?3';
-$operatorIconsSprite : 'img/icons-sprite-operators.png?5';
-$operatorIconsSpriteRetina : 'img/icons-sprite-operators@2x.png';
+$operatorIconsSprite : 'img/icons-sprite-operators.png?6';
+$operatorIconsSpriteRetina : 'img/icons-sprite-operators@2x.png?6';
 $otherIconsSprite : 'img/icons-sprite-other.png?3';
 $otherIconsSpriteRetina : 'img/icons-sprite-other@2x.png';
 $loader : 'img/loader.gif';
@@ -2157,6 +2157,9 @@ a.jcsdl-filters-logic-option {
         width: 38px; height: 38px;
         background-position: -4px -142px;           &.selected {background-position: -4px -326px;}
     }
+    &.icon-wildcard     {background-position: -46px -142px;     &.selected {background-position: -46px -326px;}}
+    &.icon-all          {background-position: -92px -142px;     &.selected {background-position: -92px -326px;}}
+    &.icon-url_in       {background-position: -138px -142px;    &.selected {background-position: -138px -326px;}}
 
     &:hover {@include opacity(0.7);}
     &.selected {@include opacity(1); border-color: $colorOrange;}

@@ -3,7 +3,7 @@
     
     var JCSDL = window.JCSDL = {}; // register namespace
 
-    JCSDL.version = '2.3.1';
+    JCSDL.version = '2.3.2';
 
 	JCSDL.Loader = {
 		// array list of functions to be called when loading
