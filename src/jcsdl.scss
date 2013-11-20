@@ -575,108 +575,109 @@ a.jcsdl-filters-logic-option {
     &.inactive {@include opacity(0.3);}
 }
 
-/* editor steps */
-.jcsdl-filter-editor {
-    .jcsdl-search {
-        display: block;
+.jcsdl-search {
+    display: block;
+    @include boxSizing();
+    position: relative;
+    width: 400px;
+
+    input {
+        display: inline-block;
         @include boxSizing();
-        position: relative;
         width: 400px;
+        height: 36px;
+        line-height: 36px;
+        background: white;
+        border: 1px solid $borderColor;
+        @include transition();
+        padding: 0 10px;
+        font-size: 13px;
+        color: #222;
+        outline: none;
+        z-index: 99999;
+    }
 
-        input {
-            display: inline-block;
-            @include boxSizing();
-            width: 400px;
-            height: 36px;
-            line-height: 36px;
-            background: white;
-            border: 1px solid $borderColor;
-            @include transition();
-            padding: 0 10px;
-            font-size: 13px;
-            color: #222;
-            outline: none;
-            z-index: 99999;
+    .jcsdl-search-arrow {
+        display: block;
+        width: 26px;
+        height: 24px;
+        position: absolute;
+        top: 6px;
+        right: 0;
+        background: url($elementsSprite) no-repeat -70px -408px;
+        @include opacity(0.8);
+
+        &:hover {
+            @include opacity(1);
         }
+    }
 
-        .jcsdl-search-arrow {
+    .jcsdl-search-results {
+        display: none;
+        @include boxSizing();
+        position: absolute;
+        top: 36px;
+        left: 0;
+        width: 400px;
+        border: 1px solid #c0c0c0;
+        border-top: 0;
+        z-index: 99998;
+        background: white;
+        max-height: 296px;
+        overflow-y: auto;
+        margin: 0;
+        -webkit-margin-before: 0;
+        -webkit-margin-after: 0;
+        -webkit-padding-start: 0;
+        @include dropShadow(3px, 3px, 8px, 0px, 0.12);
+
+        li {
             display: block;
-            width: 26px;
-            height: 24px;
-            position: absolute;
-            top: 6px;
-            right: 0;
-            background: url($elementsSprite) no-repeat -70px -408px;
-            @include opacity(0.8);
+            padding: 0 10px;
+            color: #222;
+            line-height: 36px;
+            height: 36px;
+            text-align: left;
+            cursor: pointer;
+            border-bottom: 1px solid $borderColor;
+
+            .jcsdl-icon {
+                display: inline-block;
+                margin-right: 10px;
+                width: 33px;
+                height: 33px;
+                @include backgroundSize(891px, 66px);
+            }
+
+            .jcsdl-search-item-name {
+                display: inline-block;
+                max-width: 330px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
 
             &:hover {
-                @include opacity(1);
+                color: #49648e;
             }
-        }
 
-        .jcsdl-search-results {
-            display: none;
-            @include boxSizing();
-            position: absolute;
-            top: 36px;
-            left: 0;
-            width: 400px;
-            border: 1px solid #c0c0c0;
-            border-top: 0;
-            z-index: 99998;
-            background: white;
-            max-height: 296px;
-            overflow-y: auto;
-            margin: 0;
-            -webkit-margin-before: 0;
-            -webkit-margin-after: 0;
-            @include dropShadow(3px, 3px, 8px, 0px, 0.12);
-
-            li {
-                display: block;
-                padding: 0 10px;
-                color: #222;
-                line-height: 36px;
-                height: 36px;
-                text-align: left;
-                cursor: pointer;
-                border-bottom: 1px solid $borderColor;
-
-                .jcsdl-icon {
-                    display: inline-block;
-                    margin-right: 10px;
-                    width: 33px;
-                    height: 33px;
-                    @include backgroundSize(891px, 66px);
-                }
-
-                .jcsdl-search-item-name {
-                    display: inline-block;
-                    max-width: 330px;
-                    overflow: hidden;
-                    text-overflow: ellipsis;
-                    white-space: nowrap;
-                }
-
-                &:hover {
-                    color: #49648e;
-                }
-
-                &.jcsdl-selected {
-                    color: #49648e;
-                }
-            }
-        }
-
-        &.jcsdl-active {
-            input {
-                border-top-color: #c0c0c0;
-                border-left-color: #c0c0c0;
-                border-right-color: #c0c0c0;
+            &.jcsdl-selected {
+                color: #49648e;
             }
         }
     }
 
+    &.jcsdl-active {
+        input {
+            border-top-color: #c0c0c0;
+            border-left-color: #c0c0c0;
+            border-right-color: #c0c0c0;
+        }
+    }
+}
+
+/* editor steps */
+.jcsdl-filter-editor {
 
     .jcsdl-step {
         overflow: hidden; text-align: center; position: relative;

@@ -23,6 +23,7 @@ JCSDL.Loader.addComponent(function($, undefined) {
 			animate : 200,
 			cancelButton : true,
 			saveButton : null,
+            searchContainer : '#jcsdl-edit-editor-search',
 			googleMapsApiKey : '',
 			mapsOverlay : {
 				strokeWeight : 0,
@@ -465,7 +466,7 @@ JCSDL.Loader.addComponent(function($, undefined) {
 			this.currentFilterIndex = null;
 
 			this.editor.getView().fadeOut(this.config.animate, function() {
-				$(this).remove();
+				self.editor.destroy();
 				self.$mainView.show();
 
 				// destroy the editor instance

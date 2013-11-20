@@ -58,9 +58,15 @@ JCSDL.Loader.addComponent(function($, undefined) {
 		// prepare the filter editor
 		this.$view = this.getTemplate('filterEditor');
 		this.$steps = this.$view.find('.jcsdl-steps');
-        this.$search = this.$view.find('.jcsdl-search');
-        this.$searchInput = this.$view.find('.jcsdl-search input');
-        this.$searchResults = this.$view.find('.jcsdl-search-results');
+        this.$search = this.getTemplate('filterEditor_search');
+        this.$searchInput = this.$search.find('input');
+        this.$searchResults = this.$search.find('.jcsdl-search-results');
+
+        if (this.config.searchContainer) {
+            $(this.config.searchContainer).html(this.$search);
+        } else {
+            this.$view.prepend(this.$search);
+        }
 
 		// now we need to display the editor in order for all plugins to be properly sized
 		this.$view.appendTo($appendTo).show();
@@ -194,7 +200,7 @@ JCSDL.Loader.addComponent(function($, undefined) {
         /**
          * Display the search results dropdown when clicked on the arrow.
          */
-        this.$view.find('.jcsdl-search-arrow').click(function() {
+        this.$search.find('.jcsdl-search-arrow').click(function() {
             self.$searchInput.focus();
             return false;
         });
@@ -217,6 +223,14 @@ JCSDL.Loader.addComponent(function($, undefined) {
 		adjust : function() {
 			this.$steps.find('.jcsdl-step').jcsdlCarousel('adjust');
 		},
+
+        /**
+         * Destroy the GUI filter editor view.
+         */
+        destroy : function() {
+            this.$search.remove();
+            this.$view.remove();
+        },
 
 		/**
 		 * Load a filter into the editor.
