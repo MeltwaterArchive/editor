@@ -23,8 +23,8 @@ JCSDL.Loader.addComponent(function($, undefined) {
 			animate : 200,
 			cancelButton : true,
 			saveButton : null,
-            searchContainer : '#jcsdl-edit-editor-search',
-            searchAutofocus : true,
+            searchContainer : null,
+            searchAutofocus : false,
 			googleMapsApiKey : '',
 			mapsOverlay : {
 				strokeWeight : 0,
