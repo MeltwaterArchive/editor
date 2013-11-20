@@ -24,6 +24,7 @@ JCSDL.Loader.addComponent(function($, undefined) {
 			cancelButton : true,
 			saveButton : null,
             searchContainer : '#jcsdl-edit-editor-search',
+            searchAutofocus : true,
 			googleMapsApiKey : '',
 			mapsOverlay : {
 				strokeWeight : 0,

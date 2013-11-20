@@ -1,5 +1,6 @@
 /*global JCSDL, jcsdlMapsCurrentCallback, jcsdlMapsCurrentCallbackArgs, jcsdlMapsCurrentGui*/
 JCSDL.Loader.addComponent(function($, undefined) {
+    "use strict";
 
     /* define some static private vars */
     var
@@ -205,6 +206,25 @@ JCSDL.Loader.addComponent(function($, undefined) {
             return false;
         });
 
+        if (this.config.searchAutofocus) {
+            /**
+             * Auto focus in search field when user starts to type.
+             */
+            $(document).on('keydown.jcsdlsearch', function(ev) {
+                // only alphanumerics
+                if (ev.which < 48 || ev.which > 90) {
+                    return;
+                }
+
+                // not if already focused in some input
+                if ($('input:focus, textarea:focus').length) {
+                    return;
+                }
+            
+                self.$searchInput.focus();
+            });
+        }
+
 		// finally load a filter if any specified
 		this.loadFilter(filter);
 	};
@@ -230,6 +250,7 @@ JCSDL.Loader.addComponent(function($, undefined) {
         destroy : function() {
             this.$search.remove();
             this.$view.remove();
+            $(document).off('keypress.jcsdlsearch');
         },
 
 		/**
@@ -238,7 +259,6 @@ JCSDL.Loader.addComponent(function($, undefined) {
 		 * @param  {Object} filter Filter to be loaded.
 		 */
 		loadFilter : function(filter) {
-			var self = this;
 			this.filter = filter;
 
 			// if no filter or invalid filter then break
@@ -630,7 +650,7 @@ JCSDL.Loader.addComponent(function($, undefined) {
 		 * @param  {String} message Error message to be displayed.
 		 * @param  {String} code    Code that caused the error.
 		 */
-		showError : function(message, code) {
+		showError : function(message) {
 			// clear all previous errors
 			this.$view.find('.jcsdl-error').remove();
 
