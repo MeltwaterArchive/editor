@@ -1,5 +1,6 @@
 /*global JCSDLTargets*/
 JCSDLTargets.Loader.addComponent(function($, undefined) {
+    "use strict";
 
     /* define some static private vars */
     var
@@ -372,84 +373,12 @@ JCSDLTargets.Loader.addComponent(function($, undefined) {
 				return;
 			}
 
-			// also, if this is final selection then show "Learn more" option
-			this.addTargetHelpToStep($stepView);
-
 			this.trigger('targetSelect', [this.getCurrentPath()]);
-		},
 
-		/**
-		 * Adds a target help trigger to the given step. It should be final step of the carousel.
-		 * 
-		 * @param {jQuery} $stepView
-		 */
-		addTargetHelpToStep : function($stepView) {
-			var self = this;
-
-			this.getTemplate('targetHelp').appendTo($stepView);
-
-			/**
-			 * Open target help popup on click.
-			 * @param  {Event} ev Click event.
-			 * @listener
-			 */
-			$stepView.find('.jcsdl-target-help').click(function(ev) {
-				ev.preventDefault();
-				ev.target.blur();
-
-				var info = self.getFieldInfoAtCurrentPath(),
-					target = self.target,
-					targetInfo = self.parser.getTargetInfo(target),
-					path = self.path.join('-'),
-					title = targetInfo.name,
-					cPath = [];
-
-				$.each(self.path, function(i, name) {
-					cPath.push(name);
-					title += ' &raquo; ' + self.parser.getFieldInfo(target, cPath).name;
-				});
-
-				// Copes with the differing path names in the Query editor
-				var cacheName = path;
-				if (target !== 'augmentation') { // Augmentations don't live in an augmentation namespace
-					cacheName = target + '.' + cacheName;
-				}
-
-				var url = self.config.targetHelpUrl.apply(self, [cacheName.replace(/-/g, '.'), info]),
-					popup = $.jcsdlPopup({
-						title : title
-					});
-
-				if (self.jsonpCache.targets[cacheName] === undefined) {
-					$.ajax({
-						url : url,
-						type : 'GET',
-						async : false,
-						jsonpCallback : 'jcsdlJSONP',
-						contentType : 'application/json',
-						dataType : 'jsonp',
-						success : function(data) {
-							if (!data || !data.html || !$.trim(data.html)) {
-								popup.setContent('<p>No documentation available.</p>');
-								popup.reposition();
-								return;
-							}
-
-							popup.setContent(data.html);
-							popup.reposition();
-
-							self.jsonpCache.targets[cacheName] = data.html;
-						},
-						error : function() {
-							popup.setContent('<p>No documentation available.</p>');
-							popup.reposition();
-						}
-					});
-				} else {
-					popup.setContent(self.jsonpCache.targets[cacheName]);
-					popup.reposition();
-				}
-			});
+            // display target info
+            // now the user needs to input desired value(s)
+            var $infoView = this.createTargetInfoView(this.getCurrentPath(false), this.getFieldInfoAtCurrentPath());
+            this.addFilterStep('info', $infoView, (firstRemoved !== 'info'));
 		},
 
 		/* ##########################
@@ -613,6 +542,110 @@ JCSDLTargets.Loader.addComponent(function($, undefined) {
 			return $option;
 		},
 
+        /**
+         * Creates an info view for the given target.
+         *
+         * @param  {String} target Target name.
+         * @param  {Object} info Target information.
+         * @return {jQuery}
+         */
+        createTargetInfoView : function(target, info) {
+            var self = this,
+                $view = this.getTemplate('targetInfo'),
+                dataSource = '',
+                targetName = (function() {
+                    var path = [],
+                        targetName = '';
+
+                    $.each(target.split('.'), function(i, field) {
+                        if (!i) {
+                            dataSource = field;
+                            targetName = self.parser.getTargetInfo(dataSource).name;
+                            return true; // continue
+                        } else {
+                            path.push(field);
+
+                            try {
+                                var fieldInfo = self.parser.getFieldInfo(dataSource, path);
+                                targetName = targetName + ' ' + fieldInfo.name;
+                            } catch(e) {/*ignore*/}
+                        }
+                    });
+
+                    return targetName;
+                })();
+
+            var docsTarget = dataSource === 'augmentation' ? target.substr(dataSource.length + 1) : target,
+                docsNs = dataSource === 'interaction'
+                    ? 'common-interaction'
+                    : (dataSource === 'augmentation'
+                        ? 'augmentation-' + docsTarget.split('.')[0]
+                        : dataSource
+                    ),
+                docsUrl = 'http://dev.datasift.com/docs/targets/' + docsNs + '/' + docsTarget.replace(/\./g, '-').replace(/_/g, '');
+
+            $view.find('[data-target-name]').html(targetName);
+            $view.find('[data-target] a').html(target);
+            $view.find('[data-docs-url]').attr('href', docsUrl);
+
+            // load description from JSONP
+            var helpUrl = this.config.targetHelpUrl.apply(this, [docsTarget.replace(/-/g, '.'), info]),
+                $descriptionView = $view.find('[data-description]');
+            if (this.jsonpCache.targets[docsTarget] === undefined) {
+                $.ajax({
+                    url : helpUrl,
+                    type : 'GET',
+                    jsonpCallback : 'jcsdlJSONP',
+                    contentType : 'application/json',
+                    dataType : 'jsonp'
+                }).done(function(data) {
+                    if (!data || !data.html || !$.trim(data.html)) {
+                        $descriptionView.html('<p>No documentation available.</p>');
+                        return;
+                    }
+
+                    $descriptionView.html(data.html);
+                    self.jsonpCache.targets[docsTarget] = data.html;
+
+                }).fail(function() {
+                    $descriptionView.html('<p>No documentation available.</p>');
+                    return;
+                });
+            } else {
+                $descriptionView.html(this.jsonpCache.targets[docsTarget]);
+            }
+
+            // display operators
+            var $operatorsListView = $view.find('[data-operators]'),
+                defaultOperator = info.operator !== undefined
+                    ? info.operator
+                    : (info.operators[0] === 'exists' && info.operators[1] !== undefined
+                        ? info.operators[1]
+                        : info.operators[0]
+                    );
+
+            $.each(info.operators, function(i, operator) {
+                var $operatorView = self.getTemplate('targetInfo_operator'),
+                    operatorInfo = self.definition.operators[operator];
+
+                if (operatorInfo === undefined) {
+                    return true;
+                }
+
+                $operatorView.find('[data-operator]').html(operatorInfo.label);
+                $operatorView.find('[data-operator-desc]').html(operatorInfo.description);
+                $operatorView.find('.jcsdl-icon').addClass('icon-' + operator + ' operator-' + operator);
+
+                if (operator !== defaultOperator) {
+                    $operatorView.find('[data-operator-default]').remove();
+                }
+
+                $operatorView.appendTo($operatorsListView);
+            });
+
+            return $view;
+        },
+
         /* ##########################
          * SEARCH
          * ########################## */
@@ -689,11 +722,14 @@ JCSDLTargets.Loader.addComponent(function($, undefined) {
 
 		/**
 		 * Returns the current selected path in the filter editor.
-		 * 
+         *
+         * @param {Boolean} real [optional] Should return real target name? Default: true.
 		 * @return {String}
 		 */
-		getCurrentPath : function() {
-			return this.target + (this.path.length > 0 ? '.' : '') + this.path.join('.').replace(/-/g, '.');
+		getCurrentPath : function(real) {
+            real = real === undefined ? true : real;
+            var path = this.target + (this.path.length > 0 ? '.' : '') + this.path.join('.');
+            return real ? path.replace(/-/g, '.') : path;
 		},
 
         /**

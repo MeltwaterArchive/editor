@@ -58,8 +58,35 @@ JCSDLTargets.Loader.addComponent(function($, undefined) {
 		// field select option
 		fieldOption : $('<a href="#" class="jcsdl-icon field jcsdl-carousel-item" />'),
 
-		// target help trigger
-		targetHelp : $('<a href="#" class="jcsdl-target-help">Learn More</a>')
+		targetInfo : $([
+            '<div class="jcsdl-row jcsdl-filter-target-info">',
+                '<h2 data-target-name />',
+                '<h3 data-target><a href="#" data-docs-url target="_blank" /></h3>',
+                '<div class="jcsdl-row">',
+                    '<div class="jcsdl-column eight">',
+                        '<h4>Description</h4>',
+                        '<div class="jcsdl-target-description" data-description>',
+                            '<div class="jcsdl-loading" />',
+                        '</div>',
+                        '<a href="#" data-docs-url target="_blank" class="jcsdl-big-link">More Information</a>',
+                    '</div>',
+                    '<div class="jcsdl-column four jcsdl-filter-operators">',
+                        '<h4>Operators allowed</h4>',
+                        '<div class="jcsdl-operators-list" data-operators />',
+                    '</div>',
+                '</div>',
+            '</div>'
+        ].join('')),
+
+        targetInfo_operator : $([
+            '<div class="jcsdl-row jcsdl-filter-target-operator-info">',
+                '<div class="jcsdl-icon operator" />',
+                '<div class="jcsdl-filter-target-operator-desc">',
+                    '<span class="jcsdl-operator-label"><span data-operator /><span class="jcsdl-operator-default" data-operator-default> (default)</span></span>',
+                    '<p data-operator-desc />',
+                '</div>',
+            '</div>'
+        ].join(''))
 
 	};
 

@@ -22,8 +22,7 @@ JCSDLTargets.Loader.addComponent(function($, undefined) {
 			if (this.gui.definition.targets[target] !== undefined) {
 				return this.gui.definition.targets[target];
 			}
-			this.error('Such target does not exist!', target);
-			return false;
+			throw new Error('Such target "' + target + '" does not exist!');
 		},
 
 		/**
@@ -34,13 +33,10 @@ JCSDLTargets.Loader.addComponent(function($, undefined) {
 		 * @return {Object}
 		 */
 		getFieldInfo : function(target, fieldPath) {
-			var self = this;
-
 			// starting field is naturally the current target
 			var field = this.gui.definition.targets[target];
 			if (field === undefined) {
-				this.error('Such target does not exist!', target);
-				return false;
+				throw new Error('Such target "' + target + '" does not exist!');
 			}
 
 			// get to the end of the path
@@ -50,15 +46,11 @@ JCSDLTargets.Loader.addComponent(function($, undefined) {
 					if (field.fields[fieldName] !== undefined) {
 						field = field.fields[fieldName];
 					} else {
-						self.error('Invalid path to a field (#1)!', target, fieldPath, field);
-						field = false;
-						return false; // break the $.each
+                        throw new Error('Invalid path to a field (' + target + '.' + fieldPath.join('.') + ')');
 					}
 
 				} else {
-					self.error('Invalid path to a field (#2)!', target, fieldPath, field);
-					field = false;
-					return false; // break the $.each
+					throw new Error('Invalid path to a field (' + target + '.' + fieldPath.join('.') + ')');
 				}
 			});
 

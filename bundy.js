@@ -40,6 +40,8 @@ bundy.copy([
     'src/img/icons-sprite-fields-yammer@2x.png',
     'src/img/icons-sprite-fields.png',
     'src/img/icons-sprite-fields@2x.png',
+    'src/img/icons-sprite-operators.png',
+    'src/img/icons-sprite-operators@2x.png',
     'src/img/icons-sprite-targets.png',
     'src/img/icons-sprite-targets@2x.png',
     'src/img/loader.gif',
