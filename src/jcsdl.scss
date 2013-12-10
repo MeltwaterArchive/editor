@@ -17,8 +17,8 @@ $elementsSpriteRetina : 'img/elements@2x.png?6';
 $selectSprite : 'img/select.png?14';
 $selectSpriteRetina : 'img/select@2x.png';
 $stepBackground : 'img/step_background.png?5';
-$targetIconsSprite : 'img/icons-sprite-targets.png?16';
-$targetIconsSpriteRetina : 'img/icons-sprite-targets@2x.png?4';
+$targetIconsSprite : 'img/icons-sprite-targets.png?17';
+$targetIconsSpriteRetina : 'img/icons-sprite-targets@2x.png?17';
 $fieldIconsSprite : 'img/icons-sprite-fields.png?12';
 $fieldIconsSpriteRetina : 'img/icons-sprite-fields@2x.png?1';
 $fieldDbwIconsSprite : 'img/icons-sprite-fields-dbw.png?1';
@@ -35,6 +35,8 @@ $fieldYammerIconsSprite : 'img/icons-sprite-fields-yammer.png?2';
 $fieldYammerIconsSpriteRetina : 'img/icons-sprite-fields-yammer@2x.png?2';
 $fieldFBPagesIconsSprite : 'img/icons-sprite-fields-fbpages.png?3';
 $fieldFBPagesIconsSpriteRetina : 'img/icons-sprite-fields-fbpages@2x.png?3';
+$fieldIntenseDebateWordpressIconsSprite : 'img/icons-sprite-fields-intensedebate-wordpress.png?1';
+$fieldIntenseDebateWordpressIconsSpriteRetina : 'img/icons-sprite-fields-intensedebate-wordpress@2x.png?1';
 $operatorIconsSprite : 'img/icons-sprite-operators.png?6';
 $operatorIconsSpriteRetina : 'img/icons-sprite-operators@2x.png?6';
 $otherIconsSprite : 'img/icons-sprite-other.png?3';
@@ -628,7 +630,6 @@ a.jcsdl-filters-logic-option {
         margin: 0;
         -webkit-margin-before: 0;
         -webkit-margin-after: 0;
-        -webkit-padding-start: 0;
         @include dropShadow(3px, 3px, 8px, 0px, 0.12);
 
         li {
@@ -646,24 +647,24 @@ a.jcsdl-filters-logic-option {
                 margin-right: 10px;
                 width: 33px;
                 height: 33px;
-                @include backgroundSize(891px, 66px);
+                @include backgroundSize(957px, 66px);
             }
+        }
 
-            .jcsdl-search-item-name {
-                display: inline-block;
-                max-width: 330px;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                white-space: nowrap;
-            }
+        .jcsdl-search-item-name {
+            display: inline-block;
+            max-width: 330px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
 
-            &:hover {
-                color: #49648e;
-            }
+        &:hover {
+            color: #49648e;
+        }
 
-            &.jcsdl-selected {
-                color: #49648e;
-            }
+        &.jcsdl-selected {
+            color: #49648e;
         }
     }
 
@@ -1446,37 +1447,41 @@ a.jcsdl-filters-logic-option {
     &.target-instagram  {background-position: -2640px 0;        &.selected {background-position: -2640px -110px;}}
     &.target-yammer     {background-position: -2750px 0;        &.selected {background-position: -2750px -110px;}}
     &.target-facebook_page {background-position: -2860px 0;     &.selected {background-position: -2860px -110px;}}
+    &.target-wordpress  {background-position: -2970px 0;        &.selected {background-position: -2970px -110px;}}
+    &.target-intensedebate {background-position: -3080px 0;     &.selected {background-position: -3080px -110px;}}
 }
 
 .jcsdl-search-results li {
     .jcsdl-icon.target {
         &.target-interaction {background-position: 0 0;             &.selected {background-position: 0 -33px;}}
-        &.target-facebook   {background-position: -33px 0;         &.selected {background-position: -33px -33px;}}
-        &.target-twitter    {background-position: -66px 0;         &.selected {background-position: -66px -33px;}}
-        &.target-digg       {background-position: -99px 0;         &.selected {background-position: -99px -33px;}}
+        &.target-facebook   {background-position: -33px 0;          &.selected {background-position: -33px -33px;}}
+        &.target-twitter    {background-position: -66px 0;          &.selected {background-position: -66px -33px;}}
+        &.target-digg       {background-position: -99px 0;          &.selected {background-position: -99px -33px;}}
         &.target-myspace    {background-position: -132px 0;         &.selected {background-position: -132px -33px;}}
         &.target-klout      {background-position: -165px 0;         &.selected {background-position: -165px -33px;}}
         &.target-amazon     {background-position: -198px 0;         &.selected {background-position: -198px -33px;}}
         &.target-youtube    {background-position: -231px 0;         &.selected {background-position: -231px -33px;}}
         &.target-flickr     {background-position: -264px 0;         &.selected {background-position: -264px -33px;}}
         &.target-blog       {background-position: -297px 0;         &.selected {background-position: -297px -33px;}}
-        &.target-video      {background-position: -330px 0;        &.selected {background-position: -330px -33px;}}
-        &.target-reddit     {background-position: -363px 0;        &.selected {background-position: -363px -33px;}}
-        &.target-imdb       {background-position: -396px 0;        &.selected {background-position: -396px -33px;}}
-        &.target-dailymotion{background-position: -429px 0;        &.selected {background-position: -429px -33px;}}
-        &.target-newscred   {background-position: -462px 0;        &.selected {background-position: -462px -33px;}}
-        &.target-board      {background-position: -495px 0;        &.selected {background-position: -495px -33px;}}
-        &.target-topix      {background-position: -528px 0;        &.selected {background-position: -528px -33px;}}
-        &.target-augmentation {background-position: -561px 0;      &.selected {background-position: -561px -33px;}}
-        &.target-2ch        {background-position: -594px 0;        &.selected {background-position: -594px -33px;}}
-        &.target-bitly      {background-position: -627px 0;        &.selected {background-position: -627px -33px;}}
-        &.target-wikipedia  {background-position: -660px 0;        &.selected {background-position: -660px -33px;}}
+        &.target-video      {background-position: -330px 0;         &.selected {background-position: -330px -33px;}}
+        &.target-reddit     {background-position: -363px 0;         &.selected {background-position: -363px -33px;}}
+        &.target-imdb       {background-position: -396px 0;         &.selected {background-position: -396px -33px;}}
+        &.target-dailymotion{background-position: -429px 0;         &.selected {background-position: -429px -33px;}}
+        &.target-newscred   {background-position: -462px 0;         &.selected {background-position: -462px -33px;}}
+        &.target-board      {background-position: -495px 0;         &.selected {background-position: -495px -33px;}}
+        &.target-topix      {background-position: -528px 0;         &.selected {background-position: -528px -33px;}}
+        &.target-augmentation {background-position: -561px 0;       &.selected {background-position: -561px -33px;}}
+        &.target-2ch        {background-position: -594px 0;         &.selected {background-position: -594px -33px;}}
+        &.target-bitly      {background-position: -627px 0;         &.selected {background-position: -627px -33px;}}
+        &.target-wikipedia  {background-position: -660px 0;         &.selected {background-position: -660px -33px;}}
         /*&.target-unknown     {background-position: -693px 0;        &.selected {background-position: -693px -33px;}}*/
-        &.target-tumblr     {background-position: -726px 0;        &.selected {background-position: -726px -33px;}}
-        &.target-googleplus {background-position: -759px 0;        &.selected {background-position: -759px -33px;}}
-        &.target-instagram  {background-position: -792px 0;        &.selected {background-position: -792px -33px;}}
-        &.target-yammer     {background-position: -825px 0;        &.selected {background-position: -825px -33px;}}
-        &.target-facebook_page {background-position: -858px 0;     &.selected {background-position: -858px -33px;}}
+        &.target-tumblr     {background-position: -726px 0;         &.selected {background-position: -726px -33px;}}
+        &.target-googleplus {background-position: -759px 0;         &.selected {background-position: -759px -33px;}}
+        &.target-instagram  {background-position: -792px 0;         &.selected {background-position: -792px -33px;}}
+        &.target-yammer     {background-position: -825px 0;         &.selected {background-position: -825px -33px;}}
+        &.target-facebook_page {background-position: -858px 0;      &.selected {background-position: -858px -33px;}}
+        &.target-wordpress  {background-position: -891px 0;         &.selected {background-position: -891px -33px;}}
+        &.target-intensedebate {background-position: -924px 0;      &.selected {background-position: -924px -33px;}}
     }
 
     &.jcsdl-selected .jcsdl-icon.target {
@@ -1507,6 +1512,8 @@ a.jcsdl-filters-logic-option {
         &.target-instagram  {background-position: -792px -33px;}
         &.target-yammer     {background-position: -825px -33px;}
         &.target-facebook_page {background-position: -858px -33px;}
+        &.target-wordpress  {background-position: -891px -33px;}
+        &.target-intensedebate {background-position: -924px -33px;}
     }
 }
 
@@ -1776,6 +1783,11 @@ a.jcsdl-filters-logic-option {
     &.icon-application-name,
     &.icon-page {
         background-image: url($fieldFBPagesIconsSprite);
+    }
+
+    &.icon-subtype,
+    &.icon-permalink {
+        background-image: url($fieldIntenseDebateWordpressIconsSprite);
     }
 }
 
@@ -2125,6 +2137,10 @@ a.jcsdl-filters-logic-option {
     &.icon-application-id       {background-position: -320px -320px;    &.selected {background-position: -400px -320px;}}
     &.icon-application-name     {background-position: -480px -320px;    &.selected {background-position: -560px -320px;}}
     &.icon-page                 {background-position: -640px -320px;    &.selected {background-position: -720px -320px;}}
+
+    /* wordpress and intensedebate */
+    &.icon-subtype              {background-position: 0 0;              &.selected {background-position: -80px 0;}}
+    &.icon-permalink            {background-position: -160px 0;         &.selected {background-position: -240px 0;}}
 }
 
 .jcsdl-icon.input {
@@ -2401,7 +2417,7 @@ code.jcsdl-code {
 
     .jcsdl-icon.target {
         background-image: url($targetIconsSpriteRetina);
-        @include backgroundSize(2970px, 220px);
+        @include backgroundSize(3190px, 220px);
     }
 
     .jcsdl-icon.operator {
@@ -2680,6 +2696,12 @@ code.jcsdl-code {
         &.icon-page {
             background-image: url($fieldFBPagesIconsSpriteRetina);
             @include backgroundSize(800px, 400px);
+        }
+
+        &.icon-subtype,
+        &.icon-permalink {
+            background-image: url($fieldIntenseDebateWordpressIconsSpriteRetina);
+            @include backgroundSize(800px, 80px);
         }
     }
         

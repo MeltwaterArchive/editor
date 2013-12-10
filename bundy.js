@@ -41,6 +41,8 @@ bundy.copy([
     'src/img/icons-sprite-fields-googleplus@2x.png',
     'src/img/icons-sprite-fields-instagram.png',
     'src/img/icons-sprite-fields-instagram@2x.png',
+    'src/img/icons-sprite-fields-intensedebate-wordpress.png',
+    'src/img/icons-sprite-fields-intensedebate-wordpress@2x.png',
     'src/img/icons-sprite-fields-lon.png',
     'src/img/icons-sprite-fields-lon@2x.png',
     'src/img/icons-sprite-fields-tumblr.png',

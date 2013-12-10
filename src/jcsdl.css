@@ -749,7 +749,6 @@ a.jcsdl-filters-logic-option {
     margin: 0;
     -webkit-margin-before: 0;
     -webkit-margin-after: 0;
-    -webkit-padding-start: 0;
     -webkit-box-shadow: 3px 3px 8px 0px rgba(0, 0, 0, 0.12);
     -moz-box-shadow: 3px 3px 8px 0px rgba(0, 0, 0, 0.12);
     box-shadow: 3px 3px 8px 0px rgba(0, 0, 0, 0.12); }
@@ -767,21 +766,21 @@ a.jcsdl-filters-logic-option {
         margin-right: 10px;
         width: 33px;
         height: 33px;
-        -moz-background-size: 891px 66px;
-        -ie-background-size: 891px 66px;
-        -o-background-size: 891px 66px;
-        -webkit-background-size: 891px 66px;
-        background-size: 891px 66px; }
-      .jcsdl-search .jcsdl-search-results li .jcsdl-search-item-name {
-        display: inline-block;
-        max-width: 330px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap; }
-      .jcsdl-search .jcsdl-search-results li:hover {
-        color: #49648e; }
-      .jcsdl-search .jcsdl-search-results li.jcsdl-selected {
-        color: #49648e; }
+        -moz-background-size: 957px 66px;
+        -ie-background-size: 957px 66px;
+        -o-background-size: 957px 66px;
+        -webkit-background-size: 957px 66px;
+        background-size: 957px 66px; }
+    .jcsdl-search .jcsdl-search-results .jcsdl-search-item-name {
+      display: inline-block;
+      max-width: 330px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap; }
+    .jcsdl-search .jcsdl-search-results:hover {
+      color: #49648e; }
+    .jcsdl-search .jcsdl-search-results.jcsdl-selected {
+      color: #49648e; }
   .jcsdl-search.jcsdl-active input {
     border-top-color: #c0c0c0;
     border-left-color: #c0c0c0;
@@ -1704,7 +1703,7 @@ a.jcsdl-filters-logic-option {
   width: 110px;
   height: 110px;
   margin-right: 35px;
-  background: url("img/icons-sprite-targets.png?16") no-repeat 0 0;
+  background: url("img/icons-sprite-targets.png?17") no-repeat 0 0;
   /*&.target-unknown     {background-position: -2310px 0;        &.selected {background-position: -2310px -110px;}}*/ }
   .jcsdl-icon.target.target-interaction {
     background-position: 0 0; }
@@ -1810,6 +1809,14 @@ a.jcsdl-filters-logic-option {
     background-position: -2860px 0; }
     .jcsdl-icon.target.target-facebook_page.selected {
       background-position: -2860px -110px; }
+  .jcsdl-icon.target.target-wordpress {
+    background-position: -2970px 0; }
+    .jcsdl-icon.target.target-wordpress.selected {
+      background-position: -2970px -110px; }
+  .jcsdl-icon.target.target-intensedebate {
+    background-position: -3080px 0; }
+    .jcsdl-icon.target.target-intensedebate.selected {
+      background-position: -3080px -110px; }
 
 .jcsdl-search-results li .jcsdl-icon.target {
   /*&.target-unknown     {background-position: -693px 0;        &.selected {background-position: -693px -33px;}}*/ }
@@ -1917,6 +1924,14 @@ a.jcsdl-filters-logic-option {
     background-position: -858px 0; }
     .jcsdl-search-results li .jcsdl-icon.target.target-facebook_page.selected {
       background-position: -858px -33px; }
+  .jcsdl-search-results li .jcsdl-icon.target.target-wordpress {
+    background-position: -891px 0; }
+    .jcsdl-search-results li .jcsdl-icon.target.target-wordpress.selected {
+      background-position: -891px -33px; }
+  .jcsdl-search-results li .jcsdl-icon.target.target-intensedebate {
+    background-position: -924px 0; }
+    .jcsdl-search-results li .jcsdl-icon.target.target-intensedebate.selected {
+      background-position: -924px -33px; }
 .jcsdl-search-results li.jcsdl-selected .jcsdl-icon.target {
   /*&.target-unknown     {background-position: -693px -33px;}*/ }
   .jcsdl-search-results li.jcsdl-selected .jcsdl-icon.target.target-interaction {
@@ -1971,6 +1986,10 @@ a.jcsdl-filters-logic-option {
     background-position: -825px -33px; }
   .jcsdl-search-results li.jcsdl-selected .jcsdl-icon.target.target-facebook_page {
     background-position: -858px -33px; }
+  .jcsdl-search-results li.jcsdl-selected .jcsdl-icon.target.target-wordpress {
+    background-position: -891px -33px; }
+  .jcsdl-search-results li.jcsdl-selected .jcsdl-icon.target.target-intensedebate {
+    background-position: -924px -33px; }
 
 /* field icons sets */
 .jcsdl-icon.field {
@@ -1996,6 +2015,8 @@ a.jcsdl-filters-logic-option {
     background-image: url("img/icons-sprite-fields-yammer.png?2"); }
   .jcsdl-icon.field.icon-comment-id, .jcsdl-icon.field.icon-from-category, .jcsdl-icon.field.icon-from-id, .jcsdl-icon.field.icon-from-name, .jcsdl-icon.field.icon-link, .jcsdl-icon.field.icon-message, .jcsdl-icon.field.icon-name, .jcsdl-icon.field.icon-object_id, .jcsdl-icon.field.icon-page_category, .jcsdl-icon.field.icon-page_id, .jcsdl-icon.field.icon-page_link, .jcsdl-icon.field.icon-page_name, .jcsdl-icon.field.icon-page_username, .jcsdl-icon.field.icon-post_id, .jcsdl-icon.field.icon-post_content, .jcsdl-icon.field.icon-post_link, .jcsdl-icon.field.icon-post_type, .jcsdl-icon.field.icon-story, .jcsdl-icon.field.icon-picture, .jcsdl-icon.field.icon-application-id, .jcsdl-icon.field.icon-application-name, .jcsdl-icon.field.icon-page {
     background-image: url("img/icons-sprite-fields-fbpages.png?3"); }
+  .jcsdl-icon.field.icon-subtype, .jcsdl-icon.field.icon-permalink {
+    background-image: url("img/icons-sprite-fields-intensedebate-wordpress.png?1"); }
 
 .jcsdl-icon.field {
   /* dbw */
@@ -2008,7 +2029,8 @@ a.jcsdl-filters-logic-option {
   /* facebook pages */
   /*&.icon-id                 {background-position: -640px 0;         &.selected {background-position: -720px 0;}}*/
   /*&.icon-type               {background-position: -480px -240px;    &.selected {background-position: -560px -240px;}}*/
-  /*&.icon-source             {background-position: -160px -320px;    &.selected {background-position: -240px -320px;}}*/ }
+  /*&.icon-source             {background-position: -160px -320px;    &.selected {background-position: -240px -320px;}}*/
+  /* wordpress and intensedebate */ }
   .jcsdl-icon.field.icon-geo {
     background-position: 0 0; }
     .jcsdl-icon.field.icon-geo.selected {
@@ -3317,6 +3339,14 @@ a.jcsdl-filters-logic-option {
     background-position: -640px -320px; }
     .jcsdl-icon.field.icon-page.selected {
       background-position: -720px -320px; }
+  .jcsdl-icon.field.icon-subtype {
+    background-position: 0 0; }
+    .jcsdl-icon.field.icon-subtype.selected {
+      background-position: -80px 0; }
+  .jcsdl-icon.field.icon-permalink {
+    background-position: -160px 0; }
+    .jcsdl-icon.field.icon-permalink.selected {
+      background-position: -240px 0; }
 
 .jcsdl-icon.input {
   background: url("img/icons-sprite-other.png?3") no-repeat 0 0; }
@@ -3825,12 +3855,12 @@ code.jcsdl-code {
     background-size: 160px 880px; }
 
   .jcsdl-icon.target {
-    background-image: url("img/icons-sprite-targets@2x.png?4");
-    -moz-background-size: 2970px 220px;
-    -ie-background-size: 2970px 220px;
-    -o-background-size: 2970px 220px;
-    -webkit-background-size: 2970px 220px;
-    background-size: 2970px 220px; }
+    background-image: url("img/icons-sprite-targets@2x.png?17");
+    -moz-background-size: 3190px 220px;
+    -ie-background-size: 3190px 220px;
+    -o-background-size: 3190px 220px;
+    -webkit-background-size: 3190px 220px;
+    background-size: 3190px 220px; }
 
   .jcsdl-icon.operator {
     background-image: url("img/icons-sprite-operators@2x.png?6");
@@ -3904,4 +3934,11 @@ code.jcsdl-code {
       -ie-background-size: 800px 400px;
       -o-background-size: 800px 400px;
       -webkit-background-size: 800px 400px;
-      background-size: 800px 400px; } }
+      background-size: 800px 400px; }
+    .jcsdl-icon.field.icon-subtype, .jcsdl-icon.field.icon-permalink {
+      background-image: url("img/icons-sprite-fields-intensedebate-wordpress@2x.png?1");
+      -moz-background-size: 800px 80px;
+      -ie-background-size: 800px 80px;
+      -o-background-size: 800px 80px;
+      -webkit-background-size: 800px 80px;
+      background-size: 800px 80px; } }
