@@ -126,7 +126,6 @@ var JCSDLDefinition = (function() {
             fields : {
                 application : {name: 'Application', preset: 'string'},
                 caption : {name: 'Caption', preset: 'string'},
-                'likes-count' : {name: 'Likes Count', preset: 'sliderRange', max : 10000, 'default' : 500, step : 10},
                 'likes-names' : {name: 'Likes Names', preset: 'string'},
                 link : {name: 'Link', preset: 'url'},
                 message : {name: 'Message',preset: 'string'},
