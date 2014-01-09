@@ -8,6 +8,7 @@
   -moz-box-sizing: content-box;
   -webkit-box-sizing: content-box;
   box-sizing: content-box; }
+
 .jcsdl-container ul, .jcsdl-container li {
   margin: 0;
   padding: 0; }
@@ -3503,11 +3504,11 @@ a.jcsdl-filters-logic-option {
 .jcsdl-dropdown {
   display: block;
   width: 250px;
-  margin-bottom: 50px;
-  position: absolute;
-  top: 10px;
-  left: 10px;
+  position: relative;
+  top: -10px;
+  margin-left: 20px;
   z-index: 10;
+  text-align: left;
   border: 1px solid gainsboro;
   border-top: 0;
   font-size: 13px;
@@ -3540,6 +3541,8 @@ a.jcsdl-filters-logic-option {
     overflow: hidden;
     border-top: 1px solid gainsboro;
     cursor: pointer; }
+  .jcsdl-dropdown .jcsdl-dropdown-option:first-child {
+    border-top: 0; }
     .jcsdl-dropdown .jcsdl-dropdown-option .jcsdl-icon {
       border: 0;
       margin: 0;

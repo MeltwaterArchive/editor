@@ -1009,7 +1009,7 @@ JCSDL.Loader.addComponent(function($, undefined) {
 			});
 
 			$view.html($select).insertAfter($inputView);
-			$dropdown.hide().appendTo('body');
+			$dropdown.hide().insertAfter($view);
 
 			// add case sensitivity toggle
 			if (field.cs) {
@@ -1047,8 +1047,6 @@ JCSDL.Loader.addComponent(function($, undefined) {
 				} else {
 					// update position of the dropdown and show it
 					$dropdown.css({
-						top : $select.offset().top + $select.outerHeight() - 1,
-						left : $select.offset().left,
 						width : $select.outerWidth() - 2
 					}).slideDown(self.config.animate);
 					$select.addClass('active');
@@ -1195,8 +1193,6 @@ JCSDL.Loader.addComponent(function($, undefined) {
                 }
 
 				$dropdown.css({
-					top : $select.offset().top + $select.outerHeight() - 1,
-					left : $select.offset().left,
 					width : $select.outerWidth() - 2
 				});
 			});
