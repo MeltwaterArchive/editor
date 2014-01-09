@@ -2190,10 +2190,18 @@ a.jcsdl-filters-logic-option {
 }
 
 .jcsdl-dropdown {
-    display: block; width: 250px; margin-bottom: 50px;
-    position: absolute; top: 10px; left: 10px; z-index: 10;
-    border: 1px solid $borderColor; border-top: 0;
-    font-size: $fontSize; font-family: $fontFamily; color: $colorLight;
+    display: block;
+    width: 250px;
+    z-index: 10;
+    position: relative;
+    top: -10px;
+    margin-left: 20px;
+    text-align: left;
+    border: 1px solid $borderColor;
+    border-top: 0;
+    font-size: $fontSize;
+    font-family: $fontFamily;
+    color: $colorLight;
     @include roundedCorner(0, 0, 3px, 3px);
     background: white;
 
@@ -2206,6 +2214,8 @@ a.jcsdl-filters-logic-option {
         display: block; overflow: hidden;
         border-top: 1px solid $borderColor;
         cursor: pointer;
+
+
 
         .jcsdl-icon {
             border: 0; margin: 0; margin-left: 5px; @include opacity(1);
@@ -2231,6 +2241,10 @@ a.jcsdl-filters-logic-option {
         .jcsdl-operator-desc {font-size: 0.9em; color: $colorLight; line-height: 1.2em;}
 
         &:hover {background: #f8f8f8;}
+
+        &:first-child {
+            border-top: 0;
+        }
     }
 }
 
