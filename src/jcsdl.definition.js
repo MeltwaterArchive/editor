@@ -188,39 +188,6 @@ var JCSDLTargetsDefinition = (function() {
             }
         },
 
-        '2ch' : {
-            name : '2channel',
-            fields : {
-                'author-name' : {name: 'Author Name', preset: 'string'},
-                content : {name: 'Content', preset: 'string'},
-                contenttype : {name: 'Content Type', preset: 'singleSelect', options: {'HTML':'html'}},
-                link : {name: 'Link', preset: 'url'},
-                thread : {name: 'Thread', preset: 'string'},
-                title : {name: 'Title', preset: 'string'},
-                type : {name: 'Type', preset: 'singleSelect', options: {'thread':'Thread','post':'Post'}}
-            }
-        },
-
-        amazon : {
-            name : 'Amazon',
-            fields : {
-                author : {
-                    name : 'Author',
-                    icon : 'user',
-                    fields : {
-                        link : {name: 'Author Link', preset: 'url'},
-                        name : {name: 'Author Name', icon: 'author-name', preset: 'string'}
-                    }
-                },
-                content : {name: 'Content', preset: 'string'},
-                contenttype : {name: 'Content Type', preset: 'singleSelect', options: {'HTML':'html'}},
-                link : {name: 'Link', preset: 'url'},
-                thread : {name: 'Thread', preset: 'string'},
-                title : {name: 'Title', preset: 'string'},
-                type : {name: 'Type', preset: 'singleSelect', options: {'thread':'Thread','post':'Post'}}
-            }
-        },
-
         blog : {
             name : 'Blog',
             fields : {
@@ -865,7 +832,6 @@ var JCSDLTargetsDefinition = (function() {
                         link : {name: 'Link', preset: 'url'}
                     }
                 },
-                id : {name: 'ID', preset: 'stringNumber'},
                 title : {name: 'Title', preset: 'string'},
                 type : {name: 'Type', preset: 'singleSelect', options: {'vote-up':'Vote Up','vote-down':'Vote Down','comment':'Comment'}},
                 article : {
