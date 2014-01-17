@@ -6,14 +6,14 @@ var JCSDLDefinition = (function() {
 
     /**
      * Name of this definition object (for easy differentiation between instances)
-     * 
+     *
      * @type {String}
      */
     name = 'datasift',
 
     /**
      * List of all possible targets and their fields and their types.
-     * 
+     *
      * @type {Object}
      */
     targets = {
@@ -79,7 +79,7 @@ var JCSDLDefinition = (function() {
                     name: 'Place',
                     fields : {
                         attributes : {
-                            name: 'Attributes', 
+                            name: 'Attributes',
                             icon: 'placeattrs',
                             fields : {
                                 locality : {name: 'Locality', preset: 'string'},
@@ -802,7 +802,6 @@ var JCSDLDefinition = (function() {
                 content : {name: 'Content', preset: 'string'},
                 tags : {name: 'Tags', preset: 'string'},
                 categories : {name: 'Categories', icon: 'category', preset: 'string'},
-                id : {name: 'ID', preset: 'stringNumber'},
                 inreplyto : {name: 'In Reply To', icon: 'inreply', preset: 'string'},
                 link : {name: 'Link', preset: 'url'},
                 permalink : {name: 'Permalink', preset: 'url'},
@@ -1028,7 +1027,7 @@ var JCSDLDefinition = (function() {
 
     /**
      * Target configuration presets.
-     * 
+     *
      * @type {Object}
      */
     presets = {
@@ -1092,7 +1091,7 @@ var JCSDLDefinition = (function() {
 
     /**
      * Definition of CSDL operators.
-     * 
+     *
      * @type {Object}
      */
     operators = {
@@ -1197,14 +1196,14 @@ var JCSDLDefinition = (function() {
 
     /**
      * URL pattern for target help API.
-     * 
+     *
      * @type {String}
      */
     targetHelpJsonpSource = 'http://dev.datasift.com/tooltip-endpoint/tooltip/retrieve?callback=jcsdlJSONP&id={target}',
 
     /**
      * Definition of JCSDL VQB input types.
-     * 
+     *
      * @type {Object}
      */
     inputs = {
@@ -1265,7 +1264,7 @@ var JCSDLDefinition = (function() {
 
     /**
      * The final definition object that is returned.
-     * 
+     *
      * @type {Object}
      */
     definition = {
@@ -1280,7 +1279,7 @@ var JCSDLDefinition = (function() {
      * Merge two or more objects together.
      *
      * The rightmost argument has the top priority.
-     * 
+     *
      * @return {Object}
      */
     merge = function() {
@@ -1305,7 +1304,7 @@ var JCSDLDefinition = (function() {
 
     /**
      * Applies presets defined on target and its subfields and returns it.
-     * 
+     *
      * @param  {Object} target A target definition.
      * @return {Object}
      */
@@ -1349,7 +1348,7 @@ var JCSDLDefinition = (function() {
     definition.targets.twitter.fields.retweet.fields.user = definition.targets.twitter.fields.user;
     definition.targets.twitter.fields.retweeted.fields.place = definition.targets.twitter.fields.place;
     definition.targets.twitter.fields.retweeted.fields.user = definition.targets.twitter.fields.user;
-    
+
 
     return definition;
 
