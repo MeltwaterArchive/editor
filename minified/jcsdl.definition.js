@@ -266,27 +266,6 @@ var JCSDLDefinition = (function() {
             }
         },
 
-        flickr : {
-            name : 'Flickr',
-            fields : {
-                author : {
-                    name : 'Author',
-                    icon : 'user',
-                    fields : {
-                        link : {name: 'Author Link', preset: 'url'},
-                        name : {name: 'Author Name', icon: 'author-name', preset: 'string'},
-                        username : {name: 'User Name', preset: 'string'}
-                    }
-                },
-                content : {name: 'Content', preset: 'string'},
-                contenttype : {name: 'Content Type', preset: 'singleSelect', options: {'HTML':'html'}},
-                link : {name: 'Link', preset: 'url'},
-                thread : {name: 'Thread', preset: 'string'},
-                title : {name: 'Title', preset: 'string'},
-                type : {name: 'Type', preset: 'singleSelect', options: {'thread':'Thread','post':'Post'}}
-            }
-        },
-
         imdb : {
             name : 'IMDb',
             fields : {
