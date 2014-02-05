@@ -136,7 +136,6 @@ var JCSDLDefinition = (function() {
                     fields : {
                         description : {name: 'Description', icon: 'description', preset: 'string'},
                         //length : {name: 'Length', icon: 'og-length', preset: 'string'},
-                        location : {name: 'Location', preset: 'string'},
                         photos : {name: 'Photos', icon: 'photos', preset: 'string'},
                         title : {name: 'Title', preset: 'string'},
                         type : {name: 'Type', preset: 'string'}
