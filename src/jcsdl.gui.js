@@ -138,7 +138,9 @@ JCSDL.Loader.addComponent(function($, undefined) {
 			this.$cancelButton = this.$mainView.find('.jcsdl-editor-cancel');
 
 			// is there a custom save button defined?
-			if (this.config.saveButton && (typeof(this.config.saveButton) == 'object' || typeof(this.config.saveButton) == 'string')) {
+			if (this.config.saveButton === false) {
+				this.$saveButton.remove(); // remove the standard save button
+			} else if (this.config.saveButton && (typeof(this.config.saveButton) == 'object' || typeof(this.config.saveButton) == 'string')) {
 				this.$saveButton.remove(); // remove the standard save button
 				this.$saveButton = $(this.config.saveButton); // replace it with the custom one (selector or jQuery object)
 			}
