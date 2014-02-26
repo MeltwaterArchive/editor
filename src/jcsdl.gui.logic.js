@@ -944,12 +944,8 @@ JCSDL.Loader.addComponent(function($, undefined) {
 					|| (k >= 48 && k <= 57 && !s)
 					// allow numpad numbers
 					|| (k >= 96 && k <= 105)
-					// allow open bracket
-					|| k == 219
 					// allow open bracket from numbers
 					|| (k == 57 && s)
-					// allow close bracket
-					|| k == 221
 					// allow close bracket from numbers
 					|| (k == 48 && s)
 					// allow SPACE
