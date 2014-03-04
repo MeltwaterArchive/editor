@@ -54,7 +54,7 @@ $listIcons : 'img/list-icons.png';
     border-radius: $radius;
     -moz-background-clip: padding;
     -webkit-background-clip: padding-box;
-    background-clip: padding-box; 
+    background-clip: padding-box;
 }
 
 @mixin roundedCorner($topLeft: 0, $topRight: 0, $bottomRight: 0, $bottomLeft: 0) {
@@ -125,7 +125,7 @@ $listIcons : 'img/list-icons.png';
     * {
         @include boxSizing(content-box);
     }
-    
+
     ul, li {margin: 0; padding: 0;}
 }
 
@@ -137,7 +137,7 @@ $listIcons : 'img/list-icons.png';
     a {
         color: $color; text-decoration: none;
         @include transition("color 0.2s ease-in-out");
-        
+
         &:hover {color: $colorOrange; text-decoration: none;}
     }
 
@@ -867,7 +867,7 @@ a.jcsdl-filters-logic-option {
             &.ok {background-position: -57px -308px;}
             &.err {background-position: -87px -308px;}
         }
-        
+
         input {margin: 5px 0; padding-right: 54px;}
     }
 }
@@ -879,7 +879,7 @@ a.jcsdl-filters-logic-option {
 
         span {line-height: 30px;}
         input {
-            display: inline; display: inline-block; width: 40px; height: 30px; 
+            display: inline; display: inline-block; width: 40px; height: 30px;
             margin: 0 10px;
             text-align: center;
         }
@@ -1000,7 +1000,9 @@ a.jcsdl-filters-logic-option {
             cursor: pointer;
 
             &.jcsdl-list-add-input {
-                width: 100%;
+                width: 190px;
+                float: left;
+                clear: none;
             }
         }
     }
@@ -1011,10 +1013,19 @@ a.jcsdl-filters-logic-option {
         margin: 6px;
         margin-left: 0;
         margin-right: 9px;
-        padding-right: 15px;
+        padding-right: 5px;
         border-right: 1px solid $borderColor;
-        width: 200px;
+        width: 260px;
+
+        &.jcsdl-btn-add {
+            height: 19px;
+            padding-top: 11px;
+            width: 30px;
+            margin-left: 10px;
+        }
     }
+
+
 
     .jcsdl-list-item {
         display: block;
@@ -2407,12 +2418,12 @@ code.jcsdl-code {
             background-image: url($selectSpriteRetina);
             @include backgroundSize(127px, 900px);
         }
-        
+
         &.selected .jcsdl-filter-target-field-wrap {
             background-image: url($selectSpriteRetina);
             @include backgroundSize(127px, 900px);
         }
-        
+
         &.selected .jcsdl-filter-target-field-input-wrap {
             background-image: url($selectSpriteRetina);
             @include backgroundSize(127px, 900px);
@@ -2718,5 +2729,5 @@ code.jcsdl-code {
             @include backgroundSize(800px, 80px);
         }
     }
-        
+
 }

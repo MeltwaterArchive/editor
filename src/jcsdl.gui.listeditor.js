@@ -20,7 +20,7 @@ JCSDL.Loader.addComponent(function($, undefined) {
 
     /**
      * Constructor.
-     * 
+     *
      * @param  {jQuery} $view View for the list editor.
      */
     this.ListEditor = function($inputEl) {
@@ -29,6 +29,8 @@ JCSDL.Loader.addComponent(function($, undefined) {
         this.$inputEl = $inputEl;
         this.$view = this.getTemplate('listEditor').insertAfter($inputEl);
         this.$list = this.$view.find('.jcsdl-list-elements');
+        this.$listAddInput = this.$view.find('.jcsdl-list-elements [data-add-item] input');
+        this.$listAddButton = this.$view.find('.jcsdl-list-elements [data-add-item] .jcsdl-btn-add');
 
         /* setup links to important elements */
         this.$copyBtn = this.$view.find('a[data-copy]').attr('id', 'jcsdl-copy-to-clipboard-' + Math.floor(Math.random() * 10000));
@@ -60,15 +62,15 @@ JCSDL.Loader.addComponent(function($, undefined) {
         });
 
         /**
-         * When pressed ENTER in the add new input then add new item.
+         * Adds an item to the list based on an input event
          */
-        this.$list.on('keypress', '[data-add-item] input', function(ev) {
-            if (ev.which !== KEYS.ENTER) {
+        var addItem = function(ev) {
+            if (ev.which !== KEYS.ENTER && ev.type !== 'click') {
                 return;
             }
 
             var $el = $(this),
-                val = this.value;
+                val = $el.val();
 
             if (!$.string.trim(val).length) {
                 return;
@@ -77,7 +79,19 @@ JCSDL.Loader.addComponent(function($, undefined) {
             self.addItem(val, self.$list.find('.jcsdl-list-add'));
 
             $el.val('');
-        });
+
+            return false;
+        };
+
+        /**
+         * When pressed ENTER in the add new input then add new item.
+         */
+        this.$list.on('keypress', '[data-add-item] input', addItem);
+
+        /**
+         * Add button for list editor
+         */
+        this.$list.on('click', '[data-add-item] a', addItem.bind($(this.$listAddInput)));
 
         /**
          * When clicked on a list item then perform action appropriate to the current editing mode.
@@ -242,7 +256,7 @@ JCSDL.Loader.addComponent(function($, undefined) {
 
         /**
          * Adds an item to the list.
-         * 
+         *
          * @param  {String} val Value of the item.
          * @param  {jQuery|null} $after [optional] If specified, the item will be added after this element.
          *                              Otherwise it will be appended to the end of the list. Default: null.
@@ -274,13 +288,13 @@ JCSDL.Loader.addComponent(function($, undefined) {
 
         /**
          * Adds multiple items to the list.
-         * 
+         *
          * @param  {Array} items List of items to be added.
          * @param  {Boolean} replace [optional] Should the list be cleared first? Default: false.
          */
         addItems : function(items, replace) {
             if (replace) {
-               this.$list.find('li:not([data-add-item])').remove(); 
+               this.$list.find('li:not([data-add-item])').remove();
             }
 
             for(var i = 0; i < items.length; i++) {
@@ -294,7 +308,7 @@ JCSDL.Loader.addComponent(function($, undefined) {
 
         /**
          * Sets the value for the list. Takes a single CSDL string that will be comma-exploded.
-         * 
+         *
          * @param  {String} val Value to be set.
          */
         setValue : function(val) {
@@ -304,7 +318,7 @@ JCSDL.Loader.addComponent(function($, undefined) {
                 values = val.replace(/\\,/gi, escapedToken).split(',');
 
             // clear previous
-            this.$list.find('li:not([data-add-item])').remove(); 
+            this.$list.find('li:not([data-add-item])').remove();
 
             $.each(values, function(i, item) {
                 item = $.string.trim(item.replace(escapedTokenRegEx, ','));
@@ -325,7 +339,7 @@ JCSDL.Loader.addComponent(function($, undefined) {
 
         /**
          * Returns the CSDL usable value from the list as a comma-separated list.
-         * 
+         *
          * @return {String}
          */
         getValue : function() {
@@ -379,7 +393,7 @@ JCSDL.Loader.addComponent(function($, undefined) {
          * ########################## */
         /**
          * Sets current editing mode.
-         * 
+         *
          * @param {String} mode Mode to enable.
          */
         setMode : function(mode) {
@@ -527,7 +541,7 @@ JCSDL.Loader.addComponent(function($, undefined) {
 
         /**
          * Shows an error during CSV import.
-         * 
+         *
          * @param  {String} error Error message.
          */
         showCSVImportError : function(error) {
@@ -547,7 +561,7 @@ JCSDL.Loader.addComponent(function($, undefined) {
         /**
          * Parses the given CSV string and either imports it straight away (if a simple data structure)
          * or calls configureDataImport().
-         * 
+         *
          * @param  {String} csv CSV string.
          * @param  {Boolean} replace [optional] If the import will happen straight away, should the current list
          *                           in the editor be replaced with the new one or just appended? Default: false.
@@ -605,9 +619,9 @@ JCSDL.Loader.addComponent(function($, undefined) {
 
         /**
          * Show a window to the user where they can configure which columns will be imported.
-         * 
+         *
          * @param {Array} data The data set to be configured for import.
-         * @param {Number} width Maximum width (number of columns) in the data set. 
+         * @param {Number} width Maximum width (number of columns) in the data set.
          */
         configureDataImport : function(data, width) {
             var self = this;
@@ -658,7 +672,7 @@ JCSDL.Loader.addComponent(function($, undefined) {
 
              // reposition the popup as size has changed
             this.importPopup.reposition();
-            
+
             /**
              * Mark the first row as ignored or not, based on the checkbox.
              */
@@ -713,7 +727,7 @@ JCSDL.Loader.addComponent(function($, undefined) {
          * ########################## */
         /**
          * Returns a template (jQuery object) of the given name with inserted variables.
-         * 
+         *
          * @param  {String} name Name of the template to fetch.
          * @param  {Object} params [optional] Optional object containing params that should be inserted into the template.
          * @param  {Boolean} raw [optional] Should return raw output (String) rather than jQuery object?
