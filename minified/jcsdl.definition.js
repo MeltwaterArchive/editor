@@ -1,5 +1,5 @@
 var JCSDLDefinition = (function() {
-    "use strict";
+    'use strict';
 
     // define some privates
     var
