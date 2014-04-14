@@ -378,6 +378,7 @@ JCSDL.Loader.addComponent(function($, undefined) {
                     '<ol class="jcsdl-list-elements clearfix">',
                         '<li class="jcsdl-list-add" data-add-item>',
                             '<input type="text" name="item" class="jcsdl-list-add-input" placeholder="Add to list..." />',
+                            '<a href="#" class="jcsdl-btn jcsdl-btn-add">Add</a>',
                         '</li>',
                     '</ol>',
                 '</div>',
