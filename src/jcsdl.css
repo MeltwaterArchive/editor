@@ -1250,7 +1250,9 @@ a.jcsdl-filters-logic-option {
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0);
     cursor: pointer; }
     .jcsdl-container .jcsdl-list .jcsdl-list-elements input.jcsdl-list-add-input {
-      width: 190px; float: left; clear: none; }
+      width: 190px;
+      float: left;
+      clear: none; }
 .jcsdl-container .jcsdl-list .jcsdl-list-add {
   display: block;
   float: left;
@@ -1260,12 +1262,10 @@ a.jcsdl-filters-logic-option {
   padding-right: 5px;
   border-right: 1px solid gainsboro;
   width: 260px; }
-    .jcsdl-container .jcsdl-list .jcsdl-list-add .jcsdl-btn-add {
-        height: 19px;
-        padding-top: 11px;
-        width: 30px;
-        margin-left: 10px;
-    }
+  .jcsdl-container .jcsdl-list .jcsdl-list-add .jcsdl-btn-add {
+    height: 40px;
+    padding-top: 11px;
+    margin-left: 10px; }
 .jcsdl-container .jcsdl-list .jcsdl-list-item {
   display: block;
   height: 40px;

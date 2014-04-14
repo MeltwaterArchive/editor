@@ -1017,10 +1017,9 @@ a.jcsdl-filters-logic-option {
         border-right: 1px solid $borderColor;
         width: 260px;
 
-        &.jcsdl-btn-add {
-            height: 19px;
+        .jcsdl-btn-add {
+            height: 40px;
             padding-top: 11px;
-            width: 30px;
             margin-left: 10px;
         }
     }

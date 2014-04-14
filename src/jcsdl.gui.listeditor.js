@@ -64,34 +64,33 @@ JCSDL.Loader.addComponent(function($, undefined) {
         /**
          * Adds an item to the list based on an input event
          */
-        var addItem = function(ev) {
-            if (ev.which !== KEYS.ENTER && ev.type !== 'click') {
-                return;
-            }
-
-            var $el = $(this),
-                val = $el.val();
-
+        var addItem = function(val) {
             if (!$.string.trim(val).length) {
                 return;
             }
-
             self.addItem(val, self.$list.find('.jcsdl-list-add'));
-
-            $el.val('');
-
-            return false;
         };
 
         /**
          * When pressed ENTER in the add new input then add new item.
          */
-        this.$list.on('keypress', '[data-add-item] input', addItem);
+        this.$list.on('keypress', '[data-add-item] input', function(ev) {
+            if (ev.which !== KEYS.ENTER) {
+                return;
+            }
+
+            addItem(this.value);
+            $(this).val('');
+        });
 
         /**
          * Add button for list editor
          */
-        this.$list.on('click', '[data-add-item] a', addItem.bind($(this.$listAddInput)));
+        this.$list.on('click', '[data-add-item] a', function(ev) {
+            addItem(self.$listAddInput.val())
+            self.$listAddInput.val('');
+            return false;
+        });
 
         /**
          * When clicked on a list item then perform action appropriate to the current editing mode.
