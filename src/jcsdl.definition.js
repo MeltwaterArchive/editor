@@ -822,6 +822,163 @@ var JCSDLDefinition = (function() {
             }
         },
 
+        lexisnexis : {
+            name : 'Lexis Nexis',
+            fields : {
+                article : {
+                    name : 'Article',
+                    fields : {
+                        byline : {name: 'Byline', preset: 'string'},
+                        content : {name: 'Content', preset: 'string'},
+                        length : {name: 'Length', preset: 'int'},
+                        title : {name: 'Title', preset: 'string'},
+                        type : {name: 'Type', preset: 'singleSelect', options: {'Magazine':'Magazine','Newspaper':'Newspaper','Newswire':'Newswire','Other (Journal)':'Other (Journal)','Other (Periodical)':'Other (Periodical)','Overige (Tijdschriftartikel)':'Overige (Tijdschriftartikel)','Transcript':'Transcript','Web Blog':'Web Blog','Web Publication':'Web Publication'}}
+                    }
+                },
+                'docinfo-lnlni' : {name: 'Docinfo Lnlni', preset: 'string'},
+                feedtype : {name: 'Feedtype', preset: 'singleSelect', options: {'industry':'Industry','international':'International','us':'US'}},
+                indexing : {
+                    name : 'Indexing',
+                    fields : {
+                        'city-item-term' : {name: 'City', preset: 'string', icon: 'city'},
+                        'company-item-term' : {name: 'Company', preset: 'string', icon: 'company'},
+                        'country-item-term' : {name: 'Country', preset: 'string', icon: 'country'},
+                        'industry-item-term' : {name: 'Industry', preset: 'string', icon: 'industry'},
+                        'organization-item-term' : {name: 'Organization', preset: 'string', icon: 'organization'},
+                        'state-item-term' : {name: 'State', preset: 'string', icon: 'state'},
+                        'subject-item-term' : {name: 'Subject', preset: 'string', icon: 'subject'},
+                        'ticker-item-term' : {name: 'Ticker', preset: 'string', icon: 'ticker'}
+                    }
+                },
+                language : {name: 'Language', preset: 'singleSelect', options: {'da':'Danish','de':'German','en':'English','fr':'French','it':'Italian','ms':'Malay','nl':'Dutch','pl':'Polish','ru':'Russian'}},
+                links : {name: 'Links', preset: 'string'},
+                'load-date': {name: 'Load Date', preset: 'string'},
+                'source-name': {name: 'Source Name', preset: 'string', icon: 'source'}
+            }
+        },
+
+        sinaweibo : {
+            name : 'Sina Weibo',
+            fields : {
+                'annotations-photos-caption': {name: 'Annotations Photos Caption', preset: 'string', icon: 'photos-caption'},
+                'annotations-place-geo': {name: 'Annotations Place Geo', preset: 'string', icon: 'place-geo'},
+                author : {
+                    name : 'Author',
+                    fields : {
+                        'city-name': {name: 'City', preset: 'string', icon: 'city'},
+                        displayname : {name: 'Display Name', preset: 'string'},
+                        favourites_count : {name: 'Favourites Count', preset: 'sliderRange', icon: 'favourites-count'},
+                        followers_count : {name: 'Followers Count', preset: 'sliderRange'},
+                        following : {name: 'Following', preset: 'sliderRange'},
+                        friends_count : {name: 'Friends Count', preset: 'sliderRange'},
+                        gender : {name: 'Gender', preset: 'singleSelect', options: {'m':'Male','f':'Female'}},
+                        id : {name: 'ID', preset: 'string'},
+                        link : {name: 'Link', preset: 'string'},
+                        'province-name': {name: 'Province', preset: 'string', icon: 'province'},
+                        screen_name : {name: 'Screen Name', preset: 'string'},
+                        statuses_count : {name: 'Statuses Count', preset: 'sliderRange'},
+                        verified : {name: 'Verified', preset: 'singleSelect', options: {'true':'True'}, icon: 'user_verified'}
+                    }
+                },
+                geo : {name: 'Geo', preset: 'geo'},
+                id : {name: 'ID', preset: 'string'},
+                language : {name: 'Language', preset: 'singleSelect', options: {'zh-cn':'Chinese','zh-tw':'Chinese - Taiwan','en':'English','de':'German','ja':'Japanese','vi':'Vietnamese','cs':'Czech','nl':'Dutch','fil':'Filipino','ro':'Romanian'}},
+                link : {name: 'Link', preset: 'string'},
+                original_pic : {name: 'Original Picture', preset: 'string', icon: 'original-pic'},
+                parent_reblog : {name: 'Parent Reblog', preset: 'string', icon: 'parent-reblog'},
+                reblogged : {
+                    name : 'Reblogged',
+                    fields : {
+                        'annotations-place-geo': {name: 'Annotations Place Geo', preset: 'string', icon: 'place-geo'},
+                        author : {
+                            name : 'Author',
+                            fields : {
+                                id : {name: 'ID', preset: 'string'},
+                                link : {name: 'Link', preset: 'string'}
+                            }
+                        },
+                        geo : {name: 'Geo', preset: 'geo'},
+                        id : {name: 'ID', preset: 'string'},
+                        language : {name: 'Language', preset: 'singleSelect', options: {'zh-cn':'Chinese','zh-tw':'Chinese - Taiwan','en':'English','de':'German','ja':'Japanese','vi':'Vietnamese','cs':'Czech','nl':'Dutch','fil':'Filipino','ro':'Romanian'}},
+                        link : {name: 'Link', preset: 'string'},
+                        original_pic : {name: 'Original Picture', preset: 'string', icon: 'original-pic'},
+                        source : {name: 'Source', preset: 'string'}
+                    }
+                },
+                reply : {
+                    name : 'Reply',
+                    fields : {
+                        author : {
+                            name : 'Author',
+                            fields : {
+                                id : {name: 'ID', preset: 'string'},
+                                link : {name: 'Link', preset: 'string'}
+                            }
+                        },
+                        language : {name: 'Language', preset: 'singleSelect', options: {'zh-cn':'Chinese','zh-tw':'Chinese - Taiwan','en':'English','de':'German','ja':'Japanese','vi':'Vietnamese','cs':'Czech','nl':'Dutch','fil':'Filipino','ro':'Romanian'}},
+                        link : {name: 'Link', preset: 'string'},
+                        source : {name: 'Source', preset: 'string'},
+                        text : {name: 'Text', preset: 'string', icon: 'content'}
+                    }
+                },
+                source : {name: 'Source', preset: 'string'},
+                status : {
+                    name : 'Status',
+                    fields : {
+                        'annotations-photos-caption': {name: 'Annotations Photos Caption', preset: 'string', icon: 'photos-caption'},
+                        'annotations-place-geo': {name: 'Annotations Place Geo', preset: 'string', icon: 'place-geo'},
+                        author : {
+                            name : 'Author',
+                            fields : {
+                                favourites_count : {name: 'Favourites Count', preset: 'sliderRange', icon: 'favourites-count'},
+                                followers_count : {name: 'Followers Count', preset: 'sliderRange'},
+                                friends_count : {name: 'Friends Count', preset: 'sliderRange'},
+                                id : {name: 'ID', preset: 'string'},
+                                link : {name: 'Link', preset: 'string'},
+                                statuses_count : {name: 'Statuses Count', preset: 'sliderRange'},
+                                verified : {name: 'Verified', preset: 'singleSelect', options: {'true':'True'}, icon: 'user_verified'}
+                            }
+                        },
+                        geo : {name: 'Geo', preset: 'geo'},
+                        id : {name: 'ID', preset: 'string'},
+                        language : {name: 'Language', preset: 'singleSelect', options: {'zh-cn':'Chinese','zh-tw':'Chinese - Taiwan','en':'English','de':'German','ja':'Japanese','vi':'Vietnamese','cs':'Czech','nl':'Dutch','fil':'Filipino','ro':'Romanian'}},
+                        link : {name: 'Link', preset: 'string'},
+                        parent_reblog : {name: 'Parent Reblog', preset: 'string', icon: 'parent-reblog'},
+                        source : {name: 'Source', preset: 'string'}
+                    }
+                },
+                text : {name: 'Text', preset: 'string', icon: 'content'},
+                type : {name: 'Type', preset: 'singleSelect', options: {'status':'Status','comment':'Comment'}}
+            }
+        },
+
+        tencentweibo : {
+            name : '10cent Weibo',
+            fields : {
+                author : {
+                    name : 'Author',
+                    fields : {
+                        displayname : {name: 'Display Name', preset: 'string'},
+                        followers_count : {name: 'Followers Count', preset: 'sliderRange'},
+                        following_count : {name: 'Following', preset: 'sliderRange', icon: 'following'},
+                        id : {name: 'ID', preset: 'string'},
+                        link : {name: 'Link', preset: 'string'},
+                        statuses_count : {name: 'Statuses Count', preset: 'sliderRange'},
+                        verified : {name: 'Verified', preset: 'singleSelect', options: {'true':'True'}, icon: 'user_verified'}
+                    }
+                },
+                image_url : {name: 'Image URL', preset: 'string', icon: 'image'},
+                lang : {name: 'Language', preset: 'singleSelect', icon: 'language', options: {'zh-cn':'Chinese','zh-tw':'Chinese - Taiwan','en':'English','vi':'Vietnamese','in':'India','fil':'Filipino','ja':'Japanese','pt':'Portuguese','cy':'Welsh','ms':'Malay'}},
+                link : {name: 'Link', preset: 'string'},
+                origin_url : {name: 'Origin URL', preset: 'string', icon: 'origin-url'},
+                post_id : {name: 'Post ID', preset: 'string'},
+                text : {name: 'Text', preset: 'string', icon: 'content'},
+                thread_id : {name: 'Thread ID', preset: 'string', icon: 'thread'},
+                thread_url : {name: 'Thread URL', preset: 'string', icon: 'thread-url'},
+                type : {name: 'Type', preset: 'singleSelect', options: {'post':'Post','repost':'Repost','reply':'Reply'}}
+            }
+        },
+
         augmentation : {
             name : 'Augmentations',
             fields : {

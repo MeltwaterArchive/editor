@@ -47,6 +47,8 @@ bundy.copy([
     'src/img/icons-sprite-fields-lon@2x.png',
     'src/img/icons-sprite-fields-tumblr.png',
     'src/img/icons-sprite-fields-tumblr@2x.png',
+    'src/img/icons-sprite-fields-weibo.png',
+    'src/img/icons-sprite-fields-weibo@2x.png',
     'src/img/icons-sprite-fields-yammer.png',
     'src/img/icons-sprite-fields-yammer@2x.png',
     'src/img/icons-sprite-fields.png',

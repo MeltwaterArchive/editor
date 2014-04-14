@@ -1,4 +1,5 @@
 /* some theming variables */
+$version : 20140414;
 $color : #4a7a92;
 $colorLight : #888;
 $colorExtraLight : #bebebf;
@@ -12,37 +13,39 @@ $borderColorInput : #c8d7de;
 $backgroundSmoked : #fafafa;
 $fontFamily : "Helvetica Neue", "Helvetica", sans-serif;
 $fontSize : 13px;
-$elementsSprite : 'img/elements.png?26';
-$elementsSpriteRetina : 'img/elements@2x.png?6';
-$selectSprite : 'img/select.png?14';
-$selectSpriteRetina : 'img/select@2x.png';
-$stepBackground : 'img/step_background.png?5';
-$targetIconsSprite : 'img/icons-sprite-targets.png?17';
-$targetIconsSpriteRetina : 'img/icons-sprite-targets@2x.png?17';
-$fieldIconsSprite : 'img/icons-sprite-fields.png?12';
-$fieldIconsSpriteRetina : 'img/icons-sprite-fields@2x.png?1';
-$fieldDbwIconsSprite : 'img/icons-sprite-fields-dbw.png?1';
-$fieldDbwIconsSpriteRetina : 'img/icons-sprite-fields-dbw@2x.png';
-$fieldLonIconsSprite : 'img/icons-sprite-fields-lon.png';
-$fieldLonIconsSpriteRetina : 'img/icons-sprite-fields-lon@2x.png';
-$fieldTumblrIconsSprite : 'img/icons-sprite-fields-tumblr.png?2';
-$fieldTumblrIconsSpriteRetina : 'img/icons-sprite-fields-tumblr@2x.png?2';
-$fieldGooglePlusIconsSprite : 'img/icons-sprite-fields-googleplus.png?1';
-$fieldGooglePlusIconsSpriteRetina : 'img/icons-sprite-fields-googleplus@2x.png?1';
-$fieldInstagramIconsSprite : 'img/icons-sprite-fields-instagram.png?2';
-$fieldInstagramIconsSpriteRetina : 'img/icons-sprite-fields-instagram@2x.png?2';
-$fieldYammerIconsSprite : 'img/icons-sprite-fields-yammer.png?2';
-$fieldYammerIconsSpriteRetina : 'img/icons-sprite-fields-yammer@2x.png?2';
-$fieldFBPagesIconsSprite : 'img/icons-sprite-fields-fbpages.png?3';
-$fieldFBPagesIconsSpriteRetina : 'img/icons-sprite-fields-fbpages@2x.png?3';
-$fieldIntenseDebateWordpressIconsSprite : 'img/icons-sprite-fields-intensedebate-wordpress.png?1';
-$fieldIntenseDebateWordpressIconsSpriteRetina : 'img/icons-sprite-fields-intensedebate-wordpress@2x.png?1';
-$operatorIconsSprite : 'img/icons-sprite-operators.png?6';
-$operatorIconsSpriteRetina : 'img/icons-sprite-operators@2x.png?6';
-$otherIconsSprite : 'img/icons-sprite-other.png?3';
-$otherIconsSpriteRetina : 'img/icons-sprite-other@2x.png';
-$loader : 'img/loader.gif';
-$listIcons : 'img/list-icons.png';
+$elementsSprite : 'img/elements.png?#{$version}';
+$elementsSpriteRetina : 'img/elements@2x.png?#{$version}';
+$selectSprite : 'img/select.png?#{$version}';
+$selectSpriteRetina : 'img/select@2x.png?#{$version}';
+$stepBackground : 'img/step_background.png?#{$version}';
+$targetIconsSprite : 'img/icons-sprite-targets.png?#{$version}';
+$targetIconsSpriteRetina : 'img/icons-sprite-targets@2x.png?#{$version}';
+$fieldIconsSprite : 'img/icons-sprite-fields.png?#{$version}';
+$fieldIconsSpriteRetina : 'img/icons-sprite-fields@2x.png?#{$version}';
+$fieldDbwIconsSprite : 'img/icons-sprite-fields-dbw.png?#{$version}';
+$fieldDbwIconsSpriteRetina : 'img/icons-sprite-fields-dbw@2x.png?#{$version}';
+$fieldLonIconsSprite : 'img/icons-sprite-fields-lon.png?#{$version}';
+$fieldLonIconsSpriteRetina : 'img/icons-sprite-fields-lon@2x.png?#{$version}';
+$fieldTumblrIconsSprite : 'img/icons-sprite-fields-tumblr.png?#{$version}';
+$fieldTumblrIconsSpriteRetina : 'img/icons-sprite-fields-tumblr@2x.png?#{$version}';
+$fieldGooglePlusIconsSprite : 'img/icons-sprite-fields-googleplus.png?#{$version}';
+$fieldGooglePlusIconsSpriteRetina : 'img/icons-sprite-fields-googleplus@2x.png?#{$version}';
+$fieldInstagramIconsSprite : 'img/icons-sprite-fields-instagram.png?#{$version}';
+$fieldInstagramIconsSpriteRetina : 'img/icons-sprite-fields-instagram@2x.png?#{$version}';
+$fieldYammerIconsSprite : 'img/icons-sprite-fields-yammer.png?#{$version}';
+$fieldYammerIconsSpriteRetina : 'img/icons-sprite-fields-yammer@2x.png?#{$version}';
+$fieldFBPagesIconsSprite : 'img/icons-sprite-fields-fbpages.png?#{$version}';
+$fieldFBPagesIconsSpriteRetina : 'img/icons-sprite-fields-fbpages@2x.png?#{$version}';
+$fieldIntenseDebateWordpressIconsSprite : 'img/icons-sprite-fields-intensedebate-wordpress.png?#{$version}';
+$fieldIntenseDebateWordpressIconsSpriteRetina : 'img/icons-sprite-fields-intensedebate-wordpress@2x.png?#{$version}';
+$fieldWeiboIconsSprite : 'img/icons-sprite-fields-weibo.png?#{$version}';
+$fieldWeiboIconsSpriteRetina : 'img/icons-sprite-fields-weibo@2x.png?#{$version}';
+$operatorIconsSprite : 'img/icons-sprite-operators.png?#{$version}';
+$operatorIconsSpriteRetina : 'img/icons-sprite-operators@2x.png?#{$version}';
+$otherIconsSprite : 'img/icons-sprite-other.png?#{$version}';
+$otherIconsSpriteRetina : 'img/icons-sprite-other@2x.png?#{$version}';
+$loader : 'img/loader.gif?#{$version}';
+$listIcons : 'img/list-icons.png?#{$version}';
 
 /* useful mixins */
 @mixin rounded($radius: 5px) {
@@ -647,7 +650,7 @@ a.jcsdl-filters-logic-option {
                 margin-right: 10px;
                 width: 33px;
                 height: 33px;
-                @include backgroundSize(957px, 66px);
+                @include backgroundSize(1056px, 66px);
             }
         }
 
@@ -1449,6 +1452,9 @@ a.jcsdl-filters-logic-option {
     &.target-facebook_page {background-position: -2860px 0;     &.selected {background-position: -2860px -110px;}}
     &.target-wordpress  {background-position: -2970px 0;        &.selected {background-position: -2970px -110px;}}
     &.target-intensedebate {background-position: -3080px 0;     &.selected {background-position: -3080px -110px;}}
+    &.target-lexisnexis     {background-position: -3190px 0;    &.selected {background-position: -3190px -110px;}}
+    &.target-sinaweibo      {background-position: -3300px 0;    &.selected {background-position: -3300px -110px;}}
+    &.target-tencentweibo   {background-position: -3410px 0;    &.selected {background-position: -3410px -110px;}}
 }
 
 .jcsdl-search-results li {
@@ -1482,6 +1488,9 @@ a.jcsdl-filters-logic-option {
         &.target-facebook_page {background-position: -858px 0;      &.selected {background-position: -858px -33px;}}
         &.target-wordpress  {background-position: -891px 0;         &.selected {background-position: -891px -33px;}}
         &.target-intensedebate {background-position: -924px 0;      &.selected {background-position: -924px -33px;}}
+        &.target-lexisnexis     {background-position: -957px 0;     &.selected {background-position: -957px -33px;}}
+        &.target-sinaweibo      {background-position: -990px 0;     &.selected {background-position: -990px -33px;}}
+        &.target-tencentweibo   {background-position: -1023px 0;    &.selected {background-position: -1023px -33px;}}
     }
 
     &.jcsdl-selected .jcsdl-icon.target {
@@ -1514,6 +1523,9 @@ a.jcsdl-filters-logic-option {
         &.target-facebook_page {background-position: -858px -33px;}
         &.target-wordpress  {background-position: -891px -33px;}
         &.target-intensedebate {background-position: -924px -33px;}
+        &.target-lexisnexis     {background-position: -957px 0;}
+        &.target-sinaweibo      {background-position: -990px 0;}
+        &.target-tencentweibo   {background-position: -1023px 0;}
     }
 }
 
@@ -1788,6 +1800,30 @@ a.jcsdl-filters-logic-option {
     &.icon-subtype,
     &.icon-permalink {
         background-image: url($fieldIntenseDebateWordpressIconsSprite);
+    }
+
+    &.icon-byline,
+    &.icon-length,
+    &.icon-docinfo-lnlni,
+    &.icon-feedtype,
+    &.icon-indexing,
+    &.icon-industry,
+    &.icon-organization,
+    &.icon-state,
+    &.icon-subject,
+    &.icon-ticker,
+    &.icon-load-date,
+    &.icon-photos-caption,
+    &.icon-place-geo,
+    &.icon-displayname,
+    &.icon-favourites-count,
+    &.icon-province,
+    &.icon-original-pic,
+    &.icon-parent-reblog,
+    &.icon-reply,
+    &.icon-origin-url,
+    &.icon-thread-url {
+        background-image: url($fieldWeiboIconsSprite);
     }
 }
 
@@ -2141,6 +2177,29 @@ a.jcsdl-filters-logic-option {
     /* wordpress and intensedebate */
     &.icon-subtype              {background-position: 0 0;              &.selected {background-position: -80px 0;}}
     &.icon-permalink            {background-position: -160px 0;         &.selected {background-position: -240px 0;}}
+
+    /* weibo */
+    &.icon-byline               {background-position: 0 0;              &.selected {background-position: -80px 0;}}
+    &.icon-length               {background-position: -160px 0;         &.selected {background-position: -240px 0;}}
+    &.icon-docinfo-lnlni        {background-position: -320px 0;         &.selected {background-position: -400px 0;}}
+    &.icon-feedtype             {background-position: -480px 0;         &.selected {background-position: -560px 0;}}
+    &.icon-indexing             {background-position: -640px 0;         &.selected {background-position: -720px 0;}}
+    &.icon-industry             {background-position: 0 -80px;          &.selected {background-position: -80px -80px;}}
+    &.icon-organization         {background-position: -160px -80px;     &.selected {background-position: -240px -80px;}}
+    &.icon-state                {background-position: -320px -80px;     &.selected {background-position: -400px -80px;}}
+    &.icon-subject              {background-position: -480px -80px;     &.selected {background-position: -560px -80px;}}
+    &.icon-ticker               {background-position: -640px -80px;     &.selected {background-position: -720px -80px;}}
+    &.icon-load-date            {background-position: 0 -160px;         &.selected {background-position: -80px -160px;}}
+    &.icon-photos-caption       {background-position: 0 -240px;         &.selected {background-position: -80 -240px;}}
+    &.icon-place-geo            {background-position: -160px -240px;    &.selected {background-position: -240px -240px;}}
+    &.icon-displayname          {background-position: -320px -240px;    &.selected {background-position: -400px -240px;}}
+    &.icon-favourites-count     {background-position: -480px -240px;    &.selected {background-position: -560px -240px;}}
+    &.icon-province             {background-position: -640px -240px;    &.selected {background-position: -720px -240px;}}
+    &.icon-original-pic         {background-position: 0 -320px;         &.selected {background-position: -80px -320px;}}
+    &.icon-parent-reblog        {background-position: -160px -320px;    &.selected {background-position: -240px -320px;}}
+    &.icon-reply                {background-position: -320px -320px;    &.selected {background-position: -400px -320px;}}
+    &.icon-origin-url           {background-position: 0 -400px;         &.selected {background-position: -80px -400px;}}
+    &.icon-thread-url           {background-position: -160px -400px;    &.selected {background-position: -240px -400px;}}
 }
 
 .jcsdl-icon.input {
@@ -2431,7 +2490,7 @@ code.jcsdl-code {
 
     .jcsdl-icon.target {
         background-image: url($targetIconsSpriteRetina);
-        @include backgroundSize(3190px, 220px);
+        @include backgroundSize(3520px, 220px);
     }
 
     .jcsdl-icon.operator {
@@ -2710,6 +2769,31 @@ code.jcsdl-code {
         &.icon-page {
             background-image: url($fieldFBPagesIconsSpriteRetina);
             @include backgroundSize(800px, 400px);
+        }
+
+        &.icon-byline,
+        &.icon-length,
+        &.icon-docinfo-lnlni,
+        &.icon-feedtype,
+        &.icon-indexing,
+        &.icon-industry,
+        &.icon-organization,
+        &.icon-state,
+        &.icon-subject,
+        &.icon-ticker,
+        &.icon-load-date,
+        &.icon-photos-caption,
+        &.icon-place-geo,
+        &.icon-displayname,
+        &.icon-favourites-count,
+        &.icon-province,
+        &.icon-original-pic,
+        &.icon-parent-reblog,
+        &.icon-reply,
+        &.icon-origin-url,
+        &.icon-thread-url {
+            background-image: url($fieldWeiboIconsSpriteRetina);
+            @include backgroundSize(800px, 480px);
         }
 
         &.icon-subtype,
