@@ -711,6 +711,9 @@ JCSDL.Loader.addComponent(function($, undefined) {
 				.data('target', target)
 				.addClass('target-' + name);
 
+            // set the target title as well
+            $option.find('.jcsdl-target-title').text(target.name);
+
 			// maybe this target is hidden?
 			if (!this.isTargetVisible(name)) {
 				// mark that it's suppose to be hidden

@@ -1706,11 +1706,40 @@ a.jcsdl-filters-logic-option {
  * ICONS
  */
 .jcsdl-icon.target {
+  position: relative;
   width: 110px;
   height: 110px;
   margin-right: 35px;
   background: url("img/icons-sprite-targets.png?20140624") no-repeat 0 0;
   /*&.target-unknown     {background-position: -2310px 0;        &.selected {background-position: -2310px -110px;}}*/ }
+  .jcsdl-icon.target .jcsdl-target-title {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.02rem;
+    line-height: 1;
+    color: #444;
+    text-align: center;
+    text-transform: uppercase;
+    text-indent: 0;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity=0);
+    -moz-opacity: 0;
+    -khtml-opacity: 0;
+    opacity: 0;
+    -webkit-transition: opacity 0.1s ease-in-out;
+    -moz-transition: opacity 0.1s ease-in-out;
+    -o-transition: opacity 0.1s ease-in-out;
+    transition: opacity 0.1s ease-in-out; }
+  .jcsdl-icon.target:hover .jcsdl-target-title, .jcsdl-icon.target.selected .jcsdl-target-title {
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+    filter: alpha(opacity=100);
+    -moz-opacity: 1;
+    -khtml-opacity: 1;
+    opacity: 1; }
   .jcsdl-icon.target.target-interaction {
     background-position: 0 0; }
     .jcsdl-icon.target.target-interaction.selected {
@@ -3999,11 +4028,11 @@ code.jcsdl-code {
 
   .jcsdl-icon.target {
     background-image: url("img/icons-sprite-targets@2x.png?20140624");
-    -moz-background-size: 3520px 220px;
-    -ie-background-size: 3520px 220px;
-    -o-background-size: 3520px 220px;
-    -webkit-background-size: 3520px 220px;
-    background-size: 3520px 220px; }
+    -moz-background-size: 3630px 220px;
+    -ie-background-size: 3630px 220px;
+    -o-background-size: 3630px 220px;
+    -webkit-background-size: 3630px 220px;
+    background-size: 3630px 220px; }
 
   .jcsdl-icon.operator {
     background-image: url("img/icons-sprite-operators@2x.png?20140624");

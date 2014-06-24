@@ -19,7 +19,7 @@ var JCSDLDefinition = (function() {
     targets = {
         // general interaction
         interaction : {
-            name : 'All',
+            name : 'All Data Sources',
             fields : {
                 content : {name: 'Content', preset: 'string'},
                 geo : {name: 'Location', preset: 'geo'},
@@ -122,7 +122,7 @@ var JCSDLDefinition = (function() {
 
         // facebook
         facebook : {
-            name : 'Facebook',
+            name : 'Facebook Public',
             fields : {
                 application : {name: 'Application', preset: 'string'},
                 caption : {name: 'Caption', preset: 'string'},
@@ -147,7 +147,7 @@ var JCSDLDefinition = (function() {
         },
 
         facebook_page : {
-            name : 'Facebook Page',
+            name : 'Facebook Pages',
             fields : {
                 'comment-id' : {name: 'Comment ID', preset: 'stringNumber'},
                 'from-category' : {name: 'From Category', preset: 'string'},
@@ -187,7 +187,7 @@ var JCSDLDefinition = (function() {
         },
 
         blog : {
-            name : 'Blog',
+            name : 'Blogs',
             fields : {
                 author : {
                     name : 'Author',
@@ -216,7 +216,7 @@ var JCSDLDefinition = (function() {
         },
 
         board : {
-            name : 'Board',
+            name : 'Boards',
             fields : {
                 author : {
                     name : 'Author',
@@ -244,7 +244,7 @@ var JCSDLDefinition = (function() {
         },
 
         dailymotion : {
-            name : 'DailyMotion',
+            name : 'Dailymotion',
             fields : {
                 author : {
                     name : 'Author',
@@ -376,7 +376,7 @@ var JCSDLDefinition = (function() {
         },
 
         video : {
-            name : 'Video',
+            name : 'Videos',
             fields : {
                 author : {
                     name : 'Author',
@@ -426,7 +426,7 @@ var JCSDLDefinition = (function() {
         },
 
         bitly : {
-            name : 'Bit.ly',
+            name : 'Bitly',
             fields : {
                 'user-agent' : {name: 'User Agent', icon: 'useragent', preset: 'string'},
                 url_hash : {name: 'URL Hash', preset: 'string'},
@@ -746,7 +746,7 @@ var JCSDLDefinition = (function() {
         },
 
         wordpress : {
-            name : 'Wordpress',
+            name : 'WordPress',
             fields : {
                 article : {
                     name : 'Article',
@@ -799,7 +799,7 @@ var JCSDLDefinition = (function() {
         },
 
         intensedebate : {
-            name : 'Intense Debate',
+            name : 'IntenseDebate',
             fields : {
                 author : {
                     name : 'Author',
@@ -823,7 +823,7 @@ var JCSDLDefinition = (function() {
         },
 
         lexisnexis : {
-            name : 'Lexis Nexis',
+            name : 'LexisNexis',
             fields : {
                 article : {
                     name : 'Article',
@@ -953,7 +953,7 @@ var JCSDLDefinition = (function() {
         },
 
         tencentweibo : {
-            name : '10cent Weibo',
+            name : 'Tencent Weibo',
             fields : {
                 author : {
                     name : 'Author',

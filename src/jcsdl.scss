@@ -1430,8 +1430,34 @@ a.jcsdl-filters-logic-option {
  * ICONS
  */
 .jcsdl-icon.target {
-    width: 110px; height: 110px; margin-right: 35px;
+    position: relative;
+    width: 110px;
+    height: 110px;
+    margin-right: 35px;
     background: url($targetIconsSprite) no-repeat 0 0;
+
+    .jcsdl-target-title {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        font-size: 10px;
+        font-weight: 500;
+        letter-spacing: 0.02rem;
+        line-height: 1;
+        color: #444;
+        text-align: center;
+        text-transform: uppercase;
+        text-indent: 0;
+        @include opacity(0);
+        @include transition(opacity 0.1s ease-in-out);
+    }
+
+    &:hover, &.selected {
+        .jcsdl-target-title {
+            @include opacity(1);
+        }
+    }
 
     &.target-interaction {background-position: 0 0;             &.selected {background-position: 0 -110px;}}
     &.target-facebook   {background-position: -110px 0;         &.selected {background-position: -110px -110px;}}
@@ -2505,7 +2531,7 @@ code.jcsdl-code {
 
     .jcsdl-icon.target {
         background-image: url($targetIconsSpriteRetina);
-        @include backgroundSize(3520px, 220px);
+        @include backgroundSize(3630px, 220px);
     }
 
     .jcsdl-icon.operator {

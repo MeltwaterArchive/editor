@@ -171,7 +171,7 @@ JCSDL.Loader.addComponent(function($, undefined) {
 		].join('')),
 
 		// target select option
-		targetOption : $('<a href="#" class="jcsdl-icon target jcsdl-carousel-item"></a>'),
+		targetOption : $('<a href="#" class="jcsdl-icon target jcsdl-carousel-item"><span class="jcsdl-target-title"></span></a>'),
 
 		// field select
 		field : $([
