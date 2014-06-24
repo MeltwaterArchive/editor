@@ -979,6 +979,36 @@ var JCSDLDefinition = (function() {
             }
         },
 
+        jive : {
+            name : 'Jive',
+            fields : {
+                'actor-url' : {name: 'Actor URL', preset: 'url'},
+                'actor-display_name' : {name: 'Actor Display Name', preset: 'string'},
+                'object' : {
+                    name : 'Object',
+                    fields : {
+                        url : {name: 'URL', preset: 'url'},
+                        object_type : {name: 'Object Type', preset: 'string', icon: 'type'},
+                        display_name : {name: 'Display Name', preset: 'string', icon: 'displayname'},
+                        summary : {name: 'Summary', preset: 'string'}
+                    }
+                },
+                target : {
+                    name : 'Target',
+                    fields : {
+                        url : {name: 'URL', preset: 'url'},
+                        object_type : {name: 'Object Type', preset: 'string', icon: 'type'},
+                        display_name : {name: 'Display Name', preset: 'string', icon: 'displayname'}
+                    }
+                },
+                content : {name: 'Content', preset: 'string'},
+                title : {name: 'Title', preset: 'string'},
+                type : {name: 'Type', preset: 'string'},
+                url : {name: 'URL', preset: 'url'},
+                verb : {name: 'Verb', preset: 'string'}
+            }
+        },
+
         augmentation : {
             name : 'Augmentations',
             fields : {

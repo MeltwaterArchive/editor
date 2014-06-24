@@ -1,5 +1,5 @@
 /* some theming variables */
-$version : 20140414;
+$version : 20140624;
 $color : #4a7a92;
 $colorLight : #888;
 $colorExtraLight : #bebebf;
@@ -1465,6 +1465,7 @@ a.jcsdl-filters-logic-option {
     &.target-lexisnexis     {background-position: -3190px 0;    &.selected {background-position: -3190px -110px;}}
     &.target-sinaweibo      {background-position: -3300px 0;    &.selected {background-position: -3300px -110px;}}
     &.target-tencentweibo   {background-position: -3410px 0;    &.selected {background-position: -3410px -110px;}}
+    &.target-jive       {background-position: -3520px 0;        &.selected {background-position: -3520px -110px;}}
 }
 
 .jcsdl-search-results li {
@@ -1501,6 +1502,7 @@ a.jcsdl-filters-logic-option {
         &.target-lexisnexis     {background-position: -957px 0;     &.selected {background-position: -957px -33px;}}
         &.target-sinaweibo      {background-position: -990px 0;     &.selected {background-position: -990px -33px;}}
         &.target-tencentweibo   {background-position: -1023px 0;    &.selected {background-position: -1023px -33px;}}
+        &.target-jive       {background-position: -1056px 0;        &.selected {background-position: -1056px -33px;}}
     }
 
     &.jcsdl-selected .jcsdl-icon.target {
@@ -1536,6 +1538,7 @@ a.jcsdl-filters-logic-option {
         &.target-lexisnexis     {background-position: -957px 0;}
         &.target-sinaweibo      {background-position: -990px 0;}
         &.target-tencentweibo   {background-position: -1023px 0;}
+        &.target-jive       {background-position: -1056px 0;}
     }
 }
 
@@ -1930,6 +1933,8 @@ a.jcsdl-filters-logic-option {
     &.icon-salience             {background-position: -480px -1360px;   &.selected {background-position: -560px -1360px;}}
     &.icon-klout                {background-position: -640px -1360px;   &.selected {background-position: -720px -1360px;}}
     &.icon-language_name        {background-position: 0 -1440px;        &.selected {background-position: -80px -1440px;}}
+    &.icon-summary              {background-position: -160px -1440px;   &.selected {background-position: -240px -1440px;}}
+    &.icon-target               {background-position: -320px -1440px;   &.selected {background-position: -400px -1440px;}}
 
     /* dbw */
     &.icon-twitter_activity     {background-position: -80px 0;          &.selected {background-position: 0 0;}}
