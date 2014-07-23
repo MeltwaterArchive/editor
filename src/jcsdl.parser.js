@@ -35,7 +35,10 @@ JCSDL.Loader.addComponent(function($, undefined) {
 			var versionLine = lines.shift(),
 				version = versionLine.split(' ')[2],
 				// get the logic
-				logic = masterLine.split(' ')[3],
+				// sometimes logic can contain spaces (if created in manual editor)
+				// therefore we're reading everything from index 3 to the end as logic
+				// https://github.com/datasift/editor/issues/51
+				logic = masterLine.split(' ').slice(3).join(' '),
 				// get the filters from the code
 				filters = [];
 
@@ -202,6 +205,9 @@ JCSDL.Loader.addComponent(function($, undefined) {
 				filtersCsdl = filterLines.join("\n" + logic + "\n");
 			}
 
+			// remove any spaces from the logic syntax, to ensure maximum compatibility
+			logic = logic.replace(/\s+/g, '');
+
 			// create the final output of the JCSDL filters
 			var output = '// JCSDL_VERSION ' + this.v + "\n" + filtersCsdl,
 				// calculate the hash for security
@@ -290,8 +296,11 @@ JCSDL.Loader.addComponent(function($, undefined) {
 
 				// get logic and hash from the master line
 				masterInfo = masterLine.split(' '),
-				logic = masterInfo[3],
 				hash = masterInfo[2],
+				// sometimes logic can contain spaces (if created in manual editor)
+				// therefore we're reading everything from index 3 to the end as logic
+				// https://github.com/datasift/editor/issues/51
+				logic = masterInfo.slice(3).join(' '),
 
 				// recalculate the original hash and see if it matches
 				jcsdlHash = this.encodeJCSDL(input, logic);
