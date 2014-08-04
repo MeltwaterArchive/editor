@@ -1264,55 +1264,55 @@ var JCSDLDefinition = (function() {
             label : 'Substring',
             description : 'Filter for a sequence of characters that form a word or part of a word.',
             code : 'substr',
-            jsonp : 'http://dev.datasift.com/tooltip-endpoint/tooltip/retrieve?callback=jcsdlJSONP&id=substr'
+            jsonp : 'https://dev.datasift.com/tooltip-endpoint/tooltip/retrieve?callback=jcsdlJSONP&id=substr'
         },
         all : {
             label : 'Contains All',
             description : 'Filter for all strings in the list of strings.',
             code : 'contains_all',
-            jsonp : 'http://dev.datasift.com/tooltip-endpoint/tooltip/retrieve?callback=jcsdlJSONP&id=contains_all'
+            jsonp : 'https://dev.datasift.com/tooltip-endpoint/tooltip/retrieve?callback=jcsdlJSONP&id=contains_all'
         },
         contains_any : {
             label : 'Contains words',
             description : 'Filter for one or more string values from a list of strings.',
             code : 'contains_any',
-            jsonp : 'http://dev.datasift.com/tooltip-endpoint/tooltip/retrieve?callback=jcsdlJSONP&id=contains_any'
+            jsonp : 'https://dev.datasift.com/tooltip-endpoint/tooltip/retrieve?callback=jcsdlJSONP&id=contains_any'
         },
         contains_near : {
             label : 'Contains words near',
             description : 'Filter for two or more words that occur near to each other.',
             code : 'contains_near',
-            jsonp : 'http://dev.datasift.com/tooltip-endpoint/tooltip/retrieve?callback=jcsdlJSONP&id=contains_near'
+            jsonp : 'https://dev.datasift.com/tooltip-endpoint/tooltip/retrieve?callback=jcsdlJSONP&id=contains_near'
         },
         wildcard : {
             label : 'Wildcard',
             description : 'Filter for strings using a wildcard character *.',
             code : 'wildcard',
-            jsonp : 'http://dev.datasift.com/tooltip-endpoint/tooltip/retrieve?callback=jcsdlJSONP&id=wildcard'
+            jsonp : 'https://dev.datasift.com/tooltip-endpoint/tooltip/retrieve?callback=jcsdlJSONP&id=wildcard'
         },
         different : {
             label : 'Different',
             description : 'Not equal to...',
             code : '!=',
-            jsonp : 'http://dev.datasift.com/tooltip-endpoint/tooltip/retrieve?callback=jcsdlJSONP&id=equals-and-not-equals'
+            jsonp : 'https://dev.datasift.com/tooltip-endpoint/tooltip/retrieve?callback=jcsdlJSONP&id=equals-and-not-equals'
         },
         equals : {
             label : 'Equals',
             description : 'Equal to...',
             code : '==',
-            jsonp : 'http://dev.datasift.com/tooltip-endpoint/tooltip/retrieve?callback=jcsdlJSONP&id=equals-and-not-equals'
+            jsonp : 'https://dev.datasift.com/tooltip-endpoint/tooltip/retrieve?callback=jcsdlJSONP&id=equals-and-not-equals'
         },
         'in' : {
             label : 'In',
             description : 'Filter for one or more values from a list.',
             code : 'in',
-            jsonp : 'http://dev.datasift.com/tooltip-endpoint/tooltip/retrieve?callback=jcsdlJSONP&id=in'
+            jsonp : 'https://dev.datasift.com/tooltip-endpoint/tooltip/retrieve?callback=jcsdlJSONP&id=in'
         },
         url_in : {
             label : 'URL In',
             description : 'Filter for an exact match with a normalized URL.',
             code : 'url_in',
-            jsonp : 'http://dev.datasift.com/tooltip-endpoint/tooltip/retrieve?callback=jcsdlJSONP&id=url_in'
+            jsonp : 'https://dev.datasift.com/tooltip-endpoint/tooltip/retrieve?callback=jcsdlJSONP&id=url_in'
         },
         greaterThan : {
             label : '&gt;=',
@@ -1328,19 +1328,19 @@ var JCSDLDefinition = (function() {
             label : 'Exists',
             description : 'Check whether a target is present.',
             code : 'exists',
-            jsonp : 'http://dev.datasift.com/tooltip-endpoint/tooltip/retrieve?callback=jcsdlJSONP&id=exists'
+            jsonp : 'https://dev.datasift.com/tooltip-endpoint/tooltip/retrieve?callback=jcsdlJSONP&id=exists'
         },
         regex_partial : {
             label : 'Partial Regex',
             description : 'Filter for content by a regular expression that matches any part of the target.',
             code : 'regex_partial',
-            jsonp : 'http://dev.datasift.com/tooltip-endpoint/tooltip/retrieve?callback=jcsdlJSONP&id=regex_partial'
+            jsonp : 'https://dev.datasift.com/tooltip-endpoint/tooltip/retrieve?callback=jcsdlJSONP&id=regex_partial'
         },
         regex_exact : {
             label : 'Exact Regex',
             description : 'Filter for content by a regular expression that matches the entire target.',
             code : 'regex_exact',
-            jsonp : 'http://dev.datasift.com/tooltip-endpoint/tooltip/retrieve?callback=jcsdlJSONP&id=regex_exact'
+            jsonp : 'https://dev.datasift.com/tooltip-endpoint/tooltip/retrieve?callback=jcsdlJSONP&id=regex_exact'
         },
         geo_box : {
             label : 'Geo Box',
@@ -1364,7 +1364,7 @@ var JCSDLDefinition = (function() {
      *
      * @type {String}
      */
-    targetHelpJsonpSource = 'http://dev.datasift.com/tooltip-endpoint/tooltip/retrieve?callback=jcsdlJSONP&id={target}',
+    targetHelpJsonpSource = 'https://dev.datasift.com/tooltip-endpoint/tooltip/retrieve?callback=jcsdlJSONP&id={target}',
 
     /**
      * Definition of JCSDL VQB input types.
