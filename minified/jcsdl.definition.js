@@ -22,6 +22,7 @@ var JCSDLDefinition = (function() {
             name : 'All Data Sources',
             fields : {
                 content : {name: 'Content', preset: 'string'},
+                raw_content : {name: 'Raw Content', preset: 'string'},
                 geo : {name: 'Location', preset: 'geo'},
                 link : {name: 'Link', preset: 'url'},
                 sample : {name: 'Sample', type: 'float', input: 'slider', operators: ['lowerThan'], displayFormat : function(v) { return v + '%';}},
@@ -51,7 +52,7 @@ var JCSDLDefinition = (function() {
                 in_reply_to_screen_name : {name: 'In Reply To',  icon: 'inreply', preset: 'string'},
                 links : {name: 'Links', icon: 'link', preset: 'url'},
                 mentions : {name: 'Mentions',  preset: 'string'},
-                mention_ids : {name: 'Mentions IDs', preset: 'int'},
+                mention_ids : {name: 'Mentions IDs', preset: 'intArray'},
                 source : {name: 'Source',  preset: 'string'},
                 status : {name: 'Status', preset: 'singleSelect', options: {'user_protect':'Private Account','user_unprotect':'Public Account','user_suspend':'Suspended Account','user_unsuspend':'Account Released from Suspension','user_delete':'Deleted Account','user_undelete':'Restored Account','user_withheld':'User Withheld','status_withheld':'Status Withheld'}},
                 text : {name: 'Tweet', icon: 'tweet', preset: 'string'},
@@ -128,7 +129,8 @@ var JCSDLDefinition = (function() {
                 caption : {name: 'Caption', preset: 'string'},
                 'likes-names' : {name: 'Likes Names', preset: 'string'},
                 link : {name: 'Link', preset: 'url'},
-                message : {name: 'Message',preset: 'string'},
+                message : {name: 'Message', preset: 'string'},
+                hashtags : {name: 'Hashtags', preset: 'string', operators: ['exists', 'equals', 'regex_partial', 'regex_exact', 'in'], operator: 'in'},
                 name : {name: 'Name', icon: 'fullname', preset: 'string'},
                 og : {
                     name : 'Open Graph',
