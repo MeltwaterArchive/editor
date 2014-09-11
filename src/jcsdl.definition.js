@@ -22,6 +22,7 @@ var JCSDLDefinition = (function() {
             name : 'All Data Sources',
             fields : {
                 content : {name: 'Content', preset: 'string'},
+                raw_content : {name: 'Raw Content', preset: 'string'},
                 geo : {name: 'Location', preset: 'geo'},
                 link : {name: 'Link', preset: 'url'},
                 sample : {name: 'Sample', type: 'float', input: 'slider', operators: ['lowerThan'], displayFormat : function(v) { return v + '%';}},
