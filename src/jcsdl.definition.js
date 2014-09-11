@@ -52,7 +52,7 @@ var JCSDLDefinition = (function() {
                 in_reply_to_screen_name : {name: 'In Reply To',  icon: 'inreply', preset: 'string'},
                 links : {name: 'Links', icon: 'link', preset: 'url'},
                 mentions : {name: 'Mentions',  preset: 'string'},
-                mention_ids : {name: 'Mentions IDs', preset: 'int'},
+                mention_ids : {name: 'Mentions IDs', preset: 'intArray'},
                 source : {name: 'Source',  preset: 'string'},
                 status : {name: 'Status', preset: 'singleSelect', options: {'user_protect':'Private Account','user_unprotect':'Public Account','user_suspend':'Suspended Account','user_unsuspend':'Account Released from Suspension','user_delete':'Deleted Account','user_undelete':'Restored Account','user_withheld':'User Withheld','status_withheld':'Status Withheld'}},
                 text : {name: 'Tweet', icon: 'tweet', preset: 'string'},
