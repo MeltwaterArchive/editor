@@ -129,7 +129,8 @@ var JCSDLDefinition = (function() {
                 caption : {name: 'Caption', preset: 'string'},
                 'likes-names' : {name: 'Likes Names', preset: 'string'},
                 link : {name: 'Link', preset: 'url'},
-                message : {name: 'Message',preset: 'string'},
+                message : {name: 'Message', preset: 'string'},
+                hashtags : {name: 'Hashtags', preset: 'string', operators: ['exists', 'equals', 'regex_partial', 'regex_exact', 'in'], operator: 'in'},
                 name : {name: 'Name', icon: 'fullname', preset: 'string'},
                 og : {
                     name : 'Open Graph',
