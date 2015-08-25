@@ -27,7 +27,7 @@ var JCSDLDefinition = (function() {
                 link : {name: 'Link', preset: 'url'},
                 sample : {name: 'Sample', type: 'float', input: 'slider', operators: ['lowerThan'], displayFormat : function(v) { return v + '%';}},
                 source : {name: 'Source', preset: 'string'},
-                type : {name: 'Type', type: 'string', input: 'select', operators: ['in'], options: {'2ch':'2channel','amazon':'Amazon','blog':'Blog','board':'Board','dailymotion':'DailyMotion','facebook':'Facebook','flickr':'Flickr','imdb':'IMDb','reddit':'Reddit','topic':'Topix','twitter':'Twitter','video':'Videos','youtube':'YouTube'}},
+                type : {name: 'Type', type: 'string', input: 'select', operators: ['in'], options: {'2ch':'2channel','amazon':'Amazon','blog':'Blog','board':'Board','dailymotion':'DailyMotion','facebook':'Facebook','flickr':'Flickr','imdb':'IMDb','reddit':'Reddit','topic':'Topix','twitter_gnip':'Twitter Gnip','twitter_api':'Twitter API','video':'Videos','youtube':'YouTube'}},
                 title : {name: 'Title', preset: 'string'},
                 author : {
                     name: 'Author',
