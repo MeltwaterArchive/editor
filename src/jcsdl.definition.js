@@ -29,6 +29,7 @@ var JCSDLDefinition = (function() {
                 source : {name: 'Source', preset: 'string'},
                 type : {name: 'Type', type: 'string', input: 'select', operators: ['in'], options: {'2ch':'2channel','amazon':'Amazon','blog':'Blog','board':'Board','dailymotion':'DailyMotion','facebook':'Facebook','flickr':'Flickr','imdb':'IMDb','reddit':'Reddit','topic':'Topix','twitter':'Twitter','video':'Videos','youtube':'YouTube'}},
                 title : {name: 'Title', preset: 'string'},
+                hashtags: {name: 'Hashtags', preset: 'string'},
                 author : {
                     name: 'Author',
                     icon : 'user',
