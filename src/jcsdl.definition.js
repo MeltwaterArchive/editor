@@ -29,7 +29,7 @@ var JCSDLDefinition = (function() {
                 source : {name: 'Source', preset: 'string'},
                 type : {name: 'Type', type: 'string', input: 'select', operators: ['in'], options: {'2ch':'2channel','amazon':'Amazon','blog':'Blog','board':'Board','dailymotion':'DailyMotion','facebook':'Facebook','flickr':'Flickr','imdb':'IMDb','reddit':'Reddit','topic':'Topix','twitter':'Twitter','video':'Videos','youtube':'YouTube'}},
                 title : {name: 'Title', preset: 'string'},
-                hashtags: {name: 'Hashtags', preset: 'string'},
+                hashtags : {name: 'Hashtags', preset: 'string', operators: ['exists', 'equals', 'regex_partial', 'regex_exact', 'in'], operator: 'in'},
                 author : {
                     name: 'Author',
                     icon : 'user',
@@ -57,6 +57,7 @@ var JCSDLDefinition = (function() {
                 source : {name: 'Source',  preset: 'string'},
                 status : {name: 'Status', preset: 'singleSelect', options: {'user_protect':'Private Account','user_unprotect':'Public Account','user_suspend':'Suspended Account','user_unsuspend':'Account Released from Suspension','user_delete':'Deleted Account','user_undelete':'Restored Account','user_withheld':'User Withheld','status_withheld':'Status Withheld'}},
                 text : {name: 'Tweet', icon: 'tweet', preset: 'string'},
+                hashtags : {name: 'Hashtags', preset: 'string', operators: ['exists', 'equals', 'regex_partial', 'regex_exact', 'in'], operator: 'in'},
                 user : {
                     name: 'User',
                     fields : {
