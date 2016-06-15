@@ -74,7 +74,7 @@
   display: block;
   height: 34px;
   width: 140px;
-  background: url("img/elements.png?20140624") no-repeat 0 -55px; }
+  background: url("img/elements.png?20140912e") no-repeat 0 -55px; }
   .jcsdl-button.jcsdl-editor-cancel, .jcsdl-button.jcsdl-filter-cancel {
     width: 56px;
     background-position: 0 -89px; }
@@ -174,7 +174,7 @@
   -moz-background-clip: padding;
   -webkit-background-clip: padding-box;
   background-clip: padding-box;
-  background: url("img/elements.png?20140624") repeat-x center -240px; }
+  background: url("img/elements.png?20140912e") repeat-x center -240px; }
   .jcsdl-error strong {
     color: #d14c4c;
     font-weight: bold; }
@@ -202,7 +202,7 @@
   display: block;
   width: 14px;
   height: 14px;
-  background: url("img/elements.png?20140624") no-repeat -140px -68px; }
+  background: url("img/elements.png?20140912e") no-repeat -140px -68px; }
 .jcsdl-mainview-action.jcsdl-add-filter.jcsdl-btn {
   margin-right: 0; }
 .jcsdl-mainview-action.jcsdl-editor-preview .jcsdl-picto {
@@ -233,7 +233,7 @@
   display: block;
   width: 13px;
   height: 13px;
-  background: url("img/elements.png?20140624") no-repeat -140px -55px;
+  background: url("img/elements.png?20140912e") no-repeat -140px -55px;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
   filter: alpha(opacity=30);
   -moz-opacity: 0.3;
@@ -309,7 +309,7 @@
       position: absolute;
       top: 50%;
       margin-top: -9px;
-      background: transparent url("img/elements.png?20140624") no-repeat -74px -393px;
+      background: transparent url("img/elements.png?20140912e") no-repeat -74px -393px;
       -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
       filter: alpha(opacity=70);
       -moz-opacity: 0.7;
@@ -459,7 +459,7 @@
       width: 5px;
       height: 5px;
       margin: 3px 2px;
-      background: url("img/elements.png?20140624") no-repeat -149px -278px; }
+      background: url("img/elements.png?20140912e") no-repeat -149px -278px; }
   .jcsdl-logic-token.bracket {
     font-size: 2.25em;
     width: 44px; }
@@ -669,7 +669,7 @@ a.jcsdl-filters-logic-option {
   height: 29px;
   line-height: 29px;
   text-align: center;
-  background: transparent url("img/elements.png?20140624") no-repeat -56px -89px; }
+  background: transparent url("img/elements.png?20140912e") no-repeat -56px -89px; }
   .jcsdl-carousel-scroll.right {
     float: right;
     background-position: -85px -89px; }
@@ -719,7 +719,7 @@ a.jcsdl-filters-logic-option {
     position: absolute;
     top: 6px;
     right: 0;
-    background: url("img/elements.png?20140624") no-repeat -70px -408px;
+    background: url("img/elements.png?20140912e") no-repeat -70px -408px;
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
     filter: alpha(opacity=80);
     -moz-opacity: 0.8;
@@ -803,21 +803,21 @@ a.jcsdl-filters-logic-option {
     .jcsdl-filter-editor .jcsdl-step.jcsdl-filter-step-value {
       padding-bottom: 20px; }
     .jcsdl-filter-editor .jcsdl-step .jcsdl-filter-target-wrap {
-      background: transparent url("img/select.png?20140624") no-repeat center -378px; }
+      background: transparent url("img/select.png?20140912e") no-repeat center -378px; }
     .jcsdl-filter-editor .jcsdl-step.selected .jcsdl-filter-target-wrap {
       background-position: center -553px; }
     .jcsdl-filter-editor .jcsdl-step.selected.field-selected .jcsdl-filter-target-wrap {
       background-position: center 8px; }
     .jcsdl-filter-editor .jcsdl-step.selected .jcsdl-filter-target-field-wrap {
-      background: transparent url("img/select.png?20140624") no-repeat center -255px; }
+      background: transparent url("img/select.png?20140912e") no-repeat center -255px; }
     .jcsdl-filter-editor .jcsdl-step.selected.field-selected .jcsdl-filter-target-field-wrap {
       background-position: center -165px; }
     .jcsdl-filter-editor .jcsdl-step.selected .jcsdl-filter-target-field-input-wrap {
-      background: transparent url("img/select.png?20140624") no-repeat center -255px; }
+      background: transparent url("img/select.png?20140912e") no-repeat center -255px; }
     .jcsdl-filter-editor .jcsdl-step.selected.field-selected .jcsdl-filter-target-field-input-wrap {
       background-position: center -165px; }
     .jcsdl-filter-editor .jcsdl-step.selected {
-      background: transparent url("img/step_background.png?20140624") no-repeat bottom center; }
+      background: transparent url("img/step_background.png?20140912e") no-repeat bottom center; }
     .jcsdl-filter-editor .jcsdl-step .jcsdl-target-help {
       position: absolute;
       bottom: 3px;
@@ -827,7 +827,7 @@ a.jcsdl-filters-logic-option {
       height: 21px;
       line-height: 21px;
       width: 94px;
-      background: url("img/select.png?20140624") no-repeat -17px -862px;
+      background: url("img/select.png?20140912e") no-repeat -17px -862px;
       text-align: center;
       color: #fff;
       font-weight: normal;
@@ -912,7 +912,7 @@ a.jcsdl-filters-logic-option {
       -moz-background-clip: padding;
       -webkit-background-clip: padding-box;
       background-clip: padding-box;
-      background: url("img/elements.png?20140624") no-repeat 0 -278px; }
+      background: url("img/elements.png?20140912e") no-repeat 0 -278px; }
     .jcsdl-filter-editor .jcsdl-operators-select:hover {
       background: #fafafa; }
       .jcsdl-filter-editor .jcsdl-operators-select:hover .jcsdl-dropdown-icon {
@@ -1039,7 +1039,7 @@ a.jcsdl-filters-logic-option {
           position: absolute;
           right: 4px;
           top: 12px;
-          background: url("img/elements.png?20140624") no-repeat -169px -55px;
+          background: url("img/elements.png?20140912e") no-repeat -169px -55px;
           -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
           filter: alpha(opacity=70);
           -moz-opacity: 0.7;
@@ -1076,7 +1076,7 @@ a.jcsdl-filters-logic-option {
     height: 30px;
     overflow: hidden;
     text-indent: -9999px;
-    background: url("img/elements.png?20140624") no-repeat -57px -278px; }
+    background: url("img/elements.png?20140912e") no-repeat -57px -278px; }
     .jcsdl-input-text .jcsdl-regex-tester-button:hover, .jcsdl-input-number .jcsdl-regex-tester-button:hover {
       -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=90)";
       filter: alpha(opacity=90);
@@ -1110,7 +1110,7 @@ a.jcsdl-filters-logic-option {
     width: 30px;
     height: 30px;
     overflow: hidden;
-    background: url("img/elements.png?20140624") no-repeat -57px -308px; }
+    background: url("img/elements.png?20140912e") no-repeat -57px -308px; }
     .jcsdl-input-text .jcsdl-regex-tester .jcsdl-regex-result.ok, .jcsdl-input-number .jcsdl-regex-tester .jcsdl-regex-result.ok {
       background-position: -57px -308px; }
     .jcsdl-input-text .jcsdl-regex-tester .jcsdl-regex-result.err, .jcsdl-input-number .jcsdl-regex-tester .jcsdl-regex-result.err {
@@ -1153,7 +1153,7 @@ a.jcsdl-filters-logic-option {
   float: none; }
   .jcsdl-container .jcsdl-list .jcsdl-btn .jcsdl-picto {
     display: inline-block;
-    background: url("img/list-icons.png?20140624") no-repeat -2px -6px;
+    background: url("img/list-icons.png?20140912e") no-repeat -2px -6px;
     -moz-background-size: 40px 182px;
     -ie-background-size: 40px 182px;
     -o-background-size: 40px 182px;
@@ -1495,7 +1495,7 @@ a.jcsdl-filters-logic-option {
       display: block;
       width: 14px;
       height: 14px;
-      background: transparent url("img/elements.png?20140624") no-repeat -115px -89px;
+      background: transparent url("img/elements.png?20140912e") no-repeat -115px -89px;
       -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
       filter: alpha(opacity=70);
       -moz-opacity: 0.7;
@@ -1544,7 +1544,7 @@ a.jcsdl-filters-logic-option {
       margin: 0 10px;
       width: 80px;
       height: 80px;
-      background: url("img/icons-sprite-other.png?20140624") no-repeat 0 0; }
+      background: url("img/icons-sprite-other.png?20140912e") no-repeat 0 0; }
       .jcsdl-input-slider .jcsdl-slider-wrap .jcsdl-slider-icon.max {
         float: right; }
   .jcsdl-input-slider .jcsdl-slider-container {
@@ -1567,7 +1567,7 @@ a.jcsdl-filters-logic-option {
     margin-bottom: 7px;
     height: 12px;
     cursor: pointer;
-    background: transparent url("img/elements.png?20140624") repeat-x center -228px;
+    background: transparent url("img/elements.png?20140912e") repeat-x center -228px;
     border: 0;
     -webkit-border-radius: 0px;
     -khtml-border-radius: 0px;
@@ -1585,7 +1585,7 @@ a.jcsdl-filters-logic-option {
       width: 30px;
       height: 40px;
       cursor: pointer;
-      background: transparent url("img/elements.png?20140624") no-repeat -152px -83px;
+      background: transparent url("img/elements.png?20140912e") no-repeat -152px -83px;
       border: 0;
       outline: none; }
   .jcsdl-input-slider .jcsdl-slider-bottom {
@@ -1598,7 +1598,7 @@ a.jcsdl-filters-logic-option {
       width: 15px;
       height: 15px;
       float: left;
-      background: transparent url("img/elements.png?20140624") no-repeat 0 -213px; }
+      background: transparent url("img/elements.png?20140912e") no-repeat 0 -213px; }
     .jcsdl-input-slider .jcsdl-slider-bottom .jcsdl-slider-bottom-right {
       float: right;
       background-position: -31px -213px; }
@@ -1606,7 +1606,7 @@ a.jcsdl-filters-logic-option {
       display: block;
       height: 15px;
       margin: 0 15px;
-      background: transparent url("img/elements.png?20140624") repeat-x 0 -198px; }
+      background: transparent url("img/elements.png?20140912e") repeat-x 0 -198px; }
 
 .jcsdl-map {
   text-align: center;
@@ -1710,7 +1710,7 @@ a.jcsdl-filters-logic-option {
   width: 110px;
   height: 110px;
   margin-right: 35px;
-  background: url("img/icons-sprite-targets.png?20140624") no-repeat 0 0;
+  background: url("img/icons-sprite-targets.png?20140912e") no-repeat 0 0;
   /*&.target-unknown     {background-position: -2310px 0;        &.selected {background-position: -2310px -110px;}}*/ }
   .jcsdl-icon.target .jcsdl-target-title {
     position: absolute;
@@ -1888,117 +1888,117 @@ a.jcsdl-filters-logic-option {
     .jcsdl-search-results li .jcsdl-icon.target.target-digg.selected {
       background-position: -99px -33px; }
   .jcsdl-search-results li .jcsdl-icon.target.target-myspace {
-    background-position: -132px 0; }
+    background-position: -127px 0; }
     .jcsdl-search-results li .jcsdl-icon.target.target-myspace.selected {
-      background-position: -132px -33px; }
+      background-position: -127px -33px; }
   .jcsdl-search-results li .jcsdl-icon.target.target-klout {
-    background-position: -165px 0; }
+    background-position: -160px 0; }
     .jcsdl-search-results li .jcsdl-icon.target.target-klout.selected {
-      background-position: -165px -33px; }
+      background-position: -160px -33px; }
   .jcsdl-search-results li .jcsdl-icon.target.target-amazon {
-    background-position: -198px 0; }
+    background-position: -193px 0; }
     .jcsdl-search-results li .jcsdl-icon.target.target-amazon.selected {
-      background-position: -198px -33px; }
+      background-position: -193px -33px; }
   .jcsdl-search-results li .jcsdl-icon.target.target-youtube {
-    background-position: -231px 0; }
+    background-position: -226px 0; }
     .jcsdl-search-results li .jcsdl-icon.target.target-youtube.selected {
-      background-position: -231px -33px; }
+      background-position: -226px -33px; }
   .jcsdl-search-results li .jcsdl-icon.target.target-flickr {
-    background-position: -264px 0; }
+    background-position: -259px 0; }
     .jcsdl-search-results li .jcsdl-icon.target.target-flickr.selected {
-      background-position: -264px -33px; }
+      background-position: -259px -33px; }
   .jcsdl-search-results li .jcsdl-icon.target.target-blog {
-    background-position: -297px 0; }
+    background-position: -292px 0; }
     .jcsdl-search-results li .jcsdl-icon.target.target-blog.selected {
-      background-position: -297px -33px; }
+      background-position: -292px -33px; }
   .jcsdl-search-results li .jcsdl-icon.target.target-video {
-    background-position: -330px 0; }
+    background-position: -325px 0; }
     .jcsdl-search-results li .jcsdl-icon.target.target-video.selected {
-      background-position: -330px -33px; }
+      background-position: -325px -33px; }
   .jcsdl-search-results li .jcsdl-icon.target.target-reddit {
-    background-position: -363px 0; }
+    background-position: -355px 0; }
     .jcsdl-search-results li .jcsdl-icon.target.target-reddit.selected {
-      background-position: -363px -33px; }
+      background-position: -355px -33px; }
   .jcsdl-search-results li .jcsdl-icon.target.target-imdb {
-    background-position: -396px 0; }
+    background-position: -385px 0; }
     .jcsdl-search-results li .jcsdl-icon.target.target-imdb.selected {
-      background-position: -396px -33px; }
+      background-position: -385px -33px; }
   .jcsdl-search-results li .jcsdl-icon.target.target-dailymotion {
-    background-position: -429px 0; }
+    background-position: -416px 0; }
     .jcsdl-search-results li .jcsdl-icon.target.target-dailymotion.selected {
-      background-position: -429px -33px; }
+      background-position: -416px -33px; }
   .jcsdl-search-results li .jcsdl-icon.target.target-newscred {
-    background-position: -462px 0; }
+    background-position: -449px 0; }
     .jcsdl-search-results li .jcsdl-icon.target.target-newscred.selected {
-      background-position: -462px -33px; }
+      background-position: -449px -33px; }
   .jcsdl-search-results li .jcsdl-icon.target.target-board {
-    background-position: -495px 0; }
+    background-position: -481px 0; }
     .jcsdl-search-results li .jcsdl-icon.target.target-board.selected {
-      background-position: -495px -33px; }
+      background-position: -481px -33px; }
   .jcsdl-search-results li .jcsdl-icon.target.target-topix {
-    background-position: -528px 0; }
+    background-position: -512px 0; }
     .jcsdl-search-results li .jcsdl-icon.target.target-topix.selected {
-      background-position: -528px -33px; }
+      background-position: -512px -33px; }
   .jcsdl-search-results li .jcsdl-icon.target.target-augmentation {
-    background-position: -561px 0; }
+    background-position: -545px 0; }
     .jcsdl-search-results li .jcsdl-icon.target.target-augmentation.selected {
-      background-position: -561px -33px; }
+      background-position: -545px -33px; }
   .jcsdl-search-results li .jcsdl-icon.target.target-2ch {
-    background-position: -594px 0; }
+    background-position: -574px 0; }
     .jcsdl-search-results li .jcsdl-icon.target.target-2ch.selected {
-      background-position: -594px -33px; }
+      background-position: -574px -33px; }
   .jcsdl-search-results li .jcsdl-icon.target.target-bitly {
-    background-position: -627px 0; }
+    background-position: -607px 0; }
     .jcsdl-search-results li .jcsdl-icon.target.target-bitly.selected {
-      background-position: -627px -33px; }
+      background-position: -607px -33px; }
   .jcsdl-search-results li .jcsdl-icon.target.target-wikipedia {
-    background-position: -660px 0; }
+    background-position: -640px 0; }
     .jcsdl-search-results li .jcsdl-icon.target.target-wikipedia.selected {
-      background-position: -660px -33px; }
+      background-position: -640px -33px; }
   .jcsdl-search-results li .jcsdl-icon.target.target-tumblr {
-    background-position: -726px 0; }
+    background-position: -706px 0; }
     .jcsdl-search-results li .jcsdl-icon.target.target-tumblr.selected {
-      background-position: -726px -33px; }
+      background-position: -706px -33px; }
   .jcsdl-search-results li .jcsdl-icon.target.target-googleplus {
-    background-position: -759px 0; }
+    background-position: -739px 0; }
     .jcsdl-search-results li .jcsdl-icon.target.target-googleplus.selected {
-      background-position: -759px -33px; }
+      background-position: -739px -33px; }
   .jcsdl-search-results li .jcsdl-icon.target.target-instagram {
-    background-position: -792px 0; }
+    background-position: -772px 0; }
     .jcsdl-search-results li .jcsdl-icon.target.target-instagram.selected {
-      background-position: -792px -33px; }
+      background-position: -772px -33px; }
   .jcsdl-search-results li .jcsdl-icon.target.target-yammer {
-    background-position: -825px 0; }
+    background-position: -802px 0; }
     .jcsdl-search-results li .jcsdl-icon.target.target-yammer.selected {
-      background-position: -825px -33px; }
+      background-position: -802px -33px; }
   .jcsdl-search-results li .jcsdl-icon.target.target-facebook_page {
-    background-position: -858px 0; }
+    background-position: -828px 0; }
     .jcsdl-search-results li .jcsdl-icon.target.target-facebook_page.selected {
-      background-position: -858px -33px; }
+      background-position: -828px -33px; }
   .jcsdl-search-results li .jcsdl-icon.target.target-wordpress {
-    background-position: -891px 0; }
+    background-position: -863px 0; }
     .jcsdl-search-results li .jcsdl-icon.target.target-wordpress.selected {
-      background-position: -891px -33px; }
+      background-position: -863px -33px; }
   .jcsdl-search-results li .jcsdl-icon.target.target-intensedebate {
-    background-position: -924px 0; }
+    background-position: -893px 0; }
     .jcsdl-search-results li .jcsdl-icon.target.target-intensedebate.selected {
-      background-position: -924px -33px; }
+      background-position: -893px -33px; }
   .jcsdl-search-results li .jcsdl-icon.target.target-lexisnexis {
-    background-position: -957px 0; }
+    background-position: -927px 0; }
     .jcsdl-search-results li .jcsdl-icon.target.target-lexisnexis.selected {
-      background-position: -957px -33px; }
+      background-position: -927px -33px; }
   .jcsdl-search-results li .jcsdl-icon.target.target-sinaweibo {
-    background-position: -990px 0; }
+    background-position: -957px 0; }
     .jcsdl-search-results li .jcsdl-icon.target.target-sinaweibo.selected {
-      background-position: -990px -33px; }
+      background-position: -957px -33px; }
   .jcsdl-search-results li .jcsdl-icon.target.target-tencentweibo {
-    background-position: -1023px 0; }
+    background-position: -988px 0; }
     .jcsdl-search-results li .jcsdl-icon.target.target-tencentweibo.selected {
-      background-position: -1023px -33px; }
+      background-position: -988px -33px; }
   .jcsdl-search-results li .jcsdl-icon.target.target-jive {
-    background-position: -1056px 0; }
+    background-position: -1022px 0; }
     .jcsdl-search-results li .jcsdl-icon.target.target-jive.selected {
-      background-position: -1056px -33px; }
+      background-position: -1022px -33px; }
 .jcsdl-search-results li.jcsdl-selected .jcsdl-icon.target {
   /*&.target-unknown     {background-position: -693px -33px;}*/ }
   .jcsdl-search-results li.jcsdl-selected .jcsdl-icon.target.target-interaction {
@@ -2010,61 +2010,61 @@ a.jcsdl-filters-logic-option {
   .jcsdl-search-results li.jcsdl-selected .jcsdl-icon.target.target-digg {
     background-position: -99px -33px; }
   .jcsdl-search-results li.jcsdl-selected .jcsdl-icon.target.target-myspace {
-    background-position: -132px -33px; }
+    background-position: -127px -33px; }
   .jcsdl-search-results li.jcsdl-selected .jcsdl-icon.target.target-klout {
-    background-position: -165px -33px; }
+    background-position: -160px -33px; }
   .jcsdl-search-results li.jcsdl-selected .jcsdl-icon.target.target-amazon {
-    background-position: -198px -33px; }
+    background-position: -193px -33px; }
   .jcsdl-search-results li.jcsdl-selected .jcsdl-icon.target.target-youtube {
-    background-position: -231px -33px; }
+    background-position: -226px -33px; }
   .jcsdl-search-results li.jcsdl-selected .jcsdl-icon.target.target-flickr {
-    background-position: -264px -33px; }
+    background-position: -259px -33px; }
   .jcsdl-search-results li.jcsdl-selected .jcsdl-icon.target.target-blog {
-    background-position: -297px -33px; }
+    background-position: -292px -33px; }
   .jcsdl-search-results li.jcsdl-selected .jcsdl-icon.target.target-video {
-    background-position: -330px -33px; }
+    background-position: -325px -33px; }
   .jcsdl-search-results li.jcsdl-selected .jcsdl-icon.target.target-reddit {
-    background-position: -363px -33px; }
+    background-position: -355px -33px; }
   .jcsdl-search-results li.jcsdl-selected .jcsdl-icon.target.target-imdb {
-    background-position: -396px -33px; }
+    background-position: -385px -33px; }
   .jcsdl-search-results li.jcsdl-selected .jcsdl-icon.target.target-dailymotion {
-    background-position: -429px -33px; }
+    background-position: -416px -33px; }
   .jcsdl-search-results li.jcsdl-selected .jcsdl-icon.target.target-newscred {
-    background-position: -462px -33px; }
+    background-position: -449px -33px; }
   .jcsdl-search-results li.jcsdl-selected .jcsdl-icon.target.target-board {
-    background-position: -495px -33px; }
+    background-position: -481px -33px; }
   .jcsdl-search-results li.jcsdl-selected .jcsdl-icon.target.target-topix {
-    background-position: -528px -33px; }
+    background-position: -512px -33px; }
   .jcsdl-search-results li.jcsdl-selected .jcsdl-icon.target.target-augmentation {
-    background-position: -561px -33px; }
+    background-position: -545px -33px; }
   .jcsdl-search-results li.jcsdl-selected .jcsdl-icon.target.target-2ch {
-    background-position: -594px -33px; }
+    background-position: -574px -33px; }
   .jcsdl-search-results li.jcsdl-selected .jcsdl-icon.target.target-bitly {
-    background-position: -627px -33px; }
+    background-position: -607px -33px; }
   .jcsdl-search-results li.jcsdl-selected .jcsdl-icon.target.target-wikipedia {
-    background-position: -660px -33px; }
+    background-position: -640px -33px; }
   .jcsdl-search-results li.jcsdl-selected .jcsdl-icon.target.target-tumblr {
-    background-position: -726px -33px; }
+    background-position: -706px -33px; }
   .jcsdl-search-results li.jcsdl-selected .jcsdl-icon.target.target-googleplus {
-    background-position: -759px -33px; }
+    background-position: -739px -33px; }
   .jcsdl-search-results li.jcsdl-selected .jcsdl-icon.target.target-instagram {
-    background-position: -792px -33px; }
+    background-position: -772px -33px; }
   .jcsdl-search-results li.jcsdl-selected .jcsdl-icon.target.target-yammer {
-    background-position: -825px -33px; }
+    background-position: -802px -33px; }
   .jcsdl-search-results li.jcsdl-selected .jcsdl-icon.target.target-facebook_page {
-    background-position: -858px -33px; }
+    background-position: -828px -33px; }
   .jcsdl-search-results li.jcsdl-selected .jcsdl-icon.target.target-wordpress {
-    background-position: -891px -33px; }
+    background-position: -863px -33px; }
   .jcsdl-search-results li.jcsdl-selected .jcsdl-icon.target.target-intensedebate {
-    background-position: -924px -33px; }
+    background-position: -893px -33px; }
   .jcsdl-search-results li.jcsdl-selected .jcsdl-icon.target.target-lexisnexis {
-    background-position: -957px 0; }
+    background-position: -927px 0; }
   .jcsdl-search-results li.jcsdl-selected .jcsdl-icon.target.target-sinaweibo {
-    background-position: -990px 0; }
+    background-position: -957px 0; }
   .jcsdl-search-results li.jcsdl-selected .jcsdl-icon.target.target-tencentweibo {
-    background-position: -1023px 0; }
+    background-position: -988px 0; }
   .jcsdl-search-results li.jcsdl-selected .jcsdl-icon.target.target-jive {
-    background-position: -1056px 0; }
+    background-position: -1022px 0; }
 
 /* field icons sets */
 .jcsdl-icon.field {
@@ -2073,27 +2073,27 @@ a.jcsdl-filters-logic-option {
   margin-right: 20px;
   padding: 0;
   /* default icon set (original) */
-  background-image: url("img/icons-sprite-fields.png?20140624");
+  background-image: url("img/icons-sprite-fields.png?20140912e");
   /* additional icon set (demographics, bitly, wiki - dbw) */
   /* additional icon set (links, opengraph, newscred - lon) */ }
   .jcsdl-icon.field.icon-twitter_activity, .jcsdl-icon.field.icon-location_by_country, .jcsdl-icon.field.icon-basic_demographics, .jcsdl-icon.field.icon-interests, .jcsdl-icon.field.icon-twitter_influence, .jcsdl-icon.field.icon-first_language, .jcsdl-icon.field.icon-number_of_accounts_followed, .jcsdl-icon.field.icon-professions, .jcsdl-icon.field.icon-usa, .jcsdl-icon.field.icon-city, .jcsdl-icon.field.icon-services_and_technologies, .jcsdl-icon.field.icon-large_accounts_followed, .jcsdl-icon.field.icon-twitter_settings, .jcsdl-icon.field.icon-older_than, .jcsdl-icon.field.icon-younger_than, .jcsdl-icon.field.icon-ms_clothes, .jcsdl-icon.field.icon-ms_shop, .jcsdl-icon.field.icon-ms_food, .jcsdl-icon.field.icon-useragent, .jcsdl-icon.field.icon-url_hash, .jcsdl-icon.field.icon-share_hash, .jcsdl-icon.field.icon-cname, .jcsdl-icon.field.icon-ref_url, .jcsdl-icon.field.icon-ref_domain, .jcsdl-icon.field.icon-country_code, .jcsdl-icon.field.icon-geo_region_code, .jcsdl-icon.field.icon-geo_region, .jcsdl-icon.field.icon-timezone, .jcsdl-icon.field.icon-contributions, .jcsdl-icon.field.icon-talkpage, .jcsdl-icon.field.icon-diff, .jcsdl-icon.field.icon-changetype, .jcsdl-icon.field.icon-changeadded, .jcsdl-icon.field.icon-changeremoved, .jcsdl-icon.field.icon-diff-from, .jcsdl-icon.field.icon-diff-to, .jcsdl-icon.field.icon-externallinks, .jcsdl-icon.field.icon-namespace, .jcsdl-icon.field.icon-namespacecode, .jcsdl-icon.field.icon-newlength, .jcsdl-icon.field.icon-oldlength, .jcsdl-icon.field.icon-pageid, .jcsdl-icon.field.icon-parentid, .jcsdl-icon.field.icon-relationship, .jcsdl-icon.field.icon-work-status, .jcsdl-icon.field.icon-accounts_categories {
-    background-image: url("img/icons-sprite-fields-dbw.png?20140624"); }
+    background-image: url("img/icons-sprite-fields-dbw.png?20140912e"); }
   .jcsdl-icon.field.icon-normalized_url, .jcsdl-icon.field.icon-hops, .jcsdl-icon.field.icon-http_code, .jcsdl-icon.field.icon-metatags, .jcsdl-icon.field.icon-charset, .jcsdl-icon.field.icon-newskeywords, .jcsdl-icon.field.icon-standout, .jcsdl-icon.field.icon-site_name, .jcsdl-icon.field.icon-email, .jcsdl-icon.field.icon-phone_number, .jcsdl-icon.field.icon-fax_number, .jcsdl-icon.field.icon-street_address, .jcsdl-icon.field.icon-locality, .jcsdl-icon.field.icon-postal_code, .jcsdl-icon.field.icon-activity, .jcsdl-icon.field.icon-sport, .jcsdl-icon.field.icon-bar, .jcsdl-icon.field.icon-company, .jcsdl-icon.field.icon-cafe, .jcsdl-icon.field.icon-hotel, .jcsdl-icon.field.icon-restaurant, .jcsdl-icon.field.icon-cause, .jcsdl-icon.field.icon-sports_league, .jcsdl-icon.field.icon-sports_team, .jcsdl-icon.field.icon-band, .jcsdl-icon.field.icon-government, .jcsdl-icon.field.icon-non_profit, .jcsdl-icon.field.icon-school, .jcsdl-icon.field.icon-university, .jcsdl-icon.field.icon-actor, .jcsdl-icon.field.icon-athlete, .jcsdl-icon.field.icon-author, .jcsdl-icon.field.icon-director, .jcsdl-icon.field.icon-musician, .jcsdl-icon.field.icon-politician, .jcsdl-icon.field.icon-public_figure, .jcsdl-icon.field.icon-landmark, .jcsdl-icon.field.icon-state_province, .jcsdl-icon.field.icon-album, .jcsdl-icon.field.icon-book, .jcsdl-icon.field.icon-drink, .jcsdl-icon.field.icon-food, .jcsdl-icon.field.icon-game, .jcsdl-icon.field.icon-movie, .jcsdl-icon.field.icon-product, .jcsdl-icon.field.icon-song, .jcsdl-icon.field.icon-tv_show, .jcsdl-icon.field.icon-blog, .jcsdl-icon.field.icon-website, .jcsdl-icon.field.icon-fulltext, .jcsdl-icon.field.icon-circulation, .jcsdl-icon.field.icon-company_type, .jcsdl-icon.field.icon-founded, .jcsdl-icon.field.icon-media_type, .jcsdl-icon.field.icon-source_name, .jcsdl-icon.field.icon-card, .jcsdl-icon.field.icon-site, .jcsdl-icon.field.icon-site_id, .jcsdl-icon.field.icon-creator, .jcsdl-icon.field.icon-creator_id, .jcsdl-icon.field.icon-image_width, .jcsdl-icon.field.icon-image_height, .jcsdl-icon.field.icon-twitter, .jcsdl-icon.field.icon-player_width, .jcsdl-icon.field.icon-player_height, .jcsdl-icon.field.icon-player_stream, .jcsdl-icon.field.icon-player_stream_content_type, .jcsdl-icon.field.icon-player, .jcsdl-icon.field.icon-mention_ids, .jcsdl-icon.field.icon-status, .jcsdl-icon.field.icon-user_verified, .jcsdl-icon.field.icon-confidence, .jcsdl-icon.field.icon-entities_name, .jcsdl-icon.field.icon-entities_type, .jcsdl-icon.field.icon-region, .jcsdl-icon.field.icon-keywords {
-    background-image: url("img/icons-sprite-fields-lon.png?20140624"); }
+    background-image: url("img/icons-sprite-fields-lon.png?20140912e"); }
   .jcsdl-icon.field.icon-tumblractivity, .jcsdl-icon.field.icon-tumblrtype, .jcsdl-icon.field.icon-state, .jcsdl-icon.field.icon-source-blogid, .jcsdl-icon.field.icon-dest-blogid, .jcsdl-icon.field.icon-dest-postid, .jcsdl-icon.field.icon-root-blogid, .jcsdl-icon.field.icon-root-postid, .jcsdl-icon.field.icon-blogid, .jcsdl-icon.field.icon-blog_name, .jcsdl-icon.field.icon-tumblrtitle, .jcsdl-icon.field.icon-body, .jcsdl-icon.field.icon-format, .jcsdl-icon.field.icon-post_url, .jcsdl-icon.field.icon-slug, .jcsdl-icon.field.icon-text, .jcsdl-icon.field.icon-source_html, .jcsdl-icon.field.icon-source_url, .jcsdl-icon.field.icon-source_title, .jcsdl-icon.field.icon-note_count, .jcsdl-icon.field.icon-question, .jcsdl-icon.field.icon-answer, .jcsdl-icon.field.icon-asking_name, .jcsdl-icon.field.icon-asking_url, .jcsdl-icon.field.icon-video_url, .jcsdl-icon.field.icon-duration, .jcsdl-icon.field.icon-artist, .jcsdl-icon.field.icon-track_name, .jcsdl-icon.field.icon-album, .jcsdl-icon.field.icon-plays, .jcsdl-icon.field.icon-audio_url, .jcsdl-icon.field.icon-link, .jcsdl-icon.field.icon-description, .jcsdl-icon.field.icon-caption, .jcsdl-icon.field.icon-meta-url, .jcsdl-icon.field.icon-meta-type, .jcsdl-icon.field.icon-meta-description, .jcsdl-icon.field.icon-likes_local, .jcsdl-icon.field.icon-likes_global, .jcsdl-icon.field.icon-reblogged_global, .jcsdl-icon.field.icon-from-id, .jcsdl-icon.field.icon-from-url, .jcsdl-icon.field.icon-from-name, .jcsdl-icon.field.icon-from-title, .jcsdl-icon.field.icon-root-id, .jcsdl-icon.field.icon-root-url, .jcsdl-icon.field.icon-root-name, .jcsdl-icon.field.icon-root-title, .jcsdl-icon.field.icon-meta, .jcsdl-icon.field.icon-reblogged {
-    background-image: url("img/icons-sprite-fields-tumblr.png?20140624"); }
+    background-image: url("img/icons-sprite-fields-tumblr.png?20140912e"); }
   .jcsdl-icon.field.icon-actor-id, .jcsdl-icon.field.icon-actor-display_name, .jcsdl-icon.field.icon-actor-url, .jcsdl-icon.field.icon-object, .jcsdl-icon.field.icon-attachment, .jcsdl-icon.field.icon-in_reply_to-id, .jcsdl-icon.field.icon-in_reply_to-url, .jcsdl-icon.field.icon-provider_title {
-    background-image: url("img/icons-sprite-fields-googleplus.png?20140624"); }
+    background-image: url("img/icons-sprite-fields-googleplus.png?20140912e"); }
   .jcsdl-icon.field.icon-filter, .jcsdl-icon.field.icon-low_resolution, .jcsdl-icon.field.icon-standard_resolution, .jcsdl-icon.field.icon-width, .jcsdl-icon.field.icon-height, .jcsdl-icon.field.icon-caption_from, .jcsdl-icon.field.icon-from, .jcsdl-icon.field.icon-location-id, .jcsdl-icon.field.icon-location-name, .jcsdl-icon.field.icon-users_in_photo, .jcsdl-icon.field.icon-attribution-name, .jcsdl-icon.field.icon-attribution-website, .jcsdl-icon.field.icon-bio, .jcsdl-icon.field.icon-media {
-    background-image: url("img/icons-sprite-fields-instagram.png?20140624"); }
+    background-image: url("img/icons-sprite-fields-instagram.png?20140912e"); }
   .jcsdl-icon.field.icon-message_type, .jcsdl-icon.field.icon-direct_message, .jcsdl-icon.field.icon-privacy, .jcsdl-icon.field.icon-sender_type, .jcsdl-icon.field.icon-client_type, .jcsdl-icon.field.icon-content_excerpt, .jcsdl-icon.field.icon-rich, .jcsdl-icon.field.icon-plain, .jcsdl-icon.field.icon-parsed, .jcsdl-icon.field.icon-thread, .jcsdl-icon.field.icon-shares, .jcsdl-icon.field.icon-updates, .jcsdl-icon.field.icon-group, .jcsdl-icon.field.icon-office365_url, .jcsdl-icon.field.icon-sender, .jcsdl-icon.field.icon-followers, .jcsdl-icon.field.icon-following, .jcsdl-icon.field.icon-job_title, .jcsdl-icon.field.icon-web_url {
-    background-image: url("img/icons-sprite-fields-yammer.png?20140624"); }
+    background-image: url("img/icons-sprite-fields-yammer.png?20140912e"); }
   .jcsdl-icon.field.icon-comment-id, .jcsdl-icon.field.icon-from-category, .jcsdl-icon.field.icon-from-id, .jcsdl-icon.field.icon-from-name, .jcsdl-icon.field.icon-link, .jcsdl-icon.field.icon-message, .jcsdl-icon.field.icon-name, .jcsdl-icon.field.icon-object_id, .jcsdl-icon.field.icon-page_category, .jcsdl-icon.field.icon-page_id, .jcsdl-icon.field.icon-page_link, .jcsdl-icon.field.icon-page_name, .jcsdl-icon.field.icon-page_username, .jcsdl-icon.field.icon-post_id, .jcsdl-icon.field.icon-post_content, .jcsdl-icon.field.icon-post_link, .jcsdl-icon.field.icon-post_type, .jcsdl-icon.field.icon-story, .jcsdl-icon.field.icon-picture, .jcsdl-icon.field.icon-application-id, .jcsdl-icon.field.icon-application-name, .jcsdl-icon.field.icon-page {
-    background-image: url("img/icons-sprite-fields-fbpages.png?20140624"); }
+    background-image: url("img/icons-sprite-fields-fbpages.png?20140912e"); }
   .jcsdl-icon.field.icon-subtype, .jcsdl-icon.field.icon-permalink {
-    background-image: url("img/icons-sprite-fields-intensedebate-wordpress.png?20140624"); }
+    background-image: url("img/icons-sprite-fields-intensedebate-wordpress.png?20140912e"); }
   .jcsdl-icon.field.icon-byline, .jcsdl-icon.field.icon-length, .jcsdl-icon.field.icon-docinfo-lnlni, .jcsdl-icon.field.icon-feedtype, .jcsdl-icon.field.icon-indexing, .jcsdl-icon.field.icon-industry, .jcsdl-icon.field.icon-organization, .jcsdl-icon.field.icon-state, .jcsdl-icon.field.icon-subject, .jcsdl-icon.field.icon-ticker, .jcsdl-icon.field.icon-load-date, .jcsdl-icon.field.icon-photos-caption, .jcsdl-icon.field.icon-place-geo, .jcsdl-icon.field.icon-displayname, .jcsdl-icon.field.icon-favourites-count, .jcsdl-icon.field.icon-province, .jcsdl-icon.field.icon-original-pic, .jcsdl-icon.field.icon-parent-reblog, .jcsdl-icon.field.icon-reply, .jcsdl-icon.field.icon-origin-url, .jcsdl-icon.field.icon-thread-url {
-    background-image: url("img/icons-sprite-fields-weibo.png?20140624"); }
+    background-image: url("img/icons-sprite-fields-weibo.png?20140912e"); }
 
 .jcsdl-icon.field {
   /* dbw */
@@ -2485,6 +2485,14 @@ a.jcsdl-filters-logic-option {
     background-position: -320px -1440px; }
     .jcsdl-icon.field.icon-target.selected {
       background-position: -400px -1440px; }
+  .jcsdl-icon.field.icon-raw_content {
+    background-position: -480px -1440px; }
+    .jcsdl-icon.field.icon-raw_content.selected {
+      background-position: -560px -1440px; }
+  .jcsdl-icon.field.icon-hashtags {
+    background-position: -640px -1440px; }
+    .jcsdl-icon.field.icon-hashtags.selected {
+      background-position: -720px -1440px; }
   .jcsdl-icon.field.icon-twitter_activity {
     background-position: -80px 0; }
     .jcsdl-icon.field.icon-twitter_activity.selected {
@@ -3519,7 +3527,7 @@ a.jcsdl-filters-logic-option {
       background-position: -240px -400px; }
 
 .jcsdl-icon.input {
-  background: url("img/icons-sprite-other.png?20140624") no-repeat 0 0; }
+  background: url("img/icons-sprite-other.png?20140912e") no-repeat 0 0; }
   .jcsdl-icon.input.icon-geo_radius {
     background-position: 0 -400px; }
     .jcsdl-icon.input.icon-geo_radius.selected {
@@ -3540,7 +3548,7 @@ a.jcsdl-filters-logic-option {
 .jcsdl-icon.operator {
   width: 46px;
   height: 46px;
-  background: url("img/icons-sprite-operators.png?20140624") no-repeat 0 0;
+  background: url("img/icons-sprite-operators.png?20140912e") no-repeat 0 0;
   border: 1px solid #c6c6c9;
   -webkit-border-radius: 2px;
   -khtml-border-radius: 2px;
@@ -3732,7 +3740,7 @@ a.jcsdl-filters-logic-option {
       width: 38px;
       overflow: hidden;
       text-indent: -9999px;
-      background: url("img/elements.png?20140624") no-repeat 0 -393px; }
+      background: url("img/elements.png?20140912e") no-repeat 0 -393px; }
       .jcsdl-dropdown .jcsdl-dropdown-option .jcsdl-dropdown-details-trigger:hover {
         background-position: -38px -393px; }
     .jcsdl-dropdown .jcsdl-dropdown-option .jcsdl-dropdown-option-desc {
@@ -3778,7 +3786,7 @@ a.jcsdl-filters-logic-option {
     overflow: hidden;
     position: relative;
     padding: 0 10px;
-    background: url("img/elements.png?20140624") repeat-x 0 -354px;
+    background: url("img/elements.png?20140912e") repeat-x 0 -354px;
     border: 1px solid #1d3550;
     border-bottom: 0;
     -webkit-border-top-left-radius: 3px;
@@ -3813,7 +3821,7 @@ a.jcsdl-filters-logic-option {
       height: 40px;
       overflow: hidden;
       text-indent: -9999px;
-      background: url("img/elements.png?20140624") no-repeat -118px -310px; }
+      background: url("img/elements.png?20140912e") no-repeat -118px -310px; }
       .jcsdl-popup .jcsdl-popup-header .jcsdl-popup-close:hover {
         -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
         filter: alpha(opacity=70);
@@ -3853,7 +3861,7 @@ a.jcsdl-filters-logic-option {
     height: 32px;
     overflow: hidden;
     margin: 10px auto;
-    background: url("img/loader.gif?20140624") no-repeat 0 0; }
+    background: url("img/loader.gif?20140912e") no-repeat 0 0; }
 
 .jcsdl-overlay {
   position: fixed;
@@ -3906,7 +3914,7 @@ a.jcsdl-filters-logic-option {
     margin-right: 8px;
     width: 14px;
     height: 14px;
-    background: url("img/elements.png?20140624") no-repeat -103px -394px; }
+    background: url("img/elements.png?20140912e") no-repeat -103px -394px; }
   .jcsdl-popup-content .jcsdl-copy-to-clipboard.copied {
     border-color: #ff9933;
     color: #ff9933; }
@@ -3982,7 +3990,7 @@ code.jcsdl-code {
 /* retina elements sprite */
 @media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 3 / 2), only screen and (min--moz-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5) {
   .jcsdl-elements-sprite {
-    background-image: url("img/elements@2x.png?20140624");
+    background-image: url("img/elements@2x.png?20140912e");
     -moz-background-size: 181px 500px;
     -ie-background-size: 181px 500px;
     -o-background-size: 181px 500px;
@@ -3990,28 +3998,28 @@ code.jcsdl-code {
     background-size: 181px 500px; }
 
   .jcsdl-step .jcsdl-filter-target-wrap {
-    background-image: url("img/select@2x.png?20140624");
+    background-image: url("img/select@2x.png?20140912e");
     -moz-background-size: 127px 900px;
     -ie-background-size: 127px 900px;
     -o-background-size: 127px 900px;
     -webkit-background-size: 127px 900px;
     background-size: 127px 900px; }
   .jcsdl-step.selected .jcsdl-filter-target-field-wrap {
-    background-image: url("img/select@2x.png?20140624");
+    background-image: url("img/select@2x.png?20140912e");
     -moz-background-size: 127px 900px;
     -ie-background-size: 127px 900px;
     -o-background-size: 127px 900px;
     -webkit-background-size: 127px 900px;
     background-size: 127px 900px; }
   .jcsdl-step.selected .jcsdl-filter-target-field-input-wrap {
-    background-image: url("img/select@2x.png?20140624");
+    background-image: url("img/select@2x.png?20140912e");
     -moz-background-size: 127px 900px;
     -ie-background-size: 127px 900px;
     -o-background-size: 127px 900px;
     -webkit-background-size: 127px 900px;
     background-size: 127px 900px; }
   .jcsdl-step .jcsdl-target-help {
-    background-image: url("img/select@2x.png?20140624");
+    background-image: url("img/select@2x.png?20140912e");
     -moz-background-size: 127px 900px;
     -ie-background-size: 127px 900px;
     -o-background-size: 127px 900px;
@@ -4019,7 +4027,7 @@ code.jcsdl-code {
     background-size: 127px 900px; }
 
   .jcsdl-slider-icon {
-    background-image: url("img/icons-sprite-other@2x.png?20140624");
+    background-image: url("img/icons-sprite-other@2x.png?20140912e");
     -moz-background-size: 160px 880px;
     -ie-background-size: 160px 880px;
     -o-background-size: 160px 880px;
@@ -4027,7 +4035,7 @@ code.jcsdl-code {
     background-size: 160px 880px; }
 
   .jcsdl-icon.target {
-    background-image: url("img/icons-sprite-targets@2x.png?20140624");
+    background-image: url("img/icons-sprite-targets@2x.png?20140912e");
     -moz-background-size: 3630px 220px;
     -ie-background-size: 3630px 220px;
     -o-background-size: 3630px 220px;
@@ -4035,7 +4043,7 @@ code.jcsdl-code {
     background-size: 3630px 220px; }
 
   .jcsdl-icon.operator {
-    background-image: url("img/icons-sprite-operators@2x.png?20140624");
+    background-image: url("img/icons-sprite-operators@2x.png?20140912e");
     -moz-background-size: 184px 368px;
     -ie-background-size: 184px 368px;
     -o-background-size: 184px 368px;
@@ -4043,7 +4051,7 @@ code.jcsdl-code {
     background-size: 184px 368px; }
 
   .jcsdl-icon.input {
-    background-image: url("img/icons-sprite-other@2x.png?20140624");
+    background-image: url("img/icons-sprite-other@2x.png?20140912e");
     -moz-background-size: 160px 880px;
     -ie-background-size: 160px 880px;
     -o-background-size: 160px 880px;
@@ -4051,7 +4059,7 @@ code.jcsdl-code {
     background-size: 160px 880px; }
 
   .jcsdl-icon.field {
-    background-image: url("img/icons-sprite-fields@2x.png?20140624");
+    background-image: url("img/icons-sprite-fields@2x.png?20140912e");
     -moz-background-size: 800px 1520px;
     -ie-background-size: 800px 1520px;
     -o-background-size: 800px 1520px;
@@ -4059,63 +4067,63 @@ code.jcsdl-code {
     background-size: 800px 1520px;
     /* additional icon set (links, opengraph, newscred - lon) */ }
     .jcsdl-icon.field.icon-twitter_activity, .jcsdl-icon.field.icon-location_by_country, .jcsdl-icon.field.icon-basic_demographics, .jcsdl-icon.field.icon-interests, .jcsdl-icon.field.icon-twitter_influence, .jcsdl-icon.field.icon-first_language, .jcsdl-icon.field.icon-number_of_accounts_followed, .jcsdl-icon.field.icon-professions, .jcsdl-icon.field.icon-usa, .jcsdl-icon.field.icon-city, .jcsdl-icon.field.icon-services_and_technologies, .jcsdl-icon.field.icon-large_accounts_followed, .jcsdl-icon.field.icon-twitter_settings, .jcsdl-icon.field.icon-older_than, .jcsdl-icon.field.icon-younger_than, .jcsdl-icon.field.icon-ms_clothes, .jcsdl-icon.field.icon-ms_shop, .jcsdl-icon.field.icon-ms_food, .jcsdl-icon.field.icon-useragent, .jcsdl-icon.field.icon-url_hash, .jcsdl-icon.field.icon-share_hash, .jcsdl-icon.field.icon-cname, .jcsdl-icon.field.icon-ref_url, .jcsdl-icon.field.icon-ref_domain, .jcsdl-icon.field.icon-country_code, .jcsdl-icon.field.icon-geo_region_code, .jcsdl-icon.field.icon-geo_region, .jcsdl-icon.field.icon-timezone, .jcsdl-icon.field.icon-contributions, .jcsdl-icon.field.icon-talkpage, .jcsdl-icon.field.icon-diff, .jcsdl-icon.field.icon-changetype, .jcsdl-icon.field.icon-changeadded, .jcsdl-icon.field.icon-changeremoved, .jcsdl-icon.field.icon-diff-from, .jcsdl-icon.field.icon-diff-to, .jcsdl-icon.field.icon-externallinks, .jcsdl-icon.field.icon-namespace, .jcsdl-icon.field.icon-namespacecode, .jcsdl-icon.field.icon-newlength, .jcsdl-icon.field.icon-oldlength, .jcsdl-icon.field.icon-pageid, .jcsdl-icon.field.icon-parentid, .jcsdl-icon.field.icon-relationship, .jcsdl-icon.field.icon-work-status, .jcsdl-icon.field.icon-accounts_categories {
-      background-image: url("img/icons-sprite-fields-dbw@2x.png?20140624");
+      background-image: url("img/icons-sprite-fields-dbw@2x.png?20140912e");
       -moz-background-size: 801px 800px;
       -ie-background-size: 801px 800px;
       -o-background-size: 801px 800px;
       -webkit-background-size: 801px 800px;
       background-size: 801px 800px; }
     .jcsdl-icon.field.icon-normalized_url, .jcsdl-icon.field.icon-hops, .jcsdl-icon.field.icon-http_code, .jcsdl-icon.field.icon-metatags, .jcsdl-icon.field.icon-charset, .jcsdl-icon.field.icon-newskeywords, .jcsdl-icon.field.icon-standout, .jcsdl-icon.field.icon-site_name, .jcsdl-icon.field.icon-email, .jcsdl-icon.field.icon-phone_number, .jcsdl-icon.field.icon-fax_number, .jcsdl-icon.field.icon-street_address, .jcsdl-icon.field.icon-locality, .jcsdl-icon.field.icon-postal_code, .jcsdl-icon.field.icon-activity, .jcsdl-icon.field.icon-sport, .jcsdl-icon.field.icon-bar, .jcsdl-icon.field.icon-company, .jcsdl-icon.field.icon-cafe, .jcsdl-icon.field.icon-hotel, .jcsdl-icon.field.icon-restaurant, .jcsdl-icon.field.icon-cause, .jcsdl-icon.field.icon-sports_league, .jcsdl-icon.field.icon-sports_team, .jcsdl-icon.field.icon-band, .jcsdl-icon.field.icon-government, .jcsdl-icon.field.icon-non_profit, .jcsdl-icon.field.icon-school, .jcsdl-icon.field.icon-university, .jcsdl-icon.field.icon-actor, .jcsdl-icon.field.icon-athlete, .jcsdl-icon.field.icon-author, .jcsdl-icon.field.icon-director, .jcsdl-icon.field.icon-musician, .jcsdl-icon.field.icon-politician, .jcsdl-icon.field.icon-public_figure, .jcsdl-icon.field.icon-landmark, .jcsdl-icon.field.icon-state_province, .jcsdl-icon.field.icon-album, .jcsdl-icon.field.icon-book, .jcsdl-icon.field.icon-drink, .jcsdl-icon.field.icon-food, .jcsdl-icon.field.icon-game, .jcsdl-icon.field.icon-movie, .jcsdl-icon.field.icon-product, .jcsdl-icon.field.icon-song, .jcsdl-icon.field.icon-tv_show, .jcsdl-icon.field.icon-blog, .jcsdl-icon.field.icon-website, .jcsdl-icon.field.icon-fulltext, .jcsdl-icon.field.icon-circulation, .jcsdl-icon.field.icon-company_type, .jcsdl-icon.field.icon-founded, .jcsdl-icon.field.icon-media_type, .jcsdl-icon.field.icon-source_name, .jcsdl-icon.field.icon-card, .jcsdl-icon.field.icon-site, .jcsdl-icon.field.icon-site_id, .jcsdl-icon.field.icon-creator, .jcsdl-icon.field.icon-creator_id, .jcsdl-icon.field.icon-image_width, .jcsdl-icon.field.icon-image_height, .jcsdl-icon.field.icon-twitter, .jcsdl-icon.field.icon-player_width, .jcsdl-icon.field.icon-player_height, .jcsdl-icon.field.icon-player_stream, .jcsdl-icon.field.icon-player_stream_content_type, .jcsdl-icon.field.icon-player, .jcsdl-icon.field.icon-mention_ids, .jcsdl-icon.field.icon-status, .jcsdl-icon.field.icon-user_verified, .jcsdl-icon.field.icon-confidence, .jcsdl-icon.field.icon-entities_name, .jcsdl-icon.field.icon-entities_type, .jcsdl-icon.field.icon-region, .jcsdl-icon.field.icon-keywords {
-      background-image: url("img/icons-sprite-fields-lon@2x.png?20140624");
+      background-image: url("img/icons-sprite-fields-lon@2x.png?20140912e");
       -moz-background-size: 855px 2365px;
       -ie-background-size: 855px 2365px;
       -o-background-size: 855px 2365px;
       -webkit-background-size: 855px 2365px;
       background-size: 855px 2365px; }
     .jcsdl-icon.field.icon-tumblractivity, .jcsdl-icon.field.icon-tumblrtype, .jcsdl-icon.field.icon-state, .jcsdl-icon.field.icon-source-blogid, .jcsdl-icon.field.icon-dest-blogid, .jcsdl-icon.field.icon-dest-postid, .jcsdl-icon.field.icon-root-blogid, .jcsdl-icon.field.icon-root-postid, .jcsdl-icon.field.icon-blogid, .jcsdl-icon.field.icon-blog_name, .jcsdl-icon.field.icon-tumblrtitle, .jcsdl-icon.field.icon-body, .jcsdl-icon.field.icon-format, .jcsdl-icon.field.icon-post_url, .jcsdl-icon.field.icon-slug, .jcsdl-icon.field.icon-text, .jcsdl-icon.field.icon-source_html, .jcsdl-icon.field.icon-source_url, .jcsdl-icon.field.icon-source_title, .jcsdl-icon.field.icon-note_count, .jcsdl-icon.field.icon-question, .jcsdl-icon.field.icon-answer, .jcsdl-icon.field.icon-asking_name, .jcsdl-icon.field.icon-asking_url, .jcsdl-icon.field.icon-video_url, .jcsdl-icon.field.icon-duration, .jcsdl-icon.field.icon-artist, .jcsdl-icon.field.icon-track_name, .jcsdl-icon.field.icon-album, .jcsdl-icon.field.icon-plays, .jcsdl-icon.field.icon-audio_url, .jcsdl-icon.field.icon-link, .jcsdl-icon.field.icon-description, .jcsdl-icon.field.icon-caption, .jcsdl-icon.field.icon-meta-url, .jcsdl-icon.field.icon-meta-type, .jcsdl-icon.field.icon-meta-description, .jcsdl-icon.field.icon-likes_local, .jcsdl-icon.field.icon-likes_global, .jcsdl-icon.field.icon-reblogged_global, .jcsdl-icon.field.icon-from-id, .jcsdl-icon.field.icon-from-url, .jcsdl-icon.field.icon-from-name, .jcsdl-icon.field.icon-from-title, .jcsdl-icon.field.icon-root-id, .jcsdl-icon.field.icon-root-url, .jcsdl-icon.field.icon-root-name, .jcsdl-icon.field.icon-root-title, .jcsdl-icon.field.icon-meta, .jcsdl-icon.field.icon-reblogged {
-      background-image: url("img/icons-sprite-fields-tumblr@2x.png?20140624");
+      background-image: url("img/icons-sprite-fields-tumblr@2x.png?20140912e");
       -moz-background-size: 800px 880px;
       -ie-background-size: 800px 880px;
       -o-background-size: 800px 880px;
       -webkit-background-size: 800px 880px;
       background-size: 800px 880px; }
     .jcsdl-icon.field.icon-actor-id, .jcsdl-icon.field.icon-actor-display_name, .jcsdl-icon.field.icon-actor-url, .jcsdl-icon.field.icon-object, .jcsdl-icon.field.icon-attachment, .jcsdl-icon.field.icon-in_reply_to-id, .jcsdl-icon.field.icon-in_reply_to-url, .jcsdl-icon.field.icon-provider_title {
-      background-image: url("img/icons-sprite-fields-googleplus@2x.png?20140624");
+      background-image: url("img/icons-sprite-fields-googleplus@2x.png?20140912e");
       -moz-background-size: 800px 160px;
       -ie-background-size: 800px 160px;
       -o-background-size: 800px 160px;
       -webkit-background-size: 800px 160px;
       background-size: 800px 160px; }
     .jcsdl-icon.field.icon-filter, .jcsdl-icon.field.icon-low_resolution, .jcsdl-icon.field.icon-standard_resolution, .jcsdl-icon.field.icon-width, .jcsdl-icon.field.icon-height, .jcsdl-icon.field.icon-caption_from, .jcsdl-icon.field.icon-from, .jcsdl-icon.field.icon-location-id, .jcsdl-icon.field.icon-location-name, .jcsdl-icon.field.icon-users_in_photo, .jcsdl-icon.field.icon-attribution-name, .jcsdl-icon.field.icon-attribution-website, .jcsdl-icon.field.icon-bio, .jcsdl-icon.field.icon-media {
-      background-image: url("img/icons-sprite-fields-instagram@2x.png?20140624");
+      background-image: url("img/icons-sprite-fields-instagram@2x.png?20140912e");
       -moz-background-size: 800px 240px;
       -ie-background-size: 800px 240px;
       -o-background-size: 800px 240px;
       -webkit-background-size: 800px 240px;
       background-size: 800px 240px; }
     .jcsdl-icon.field.icon-message_type, .jcsdl-icon.field.icon-direct_message, .jcsdl-icon.field.icon-privacy, .jcsdl-icon.field.icon-sender_type, .jcsdl-icon.field.icon-client_type, .jcsdl-icon.field.icon-content_excerpt, .jcsdl-icon.field.icon-rich, .jcsdl-icon.field.icon-plain, .jcsdl-icon.field.icon-parsed, .jcsdl-icon.field.icon-thread, .jcsdl-icon.field.icon-shares, .jcsdl-icon.field.icon-updates, .jcsdl-icon.field.icon-group, .jcsdl-icon.field.icon-office365_url, .jcsdl-icon.field.icon-sender, .jcsdl-icon.field.icon-followers, .jcsdl-icon.field.icon-following, .jcsdl-icon.field.icon-job_title, .jcsdl-icon.field.icon-web_url {
-      background-image: url("img/icons-sprite-fields-yammer@2x.png?20140624");
+      background-image: url("img/icons-sprite-fields-yammer@2x.png?20140912e");
       -moz-background-size: 800px 320px;
       -ie-background-size: 800px 320px;
       -o-background-size: 800px 320px;
       -webkit-background-size: 800px 320px;
       background-size: 800px 320px; }
     .jcsdl-icon.field.icon-comment-id, .jcsdl-icon.field.icon-from-category, .jcsdl-icon.field.icon-from-id, .jcsdl-icon.field.icon-from-name, .jcsdl-icon.field.icon-link, .jcsdl-icon.field.icon-message, .jcsdl-icon.field.icon-name, .jcsdl-icon.field.icon-object_id, .jcsdl-icon.field.icon-page_category, .jcsdl-icon.field.icon-page_id, .jcsdl-icon.field.icon-page_link, .jcsdl-icon.field.icon-page_name, .jcsdl-icon.field.icon-page_username, .jcsdl-icon.field.icon-post_id, .jcsdl-icon.field.icon-post_content, .jcsdl-icon.field.icon-post_link, .jcsdl-icon.field.icon-post_type, .jcsdl-icon.field.icon-story, .jcsdl-icon.field.icon-picture, .jcsdl-icon.field.icon-application-id, .jcsdl-icon.field.icon-application-name, .jcsdl-icon.field.icon-page {
-      background-image: url("img/icons-sprite-fields-fbpages@2x.png?20140624");
+      background-image: url("img/icons-sprite-fields-fbpages@2x.png?20140912e");
       -moz-background-size: 800px 400px;
       -ie-background-size: 800px 400px;
       -o-background-size: 800px 400px;
       -webkit-background-size: 800px 400px;
       background-size: 800px 400px; }
     .jcsdl-icon.field.icon-byline, .jcsdl-icon.field.icon-length, .jcsdl-icon.field.icon-docinfo-lnlni, .jcsdl-icon.field.icon-feedtype, .jcsdl-icon.field.icon-indexing, .jcsdl-icon.field.icon-industry, .jcsdl-icon.field.icon-organization, .jcsdl-icon.field.icon-state, .jcsdl-icon.field.icon-subject, .jcsdl-icon.field.icon-ticker, .jcsdl-icon.field.icon-load-date, .jcsdl-icon.field.icon-photos-caption, .jcsdl-icon.field.icon-place-geo, .jcsdl-icon.field.icon-displayname, .jcsdl-icon.field.icon-favourites-count, .jcsdl-icon.field.icon-province, .jcsdl-icon.field.icon-original-pic, .jcsdl-icon.field.icon-parent-reblog, .jcsdl-icon.field.icon-reply, .jcsdl-icon.field.icon-origin-url, .jcsdl-icon.field.icon-thread-url {
-      background-image: url("img/icons-sprite-fields-weibo@2x.png?20140624");
+      background-image: url("img/icons-sprite-fields-weibo@2x.png?20140912e");
       -moz-background-size: 800px 480px;
       -ie-background-size: 800px 480px;
       -o-background-size: 800px 480px;
       -webkit-background-size: 800px 480px;
       background-size: 800px 480px; }
     .jcsdl-icon.field.icon-subtype, .jcsdl-icon.field.icon-permalink {
-      background-image: url("img/icons-sprite-fields-intensedebate-wordpress@2x.png?20140624");
+      background-image: url("img/icons-sprite-fields-intensedebate-wordpress@2x.png?20140912e");
       -moz-background-size: 800px 80px;
       -ie-background-size: 800px 80px;
       -o-background-size: 800px 80px;
